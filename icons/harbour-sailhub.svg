@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   x="0px"
+   y="0px"
+   width="86px"
+   height="86px"
+   viewBox="0 0 86 86"
+   enable-background="new 0 0 86 86"
+   xml:space="preserve"
+   id="svg17"
+   sodipodi:docname="harbour-sailhub.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"><metadata
+   id="metadata23"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs21">
+	<linearGradient
+   id="SVGID_1_"
+   gradientUnits="userSpaceOnUse"
+   x1="12.8065"
+   y1="73.1935"
+   x2="85.2829"
+   y2="0.7171"
+   gradientTransform="translate(0.301,0.277)">
+		<stop
+   offset="0"
+   style="stop-color:#1a1a1a;stop-opacity:1"
+   id="stop3" />
+		<stop
+   offset="0.9951"
+   style="stop-color:#808080;stop-opacity:1"
+   id="stop5" />
+	</linearGradient>
+	
+	
+	
+</defs><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1015"
+   id="namedview19"
+   showgrid="true"
+   inkscape:zoom="2.8284271"
+   inkscape:cx="3.5421394"
+   inkscape:cy="67.433055"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg17"><inkscape:grid
+     type="xygrid"
+     id="grid857" /></sodipodi:namedview>
+<path
+   fill="url(#SVGID_1_)"
+   d="m 86,2 c 0,-0.786 -0.637,-1.423 -1.423,-1.423 0,0 -40.641,0 -41.276,0 -23.583,0 -42.7,19.117 -42.7,42.7 0,23.582 19.117,42.7 42.7,42.7 23.583,0 42.7,-19.118 42.7,-42.7 C 86.001,42.641 86,2 86,2 Z"
+   id="path8"
+   style="fill:url(#SVGID_1_)" /><g
+   id="g12"
+   style="fill:#f2f2f2">
+		<path
+   id="circle10"
+   style="fill:#f2f2f2"
+   d="M 43 10.974609 A 32.025002 32.025002 0 0 0 10.974609 43 A 32.025002 32.025002 0 0 0 43 75.025391 A 32.025002 32.025002 0 0 0 75.025391 43 A 32.025002 32.025002 0 0 0 58.060547 14.736328 L 48.404297 24.392578 A 6 6 0 0 1 49 27 A 6 6 0 0 1 45 32.65625 L 45 54.34375 A 6 6 0 0 1 49 60 A 6 6 0 0 1 43 66 A 6 6 0 0 1 37 60 A 6 6 0 0 1 41 54.34375 L 41 32.65625 A 6 6 0 0 1 40.394531 32.402344 L 31.414062 41.382812 A 6 6 0 0 1 30.242188 48.210938 A 6 6 0 0 1 21.757812 48.210938 A 6 6 0 0 1 21.757812 39.724609 A 6 6 0 0 1 26.025391 37.96875 A 6 6 0 0 1 28.583984 38.554688 L 37.576172 29.5625 A 6 6 0 0 1 37 27 A 6 6 0 0 1 43 21 A 6 6 0 0 1 45.564453 21.576172 L 54.158203 12.982422 A 32.025002 32.025002 0 0 0 43 10.974609 z " />
+	</g><g
+   id="Layer_2"
+   display="none">
+</g>
+
+</svg>
