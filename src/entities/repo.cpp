@@ -1,19 +1,14 @@
 #include "repo.h"
 
 Repo::Repo(QObject *parent) :
-    Node(parent)
+    QObject(parent)
 {
 
 }
 
-bool Repo::archived() const
+quint32 Repo::contributorCount() const
 {
-    return m_archived;
-}
-
-QString Repo::defaultBranch() const
-{
-    return m_defaultBranch;
+    return m_contributorCount;
 }
 
 QString Repo::description() const
@@ -21,142 +16,68 @@ QString Repo::description() const
     return m_description;
 }
 
-bool Repo::disabled() const
+quint32 Repo::forkCount() const
 {
-    return m_disabled;
+    return m_forkCount;
 }
 
-bool Repo::fork() const
+QString Repo::homepageUrl() const
 {
-    return m_fork;
+    return m_homepageUrl;
 }
 
-quint32 Repo::forks() const
+bool Repo::isPrivate() const
 {
-    return m_forks;
+    return m_isPrivate;
 }
 
-QString Repo::fullName() const
+quint32 Repo::issuesCount() const
 {
-    return m_fullName;
+    return m_issueCount;
 }
 
-bool Repo::hasDownloads() const
+License *Repo::license() const
 {
-    return m_hasDownloads;
+    return m_license;
 }
 
-bool Repo::hasIssues() const
+QString Repo::name() const
 {
-    return m_hasIssues;
+    return m_name;
 }
 
-bool Repo::hasPages() const
-{
-    return m_hasPages;
-}
-
-bool Repo::hasProjects() const
-{
-    return m_hasProjects;
-}
-
-bool Repo::hasWiki() const
-{
-    return m_hasWiki;
-}
-
-QString Repo::homepage() const
-{
-    return m_homepage;
-}
-
-QString Repo::language() const
-{
-    return m_language;
-}
-
-QString Repo::licenseKey() const
-{
-    return m_licenseKey;
-}
-
-QString Repo::licenseName() const
-{
-    return m_licenseName;
-}
-
-QString Repo::licenseUrl() const
-{
-    return m_licenseUrl;
-}
-
-QString Repo::mirrorUrl() const
-{
-    return m_mirrorUrl;
-}
-
-quint32 Repo::openIssues() const
-{
-    return m_openIssues;
-}
-
-User *Repo::owner() const
+Owner *Repo::owner() const
 {
     return m_owner;
 }
 
-bool Repo::privateRepo() const
+quint32 Repo::pullRequestsCount() const
 {
-    return m_privateRepo;
+    return m_pullRequestCount;
 }
 
-QDateTime Repo::pushedAt() const
+QString Repo::readme() const
 {
-    return m_pushedAt;
+    return m_readme;
 }
 
-qreal Repo::score() const
+quint32 Repo::stargazerCount() const
 {
-    return m_score;
+    return m_stargazerCount;
 }
 
-quint64 Repo::size() const
+quint32 Repo::watcherCount() const
 {
-    return m_size;
+    return m_watcherCount;
 }
 
-quint32 Repo::stargazers() const
+void Repo::setContributorCount(quint32 count)
 {
-    return m_stargazers;
-}
-
-quint32 Repo::subscribers() const
-{
-    return m_subscribers;
-}
-
-quint32 Repo::watchers() const
-{
-    return m_watchers;
-}
-
-void Repo::setArchived(bool archived)
-{
-    if (m_archived == archived)
+    if (m_contributorCount == count)
         return;
 
-    m_archived = archived;
-    emit archivedChanged(m_archived);
-}
-
-void Repo::setDefaultBranch(const QString &branch)
-{
-    if (m_defaultBranch == branch)
-        return;
-
-    m_defaultBranch = branch;
-    emit defaultBranchChanged(m_defaultBranch);
+    m_contributorCount = count;
+    emit contributorCountChanged(m_contributorCount);
 }
 
 void Repo::setDescription(const QString &description)
@@ -168,151 +89,61 @@ void Repo::setDescription(const QString &description)
     emit descriptionChanged(m_description);
 }
 
-void Repo::setDisabled(bool disabled)
+void Repo::setForkCount(quint32 count)
 {
-    if (m_disabled == disabled)
+    if (m_forkCount == count)
         return;
 
-    m_disabled = disabled;
-    emit disabledChanged(m_disabled);
+    m_forkCount = count;
+    emit forkCountChanged(m_forkCount);
 }
 
-void Repo::setFork(bool fork)
+void Repo::setHomepageUrl(const QString &url)
 {
-    if (m_fork == fork)
+    if (m_homepageUrl == url)
         return;
 
-    m_fork = fork;
-    emit forkChanged(m_fork);
+    m_homepageUrl = url;
+    emit homepageUrlChanged(m_homepageUrl);
 }
 
-void Repo::setForks(quint32 forks)
+void Repo::setIsPrivate(bool isPrivate)
 {
-    if (m_forks == forks)
+    if (m_isPrivate == isPrivate)
         return;
 
-    m_forks = forks;
-    emit forksChanged(m_forks);
+    m_isPrivate = isPrivate;
+    emit isPrivateChanged(m_isPrivate);
 }
 
-void Repo::setFullName(const QString &name)
+void Repo::setIssuesCount(quint32 count)
 {
-    if (m_fullName == name)
+    if (m_issueCount == count)
         return;
 
-    m_fullName = name;
-    emit fullNameChanged(m_fullName);
+    m_issueCount = count;
+    emit issuesCountChanged(m_issueCount);
 }
 
-void Repo::setHasDownloads(bool hasDownloads)
+void Repo::setLicense(License *license)
 {
-    if (m_hasDownloads == hasDownloads)
+    if (m_license == license)
         return;
 
-    m_hasDownloads = hasDownloads;
-    emit hasDownloadsChanged(m_hasDownloads);
+    m_license = license;
+    emit licenseChanged(m_license);
 }
 
-void Repo::setHasIssues(bool hasIssues)
+void Repo::setName(const QString &name)
 {
-    if (m_hasIssues == hasIssues)
+    if (m_name == name)
         return;
 
-    m_hasIssues = hasIssues;
-    emit hasIssuesChanged(m_hasIssues);
+    m_name = name;
+    emit nameChanged(m_name);
 }
 
-void Repo::setHasPages(bool hasPages)
-{
-    if (m_hasPages == hasPages)
-        return;
-
-    m_hasPages = hasPages;
-    emit hasPagesChanged(m_hasPages);
-}
-
-void Repo::setHasProjects(bool hasProjects)
-{
-    if (m_hasProjects == hasProjects)
-        return;
-
-    m_hasProjects = hasProjects;
-    emit hasProjectsChanged(m_hasProjects);
-}
-
-void Repo::setHasWiki(bool hasWiki)
-{
-    if (m_hasWiki == hasWiki)
-        return;
-
-    m_hasWiki = hasWiki;
-    emit hasWikiChanged(m_hasWiki);
-}
-
-void Repo::setHomepage(const QString &homepage)
-{
-    if (m_homepage == homepage)
-        return;
-
-    m_homepage = homepage;
-    emit homepageChanged(m_homepage);
-}
-
-void Repo::setLanguage(const QString &language)
-{
-    if (m_language == language)
-        return;
-
-    m_language = language;
-    emit languageChanged(m_language);
-}
-
-void Repo::setLicenseKey(const QString &key)
-{
-    if (m_licenseKey == key)
-        return;
-
-    m_licenseKey = key;
-    emit licenseKeyChanged(m_licenseKey);
-}
-
-void Repo::setLicenseName(const QString &name)
-{
-    if (m_licenseName == name)
-        return;
-
-    m_licenseName = name;
-    emit licenseNameChanged(m_licenseName);
-}
-
-void Repo::setLicenseUrl(const QString &url)
-{
-    if (m_licenseUrl == url)
-        return;
-
-    m_licenseUrl = url;
-    emit licenseUrlChanged(m_licenseUrl);
-}
-
-void Repo::setMirrorUrl(const QString &url)
-{
-    if (m_mirrorUrl == url)
-        return;
-
-    m_mirrorUrl = url;
-    emit mirrorUrlChanged(m_mirrorUrl);
-}
-
-void Repo::setOpenIssues(quint32 issues)
-{
-    if (m_openIssues == issues)
-        return;
-
-    m_openIssues = issues;
-    emit openIssuesChanged(m_openIssues);
-}
-
-void Repo::setOwner(User *owner)
+void Repo::setOwner(Owner *owner)
 {
     if (m_owner == owner)
         return;
@@ -321,65 +152,38 @@ void Repo::setOwner(User *owner)
     emit ownerChanged(m_owner);
 }
 
-void Repo::setPrivateRepo(bool privateRepo)
+void Repo::setPullRequestsCount(quint32 count)
 {
-    if (m_privateRepo == privateRepo)
+    if (m_pullRequestCount == count)
         return;
 
-    m_privateRepo = privateRepo;
-    emit privateRepoChanged(m_privateRepo);
+    m_pullRequestCount = count;
+    emit pullRequestsCountChanged(m_pullRequestCount);
 }
 
-void Repo::setPushedAt(const QDateTime &timestamp)
+void Repo::setReadme(const QString &readme)
 {
-    if (m_pushedAt == timestamp)
+    if (m_readme == readme)
         return;
 
-    m_pushedAt = timestamp;
-    emit pushedAtChanged(m_pushedAt);
+    m_readme = readme;
+    emit readmeChanged(m_readme);
 }
 
-void Repo::setScore(qreal score)
+void Repo::setStargazerCount(quint32 count)
 {
-    if (qFuzzyCompare(m_score, score))
+    if (m_stargazerCount == count)
         return;
 
-    m_score = score;
-    emit scoreChanged(m_score);
+    m_stargazerCount = count;
+    emit stargazerCountChanged(m_stargazerCount);
 }
 
-void Repo::setSize(quint64 size)
+void Repo::setWatcherCount(quint32 count)
 {
-    if (m_size == size)
+    if (m_watcherCount == count)
         return;
 
-    m_size = size;
-    emit sizeChanged(m_size);
-}
-
-void Repo::setStargazers(quint32 stargazers)
-{
-    if (m_stargazers == stargazers)
-        return;
-
-    m_stargazers = stargazers;
-    emit stargazersChanged(m_stargazers);
-}
-
-void Repo::setSubscribers(quint32 subscribers)
-{
-    if (m_subscribers == subscribers)
-        return;
-
-    m_subscribers = subscribers;
-    emit subscribersChanged(m_subscribers);
-}
-
-void Repo::setWatchers(quint32 watchers)
-{
-    if (m_watchers == watchers)
-        return;
-
-    m_watchers = watchers;
-    emit watchersChanged(m_watchers);
+    m_watcherCount = count;
+    emit watcherCountChanged(m_watcherCount);
 }

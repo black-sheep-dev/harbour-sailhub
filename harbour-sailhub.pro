@@ -23,26 +23,33 @@ LIBS += -lz
 
 SOURCES += src/harbour-sailhub.cpp \
     src/api/apiinterface.cpp \
-    src/entities/node.cpp \
+    src/api/datautils.cpp \
+    src/api/graphqlconnector.cpp \
+    src/entities/license.cpp \
+    src/entities/owner.cpp \
     src/entities/repo.cpp \
     src/entities/user.cpp \
-    src/models/nodesmodel.cpp \
+    src/models/paginationmodel.cpp \
     src/models/reposmodel.cpp \
     src/models/usersmodel.cpp \
     src/sailhub.cpp
 
 DISTFILES += qml/harbour-sailhub.qml \
+    qml/components/CounterItem.qml \
+    qml/components/IconLabel.qml \
+    qml/components/IconRelatedItem.qml \
+    qml/components/InfoItem.qml \
+    qml/components/RelatedItem.qml \
     qml/cover/CoverPage.qml \
     qml/delegates/RepoListDelegate.qml \
     qml/delegates/UserListDelegate.qml \
-    qml/pages/repo/RepoDetailsPage.qml \
-    qml/pages/repo/ReposListPage.qml \
-    qml/pages/repo/ReposSearchPage.qml \
-    qml/pages/StartPage.qml \
-    qml/pages/user/UserDetailsPage.qml \
-    qml/pages/user/UsersBasicListPage.qml \
-    qml/pages/user/UsersListPage.qml \
-    qml/pages/user/UsersSearchPage.qml \
+    qml/pages/OverviewPage.qml \
+    qml/pages/RepoPage.qml \
+    qml/pages/ReposListPage.qml \
+    qml/pages/SettingsPage.qml \
+    qml/pages/UserPage.qml \
+    qml/pages/UserPage.qml \
+    qml/pages/UsersListPage.qml \
     rpm/harbour-sailhub.changes.in \
     rpm/harbour-sailhub.changes.run.in \
     rpm/harbour-sailhub.spec \
@@ -67,10 +74,17 @@ RESOURCES += \
 
 HEADERS += \
     src/api/apiinterface.h \
-    src/entities/node.h \
+    src/api/datautils.h \
+    src/api/graphqlconnector.h \
+    src/api/keys.h \
+    src/api/queries.h \
+    src/api/ratelimit.h \
+    src/entities/language.h \
+    src/entities/license.h \
+    src/entities/owner.h \
     src/entities/repo.h \
     src/entities/user.h \
-    src/models/nodesmodel.h \
+    src/models/paginationmodel.h \
     src/models/reposmodel.h \
     src/models/usersmodel.h \
     src/sailhub.h

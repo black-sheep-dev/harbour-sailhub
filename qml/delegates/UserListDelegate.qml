@@ -7,8 +7,8 @@ import "../components/"
 
 ListItem {
     property string avatar
-    property string title
-    property string subtitle
+    property string name
+    property string login
 
     id: delegate
     width: parent.width
@@ -40,12 +40,12 @@ ListItem {
 
             Label {
                 width: parent.width
-                text: title
+                text: name.length > 0 ? name : login
                 color: pressed ? Theme.secondaryHighlightColor : Theme.highlightColor
                 font.pixelSize: Theme.fontSizeMedium
             }
             Label {
-                text: subtitle
+                text: login
 
                 color: Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall

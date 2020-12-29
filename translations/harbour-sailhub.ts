@@ -12,10 +12,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>SailHub is an inoffical GitHub app for Sailfish OS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Sources</source>
         <translation type="unfinished"></translation>
     </message>
@@ -27,35 +23,101 @@
         <source>If you like my work you can buy me a beer.</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>RepoDetailsPage</name>
     <message>
-        <source>Watch</source>
+        <source>SailHub is an inoffical GitHub app for Sailfish OS</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>RepoListDelegate</name>
+    <name>OverviewPage</name>
     <message>
-        <source>Updated on %1</source>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull Requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Repositories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Organizations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My Work</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RepoPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n Star(s)</source>
+        <comment>0</comment>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n Fork(s)</source>
+        <comment>0</comment>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull Requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Watchers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>README</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contributors</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ReposListPage</name>
-    <message>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete repository</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>No repositories available</source>
         <translation type="unfinished"></translation>
@@ -65,207 +127,92 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pull down to search for repositories you like to watch</source>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load more</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ReposSearchPage</name>
+    <name>SettingsPage</name>
     <message>
-        <source>Search Repositories</source>
+        <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No repositories found</source>
+        <source>Pagination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Watch</source>
+        <source>Choose the number of items to fetch in a single query. This value should be between 1-100.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Watch repository</source>
-        <translation type="unfinished"></translation>
+    <message numerus="yes">
+        <source>%n Item(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
-    <name>StartPage</name>
+    <name>UserPage</name>
     <message>
-        <source>Users</source>
+        <source>Refresh</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Follow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n follower(s)</source>
+        <comment>0</comment>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n following(s)</source>
+        <comment>0</comment>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
     <message>
         <source>Repositories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Organizations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starred</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show, search and follow GitHub users</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show, search and watch GitHub repositories</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UserDetailsPage</name>
-    <message>
-        <source>Follow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Company</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Blog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Email</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Twitter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Social</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message numerus="yes">
-        <source>Has %n follower(s)</source>
-        <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>Follows %n user(s)</source>
-        <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>Followers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Following Users</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UsersBasicListPage</name>
-    <message>
-        <source>Follow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Following user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Organization</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Undefined user type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No users available</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>UsersListPage</name>
     <message>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Users</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Organization</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Undefined user type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>No users available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pull down to search for users you like to follow</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UsersSearchPage</name>
-    <message>
-        <source>Search Users</source>
+        <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Follow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Following user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Organization</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Undefined user type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No users found</source>
+        <source>Load more</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

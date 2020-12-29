@@ -6,7 +6,7 @@ import org.nubecula.harbour.sailhub 1.0
 
 ApplicationWindow
 {
-    initialPage: Component { StartPage { } }
+    initialPage: Component { OverviewPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
 

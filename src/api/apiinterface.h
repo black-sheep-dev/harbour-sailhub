@@ -3,60 +3,75 @@
 
 #include <QObject>
 
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include <QNetworkRequest>
-#include <QUrlQuery>
+#include <QHash>
 
-#include "src/entities/repo.h"
+#include "graphqlconnector.h"
 #include "src/entities/user.h"
+#include "src/models/reposmodel.h"
+#include "src/models/usersmodel.h"
 
-static const QString SAILHUB_API_URL                                = QStringLiteral("https://api.github.com");
-
-static const QString SAILHUB_API_ENDPOINT_FOLLOWERS                 = QStringLiteral("/followers");
-static const QString SAILHUB_API_ENDPOINT_FOLLOWING                 = QStringLiteral("/following");
-static const QString SAILHUB_API_ENDPOINT_REPOS                     = QStringLiteral("/repos");
-static const QString SAILHUB_API_ENDPOINT_REPOS_SINGLE              = QStringLiteral("/repos/");
-static const QString SAILHUB_API_ENDPOINT_REPOS_SEARCH              = QStringLiteral("/search/repositories");
-static const QString SAILHUB_API_ENDPOINT_USERS                     = QStringLiteral("/users/");
-static const QString SAILHUB_API_ENDPOINT_USERS_SEARCH              = QStringLiteral("/search/users");
+static const QString SAILHUB_API_GRAPHQL_URL            = QStringLiteral("https://api.github.com/graphql");
 
 class ApiInterface : public QObject
 {
     Q_OBJECT
 
-public:
+    Q_PROPERTY(quint8 paginationCount READ paginationCount WRITE setPaginationCount NOTIFY paginationCountChanged)
+
+public:  
+    enum RequestType {
+        GetUndefined,
+        GetLogin,
+        GetProfile,
+        GetUser,
+        GetUsers,
+        GetRepo,
+        GetRepos
+    };
+    Q_ENUM(RequestType)
+
     explicit ApiInterface(QObject *parent = nullptr);
 
-    void getFollowers(const QString &username, quint8 operation = 0);
-    void getFollowing(const QString &username, quint8 operation = 0);
-    void getRepo(const QString &reponame, quint8 operation = 0);
-    void getRepos(const QString &username, quint8 operation = 0);
-    void getUser(const QString &username, quint8 operation = 0);
-    void searchRepos(const QString &pattern);
-    void searchUsers(const QString &pattern);
+    Q_INVOKABLE QString login() const;
+    void setToken(const QString &token);
+
+    // api calls
+    void getLogin();
+    Q_INVOKABLE void getProfile();
+    Q_INVOKABLE void getRepo(const QString &login, const QString &repoName);
+    Q_INVOKABLE void getRepos(ReposModel *model);
+    Q_INVOKABLE void getUser(const QString &login);
+    Q_INVOKABLE void getUsers(UsersModel *model);
+
+    // properties
+    quint8 paginationCount() const;
+
+public slots:
+    void setPaginationCount(quint8 paginationCount);
 
 signals:
-    void repoAvailable(Repo *repo, quint8 operation);
-    void reposAvailable(const QList<Node *> &users, quint8 operation);
-    void reposFound(const QList<Node *> &repos);
-    void userAvailable(User *user, quint8 operation);
-    void usersAvailable(const QList<Node *> &users, quint8 operation);
-    void usersFound(const QList<Node *> &users);
+    Q_INVOKABLE void repoAvailable(Repo *repo);
+    Q_INVOKABLE void userAvailable(User *user);
+
+    // properties
+    void paginationCountChanged(quint8 count);
 
 private slots:
-    void onRequestFinished(QNetworkReply *reply);
+    void parseData(const QJsonObject &obj, quint8 requestType, const QByteArray &requestId);
 
 private:
-    Repo *parseRepo(const QJsonObject &obj);
-    QList<Node *> parseRepos(const QJsonArray &array);
-    User *parseUser(const QJsonObject &obj, bool minimal = false);
-    QList<Node *> parseUsers(const QJsonArray &array, bool minimal = false);
-    QNetworkRequest getRequest(const QString &endpoint, const QUrlQuery &params = QUrlQuery());
-    QByteArray gunzip(const QByteArray &data);
+    void initialize();
+    void parseRepos(const QJsonObject &obj, const QByteArray &requestId);
+    void parseUsers(const QJsonObject &obj, const QByteArray &requestId);
 
-    QNetworkAccessManager *m_manager{nullptr};
+    GraphQLConnector *m_connector{new GraphQLConnector(SAILHUB_API_GRAPHQL_URL, this)};
+    QHash<QByteArray, ReposModel *> m_reposModelRequests;
+    QHash<QByteArray, UsersModel *> m_usersModelRequests;
 
+    QString m_login;
+
+    // properties
+    quint8 m_paginationCount{20};
 };
 
 #endif // APIINTERFACE_H

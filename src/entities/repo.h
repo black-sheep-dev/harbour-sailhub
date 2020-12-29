@@ -1,160 +1,108 @@
 #ifndef REPO_H
 #define REPO_H
 
-#include "node.h"
+#include <QJsonObject>
 
+#include "language.h"
 #include "user.h"
 
-class Repo : public Node
+#include "src/entities/license.h"
+#include "src/entities/owner.h"
+
+struct RepoListItem {
+    QString description;
+    Language language;
+    QString name;
+    QString owner;
+    quint32 stargazerCount;
+};
+
+class Repo : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(bool archived READ archived WRITE setArchived NOTIFY archivedChanged)
-    Q_PROPERTY(QString defaultBranch READ defaultBranch WRITE setDefaultBranch NOTIFY defaultBranchChanged)
+    Q_PROPERTY(quint32 contributorCount READ contributorCount WRITE setContributorCount NOTIFY contributorCountChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
-    Q_PROPERTY(bool disabled READ disabled WRITE setDisabled NOTIFY disabledChanged)
-    Q_PROPERTY(bool fork READ fork WRITE setFork NOTIFY forkChanged)
-    Q_PROPERTY(quint32 forks READ forks WRITE setForks NOTIFY forksChanged)
-    Q_PROPERTY(QString fullName READ fullName WRITE setFullName NOTIFY fullNameChanged)
-    Q_PROPERTY(bool hasDownloads READ hasDownloads WRITE setHasDownloads NOTIFY hasDownloadsChanged)
-    Q_PROPERTY(bool hasIssues READ hasIssues WRITE setHasIssues NOTIFY hasIssuesChanged)
-    Q_PROPERTY(bool hasPages READ hasPages WRITE setHasPages NOTIFY hasPagesChanged)
-    Q_PROPERTY(bool hasProjects READ hasProjects WRITE setHasProjects NOTIFY hasProjectsChanged)
-    Q_PROPERTY(bool hasWiki READ hasWiki WRITE setHasWiki NOTIFY hasWikiChanged)
-    Q_PROPERTY(QString homepage READ homepage WRITE setHomepage NOTIFY homepageChanged)
-    Q_PROPERTY(QString language READ language WRITE setLanguage NOTIFY languageChanged)
-    Q_PROPERTY(QString licenseKey READ licenseKey WRITE setLicenseKey NOTIFY licenseKeyChanged)
-    Q_PROPERTY(QString licenseName READ licenseName WRITE setLicenseName NOTIFY licenseNameChanged)
-    Q_PROPERTY(QString licenseUrl READ licenseUrl WRITE setLicenseUrl NOTIFY licenseUrlChanged)
-    Q_PROPERTY(QString mirrorUrl READ mirrorUrl WRITE setMirrorUrl NOTIFY mirrorUrlChanged)
-    Q_PROPERTY(quint32 openIssues READ openIssues WRITE setOpenIssues NOTIFY openIssuesChanged)
-    Q_PROPERTY(User* owner READ owner WRITE setOwner NOTIFY ownerChanged)
-    Q_PROPERTY(bool privateRepo READ privateRepo WRITE setPrivateRepo NOTIFY privateRepoChanged)
-    Q_PROPERTY(QDateTime pushedAt READ pushedAt WRITE setPushedAt NOTIFY pushedAtChanged)
-    Q_PROPERTY(qreal score READ score WRITE setScore NOTIFY scoreChanged)
-    Q_PROPERTY(quint64 size READ size WRITE setSize NOTIFY sizeChanged)
-    Q_PROPERTY(quint32 stargazers READ stargazers WRITE setStargazers NOTIFY stargazersChanged)
-    Q_PROPERTY(quint32 subscribers READ subscribers WRITE setSubscribers NOTIFY subscribersChanged)
-    Q_PROPERTY(quint32 watchers READ watchers WRITE setWatchers NOTIFY watchersChanged)
+    Q_PROPERTY(quint32 forkCount READ forkCount WRITE setForkCount NOTIFY forkCountChanged)
+    Q_PROPERTY(QString homepageUrl READ homepageUrl WRITE setHomepageUrl NOTIFY homepageUrlChanged)
+    Q_PROPERTY(bool isPrivate READ isPrivate WRITE setIsPrivate NOTIFY isPrivateChanged)
+    Q_PROPERTY(quint32 issueCount READ issuesCount WRITE setIssuesCount NOTIFY issuesCountChanged)
+    Q_PROPERTY(License* license READ license WRITE setLicense NOTIFY licenseChanged)
+    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(Owner* owner READ owner WRITE setOwner NOTIFY ownerChanged)
+    Q_PROPERTY(quint32 pullRequestCount READ pullRequestsCount WRITE setPullRequestsCount NOTIFY pullRequestsCountChanged)
+    Q_PROPERTY(QString readme READ readme WRITE setReadme NOTIFY readmeChanged)
+    Q_PROPERTY(quint32 stargazerCount READ stargazerCount WRITE setStargazerCount NOTIFY stargazerCountChanged)
+    Q_PROPERTY(quint32 watcherCount READ watcherCount WRITE setWatcherCount NOTIFY watcherCountChanged)
 
 public:
+    enum RepoType {
+        Undefined,
+        User,
+        Fork
+    };
+    Q_ENUM(RepoType)
+
     explicit Repo(QObject *parent = nullptr);
 
-    bool archived() const;
-    QString defaultBranch() const;
+    quint32 contributorCount() const;
     QString description() const;
-    bool disabled() const;
-    bool fork() const;
-    quint32 forks() const;
-    QString fullName() const;
-    bool hasDownloads() const;
-    bool hasIssues() const;
-    bool hasPages() const;
-    bool hasProjects() const;
-    bool hasWiki() const;
-    QString homepage() const;
-    QString language() const;
-    QString licenseKey() const;
-    QString licenseName() const;
-    QString licenseUrl() const;
-    QString mirrorUrl() const;
-    quint32 openIssues() const;
-    User *owner() const;
-    bool privateRepo() const;
-    QDateTime pushedAt() const;
-    qreal score() const;
-    quint64 size() const;
-    quint32 stargazers() const;
-    quint32 subscribers() const;
-    quint32 watchers() const;
+    quint32 forkCount() const;
+    QString homepageUrl() const;
+    bool isPrivate() const;
+    quint32 issuesCount() const;
+    License *license() const;
+    QString name() const;
+    Owner *owner() const;
+    quint32 pullRequestsCount() const;
+    QString readme() const;
+    quint32 stargazerCount() const;
+    quint32 watcherCount() const;
 
 signals:
-    void archivedChanged(bool archived);
-    void defaultBranchChanged(const QString &branch);
+    void contributorCountChanged(quint32 count);
     void descriptionChanged(const QString &description);
-    void disabledChanged(bool disabled);
-    void forkChanged(bool fork);
-    void forksChanged(quint32 forks);
-    void fullNameChanged(const QString &name);
-    void hasDownloadsChanged(bool hasDownloads);
-    void hasIssuesChanged(bool hasIssues);
-    void hasPagesChanged(bool hasPages);
-    void hasProjectsChanged(bool hasProjects);
-    void hasWikiChanged(bool hasWiki);
-    void homepageChanged(const QString &homepage);
-    void languageChanged(const QString &language);
-    void licenseKeyChanged(const QString &key);
-    void licenseNameChanged(const QString &name);
-    void licenseUrlChanged(const QString &url);
-    void mirrorUrlChanged(const QString &mirrorUrl);
-    void openIssuesChanged(quint32 issues);
-    void ownerChanged(User *owner);
-    void privateRepoChanged(bool privateRepo);
-    void pushedAtChanged(const QDateTime &timestamp);
-    void scoreChanged(qreal score);
-    void sizeChanged(quint64 size);
-    void stargazersChanged(quint32 stargazers);
-    void subscribersChanged(quint32 subscribers);
-    void watchersChanged(quint32 watchers);
+    void forkCountChanged(quint32 count);
+    void homepageUrlChanged(const QString &url);
+    void isPrivateChanged(bool isPrivate);
+    void issuesCountChanged(quint32 count);
+    void licenseChanged(License *license);
+    void nameChanged(const QString &name);
+    void ownerChanged(Owner *owner);
+    void pullRequestsCountChanged(quint32 count);
+    void readmeChanged(const QString &readme);
+    void stargazerCountChanged(quint32 count);
+    void watcherCountChanged(quint32 count); 
 
 public slots:
-    void setArchived(bool archived);
-    void setDefaultBranch(const QString &branch);
+    void setContributorCount(quint32 count);
     void setDescription(const QString &description);
-    void setDisabled(bool disabled);
-    void setFork(bool fork);
-    void setForks(quint32 forks);
-    void setFullName(const QString &name);
-    void setHasDownloads(bool hasDownloads);
-    void setHasIssues(bool hasIssues);
-    void setHasPages(bool hasPages);
-    void setHasProjects(bool hasProjects);
-    void setHasWiki(bool hasWiki);
-    void setHomepage(const QString &homepage);
-    void setLanguage(const QString &language);
-    void setLicenseKey(const QString &key);
-    void setLicenseName(const QString &name);
-    void setLicenseUrl(const QString &url);
-    void setMirrorUrl(const QString &url);
-    void setOpenIssues(quint32 issues);
-    void setOwner(User *owner);
-    void setPrivateRepo(bool privateRepo);
-    void setPushedAt(const QDateTime &timestamp);
-    void setScore(qreal score);
-    void setSize(quint64 size);
-    void setStargazers(quint32 stargazers);
-    void setSubscribers(quint32 subscribers);
-    void setWatchers(quint32 watchers);
+    void setForkCount(quint32 count);
+    void setHomepageUrl(const QString &url);
+    void setIsPrivate(bool isPrivate);
+    void setIssuesCount(quint32 count);
+    void setLicense(License *license);
+    void setName(const QString &name);
+    void setOwner(Owner *owner);
+    void setPullRequestsCount(quint32 count);
+    void setReadme(const QString &readme);
+    void setStargazerCount(quint32 count);
+    void setWatcherCount(quint32 count);
 
 private:
-    bool m_archived{false};
-    QString m_defaultBranch;
+    quint32 m_contributorCount{0};
     QString m_description;
-    bool m_disabled{false};
-    bool m_fork{false};
-    quint32 m_forks{0};
-    QString m_fullName;
-    bool m_hasDownloads{false};
-    bool m_hasIssues{false};
-    bool m_hasPages{false};
-    bool m_hasProjects{false};
-    bool m_hasWiki{false};
-    QString m_homepage;
-    QString m_language;
-    QString m_licenseKey;
-    QString m_licenseName;
-    QString m_licenseUrl;
-    QString m_mirrorUrl;
-    quint32 m_openIssues{0};
-    User* m_owner{nullptr};
-    bool m_privateRepo{false};
-    QDateTime m_pushedAt;
-    qreal m_score{0.0};
-    quint64 m_size{0};
-    quint32 m_stargazers{0};
-    quint32 m_subscribers{0};
-    quint32 m_watchers{0};
-
+    quint32 m_forkCount{0};
+    QString m_homepageUrl;
+    bool m_isPrivate{false};
+    quint32 m_issueCount{0};
+    License *m_license;
+    QString m_name;
+    Owner *m_owner;
+    quint32 m_pullRequestCount{0};
+    quint32 m_stargazerCount{0};
+    QString m_readme;
+    quint32 m_watcherCount{0};
 };
 
 #endif // REPO_H
