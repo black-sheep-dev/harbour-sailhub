@@ -25,15 +25,12 @@ Page {
     SilicaFlickable {
         PullDownMenu {
             MenuItem {
-<<<<<<< HEAD
                 visible: page.own
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
 
             MenuItem {
-=======
->>>>>>> 3f1349e45347b37b8d6b3fa0e65e0674fc67ee3d
                 text: qsTr("Refresh")
                 onClicked: {
                     page.loading = true
@@ -42,11 +39,7 @@ Page {
             }
 
             MenuItem {
-<<<<<<< HEAD
                 visible: !page.own
-=======
-                visible: page.own
->>>>>>> 3f1349e45347b37b8d6b3fa0e65e0674fc67ee3d
                 text: qsTr("Follow")
             }
         }
