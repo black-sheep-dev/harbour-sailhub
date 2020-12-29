@@ -1,6 +1,8 @@
 #ifndef REPO_H
 #define REPO_H
 
+#include "node.h"
+
 #include <QJsonObject>
 
 #include "language.h"
@@ -13,11 +15,12 @@ struct RepoListItem {
     QString description;
     Language language;
     QString name;
+    QString nodeId;
     QString owner;
     quint32 stargazerCount;
 };
 
-class Repo : public QObject
+class Repo : public Node
 {
     Q_OBJECT
 
@@ -103,6 +106,7 @@ private:
     quint32 m_stargazerCount{0};
     QString m_readme;
     quint32 m_watcherCount{0};
+
 };
 
 #endif // REPO_H

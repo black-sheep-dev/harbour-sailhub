@@ -1,7 +1,7 @@
 #include "repo.h"
 
 Repo::Repo(QObject *parent) :
-    QObject(parent)
+    Node(parent)
 {
 
 }

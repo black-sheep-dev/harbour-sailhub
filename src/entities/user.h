@@ -1,12 +1,13 @@
 #ifndef USER_H
 #define USER_H
 
-#include <QObject>
+#include "node.h"
 
 struct UserListItem {
     QString avatarUrl;
     QString login;
     QString name;
+    QString nodeId;
 };
 
 struct UserStatus {
@@ -28,7 +29,7 @@ struct UserStatus {
     }
 };
 
-class User : public QObject
+class User : public Node
 {
     Q_OBJECT
 
@@ -126,6 +127,7 @@ private:
     UserStatus m_status{UserStatus()};
     QString m_twitterUsername;
     QString m_websiteUrl;
+
 };
 
 #endif // USER_H

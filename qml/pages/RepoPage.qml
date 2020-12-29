@@ -7,8 +7,7 @@ import "../components/"
 
 Page {
     property bool loading: true
-    property string login
-    property string repoName
+    property string nodeId
     property Repo repo
 
     id: page
@@ -28,7 +27,7 @@ Page {
                 text: qsTr("Refresh")
                 onClicked: {
                     page.loading = true
-                    SailHub.api().getRepo(page.login, page.repoName)
+                    SailHub.api().getRepo(page.nodeId)
                 }
             }
 
@@ -46,8 +45,8 @@ Page {
             Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
-                title: page.repoName
-                description: page.login
+                title: repo.name
+                description: repo.owner.login
             }
 
             // owner
@@ -79,7 +78,7 @@ Page {
                 }
 
                 onClicked: pageStack.push(Qt.resolvedUrl("UserPage.qml"), {
-                                              login: repo.owner.login
+                                              nodeId: repo.owner.nodeId
                                           })
             }
 
@@ -152,7 +151,9 @@ Page {
                         if (repo.stargazerCount === 0) return;
 
                         pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                                  identifier: login + repoName,
+                                                  title: qsTr("Stargazer"),
+                                                  description: repo.owner.login + "/" + repo.name,
+                                                  identifier: repo.nodeId,
                                                   userType: User.Stargazer
                                               })
                     }
@@ -168,7 +169,7 @@ Page {
                         if (repo.forkCount === 0) return;
 
                         pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
-                                                                     identifier: repo.owner.login + "/" + repo.name,
+                                                                     identifier: repo.nodeId,
                                                                      repoType: Repo.Fork
                                                                  })
                     }
@@ -204,8 +205,8 @@ Page {
 
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
                                               title: qsTr("Watchers"),
-                                              description: login + "/" + repoName,
-                                              identifier: login + "/" + repoName,
+                                              description: repo.owner.login + "/" + repo.name,
+                                              identifier: page.nodeId,
                                               userType: User.Watcher
                                           })
                 }
@@ -221,8 +222,8 @@ Page {
 
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
                                               title: qsTr("Contributors"),
-                                              description: login + "/" + repoName,
-                                              identifier: login + "/" + repoName,
+                                              description: repo.owner.login + "/" + repo.name,
+                                              identifier: page.nodeId,
                                               userType: User.Contributor
                                           })
                 }
@@ -235,6 +236,7 @@ Page {
             }
 
             // Readme
+            /*
             SectionHeader {
                 visible: repo.readme.length > 0
                 text: qsTr("README")
@@ -249,6 +251,7 @@ Page {
 
                 text: repo.readme
             }
+            */
         }
     }
 
@@ -260,7 +263,7 @@ Page {
         }
     }
 
-    Component.onCompleted: SailHub.api().getRepo(page.login, page.repoName)
+    Component.onCompleted: SailHub.api().getRepo(page.nodeId)
 }
 
 

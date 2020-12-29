@@ -39,7 +39,7 @@ Page {
             visible: running
             size: BusyIndicatorSize.Large
             anchors.centerIn: parent
-            running: reposModel.loading || reposModel === undefined
+            running: reposModel.loading
         }
 
         ViewPlaceholder {
@@ -69,8 +69,7 @@ Page {
             languageName: model.languageName
 
             onClicked: pageStack.push(Qt.resolvedUrl("RepoPage.qml"), {
-                                          login: model.owner,
-                                          repoName: model.name
+                                          nodeId: model.nodeId
                                       })
         }
 

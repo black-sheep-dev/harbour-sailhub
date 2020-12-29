@@ -1,9 +1,9 @@
 #ifndef OWNER_H
 #define OWNER_H
 
-#include <QObject>
+#include "node.h"
 
-class Owner : public QObject
+class Owner : public Node
 {
     Q_OBJECT
 

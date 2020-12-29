@@ -33,14 +33,15 @@ public:
     explicit ApiInterface(QObject *parent = nullptr);
 
     Q_INVOKABLE QString login() const;
+    Q_INVOKABLE QString loginNodeId() const;
     void setToken(const QString &token);
 
     // api calls
     void getLogin();
     Q_INVOKABLE void getProfile();
-    Q_INVOKABLE void getRepo(const QString &login, const QString &repoName);
+    Q_INVOKABLE void getRepo(const QString &nodeId);
     Q_INVOKABLE void getRepos(ReposModel *model);
-    Q_INVOKABLE void getUser(const QString &login);
+    Q_INVOKABLE void getUser(const QString &nodeId);
     Q_INVOKABLE void getUsers(UsersModel *model);
 
     // properties
@@ -69,6 +70,7 @@ private:
     QHash<QByteArray, UsersModel *> m_usersModelRequests;
 
     QString m_login;
+    QString m_nodeId;
 
     // properties
     quint8 m_paginationCount{20};

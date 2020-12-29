@@ -19,7 +19,7 @@ Page {
             MenuItem {
                 text: qsTr("Profile")
                 onClicked: pageStack.push(Qt.resolvedUrl("UserPage.qml"), {
-                                              login: SailHub.api().login(),
+                                              nodeId: SailHub.api().loginNodeId(),
                                               own: true
                                           })
             }
@@ -58,7 +58,7 @@ Page {
                 title: qsTr("Repositories")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
-                                              identifier: SailHub.api().login(),
+                                              identifier: SailHub.api().loginNodeId(),
                                               repoType: Repo.User
                                           })
             }

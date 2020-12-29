@@ -13,7 +13,8 @@ public:
     enum UserRoles {
         AvatarUrlRole        = Qt::UserRole,
         LoginRole,
-        NameRole
+        NameRole,
+        NodeIdRole,
     };
     Q_ENUM(UserRoles)
 

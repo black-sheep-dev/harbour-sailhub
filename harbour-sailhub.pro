@@ -26,6 +26,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/datautils.cpp \
     src/api/graphqlconnector.cpp \
     src/entities/license.cpp \
+    src/entities/node.cpp \
     src/entities/owner.cpp \
     src/entities/repo.cpp \
     src/entities/user.cpp \
@@ -81,6 +82,7 @@ HEADERS += \
     src/api/ratelimit.h \
     src/entities/language.h \
     src/entities/license.h \
+    src/entities/node.h \
     src/entities/owner.h \
     src/entities/repo.h \
     src/entities/user.h \

@@ -45,6 +45,9 @@ QVariant UsersModel::data(const QModelIndex &index, int role) const
     case LoginRole:
         return user.login;
 
+    case NodeIdRole:
+        return user.nodeId;
+
     default:
         return QVariant();
     }
@@ -57,6 +60,7 @@ QHash<int, QByteArray> UsersModel::roleNames() const
     roles[AvatarUrlRole]        = "avatarUrl";
     roles[LoginRole]            = "login";
     roles[NameRole]             = "name";
+    roles[NodeIdRole]           = "nodeId";
 
     return roles;
 }

@@ -37,6 +37,7 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     repo->setIsPrivate(obj.value(SAILHUB_API_KEY_IS_PRIVATE).toBool());
     repo->setIssuesCount(getTotalCount(obj.value(SAILHUB_API_KEY_ISSUES).toObject()));
     repo->setName(obj.value(SAILHUB_API_KEY_NAME).toString());
+    repo->setNodeId(obj.value(SAILHUB_API_KEY_ID).toString());
     repo->setPullRequestsCount(getTotalCount(obj.value(SAILHUB_API_KEY_PULL_REQUESTS).toObject()));
     //repo->setReadme(obj.value(SAILHUB_API_KEY_OBJECT).toObject().value(SAILHUB_API_KEY_TEXT).toString());
     repo->setStargazerCount(obj.value(SAILHUB_API_KEY_STARGAZER_COUNT).toInt());
@@ -50,6 +51,7 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
 
     const QJsonObject own = obj.value(SAILHUB_API_KEY_OWNER).toObject();
     Owner *owner = new Owner(repo);
+    owner->setNodeId(own.value(SAILHUB_API_KEY_ID).toString());
     owner->setLogin(own.value(SAILHUB_API_KEY_LOGIN).toString());
     owner->setAvatarUrl(own.value(SAILHUB_API_KEY_AVATAR_URL).toString());
     repo->setOwner(owner);
@@ -77,6 +79,7 @@ RepoListItem DataUtils::repoListItemFromJson(const QJsonObject &obj)
 
     item.description = obj.value(SAILHUB_API_KEY_SHORT_DESCRIPTION_HTML).toString();
     item.name = obj.value(SAILHUB_API_KEY_NAME).toString();
+    item.nodeId = obj.value(SAILHUB_API_KEY_ID).toString();
     item.owner = obj.value(SAILHUB_API_KEY_OWNER).toObject()
                  .value(SAILHUB_API_KEY_LOGIN).toString();
     item.stargazerCount = quint32(obj.value(SAILHUB_API_KEY_STARGAZER_COUNT).toInt());
@@ -100,6 +103,7 @@ User *DataUtils::userFromJson(const QJsonObject &obj)
     user->setLocation(obj.value(SAILHUB_API_KEY_LOCATION).toString());
     user->setLogin(obj.value(SAILHUB_API_KEY_LOGIN).toString());
     user->setName(obj.value(SAILHUB_API_KEY_NAME).toString());
+    user->setNodeId(obj.value(SAILHUB_API_KEY_ID).toString());
     user->setOrganizations(getTotalCount(obj.value(SAILHUB_API_KEY_ORGANIZATIONS).toObject()));
     user->setRepositories(getTotalCount(obj.value(SAILHUB_API_KEY_REPOSITORIES).toObject()));
     user->setStarredRepositories(getTotalCount(obj.value(SAILHUB_API_KEY_STARRED_REPOSITORIES).toObject()));
@@ -125,6 +129,7 @@ UserListItem DataUtils::userListItemFromJson(const QJsonObject &obj)
     item.avatarUrl = obj.value(SAILHUB_API_KEY_AVATAR_URL).toString();
     item.login = obj.value(SAILHUB_API_KEY_LOGIN).toString();
     item.name = obj.value(SAILHUB_API_KEY_NAME).toString();
+    item.nodeId = obj.value(SAILHUB_API_KEY_ID).toString();
 
     return item;
 }

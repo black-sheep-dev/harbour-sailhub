@@ -8,7 +8,7 @@ import "../components/"
 Page {
     property bool loading: true
     property bool own: false
-    property string login
+    property string nodeId
     property User user
 
     id: page
@@ -34,7 +34,7 @@ Page {
                 text: qsTr("Refresh")
                 onClicked: {
                     page.loading = true
-                    SailHub.api().getUser(page.login)
+                    SailHub.api().getUser(page.nodeId)
                 }
             }
 
@@ -161,7 +161,7 @@ Page {
                         if (user.followers === 0) return;
 
                         pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                                  identifier: page.login,
+                                                  identifier: page.nodeId,
                                                   userType: User.Follower
                                               })
                     }
@@ -177,7 +177,7 @@ Page {
                         if (user.following === 0) return;
 
                         pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                                  identifier: page.login,
+                                                  identifier: page.nodeId,
                                                   userType: User.Following
                                               })
                     }
@@ -198,7 +198,7 @@ Page {
                     if (user.repositories === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
-                                                                  identifier: login,
+                                                                  identifier: page.nodeId,
                                                                   repoType: Repo.User
                                                               })
                 }
@@ -217,14 +217,14 @@ Page {
     Connections {
         target: SailHub.api()
         onUserAvailable: {
-            if (page.login !== user.login) return
+            if (page.nodeId !== user.nodeId) return
 
             page.user = user
             loading = false
         }
     }
 
-    Component.onCompleted: SailHub.api().getUser(page.login)
+    Component.onCompleted: SailHub.api().getUser(page.nodeId)
 }
 
 

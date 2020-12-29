@@ -21,6 +21,11 @@ QString ApiInterface::login() const
     return m_login;
 }
 
+QString ApiInterface::loginNodeId() const
+{
+    return m_nodeId;
+}
+
 void ApiInterface::setToken(const QString &token)
 {
     m_connector->setToken(token);
@@ -44,12 +49,11 @@ void ApiInterface::getProfile()
     m_connector->sendQuery(query, RequestType::GetProfile);
 }
 
-void ApiInterface::getRepo(const QString &login, const QString &repoName)
+void ApiInterface::getRepo(const QString &nodeId)
 {
     GraphQLQuery query;
     query.query = SAILHUB_QUERY_GET_REPOSITORY;
-    query.variables.insert(SAILHUB_QUERY_VAR_USER_LOGIN, login);
-    query.variables.insert(SAILHUB_QUERY_VAR_REPO_NAME, repoName);
+    query.variables.insert(SAILHUB_QUERY_VAR_NODE_ID, nodeId);
 
     m_connector->sendQuery(query, RequestType::GetRepo);
 }
@@ -72,19 +76,7 @@ void ApiInterface::getRepos(ReposModel *model)
         break;
     }
 
-    if ( repoType == Repo::Fork ) {
-        const QStringList parts = model->identifier().split("/");
-
-        if (parts.count() < 2)
-            return;
-
-        query.variables.insert(SAILHUB_QUERY_VAR_USER_LOGIN, parts.first());
-        query.variables.insert(SAILHUB_QUERY_VAR_REPO_NAME, parts.last());
-
-    } else {
-        query.variables.insert(SAILHUB_QUERY_VAR_USER_LOGIN, model->identifier());
-    }
-
+    query.variables.insert(SAILHUB_QUERY_VAR_NODE_ID, model->identifier());
     query.variables.insert(SAILHUB_QUERY_VAR_ITEM_COUNT, m_paginationCount);
 
     // if next insert item cursor
@@ -101,11 +93,11 @@ void ApiInterface::getRepos(ReposModel *model)
     m_connector->sendQuery(query, RequestType::GetRepos, uuid);
 }
 
-void ApiInterface::getUser(const QString &login)
+void ApiInterface::getUser(const QString &nodeId)
 {
     GraphQLQuery query;
     query.query = SAILHUB_QUERY_GET_USER;
-    query.variables.insert(SAILHUB_QUERY_VAR_USER_LOGIN, login);
+    query.variables.insert(SAILHUB_QUERY_VAR_NODE_ID, nodeId);
 
     m_connector->sendQuery(query, RequestType::GetUser);
 }
@@ -113,7 +105,6 @@ void ApiInterface::getUser(const QString &login)
 void ApiInterface::getUsers(UsersModel *model)
 {
     GraphQLQuery query;
-    query.variables.insert(SAILHUB_QUERY_VAR_ITEM_COUNT, m_paginationCount);
 
     switch (model->modelType()) {
     case User::Follower:
@@ -140,21 +131,8 @@ void ApiInterface::getUsers(UsersModel *model)
         break;
     }
 
-    if ( model->modelType() == User::Contributor
-         || model->modelType() == User::Stargazer
-         || model->modelType() == User::Watcher ) {
-
-        const QStringList parts = model->identifier().split("/");
-
-        if (parts.count() < 2)
-            return;
-
-        query.variables.insert(SAILHUB_QUERY_VAR_USER_LOGIN, parts.first());
-        query.variables.insert(SAILHUB_QUERY_VAR_REPO_NAME, parts.last());
-
-    } else {
-        query.variables.insert(SAILHUB_QUERY_VAR_USER_LOGIN, model->identifier());
-    }
+    query.variables.insert(SAILHUB_QUERY_VAR_NODE_ID, model->identifier());
+    query.variables.insert(SAILHUB_QUERY_VAR_ITEM_COUNT, m_paginationCount);
 
     // if cursor available insert it
     if (!model->lastItemCursor().isEmpty()) {
@@ -195,7 +173,7 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
     switch (requestType) {
     case RequestType::GetProfile:
     case RequestType::GetUser:
-        emit userAvailable(DataUtils::userFromJson(data.value(SAILHUB_API_KEY_USER).toObject()));
+        emit userAvailable(DataUtils::userFromJson(data.value(SAILHUB_API_KEY_NODE).toObject()));
         break;
 
     case RequestType::GetUsers:
@@ -203,7 +181,7 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         break;
 
     case RequestType::GetRepo:
-        emit repoAvailable(DataUtils::repoFromJson(data.value(SAILHUB_API_KEY_REPOSITORY).toObject()));
+        emit repoAvailable(DataUtils::repoFromJson(data.value(SAILHUB_API_KEY_NODE).toObject()));
         break;
 
     case RequestType::GetRepos:
@@ -213,6 +191,8 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
     case RequestType::GetLogin:
         m_login = data.value(SAILHUB_API_KEY_VIEWER).toObject()
                     .value(SAILHUB_API_KEY_LOGIN).toString();
+        m_nodeId = data.value(SAILHUB_API_KEY_VIEWER).toObject()
+                    .value(SAILHUB_API_KEY_ID).toString();
         break;
 
     default:
@@ -235,17 +215,17 @@ void ApiInterface::parseRepos(const QJsonObject &obj, const QByteArray &requestI
 
 
     // get identifier and repos
+    const QJsonObject node = obj.value(SAILHUB_API_KEY_NODE).toObject();
+
     QJsonObject repos;
 
     switch (model->modelType()) {
     case Repo::User:
-        repos = obj.value(SAILHUB_API_KEY_USER).toObject()
-                .value(SAILHUB_API_KEY_REPOSITORIES).toObject();
+        repos = node.value(SAILHUB_API_KEY_REPOSITORIES).toObject();
         break;
 
     case Repo::Fork:
-        repos = obj.value(SAILHUB_API_KEY_REPOSITORY).toObject()
-                .value(SAILHUB_API_KEY_FORKS).toObject();
+        repos = node.value(SAILHUB_API_KEY_FORKS).toObject();
         break;
 
     default:
@@ -268,32 +248,29 @@ void ApiInterface::parseUsers(const QJsonObject &obj, const QByteArray &requestI
         return;
 
     // get identifier and users
+    const QJsonObject node = obj.value(SAILHUB_API_KEY_NODE).toObject();
+
     QJsonObject users;
 
     switch (model->modelType()) {
     case User::Contributor:
-        users = obj.value(SAILHUB_API_KEY_REPOSITORY).toObject()
-                .value(SAILHUB_API_KEY_MENTIONABLE_USERS).toObject();
+        users = node.value(SAILHUB_API_KEY_MENTIONABLE_USERS).toObject();
         break;
 
     case User::Stargazer:
-        users = obj.value(SAILHUB_API_KEY_REPOSITORY).toObject()
-                .value(SAILHUB_API_KEY_STARGAZERS).toObject();
+        users = node.value(SAILHUB_API_KEY_STARGAZERS).toObject();
         break;
 
     case User::Watcher:
-        users = obj.value(SAILHUB_API_KEY_REPOSITORY).toObject()
-                .value(SAILHUB_API_KEY_WATCHERS).toObject();
+        users = node.value(SAILHUB_API_KEY_WATCHERS).toObject();
         break;
 
     case User::Follower:
-        users = obj.value(SAILHUB_API_KEY_USER).toObject()
-                .value(SAILHUB_API_KEY_FOLLOWERS).toObject();
+        users = node.value(SAILHUB_API_KEY_FOLLOWERS).toObject();
         break;
 
     case User::Following:
-        users = obj.value(SAILHUB_API_KEY_USER).toObject()
-                .value(SAILHUB_API_KEY_FOLLOWING).toObject();
+        users = node.value(SAILHUB_API_KEY_FOLLOWING).toObject();
         break;
 
     default:

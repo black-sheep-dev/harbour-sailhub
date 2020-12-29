@@ -68,12 +68,12 @@ Page {
             name: model.name
 
             onClicked: pageStack.push(Qt.resolvedUrl("UserPage.qml"), {
-                                          login: model.login
+                                          nodeId: model.nodeId
                                       })
         }
 
         PushUpMenu {
-            busy: loading
+            busy: usersModel.loading
             visible: usersModel.hasNextPage
 
             MenuItem {

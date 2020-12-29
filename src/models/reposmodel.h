@@ -16,6 +16,7 @@ public:
         LanguageColorRole,
         LanguageNameRole,
         NameRole,
+        NodeIdRole,
         OwnerRole,
         StargazerCountRole
     };

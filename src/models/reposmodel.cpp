@@ -48,6 +48,9 @@ QVariant ReposModel::data(const QModelIndex &index, int role) const
     case NameRole:
         return repo.name;
 
+    case NodeIdRole:
+        return repo.nodeId;
+
     case OwnerRole:
         return repo.owner;
 
@@ -68,6 +71,7 @@ QHash<int, QByteArray> ReposModel::roleNames() const
     roles[LanguageColorRole]    = "languageColor";
     roles[LanguageNameRole]     = "languageName";
     roles[NameRole]             = "name";
+    roles[NodeIdRole]           = "nodeId";
     roles[OwnerRole]            = "owner";
     roles[StargazerCountRole]   = "stargazerCount";
 
