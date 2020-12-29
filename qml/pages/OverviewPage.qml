@@ -19,8 +19,12 @@ Page {
             MenuItem {
                 text: qsTr("Profile")
                 onClicked: pageStack.push(Qt.resolvedUrl("UserPage.qml"), {
+<<<<<<< HEAD
                                               login: SailHub.api().login(),
                                               own: true
+=======
+                                              login: SailHub.api().login()
+>>>>>>> 3f1349e45347b37b8d6b3fa0e65e0674fc67ee3d
                                           })
             }
             MenuItem {

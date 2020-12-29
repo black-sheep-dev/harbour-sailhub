@@ -11,7 +11,11 @@ Lot of functionality is missing.
 The authentication is done with an access token you need to generate on your GitHub profile page first.
 
 ## Implemented Features
+<<<<<<< HEAD
 - Browse Repos and User profiles	
+=======
+- Browse Repos and User profiles
+>>>>>>> 3f1349e45347b37b8d6b3fa0e65e0674fc67ee3d
 
 ## Planned Features
 - Two-Factor Authentication with OAuth2 (Qt OAuth2 functionality needs at least Qt 5.8 / Sailfish OS 3.4 has antique Qt 5.6 libraries)

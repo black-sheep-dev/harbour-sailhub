@@ -46,7 +46,10 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/OverviewPage.qml \
     qml/pages/RepoPage.qml \
     qml/pages/ReposListPage.qml \
+<<<<<<< HEAD
     qml/pages/SettingsPage.qml \
+=======
+>>>>>>> 3f1349e45347b37b8d6b3fa0e65e0674fc67ee3d
     qml/pages/UserPage.qml \
     qml/pages/UserPage.qml \
     qml/pages/UsersListPage.qml \
