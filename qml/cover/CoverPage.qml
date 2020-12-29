@@ -6,7 +6,7 @@ CoverBackground {
         width: parent.width * 0.8
         height: width
         smooth: true
-        source: "image://theme/" + Qt.application.name
+        source: "/usr/share/icons/hicolor/512x512/apps/" + Qt.application.name + ".png"
         anchors.centerIn: parent
         opacity: 0.3
     }

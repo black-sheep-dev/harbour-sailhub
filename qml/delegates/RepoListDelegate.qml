@@ -1,95 +1,77 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
-import "../components/"
+//import org.nubecula.harbour.sailhub 1.0
 
 ListItem {
-    property string title
-    property int stargazers: 0
-    property string language
-    property date lastUpdate
+    property string name
+    property string description
+    property int stargazerCount: 0
+    //property Language language
+    property string languageColor
+    property string languageName
 
     id: delegate
     width: parent.width
-    contentHeight: Theme.itemSizeLarge
+    contentHeight: Theme.itemSizeHuge
 
     Row {
         x: Theme.horizontalPageMargin
-        width: parent.width - 2 * x
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
-
-        Image {
-            id: repoIcon
-
-            anchors.verticalCenter: parent.verticalCenter
-
-            source: "image://theme/icon-m-pin"
-        }
-
-        Item {
-            width: Theme.paddingMedium
-            height: 1
-        }
+        width: parent.width - 2*x
+        height: parent.height - bottomLine.height
+        anchors.top: parent.top
 
         Column {
-            width: parent.width - repoIcon.width - Theme.paddingMedium
+            width: parent.width - Theme.paddingMedium
             anchors.verticalCenter: parent.verticalCenter
 
             Label {
                 width: parent.width
-                text: title
+                text: name
                 color: pressed ? Theme.secondaryHighlightColor : Theme.highlightColor
                 font.pixelSize: Theme.fontSizeMedium
             }
 
-            Row {
+            Label {
                 width: parent.width
-                spacing: Theme.paddingSmall
-
-                Image {
-                    id: starIcon
-                    anchors.verticalCenter: parent.verticalCenter
-                    source: "image://theme/icon-s-favorite"
-                }
-
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pixelSize: Theme.fontSizeExtraSmall
-
-                    text: stargazers
-                }
-
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pixelSize: Theme.fontSizeExtraSmall
-
-                    text: "|"
-                }
-
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pixelSize: Theme.fontSizeExtraSmall
-
-                    text: language
-                }
-
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pixelSize: Theme.fontSizeExtraSmall
-
-                    text: "|"
-                }
-
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pixelSize: Theme.fontSizeExtraSmall
-
-                    text: qsTr("Updated on %1").arg(lastUpdate.toDateString())
-                }
+                text: description
+                font.pixelSize: Theme.fontSizeExtraSmall
+                wrapMode: Text.Wrap
             }
+        }
+    }
+    Row {
+        id: bottomLine
+        x: Theme.horizontalPageMargin
+        width: parent.width - 2*x
+        anchors.bottom: parent.bottom
+        spacing: Theme.paddingMedium
+
+        Image {
+            id: stargazerCountIcon
+            anchors.verticalCenter: parent.verticalCenter
+            source: "image://theme/icon-s-new?" + "#ffff00"
+        }
+
+        Label {
+            text: stargazerCount
+            anchors.verticalCenter: parent.verticalCenter
+            font.pixelSize: Theme.fontSizeSmall
+        }
+
+        Rectangle {
+            height: stargazerCountIcon.height * 0.5
+            width: height
+            anchors.verticalCenter: parent.verticalCenter
+
+            radius: stargazerCountIcon.height * 0.25
+            color: languageColor
+        }
+
+        Label {
+            text: languageName
+            anchors.verticalCenter: parent.verticalCenter
+            font.pixelSize: Theme.fontSizeSmall
         }
     }
 }

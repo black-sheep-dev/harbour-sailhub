@@ -15,4 +15,5 @@ rm $app-optimized.svg
 for size in "${sizes[@]}";
 do
 inkscape --export-overwrite -C -o $size"x"$size/$app.png -w $size -h $size $app.svg
+optipng $size"x"$size/$app.png
 done

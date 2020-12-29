@@ -1,45 +1,37 @@
 #ifndef USERSMODEL_H
 #define USERSMODEL_H
 
-#include "nodesmodel.h"
+#include "paginationmodel.h"
 
 #include "src/entities/user.h"
 
-class UsersModel : public NodesModel
+class UsersModel : public PaginationModel
 {
     Q_OBJECT
 
 public:
     enum UserRoles {
-        AvatarUrlRole        = NodesModel::CustomRole + 1,
-        BioRole,
-        BlogRole,
-        CompanyRole,
-        EmailRole,
-        FollowersRole,
-        FollowingRole,
-        GravatarIdRole,
-        HireableRole,
-        LocationRole,
+        AvatarUrlRole        = Qt::UserRole,
         LoginRole,
-        PublicReposRole,
-        PublicGistsRole,
-        ScoreRole,
-        TwitterUsernameRole,
-        UserTypeRole
+        NameRole
     };
     Q_ENUM(UserRoles)
 
     explicit UsersModel(QObject *parent = nullptr);
 
-    Q_INVOKABLE User *userAt(int index);
-    Q_INVOKABLE User *userById(quint32 id);
-    Q_INVOKABLE User *userById(const QString &id);
+    void addUser(const UserListItem &user);
+    void addUsers(const QList<UserListItem> &users);
+    void setUsers(const QList<UserListItem> &users);
+
+private:
+    QList<UserListItem> m_users;
 
     // QAbstractItemModel interface
 public:
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
+    int rowCount(const QModelIndex &parent) const override;
+
 };
 
 #endif // USERSMODEL_H

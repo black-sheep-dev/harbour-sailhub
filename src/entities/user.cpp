@@ -1,7 +1,7 @@
 #include "user.h"
 
 User::User(QObject *parent) :
-    Node(parent)
+    QObject(parent)
 {
 
 }
@@ -16,19 +16,9 @@ QString User::bio() const
     return m_bio;
 }
 
-QString User::blog() const
-{
-    return m_blog;
-}
-
 QString User::company() const
 {
     return m_company;
-}
-
-QString User::email() const
-{
-    return m_email;
 }
 
 quint32 User::followers() const
@@ -41,16 +31,6 @@ quint32 User::following() const
     return m_following;
 }
 
-QString User::gravatarId() const
-{
-    return m_gravatarId;
-}
-
-bool User::hireable() const
-{
-    return m_hireable;
-}
-
 QString User::location() const
 {
     return m_location;
@@ -61,19 +41,29 @@ QString User::login() const
     return m_login;
 }
 
-quint32 User::publicRepos() const
+QString User::name() const
 {
-    return m_publicRepos;
+    return m_name;
 }
 
-quint32 User::publicGists() const
+quint32 User::organizations() const
 {
-    return m_publicGists;
+    return m_organizations;
 }
 
-qreal User::score() const
+quint32 User::repositories() const
 {
-    return m_score;
+    return m_repositories;
+}
+
+quint32 User::starredRepositories() const
+{
+    return m_starredRepositories;
+}
+
+UserStatus User::status() const
+{
+    return m_status;
 }
 
 QString User::twitterUsername() const
@@ -81,17 +71,17 @@ QString User::twitterUsername() const
     return m_twitterUsername;
 }
 
-quint8 User::userType() const
+QString User::websiteUrl() const
 {
-    return m_userType;
+    return m_websiteUrl;
 }
 
-void User::setAvatarUrl(const QString &url)
+void User::setAvatarUrl(const QString &avatarUrl)
 {
-    if (m_avatarUrl == url)
+    if (m_avatarUrl == avatarUrl)
         return;
 
-    m_avatarUrl = url;
+    m_avatarUrl = avatarUrl;
     emit avatarUrlChanged(m_avatarUrl);
 }
 
@@ -104,15 +94,6 @@ void User::setBio(const QString &bio)
     emit bioChanged(m_bio);
 }
 
-void User::setBlog(const QString &blog)
-{
-    if (m_blog == blog)
-        return;
-
-    m_blog = blog;
-    emit blogChanged(m_blog);
-}
-
 void User::setCompany(const QString &company)
 {
     if (m_company == company)
@@ -120,15 +101,6 @@ void User::setCompany(const QString &company)
 
     m_company = company;
     emit companyChanged(m_company);
-}
-
-void User::setEmail(const QString &email)
-{
-    if (m_email == email)
-        return;
-
-    m_email = email;
-    emit emailChanged(m_email);
 }
 
 void User::setFollowers(quint32 followers)
@@ -149,24 +121,6 @@ void User::setFollowing(quint32 following)
     emit followingChanged(m_following);
 }
 
-void User::setGravatarId(const QString &id)
-{
-    if (m_gravatarId == id)
-        return;
-
-    m_gravatarId = id;
-    emit gravatarIdChanged(m_gravatarId);
-}
-
-void User::setHireable(bool hireable)
-{
-    if (m_hireable == hireable)
-        return;
-
-    m_hireable = hireable;
-    emit hireableChanged(m_hireable);
-}
-
 void User::setLocation(const QString &location)
 {
     if (m_location == location)
@@ -185,47 +139,65 @@ void User::setLogin(const QString &login)
     emit loginChanged(m_login);
 }
 
-void User::setPublicRepos(quint32 repos)
+void User::setName(const QString &name)
 {
-    if (m_publicRepos == repos)
+    if (m_name == name)
         return;
 
-    m_publicRepos = repos;
-    emit publicReposChanged(m_publicRepos);
+    m_name = name;
+    emit nameChanged(m_name);
 }
 
-void User::setPublicGists(quint32 gists)
+void User::setOrganizations(quint32 organizations)
 {
-    if (m_publicGists == gists)
+    if (m_organizations == organizations)
         return;
 
-    m_publicGists = gists;
-    emit publicGistsChanged(m_publicGists);
+    m_organizations = organizations;
+    emit organizationsChanged(m_organizations);
 }
 
-void User::setScore(qreal score)
+void User::setRepositories(quint32 repositories)
 {
-    if (qFuzzyCompare(m_score, score))
+    if (m_repositories == repositories)
         return;
 
-    m_score = score;
-    emit scoreChanged(m_score);
+    m_repositories = repositories;
+    emit repositoriesChanged(m_repositories);
 }
 
-void User::setTwitterUsername(const QString &username)
+void User::setStarredRepositories(quint32 starredRepositories)
 {
-    if (m_twitterUsername == username)
+    if (m_starredRepositories == starredRepositories)
         return;
 
-    m_twitterUsername = username;
+    m_starredRepositories = starredRepositories;
+    emit starredRepositoriesChanged(m_starredRepositories);
+}
+
+void User::setStatus(UserStatus status)
+{
+    if (m_status == status)
+        return;
+
+    m_status = status;
+    emit statusChanged(m_status);
+}
+
+void User::setTwitterUsername(const QString &twitterUsername)
+{
+    if (m_twitterUsername == twitterUsername)
+        return;
+
+    m_twitterUsername = twitterUsername;
     emit twitterUsernameChanged(m_twitterUsername);
 }
 
-void User::setUserType(quint8 type)
+void User::setWebsiteUrl(const QString &websiteUrl)
 {
-    if (m_userType == type)
+    if (m_websiteUrl == websiteUrl)
         return;
 
-    m_userType = type;
-    emit userTypeChanged(m_userType);
+    m_websiteUrl = websiteUrl;
+    emit websiteUrlChanged(m_websiteUrl);
 }
