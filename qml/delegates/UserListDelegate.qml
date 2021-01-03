@@ -40,15 +40,17 @@ ListItem {
 
             Label {
                 width: parent.width
-                text: name.length > 0 ? name : login
-                color: pressed ? Theme.secondaryHighlightColor : Theme.highlightColor
+                color: pressed ? Theme.highlightColor : Theme.primaryColor
                 font.pixelSize: Theme.fontSizeMedium
+                font.bold: true
+
+                text: name.length > 0 ? name : login
             }
             Label {
-                text: login
-
-                color: Theme.secondaryColor
+                color: pressed ? Theme.highlightColor : Theme.primaryColor
                 font.pixelSize: Theme.fontSizeSmall
+
+                text: login
             }
         }
     }

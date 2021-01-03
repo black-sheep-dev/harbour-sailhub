@@ -12,6 +12,7 @@ class ReposModel : public PaginationModel
 public:
     enum RepoRoles {
         DescriptionRole            = Qt::UserRole + 1,
+        IsPrivateRole,
         //LanguageRole,
         LanguageColorRole,
         LanguageNameRole,
@@ -36,6 +37,10 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
     int rowCount(const QModelIndex &parent) const override;
+
+    // PaginationModel interface
+public:
+    void clear();
 };
 
 #endif // REPOSMODEL_H

@@ -53,6 +53,11 @@ void GraphQLConnector::setToken(const QString &token)
     m_token = token;
 }
 
+QString GraphQLConnector::token() const
+{
+    return m_token;
+}
+
 void GraphQLConnector::onRequestFinished(QNetworkReply *reply)
 {
 #ifdef QT_DEBUG
@@ -64,6 +69,7 @@ void GraphQLConnector::onRequestFinished(QNetworkReply *reply)
 #ifdef QT_DEBUG
         qDebug() << reply->errorString();
 #endif
+        emit connectionError(reply->error(), reply->errorString());
 
         reply->deleteLater();
         return;

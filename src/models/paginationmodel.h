@@ -21,11 +21,13 @@ class PaginationModel : public QAbstractListModel
     Q_PROPERTY(QString lastItemCursor READ lastItemCursor WRITE setLastItemCursor NOTIFY lastItemCursorChanged)
     Q_PROPERTY(bool loading READ loading WRITE setLoading NOTIFY loadingChanged)
     Q_PROPERTY(quint8 modelType READ modelType WRITE setModelType NOTIFY modelTypeChanged)
+    Q_PROPERTY(quint32 totalCount READ totalCount WRITE setTotalCount NOTIFY totalCountChanged)
     Q_PROPERTY(QByteArray uuid READ uuid WRITE setUuid NOTIFY uuidChanged)
 
 public:
     explicit PaginationModel(QObject *parent = nullptr);
 
+    Q_INVOKABLE void reset();
     void setPageInfo(const PageInfo &info);
 
     // properties
@@ -35,6 +37,7 @@ public:
     QString lastItemCursor() const;
     bool loading() const;
     quint8 modelType() const;
+    quint32 totalCount() const;
     QByteArray uuid() const;
 
 signals:
@@ -45,6 +48,7 @@ signals:
     void lastItemCursorChanged(const QString &cursor);
     void loadingChanged(bool loading);
     void modelTypeChanged(quint8 modelType);
+    void totalCountChanged(quint32 count);
     void uuidChanged(const QByteArray &uuid);
 
 public slots:
@@ -55,7 +59,10 @@ public slots:
     void setLastItemCursor(const QString &cursor);
     void setLoading(bool loading);
     void setModelType(quint8 modelType);
+    void setTotalCount(quint32 count);
     void setUuid(const QByteArray &uuid);
+
+
 
 private:
     // properties
@@ -65,8 +72,12 @@ private:
     QString m_lastItemCursor;
     bool m_loading{true};
     quint8 m_modelType{0};
+    quint32 m_totalCount{0};
     QByteArray m_uuid;
 
+    // virtual
+public:
+    virtual void clear() = 0;
 };
 
 #endif // PAGINATIONMODEL_H

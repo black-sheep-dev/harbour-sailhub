@@ -9,10 +9,19 @@ PaginationModel::PaginationModel(QObject *parent) :
 
 }
 
+void PaginationModel::reset()
+{
+    setHasNextPage(false);
+    setLastItemCursor(QString());
+
+    clear();
+}
+
 void PaginationModel::setPageInfo(const PageInfo &info)
 {
     setHasNextPage(info.hasNextPage);
     setLastItemCursor(info.lastItemCursor);
+    setTotalCount((info.totalCount));
 }
 
 bool PaginationModel::hasNextPage() const
@@ -43,6 +52,11 @@ bool PaginationModel::loading() const
 quint8 PaginationModel::modelType() const
 {
     return m_modelType;
+}
+
+quint32 PaginationModel::totalCount() const
+{
+    return m_totalCount;
 }
 
 QByteArray PaginationModel::uuid() const
@@ -102,6 +116,15 @@ void PaginationModel::setModelType(quint8 modelType)
 
     m_modelType = modelType;
     emit modelTypeChanged(m_modelType);
+}
+
+void PaginationModel::setTotalCount(quint32 count)
+{
+    if (m_totalCount == count)
+        return;
+
+    m_totalCount = count;
+    emit totalCountChanged(m_totalCount);
 }
 
 void PaginationModel::setUuid(const QByteArray &uuid)

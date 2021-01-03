@@ -12,6 +12,7 @@ Page {
 
     SilicaFlickable {
         PullDownMenu {
+            busy: !SailHub.api().ready
             MenuItem {
                 text: qsTr("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
@@ -19,14 +20,19 @@ Page {
             MenuItem {
                 text: qsTr("Profile")
                 onClicked: pageStack.push(Qt.resolvedUrl("UserPage.qml"), {
-                                              nodeId: SailHub.api().loginNodeId(),
-                                              own: true
+                                              user: SailHub.api().profile
                                           })
             }
             MenuItem {
                 text: qsTr("Search")
-                //onClicked: SailHub.followRepo(repo.fullName)
+                onClicked: pageStack.push(Qt.resolvedUrl("SearchSelectionPage.qml"))
             }
+        }
+
+        ViewPlaceholder {
+            enabled: !SailHub.api().ready
+
+            text: qsTr("App initializing ...")
         }
 
         anchors.fill: parent
@@ -36,6 +42,13 @@ Page {
             id: column
             width: parent.width
             spacing: Theme.paddingSmall
+
+            opacity: SailHub.api().ready ? 1.0 : 0.0
+
+            Behavior on opacity {
+                FadeAnimation {}
+            }
+
 
             PageHeader {
                 title: qsTr("Home")
@@ -58,7 +71,8 @@ Page {
                 title: qsTr("Repositories")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
-                                              identifier: SailHub.api().loginNodeId(),
+                                              login: SailHub.api().profile.login,
+                                              identifier: SailHub.api().profile.nodeId,
                                               repoType: Repo.User
                                           })
             }

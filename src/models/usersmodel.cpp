@@ -71,3 +71,10 @@ int UsersModel::rowCount(const QModelIndex &parent) const
 
     return m_users.count();
 }
+
+void UsersModel::clear()
+{
+    beginResetModel();
+    m_users.clear();
+    endResetModel();
+}

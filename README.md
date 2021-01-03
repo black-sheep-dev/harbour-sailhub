@@ -1,6 +1,7 @@
 # SailHub
-SailHub is an inoffical native GitHub app for Sailfish OS.
-The app uses GitHubs GraphQL API. I made this app to get familiarize myself with GraphQL API concepts and GitHub API is well documented.
+SailHub is an inoffical native GitHub app for Sailfish OS using GitHub GraphQL API (v4).
+
+I made this app to get familiarize myself with GraphQL API concepts. GitHub API is well documented and ideal for my purpose.
 
 >![](icons/128x128/harbour-sailhub.png)
 
@@ -8,10 +9,12 @@ The app uses GitHubs GraphQL API. I made this app to get familiarize myself with
 
 The development is in an early state at the moment.  
 Lot of functionality is missing.  
-The authentication is done with an access token you need to generate on your GitHub profile page first.
+The authentication is done with an access token. You need to generate one on your GitHub profile page first.
 
 ## Implemented Features
-- Browse Repos and User profiles	
+- Search Repos and Users
+- Follow User
+- Watch / Star Repos
 
 ## Planned Features
 - Two-Factor Authentication with OAuth2 (Qt OAuth2 functionality needs at least Qt 5.8 / Sailfish OS 3.4 has antique Qt 5.6 libraries)

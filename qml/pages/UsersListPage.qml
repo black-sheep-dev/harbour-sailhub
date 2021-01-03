@@ -32,7 +32,10 @@ Page {
             busy: usersModel.loading
             MenuItem {
                 text: qsTr("Refresh")
-                onClicked: SailHub.api().getUsers(usersModel)
+                onClicked: {
+                    usersModel.reset()
+                    SailHub.api().getUsers(usersModel)
+                }
             }
         }
 
@@ -77,7 +80,7 @@ Page {
             visible: usersModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more")
+                text: qsTr("Load more (%n to go)", "", usersModel.totalCount - listView.count)
                 onClicked: SailHub.api().getUsers(usersModel)
             }
         }

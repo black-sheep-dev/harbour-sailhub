@@ -41,9 +41,9 @@ QString User::login() const
     return m_login;
 }
 
-QString User::name() const
+bool User::isViewer() const
 {
-    return m_name;
+    return m_isViewer;
 }
 
 quint32 User::organizations() const
@@ -69,6 +69,11 @@ UserStatus User::status() const
 QString User::twitterUsername() const
 {
     return m_twitterUsername;
+}
+
+bool User::viewerIsFollowing() const
+{
+    return m_viewerIsFollowing;
 }
 
 QString User::websiteUrl() const
@@ -139,13 +144,13 @@ void User::setLogin(const QString &login)
     emit loginChanged(m_login);
 }
 
-void User::setName(const QString &name)
+void User::setIsViewer(bool isViewer)
 {
-    if (m_name == name)
+    if (m_isViewer == isViewer)
         return;
 
-    m_name = name;
-    emit nameChanged(m_name);
+    m_isViewer = isViewer;
+    emit isViewerChanged(m_isViewer);
 }
 
 void User::setOrganizations(quint32 organizations)
@@ -191,6 +196,15 @@ void User::setTwitterUsername(const QString &twitterUsername)
 
     m_twitterUsername = twitterUsername;
     emit twitterUsernameChanged(m_twitterUsername);
+}
+
+void User::setViewerIsFollowing(bool following)
+{
+    if (m_viewerIsFollowing == following)
+        return;
+
+    m_viewerIsFollowing = following;
+    emit viewerIsFollowingChanged(m_viewerIsFollowing);
 }
 
 void User::setWebsiteUrl(const QString &websiteUrl)

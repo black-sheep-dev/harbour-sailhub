@@ -25,11 +25,15 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/apiinterface.cpp \
     src/api/datautils.cpp \
     src/api/graphqlconnector.cpp \
+    src/entities/comment.cpp \
+    src/entities/issue.cpp \
     src/entities/license.cpp \
     src/entities/node.cpp \
     src/entities/owner.cpp \
     src/entities/repo.cpp \
     src/entities/user.cpp \
+    src/models/commentsmodel.cpp \
+    src/models/issuesmodel.cpp \
     src/models/paginationmodel.cpp \
     src/models/reposmodel.cpp \
     src/models/usersmodel.cpp \
@@ -42,11 +46,20 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/InfoItem.qml \
     qml/components/RelatedItem.qml \
     qml/cover/CoverPage.qml \
+    qml/delegates/CommentListDelegate.qml \
+    qml/delegates/IssueListDelegate.qml \
     qml/delegates/RepoListDelegate.qml \
     qml/delegates/UserListDelegate.qml \
+    qml/dialogs/EditIssueDialog.qml \
+    qml/dialogs/SelectSubscriptionDialog.qml \
+    qml/pages/IssuePage.qml \
+    qml/pages/IssuesListPage.qml \
     qml/pages/OverviewPage.qml \
     qml/pages/RepoPage.qml \
     qml/pages/ReposListPage.qml \
+    qml/pages/SearchRepositoryPage.qml \
+    qml/pages/SearchSelectionPage.qml \
+    qml/pages/SearchUserPage.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/UserPage.qml \
     qml/pages/UserPage.qml \
@@ -78,14 +91,20 @@ HEADERS += \
     src/api/datautils.h \
     src/api/graphqlconnector.h \
     src/api/keys.h \
+    src/api/mutations.h \
     src/api/queries.h \
+    src/api/query_items.h \
     src/api/ratelimit.h \
+    src/entities/comment.h \
+    src/entities/issue.h \
     src/entities/language.h \
     src/entities/license.h \
     src/entities/node.h \
     src/entities/owner.h \
     src/entities/repo.h \
     src/entities/user.h \
+    src/models/commentsmodel.h \
+    src/models/issuesmodel.h \
     src/models/paginationmodel.h \
     src/models/reposmodel.h \
     src/models/usersmodel.h \

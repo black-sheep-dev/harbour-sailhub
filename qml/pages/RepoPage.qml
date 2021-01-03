@@ -6,6 +6,7 @@ import org.nubecula.harbour.sailhub 1.0
 import "../components/"
 
 Page {
+    property bool busy: false
     property bool loading: true
     property string nodeId
     property Repo repo
@@ -23,6 +24,7 @@ Page {
 
     SilicaFlickable {
         PullDownMenu {
+            busy: page.busy
             MenuItem {
                 text: qsTr("Refresh")
                 onClicked: {
@@ -30,7 +32,37 @@ Page {
                     SailHub.api().getRepo(page.nodeId)
                 }
             }
+            MenuItem {
+                enabled: repo.viewerCanSubscribe
+                text: {
+                    switch (repo.viewerSubscription) {
+                    case Repo.SubscriptionIgnored:
+                        return qsTr("Watch")
 
+                    default:
+                        return qsTr("Unwatch")
+                    }
+                }
+
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectSubscriptionDialog.qml"),
+                                                { subscription: repo.viewerSubscription })
+
+                    dialog.accepted.connect(function() {
+                        page.busy = true
+                        SailHub.api().subscribeToRepo(repo.nodeId, dialog.subscription)
+                    })
+                }
+            }
+
+            MenuItem {
+                text: repo.viewerHasStarred ? qsTr("Unstar") : qsTr("Star")
+
+                onClicked: {
+                    page.busy = true
+                    SailHub.api().starRepo(repo.nodeId, !repo.viewerHasStarred)
+                }
+            }
         }
 
         anchors.fill: parent
@@ -169,6 +201,7 @@ Page {
                         if (repo.forkCount === 0) return;
 
                         pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
+                                                                     login: repo.owner.login + "/" + repo.name,
                                                                      identifier: repo.nodeId,
                                                                      repoType: Repo.Fork
                                                                  })
@@ -187,6 +220,16 @@ Page {
 
                 label: qsTr("Issues")
                 value: repo.issueCount
+
+                onClicked: {
+                    if (repo.issueCount === 0) return;
+
+                    pageStack.push(Qt.resolvedUrl("IssuesListPage.qml"), {
+                                              description: repo.owner.login + "/" + repo.name,
+                                              identifier: repo.nodeId,
+                                              states: Issue.StateOpen
+                                          })
+                }
             }
             RelatedValueItem {
                 width: parent.width
@@ -206,7 +249,7 @@ Page {
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
                                               title: qsTr("Watchers"),
                                               description: repo.owner.login + "/" + repo.name,
-                                              identifier: page.nodeId,
+                                              identifier: repo.nodeId,
                                               userType: User.Watcher
                                           })
                 }
@@ -223,7 +266,7 @@ Page {
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
                                               title: qsTr("Contributors"),
                                               description: repo.owner.login + "/" + repo.name,
-                                              identifier: page.nodeId,
+                                              identifier: repo.nodeId,
                                               userType: User.Contributor
                                           })
                 }
@@ -258,8 +301,28 @@ Page {
     Connections {
         target: SailHub.api()
         onRepoAvailable: {
+            if (repo.nodeId !== page.nodeId) return
             page.repo = repo
             loading = false
+        }
+    }
+
+    Connections {
+        target: SailHub.api()
+        onRepoStarred: {
+            if (nodeId !== repo.nodeId) return
+            page.repo.viewerHasStarred = starred
+            page.repo.stargazerCount += starred ? 1 : -1
+            page.busy = false
+        }
+    }
+
+    Connections {
+        target: SailHub.api()
+        onSubscribedToRepo: {
+            if (nodeId !== repo.nodeId) return
+            page.repo.viewerSubscription = state
+            page.busy = false
         }
     }
 

@@ -10,68 +10,98 @@ ListItem {
     //property Language language
     property string languageColor
     property string languageName
+    property bool lastItem: false
+    property bool isPrivate: false
 
     id: delegate
     width: parent.width
-    contentHeight: Theme.itemSizeHuge
+    contentHeight: delegateColumn.height
 
-    Row {
+    Column {
+        id: delegateColumn
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
-        height: parent.height - bottomLine.height
-        anchors.top: parent.top
+        spacing: Theme.paddingSmall
 
-        Column {
-            width: parent.width - Theme.paddingMedium
-            anchors.verticalCenter: parent.verticalCenter
+        Item {
+            width: 1
+            height: Theme.paddingSmall
+        }
+
+        Row {
+            width: parent.width
+            spacing: Theme.paddingMedium
+
+            Icon {
+                visible: isPrivate
+                id: privateIcon
+                source: "image://theme/icon-s-outline-secure?" + (pressed ? Theme.highlightColor : Theme.primaryColor)
+            }
 
             Label {
                 width: parent.width
-                text: name
-                color: pressed ? Theme.secondaryHighlightColor : Theme.highlightColor
+                anchors.verticalCenter: privateIcon.verticalCenter
+                color: pressed ? Theme.highlightColor : Theme.primaryColor
                 font.pixelSize: Theme.fontSizeMedium
+                font.bold: true
+                wrapMode: Text.Wrap
+
+                text: name
+            }
+        }
+
+        Label {
+            visible: description.length > 0
+            width: parent.width
+            font.pixelSize: Theme.fontSizeExtraSmall
+            wrapMode: Text.Wrap
+            font.bold: true
+            color: pressed ? Theme.highlightColor : Theme.primaryColor
+
+            text: description
+        }
+
+        Row {
+            id: bottomLine
+            width: parent.width
+            spacing: Theme.paddingMedium
+
+            Icon {
+                id: stargazerCountIcon
+                anchors.verticalCenter: parent.verticalCenter
+                source: "image://theme/icon-s-new?" + (stargazerCount > 0 ? "#ffff00" : Theme.primaryColor)
             }
 
             Label {
-                width: parent.width
-                text: description
-                font.pixelSize: Theme.fontSizeExtraSmall
-                wrapMode: Text.Wrap
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: Theme.fontSizeSmall
+                color: pressed ? Theme.highlightColor : Theme.primaryColor
+
+                text: stargazerCount
+            }
+
+            Rectangle {
+                height: stargazerCountIcon.height * 0.5
+                width: height
+                anchors.verticalCenter: parent.verticalCenter
+
+                radius: stargazerCountIcon.height * 0.25
+                color: languageColor
+            }
+
+            Label {
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: Theme.fontSizeSmall
+                color: pressed ? Theme.highlightColor : Theme.primaryColor
+
+                text: languageName
             }
         }
-    }
-    Row {
-        id: bottomLine
-        x: Theme.horizontalPageMargin
-        width: parent.width - 2*x
-        anchors.bottom: parent.bottom
-        spacing: Theme.paddingMedium
 
-        Image {
-            id: stargazerCountIcon
-            anchors.verticalCenter: parent.verticalCenter
-            source: "image://theme/icon-s-new?" + "#ffff00"
-        }
-
-        Label {
-            text: stargazerCount
-            anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: Theme.fontSizeSmall
-        }
-
-        Rectangle {
-            height: stargazerCountIcon.height * 0.5
-            width: height
-            anchors.verticalCenter: parent.verticalCenter
-
-            radius: stargazerCountIcon.height * 0.25
-            color: languageColor
-        }
-
-        Label {
-            text: languageName
-            anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: Theme.fontSizeSmall
+        Separator {
+            visible: !lastItem
+            width: parent.width
+            color: Theme.highlightBackgroundColor
         }
     }
 }

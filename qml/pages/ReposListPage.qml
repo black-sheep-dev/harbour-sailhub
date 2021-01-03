@@ -6,6 +6,7 @@ import org.nubecula.harbour.sailhub 1.0
 import "../delegates/"
 
 Page {
+    property string login
     property string identifier
     property int repoType
 
@@ -17,8 +18,22 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Repositories")
-            description: identifier
+            title: {
+                switch (repoType) {
+                case Repo.User:
+                    return qsTr("Repositories");
+
+                case Repo.Fork:
+                    return qsTr("Forks");
+
+                case Repo.Starred:
+                    return qsTr("Starred Repositories")
+
+                default:
+                    return qsTr("Repositories");
+                }
+            }
+            description: login
         }
 
         footer: Item {
@@ -30,7 +45,10 @@ Page {
             busy: reposModel.loading
             MenuItem {
                 text: qsTr("Refresh")
-                onClicked: SailHub.api().getRepos(reposModel)
+                onClicked: {
+                    reposModel.reset()
+                    SailHub.api().getRepos(reposModel)
+                }
             }
         }
 
@@ -61,12 +79,22 @@ Page {
         delegate: RepoListDelegate {
             id: delegate
 
-            name: model.name
+            name: {
+                switch (repoType) {
+                case Repo.User:
+                    return model.name
+
+                default:
+                    return model.owner + "/" + model.name
+                }
+            }
             description: model.description
             stargazerCount: model.stargazerCount
             //language: model.language
             languageColor: model.languageColor
             languageName: model.languageName
+            lastItem: index == (listView.count - 1)
+            isPrivate: model.isPrivate
 
             onClicked: pageStack.push(Qt.resolvedUrl("RepoPage.qml"), {
                                           nodeId: model.nodeId
@@ -78,7 +106,7 @@ Page {
             visible: reposModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more")
+                text: qsTr("Load more (%n to go)", "", reposModel.totalCount - listView.count)
                 onClicked: SailHub.api().getRepos(reposModel)
             }
         }

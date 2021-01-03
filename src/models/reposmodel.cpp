@@ -39,6 +39,9 @@ QVariant ReposModel::data(const QModelIndex &index, int role) const
     case DescriptionRole:
         return repo.description;
 
+    case IsPrivateRole:
+        return repo.isPrivate;
+
     case LanguageColorRole:
         return repo.language.color;
 
@@ -67,6 +70,7 @@ QHash<int, QByteArray> ReposModel::roleNames() const
     QHash<int, QByteArray> roles;
 
     roles[DescriptionRole]      = "description";
+    roles[IsPrivateRole]        = "isPrivate";
     //roles[LanguageRole]         = "language";
     roles[LanguageColorRole]    = "languageColor";
     roles[LanguageNameRole]     = "languageName";
@@ -82,4 +86,11 @@ int ReposModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
     return m_repos.count();
+}
+
+void ReposModel::clear()
+{
+    beginResetModel();
+    m_repos.clear();
+    endResetModel();
 }

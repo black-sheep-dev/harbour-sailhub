@@ -12,7 +12,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(QStringLiteral("nubecula.org"));
 
     qmlRegisterType<ApiInterface>("org.nubecula.harbour.sailhub", 1, 0, "Api");
+    qmlRegisterType<Comment>("org.nubecula.harbour.sailhub", 1, 0, "Comment");
     qmlRegisterType<License>("org.nubecula.harbour.sailhub", 1, 0, "License");
+    qmlRegisterType<Issue>("org.nubecula.harbour.sailhub", 1, 0, "Issue");
+    qmlRegisterType<IssuesModel>("org.nubecula.harbour.sailhub", 1, 0, "IssuesModel");
     qmlRegisterType<Owner>("org.nubecula.harbour.sailhub", 1, 0, "Owner");
     qmlRegisterType<Repo>("org.nubecula.harbour.sailhub", 1, 0, "Repo");
     qmlRegisterType<ReposModel>("org.nubecula.harbour.sailhub", 1, 0, "ReposModel");

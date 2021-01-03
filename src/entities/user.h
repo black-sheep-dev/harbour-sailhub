@@ -40,12 +40,13 @@ class User : public Node
     Q_PROPERTY(quint32 following READ following WRITE setFollowing NOTIFY followingChanged)
     Q_PROPERTY(QString location READ location WRITE setLocation NOTIFY locationChanged)
     Q_PROPERTY(QString login READ login WRITE setLogin NOTIFY loginChanged)
-    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(bool isViewer READ isViewer WRITE setIsViewer NOTIFY isViewerChanged)
     Q_PROPERTY(quint32 organizations READ organizations WRITE setOrganizations NOTIFY organizationsChanged)
     Q_PROPERTY(quint32 repositories READ repositories WRITE setRepositories NOTIFY repositoriesChanged)
     Q_PROPERTY(quint32 starredRepositories READ starredRepositories WRITE setStarredRepositories NOTIFY starredRepositoriesChanged)
     Q_PROPERTY(UserStatus status READ status WRITE setStatus NOTIFY statusChanged)
     Q_PROPERTY(QString twitterUsername READ twitterUsername WRITE setTwitterUsername NOTIFY twitterUsernameChanged)
+    Q_PROPERTY(bool viewerIsFollowing READ viewerIsFollowing WRITE setViewerIsFollowing NOTIFY viewerIsFollowingChanged)
     Q_PROPERTY(QString websiteUrl READ websiteUrl WRITE setWebsiteUrl NOTIFY websiteUrlChanged)
 
 public:    
@@ -54,6 +55,7 @@ public:
         Contributor,
         Follower,
         Following,
+        Search,
         Stargazer,
         Watcher
     };
@@ -69,12 +71,13 @@ public:
     quint32 following() const;
     QString location() const;
     QString login() const;
-    QString name() const;
+    bool isViewer() const;
     quint32 organizations() const;
     quint32 repositories() const;
     quint32 starredRepositories() const;
     UserStatus status() const;
     QString twitterUsername() const;
+    bool viewerIsFollowing() const;
     QString websiteUrl() const;
 
 signals:
@@ -86,12 +89,13 @@ signals:
     void followingChanged(quint32 following);
     void locationChanged(const QString &location);
     void loginChanged(const QString &login);
-    void nameChanged(const QString &name);
+    void isViewerChanged(bool isViewer);
     void organizationsChanged(quint32 organizations);
     void repositoriesChanged(quint32 repositories);
     void starredRepositoriesChanged(quint32 starredRepositories);
     void statusChanged(const UserStatus &status);
     void twitterUsernameChanged(const QString &twitterUsername);
+    void viewerIsFollowingChanged(bool following);
     void websiteUrlChanged(const QString &websiteUrl);
 
 public slots:
@@ -103,12 +107,13 @@ public slots:
     void setFollowing(quint32 following);
     void setLocation(const QString &location);
     void setLogin(const QString &login);
-    void setName(const QString &name);
+    void setIsViewer(bool isViewer);
     void setOrganizations(quint32 organizations);
     void setRepositories(quint32 repositories);
     void setStarredRepositories(quint32 starredRepositories);
     void setStatus(UserStatus status);
     void setTwitterUsername(const QString &twitterUsername);
+    void setViewerIsFollowing(bool following);
     void setWebsiteUrl(const QString &websiteUrl);
 
 private:
@@ -120,12 +125,13 @@ private:
     quint32 m_following{0};
     QString m_location;
     QString m_login;
-    QString m_name;
+    bool m_isViewer{false};
     quint32 m_organizations{0};
     quint32 m_repositories{0};
     quint32 m_starredRepositories{0};
     UserStatus m_status{UserStatus()};
     QString m_twitterUsername;
+    bool m_viewerIsFollowing{false};
     QString m_websiteUrl;
 
 };

@@ -24,8 +24,10 @@ public:
     void sendQuery(const GraphQLQuery &query, quint8 requestType, const QByteArray &requestId = QUuid::createUuid().toByteArray());
     void setEndpoint(const QString &endpoint);
     void setToken(const QString &token);
+    QString token() const;
 
 signals:
+    void connectionError(quint16 error, const QString &msg);
     void requestFinished(const QJsonObject &data, quint8 type, const QByteArray &requestId);
 
 private slots:

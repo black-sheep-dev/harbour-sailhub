@@ -21,6 +21,17 @@ Page {
                 title: qsTr("Settings")
             }
 
+            TextField {
+                id: tokenField
+                width: parent.width
+
+                label: qsTr("Access Token")
+                echoMode: TextInput.PasswordEchoOnEdit
+
+                text: SailHub.api().token()
+                placeholderText: qsTr("Enter access token")
+            }
+
             SectionHeader {
                 text: qsTr("Pagination")
             }
@@ -34,6 +45,7 @@ Page {
             }
 
             Slider {
+                id: itemCountSlider
                 width: parent.width
                 minimumValue: 1
                 maximumValue: 100
@@ -47,6 +59,12 @@ Page {
         }
     }
 
-    onStatusChanged: if (status == PageStatus.Deactivating) SailHub.saveSettings()
+    onStatusChanged: {
+        if (status == PageStatus.Deactivating) {
+            SailHub.api().token = tokenField.text
+
+            SailHub.saveSettings()
+        }
+    }
 }
 

@@ -6,8 +6,8 @@ import org.nubecula.harbour.sailhub 1.0
 import "../components/"
 
 Page {
-    property bool loading: true
-    property bool own: false
+    property bool busy: false
+    property bool loading: false
     property string nodeId
     property User user
 
@@ -24,8 +24,9 @@ Page {
 
     SilicaFlickable {
         PullDownMenu {
+            busy: page.busy
             MenuItem {
-                visible: page.own
+                visible: user.isViewer
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
@@ -33,14 +34,23 @@ Page {
             MenuItem {
                 text: qsTr("Refresh")
                 onClicked: {
-                    page.loading = true
-                    SailHub.api().getUser(page.nodeId)
+                    page.busy = true
+                    if (user.isViewer) {
+                        SailHub.api().getProfile()
+                    } else {
+                        SailHub.api().getUser(page.nodeId)
+                    }
                 }
             }
 
             MenuItem {
-                visible: !page.own
-                text: qsTr("Follow")
+                visible: !user.isViewer
+                text: user.viewerIsFollowing ? qsTr("Unfollow") : qsTr("Follow")
+
+                onClicked: {
+                    page.busy = true
+                    SailHub.api().followUser(user.nodeId, !user.viewerIsFollowing)
+                }
             }
         }
 
@@ -161,7 +171,7 @@ Page {
                         if (user.followers === 0) return;
 
                         pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                                  identifier: page.nodeId,
+                                                  identifier: user.nodeId,
                                                   userType: User.Follower
                                               })
                     }
@@ -177,7 +187,7 @@ Page {
                         if (user.following === 0) return;
 
                         pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                                  identifier: page.nodeId,
+                                                  identifier: user.nodeId,
                                                   userType: User.Following
                                               })
                     }
@@ -198,7 +208,7 @@ Page {
                     if (user.repositories === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
-                                                                  identifier: page.nodeId,
+                                                                  identifier: user.nodeId,
                                                                   repoType: Repo.User
                                                               })
                 }
@@ -210,6 +220,15 @@ Page {
             RelatedValueItem {
                 label: qsTr("Starred")
                 value: user.starredRepositories
+
+                onClicked: {
+                    if (user.starredRepositories === 0) return;
+
+                    pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
+                                                                  identifier: user.nodeId,
+                                                                  repoType: Repo.Starred
+                                                              })
+                }
             }
         }
     }
@@ -220,11 +239,33 @@ Page {
             if (page.nodeId !== user.nodeId) return
 
             page.user = user
-            loading = false
+            page.loading = false
         }
     }
 
-    Component.onCompleted: SailHub.api().getUser(page.nodeId)
+    Connections {
+        target: SailHub.api()
+        onUserFollowed: {
+            if (nodeId !== user.nodeId) return
+            page.user.viewerIsFollowing = following
+            page.user.followers += following ? 1 : -1
+            page.busy = false
+        }
+    }
+
+    Connections {
+        target: SailHub.api()
+        onProfileChanged: page.busy = false
+    }
+
+    Component.onCompleted: {
+        if (page.nodeId.length > 0) {
+            page.loading = true
+            SailHub.api().getUser(page.nodeId)
+        } else {
+            page.nodeId = user.nodeId
+        }
+    }
 }
 
 

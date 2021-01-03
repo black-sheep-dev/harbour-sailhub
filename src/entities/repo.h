@@ -14,10 +14,11 @@
 struct RepoListItem {
     QString description;
     Language language;
+    bool isPrivate{false};
     QString name;
     QString nodeId;
     QString owner;
-    quint32 stargazerCount;
+    quint32 stargazerCount{0};
 };
 
 class Repo : public Node
@@ -31,18 +32,30 @@ class Repo : public Node
     Q_PROPERTY(bool isPrivate READ isPrivate WRITE setIsPrivate NOTIFY isPrivateChanged)
     Q_PROPERTY(quint32 issueCount READ issuesCount WRITE setIssuesCount NOTIFY issuesCountChanged)
     Q_PROPERTY(License* license READ license WRITE setLicense NOTIFY licenseChanged)
-    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(Owner* owner READ owner WRITE setOwner NOTIFY ownerChanged)
     Q_PROPERTY(quint32 pullRequestCount READ pullRequestsCount WRITE setPullRequestsCount NOTIFY pullRequestsCountChanged)
     Q_PROPERTY(QString readme READ readme WRITE setReadme NOTIFY readmeChanged)
     Q_PROPERTY(quint32 stargazerCount READ stargazerCount WRITE setStargazerCount NOTIFY stargazerCountChanged)
+    Q_PROPERTY(bool viewerCanSubscribe READ viewerCanSubscribe WRITE setViewerCanSubscribe NOTIFY viewerCanSubscribeChanged)
+    Q_PROPERTY(bool viewerHasStarred READ viewerHasStarred WRITE setViewerHasStarred NOTIFY viewerHasStarredChanged)
+    Q_PROPERTY(quint8 viewerSubscription READ viewerSubscription WRITE setViewerSubscription NOTIFY viewerSubscriptionChanged)
     Q_PROPERTY(quint32 watcherCount READ watcherCount WRITE setWatcherCount NOTIFY watcherCountChanged)
 
 public:
+    enum RepoSubscription {
+        SubscriptionIgnored,
+        Subscribed,
+        Unsubscribed
+    };
+    Q_ENUM(RepoSubscription)
+
     enum RepoType {
         Undefined,
+        Fork,
+        Search,
+        Starred,
         User,
-        Fork
+        Watched
     };
     Q_ENUM(RepoType)
 
@@ -55,11 +68,13 @@ public:
     bool isPrivate() const;
     quint32 issuesCount() const;
     License *license() const;
-    QString name() const;
     Owner *owner() const;
     quint32 pullRequestsCount() const;
     QString readme() const;
     quint32 stargazerCount() const;
+    bool viewerCanSubscribe() const;
+    bool viewerHasStarred() const;
+    quint8 viewerSubscription() const;
     quint32 watcherCount() const;
 
 signals:
@@ -70,11 +85,13 @@ signals:
     void isPrivateChanged(bool isPrivate);
     void issuesCountChanged(quint32 count);
     void licenseChanged(License *license);
-    void nameChanged(const QString &name);
     void ownerChanged(Owner *owner);
     void pullRequestsCountChanged(quint32 count);
     void readmeChanged(const QString &readme);
     void stargazerCountChanged(quint32 count);
+    void viewerCanSubscribeChanged(bool subscribable);
+    void viewerHasStarredChanged(bool starred);
+    void viewerSubscriptionChanged(quint8 state);
     void watcherCountChanged(quint32 count); 
 
 public slots:
@@ -85,11 +102,13 @@ public slots:
     void setIsPrivate(bool isPrivate);
     void setIssuesCount(quint32 count);
     void setLicense(License *license);
-    void setName(const QString &name);
     void setOwner(Owner *owner);
     void setPullRequestsCount(quint32 count);
     void setReadme(const QString &readme);
     void setStargazerCount(quint32 count);
+    void setViewerCanSubscribe(bool subscribable);
+    void setViewerHasStarred(bool starred);
+    void setViewerSubscription(quint8 state);
     void setWatcherCount(quint32 count);
 
 private:
@@ -100,13 +119,14 @@ private:
     bool m_isPrivate{false};
     quint32 m_issueCount{0};
     License *m_license;
-    QString m_name;
     Owner *m_owner;
     quint32 m_pullRequestCount{0};
     quint32 m_stargazerCount{0};
     QString m_readme;
+    bool m_viewerCanSubscribe{false};
+    bool m_viewerHasStarred{false};
+    quint8 m_viewerSubscription{SubscriptionIgnored};
     quint32 m_watcherCount{0};
-
 };
 
 #endif // REPO_H

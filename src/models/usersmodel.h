@@ -33,6 +33,10 @@ public:
     QHash<int, QByteArray> roleNames() const override;
     int rowCount(const QModelIndex &parent) const override;
 
+
+    // PaginationModel interface
+public:
+    void clear();
 };
 
 #endif // USERSMODEL_H

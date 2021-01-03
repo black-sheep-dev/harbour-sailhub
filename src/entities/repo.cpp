@@ -41,11 +41,6 @@ License *Repo::license() const
     return m_license;
 }
 
-QString Repo::name() const
-{
-    return m_name;
-}
-
 Owner *Repo::owner() const
 {
     return m_owner;
@@ -64,6 +59,21 @@ QString Repo::readme() const
 quint32 Repo::stargazerCount() const
 {
     return m_stargazerCount;
+}
+
+bool Repo::viewerCanSubscribe() const
+{
+    return m_viewerCanSubscribe;
+}
+
+bool Repo::viewerHasStarred() const
+{
+    return m_viewerHasStarred;
+}
+
+quint8 Repo::viewerSubscription() const
+{
+    return m_viewerSubscription;
 }
 
 quint32 Repo::watcherCount() const
@@ -134,15 +144,6 @@ void Repo::setLicense(License *license)
     emit licenseChanged(m_license);
 }
 
-void Repo::setName(const QString &name)
-{
-    if (m_name == name)
-        return;
-
-    m_name = name;
-    emit nameChanged(m_name);
-}
-
 void Repo::setOwner(Owner *owner)
 {
     if (m_owner == owner)
@@ -177,6 +178,33 @@ void Repo::setStargazerCount(quint32 count)
 
     m_stargazerCount = count;
     emit stargazerCountChanged(m_stargazerCount);
+}
+
+void Repo::setViewerCanSubscribe(bool subscribable)
+{
+    if (m_viewerCanSubscribe == subscribable)
+        return;
+
+    m_viewerCanSubscribe = subscribable;
+    emit viewerCanSubscribeChanged(m_viewerCanSubscribe);
+}
+
+void Repo::setViewerHasStarred(bool starred)
+{
+    if (m_viewerHasStarred == starred)
+        return;
+
+    m_viewerHasStarred = starred;
+    emit viewerHasStarredChanged(m_viewerHasStarred);
+}
+
+void Repo::setViewerSubscription(quint8 viewerSubscription)
+{
+    if (m_viewerSubscription == viewerSubscription)
+        return;
+
+    m_viewerSubscription = viewerSubscription;
+    emit viewerSubscriptionChanged(m_viewerSubscription);
 }
 
 void Repo::setWatcherCount(quint32 count)
