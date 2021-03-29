@@ -27,7 +27,7 @@ Page {
 
                 focus: true
 
-                EnterKey.enabled: text.length > 3
+                EnterKey.enabled: text.length > 2
                 EnterKey.iconSource: "image://theme/icon-m-search"
                 EnterKey.onClicked: {
                     focus = false
@@ -66,10 +66,6 @@ Page {
 
             delegate: UserListDelegate {
                 id: delegate
-
-                avatar: model.avatarUrl
-                login: model.login
-                name: model.name
 
                 onClicked: pageStack.push(Qt.resolvedUrl("UserPage.qml"), {
                                               nodeId: model.nodeId

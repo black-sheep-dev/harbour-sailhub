@@ -55,6 +55,7 @@ public:
         Contributor,
         Follower,
         Following,
+        OrganizationMember,
         Search,
         Stargazer,
         Watcher

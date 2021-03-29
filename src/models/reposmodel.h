@@ -40,7 +40,7 @@ public:
 
     // PaginationModel interface
 public:
-    void clear();
+    void clear() override;
 };
 
 #endif // REPOSMODEL_H

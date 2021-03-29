@@ -8,27 +8,26 @@ import "../components/"
 ListItem {
     id: delegate
     width: parent.width
-    contentHeight: Theme.itemSizeLarge
+    contentHeight: contentRow.height
 
     Row {
+        id: contentRow
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
         spacing: Theme.paddingMedium
 
         CircleImage {
             id: avatarIcon
-            width: parent.height - 2 * Theme.paddingSmall
+            width: Theme.itemSizeLarge - 2 * Theme.paddingSmall
             source: model.avatarUrl
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.top: parent.top
 
             fallbackItemVisible: false
         }
 
         Column {
             width: parent.width - avatarIcon.width - Theme.paddingMedium
-            anchors.verticalCenter: avatarIcon.verticalCenter
+            anchors.top: parent.top
             spacing: Theme.paddingSmall
 
             Label {
@@ -41,11 +40,26 @@ ListItem {
                 text: model.name.length > 0 ? model.name : login
             }
             Label {
+                width: parent.width
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
                 font.pixelSize: Theme.fontSizeSmall
                 wrapMode: Text.Wrap
 
                 text: model.login
+            }
+            Label {
+                width: parent.width
+                color: pressed ? Theme.highlightColor : Theme.primaryColor
+                font.pixelSize: Theme.fontSizeSmall
+                font.italic: true
+                wrapMode: Text.Wrap
+
+                text: model.description
+            }
+
+            Item {
+                width: 1
+                height: Theme.paddingSmall
             }
         }
     }

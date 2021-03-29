@@ -36,7 +36,7 @@ public:
 
     // PaginationModel interface
 public:
-    void clear();
+    void clear() override;
 };
 
 #endif // USERSMODEL_H

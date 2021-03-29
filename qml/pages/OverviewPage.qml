@@ -70,15 +70,30 @@ Page {
                 icon: "image://theme/icon-m-file-archive-folder"
                 title: qsTr("Repositories")
 
-                onClicked: pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
+                onClicked: {
+                    if (SailHub.api().profile.repositories === 0) return
+
+
+                    pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
                                               login: SailHub.api().profile.login,
                                               identifier: SailHub.api().profile.nodeId,
                                               repoType: Repo.User
                                           })
+                }
             }
             IconRelatedItem {
                 icon: "image://theme/icon-m-company"
                 title: qsTr("Organizations")
+
+                onClicked: {
+                    if (SailHub.api().profile.organizations === 0) return
+
+                    pageStack.push(Qt.resolvedUrl("OrganizationsListPage.qml"), {
+                                              login: SailHub.api().profile.login,
+                                              identifier: SailHub.api().profile.nodeId,
+                                              organizationType: Organization.IsMember
+                                          })
+                }
             }
         }
     }

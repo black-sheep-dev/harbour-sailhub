@@ -5,13 +5,7 @@ import Sailfish.Silica 1.0
 
 ListItem {
     property string name
-    property string description
-    property int stargazerCount: 0
-    //property Language language
-    property string languageColor
-    property string languageName
     property bool lastItem: false
-    property bool isPrivate: false
 
     id: delegate
     width: parent.width
@@ -33,7 +27,7 @@ ListItem {
             spacing: Theme.paddingMedium
 
             Icon {
-                visible: isPrivate
+                visible: model.isPrivate
                 id: privateIcon
                 source: "image://theme/icon-s-outline-secure?" + (pressed ? Theme.highlightColor : Theme.primaryColor)
             }
@@ -51,14 +45,14 @@ ListItem {
         }
 
         Label {
-            visible: description.length > 0
+            visible: model.description.length > 0
             width: parent.width
             font.pixelSize: Theme.fontSizeExtraSmall
             wrapMode: Text.Wrap
             font.bold: true
             color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-            text: description
+            text: model.description
         }
 
         Row {
@@ -69,7 +63,7 @@ ListItem {
             Icon {
                 id: stargazerCountIcon
                 anchors.verticalCenter: parent.verticalCenter
-                source: "image://theme/icon-s-new?" + (stargazerCount > 0 ? "#ffff00" : Theme.primaryColor)
+                source: "image://theme/icon-s-new?" + (model.stargazerCount > 0 ? "#ffff00" : Theme.primaryColor)
             }
 
             Label {
@@ -77,7 +71,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: stargazerCount
+                text: model.stargazerCount
             }
 
             Rectangle {
@@ -86,7 +80,7 @@ ListItem {
                 anchors.verticalCenter: parent.verticalCenter
 
                 radius: stargazerCountIcon.height * 0.25
-                color: languageColor
+                color: model.languageColor
             }
 
             Label {
@@ -94,7 +88,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: languageName
+                text: model.languageName
             }
         }
 

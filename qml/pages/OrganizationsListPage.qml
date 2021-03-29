@@ -7,9 +7,8 @@ import "../delegates/"
 
 Page {
     property string title
-    property string description
     property string identifier
-    property int userType: User.Undefined
+    property int organizationType: Organization.Undefined
 
     id: page
     allowedOrientations: Orientation.All
@@ -29,12 +28,12 @@ Page {
         }
 
         PullDownMenu {
-            busy: usersModel.loading
+            busy: organizationsModel.loading
             MenuItem {
                 text: qsTr("Refresh")
                 onClicked: {
-                    usersModel.reset()
-                    SailHub.api().getUsers(usersModel)
+                    organizationsModel.reset()
+                    SailHub.api().getOrganizations(organizationsModel)
                 }
             }
         }
@@ -44,45 +43,45 @@ Page {
             visible: running
             size: BusyIndicatorSize.Large
             anchors.centerIn: parent
-            running: usersModel.loading
+            running: organizationsModel.loading
         }
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No users available")
+            text: qsTr("No organizations available")
         }
 
         VerticalScrollDecorator {}
 
-        model: UsersModel {
-            id: usersModel
+        model: OrganizationsModel {
+            id: organizationsModel
             identifier: page.identifier
-            modelType: page.userType
+            modelType: page.organizationType
         }
 
         opacity: busyIndicator.running ? 0.3 : 1.0
         Behavior on opacity { FadeAnimator {} }
 
-        delegate: UserListDelegate {
+        delegate: OrganizationListDelegate {
             id: delegate
 
-            onClicked: pageStack.push(Qt.resolvedUrl("UserPage.qml"), {
+            onClicked: pageStack.push(Qt.resolvedUrl("OrganizationPage.qml"), {
                                           nodeId: model.nodeId
                                       })
         }
 
         PushUpMenu {
-            busy: usersModel.loading
-            visible: usersModel.hasNextPage
+            busy: organizationsModel.loading
+            visible: organizationsModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", usersModel.totalCount - listView.count)
-                onClicked: SailHub.api().getUsers(usersModel)
+                text: qsTr("Load more (%n to go)", "", organizationsModel.totalCount - listView.count)
+                onClicked: SailHub.api().getOrganizations(organizationsModel)
             }
         }
     }
 
     Component.onCompleted: {
-        SailHub.api().getUsers(usersModel)
+        SailHub.api().getOrganizations(organizationsModel)
     }
 }

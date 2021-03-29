@@ -216,6 +216,16 @@ Page {
             RelatedValueItem {
                 label: qsTr("Organizations")
                 value: user.organizations
+
+                onClicked: {
+                    if (user.organizations === 0) return;
+
+                    pageStack.push(Qt.resolvedUrl("OrganizationsListPage.qml"), {
+                                                                  title: user.login,
+                                                                  identifier: user.nodeId,
+                                                                  organizationType: Organization.IsMember
+                                                              })
+                }
             }
             RelatedValueItem {
                 label: qsTr("Starred")
@@ -241,20 +251,14 @@ Page {
             page.user = user
             page.loading = false
         }
-    }
 
-    Connections {
-        target: SailHub.api()
         onUserFollowed: {
             if (nodeId !== user.nodeId) return
             page.user.viewerIsFollowing = following
             page.user.followers += following ? 1 : -1
             page.busy = false
         }
-    }
 
-    Connections {
-        target: SailHub.api()
         onProfileChanged: page.busy = false
     }
 

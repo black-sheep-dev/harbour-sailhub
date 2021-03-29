@@ -33,12 +33,11 @@ Page {
                 title: qsTr("User")
                 onClicked: pageStack.push(Qt.resolvedUrl("SearchUserPage.qml"))
             }
-            /*
             IconRelatedItem {
                 icon: "image://theme/icon-m-company"
                 title: qsTr("Organization")
+                onClicked: pageStack.push(Qt.resolvedUrl("SearchOrganizationPage.qml"))
             }
-            */
         }
     }
 }

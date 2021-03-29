@@ -66,6 +66,65 @@ static const QString SAILHUB_QUERY_GET_ISSUE_COMMENTS =
                        "    "
                        "}").arg(SAILHUB_QUERY_ITEM_COMMMENT, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
+// GET ORGANIZATION PROFILE
+static const QString SAILHUB_QUERY_GET_ORGANIZATION =
+        QStringLiteral("query($nodeId: ID!) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on Organization {"
+                       "            %1"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_ORGANIZATION).simplified();
+
+// GET ORGANIZATION MEMBERS
+static const QString SAILHUB_QUERY_GET_ORGANIZATION_MEMBERS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on Organization {"
+                       "            id"
+                       "            membersWithRole(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET ORGANIZATION REPOSITORIES
+static const QString SAILHUB_QUERY_GET_ORGANIZATION_REPOSITORIES =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on Organization {"
+                       "            login"
+                       "            repositories(first: $itemCount, after: $itemCursor, orderBy: {"
+                       "                    direction: ASC"
+                       "                    field: NAME"
+                       "                }) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_REPO_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
 // GET LOGIN INFO OF AUTHENTICATED USER
 static const QString SAILHUB_QUERY_GET_VIEWER_PROFILE =
         QStringLiteral("query {"
@@ -290,6 +349,28 @@ static const QString SAILHUB_QUERY_GET_USER_FOLLOWING =
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
+// GET USER ORGANIZATIONS
+static const QString SAILHUB_QUERY_GET_USER_ORGANIZATIONS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on User {"
+                       "            id"
+                       "            login"
+                       "            organizations(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_ORGANIZATION_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
 // GET USER REPOSITORIES
 static const QString SAILHUB_QUERY_GET_USER_REPOSITORIES =
         QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
@@ -338,6 +419,23 @@ static const QString SAILHUB_QUERY_GET_USER_REPOSITORIES_STARRED =
 // ------------------------------------------------------------------------------------------------------------------
 // QUERIES SEARCH
 // ------------------------------------------------------------------------------------------------------------------
+
+static const QString SAILHUB_QUERY_SEARCH_ORGANIZATION =
+        QStringLiteral("query searchOrgs($queryString: String!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    search(query: $queryString, type: USER, first: $itemCount, after: $itemCursor) {"
+                       "        %1"
+                       "        userCount"
+                       "        nodes {"
+                       "            ... on Organization {"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_PAGE_INFO, SAILHUB_QUERY_ITEM_ORGANIZATION_LIST_ITEM).simplified();
 
 static const QString SAILHUB_QUERY_SEARCH_REPOSITORY =
         QStringLiteral("query searchRepos($queryString: String!, $itemCount: Int = 20, $itemCursor: String = null) {"

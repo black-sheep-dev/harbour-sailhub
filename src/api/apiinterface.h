@@ -9,6 +9,7 @@
 #include "graphqlconnector.h"
 #include "src/entities/user.h"
 #include "src/models/issuesmodel.h"
+#include "src/models/organizationsmodel.h"
 #include "src/models/reposmodel.h"
 #include "src/models/usersmodel.h"
 
@@ -41,11 +42,14 @@ public:
         GetIssue,
         GetIssues,
         GetLogin,
+        GetOrganization,
+        GetOrganizations,
         GetProfile,
         GetUser,
         GetUsers,
         GetRepo,
         GetRepos,
+        SearchOrganization,
         SearchRepo,
         SearchUser,
         StarRepo,
@@ -67,11 +71,14 @@ public:
     Q_INVOKABLE void getComments(CommentsModel *model);
     Q_INVOKABLE void getIssue(const QString &nodeId);
     Q_INVOKABLE void getIssues(IssuesModel *model);
+    Q_INVOKABLE void getOrganization(const QString &nodeId);
+    Q_INVOKABLE void getOrganizations(OrganizationsModel *model);
     Q_INVOKABLE void getProfile();
     Q_INVOKABLE void getRepo(const QString &nodeId);
     Q_INVOKABLE void getRepos(ReposModel *model);
     Q_INVOKABLE void getUser(const QString &nodeId);
     Q_INVOKABLE void getUsers(UsersModel *model);
+    Q_INVOKABLE void searchOrganization(const QString &pattern, OrganizationsModel *model);
     Q_INVOKABLE void searchRepo(const QString &pattern, ReposModel *model);
     Q_INVOKABLE void searchUser(const QString &pattern, UsersModel *model);
     Q_INVOKABLE void starRepo(const QString &nodeId, bool star = true);
@@ -89,14 +96,15 @@ public slots:
     void setReady(bool ready);
 
 signals:
-    Q_INVOKABLE void apiError(quint8 error, const QString &msg = QString());
-    Q_INVOKABLE void issueCreated(Issue *issue);
-    Q_INVOKABLE void issueAvailable(Issue *issue);
-    Q_INVOKABLE void repoAvailable(Repo *repo);
-    Q_INVOKABLE void repoStarred(const QString &nodeId, bool starred);
-    Q_INVOKABLE void subscribedToRepo(const QString &nodeId, quint8 state);
-    Q_INVOKABLE void userAvailable(User *user);
-    Q_INVOKABLE void userFollowed(const QString &nodeId, bool following);
+    void apiError(quint8 error, const QString &msg = QString());
+    void issueCreated(Issue *issue);
+    void issueAvailable(Issue *issue);
+    void organizationAvailable(Organization *organization);
+    void repoAvailable(Repo *repo);
+    void repoStarred(const QString &nodeId, bool starred);
+    void subscribedToRepo(const QString &nodeId, quint8 state);
+    void userAvailable(User *user);
+    void userFollowed(const QString &nodeId, bool following);
 
     // properties
     void paginationCountChanged(quint8 count);
@@ -113,6 +121,7 @@ private:
     void initialize();
     void parseComments(const QJsonObject &obj, const QByteArray &requestId);
     void parseIssues(const QJsonObject &obj, const QByteArray &requestId);
+    void parseOrganizations(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepos(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepoSubscription(const QJsonObject &obj);
     void parseUsers(const QJsonObject &obj, const QByteArray &requestId);
@@ -120,6 +129,7 @@ private:
     GraphQLConnector *m_connector{new GraphQLConnector(SAILHUB_API_GRAPHQL_URL, this)};
     QHash<QByteArray, CommentsModel *> m_commentsModelRequests;
     QHash<QByteArray, IssuesModel *> m_issuesModelRequests;
+    QHash<QByteArray, OrganizationsModel *> m_organizationsModelRequests;
     QHash<QByteArray, ReposModel *> m_reposModelRequests;
     QHash<QByteArray, UsersModel *> m_usersModelRequests;
 

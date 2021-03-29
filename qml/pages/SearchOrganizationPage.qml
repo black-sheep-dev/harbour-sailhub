@@ -18,7 +18,7 @@ Page {
             width: parent.width
 
             PageHeader {
-                title: qsTr("Search Repository")
+                title: qsTr("Search Organization")
             }
 
             SearchField {
@@ -31,13 +31,13 @@ Page {
                 EnterKey.iconSource: "image://theme/icon-m-search"
                 EnterKey.onClicked: {
                     focus = false
-                    SailHub.api().searchRepo(searchField.text, reposModel)
+                    SailHub.api().searchOrganization(searchField.text, organizationsModel)
                 }
 
                 onTextChanged: {
                     if (text.length === 0) {
                         focus = true
-                        reposModel.reset()
+                        organizationsModel.reset()
                     }
                 }
             }
@@ -54,39 +54,36 @@ Page {
 
             ViewPlaceholder {
                 enabled: listView.count == 0
-                text: qsTr("No repositories found")
-                hintText: qsTr("Type in search pattern to find repositories")
+                text: qsTr("No organization found")
+                hintText: qsTr("Type in search pattern to find organizations")
 
             }
 
-            model: ReposModel {
-                id: reposModel
-                modelType: Repo.Search
+            model: OrganizationsModel {
+                id: organizationsModel
+                modelType: Organization.Search
             }
 
-
-            delegate: RepoListDelegate {
+            delegate: OrganizationListDelegate {
                 id: delegate
 
-                name: model.name
-                lastItem: index == (listView.count - 1)
-
-                onClicked: pageStack.push(Qt.resolvedUrl("RepoPage.qml"), {
+                onClicked: pageStack.push(Qt.resolvedUrl("OrganizationPage.qml"), {
                                               nodeId: model.nodeId
                                           })
             }
 
             PushUpMenu {
-                busy: reposModel.loading
-                visible: reposModel.hasNextPage
+                busy: organizationsModel.loading
+                visible: organizationsModel.hasNextPage
 
                 MenuItem {
-                    text: qsTr("Load more (%n to go)", "", reposModel.totalCount - listView.count)
-                    onClicked: SailHub.api().searchRepo(searchField.text, reposModel)
+                    text: qsTr("Load more (%n to go)", "", organizationsModel.totalCount - listView.count)
+                    onClicked: SailHub.api().searchOrganization(searchField.text, organizationsModel)
                 }
             }
             VerticalScrollDecorator {}
         }
     }
 }
+
 

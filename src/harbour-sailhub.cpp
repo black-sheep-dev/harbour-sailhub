@@ -16,6 +16,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<License>("org.nubecula.harbour.sailhub", 1, 0, "License");
     qmlRegisterType<Issue>("org.nubecula.harbour.sailhub", 1, 0, "Issue");
     qmlRegisterType<IssuesModel>("org.nubecula.harbour.sailhub", 1, 0, "IssuesModel");
+    qmlRegisterType<Organization>("org.nubecula.harbour.sailhub", 1, 0, "Organization");
+    qmlRegisterType<OrganizationsModel>("org.nubecula.harbour.sailhub", 1, 0, "OrganizationsModel");
     qmlRegisterType<Owner>("org.nubecula.harbour.sailhub", 1, 0, "Owner");
     qmlRegisterType<Repo>("org.nubecula.harbour.sailhub", 1, 0, "Repo");
     qmlRegisterType<ReposModel>("org.nubecula.harbour.sailhub", 1, 0, "ReposModel");

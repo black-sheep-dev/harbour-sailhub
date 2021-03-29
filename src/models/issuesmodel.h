@@ -39,7 +39,7 @@ public:
 
     // PaginationModel interface
 public:
-    void clear();
+    void clear() override;
 };
 
 #endif // ISSUESMODEL_H

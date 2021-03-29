@@ -305,20 +305,12 @@ Page {
             page.repo = repo
             loading = false
         }
-    }
-
-    Connections {
-        target: SailHub.api()
         onRepoStarred: {
             if (nodeId !== repo.nodeId) return
             page.repo.viewerHasStarred = starred
             page.repo.stargazerCount += starred ? 1 : -1
             page.busy = false
         }
-    }
-
-    Connections {
-        target: SailHub.api()
         onSubscribedToRepo: {
             if (nodeId !== repo.nodeId) return
             page.repo.viewerSubscription = state

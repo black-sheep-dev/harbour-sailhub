@@ -39,12 +39,12 @@ void ApiInterface::createIssue(const QString &title, const QString &body, Issues
     query.query = SAILHUB_MUTATION_ADD_ISSUE;
 
     QJsonObject vars;
-    vars.insert(SAILHUB_API_KEY_CLIENT_MUTATION_ID, m_profile->nodeId());
-    vars.insert(SAILHUB_API_KEY_REPOSITORY_ID, model->identifier());
-    vars.insert(SAILHUB_API_KEY_TITLE, title);
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::REPOSITORY_ID, model->identifier());
+    vars.insert(ApiKey::TITLE, title);
 
     if (!body.isEmpty())
-        vars.insert(SAILHUB_API_KEY_BODY, body);
+        vars.insert(ApiKey::BODY, body);
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
@@ -62,8 +62,8 @@ void ApiInterface::followUser(const QString &nodeId, bool follow)
     query.query = follow ? SAILHUB_MUTATION_FOLLOW_USER : SAILHUB_MUTATION_UNFOLLOW_USER;
 
     QJsonObject vars;
-    vars.insert(SAILHUB_API_KEY_CLIENT_MUTATION_ID, m_profile->nodeId());
-    vars.insert(SAILHUB_API_KEY_USER_ID, nodeId);
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::USER_ID, nodeId);
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
@@ -135,6 +135,44 @@ void ApiInterface::getIssues(IssuesModel *model)
     m_connector->sendQuery(query, RequestType::GetIssues, uuid);
 }
 
+void ApiInterface::getOrganization(const QString &nodeId)
+{
+    GraphQLQuery query;
+    query.query = SAILHUB_QUERY_GET_ORGANIZATION;
+    query.variables.insert(SAILHUB_QUERY_VAR_NODE_ID, nodeId);
+
+    m_connector->sendQuery(query, RequestType::GetOrganization);
+}
+
+void ApiInterface::getOrganizations(OrganizationsModel *model)
+{
+    GraphQLQuery query;
+
+    switch (model->modelType()) {
+    case Organization::IsMember:
+        query.query = SAILHUB_QUERY_GET_USER_ORGANIZATIONS;
+        break;
+
+    default:
+        break;
+    }
+
+    query.variables.insert(SAILHUB_QUERY_VAR_NODE_ID, model->identifier());
+    query.variables.insert(SAILHUB_QUERY_VAR_ITEM_COUNT, m_paginationCount);
+
+    // if cursor available insert it
+    if (!model->lastItemCursor().isEmpty()) {
+        query.variables.insert(SAILHUB_QUERY_VAR_ITEM_CURSOR, model->lastItemCursor());
+    }
+
+    model->setLoading(true);
+
+    // save and send
+    const QByteArray uuid = model->uuid();
+    m_organizationsModelRequests.insert(uuid, model);
+    m_connector->sendQuery(query, RequestType::GetOrganizations, uuid);
+}
+
 void ApiInterface::getProfile()
 {
     GraphQLQuery query;
@@ -160,6 +198,10 @@ void ApiInterface::getRepos(ReposModel *model)
     switch (repoType) {
     case Repo::User:
         query.query = SAILHUB_QUERY_GET_USER_REPOSITORIES;
+        break;
+
+    case Repo::Organization:
+        query.query = SAILHUB_QUERY_GET_ORGANIZATION_REPOSITORIES;
         break;
 
     case Repo::Fork:
@@ -213,6 +255,10 @@ void ApiInterface::getUsers(UsersModel *model)
         query.query = SAILHUB_QUERY_GET_USER_FOLLOWING;
         break;
 
+    case User::OrganizationMember:
+        query.query = SAILHUB_QUERY_GET_ORGANIZATION_MEMBERS;
+        break;
+
     case User::Contributor:
         query.query = SAILHUB_QUERY_GET_REPOSITORY_CONTRIBUTORS;
         break;
@@ -226,7 +272,7 @@ void ApiInterface::getUsers(UsersModel *model)
         break;
 
     default:
-        break;
+        return;
     }
 
     query.variables.insert(SAILHUB_QUERY_VAR_NODE_ID, model->identifier());
@@ -243,6 +289,25 @@ void ApiInterface::getUsers(UsersModel *model)
     const QByteArray uuid = model->uuid();
     m_usersModelRequests.insert(uuid, model);
     m_connector->sendQuery(query, RequestType::GetUsers, uuid);
+}
+
+void ApiInterface::searchOrganization(const QString &pattern, OrganizationsModel *model)
+{
+    GraphQLQuery query;
+    query.query = SAILHUB_QUERY_SEARCH_ORGANIZATION;
+    query.variables.insert(SAILHUB_QUERY_VAR_QUERY_STRING, pattern);
+    query.variables.insert(SAILHUB_QUERY_VAR_ITEM_COUNT, m_paginationCount);
+
+    // if next insert item cursor
+    if (!model->lastItemCursor().isEmpty()) {
+        query.variables.insert(SAILHUB_QUERY_VAR_ITEM_CURSOR, model->lastItemCursor());
+    }
+
+    model->setLoading(true);
+
+    const QByteArray uuid = model->uuid();
+    m_organizationsModelRequests.insert(uuid, model);
+    m_connector->sendQuery(query, RequestType::SearchOrganization, uuid);
 }
 
 void ApiInterface::searchRepo(const QString &pattern, ReposModel *model)
@@ -292,8 +357,8 @@ void ApiInterface::starRepo(const QString &nodeId, bool star)
     query.query = star ? SAILHUB_MUTATION_REPO_ADD_STAR : SAILHUB_MUTATION_REPO_REMOVE_STAR;
 
     QJsonObject vars;
-    vars.insert(SAILHUB_API_KEY_CLIENT_MUTATION_ID, m_profile->nodeId());
-    vars.insert(SAILHUB_API_KEY_STARRABLE_ID, nodeId);
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::STARRABLE_ID, nodeId);
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
@@ -309,20 +374,20 @@ void ApiInterface::subscribeToRepo(const QString &nodeId, quint8 state)
     query.query = SAILHUB_MUTATION_REPO_UPATE_SUBSCRIPTION;
 
     QJsonObject vars;
-    vars.insert(SAILHUB_API_KEY_CLIENT_MUTATION_ID, m_profile->nodeId());
-    vars.insert(SAILHUB_API_KEY_SUBSCRIBABLE_ID, nodeId);
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::SUBSCRIBABLE_ID, nodeId);
 
     switch (state) {
     case Repo::SubscriptionIgnored:
-        vars.insert(SAILHUB_API_KEY_STATE, QStringLiteral("IGNORED"));
+        vars.insert(ApiKey::STATE, QStringLiteral("IGNORED"));
         break;
 
     case Repo::Subscribed:
-        vars.insert(SAILHUB_API_KEY_STATE, QStringLiteral("SUBSCRIBED"));
+        vars.insert(ApiKey::STATE, QStringLiteral("SUBSCRIBED"));
         break;
 
     case Repo::Unsubscribed:
-        vars.insert(SAILHUB_API_KEY_STATE, QStringLiteral("UNSUBSCRIBED"));
+        vars.insert(ApiKey::STATE, QStringLiteral("UNSUBSCRIBED"));
         break;
 
     default:
@@ -409,20 +474,20 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
     qDebug() << obj;
 #endif
 
-    const QJsonObject data = obj.value(SAILHUB_API_KEY_DATA).toObject();
+    const QJsonObject data = obj.value(ApiKey::DATA).toObject();
 
     // get rateLimit
-    const QJsonObject rateLimit = obj.value(SAILHUB_API_KEY_RATE_LIMIT).toObject();
+    const QJsonObject rateLimit = obj.value(ApiKey::RATE_LIMIT).toObject();
     if (!rateLimit.isEmpty()) {
-        m_rateLimitRemaining = rateLimit.value(SAILHUB_API_KEY_REMAINING).toInt();
+        m_rateLimitRemaining = rateLimit.value(ApiKey::REMAINING).toInt();
         emit rateLimitRemainingChanged(m_rateLimitRemaining);
-        m_rateLimitResetAt = QDateTime::fromString(rateLimit.value(SAILHUB_API_KEY_RESET_AT).toString());
+        m_rateLimitResetAt = QDateTime::fromString(rateLimit.value(ApiKey::RESET_AT).toString());
         emit rateLimitResetAtChanged(m_rateLimitResetAt);
     }
 
     switch (requestType) {
     case RequestType::GetUser:
-        emit userAvailable(DataUtils::userFromJson(data.value(SAILHUB_API_KEY_NODE).toObject()));
+        emit userAvailable(DataUtils::userFromJson(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetUsers:
@@ -431,7 +496,7 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         break;
 
     case RequestType::GetRepo:
-        emit repoAvailable(DataUtils::repoFromJson(data.value(SAILHUB_API_KEY_NODE).toObject()));
+        emit repoAvailable(DataUtils::repoFromJson(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetRepos:
@@ -439,8 +504,17 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         parseRepos(data, requestId);
         break;
 
+    case RequestType::GetOrganization:
+        emit organizationAvailable(DataUtils::organizationFromJson(data.value(ApiKey::NODE).toObject()));
+        break;
+
+    case RequestType::GetOrganizations:
+    case RequestType::SearchOrganization:
+        parseOrganizations(data, requestId);
+        break;
+
     case RequestType::GetIssue:
-        emit issueAvailable(DataUtils::issueFromJson(data.value(SAILHUB_API_KEY_NODE).toObject()));
+        emit issueAvailable(DataUtils::issueFromJson(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetIssues:
@@ -448,43 +522,43 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         break;
 
     case RequestType::CreateIssue:
-        emit issueCreated(DataUtils::issueFromJson(data.value(SAILHUB_API_KEY_NODE).toObject()));
+        emit issueCreated(DataUtils::issueFromJson(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetComments:
         parseComments(data, requestId);
         break;
 
-    case StarRepo:
-        emit repoStarred(data.value(SAILHUB_API_KEY_ADD_STAR).toObject()
-                             .value(SAILHUB_API_KEY_STARRABLE).toObject()
-                             .value(SAILHUB_API_KEY_ID).toString(), true);
+    case RequestType::StarRepo:
+        emit repoStarred(data.value(ApiKey::ADD_STAR).toObject()
+                             .value(ApiKey::STARRABLE).toObject()
+                             .value(ApiKey::ID).toString(), true);
         break;
 
-    case UnstarRepo:
-        emit repoStarred(data.value(SAILHUB_API_KEY_REMOVE_STAR).toObject()
-                             .value(SAILHUB_API_KEY_STARRABLE).toObject()
-                             .value(SAILHUB_API_KEY_ID).toString(), false);
+    case RequestType::UnstarRepo:
+        emit repoStarred(data.value(ApiKey::REMOVE_STAR).toObject()
+                             .value(ApiKey::STARRABLE).toObject()
+                             .value(ApiKey::ID).toString(), false);
         break;
 
-    case FollowUser:
-        emit userFollowed(data.value(SAILHUB_API_KEY_FOLLOWER_USER).toObject()
-                              .value(SAILHUB_API_KEY_USER).toObject()
-                              .value(SAILHUB_API_KEY_ID).toString(), true);
+    case RequestType::FollowUser:
+        emit userFollowed(data.value(ApiKey::FOLLOWER_USER).toObject()
+                              .value(ApiKey::USER).toObject()
+                              .value(ApiKey::ID).toString(), true);
         break;
 
-    case UnfollowUser:
-        emit userFollowed(data.value(SAILHUB_API_KEY_UNFOLLOW_USER).toObject()
-                              .value(SAILHUB_API_KEY_USER).toObject()
-                              .value(SAILHUB_API_KEY_ID).toString(), false);
+    case RequestType::UnfollowUser:
+        emit userFollowed(data.value(ApiKey::UNFOLLOW_USER).toObject()
+                              .value(ApiKey::USER).toObject()
+                              .value(ApiKey::ID).toString(), false);
         break;
 
-    case UpdateRepoSubscription:
+    case RequestType::UpdateRepoSubscription:
         parseRepoSubscription(data);
         break;
 
-    case GetProfile:
-        emit profileChanged(DataUtils::userFromJson(data.value(SAILHUB_API_KEY_VIEWER).toObject(), m_profile));
+    case RequestType::GetProfile:
+        emit profileChanged(DataUtils::userFromJson(data.value(ApiKey::VIEWER).toObject(), m_profile));
         setReady(true);
         break;
 
@@ -500,15 +574,15 @@ void ApiInterface::initialize()
 
 void ApiInterface::parseComments(const QJsonObject &obj, const QByteArray &requestId)
 {
-    CommentsModel *model = m_commentsModelRequests.value(requestId, nullptr);
+    auto model = m_commentsModelRequests.value(requestId, nullptr);
 
     if (model == nullptr)
         return;
 
     // get identifier and comments
-    const QJsonObject comments = obj.value(SAILHUB_API_KEY_NODE).toObject()
-                                  .value(SAILHUB_API_KEY_COMMENTS).toObject();
-    const QJsonValue count = comments.value(SAILHUB_API_KEY_TOTAL_COUNT);
+    const QJsonObject comments = obj.value(ApiKey::NODE).toObject()
+                                  .value(ApiKey::COMMENTS).toObject();
+    const QJsonValue count = comments.value(ApiKey::TOTAL_COUNT);
 
     model->setPageInfo(DataUtils::pageInfoFromJson(comments, count));
     model->addComments(DataUtils::commentsFromJson(comments));
@@ -520,16 +594,16 @@ void ApiInterface::parseComments(const QJsonObject &obj, const QByteArray &reque
 
 void ApiInterface::parseIssues(const QJsonObject &obj, const QByteArray &requestId)
 {
-    IssuesModel *model = m_issuesModelRequests.value(requestId, nullptr);
+    auto model = m_issuesModelRequests.value(requestId, nullptr);
 
     if (model == nullptr)
         return;
 
     // get identifier and repos
 
-    const QJsonObject issues = obj.value(SAILHUB_API_KEY_NODE).toObject()
-                                  .value(SAILHUB_API_KEY_ISSUES).toObject();
-    const QJsonValue count = issues.value(SAILHUB_API_KEY_TOTAL_COUNT);
+    const QJsonObject issues = obj.value(ApiKey::NODE).toObject()
+                                  .value(ApiKey::ISSUES).toObject();
+    const QJsonValue count = issues.value(ApiKey::TOTAL_COUNT);
 
     model->setPageInfo(DataUtils::pageInfoFromJson(issues, count));
     model->addIssues(DataUtils::issuesFromJson(issues));
@@ -539,9 +613,44 @@ void ApiInterface::parseIssues(const QJsonObject &obj, const QByteArray &request
     m_issuesModelRequests.remove(requestId);
 }
 
+void ApiInterface::parseOrganizations(const QJsonObject &obj, const QByteArray &requestId)
+{
+    auto model = m_organizationsModelRequests.value(requestId, nullptr);
+
+    if (model == nullptr)
+        return;
+
+    // get identifier and users
+    QJsonValue count;
+    QJsonObject organizations;
+
+    switch (model->modelType()) {
+    case Organization::IsMember:
+        organizations = obj.value(ApiKey::NODE).toObject()
+                   .value(ApiKey::ORGANIZATIONS).toObject();
+        count = obj.value(ApiKey::TOTAL_COUNT);
+        break;
+
+    case Organization::Search:
+        organizations = obj.value(ApiKey::SEARCH).toObject();
+        count = organizations.value(ApiKey::USER_COUNT);
+        break;
+
+    default:
+        return;
+    }
+
+    model->setPageInfo(DataUtils::pageInfoFromJson(organizations, count));
+    model->addOrganizations(DataUtils::organizationsFromJson(organizations));
+    model->setLoading(false);
+
+    // cleanup
+    m_organizationsModelRequests.remove(requestId);
+}
+
 void ApiInterface::parseRepos(const QJsonObject &obj, const QByteArray &requestId)
 {
-    ReposModel *model = m_reposModelRequests.value(requestId, nullptr);
+    auto model = m_reposModelRequests.value(requestId, nullptr);
 
     if (model == nullptr)
         return;
@@ -552,26 +661,27 @@ void ApiInterface::parseRepos(const QJsonObject &obj, const QByteArray &requestI
 
     switch (model->modelType()) {
     case Repo::User:
-        repos = obj.value(SAILHUB_API_KEY_NODE).toObject()
-                   .value(SAILHUB_API_KEY_REPOSITORIES).toObject();
-        count = repos.value(SAILHUB_API_KEY_TOTAL_COUNT);
+    case Repo::Organization:
+        repos = obj.value(ApiKey::NODE).toObject()
+                   .value(ApiKey::REPOSITORIES).toObject();
+        count = repos.value(ApiKey::TOTAL_COUNT);
         break;
 
     case Repo::Fork:
-        repos = obj.value(SAILHUB_API_KEY_NODE).toObject()
-                   .value(SAILHUB_API_KEY_FORKS).toObject();
-        count = repos.value(SAILHUB_API_KEY_TOTAL_COUNT);
+        repos = obj.value(ApiKey::NODE).toObject()
+                   .value(ApiKey::FORKS).toObject();
+        count = repos.value(ApiKey::TOTAL_COUNT);
         break;
 
     case Repo::Search:
-        repos = obj.value(SAILHUB_API_KEY_SEARCH).toObject();
-        count = repos.value(SAILHUB_API_KEY_REPOSITORY_COUNT);
+        repos = obj.value(ApiKey::SEARCH).toObject();
+        count = repos.value(ApiKey::REPOSITORY_COUNT);
         break;
 
     case Repo::Starred:
-        repos = obj.value(SAILHUB_API_KEY_NODE).toObject()
-                   .value(SAILHUB_API_KEY_STARRED_REPOSITORIES).toObject();
-        count = repos.value(SAILHUB_API_KEY_REPOSITORY_COUNT);
+        repos = obj.value(ApiKey::NODE).toObject()
+                   .value(ApiKey::STARRED_REPOSITORIES).toObject();
+        count = repos.value(ApiKey::REPOSITORY_COUNT);
         break;
 
     default:
@@ -588,10 +698,10 @@ void ApiInterface::parseRepos(const QJsonObject &obj, const QByteArray &requestI
 
 void ApiInterface::parseRepoSubscription(const QJsonObject &obj)
 {
-    const QJsonObject subscription = obj.value(SAILHUB_API_KEY_UPDATE_SUBSCRIPTION).toObject()
-                                        .value(SAILHUB_API_KEY_SUBSCRIBABLE).toObject();
+    const QJsonObject subscription = obj.value(ApiKey::UPDATE_SUBSCRIPTION).toObject()
+                                        .value(ApiKey::SUBSCRIBABLE).toObject();
 
-    const QString state = subscription.value(SAILHUB_API_KEY_VIEWER_SUBSCRIPTION).toString();
+    const QString state = subscription.value(ApiKey::VIEWER_SUBSCRIPTION).toString();
 
     quint8 value{0};
 
@@ -603,12 +713,12 @@ void ApiInterface::parseRepoSubscription(const QJsonObject &obj)
         value = Repo::Subscribed;
     }
 
-    emit subscribedToRepo(subscription.value(SAILHUB_API_KEY_ID).toString(), value);
+    emit subscribedToRepo(subscription.value(ApiKey::ID).toString(), value);
 }
 
 void ApiInterface::parseUsers(const QJsonObject &obj, const QByteArray &requestId)
 {
-    UsersModel *model = m_usersModelRequests.value(requestId, nullptr);
+    auto model = m_usersModelRequests.value(requestId, nullptr);
 
     if (model == nullptr)
         return;
@@ -619,38 +729,44 @@ void ApiInterface::parseUsers(const QJsonObject &obj, const QByteArray &requestI
 
     switch (model->modelType()) {
     case User::Contributor:
-        users = obj.value(SAILHUB_API_KEY_NODE).toObject()
-                   .value(SAILHUB_API_KEY_MENTIONABLE_USERS).toObject();
-        count = obj.value(SAILHUB_API_KEY_TOTAL_COUNT);
+        users = obj.value(ApiKey::NODE).toObject()
+                   .value(ApiKey::MENTIONABLE_USERS).toObject();
+        count = obj.value(ApiKey::TOTAL_COUNT);
         break;
 
     case User::Stargazer:
-        users = obj.value(SAILHUB_API_KEY_NODE).toObject()
-                   .value(SAILHUB_API_KEY_STARGAZERS).toObject();
-        count = obj.value(SAILHUB_API_KEY_TOTAL_COUNT);
+        users = obj.value(ApiKey::NODE).toObject()
+                   .value(ApiKey::STARGAZERS).toObject();
+        count = obj.value(ApiKey::TOTAL_COUNT);
         break;
 
     case User::Watcher:
-        users = obj.value(SAILHUB_API_KEY_NODE).toObject()
-                   .value(SAILHUB_API_KEY_WATCHERS).toObject();
-        count = obj.value(SAILHUB_API_KEY_TOTAL_COUNT);
+        users = obj.value(ApiKey::NODE).toObject()
+                   .value(ApiKey::WATCHERS).toObject();
+        count = obj.value(ApiKey::TOTAL_COUNT);
         break;
 
     case User::Follower:
-        users = obj.value(SAILHUB_API_KEY_NODE).toObject()
-                   .value(SAILHUB_API_KEY_FOLLOWERS).toObject();
-        count = obj.value(SAILHUB_API_KEY_TOTAL_COUNT);
+        users = obj.value(ApiKey::NODE).toObject()
+                   .value(ApiKey::FOLLOWERS).toObject();
+        count = obj.value(ApiKey::TOTAL_COUNT);
         break;
 
     case User::Following:
-        users = obj.value(SAILHUB_API_KEY_NODE).toObject()
-                   .value(SAILHUB_API_KEY_FOLLOWING).toObject();
-        count = obj.value(SAILHUB_API_KEY_TOTAL_COUNT);
+        users = obj.value(ApiKey::NODE).toObject()
+                   .value(ApiKey::FOLLOWING).toObject();
+        count = obj.value(ApiKey::TOTAL_COUNT);
+        break;
+
+    case User::OrganizationMember:
+        users = obj.value(ApiKey::NODE).toObject()
+                   .value(ApiKey::MEMBERS_WITH_ROLE).toObject();
+        count = obj.value(ApiKey::TOTAL_COUNT);
         break;
 
     case User::Search:
-        users = obj.value(SAILHUB_API_KEY_SEARCH).toObject();
-        count = users.value(SAILHUB_API_KEY_USER_COUNT);
+        users = obj.value(ApiKey::SEARCH).toObject();
+        count = users.value(ApiKey::USER_COUNT);
         break;
 
     default:

@@ -52,6 +52,7 @@ public:
     enum RepoType {
         Undefined,
         Fork,
+        Organization,
         Search,
         Starred,
         User,

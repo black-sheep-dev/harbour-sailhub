@@ -88,13 +88,7 @@ Page {
                     return model.owner + "/" + model.name
                 }
             }
-            description: model.description
-            stargazerCount: model.stargazerCount
-            //language: model.language
-            languageColor: model.languageColor
-            languageName: model.languageName
             lastItem: index == (listView.count - 1)
-            isPrivate: model.isPrivate
 
             onClicked: pageStack.push(Qt.resolvedUrl("RepoPage.qml"), {
                                           nodeId: model.nodeId
@@ -102,7 +96,7 @@ Page {
         }
 
         PushUpMenu {
-            busy: loading
+            busy: reposModel.loading
             visible: reposModel.hasNextPage
 
             MenuItem {

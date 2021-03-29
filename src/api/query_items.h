@@ -34,6 +34,38 @@ static const QString SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM =
                        "    state"
                        "    title").simplified();
 
+static const QString SAILHUB_QUERY_ITEM_ORGANIZATION =
+        QStringLiteral("    id"
+                       "    avatarUrl"
+                       "    description"
+                       "    email"
+                       "    location"
+                       "    login"
+                       "    membersWithRole {"
+                       "        totalCount"
+                       "    }"
+                       "    name"
+                       "    projects {"
+                       "        totalCount"
+                       "    }"
+                       "    repositories {"
+                       "        totalCount"
+                       "    }"
+                       "    teams {"
+                       "        totalCount"
+                       "    }"
+                       "    twitterUsername"
+                       "    viewerIsAMember"
+                       "    viewerIsSponsoring"
+                       "    websiteUrl").simplified();
+
+static const QString SAILHUB_QUERY_ITEM_ORGANIZATION_LIST_ITEM =
+        QStringLiteral("    id"
+                       "    avatarUrl"
+                       "    description"
+                       "    login"
+                       "    name").simplified();
+
 static const QString SAILHUB_QUERY_ITEM_PAGE_INFO =
         QStringLiteral("    pageInfo {"
                        "        hasNextPage"
@@ -70,6 +102,9 @@ static const QString SAILHUB_QUERY_ITEM_USER =
                        "    isViewer"
                        "    name"
                        "    organizations {"
+                       "        totalCount"
+                       "    }"
+                       "    projects {"
                        "        totalCount"
                        "    }"
                        "    repositories {"
