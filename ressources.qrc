@@ -2,5 +2,7 @@
     <qresource prefix="/icons">
         <file alias="git">icons/github.svg</file>
         <file alias="paypal">icons/paypal.svg</file>
+        <file alias="liberpay">icons/liberpay.svg</file>
+        <file alias="weblate">icons/weblate.svg</file>
     </qresource>
 </RCC>
