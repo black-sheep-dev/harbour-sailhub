@@ -328,6 +328,42 @@ RepoListItem DataUtils::repoListItemFromJson(const QJsonObject &obj)
     return item;
 }
 
+QList<TreeItemListItem> DataUtils::treeListItemsFromJson(const QJsonObject &obj)
+{
+    QList<TreeItemListItem> items;
+
+    const QJsonArray entries = obj.value(ApiKey::NODE).toObject()
+            .value(ApiKey::REF).toObject()
+            .value(ApiKey::TARGET).toObject()
+            .value(ApiKey::FILE).toObject()
+            .value(ApiKey::OBJECT).toObject()
+            .value(ApiKey::ENTRIES).toArray();
+
+    for (const auto &entry : entries) {
+        items.append(treeListItemFromJson(entry.toObject()));
+    }
+
+
+    return items;
+}
+
+TreeItemListItem DataUtils::treeListItemFromJson(const QJsonObject &obj)
+{
+    TreeItemListItem item;
+
+    item.name = obj.value(ApiKey::NAME).toString();
+    item.path = obj.value(ApiKey::PATH).toString();
+
+    const QString type = obj.value(ApiKey::TYPE).toString();
+
+    if (type == QLatin1String("blob"))
+        item.type = TreeItem::Blob;
+    else if (type == QLatin1String("tree"))
+        item.type = TreeItem::Tree;
+
+    return item;
+}
+
 User *DataUtils::userFromJson(const QJsonObject &obj, User *user)
 {
     if (user == nullptr)

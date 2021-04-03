@@ -3,6 +3,7 @@
 #include <sailfishapp.h>
 
 #include "sailhub.h"
+#include "models/treesortfiltermodel.h"
 //#include "entities/language.h"
 
 int main(int argc, char *argv[])
@@ -23,6 +24,9 @@ int main(int argc, char *argv[])
     qmlRegisterType<PullRequestsModel>("org.nubecula.harbour.sailhub", 1, 0, "PullRequestsModel");
     qmlRegisterType<Repo>("org.nubecula.harbour.sailhub", 1, 0, "Repo");
     qmlRegisterType<ReposModel>("org.nubecula.harbour.sailhub", 1, 0, "ReposModel");
+    qmlRegisterType<TreeItem>("org.nubecula.harbour.sailhub", 1, 0, "TreeItem");
+    qmlRegisterType<TreeModel>("org.nubecula.harbour.sailhub", 1, 0, "TreeModel");
+    qmlRegisterType<TreeSortFilterModel>("org.nubecula.harbour.sailhub", 1, 0, "TreeSortFilterModel");
     qmlRegisterType<User>("org.nubecula.harbour.sailhub", 1, 0, "User");
     qmlRegisterType<UsersModel>("org.nubecula.harbour.sailhub", 1, 0, "UsersModel");
 

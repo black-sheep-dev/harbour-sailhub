@@ -327,7 +327,7 @@ Page {
 //                        height: 64
 //                        width: 64
                         anchors.verticalCenter: parent.verticalCenter
-                        source: "qrc:///icons/branch"
+                        source: "qrc:///icons/icon-m-branch"
                     }
 
                     Label {
@@ -360,17 +360,25 @@ Page {
                 }
             }
 
-            RelatedItem {
-                title: qsTr("README")
-            }
+//            RelatedItem {
+//                title: qsTr("README")
+//            }
 
             RelatedItem {
                 title: qsTr("Browse code")
+
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("TreeListPage.qml"), {
+                                              branch: selectedBranch,
+                                              repoName: repo.name,
+                                              repoId: repo.nodeId
+                                          })
+                }
             }
 
-            RelatedItem {
-                title: qsTr("Commits")
-            }
+//            RelatedItem {
+//                title: qsTr("Commits")
+//            }
 
             Separator {
                 width: parent.width

@@ -34,6 +34,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/owner.cpp \
     src/entities/pullrequest.cpp \
     src/entities/repo.cpp \
+    src/entities/treeitem.cpp \
     src/entities/user.cpp \
     src/models/commentsmodel.cpp \
     src/models/issuesmodel.cpp \
@@ -41,6 +42,8 @@ SOURCES += src/harbour-sailhub.cpp \
     src/models/paginationmodel.cpp \
     src/models/pullrequestsmodel.cpp \
     src/models/reposmodel.cpp \
+    src/models/treemodel.cpp \
+    src/models/treesortfiltermodel.cpp \
     src/models/usersmodel.cpp \
     src/sailhub.cpp
 
@@ -73,6 +76,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/SearchSelectionPage.qml \
     qml/pages/SearchUserPage.qml \
     qml/pages/SettingsPage.qml \
+    qml/pages/TreeListPage.qml \
     qml/pages/UserPage.qml \
     qml/pages/UserPage.qml \
     qml/pages/UsersListPage.qml \
@@ -116,6 +120,7 @@ HEADERS += \
     src/entities/owner.h \
     src/entities/pullrequest.h \
     src/entities/repo.h \
+    src/entities/treeitem.h \
     src/entities/user.h \
     src/models/commentsmodel.h \
     src/models/issuesmodel.h \
@@ -123,5 +128,7 @@ HEADERS += \
     src/models/paginationmodel.h \
     src/models/pullrequestsmodel.h \
     src/models/reposmodel.h \
+    src/models/treemodel.h \
+    src/models/treesortfiltermodel.h \
     src/models/usersmodel.h \
     src/sailhub.h

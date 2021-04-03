@@ -12,6 +12,7 @@
 #include "src/models/organizationsmodel.h"
 #include "src/models/pullrequestsmodel.h"
 #include "src/models/reposmodel.h"
+#include "src/models/treemodel.h"
 #include "src/models/usersmodel.h"
 
 static const QString SAILHUB_API_GRAPHQL_URL            = QStringLiteral("https://api.github.com/graphql");
@@ -52,6 +53,7 @@ public:
         GetUsers,
         GetRepo,
         GetRepos,
+        GetRepoTree,
         SearchOrganization,
         SearchRepo,
         SearchUser,
@@ -81,6 +83,7 @@ public:
     Q_INVOKABLE void getPullRequests(PullRequestsModel *model);
     Q_INVOKABLE void getRepo(const QString &nodeId);
     Q_INVOKABLE void getRepos(ReposModel *model);
+    Q_INVOKABLE void getRepoTree(const QString &nodeId,const QString &branch, const QString &path,  TreeModel *model);
     Q_INVOKABLE void getUser(const QString &nodeId);
     Q_INVOKABLE void getUsers(UsersModel *model);
     Q_INVOKABLE void searchOrganization(const QString &pattern, OrganizationsModel *model);
@@ -130,10 +133,12 @@ private:
     void parsePullRequests(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepos(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepoSubscription(const QJsonObject &obj);
+    void parseRepoTree(const QJsonObject &obj, const QByteArray &requestId);
     void parseUsers(const QJsonObject &obj, const QByteArray &requestId);
 
     GraphQLConnector *m_connector{new GraphQLConnector(SAILHUB_API_GRAPHQL_URL, this)};
     QHash<QByteArray, PaginationModel *> m_paginationModelRequests;
+    QHash<QByteArray, TreeModel *> m_treeModelRequests;
 
     // properties
     quint8 m_paginationCount{20};

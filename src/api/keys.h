@@ -25,6 +25,8 @@ struct ApiKey {
     static const QString EMAIL;
     static const QString EMOJI;
     static const QString END_CURSOR;
+    static const QString ENTRIES;
+    static const QString FILE;
     static const QString FOLLOWER_USER;
     static const QString FOLLOWERS;
     static const QString FOLLOWING;
@@ -51,8 +53,9 @@ struct ApiKey {
     static const QString NUMBER;
     static const QString OBJECT;
     static const QString ORGANIZATIONS;
-    static const QString OWNER;
+    static const QString OWNER;    
     static const QString PAGE_INFO;
+    static const QString PATH;
     static const QString PRIMARY_LANGUAGE;
     static const QString PROJECTS;
     static const QString PULL_REQUESTS;
@@ -79,11 +82,13 @@ struct ApiKey {
     static const QString STATUS;
     static const QString SUBSCRIBABLE;
     static const QString SUBSCRIBABLE_ID;
+    static const QString TARGET;
     static const QString TEAMS;
     static const QString TEXT;
     static const QString TITLE;
     static const QString TOTAL_COUNT;
     static const QString TWITTER_USERNAME;
+    static const QString TYPE;
     static const QString UNFOLLOW_USER;
     static const QString UPDATE_SUBSCRIPTION;
     static const QString URL;

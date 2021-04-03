@@ -7,6 +7,7 @@
 #include "src/entities/organization.h"
 #include "src/entities/pullrequest.h"
 #include "src/entities/repo.h"
+#include "src/entities/treeitem.h"
 #include "src/entities/user.h"
 #include "src/models/paginationmodel.h"
 
@@ -29,6 +30,8 @@ public:
     static Repo *repoFromJson(const QJsonObject &obj);
     static QList<RepoListItem> reposFromJson(const QJsonObject &obj);
     static RepoListItem repoListItemFromJson(const QJsonObject &obj);
+    static QList<TreeItemListItem> treeListItemsFromJson(const QJsonObject &obj);
+    static TreeItemListItem treeListItemFromJson(const QJsonObject &obj);
     static User *userFromJson(const QJsonObject &obj, User *user = nullptr);
     static UserListItem userListItemFromJson(const QJsonObject &obj);
     static QList<UserListItem> usersFromJson(const QJsonObject &obj);

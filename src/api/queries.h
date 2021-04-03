@@ -8,13 +8,16 @@
 // ------------------------------------------------------------------------------------------------------------------
 // VARS
 // ------------------------------------------------------------------------------------------------------------------
+static const QString SAILHUB_QUERY_VAR_BRANCH                   = QStringLiteral("branch");
 static const QString SAILHUB_QUERY_VAR_ITEM_COUNT               = QStringLiteral("itemCount");
 static const QString SAILHUB_QUERY_VAR_ITEM_CURSOR              = QStringLiteral("itemCursor");
 static const QString SAILHUB_QUERY_VAR_NODE_ID                  = QStringLiteral("nodeId");
+static const QString SAILHUB_QUERY_VAR_PATH                     = QStringLiteral("path");
 static const QString SAILHUB_QUERY_VAR_QUERY_STRING             = QStringLiteral("queryString");
 static const QString SAILHUB_QUERY_VAR_REPO_NAME                = QStringLiteral("repoName");
 static const QString SAILHUB_QUERY_VAR_USER_LOGIN               = QStringLiteral("userLogin");
 static const QString SAILHUB_QUERY_VAR_STATES                   = QStringLiteral("states");
+
 
 
 // ------------------------------------------------------------------------------------------------------------------
@@ -265,6 +268,37 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_CONTRIBUTORS =
                        "        }"
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET REPOSITORY PULL REQUESTS
+static const QString SAILHUB_QUERY_GET_REPOSITORY_FILES =
+        QStringLiteral("query($nodeId: ID!, $branch: String!, $path: String!) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on Repository {"
+                       "            id"
+                       "            ref(qualifiedName: $branch) {"
+                       "                target {"
+                       "                    ... on Commit {"
+                       "                        file(path: $path) {"
+                       "                            object {"
+                       "                                ... on Tree {"
+                       "                                    entries {"
+                       "                                        name"
+                       "                                        path"
+                       "                                        type"
+                       "                                    }"
+                       "                                }"
+                       "                            }"
+                       "                        }"
+                       "                    }"
+                       "                }"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").simplified();
 
 // GET REPOSITORY PULL REQUESTS
 static const QString SAILHUB_QUERY_GET_REPOSITORY_PULL_REQUESTS =
