@@ -6,12 +6,6 @@ import org.nubecula.harbour.sailhub 1.0
 import "../components/"
 
 ListItem {
-    property string commentCount: "0"
-    property date createdAt
-    property int number: 0
-    property string repoName
-    property string title
-    property int state
     property bool lastItem: false
 
     id: delegate
@@ -30,7 +24,7 @@ ListItem {
 
             Icon {
                 id: closedIcon
-                source: closed ? "image://theme/icon-s-installed?00ff00" : "image://theme/icon-s-high-importance?#ff0000"
+                source: model.closed ? "image://theme/icon-s-installed?00ff00" : "image://theme/icon-s-high-importance?#ff0000"
             }
 
             Label {
@@ -39,7 +33,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: repoName
+                text: model.repository
             }
 
             Label {
@@ -48,7 +42,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: " #" + number
+                text: " #" + model.number
             }
         }
 
@@ -58,7 +52,7 @@ ListItem {
             color: pressed ? Theme.highlightColor : Theme.primaryColor
             font.bold: true
 
-            text: title
+            text: model.title
         }
 
         Row {
@@ -76,7 +70,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeTiny
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: createdAt.toLocaleDateString(Qt.locale())
+                text: model.createdAt.toLocaleDateString(Qt.locale())
             }
 
             Icon {
@@ -90,7 +84,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: commentCount
+                text: model.commentCount
             }
         }
 

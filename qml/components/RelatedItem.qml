@@ -14,12 +14,10 @@ BackgroundItem {
         width: parent.width - 2*x - openRelatedIcon.width
         anchors.verticalCenter: parent.verticalCenter
 
-        color: Theme.highlightColor
-
         text: title
     }
 
-    Image {
+    Icon {
         visible: showIcon
         id: openRelatedIcon
         anchors.verticalCenter: parent.verticalCenter

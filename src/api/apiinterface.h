@@ -1,4 +1,4 @@
-#ifndef APIINTERFACE_H
+﻿#ifndef APIINTERFACE_H
 #define APIINTERFACE_H
 
 #include <QObject>
@@ -10,6 +10,7 @@
 #include "src/entities/user.h"
 #include "src/models/issuesmodel.h"
 #include "src/models/organizationsmodel.h"
+#include "src/models/pullrequestsmodel.h"
 #include "src/models/reposmodel.h"
 #include "src/models/usersmodel.h"
 
@@ -45,6 +46,8 @@ public:
         GetOrganization,
         GetOrganizations,
         GetProfile,
+        GetPullRequest,
+        GetPullRequests,
         GetUser,
         GetUsers,
         GetRepo,
@@ -74,6 +77,8 @@ public:
     Q_INVOKABLE void getOrganization(const QString &nodeId);
     Q_INVOKABLE void getOrganizations(OrganizationsModel *model);
     Q_INVOKABLE void getProfile();
+    Q_INVOKABLE void getPullRequest(const QString &nodeId);
+    Q_INVOKABLE void getPullRequests(PullRequestsModel *model);
     Q_INVOKABLE void getRepo(const QString &nodeId);
     Q_INVOKABLE void getRepos(ReposModel *model);
     Q_INVOKABLE void getUser(const QString &nodeId);
@@ -122,16 +127,13 @@ private:
     void parseComments(const QJsonObject &obj, const QByteArray &requestId);
     void parseIssues(const QJsonObject &obj, const QByteArray &requestId);
     void parseOrganizations(const QJsonObject &obj, const QByteArray &requestId);
+    void parsePullRequests(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepos(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepoSubscription(const QJsonObject &obj);
     void parseUsers(const QJsonObject &obj, const QByteArray &requestId);
 
     GraphQLConnector *m_connector{new GraphQLConnector(SAILHUB_API_GRAPHQL_URL, this)};
-    QHash<QByteArray, CommentsModel *> m_commentsModelRequests;
-    QHash<QByteArray, IssuesModel *> m_issuesModelRequests;
-    QHash<QByteArray, OrganizationsModel *> m_organizationsModelRequests;
-    QHash<QByteArray, ReposModel *> m_reposModelRequests;
-    QHash<QByteArray, UsersModel *> m_usersModelRequests;
+    QHash<QByteArray, PaginationModel *> m_paginationModelRequests;
 
     // properties
     quint8 m_paginationCount{20};

@@ -4,5 +4,9 @@
         <file alias="paypal">icons/paypal.svg</file>
         <file alias="liberpay">icons/liberpay.svg</file>
         <file alias="weblate">icons/weblate.svg</file>
+        <file alias="icon-m-branch">icons/scalable/icon-m-branch.svg</file>
+        <file alias="icon-m-fork">icons/scalable/icon-m-fork.svg</file>
+        <file alias="icon-m-merged">icons/scalable/icon-m-merged.svg</file>
+        <file alias="icon-m-pull-request">icons/scalable/icon-m-pull-request.svg</file>
     </qresource>
 </RCC>

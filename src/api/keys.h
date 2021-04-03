@@ -19,6 +19,7 @@ struct ApiKey {
     static const QString COMPANY;
     static const QString CREATED_AT;
     static const QString DATA;
+    static const QString DEFAULT_BRANCH_REF;
     static const QString DESCRIPTION;
     static const QString EDGES;
     static const QString EMAIL;
@@ -56,6 +57,9 @@ struct ApiKey {
     static const QString PROJECTS;
     static const QString PULL_REQUESTS;
     static const QString RATE_LIMIT;
+    static const QString REF;
+    static const QString REFS;
+    static const QString RELEASES;
     static const QString REMAINING;
     static const QString REMOVE_STAR;
     static const QString REPOSITORIES;

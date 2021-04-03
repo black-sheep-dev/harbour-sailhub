@@ -19,6 +19,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<Organization>("org.nubecula.harbour.sailhub", 1, 0, "Organization");
     qmlRegisterType<OrganizationsModel>("org.nubecula.harbour.sailhub", 1, 0, "OrganizationsModel");
     qmlRegisterType<Owner>("org.nubecula.harbour.sailhub", 1, 0, "Owner");
+    qmlRegisterType<PullRequest>("org.nubecula.harbour.sailhub", 1, 0, "PullRequest");
+    qmlRegisterType<PullRequestsModel>("org.nubecula.harbour.sailhub", 1, 0, "PullRequestsModel");
     qmlRegisterType<Repo>("org.nubecula.harbour.sailhub", 1, 0, "Repo");
     qmlRegisterType<ReposModel>("org.nubecula.harbour.sailhub", 1, 0, "ReposModel");
     qmlRegisterType<User>("org.nubecula.harbour.sailhub", 1, 0, "User");
@@ -33,9 +35,9 @@ int main(int argc, char *argv[])
         Q_UNUSED(engine)
         Q_UNUSED(scriptEngine)
 
-        auto *hub = new SailHub();
+        auto app = new SailHub();
 
-        return hub;
+        return app;
     });
 
 

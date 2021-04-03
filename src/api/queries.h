@@ -147,6 +147,10 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY =
                        "    node(id: $nodeId) {"
                        "        ... on Repository {"
                        "            id"
+                       "            defaultBranchRef {"
+                       "                id"
+                       "                name"
+                       "            }"
                        "            description"
                        "            forkCount"
                        "            homepageUrl"
@@ -167,7 +171,20 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY =
                        "                login"
                        "                avatarUrl"
                        "            }"
+                       "            projects {"
+                       "                totalCount"
+                       "            }"
                        "            pullRequests(states: [OPEN]) {"
+                       "                totalCount"
+                       "            }"
+                       "            refs(first: 100, refPrefix: \"refs/heads/\") {"
+                       "                totalCount"
+                       "                nodes {"
+                       "                    id"
+                       "                    name"
+                       "                }"
+                       "            }"
+                       "            releases {"
                        "                totalCount"
                        "            }"
                        "            stargazerCount"
@@ -177,11 +194,11 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY =
                        "            watchers {"
                        "                totalCount"
                        "            }"
-//                       "        object(expression: \"master:README.md\") {"
-//                       "            ... on Blob {"
-//                       "                text"
+//                       "            object(expression: \"master:README.md\") {"
+//                       "                ... on Blob {"
+//                       "                    text"
+//                       "                }"
 //                       "            }"
-//                       "        }
                        "        }"
                        "    }"
                        "}").simplified();
@@ -248,6 +265,27 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_CONTRIBUTORS =
                        "        }"
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET REPOSITORY PULL REQUESTS
+static const QString SAILHUB_QUERY_GET_REPOSITORY_PULL_REQUESTS =
+        QStringLiteral("query($nodeId: ID!, $states: [PullRequestState!]!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on Repository {"
+                       "            id"
+                       "            pullRequests(first: $itemCount, after: $itemCursor, states: $states, orderBy: { direction: DESC, field: CREATED_AT } ) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
 // GET REPOSITORY STARGAZERS
 static const QString SAILHUB_QUERY_GET_REPOSITORY_STARGAZERS =
@@ -370,6 +408,27 @@ static const QString SAILHUB_QUERY_GET_USER_ORGANIZATIONS =
                        "        }"
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_ORGANIZATION_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET USER PULL REQUESTS
+static const QString SAILHUB_QUERY_GET_USER_PULL_REQUESTS =
+        QStringLiteral("query($nodeId: ID!, $states: [PullRequestState!]!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on User {"
+                       "            id"
+                       "            pullRequests(first: $itemCount, after: $itemCursor, states: $states ,orderBy: { direction: DESC, field: CREATED_AT } ) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
 // GET USER REPOSITORIES
 static const QString SAILHUB_QUERY_GET_USER_REPOSITORIES =

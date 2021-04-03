@@ -6,9 +6,19 @@ Repo::Repo(QObject *parent) :
 
 }
 
+QStringList Repo::branches() const
+{
+    return m_branches;
+}
+
 quint32 Repo::contributorCount() const
 {
     return m_contributorCount;
+}
+
+QString Repo::defaultBranch() const
+{
+    return m_defaultBranch;
 }
 
 QString Repo::description() const
@@ -46,6 +56,11 @@ Owner *Repo::owner() const
     return m_owner;
 }
 
+quint32 Repo::projects() const
+{
+    return m_projects;
+}
+
 quint32 Repo::pullRequestsCount() const
 {
     return m_pullRequestCount;
@@ -54,6 +69,11 @@ quint32 Repo::pullRequestsCount() const
 QString Repo::readme() const
 {
     return m_readme;
+}
+
+quint32 Repo::releases() const
+{
+    return m_releases;
 }
 
 quint32 Repo::stargazerCount() const
@@ -81,6 +101,15 @@ quint32 Repo::watcherCount() const
     return m_watcherCount;
 }
 
+void Repo::setBranches(const QStringList &branches)
+{
+    if (m_branches == branches)
+        return;
+
+    m_branches = branches;
+    emit branchesChanged(m_branches);
+}
+
 void Repo::setContributorCount(quint32 count)
 {
     if (m_contributorCount == count)
@@ -88,6 +117,15 @@ void Repo::setContributorCount(quint32 count)
 
     m_contributorCount = count;
     emit contributorCountChanged(m_contributorCount);
+}
+
+void Repo::setDefaultBranch(const QString &branch)
+{
+    if (m_defaultBranch == branch)
+        return;
+
+    m_defaultBranch = branch;
+    emit defaultBranchChanged(m_defaultBranch);
 }
 
 void Repo::setDescription(const QString &description)
@@ -153,6 +191,15 @@ void Repo::setOwner(Owner *owner)
     emit ownerChanged(m_owner);
 }
 
+void Repo::setProjects(quint32 projects)
+{
+    if (m_projects == projects)
+        return;
+
+    m_projects = projects;
+    emit projectsChanged(m_projects);
+}
+
 void Repo::setPullRequestsCount(quint32 count)
 {
     if (m_pullRequestCount == count)
@@ -169,6 +216,15 @@ void Repo::setReadme(const QString &readme)
 
     m_readme = readme;
     emit readmeChanged(m_readme);
+}
+
+void Repo::setReleases(quint32 releases)
+{
+    if (m_releases == releases)
+        return;
+
+    m_releases = releases;
+    emit releasesChanged(m_releases);
 }
 
 void Repo::setStargazerCount(quint32 count)

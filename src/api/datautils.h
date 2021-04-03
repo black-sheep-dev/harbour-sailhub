@@ -5,6 +5,7 @@
 
 #include "src/entities/issue.h"
 #include "src/entities/organization.h"
+#include "src/entities/pullrequest.h"
 #include "src/entities/repo.h"
 #include "src/entities/user.h"
 #include "src/models/paginationmodel.h"
@@ -12,6 +13,7 @@
 class DataUtils
 {
 public:
+    // entities
     static Comment *commentFromJson(const QJsonObject &obj);
     static QList<Comment *> commentsFromJson(const QJsonObject &obj);
     static Issue *issueFromJson(const QJsonObject &obj);
@@ -22,12 +24,17 @@ public:
     static QList<OrganizationListItem> organizationsFromJson(const QJsonObject &obj);
     static Owner *ownerFromJson(const QJsonObject &obj);
     static PageInfo pageInfoFromJson(const QJsonObject &obj, const QJsonValue &count = QJsonValue());
+    static QList<PullRequestListItem> pullRequestsFromJson(const QJsonObject &obj);
+    static PullRequestListItem pullRequestListItemFromJson(const QJsonObject &obj);
     static Repo *repoFromJson(const QJsonObject &obj);
     static QList<RepoListItem> reposFromJson(const QJsonObject &obj);
     static RepoListItem repoListItemFromJson(const QJsonObject &obj);
     static User *userFromJson(const QJsonObject &obj, User *user = nullptr);
     static UserListItem userListItemFromJson(const QJsonObject &obj);
     static QList<UserListItem> usersFromJson(const QJsonObject &obj);
+
+    // helper
+    static QString timeSpanText(const QDateTime &start, bool shortText = false);
 
 private:
     static QJsonArray getNodes(const QJsonObject &obj);

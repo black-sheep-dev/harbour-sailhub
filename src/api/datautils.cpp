@@ -185,13 +185,68 @@ PageInfo DataUtils::pageInfoFromJson(const QJsonObject &obj, const QJsonValue &c
     return info;
 }
 
+QList<PullRequestListItem> DataUtils::pullRequestsFromJson(const QJsonObject &obj)
+{
+    qDebug() << obj;
+
+    QList<PullRequestListItem>  prs;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject pr = node.toObject();
+        if (pr.isEmpty())
+            continue;
+
+        prs.append(pullRequestListItemFromJson(pr));
+    }
+
+    return prs;
+}
+
+PullRequestListItem DataUtils::pullRequestListItemFromJson(const QJsonObject &obj)
+{
+    PullRequestListItem item;
+
+    item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
+    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    item.number = quint32(obj.value(ApiKey::NUMBER).toInt());
+    item.repository = obj.value(ApiKey::REPOSITORY).toObject()
+            .value(ApiKey::NAME_WITH_OWNER).toString();
+
+    const QString state = obj.value(ApiKey::STATE).toString();
+    if (state == QLatin1Literal("OPEN"))
+        item.state = PullRequest::StateOpen;
+    else if (state == QLatin1Literal("CLOSED"))
+        item.state = PullRequest::StateClosed;
+    else if (state == QLatin1Literal("MERGED"))
+        item.state = PullRequest::StateMerged;
+
+    item.timeSpan = timeSpanText(item.createdAt, true);
+    item.title = obj.value(ApiKey::TITLE).toString();
+
+    return item;
+}
+
 Repo *DataUtils::repoFromJson(const QJsonObject &obj)
 {
     if (obj.isEmpty())
         return nullptr;
 
     Repo *repo = new Repo;
+
+    QStringList branches;
+
+    const QJsonArray nodes = getNodes(obj.value(ApiKey::REFS).toObject());
+
+    for (const auto &node : nodes) {
+        branches.append(node.toObject().value(ApiKey::NAME).toString());
+    }
+    repo->setBranches(branches);
+
     repo->setContributorCount(getTotalCount(obj.value(ApiKey::MENTIONABLE_USERS).toObject()));
+    repo->setDefaultBranch(obj.value(ApiKey::DEFAULT_BRANCH_REF).toObject()
+                           .value(ApiKey::NAME).toString());
     repo->setDescription(obj.value(ApiKey::DESCRIPTION).toString());
     repo->setForkCount(obj.value(ApiKey::FORK_COUNT).toInt());
     repo->setHomepageUrl(obj.value(ApiKey::HOMEPAGE_URL).toString());
@@ -199,8 +254,11 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     repo->setIssuesCount(getTotalCount(obj.value(ApiKey::ISSUES).toObject()));
     repo->setName(obj.value(ApiKey::NAME).toString());
     repo->setNodeId(obj.value(ApiKey::ID).toString());
+    repo->setProjects(getTotalCount(obj.value(ApiKey::PROJECTS).toObject()));
+    repo->setReleases(getTotalCount(obj.value(ApiKey::RELEASES).toObject()));
     repo->setPullRequestsCount(getTotalCount(obj.value(ApiKey::PULL_REQUESTS).toObject()));
     //repo->setReadme(obj.value(ApiKey::OBJECT).toObject().value(ApiKey::TEXT).toString());
+    repo->setReleases(getTotalCount(obj.value(ApiKey::RELEASES).toObject()));
     repo->setStargazerCount(obj.value(ApiKey::STARGAZER_COUNT).toInt());
     repo->setViewerCanSubscribe(obj.value(ApiKey::VIEWER_CAN_SUBSCRIBE).toBool());
     repo->setViewerHasStarred(obj.value(ApiKey::VIEWER_HAS_STARRED).toBool());
@@ -331,6 +389,34 @@ QList<UserListItem> DataUtils::usersFromJson(const QJsonObject &obj)
     }
 
     return users;
+}
+
+QString DataUtils::timeSpanText(const QDateTime &start, bool shortText)
+{
+    const QDateTime now = QDateTime::currentDateTimeUtc();
+
+    if (start.addSecs(3600) > now) {
+        const quint64 minutes = start.secsTo(now) / 60;
+        return shortText ? QStringLiteral("%1m").arg(minutes) : QObject::tr("%1 minute(s) ago", "", minutes);
+    }
+
+    if (start.addSecs(86400) > now) {
+        const quint64 hours = start.secsTo(now) / 3600;
+        return shortText ? QStringLiteral("%1h").arg(hours) : QObject::tr("%1 hour(s) ago", "", hours);
+    }
+
+    if (start.addMonths(1) > now) {
+        const quint64 days = start.daysTo(now);
+        return shortText ? QStringLiteral("%1d").arg(days) : QObject::tr("%1 day(s) ago", "", days);
+    }
+
+    if (start.addMonths(12) > now ) {
+        const quint64 months = start.daysTo(now) / 30;
+        return shortText ? QStringLiteral("%1mo").arg(months) : QObject::tr("%1 month(s) ago", "", months);
+    }
+
+    const quint64 years = start.daysTo(now) / 365;
+    return shortText ? QStringLiteral("%1y").arg(years) : QObject::tr("%1 year(s) ago", "", years);
 }
 
 QJsonArray DataUtils::getNodes(const QJsonObject &obj)

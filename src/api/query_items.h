@@ -72,6 +72,19 @@ static const QString SAILHUB_QUERY_ITEM_PAGE_INFO =
                        "        endCursor"
                        "    }").simplified();
 
+static const QString SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM =
+        QStringLiteral("    id"
+                       "    comments {"
+                       "        totalCount"
+                       "    }"
+                       "    createdAt"
+                       "    number"
+                       "    repository {"
+                       "        nameWithOwner"
+                       "    }"
+                       "    state"
+                       "    title").simplified();
+
 static const QString SAILHUB_QUERY_ITEM_REPO_LIST_ITEM =
         QStringLiteral("    id"
                        "    isPrivate"

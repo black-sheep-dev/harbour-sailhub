@@ -63,8 +63,17 @@ Page {
                 title: qsTr("Issues")
             }
             IconRelatedItem {
-                icon: "image://theme/icon-m-shuffle"
+                icon: "qrc:///icons/pull-request"
                 title: qsTr("Pull Requests")
+
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("PullRequestsListPage.qml"), {
+                                               description: SailHub.api().profile.login,
+                                               identifier: SailHub.api().profile.nodeId,
+                                               type: PullRequest.User,
+                                               states: PullRequest.StateOpen
+                                          })
+                }
             }
             IconRelatedItem {
                 icon: "image://theme/icon-m-file-archive-folder"

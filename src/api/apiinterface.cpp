@@ -49,7 +49,7 @@ void ApiInterface::createIssue(const QString &title, const QString &body, Issues
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
     const QByteArray uuid = model->uuid();
-    m_issuesModelRequests.insert(uuid, model);
+    m_paginationModelRequests.insert(uuid, model);
     m_connector->sendQuery(query, RequestType::CreateIssue, uuid);
 }
 
@@ -88,7 +88,7 @@ void ApiInterface::getComments(CommentsModel *model)
     // save and send
 
     const QByteArray uuid = model->uuid();
-    m_commentsModelRequests.insert(uuid, model);
+    m_paginationModelRequests.insert(uuid, model);
     m_connector->sendQuery(query, RequestType::GetIssues, uuid);
 }
 
@@ -131,7 +131,7 @@ void ApiInterface::getIssues(IssuesModel *model)
     // save and send
 
     const QByteArray uuid = model->uuid();
-    m_issuesModelRequests.insert(uuid, model);
+    m_paginationModelRequests.insert(uuid, model);
     m_connector->sendQuery(query, RequestType::GetIssues, uuid);
 }
 
@@ -169,7 +169,7 @@ void ApiInterface::getOrganizations(OrganizationsModel *model)
 
     // save and send
     const QByteArray uuid = model->uuid();
-    m_organizationsModelRequests.insert(uuid, model);
+    m_paginationModelRequests.insert(uuid, model);
     m_connector->sendQuery(query, RequestType::GetOrganizations, uuid);
 }
 
@@ -179,6 +179,63 @@ void ApiInterface::getProfile()
     query.query = SAILHUB_QUERY_GET_VIEWER_PROFILE;
 
     m_connector->sendQuery(query, RequestType::GetProfile);
+}
+
+void ApiInterface::getPullRequest(const QString &nodeId)
+{
+
+}
+
+void ApiInterface::getPullRequests(PullRequestsModel *model)
+{
+    GraphQLQuery query;
+    const quint8 pullRequestType = model->modelType();
+
+    // states
+    const quint8 state = model->modelType();
+
+    if (state == 0)
+        return;
+
+    QJsonArray states;
+    if (state & PullRequest::StateOpen)
+        states.append(QStringLiteral("OPEN"));
+    if (state & PullRequest::StateClosed)
+        states.append(QStringLiteral("CLOSED"));
+    if (state & PullRequest::StateMerged)
+        states.append(QStringLiteral("MERGED"));
+
+    query.variables.insert(SAILHUB_QUERY_VAR_STATES, states);
+
+    // query selection
+    switch (pullRequestType) {
+    case PullRequest::Repo:
+        query.query = SAILHUB_QUERY_GET_REPOSITORY_PULL_REQUESTS;
+        break;
+
+    case PullRequest::User:
+        query.query = SAILHUB_QUERY_GET_USER_PULL_REQUESTS;
+        break;
+
+    default:
+        return;
+    }
+
+    query.variables.insert(SAILHUB_QUERY_VAR_NODE_ID, model->identifier());
+    query.variables.insert(SAILHUB_QUERY_VAR_ITEM_COUNT, m_paginationCount);
+
+    // if next insert item cursor
+    if (!model->lastItemCursor().isEmpty()) {
+        query.variables.insert(SAILHUB_QUERY_VAR_ITEM_CURSOR, model->lastItemCursor());
+    }
+
+    model->setLoading(true);
+
+    // save and send
+
+    const QByteArray uuid = model->uuid();
+    m_paginationModelRequests.insert(uuid, model);
+    m_connector->sendQuery(query, RequestType::GetPullRequests, uuid);
 }
 
 void ApiInterface::getRepo(const QString &nodeId)
@@ -213,7 +270,7 @@ void ApiInterface::getRepos(ReposModel *model)
         break;
 
     default:
-        break;
+        return;
     }
 
     query.variables.insert(SAILHUB_QUERY_VAR_NODE_ID, model->identifier());
@@ -229,7 +286,7 @@ void ApiInterface::getRepos(ReposModel *model)
     // save and send
 
     const QByteArray uuid = model->uuid();
-    m_reposModelRequests.insert(uuid, model);
+    m_paginationModelRequests.insert(uuid, model);
     m_connector->sendQuery(query, RequestType::GetRepos, uuid);
 }
 
@@ -287,7 +344,7 @@ void ApiInterface::getUsers(UsersModel *model)
 
     // save and send
     const QByteArray uuid = model->uuid();
-    m_usersModelRequests.insert(uuid, model);
+    m_paginationModelRequests.insert(uuid, model);
     m_connector->sendQuery(query, RequestType::GetUsers, uuid);
 }
 
@@ -306,7 +363,7 @@ void ApiInterface::searchOrganization(const QString &pattern, OrganizationsModel
     model->setLoading(true);
 
     const QByteArray uuid = model->uuid();
-    m_organizationsModelRequests.insert(uuid, model);
+    m_paginationModelRequests.insert(uuid, model);
     m_connector->sendQuery(query, RequestType::SearchOrganization, uuid);
 }
 
@@ -325,7 +382,7 @@ void ApiInterface::searchRepo(const QString &pattern, ReposModel *model)
     model->setLoading(true);
 
     const QByteArray uuid = model->uuid();
-    m_reposModelRequests.insert(uuid, model);
+    m_paginationModelRequests.insert(uuid, model);
     m_connector->sendQuery(query, RequestType::SearchRepo, uuid);
 }
 
@@ -344,7 +401,7 @@ void ApiInterface::searchUser(const QString &pattern, UsersModel *model)
     model->setLoading(true);
 
     const QByteArray uuid = model->uuid();
-    m_usersModelRequests.insert(uuid, model);
+    m_paginationModelRequests.insert(uuid, model);
     m_connector->sendQuery(query, RequestType::SearchUser, uuid);
 }
 
@@ -513,6 +570,10 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         parseOrganizations(data, requestId);
         break;
 
+    case RequestType::GetPullRequests:
+        parsePullRequests(data, requestId);
+        break;
+
     case RequestType::GetIssue:
         emit issueAvailable(DataUtils::issueFromJson(data.value(ApiKey::NODE).toObject()));
         break;
@@ -574,7 +635,7 @@ void ApiInterface::initialize()
 
 void ApiInterface::parseComments(const QJsonObject &obj, const QByteArray &requestId)
 {
-    auto model = m_commentsModelRequests.value(requestId, nullptr);
+    auto model = qobject_cast<CommentsModel *>(m_paginationModelRequests.value(requestId, nullptr));
 
     if (model == nullptr)
         return;
@@ -589,12 +650,12 @@ void ApiInterface::parseComments(const QJsonObject &obj, const QByteArray &reque
     model->setLoading(false);
 
     // cleanup
-    m_commentsModelRequests.remove(requestId);
+    m_paginationModelRequests.remove(requestId);
 }
 
 void ApiInterface::parseIssues(const QJsonObject &obj, const QByteArray &requestId)
 {
-    auto model = m_issuesModelRequests.value(requestId, nullptr);
+    auto model = qobject_cast<IssuesModel *>(m_paginationModelRequests.value(requestId, nullptr));
 
     if (model == nullptr)
         return;
@@ -610,12 +671,12 @@ void ApiInterface::parseIssues(const QJsonObject &obj, const QByteArray &request
     model->setLoading(false);
 
     // cleanup
-    m_issuesModelRequests.remove(requestId);
+    m_paginationModelRequests.remove(requestId);
 }
 
 void ApiInterface::parseOrganizations(const QJsonObject &obj, const QByteArray &requestId)
 {
-    auto model = m_organizationsModelRequests.value(requestId, nullptr);
+    auto model = qobject_cast<OrganizationsModel *>(m_paginationModelRequests.value(requestId, nullptr));
 
     if (model == nullptr)
         return;
@@ -645,12 +706,43 @@ void ApiInterface::parseOrganizations(const QJsonObject &obj, const QByteArray &
     model->setLoading(false);
 
     // cleanup
-    m_organizationsModelRequests.remove(requestId);
+    m_paginationModelRequests.remove(requestId);
+}
+
+void ApiInterface::parsePullRequests(const QJsonObject &obj, const QByteArray &requestId)
+{
+    auto model = qobject_cast<PullRequestsModel *>(m_paginationModelRequests.value(requestId, nullptr));
+
+    if (model == nullptr)
+        return;
+
+    // get identifier and pull request
+    QJsonValue count;
+    QJsonObject prs;
+
+    switch (model->modelType()) {
+    case PullRequest::Repo:
+    case PullRequest::User:
+        prs = obj.value(ApiKey::NODE).toObject()
+                   .value(ApiKey::PULL_REQUESTS).toObject();
+        count = prs.value(ApiKey::TOTAL_COUNT);
+        break;
+
+    default:
+        return;
+    }
+
+    model->setPageInfo(DataUtils::pageInfoFromJson(prs, count));
+    model->addPullRequests(DataUtils::pullRequestsFromJson(prs));
+    model->setLoading(false);
+
+    // cleanup
+    m_paginationModelRequests.remove(requestId);
 }
 
 void ApiInterface::parseRepos(const QJsonObject &obj, const QByteArray &requestId)
 {
-    auto model = m_reposModelRequests.value(requestId, nullptr);
+    auto model = qobject_cast<ReposModel *>(m_paginationModelRequests.value(requestId, nullptr));
 
     if (model == nullptr)
         return;
@@ -693,7 +785,7 @@ void ApiInterface::parseRepos(const QJsonObject &obj, const QByteArray &requestI
     model->setLoading(false);
 
     // cleanup
-    m_reposModelRequests.remove(requestId);
+    m_paginationModelRequests.remove(requestId);
 }
 
 void ApiInterface::parseRepoSubscription(const QJsonObject &obj)
@@ -718,7 +810,7 @@ void ApiInterface::parseRepoSubscription(const QJsonObject &obj)
 
 void ApiInterface::parseUsers(const QJsonObject &obj, const QByteArray &requestId)
 {
-    auto model = m_usersModelRequests.value(requestId, nullptr);
+    auto model = qobject_cast<UsersModel *>(m_paginationModelRequests.value(requestId, nullptr));
 
     if (model == nullptr)
         return;
@@ -778,5 +870,5 @@ void ApiInterface::parseUsers(const QJsonObject &obj, const QByteArray &requestI
     model->setLoading(false);
 
     // cleanup
-    m_usersModelRequests.remove(requestId);
+    m_paginationModelRequests.remove(requestId);
 }

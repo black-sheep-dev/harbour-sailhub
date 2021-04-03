@@ -97,12 +97,6 @@ Page {
         delegate: IssueListDelegate {
             id: delegate
 
-            commentCount: model.commentCount
-            createdAt: model.createdAt
-            number: model.number
-            repoName: model.repository
-            title: model.title
-            state: model.state
             lastItem: index == (listView.count - 1)
 
             onClicked: pageStack.push(Qt.resolvedUrl("IssuePage.qml"), {

@@ -10,6 +10,7 @@ Page {
     property bool loading: true
     property string nodeId
     property Repo repo
+    property string selectedBranch: repo.defaultBranch
 
     id: page
 
@@ -195,7 +196,7 @@ Page {
                     width: parent.width / 3
 
                     title: qsTr("%n Fork(s)", "0", repo.forkCount)
-                    icon: "image://theme/icon-m-shuffle"
+                    icon: "qrc:///icons/fork"
 
                     onClicked: {
                         if (repo.forkCount === 0) return;
@@ -236,6 +237,16 @@ Page {
 
                 label: qsTr("Pull Requests")
                 value: repo.pullRequestCount
+
+                onClicked: {
+                    if (repo.pullRequestCount === 0) return;
+
+                    pageStack.push(Qt.resolvedUrl("PullRequestsListPage.qml"), {
+                                              description: repo.owner.login + "/" + repo.name,
+                                              identifier: repo.nodeId,
+                                              states: PullRequest.StateOpen
+                                          })
+                }
             }
             RelatedValueItem {
                 width: parent.width
@@ -295,7 +306,77 @@ Page {
                 text: repo.readme
             }
             */
-        }
+
+            Separator {
+                width: parent.width
+                color: Theme.highlightBackgroundColor
+            }
+
+            BackgroundItem {
+                width: parent.width
+                height: Theme.itemSizeMedium
+
+                Row {
+                    x: Theme.horizontalPageMargin
+                    width: parent.width - 2*x
+                    height: parent.height
+                    spacing: Theme.paddingMedium
+
+                    Icon {
+                        id: iconBranch
+//                        height: 64
+//                        width: 64
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "qrc:///icons/branch"
+                    }
+
+                    Label {
+                        anchors.verticalCenter: iconBranch.verticalCenter
+                        width: parent.width - iconBranch.width - editIcon.width - 2 * parent.spacing
+
+                        text: selectedBranch
+                    }
+
+                    Icon {
+                        id: editIcon
+//                        height: 64
+//                        width: 64
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "image://theme/icon-m-shuffle"
+                    }
+                }
+
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectBranchDialog.qml"),
+                                                {
+                                                    selected: selectedBranch,
+                                                    branches: repo.branches,
+                                                    defaultBranch: repo.defaultBranch
+                                                })
+
+                    dialog.accepted.connect(function() {
+                        selectedBranch = dialog.selected
+                    })
+                }
+            }
+
+            RelatedItem {
+                title: qsTr("README")
+            }
+
+            RelatedItem {
+                title: qsTr("Browse code")
+            }
+
+            RelatedItem {
+                title: qsTr("Commits")
+            }
+
+            Separator {
+                width: parent.width
+                color: Theme.highlightBackgroundColor
+            }
+        } 
     }
 
     Connections {

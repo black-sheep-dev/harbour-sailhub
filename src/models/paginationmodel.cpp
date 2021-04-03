@@ -54,6 +54,11 @@ quint8 PaginationModel::modelType() const
     return m_modelType;
 }
 
+quint8 PaginationModel::state() const
+{
+    return m_state;
+}
+
 quint32 PaginationModel::totalCount() const
 {
     return m_totalCount;
@@ -116,6 +121,15 @@ void PaginationModel::setModelType(quint8 modelType)
 
     m_modelType = modelType;
     emit modelTypeChanged(m_modelType);
+}
+
+void PaginationModel::setState(quint8 state)
+{
+    if (m_state == state)
+        return;
+
+    m_state = state;
+    emit stateChanged(m_state);
 }
 
 void PaginationModel::setTotalCount(quint32 count)

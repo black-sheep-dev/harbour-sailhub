@@ -15,7 +15,7 @@ BackgroundItem {
         width: parent.width - 2*x
         height: parent.height
 
-        Image {
+        Icon {
             id: itemIcon
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
@@ -38,7 +38,7 @@ BackgroundItem {
             text: title
         }
 
-        Image {
+        Icon {
             visible: showNextIcon
             id: openNextIcon
             anchors.verticalCenter: parent.verticalCenter
