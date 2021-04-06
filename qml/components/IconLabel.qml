@@ -19,14 +19,15 @@ Row {
         source: icon
     }
 
-    Label {
+    LinkedLabel {
         width: parent.width - iconImage.width - parent.spacing
         anchors.verticalCenter: parent.verticalCenter
         wrapMode: Text.Wrap
 
         color: Theme.highlightColor
+        linkColor: Theme.secondaryHighlightColor
 
-        text: label
+        plainText: label
 
         onLinkActivated: Qt.openUrlExternally(link)
     }

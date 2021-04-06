@@ -72,6 +72,9 @@ void ApiInterface::followUser(const QString &nodeId, bool follow)
 
 void ApiInterface::getComments(CommentsModel *model)
 {
+    if (model == nullptr)
+        return;
+
     GraphQLQuery query;
     query.query = SAILHUB_QUERY_GET_ISSUE_COMMENTS;
 
@@ -92,6 +95,16 @@ void ApiInterface::getComments(CommentsModel *model)
     m_connector->sendQuery(query, RequestType::GetIssues, uuid);
 }
 
+void ApiInterface::getFileContent(const QString &nodeId, const QString &branch)
+{
+    GraphQLQuery query;
+    query.query = SAILHUB_QUERY_GET_REPOSITORY_FILE_CONTENT;
+    query.variables.insert(SAILHUB_QUERY_VAR_NODE_ID, nodeId);
+    query.variables.insert(SAILHUB_QUERY_VAR_BRANCH, branch);
+
+    m_connector->sendQuery(query, RequestType::GetFileContent);
+}
+
 void ApiInterface::getIssue(const QString &nodeId)
 {
     GraphQLQuery query;
@@ -103,10 +116,26 @@ void ApiInterface::getIssue(const QString &nodeId)
 
 void ApiInterface::getIssues(IssuesModel *model)
 {
-    GraphQLQuery query;
-    query.query = SAILHUB_QUERY_GET_REPOSITORY_ISSUES;
+    if (model == nullptr)
+        return;
 
-    const quint8 state = model->modelType();
+    GraphQLQuery query;
+
+    switch (model->modelType()) {
+    case Issue::Repo:
+        query.query = SAILHUB_QUERY_GET_REPOSITORY_ISSUES;
+        break;
+
+    case Issue::User:
+        query.query = SAILHUB_QUERY_GET_USER_ISSUES;
+        break;
+
+    default:
+        break;
+    }
+
+
+    const quint8 state = model->state();
 
     if (state == 0)
         return;
@@ -146,6 +175,9 @@ void ApiInterface::getOrganization(const QString &nodeId)
 
 void ApiInterface::getOrganizations(OrganizationsModel *model)
 {
+    if (model == nullptr)
+        return;
+
     GraphQLQuery query;
 
     switch (model->modelType()) {
@@ -188,6 +220,9 @@ void ApiInterface::getPullRequest(const QString &nodeId)
 
 void ApiInterface::getPullRequests(PullRequestsModel *model)
 {
+    if (model == nullptr)
+        return;
+
     GraphQLQuery query;
     const quint8 pullRequestType = model->modelType();
 
@@ -249,6 +284,9 @@ void ApiInterface::getRepo(const QString &nodeId)
 
 void ApiInterface::getRepos(ReposModel *model)
 {
+    if (model == nullptr)
+        return;
+
     GraphQLQuery query;
     const quint8 repoType = model->modelType();
 
@@ -326,6 +364,9 @@ void ApiInterface::getUser(const QString &nodeId)
 
 void ApiInterface::getUsers(UsersModel *model)
 {
+    if (model == nullptr)
+        return;
+
     GraphQLQuery query;
 
     switch (model->modelType()) {
@@ -375,6 +416,9 @@ void ApiInterface::getUsers(UsersModel *model)
 
 void ApiInterface::searchOrganization(const QString &pattern, OrganizationsModel *model)
 {
+    if (model == nullptr)
+        return;
+
     GraphQLQuery query;
     query.query = SAILHUB_QUERY_SEARCH_ORGANIZATION;
     query.variables.insert(SAILHUB_QUERY_VAR_QUERY_STRING, pattern);
@@ -394,6 +438,9 @@ void ApiInterface::searchOrganization(const QString &pattern, OrganizationsModel
 
 void ApiInterface::searchRepo(const QString &pattern, ReposModel *model)
 {
+    if (model == nullptr)
+        return;
+
     GraphQLQuery query;
     query.query = SAILHUB_QUERY_SEARCH_REPOSITORY;
     query.variables.insert(SAILHUB_QUERY_VAR_QUERY_STRING, pattern);
@@ -413,6 +460,9 @@ void ApiInterface::searchRepo(const QString &pattern, ReposModel *model)
 
 void ApiInterface::searchUser(const QString &pattern, UsersModel *model)
 {
+    if (model == nullptr)
+        return;
+
     GraphQLQuery query;
     query.query = SAILHUB_QUERY_SEARCH_USER;
     query.variables.insert(SAILHUB_QUERY_VAR_QUERY_STRING, pattern);
@@ -647,6 +697,10 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         parseRepoSubscription(data);
         break;
 
+    case RequestType::GetFileContent:
+        parseFileContent(data);
+        break;
+
     case RequestType::GetProfile:
         emit profileChanged(DataUtils::userFromJson(data.value(ApiKey::VIEWER).toObject(), m_profile));
         setReady(true);
@@ -680,6 +734,17 @@ void ApiInterface::parseComments(const QJsonObject &obj, const QByteArray &reque
 
     // cleanup
     m_paginationModelRequests.remove(requestId);
+}
+
+void ApiInterface::parseFileContent(const QJsonObject &obj)
+{
+    const QJsonObject data = obj.value(ApiKey::NODE).toObject()
+            .value(ApiKey::OBJECT).toObject();
+
+    if (data.value(ApiKey::IS_BINARY).toBool())
+        return;
+
+    emit fileContentAvailable(data.value(ApiKey::TEXT).toString());
 }
 
 void ApiInterface::parseIssues(const QJsonObject &obj, const QByteArray &requestId)

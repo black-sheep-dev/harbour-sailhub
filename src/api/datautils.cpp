@@ -85,6 +85,7 @@ IssueListItem DataUtils::issueListItemFromJson(const QJsonObject &obj)
         item.state = Issue::StateClosed;
 
     item.title = obj.value(ApiKey::TITLE).toString();
+    item.timeSpan = timeSpanText(item.createdAt, true);
 
     return item;
 }
@@ -353,13 +354,45 @@ TreeItemListItem DataUtils::treeListItemFromJson(const QJsonObject &obj)
 
     item.name = obj.value(ApiKey::NAME).toString();
     item.path = obj.value(ApiKey::PATH).toString();
+    item.extension = obj.value(ApiKey::EXTENSION).toString();
 
     const QString type = obj.value(ApiKey::TYPE).toString();
 
-    if (type == QLatin1String("blob"))
-        item.type = TreeItem::Blob;
-    else if (type == QLatin1String("tree"))
+    if (type == QLatin1String("tree")) {
         item.type = TreeItem::Tree;
+        return item;
+    }
+
+    if (type == QLatin1String("blob")) {
+        item.type = TreeItem::Blob;
+
+        if (obj.value(ApiKey::OBJECT).toObject().value(ApiKey::IS_BINARY).toBool()) {
+
+            // image files
+            QRegExp regex;
+            regex.setPattern(".(jpg|png|gif|jpeg|ico|bmp)");
+
+            if (regex.exactMatch(item.extension)) {
+                item.fileType = File::Image;
+                return item;
+            }
+
+            // else binary
+            item.fileType = File::Binary;
+            return item;
+        }
+
+        // SVG file
+        QRegExp regex;
+        regex.setPattern(".(svg)");
+
+        if (regex.exactMatch(item.extension)) {
+            item.fileType = File::Image;
+            return item;
+        }
+
+        item.fileType = File::Text;
+    }
 
     return item;
 }

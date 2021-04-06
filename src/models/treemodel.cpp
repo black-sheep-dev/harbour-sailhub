@@ -53,6 +53,12 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
     case TypeRole:
         return item.type;
 
+    case ExtensionRole:
+        return item.extension;
+
+    case FileTypeRole:
+        return item.fileType;
+
     default:
         return QVariant();
     }
@@ -62,9 +68,11 @@ QHash<int, QByteArray> TreeModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
 
-    roles[NameRole]         = "name";
-    roles[PathRole]         = "path";
-    roles[TypeRole]         = "type";
+    roles[ExtensionRole]        = "extension";
+    roles[FileTypeRole]         = "fileType";
+    roles[NameRole]             = "name";
+    roles[PathRole]             = "path";
+    roles[TypeRole]             = "type";
 
     return roles;
 }

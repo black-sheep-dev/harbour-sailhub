@@ -15,6 +15,7 @@ struct IssueListItem {
     QString nodeId;
     quint32 number{0};
     QString repository;
+    QString timeSpan;
     QString title;
     quint8 state{0};
 };
@@ -36,6 +37,13 @@ public:
     };
     Q_ENUM(IssueState)
     Q_DECLARE_FLAGS(IssueStates, IssueState)
+
+    enum IssueType {
+        Undefined,
+        Repo,
+        User
+    };
+    Q_ENUM(IssueType)
 
     explicit Issue(QObject *parent = nullptr);
 

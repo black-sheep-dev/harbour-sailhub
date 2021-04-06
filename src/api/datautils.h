@@ -3,6 +3,7 @@
 
 #include <QList>
 
+#include "src/entities/file.h"
 #include "src/entities/issue.h"
 #include "src/entities/organization.h"
 #include "src/entities/pullrequest.h"

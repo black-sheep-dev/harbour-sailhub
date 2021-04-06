@@ -84,20 +84,30 @@ Page {
 
             // owner
             BackgroundItem {
-                x: Theme.horizontalPageMargin
-                width: parent.width - 2*x
+                width: parent.width
 
                 Row {
-                    width: parent.width
-                    spacing: Theme.paddingSmall
+                    x: Theme.horizontalPageMargin
+                    width: parent.width - 2*x
+                    height: Theme.itemSizeSmall
 
-                    Image {
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: Theme.paddingMedium
+
+                    CircleImage {
                         id: avatarIcon
-                        width: Theme.itemSizeSmall / 2
-                        height: Theme.itemSizeSmall / 2
+                        width: parent.height / 2
+                        height: width
                         anchors.verticalCenter: parent.verticalCenter
 
                         source: repo.owner.avatarUrl
+                        fallbackItemVisible: false
+
+                        BusyIndicator {
+                            size: BusyIndicatorSize.Medium
+                            anchors.centerIn: avatarIcon
+                            running: avatarIcon.status === Image.Loading
+                        }
                     }
 
                     Label {
@@ -228,6 +238,7 @@ Page {
                     pageStack.push(Qt.resolvedUrl("IssuesListPage.qml"), {
                                               description: repo.owner.login + "/" + repo.name,
                                               identifier: repo.nodeId,
+                                              type: Issue.Repo,
                                               states: Issue.StateOpen
                                           })
                 }
@@ -282,11 +293,21 @@ Page {
                                           })
                 }
             }
+
             RelatedValueItem {
                 width: parent.width
 
                 label: qsTr("License")
                 value: repo.license.name
+
+                onClicked: pageStack.push(Qt.resolvedUrl("TextFileViewerPage.qml"), {
+                                              branch: repo.defaultBranch,
+                                              owner: repo.owner.login,
+                                              path: "LICENSE",
+                                              repo: repo.name,
+                                              repoId: repo.nodeId
+                                          })
+
             }
 
             // Readme
@@ -360,20 +381,27 @@ Page {
                 }
             }
 
-//            RelatedItem {
-//                title: qsTr("README")
-//            }
+            RelatedItem {
+                title: qsTr("README")
+
+                onClicked: pageStack.push(Qt.resolvedUrl("TextFileViewerPage.qml"), {
+                                              branch: repo.defaultBranch,
+                                              owner: repo.owner.login,
+                                              path: "README.md",
+                                              repo: repo.name,
+                                              repoId: repo.nodeId
+                                          })
+            }
 
             RelatedItem {
                 title: qsTr("Browse code")
 
-                onClicked: {
-                    pageStack.push(Qt.resolvedUrl("TreeListPage.qml"), {
+                onClicked: pageStack.push(Qt.resolvedUrl("TreeListPage.qml"), {
                                               branch: selectedBranch,
+                                              owner: repo.owner.login,
                                               repoName: repo.name,
                                               repoId: repo.nodeId
                                           })
-                }
             }
 
 //            RelatedItem {

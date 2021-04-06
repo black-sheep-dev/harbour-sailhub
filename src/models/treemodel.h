@@ -13,7 +13,9 @@ class TreeModel : public QAbstractListModel
 
 public:
     enum TreeItemRoles {
-        NameRole            = Qt::UserRole + 1,
+        ExtensionRole   = Qt::UserRole + 1,
+        FileTypeRole,
+        NameRole,
         PathRole,
         TypeRole
     };

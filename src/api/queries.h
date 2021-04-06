@@ -69,6 +69,7 @@ static const QString SAILHUB_QUERY_GET_ISSUE_COMMENTS =
                        "    "
                        "}").arg(SAILHUB_QUERY_ITEM_COMMMENT, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
+
 // GET ORGANIZATION PROFILE
 static const QString SAILHUB_QUERY_GET_ORGANIZATION =
         QStringLiteral("query($nodeId: ID!) {"
@@ -270,6 +271,27 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_CONTRIBUTORS =
                        "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
 // GET REPOSITORY PULL REQUESTS
+static const QString SAILHUB_QUERY_GET_REPOSITORY_FILE_CONTENT =
+        QStringLiteral("query($nodeId: ID!, $branch: String!) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on Repository {"
+                       "            id"
+                       "            object(expression: $branch) {"
+                       "                ... on Blob {"
+                       "                    byteSize"
+                       "                    isBinary"
+                       "                    text"
+                       "                }"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").simplified();
+
+// GET REPOSITORY PULL REQUESTS
 static const QString SAILHUB_QUERY_GET_REPOSITORY_FILES =
         QStringLiteral("query($nodeId: ID!, $branch: String!, $path: String!) {"
                        "    rateLimit {"
@@ -286,9 +308,15 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_FILES =
                        "                            object {"
                        "                                ... on Tree {"
                        "                                    entries {"
+                       "                                        extension"
                        "                                        name"
                        "                                        path"
                        "                                        type"
+                       "                                        object {"
+                       "                                            ... on Blob {"
+                       "                                                isBinary"
+                       "                                            }"
+                       "                                        }"
                        "                                    }"
                        "                                }"
                        "                            }"
@@ -420,6 +448,28 @@ static const QString SAILHUB_QUERY_GET_USER_FOLLOWING =
                        "        }"
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET USER ISSUES
+static const QString SAILHUB_QUERY_GET_USER_ISSUES =
+        QStringLiteral("query($nodeId: ID!, $states: [IssueState!]!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on User {"
+                       "            id"
+                       "            login"
+                       "            issues(first: $itemCount, after: $itemCursor, states: $states) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
 // GET USER ORGANIZATIONS
 static const QString SAILHUB_QUERY_GET_USER_ORGANIZATIONS =

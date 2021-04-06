@@ -7,6 +7,7 @@ import "../delegates/"
 
 Page {
     property string branch: "master"
+    property string owner
     property string path: "/"
     property string repoName
     property string repoId
@@ -34,13 +35,6 @@ Page {
                 text: qsTr("Refresh")
                 onClicked: {
                     SailHub.api().getRepoTree(repoId, branch, path, treeModel)
-                }
-            }
-            MenuItem {
-                text: qsTr("Sort")
-                onClicked: {
-                    treeSortFilterModel.sortModel()
-
                 }
             }
         }
@@ -82,7 +76,22 @@ Page {
                 Icon {
                     id: itemIcon
                     anchors.verticalCenter: parent.verticalCenter
-                    source: model.type === TreeItem.Tree ? "image://theme/icon-m-folder" : "image://theme/icon-m-file-document-light"
+                    source: {
+                        if (model.type === TreeItem.Tree) {
+                            return "image://theme/icon-m-file-folder"
+                        } else {
+                            switch (model.fileType) {
+                            case File.Image:
+                                return "image://theme/icon-m-file-image"
+
+                            case File.Text:
+                                return "image://theme/icon-m-file-document-light"
+
+                            default:
+                                return "image://theme/icon-m-file-other-light"
+                            }
+                        }
+                    }
                 }
 
                 Label {
@@ -97,10 +106,29 @@ Page {
                 if (model.type === TreeItem.Tree) {
                     pageStack.push(Qt.resolvedUrl("TreeListPage.qml"), {
                                               branch: page.branch,
+                                              owner: page.owner,
                                               path: "/" + model.path,
                                               repoName: page.repoName,
                                               repoId: page.repoId
                                           })
+                } else { 
+                    if (model.fileType === File.Image) {
+                        pageStack.push(Qt.resolvedUrl("ImageViewerPage.qml"), {
+                                                  branch: page.branch,
+                                                  owner: page.owner,
+                                                  path: model.path,
+                                                  repo: page.repoName
+                                              })
+                    } else if (model.fileType === File.Text) {
+                        pageStack.push(Qt.resolvedUrl("TextFileViewerPage.qml"), {
+                                                  branch: page.branch,
+                                                  owner: page.owner,
+                                                  path: model.path,
+                                                  repo: page.repoName,
+                                                  repoId: page.repoId
+                                              })
+                    }
+
                 }
             }
         }

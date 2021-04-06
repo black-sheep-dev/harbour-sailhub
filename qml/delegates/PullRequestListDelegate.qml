@@ -86,6 +86,42 @@ ListItem {
                     width: 1
                     height: parent.spacing
                 }
+
+                Row {
+                    width: parent.width
+                    spacing: Theme.paddingSmall
+
+                    Icon {
+                        id: dateIcon
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "image://theme/icon-s-date"
+                    }
+
+                    Label {
+                        width: parent.width - dateIcon.width - commentIcon.width - commentsLabel.width - 3 * parent.spacing
+                        anchors.verticalCenter: commentIcon.verticalCenter
+                        font.pixelSize: Theme.fontSizeTiny
+                        color: pressed ? Theme.highlightColor : Theme.primaryColor
+
+                        text: model.createdAt.toLocaleDateString(Qt.locale())
+                    }
+
+                    Icon {
+                        id: commentIcon
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "image://theme/icon-s-chat"
+
+                    }
+
+                    Label {
+                        id: commentsLabel
+                        anchors.verticalCenter: commentIcon.verticalCenter
+                        font.pixelSize: Theme.fontSizeSmall
+                        color: pressed ? Theme.highlightColor : Theme.primaryColor
+
+                        text: model.commentCount
+                    }
+                }
             }
         }
 

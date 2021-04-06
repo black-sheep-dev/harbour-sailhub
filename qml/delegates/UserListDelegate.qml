@@ -24,6 +24,12 @@ ListItem {
             anchors.verticalCenter: parent.verticalCenter
 
             fallbackItemVisible: false
+
+            BusyIndicator {
+                size: BusyIndicatorSize.Medium
+                anchors.centerIn: avatarIcon
+                running: avatarIcon.status === Image.Loading
+            }
         }
 
         Column {

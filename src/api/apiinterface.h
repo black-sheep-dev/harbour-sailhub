@@ -41,6 +41,7 @@ public:
         CreateIssue,
         FollowUser,
         GetComments,
+        GetFileContent,
         GetIssue,
         GetIssues,
         GetLogin,
@@ -74,6 +75,7 @@ public:
     Q_INVOKABLE void createIssue(const QString &title, const QString &body, IssuesModel *model);
     Q_INVOKABLE void followUser(const QString &nodeId, bool follow = true);
     Q_INVOKABLE void getComments(CommentsModel *model);
+    Q_INVOKABLE void getFileContent(const QString &nodeId, const QString &branch);
     Q_INVOKABLE void getIssue(const QString &nodeId);
     Q_INVOKABLE void getIssues(IssuesModel *model);
     Q_INVOKABLE void getOrganization(const QString &nodeId);
@@ -105,6 +107,7 @@ public slots:
 
 signals:
     void apiError(quint8 error, const QString &msg = QString());
+    void fileContentAvailable(const QString &content);
     void issueCreated(Issue *issue);
     void issueAvailable(Issue *issue);
     void organizationAvailable(Organization *organization);
@@ -128,6 +131,7 @@ private slots:
 private:
     void initialize();
     void parseComments(const QJsonObject &obj, const QByteArray &requestId);
+    void parseFileContent(const QJsonObject &obj);
     void parseIssues(const QJsonObject &obj, const QByteArray &requestId);
     void parseOrganizations(const QJsonObject &obj, const QByteArray &requestId);
     void parsePullRequests(const QJsonObject &obj, const QByteArray &requestId);

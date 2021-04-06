@@ -18,80 +18,105 @@ ListItem {
         width: parent.width - 2*x
         spacing: Theme.paddingSmall
 
+        Item {
+            width: 1
+            height: Theme.paddingMedium
+        }
+
         Row {
             width: parent.width
             spacing: Theme.paddingMedium
 
             Icon {
-                id: closedIcon
+                id: delegateIcon
+                anchors.top: parent.top
                 source: model.closed ? "image://theme/icon-s-installed?00ff00" : "image://theme/icon-s-high-importance?#ff0000"
             }
 
-            Label {
-                width: parent.width - closedIcon.width - numberLabel.width - 2 * parent.spacing
-                anchors.verticalCenter: closedIcon.verticalCenter
-                font.pixelSize: Theme.fontSizeSmall
-                color: pressed ? Theme.highlightColor : Theme.primaryColor
+            Column {
+                width: parent.width - delegateIcon.width - parent.spacing
 
-                text: model.repository
-            }
+                Row {
+                    width: parent.width
+                    spacing: Theme.paddingSmall
 
-            Label {
-                id: numberLabel
-                anchors.verticalCenter: closedIcon.verticalCenter
-                font.pixelSize: Theme.fontSizeSmall
-                color: pressed ? Theme.highlightColor : Theme.primaryColor
+                    Label {
+                        width: parent.width - timeSpanLabel.width - parent.spacing
+                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                        font.pixelSize: Theme.fontSizeSmall
 
-                text: " #" + model.number
+                        text: model.repository + " #" + model.number
+                    }
+
+                    Label {
+                        id: timeSpanLabel
+                        font.pixelSize: Theme.fontSizeSmall
+
+                        text: model.timeSpan
+                    }
+                }
+
+                Label {
+                    width: parent.width
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    font.bold: true
+
+                    text: model.title
+                }
+
+                Item {
+                    width: 1
+                    height: parent.spacing
+                }
+
+                Row {
+                    width: parent.width
+                    spacing: Theme.paddingSmall
+
+                    Icon {
+                        id: dateIcon
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "image://theme/icon-s-date"
+                    }
+
+                    Label {
+                        width: parent.width - dateIcon.width - commentIcon.width - commentsLabel.width - 3 * parent.spacing
+                        anchors.verticalCenter: commentIcon.verticalCenter
+                        font.pixelSize: Theme.fontSizeTiny
+                        color: pressed ? Theme.highlightColor : Theme.primaryColor
+
+                        text: model.createdAt.toLocaleDateString(Qt.locale())
+                    }
+
+                    Icon {
+                        id: commentIcon
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "image://theme/icon-s-chat"
+
+                    }
+
+                    Label {
+                        id: commentsLabel
+                        anchors.verticalCenter: commentIcon.verticalCenter
+                        font.pixelSize: Theme.fontSizeSmall
+                        color: pressed ? Theme.highlightColor : Theme.primaryColor
+
+                        text: model.commentCount
+                    }
+                }
             }
         }
 
-        Label {
-            width: parent.width
-            wrapMode: Text.Wrap
-            color: pressed ? Theme.highlightColor : Theme.primaryColor
-            font.bold: true
-
-            text: model.title
+        Item {
+            width: 1
+            height: Theme.paddingMedium
         }
+    }
 
-        Row {
-            width: parent.width
-            spacing: Theme.paddingSmall
-
-            Icon {
-                id: dateIcon
-                source: "image://theme/icon-s-date"
-            }
-
-            Label {
-                width: parent.width - dateIcon.width - commentIcon.width - commentsLabel.width - 3 * parent.spacing
-                anchors.verticalCenter: commentIcon.verticalCenter
-                font.pixelSize: Theme.fontSizeTiny
-                color: pressed ? Theme.highlightColor : Theme.primaryColor
-
-                text: model.createdAt.toLocaleDateString(Qt.locale())
-            }
-
-            Icon {
-                id: commentIcon
-                source: "image://theme/icon-s-chat"
-            }
-
-            Label {
-                id: commentsLabel
-                anchors.verticalCenter: commentIcon.verticalCenter
-                font.pixelSize: Theme.fontSizeSmall
-                color: pressed ? Theme.highlightColor : Theme.primaryColor
-
-                text: model.commentCount
-            }
-        }
-
-        Separator {
-            visible: !lastItem
-            width: parent.width
-            color: Theme.highlightBackgroundColor
-        }
+    Separator {
+        visible: !lastItem
+        anchors.top: delegateContent.bottom
+        width: parent.width
+        color: Theme.highlightBackgroundColor
     }
 }

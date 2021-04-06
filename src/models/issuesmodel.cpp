@@ -61,6 +61,9 @@ QVariant IssuesModel::data(const QModelIndex &index, int role) const
     case RepositoryRole:
         return issue.repository;
 
+    case TimeSpanRole:
+        return issue.timeSpan;
+
     case TitleRole:
         return issue.title;
 
@@ -82,6 +85,7 @@ QHash<int, QByteArray> IssuesModel::roleNames() const
     roles[NodeIdRole]           = "nodeId";
     roles[NumberRole]           = "number";
     roles[RepositoryRole]       = "repository";
+    roles[TimeSpanRole]         = "timeSpan";
     roles[TitleRole]            = "title";
     roles[StateRole]            = "state";
 

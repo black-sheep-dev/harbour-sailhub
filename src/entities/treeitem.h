@@ -4,6 +4,8 @@
 #include <QObject>
 
 struct TreeItemListItem {
+    QString extension;
+    quint8 fileType{0};
     QString name;
     QString path;
     quint8 type{0};
@@ -11,7 +13,8 @@ struct TreeItemListItem {
 
 class TreeItem : public QObject
 {
-    Q_OBJECT
+    Q_GADGET
+
 public:
     enum Type {
         Undefined,
@@ -19,11 +22,6 @@ public:
         Tree
     };
     Q_ENUM(Type)
-
-    explicit TreeItem(QObject *parent = nullptr);
-
-signals:
-
 };
 
 #endif // TREEITEM_H

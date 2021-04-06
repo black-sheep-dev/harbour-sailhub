@@ -6,8 +6,9 @@ import org.nubecula.harbour.sailhub 1.0
 import "../delegates/"
 
 Page {
-    property string repoName
+    property string description
     property string identifier
+    property int type: Issue.Repo
     property int states: Issue.StateOpen
 
     id: page
@@ -19,7 +20,7 @@ Page {
 
         header: PageHeader {
             title: qsTr("Issues")
-            description: page.repoName
+            description: page.description
         }
 
         footer: Item {
@@ -43,23 +44,23 @@ Page {
                     else if (page.states & Issue.StateClosed)
                         page.states = Issue.StateOpen
 
-                    issuesModel.modelType = page.states
+                    issuesModel.state = page.states
                     issuesModel.reset()
                     SailHub.api().getIssues(issuesModel)
                 }
 
             }
 
-            MenuItem {
-                text: qsTr("Create new Issue")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))
+//            MenuItem {
+//                text: qsTr("Create new Issue")
+//                onClicked: {
+//                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))
 
-                    dialog.accepted.connect(function() {
-                        SailHub.api().createIssue(dialog.title, dialog.body, issuesModel)
-                    })
-                }
-            }
+//                    dialog.accepted.connect(function() {
+//                        SailHub.api().createIssue(dialog.title, dialog.body, issuesModel)
+//                    })
+//                }
+//            }
 
             MenuItem {
                 text: qsTr("Refresh")
@@ -88,7 +89,8 @@ Page {
         model: IssuesModel {
             id: issuesModel
             identifier: page.identifier
-            modelType: page.states
+            modelType: page.type
+            state: page.states
         }
 
         opacity: busyIndicator.running ? 0.3 : 1.0
@@ -99,9 +101,9 @@ Page {
 
             lastItem: index == (listView.count - 1)
 
-            onClicked: pageStack.push(Qt.resolvedUrl("IssuePage.qml"), {
-                                          nodeId: model.nodeId
-                                      })
+//            onClicked: pageStack.push(Qt.resolvedUrl("IssuePage.qml"), {
+//                                          nodeId: model.nodeId
+//                                      })
 
         }
 

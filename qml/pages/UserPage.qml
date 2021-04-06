@@ -74,17 +74,19 @@ Page {
                 width: parent.width - 2*x
                 spacing: Theme.paddingMedium
 
-                Image {
+                CircleImage {
                     id: avatarIcon
                     height: Theme.itemSizeMedium
                     width: height
 
                     source: user.avatarUrl
 
+                    fallbackItemVisible: false
+
                     BusyIndicator {
                         size: BusyIndicatorSize.Medium
                         anchors.centerIn: avatarIcon
-                        running: avatarIcon.status !== Image.Ready
+                        running: avatarIcon.status === Image.Loading
                     }
                 }
 

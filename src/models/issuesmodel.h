@@ -17,6 +17,7 @@ public:
         NodeIdRole,
         NumberRole,
         RepositoryRole,
+        TimeSpanRole,
         TitleRole,
         StateRole
     };
@@ -33,9 +34,9 @@ private:
 
     // QAbstractItemModel interface
 public:
-    int rowCount(const QModelIndex &parent) const;
-    QVariant data(const QModelIndex &index, int role) const;
-    QHash<int, QByteArray> roleNames() const;
+    int rowCount(const QModelIndex &parent) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QHash<int, QByteArray> roleNames() const override;
 
     // PaginationModel interface
 public:

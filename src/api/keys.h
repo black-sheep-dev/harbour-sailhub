@@ -26,6 +26,7 @@ struct ApiKey {
     static const QString EMOJI;
     static const QString END_CURSOR;
     static const QString ENTRIES;
+    static const QString EXTENSION;
     static const QString FILE;
     static const QString FOLLOWER_USER;
     static const QString FOLLOWERS;
@@ -35,6 +36,7 @@ struct ApiKey {
     static const QString HAS_NEXT_PAGE;
     static const QString HOMEPAGE_URL;
     static const QString ID;
+    static const QString IS_BINARY;
     static const QString IS_PRIVATE;
     static const QString IS_VIEWER;
     static const QString ISSUES;

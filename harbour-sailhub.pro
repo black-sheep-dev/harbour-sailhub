@@ -27,6 +27,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/graphqlconnector.cpp \
     src/api/keys.cpp \
     src/entities/comment.cpp \
+    src/entities/file.cpp \
     src/entities/issue.cpp \
     src/entities/license.cpp \
     src/entities/node.cpp \
@@ -34,7 +35,6 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/owner.cpp \
     src/entities/pullrequest.cpp \
     src/entities/repo.cpp \
-    src/entities/treeitem.cpp \
     src/entities/user.cpp \
     src/models/commentsmodel.cpp \
     src/models/issuesmodel.cpp \
@@ -63,6 +63,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/dialogs/EditIssueDialog.qml \
     qml/dialogs/SelectBranchDialog.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
+    qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
     qml/pages/IssuesListPage.qml \
     qml/pages/OrganizationPage.qml \
@@ -76,6 +77,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/SearchSelectionPage.qml \
     qml/pages/SearchUserPage.qml \
     qml/pages/SettingsPage.qml \
+    qml/pages/TextFileViewerPage.qml \
     qml/pages/TreeListPage.qml \
     qml/pages/UserPage.qml \
     qml/pages/UserPage.qml \
@@ -112,6 +114,7 @@ HEADERS += \
     src/api/query_items.h \
     src/api/ratelimit.h \
     src/entities/comment.h \
+    src/entities/file.h \
     src/entities/issue.h \
     src/entities/language.h \
     src/entities/license.h \

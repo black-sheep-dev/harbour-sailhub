@@ -61,48 +61,44 @@ Page {
             IconRelatedItem {
                 icon: "image://theme/icon-m-about"
                 title: qsTr("Issues")
+
+                onClicked: pageStack.push(Qt.resolvedUrl("IssuesListPage.qml"), {
+                                              description: SailHub.api().profile.login,
+                                              identifier: SailHub.api().profile.nodeId,
+                                              type: Issue.User,
+                                              states: Issue.StateOpen
+                                          })
             }
             IconRelatedItem {
-                icon: "qrc:///icons/pull-request"
+                icon: "qrc:///icons/icon-m-pull-request"
                 title: qsTr("Pull Requests")
 
-                onClicked: {
-                    pageStack.push(Qt.resolvedUrl("PullRequestsListPage.qml"), {
-                                               description: SailHub.api().profile.login,
-                                               identifier: SailHub.api().profile.nodeId,
-                                               type: PullRequest.User,
-                                               states: PullRequest.StateOpen
-                                          })
-                }
+                onClicked: pageStack.push(Qt.resolvedUrl("PullRequestsListPage.qml"), {
+                                              description: SailHub.api().profile.login,
+                                              identifier: SailHub.api().profile.nodeId,
+                                              type: PullRequest.User,
+                                              states: PullRequest.StateOpen
+                                         })
             }
             IconRelatedItem {
                 icon: "image://theme/icon-m-file-archive-folder"
                 title: qsTr("Repositories")
 
-                onClicked: {
-                    if (SailHub.api().profile.repositories === 0) return
-
-
-                    pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
+                onClicked: pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
                                               login: SailHub.api().profile.login,
                                               identifier: SailHub.api().profile.nodeId,
                                               repoType: Repo.User
                                           })
-                }
             }
             IconRelatedItem {
                 icon: "image://theme/icon-m-company"
                 title: qsTr("Organizations")
 
-                onClicked: {
-                    if (SailHub.api().profile.organizations === 0) return
-
-                    pageStack.push(Qt.resolvedUrl("OrganizationsListPage.qml"), {
+                onClicked: pageStack.push(Qt.resolvedUrl("OrganizationsListPage.qml"), {
                                               login: SailHub.api().profile.login,
                                               identifier: SailHub.api().profile.nodeId,
                                               organizationType: Organization.IsMember
                                           })
-                }
             }
         }
     }
