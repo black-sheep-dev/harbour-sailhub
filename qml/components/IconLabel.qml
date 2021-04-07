@@ -1,35 +1,40 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-Row {
+BackgroundItem {
     property string icon
     property string label
 
-    x: Theme.horizontalPageMargin
-    width: parent.width - 2*x
-    height: Theme.iconSizeSmall * 1.5
-    spacing: Theme.paddingSmall
+    id: iconLabel
+    width: parent.width
 
-    Image {
-        id: iconImage
-        width: Theme.iconSizeSmall
-        height: width
+    Row {
+        x: Theme.horizontalPageMargin
+        width: parent.width - 2*x
+        height: Theme.iconSizeSmall * 1.5
         anchors.verticalCenter: parent.verticalCenter
+        spacing: Theme.paddingMedium
 
-        source: icon
-    }
+        Image {
+            id: iconImage
+            width: Theme.iconSizeSmall
+            height: width
+            anchors.verticalCenter: parent.verticalCenter
 
-    LinkedLabel {
-        width: parent.width - iconImage.width - parent.spacing
-        anchors.verticalCenter: parent.verticalCenter
-        wrapMode: Text.Wrap
+            source: icon
+        }
 
-        color: Theme.highlightColor
-        linkColor: Theme.secondaryHighlightColor
+        Label {
+            width: parent.width - iconImage.width - parent.spacing
+            anchors.verticalCenter: parent.verticalCenter
+            wrapMode: Text.Wrap
 
-        plainText: label
+            color: iconLabel.highlighted ? Theme.highlightColor : Theme.primaryColor
 
-        onLinkActivated: Qt.openUrlExternally(link)
+            text: label
+        }
     }
 }
+
+
 

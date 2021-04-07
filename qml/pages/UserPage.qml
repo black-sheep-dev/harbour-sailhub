@@ -136,6 +136,8 @@ Page {
 
                 icon: "image://theme/icon-m-message"
                 label: user.twitterUsername
+
+                onClicked: Qt.openUrlExternally("https:/twitter.com/" + user.twitterUsername)
             }
 
             IconLabel {
@@ -150,6 +152,8 @@ Page {
 
                 icon: "image://theme/icon-m-website"
                 label: user.websiteUrl
+
+                onClicked: Qt.openUrlExternally(user.websiteUrl)
             }
 
             Item {

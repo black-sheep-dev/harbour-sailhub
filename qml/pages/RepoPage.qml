@@ -162,6 +162,8 @@ Page {
 
                 icon: "image://theme/icon-m-website"
                 label: repo.homepageUrl
+
+                onClicked: Qt.openUrlExternally(repo.homepageUrl)
             }
 
             // private repo
