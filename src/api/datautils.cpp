@@ -188,8 +188,6 @@ PageInfo DataUtils::pageInfoFromJson(const QJsonObject &obj, const QJsonValue &c
 
 QList<PullRequestListItem> DataUtils::pullRequestsFromJson(const QJsonObject &obj)
 {
-    qDebug() << obj;
-
     QList<PullRequestListItem>  prs;
 
     const QJsonArray nodes = getNodes(obj);

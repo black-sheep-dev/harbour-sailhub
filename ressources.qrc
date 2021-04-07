@@ -9,4 +9,7 @@
         <file alias="icon-m-merged">icons/scalable/icon-m-merged.svg</file>
         <file alias="icon-m-pull-request">icons/scalable/icon-m-pull-request.svg</file>
     </qresource>
+    <qresource prefix="/cover">
+        <file alias="cover-background">icons/cover-background.svg</file>
+    </qresource>
 </RCC>

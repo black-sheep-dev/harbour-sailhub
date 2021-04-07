@@ -3,6 +3,8 @@
 
 #include <QObject>
 
+#include <Sailfish/Secrets/secretmanager.h>
+
 #include "api/apiinterface.h"
 
 class SailHub : public QObject
@@ -18,6 +20,7 @@ public:
     // new
     Q_INVOKABLE ApiInterface *api();
     Q_INVOKABLE void initialize();
+    Q_INVOKABLE void reset();
     Q_INVOKABLE void saveSettings();
 
     // properties
@@ -31,11 +34,23 @@ public slots:
     // properties
     void setAccessToken(const QString &token);
 
+private slots:
+    void onApiError(quint8 error, const QString &msg);
+
 private:
+    // sailfish secrets
+    void createCollection();
+    void deleteCollection();
+    void loadCredentials();
+    void storeCredentials();
+
+    // settings
     void readSettings();
     void writeSettings();
 
     ApiInterface *m_api{new ApiInterface(this)};
+    Sailfish::Secrets::SecretManager m_secretManager;
+    Sailfish::Secrets::Secret::Identifier m_secretsIdentifier;
 
     // properties
     QString m_accessToken;

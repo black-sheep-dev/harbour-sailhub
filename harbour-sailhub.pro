@@ -17,7 +17,13 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 TARGET = harbour-sailhub
 DEFINES += APP_TARGET=\\\"$$TARGET\\\"
 
-CONFIG += sailfishapp
+# custom defines
+#DEFINES += DISABLE_SAILFISH_SECRETS
+
+QT += dbus
+
+CONFIG += link_pkgconfig sailfishapp
+PKGCONFIG += sailfishsecrets nemonotifications-qt5
 
 LIBS += -lz
 
@@ -82,7 +88,10 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/UserPage.qml \
     qml/pages/UserPage.qml \
     qml/pages/UsersListPage.qml \
-    rpm/harbour-sailhub.changes.in \
+    qml/pages/wizard/WizardFinalPage.qml \
+    qml/pages/wizard/WizardIntroPage.qml \
+    qml/pages/wizard/WizardTokenPage.qml \
+    rpm/harbour-sailhub.changes \
     rpm/harbour-sailhub.changes.run.in \
     rpm/harbour-sailhub.spec \
     rpm/harbour-sailhub.yaml \
@@ -135,3 +144,13 @@ HEADERS += \
     src/models/treesortfiltermodel.h \
     src/models/usersmodel.h \
     src/sailhub.h
+
+dbus.files = data/harbour.sailhub.service
+dbus.path = $$INSTALL_ROOT/usr/share/dbus-1/services
+
+INSTALLS += dbus
+
+#icons.files = icons/scalable/*
+#icons.path = $$INSTALL_ROOT/usr/share/icons/hicolor/scalable/apps/harbour-sailhub/
+
+#INSTALLS += icons

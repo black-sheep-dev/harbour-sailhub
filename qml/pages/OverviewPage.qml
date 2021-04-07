@@ -5,7 +5,7 @@ import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
 
-Page {
+Page {    
     id: page
 
     allowedOrientations: Orientation.All
@@ -101,6 +101,17 @@ Page {
                                           })
             }
         }
+    }
+
+    function startSetupWizard() {
+        pageStack.clear()
+        pageStack.push(Qt.resolvedUrl("wizard/WizardIntroPage.qml"))
+    }
+
+    onStatusChanged: {
+        if (status !== PageStatus.Active) return
+
+        if (SailHub.accessToken.length === 0) startSetupWizard()
     }
 }
 

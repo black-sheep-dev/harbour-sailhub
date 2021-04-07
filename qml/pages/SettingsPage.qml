@@ -21,14 +21,12 @@ Page {
                 title: qsTr("Settings")
             }
 
-            TextField {
+            PasswordField {
                 id: tokenField
                 width: parent.width
 
                 label: qsTr("Access Token")
-                echoMode: TextInput.PasswordEchoOnEdit
 
-                text: SailHub.api().token()
                 placeholderText: qsTr("Enter access token")
             }
 
@@ -61,7 +59,7 @@ Page {
 
     onStatusChanged: {
         if (status == PageStatus.Deactivating) {
-            SailHub.api().token = tokenField.text
+            if (tokenField.text.length > 0) SailHub.accessToken = tokenField.text
 
             SailHub.saveSettings()
         }
