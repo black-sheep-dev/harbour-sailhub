@@ -9,11 +9,11 @@
     </message>
     <message>
         <source>SailHub</source>
-        <translation type="unfinished"></translation>
+        <translation>SailHub</translation>
     </message>
     <message>
         <source>SailHub is a native Sailfish OS GitHub Client using the GraphQL Api 4 from github.com.</source>
-        <translation type="unfinished"></translation>
+        <translation>SailHub ist ein nativer GitHub Client für Sailfish OS, der die GraphQL API (v4) von github.com benutzt.</translation>
     </message>
     <message>
         <source>Translations</source>
@@ -48,11 +48,11 @@
     <name>EditIssueDialog</name>
     <message>
         <source>Edit Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Issue bearbeiten</translation>
     </message>
     <message>
         <source>Create Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Issue erstellen</translation>
     </message>
     <message>
         <source>Save</source>
@@ -64,22 +64,22 @@
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Enter title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titel eingeben</translation>
     </message>
 </context>
 <context>
     <name>ImageViewerPage</name>
     <message>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Höhe</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Breite</translation>
     </message>
 </context>
 <context>
@@ -90,34 +90,34 @@
     </message>
     <message>
         <source>Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Issue</translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation>Schließen</translation>
+        <translation>Geschlossen</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Offen</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentare</translation>
     </message>
 </context>
 <context>
     <name>IssuesListPage</name>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Issues</translation>
     </message>
     <message>
         <source>Show closed issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige geschlossene Issues</translation>
     </message>
     <message>
         <source>Show open issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige offene Issues</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -125,12 +125,13 @@
     </message>
     <message>
         <source>No issues available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Issues verfügbar</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
     </message>
 </context>
@@ -142,23 +143,23 @@
     </message>
     <message>
         <source>Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisation</translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Repositories</translation>
     </message>
     <message>
         <source>Projects</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekte</translation>
     </message>
     <message>
         <source>Teams</source>
-        <translation type="unfinished"></translation>
+        <translation>Teams</translation>
     </message>
     <message>
         <source>Members</source>
-        <translation type="unfinished"></translation>
+        <translation>Mitglieder</translation>
     </message>
 </context>
 <context>
@@ -169,12 +170,13 @@
     </message>
     <message>
         <source>No organizations available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Organisationen vorhanden</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
     </message>
 </context>
@@ -186,7 +188,7 @@
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil</translation>
     </message>
     <message>
         <source>Search</source>
@@ -194,38 +196,38 @@
     </message>
     <message>
         <source>App initializing ...</source>
-        <translation type="unfinished"></translation>
+        <translation>App inttialisiert ...</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Home</translation>
     </message>
     <message>
         <source>My Work</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Arbeit</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Issues</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Pull Requests</translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Repositories</translation>
     </message>
     <message>
         <source>Organizations</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisationen</translation>
     </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
     <message>
         <source>Pull Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Pull Requests</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -233,12 +235,13 @@
     </message>
     <message>
         <source>No pull requests available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Pull Requests verügbar</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
     </message>
 </context>
@@ -246,32 +249,37 @@
     <name>QObject</name>
     <message numerus="yes">
         <source>%n minute(s) ago</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>vor %n Minute</numerusform>
+            <numerusform>vor %n Minuten</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>vor %n Stunde</numerusform>
+            <numerusform>vor %n Stunden</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>vor %n Tag</numerusform>
+            <numerusform>vor %n Tagen</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>vor %n Monat</numerusform>
+            <numerusform>vor %n Monaten</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>vor %n Jahr</numerusform>
+            <numerusform>vor %n Jahren</numerusform>
         </translation>
     </message>
 </context>
@@ -283,84 +291,86 @@
     </message>
     <message>
         <source>Watch</source>
-        <translation type="unfinished"></translation>
+        <translation>Beobachten</translation>
     </message>
     <message>
         <source>Unwatch</source>
-        <translation type="unfinished"></translation>
+        <translation>Vergessen</translation>
     </message>
     <message>
         <source>Unstar</source>
-        <translation type="unfinished"></translation>
+        <translation>Unstar</translation>
     </message>
     <message>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Star</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>Privat</translation>
     </message>
     <message numerus="yes">
         <source>%n Star(s)</source>
         <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Star</numerusform>
+            <numerusform>%n Stars</numerusform>
         </translation>
     </message>
     <message>
         <source>Stargazer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message numerus="yes">
         <source>%n Fork(s)</source>
         <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Fork</numerusform>
+            <numerusform>%n Forks</numerusform>
         </translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Issues</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Pull Requests</translation>
     </message>
     <message>
         <source>Watchers</source>
-        <translation type="unfinished"></translation>
+        <translation>Beobachter</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation>Mitwirkende</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Lizenz</translation>
     </message>
     <message>
         <source>README</source>
-        <translation type="unfinished"></translation>
+        <translation>README</translation>
     </message>
     <message>
         <source>Browse code</source>
-        <translation type="unfinished"></translation>
+        <translation>Code durchsuchen</translation>
     </message>
 </context>
 <context>
     <name>ReposListPage</name>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Repositories</translation>
     </message>
     <message>
         <source>Forks</source>
-        <translation type="unfinished"></translation>
+        <translation>Forks</translation>
     </message>
     <message>
         <source>Starred Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Starred Repositories</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -368,12 +378,13 @@
     </message>
     <message>
         <source>No repositories available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Repositories verfügbar</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
     </message>
 </context>
@@ -381,19 +392,19 @@
     <name>SailHub</name>
     <message>
         <source>SailHub</source>
-        <translation type="unfinished"></translation>
+        <translation>SailHub</translation>
     </message>
     <message>
         <source>Unauthorized</source>
-        <translation type="unfinished"></translation>
+        <translation>Unauthorisiert</translation>
     </message>
     <message>
         <source>Did you provide a valid access token?</source>
-        <translation type="unfinished"></translation>
+        <translation>Hast du ein gültiges Access Token angegeben?</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <source>Error</source>
@@ -401,27 +412,28 @@
     </message>
     <message>
         <source>An error occured when connecting to GitHub!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Fehler ist beim Verbinden zu GitHub aufgetreten!</translation>
     </message>
 </context>
 <context>
     <name>SearchOrganizationPage</name>
     <message>
         <source>Search Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche Organisation</translation>
     </message>
     <message>
         <source>No organization found</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Organisationen gefunden</translation>
     </message>
     <message>
         <source>Type in search pattern to find organizations</source>
-        <translation type="unfinished"></translation>
+        <translation>Suchbegriff eingeben um Organisationen zu finden</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
     </message>
 </context>
@@ -429,20 +441,21 @@
     <name>SearchRepositoryPage</name>
     <message>
         <source>Search Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche Repositories</translation>
     </message>
     <message>
         <source>No repositories found</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Repositories gefunden</translation>
     </message>
     <message>
         <source>Type in search pattern to find repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Suchbegriff eingeben um Repositories zu finden</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
     </message>
 </context>
@@ -450,39 +463,40 @@
     <name>SearchSelectionPage</name>
     <message>
         <source>Search Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Scuhauswahl</translation>
     </message>
     <message>
         <source>Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Repository</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzer</translation>
     </message>
     <message>
         <source>Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisation</translation>
     </message>
 </context>
 <context>
     <name>SearchUserPage</name>
     <message>
         <source>Search User</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzer suchen</translation>
     </message>
     <message>
         <source>No users found</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Benutzer gefunden</translation>
     </message>
     <message>
         <source>Type in search pattern to find users</source>
-        <translation type="unfinished"></translation>
+        <translation>Suchbegriff eingeben um Benutzer zu finden</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
     </message>
 </context>
@@ -490,7 +504,7 @@
     <name>SelectBranchDialog</name>
     <message>
         <source>Choose Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>Branch auswählen</translation>
     </message>
     <message>
         <source>Select</source>
@@ -498,18 +512,18 @@
     </message>
     <message>
         <source>default</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <source>No branches available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Branches verfügbar</translation>
     </message>
 </context>
 <context>
     <name>SelectSubscriptionDialog</name>
     <message>
         <source>Choose Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Abonnement auswählen</translation>
     </message>
     <message>
         <source>Select</source>
@@ -517,27 +531,27 @@
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished"></translation>
+        <translation>Abonnement aufheben</translation>
     </message>
     <message>
         <source>Disable all notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Benachrichtigungen deaktivieren</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation type="unfinished"></translation>
+        <translation>Abonnieren</translation>
     </message>
     <message>
         <source>Get notified only when participating or mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>Benachrichtigung nur wenn man Mitwirkender ist oder erwähnt wird</translation>
     </message>
     <message>
         <source>Subscribe (all)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abonnement (Alle)</translation>
     </message>
     <message>
         <source>Get notified of all conversation</source>
-        <translation type="unfinished"></translation>
+        <translation>Benachrichtigung bei allen Unterhaltungen</translation>
     </message>
 </context>
 <context>
@@ -552,20 +566,21 @@
     </message>
     <message>
         <source>Enter access token</source>
-        <translation type="unfinished"></translation>
+        <translation>Access Token eingeben</translation>
     </message>
     <message>
         <source>Pagination</source>
-        <translation type="unfinished"></translation>
+        <translation>Pagination</translation>
     </message>
     <message>
         <source>Choose the number of items to fetch in a single query. This value should be between 1-100.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Anzahl von Einträgen wählen, die bei jeder Anfrage geladen werden sollen. Diese Zahl sollte zwischen 1-100 liegen.</translation>
     </message>
     <message numerus="yes">
         <source>%n Item(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Eintrag</numerusform>
+            <numerusform>%n Einträge</numerusform>
         </translation>
     </message>
 </context>
@@ -592,41 +607,43 @@
     </message>
     <message>
         <source>Unfollow</source>
-        <translation type="unfinished"></translation>
+        <translation>Folgen aufheben</translation>
     </message>
     <message>
         <source>Follow</source>
-        <translation type="unfinished"></translation>
+        <translation>Folgen</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil</translation>
     </message>
     <message numerus="yes">
         <source>%n follower(s)</source>
         <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Beobachter</numerusform>
+            <numerusform>%n Beobachter</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n following(s)</source>
         <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Beobachteter</numerusform>
+            <numerusform>%n Beobachtete</numerusform>
         </translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Repositories</translation>
     </message>
     <message>
         <source>Organizations</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisationen</translation>
     </message>
     <message>
         <source>Starred</source>
-        <translation type="unfinished"></translation>
+        <translation>Starred</translation>
     </message>
 </context>
 <context>
@@ -637,12 +654,13 @@
     </message>
     <message>
         <source>No users available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Benutzer verügbar</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
     </message>
 </context>
@@ -669,11 +687,11 @@
     </message>
     <message>
         <source>Welcome to SailHub</source>
-        <translation type="unfinished"></translation>
+        <translation>Willkommen zu SailHub</translation>
     </message>
     <message>
         <source>This app is not configured yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Anwendung ist noch nicht konfiguriert.</translation>
     </message>
     <message>
         <source>The setup wizard will guide you through the configuration process.</source>
@@ -704,19 +722,19 @@
     </message>
     <message>
         <source>Personal Access Token</source>
-        <translation type="unfinished"></translation>
+        <translation>Persönliches Access Token</translation>
     </message>
     <message>
         <source>You need to provide a personal access token to connect to GitHub.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du musst einen persönlichen Access Token eingeben, um sich mit GitHub zu verbinden.</translation>
     </message>
     <message>
         <source>This token can be created in developer settings on GitHub.</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Token kann in den Entwickler Einstellungen auf GitHub erstellt werden.</translation>
     </message>
     <message>
         <source>For a detailed description please refer the README in project repository!</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine detaillierte Beschreibung ist in der README im Projekt Repository zu finden!</translation>
     </message>
     <message>
         <source>Access Token</source>
@@ -724,7 +742,7 @@
     </message>
     <message>
         <source>Enter access token</source>
-        <translation type="unfinished"></translation>
+        <translation>Access Token eingeben</translation>
     </message>
 </context>
 </TS>
