@@ -464,26 +464,26 @@ QString DataUtils::timeSpanText(const QDateTime &start, bool shortText)
 
     if (start.addSecs(3600) > now) {
         const quint64 minutes = start.secsTo(now) / 60;
-        return shortText ? QStringLiteral("%1m").arg(minutes) : QObject::tr("%1 minute(s) ago", "", minutes);
+        return shortText ? QStringLiteral("%1m").arg(minutes) : QObject::tr("%n minute(s) ago", "", minutes);
     }
 
     if (start.addSecs(86400) > now) {
         const quint64 hours = start.secsTo(now) / 3600;
-        return shortText ? QStringLiteral("%1h").arg(hours) : QObject::tr("%1 hour(s) ago", "", hours);
+        return shortText ? QStringLiteral("%1h").arg(hours) : QObject::tr("%n hour(s) ago", "", hours);
     }
 
     if (start.addMonths(1) > now) {
         const quint64 days = start.daysTo(now);
-        return shortText ? QStringLiteral("%1d").arg(days) : QObject::tr("%1 day(s) ago", "", days);
+        return shortText ? QStringLiteral("%1d").arg(days) : QObject::tr("%n day(s) ago", "", days);
     }
 
     if (start.addMonths(12) > now ) {
         const quint64 months = start.daysTo(now) / 30;
-        return shortText ? QStringLiteral("%1mo").arg(months) : QObject::tr("%1 month(s) ago", "", months);
+        return shortText ? QStringLiteral("%1mo").arg(months) : QObject::tr("%n month(s) ago", "", months);
     }
 
     const quint64 years = start.daysTo(now) / 365;
-    return shortText ? QStringLiteral("%1y").arg(years) : QObject::tr("%1 year(s) ago", "", years);
+    return shortText ? QStringLiteral("%1y").arg(years) : QObject::tr("%n year(s) ago", "", years);
 }
 
 QJsonArray DataUtils::getNodes(const QJsonObject &obj)
