@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="de">
 <context>
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Über</translation>
     </message>
     <message>
         <source>SailHub</source>
@@ -17,31 +17,31 @@
     </message>
     <message>
         <source>Translations</source>
-        <translation type="unfinished"></translation>
+        <translation>Übersetzungen</translation>
     </message>
     <message>
         <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deine Sprache ist nicht verfügbar? Du kannst das Projekt gerne unterstüzten, indem Du eine Übersetzung auf meinen selbst gehosteten Weblate Server machst.</translation>
     </message>
     <message>
         <source>Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Quellen</translation>
     </message>
     <message>
         <source>Donations</source>
-        <translation type="unfinished"></translation>
+        <translation>Spenden</translation>
     </message>
     <message>
         <source>If you like my work why not buy me a beer?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn Du meine Arbeit magst, warum gibtst du mir nicht einfach ein Bier aus?</translation>
     </message>
     <message>
         <source>Donate with PayPal</source>
-        <translation type="unfinished"></translation>
+        <translation>Spenden via PayPal</translation>
     </message>
     <message>
         <source>Donate with Liberpay</source>
-        <translation type="unfinished"></translation>
+        <translation>Spenden via Liberpay</translation>
     </message>
 </context>
 <context>
@@ -56,11 +56,11 @@
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern</translation>
     </message>
     <message>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation>Erstellen</translation>
     </message>
     <message>
         <source>Title</source>
@@ -86,7 +86,7 @@
     <name>IssuePage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>Issue</source>
@@ -94,7 +94,7 @@
     </message>
     <message>
         <source>Closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließen</translation>
     </message>
     <message>
         <source>Open</source>
@@ -121,7 +121,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>No issues available</source>
@@ -138,7 +138,7 @@
     <name>OrganizationPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>Organization</source>
@@ -165,7 +165,7 @@
     <name>OrganizationsListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>No organizations available</source>
@@ -182,7 +182,7 @@
     <name>OverviewPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Über</translation>
     </message>
     <message>
         <source>Profile</source>
@@ -190,7 +190,7 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Suchen</translation>
     </message>
     <message>
         <source>App initializing ...</source>
@@ -229,7 +229,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>No pull requests available</source>
@@ -279,7 +279,7 @@
     <name>RepoPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>Watch</source>
@@ -364,7 +364,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>No repositories available</source>
@@ -397,7 +397,7 @@
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <source>An error occured when connecting to GitHub!</source>
@@ -494,7 +494,7 @@
     </message>
     <message>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Auswählen</translation>
     </message>
     <message>
         <source>default</source>
@@ -513,7 +513,7 @@
     </message>
     <message>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Auswählen</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
@@ -544,11 +544,11 @@
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <source>Access Token</source>
-        <translation type="unfinished"></translation>
+        <translation>Access Token</translation>
     </message>
     <message>
         <source>Enter access token</source>
@@ -573,22 +573,22 @@
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>No files available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Dateien vorhanden</translation>
     </message>
 </context>
 <context>
     <name>UserPage</name>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>Unfollow</source>
@@ -633,7 +633,7 @@
     <name>UsersListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>No users available</source>
@@ -650,22 +650,22 @@
     <name>WizardFinalPage</name>
     <message>
         <source>Complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Abschließen</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurück</translation>
     </message>
     <message>
         <source>Setup process completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Einrichtung abgeschlossen</translation>
     </message>
 </context>
 <context>
     <name>WizardIntroPage</name>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Weiter</translation>
     </message>
     <message>
         <source>Welcome to SailHub</source>
@@ -677,30 +677,30 @@
     </message>
     <message>
         <source>The setup wizard will guide you through the configuration process.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Einrichtungsassistent wird dich durch die Konfigurationsprozess führen.</translation>
     </message>
     <message>
         <source>If there are errors during the setup process, you can try to reset the data from a previous installation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn es zu Fehlern während der Einrichtung kommt, kannst du probieren die Daten einer vorherigen Installation zurückzusetzen.</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <source>Resetting application</source>
-        <translation type="unfinished"></translation>
+        <translation>Setze Anwendung zurück</translation>
     </message>
 </context>
 <context>
     <name>WizardTokenPage</name>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Weiter</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurück</translation>
     </message>
     <message>
         <source>Personal Access Token</source>
@@ -720,7 +720,7 @@
     </message>
     <message>
         <source>Access Token</source>
-        <translation type="unfinished"></translation>
+        <translation>Access Token</translation>
     </message>
     <message>
         <source>Enter access token</source>
