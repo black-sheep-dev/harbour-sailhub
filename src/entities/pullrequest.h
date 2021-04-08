@@ -8,12 +8,15 @@
 struct PullRequestListItem {
     quint32 commentCount{0};
     QDateTime createdAt;
+    QString createdAtTimeSpan;
     QString nodeId;
     quint32 number{0};
     QString repository;
     quint8 state;
     QString timeSpan;
     QString title;
+    QDateTime updatedAt;
+    QString updatedAtTimeSpan;
 };
 
 class PullRequest : public Node

@@ -32,7 +32,8 @@ static const QString SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM =
                        "        nameWithOwner"
                        "    }"
                        "    state"
-                       "    title").simplified();
+                       "    title"
+                       "    updatedAt").simplified();
 
 static const QString SAILHUB_QUERY_ITEM_ORGANIZATION =
         QStringLiteral("    id"
@@ -83,21 +84,25 @@ static const QString SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM =
                        "        nameWithOwner"
                        "    }"
                        "    state"
-                       "    title").simplified();
+                       "    title"
+                       "    updatedAt").simplified();
 
 static const QString SAILHUB_QUERY_ITEM_REPO_LIST_ITEM =
         QStringLiteral("    id"
+                       "    createdAt"
                        "    isPrivate"
                        "    shortDescriptionHTML"
                        "    primaryLanguage {"
                        "        color"
                        "        name"
                        "    }"
+                       "    pushedAt"
                        "    name"
                        "    owner {"
                        "        login"
                        "    }"
-                       "    stargazerCount").simplified();
+                       "    stargazerCount"
+                       "    updatedAt").simplified();
 
 static const QString SAILHUB_QUERY_ITEM_USER =
         QStringLiteral("    id"

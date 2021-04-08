@@ -13,12 +13,15 @@ public:
     enum PullRequestRoles {
         CommentCountRole        = Qt::UserRole + 1,
         CreatedAtRole,
+        CreatedAtTimeSpanRole,
         NodeIdRole,
         NumberRole,
         RepositoryRole,
+        SortRole,
         StateRole,
-        TimeSpanRole,
-        TitleRole
+        TitleRole,
+        UpdatedAtRole,
+        UpdatedAtTimeSpanRole
     };
     Q_ENUM(PullRequestRoles)
 
@@ -41,6 +44,9 @@ public:
     // PaginationModel interface
 public:
     void clear() override;
+    void parseQueryResult(const QJsonObject &data) override;
+    GraphQLQuery query() const override;
+    QString sortField() const override;
 };
 
 #endif // PULLREQUESTSMODEL_H

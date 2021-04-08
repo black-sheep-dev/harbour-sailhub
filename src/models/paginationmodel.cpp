@@ -1,6 +1,10 @@
 #include "paginationmodel.h"
 
+#include <QJsonObject>
 #include <QUuid>
+
+#include "src/api/datautils.h"
+#include "src/api/queryvars.h"
 
 PaginationModel::PaginationModel(QObject *parent) :
     QAbstractListModel(parent),
@@ -22,6 +26,33 @@ void PaginationModel::setPageInfo(const PageInfo &info)
     setHasNextPage(info.hasNextPage);
     setLastItemCursor(info.lastItemCursor);
     setTotalCount((info.totalCount));
+}
+
+QJsonObject PaginationModel::defaultQueryVariables() const
+{
+    QJsonObject vars;
+
+    // identifier as NODE_ID
+    vars.insert(QueryVar::NODE_ID, m_identifier);
+
+    // sort field
+    const QString field = sortField();
+
+    if (!field.isEmpty())
+        vars.insert(QueryVar::ORDER_FIELD, field);
+
+    // sort order
+    if (m_sortOrder == Qt::AscendingOrder)
+        vars.insert(QueryVar::ORDER_DIRECTION, QStringLiteral("ASC"));
+    else
+        vars.insert(QueryVar::ORDER_DIRECTION, QStringLiteral("DESC"));
+
+    // if next insert item cursor
+    if (!m_lastItemCursor.isEmpty()) {
+        vars.insert(QueryVar::ITEM_CURSOR, m_lastItemCursor);
+    }
+
+    return vars;
 }
 
 bool PaginationModel::hasNextPage() const
@@ -52,6 +83,16 @@ bool PaginationModel::loading() const
 quint8 PaginationModel::modelType() const
 {
     return m_modelType;
+}
+
+Qt::SortOrder PaginationModel::sortOrder() const
+{
+    return m_sortOrder;
+}
+
+quint32 PaginationModel::sortRole() const
+{
+    return m_sortRole;
 }
 
 quint8 PaginationModel::state() const
@@ -123,6 +164,24 @@ void PaginationModel::setModelType(quint8 modelType)
     emit modelTypeChanged(m_modelType);
 }
 
+void PaginationModel::setSortOrder(Qt::SortOrder order)
+{
+    if (m_sortOrder == order)
+        return;
+
+    m_sortOrder = order;
+    emit sortOrderChanged(m_sortOrder);
+}
+
+void PaginationModel::setSortRole(quint32 role)
+{
+    if (m_sortRole == role)
+        return;
+
+    m_sortRole = role;
+    emit sortRoleChanged(m_sortRole);
+}
+
 void PaginationModel::setState(quint8 state)
 {
     if (m_state == state)
@@ -148,4 +207,19 @@ void PaginationModel::setUuid(const QByteArray &uuid)
 
     m_uuid = uuid;
     emit uuidChanged(m_uuid);
+}
+
+void PaginationModel::parseQueryResult(const QJsonObject &data)
+{
+    Q_UNUSED(data)
+}
+
+GraphQLQuery PaginationModel::query() const
+{
+    return GraphQLQuery();
+}
+
+QString PaginationModel::sortField() const
+{
+    return QString();
 }

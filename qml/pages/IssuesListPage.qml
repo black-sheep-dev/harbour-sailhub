@@ -10,6 +10,8 @@ Page {
     property string identifier
     property int type: Issue.Repo
     property int states: Issue.StateOpen
+    property int sortRole: IssuesModel.UpdatedAtRole
+    property int sortOrder: Qt.DescendingOrder
 
     id: page
     allowedOrientations: Orientation.All
@@ -45,8 +47,8 @@ Page {
                         page.states = Issue.StateOpen
 
                     issuesModel.state = page.states
-                    issuesModel.reset()
-                    SailHub.api().getIssues(issuesModel)
+
+                    refresh()
                 }
 
             }
@@ -65,8 +67,28 @@ Page {
             MenuItem {
                 text: qsTr("Refresh")
                 onClicked: {
-                    issuesModel.reset()
-                    SailHub.api().getIssues(issuesModel)
+                    refresh()
+                }
+            }
+            MenuItem {
+                text: qsTr("Sorting")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
+                                                    order: sortOrder,
+                                                    field: getSortFieldIndex(),
+                                                    fields: [
+                                                        qsTr("Created at"),
+                                                        qsTr("Updated at"),
+                                                        qsTr("Comments")
+                                                    ]
+                                                })
+
+                    dialog.accepted.connect(function() {
+                        sortOrder = dialog.order
+                        sortRole = getSortRoleFromIndex(dialog.field)
+
+                        refresh()
+                    })
                 }
             }
         }
@@ -91,6 +113,8 @@ Page {
             identifier: page.identifier
             modelType: page.type
             state: page.states
+            sortRole: page.sortRole
+            sortOrder: page.sortOrder
         }
 
         opacity: busyIndicator.running ? 0.3 : 1.0
@@ -113,19 +137,57 @@ Page {
 
             MenuItem {
                 text: qsTr("Load more (%n to go)", "", issuesModel.totalCount - listView.count)
-                onClicked: SailHub.api().getIssues(issuesModel)
+                onClicked: getIssues()
             }
         }
     }
 
-    Connections {
-        target: SailHub.api()
-        onIssueCreated: {
-            issuesModel.reset()
-            SailHub.api().getIssues(issuesModel)
+    function getIssues() {
+        SailHub.api().getPaginationModel(issuesModel)
+    }
+
+    function getSortRoleFromIndex(index) {
+        switch (index) {
+        case 0:
+            return IssuesModel.CreatedAtRole
+
+        case 1:
+            return IssuesModel.UpdatedAtRole
+
+        case 2:
+            return IssuesModel.CommentCountRole
+
+        default:
+            return IssuesModel.UpdatedAtRole
         }
     }
 
-    Component.onCompleted: SailHub.api().getIssues(issuesModel)
+    function getSortFieldIndex() {
+        switch (page.sortRole) {
+        case IssuesModel.CreatedAtRole:
+            return 0;
+
+        case IssuesModel.UpdatedAtRole:
+            return 1;
+
+        case IssuesModel.CommentCountRole:
+            return 2;
+
+        default:
+            return 0
+        }
+    }
+
+    function refresh() {
+        issuesModel.reset()
+        getIssues()
+    }
+
+    Connections {
+        target: SailHub.api()
+        onIssueCreated: refresh()
+    }
+
+    Component.onCompleted: refresh()
 }
 

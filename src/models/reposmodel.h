@@ -11,7 +11,8 @@ class ReposModel : public PaginationModel
 
 public:
     enum RepoRoles {
-        DescriptionRole            = Qt::UserRole + 1,
+        CreatedAtRole           = Qt::UserRole + 1,
+        DescriptionRole,
         IsPrivateRole,
         //LanguageRole,
         LanguageColorRole,
@@ -19,7 +20,10 @@ public:
         NameRole,
         NodeIdRole,
         OwnerRole,
-        StargazerCountRole
+        PushedAtRole,
+        SortRole,
+        StargazerCountRole,
+        UpdatedAtRole
     };
     Q_ENUM(RepoRoles)
 
@@ -41,6 +45,9 @@ public:
     // PaginationModel interface
 public:
     void clear() override;
+    void parseQueryResult(const QJsonObject &data) override;
+    GraphQLQuery query() const override;
+    QString sortField() const override;
 };
 
 #endif // REPOSMODEL_H
