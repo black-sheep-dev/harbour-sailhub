@@ -45,6 +45,36 @@
     </message>
 </context>
 <context>
+    <name>CommentListDelegate</name>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CommentsListPage</name>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">Komentarze</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>No comments available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditIssueDialog</name>
     <message>
         <source>Edit Issue</source>
@@ -86,23 +116,23 @@
     <name>IssuePage</name>
     <message>
         <source>Refresh</source>
-        <translation>Odśwież</translation>
+        <translation type="unfinished">Odśwież</translation>
     </message>
     <message>
         <source>Issue</source>
-        <translation>Problem</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation>Zamknięty</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open</source>
-        <translation>Otwarty</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation>Komentarze</translation>
+        <translation type="unfinished">Komentarze</translation>
     </message>
 </context>
 <context>

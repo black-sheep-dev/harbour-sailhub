@@ -15,6 +15,8 @@ public:
         AuthorLoginRole,
         BodyRole,
         CreatedAtRole,
+        CreatedAtTimeSpanRole,
+        EditedRole,
         LastEditAtRole,
         ViewerCanDeleteRole,
         ViewerCanReactRole,
@@ -41,6 +43,8 @@ public:
     // PaginationModel interface
 public:
     void clear() override;
+    void parseQueryResult(const QJsonObject &data) override;
+    GraphQLQuery query() const override;
 };
 
 #endif // COMMENTSMODEL_H

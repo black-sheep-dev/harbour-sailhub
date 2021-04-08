@@ -21,6 +21,7 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 - Browse repo files
 - Browse issues
 - Browse pull requests
+- Browse comments (issues)
 - Display file content (without code highlighting)
 - Follow / Unfollow user
 - Watch / Star repos
@@ -41,6 +42,7 @@ Available translations:
 - English
 - German
 - Polish (by [atlochowski](https://github.com/atlochowski))
+- Chinese (by [dashinfantry](https://github.com/dashinfantry))
   
 If you missing your native language you are welcome to support this project with your translation.
 

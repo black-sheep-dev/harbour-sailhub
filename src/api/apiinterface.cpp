@@ -71,31 +71,6 @@ void ApiInterface::followUser(const QString &nodeId, bool follow)
     m_connector->sendQuery(query, follow ? RequestType::FollowUser : RequestType::UnfollowUser);
 }
 
-void ApiInterface::getComments(CommentsModel *model)
-{
-    if (model == nullptr)
-        return;
-
-    GraphQLQuery query;
-    query.query = SAILHUB_QUERY_GET_ISSUE_COMMENTS;
-
-    query.variables.insert(QueryVar::NODE_ID, model->identifier());
-    query.variables.insert(QueryVar::ITEM_COUNT, m_paginationCount);
-
-    // if next insert item cursor
-    if (!model->lastItemCursor().isEmpty()) {
-        query.variables.insert(QueryVar::ITEM_CURSOR, model->lastItemCursor());
-    }
-
-    model->setLoading(true);
-
-    // save and send
-
-    const QByteArray uuid = model->uuid();
-    m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::GetComments, uuid);
-}
-
 void ApiInterface::getFileContent(const QString &nodeId, const QString &branch)
 {
     GraphQLQuery query;
@@ -360,10 +335,6 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     case RequestType::CreateIssue:
         emit issueCreated(DataUtils::issueFromJson(data.value(ApiKey::NODE).toObject()));
-        break;
-
-    case RequestType::GetComments:
-        parseComments(data, requestId);
         break;
 
     case RequestType::StarRepo:

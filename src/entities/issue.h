@@ -28,6 +28,8 @@ class Issue : public Node
 
     Q_PROPERTY(Owner* author READ author WRITE setAuthor NOTIFY authorChanged)
     Q_PROPERTY(quint32 commentCount READ commentCount WRITE setCommentCount NOTIFY commentCountChanged)
+    Q_PROPERTY(quint32 number READ number WRITE setNumber NOTIFY numberChanged)
+    Q_PROPERTY(QString repository READ repository WRITE setRepository NOTIFY repositoryChanged)
     Q_PROPERTY(quint8 states READ states WRITE setStates NOTIFY statesChanged)
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
 
@@ -51,29 +53,34 @@ public:
 
     Owner *author() const;
     quint32 commentCount() const;
+    quint32 number() const;
+    QString repository() const;
     quint8 states() const;
     QString title() const;
 
 signals:
     void authorChanged(Owner *author);
     void commentCountChanged(quint32 count);
+    void numberChanged(quint32 number);
+    void repositoryChanged(const QString &repository);
     void statesChanged(quint8 states);
     void titleChanged(const QString &title);
-
 
 public slots:
     void setAuthor(Owner *author);
     void setCommentCount(quint32 count);
+    void setNumber(quint32 number);
+    void setRepository(const QString &repository);
     void setStates(quint8 states);
     void setTitle(const QString &title);
 
 private:
     Owner* m_author{nullptr};
     quint32 m_commentCount{0};
+    quint32 m_number{0};
+    QString m_repository;
     quint8 m_states{StateUnknown};
-    QString m_title;
-
-
+    QString m_title; 
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(Issue::IssueStates)
 

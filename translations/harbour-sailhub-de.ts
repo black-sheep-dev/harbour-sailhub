@@ -45,6 +45,35 @@
     </message>
 </context>
 <context>
+    <name>CommentListDelegate</name>
+    <message>
+        <source>Edited</source>
+        <translation>Bearbeitet</translation>
+    </message>
+</context>
+<context>
+    <name>CommentsListPage</name>
+    <message>
+        <source>Comments</source>
+        <translation>Kommentare</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>No comments available</source>
+        <translation>Keine Kommentare vorhanden</translation>
+    </message>
+</context>
+<context>
     <name>EditIssueDialog</name>
     <message>
         <source>Edit Issue</source>
@@ -94,7 +123,7 @@
     </message>
     <message>
         <source>Closed</source>
-        <translation>Geschlossen</translation>
+        <translation>Geshlossen</translation>
     </message>
     <message>
         <source>Open</source>

@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.3
+VERSION = 0.0.4
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -71,6 +71,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/dialogs/SelectBranchDialog.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
     qml/dialogs/SortSelectionDialog.qml \
+    qml/pages/CommentsListPage.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
     qml/pages/IssuesListPage.qml \
@@ -112,7 +113,8 @@ CONFIG += sailfishapp_i18n
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += \
     translations/harbour-sailhub-de.ts \
-    translations/harbour-sailhub-pl.ts
+    translations/harbour-sailhub-pl.ts \
+    translations/harbour-sailhub-zh_Hans.ts
 
 RESOURCES += \
     ressources.qrc

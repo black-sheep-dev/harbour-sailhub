@@ -45,6 +45,34 @@
     </message>
 </context>
 <context>
+    <name>CommentListDelegate</name>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CommentsListPage</name>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>No comments available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditIssueDialog</name>
     <message>
         <source>Edit Issue</source>

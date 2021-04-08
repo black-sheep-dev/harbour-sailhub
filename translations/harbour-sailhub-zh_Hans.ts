@@ -45,6 +45,34 @@
     </message>
 </context>
 <context>
+    <name>CommentListDelegate</name>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CommentsListPage</name>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">评论</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>No comments available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditIssueDialog</name>
     <message>
         <source>Edit Issue</source>
@@ -86,23 +114,23 @@
     <name>IssuePage</name>
     <message>
         <source>Refresh</source>
-        <translation>刷新</translation>
+        <translation type="unfinished">刷新</translation>
     </message>
     <message>
         <source>Issue</source>
-        <translation>问题（Issue）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation>已关闭</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open</source>
-        <translation>打开</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation>评论</translation>
+        <translation type="unfinished">评论</translation>
     </message>
 </context>
 <context>
@@ -132,6 +160,22 @@
         <translation>
             <numerusform>加载更多（ %n ）</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">评论</translation>
     </message>
 </context>
 <context>
@@ -240,6 +284,18 @@
         <translation>
             <numerusform>加载更多（ %n ）</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -375,6 +431,30 @@
         <translation>
             <numerusform>加载更多（ %n ）</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pushed at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stargazers</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -567,6 +647,33 @@
         <translation>
             <numerusform>%n 个项目</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>SortSelectionDialog</name>
+    <message>
+        <source>Select Sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ascending</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Descending</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

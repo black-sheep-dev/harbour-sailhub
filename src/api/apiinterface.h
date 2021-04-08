@@ -40,7 +40,6 @@ public:
         Undefined,
         CreateIssue,
         FollowUser,
-        GetComments,
         GetFileContent,
         GetIssue,
         GetLogin,
@@ -67,7 +66,6 @@ public:
     void getLogin();
     Q_INVOKABLE void createIssue(const QString &title, const QString &body, IssuesModel *model);
     Q_INVOKABLE void followUser(const QString &nodeId, bool follow = true);
-    Q_INVOKABLE void getComments(CommentsModel *model);
     Q_INVOKABLE void getFileContent(const QString &nodeId, const QString &branch);
     Q_INVOKABLE void getIssue(const QString &nodeId);
     Q_INVOKABLE void getOrganization(const QString &nodeId);
