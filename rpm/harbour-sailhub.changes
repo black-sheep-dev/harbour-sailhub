@@ -1,2 +1,6 @@
+* Thu Apr 08 2021 Black Sheep <blacksheep@nubecula.org> 0.0.2-1
+- Add sort function to repo / issue / pull request lists
+- Code rework / cleanup
+
 * Wed Apr 07 2021 Black Sheep <blacksheep@nubecula.org> 0.0.1-1
 - Initial release

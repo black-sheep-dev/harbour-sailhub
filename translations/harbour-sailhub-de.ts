@@ -417,27 +417,27 @@
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished">Sortierung</translation>
+        <translation>Sortierung</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished">Erstellt am</translation>
+        <translation>Erstellt am</translation>
     </message>
     <message>
         <source>Pushed at</source>
-        <translation type="unfinished"></translation>
+        <translation>Gepushed am</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished">Aktualisiert am</translation>
+        <translation>Aktualisiert am</translation>
     </message>
     <message>
         <source>Stargazers</source>
-        <translation type="unfinished"></translation>
+        <translation>Stargazers</translation>
     </message>
 </context>
 <context>
