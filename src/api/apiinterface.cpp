@@ -124,38 +124,6 @@ void ApiInterface::getOrganization(const QString &nodeId)
     m_connector->sendQuery(query, RequestType::GetOrganization);
 }
 
-void ApiInterface::getOrganizations(OrganizationsModel *model)
-{
-    if (model == nullptr)
-        return;
-
-    GraphQLQuery query;
-
-    switch (model->modelType()) {
-    case Organization::IsMember:
-        query.query = SAILHUB_QUERY_GET_USER_ORGANIZATIONS;
-        break;
-
-    default:
-        break;
-    }
-
-    query.variables.insert(QueryVar::NODE_ID, model->identifier());
-    query.variables.insert(QueryVar::ITEM_COUNT, m_paginationCount);
-
-    // if cursor available insert it
-    if (!model->lastItemCursor().isEmpty()) {
-        query.variables.insert(QueryVar::ITEM_CURSOR, model->lastItemCursor());
-    }
-
-    model->setLoading(true);
-
-    // save and send
-    const QByteArray uuid = model->uuid();
-    m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::GetOrganizations, uuid);
-}
-
 void ApiInterface::getPaginationModel(PaginationModel *model)
 {
     if (model == nullptr)
@@ -226,124 +194,6 @@ void ApiInterface::getUser(const QString &nodeId)
     query.variables.insert(QueryVar::NODE_ID, nodeId);
 
     m_connector->sendQuery(query, RequestType::GetUser);
-}
-
-void ApiInterface::getUsers(UsersModel *model)
-{
-    if (model == nullptr)
-        return;
-
-    GraphQLQuery query;
-
-    switch (model->modelType()) {
-    case User::Follower:
-        query.query = SAILHUB_QUERY_GET_USER_FOLLOWERS;
-        break;
-
-    case User::Following:
-        query.query = SAILHUB_QUERY_GET_USER_FOLLOWING;
-        break;
-
-    case User::OrganizationMember:
-        query.query = SAILHUB_QUERY_GET_ORGANIZATION_MEMBERS;
-        break;
-
-    case User::Contributor:
-        query.query = SAILHUB_QUERY_GET_REPOSITORY_CONTRIBUTORS;
-        break;
-
-    case User::Stargazer:
-        query.query = SAILHUB_QUERY_GET_REPOSITORY_STARGAZERS;
-        break;
-
-    case User::Watcher:
-        query.query = SAILHUB_QUERY_GET_REPOSITORY_WATCHERS;
-        break;
-
-    default:
-        return;
-    }
-
-    query.variables.insert(QueryVar::NODE_ID, model->identifier());
-    query.variables.insert(QueryVar::ITEM_COUNT, m_paginationCount);
-
-    // if cursor available insert it
-    if (!model->lastItemCursor().isEmpty()) {
-        query.variables.insert(QueryVar::ITEM_CURSOR, model->lastItemCursor());
-    }
-
-    model->setLoading(true);
-
-    // save and send
-    const QByteArray uuid = model->uuid();
-    m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::GetUsers, uuid);
-}
-
-void ApiInterface::searchOrganization(const QString &pattern, OrganizationsModel *model)
-{
-    if (model == nullptr)
-        return;
-
-    GraphQLQuery query;
-    query.query = SAILHUB_QUERY_SEARCH_ORGANIZATION;
-    query.variables.insert(QueryVar::QUERY_STRING, pattern);
-    query.variables.insert(QueryVar::ITEM_COUNT, m_paginationCount);
-
-    // if next insert item cursor
-    if (!model->lastItemCursor().isEmpty()) {
-        query.variables.insert(QueryVar::ITEM_CURSOR, model->lastItemCursor());
-    }
-
-    model->setLoading(true);
-
-    const QByteArray uuid = model->uuid();
-    m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::SearchOrganization, uuid);
-}
-
-void ApiInterface::searchRepo(const QString &pattern, ReposModel *model)
-{
-    if (model == nullptr)
-        return;
-
-    GraphQLQuery query;
-    query.query = SAILHUB_QUERY_SEARCH_REPOSITORY;
-    query.variables.insert(QueryVar::QUERY_STRING, pattern);
-    query.variables.insert(QueryVar::ITEM_COUNT, m_paginationCount);
-
-    // if next insert item cursor
-    if (!model->lastItemCursor().isEmpty()) {
-        query.variables.insert(QueryVar::ITEM_CURSOR, model->lastItemCursor());
-    }
-
-    model->setLoading(true);
-
-    const QByteArray uuid = model->uuid();
-    m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::GetPaginationModel, uuid);
-}
-
-void ApiInterface::searchUser(const QString &pattern, UsersModel *model)
-{
-    if (model == nullptr)
-        return;
-
-    GraphQLQuery query;
-    query.query = SAILHUB_QUERY_SEARCH_USER;
-    query.variables.insert(QueryVar::QUERY_STRING, pattern);
-    query.variables.insert(QueryVar::ITEM_COUNT, m_paginationCount);
-
-    // if next insert item cursor
-    if (!model->lastItemCursor().isEmpty()) {
-        query.variables.insert(QueryVar::ITEM_CURSOR, model->lastItemCursor());
-    }
-
-    model->setLoading(true);
-
-    const QByteArray uuid = model->uuid();
-    m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::SearchUser, uuid);
 }
 
 void ApiInterface::starRepo(const QString &nodeId, bool star)
@@ -488,11 +338,6 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         emit userAvailable(DataUtils::userFromJson(data.value(ApiKey::NODE).toObject()));
         break;
 
-    case RequestType::GetUsers:
-    case RequestType::SearchUser:
-        parseUsers(data, requestId);
-        break;
-
     case RequestType::GetRepo:
         emit repoAvailable(DataUtils::repoFromJson(data.value(ApiKey::NODE).toObject()));
         break;
@@ -503,11 +348,6 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     case RequestType::GetOrganization:
         emit organizationAvailable(DataUtils::organizationFromJson(data.value(ApiKey::NODE).toObject()));
-        break;
-
-    case RequestType::GetOrganizations:
-    case RequestType::SearchOrganization:
-        parseOrganizations(data, requestId);
         break;
 
     case RequestType::GetPaginationModel:
@@ -604,41 +444,6 @@ void ApiInterface::parseFileContent(const QJsonObject &obj)
     emit fileContentAvailable(data.value(ApiKey::TEXT).toString());
 }
 
-void ApiInterface::parseOrganizations(const QJsonObject &obj, const QByteArray &requestId)
-{
-    auto model = qobject_cast<OrganizationsModel *>(m_paginationModelRequests.value(requestId, nullptr));
-
-    if (model == nullptr)
-        return;
-
-    // get identifier and users
-    QJsonValue count;
-    QJsonObject organizations;
-
-    switch (model->modelType()) {
-    case Organization::IsMember:
-        organizations = obj.value(ApiKey::NODE).toObject()
-                   .value(ApiKey::ORGANIZATIONS).toObject();
-        count = obj.value(ApiKey::TOTAL_COUNT);
-        break;
-
-    case Organization::Search:
-        organizations = obj.value(ApiKey::SEARCH).toObject();
-        count = organizations.value(ApiKey::USER_COUNT);
-        break;
-
-    default:
-        return;
-    }
-
-    model->setPageInfo(DataUtils::pageInfoFromJson(organizations, count));
-    model->addOrganizations(DataUtils::organizationsFromJson(organizations));
-    model->setLoading(false);
-
-    // cleanup
-    m_paginationModelRequests.remove(requestId);
-}
-
 void ApiInterface::parsePaginationModel(const QJsonObject &obj, const QByteArray &requestId)
 {
     auto model = m_paginationModelRequests.value(requestId, nullptr);
@@ -683,69 +488,4 @@ void ApiInterface::parseRepoTree(const QJsonObject &obj, const QByteArray &reque
     model->setItems(DataUtils::treeListItemsFromJson(obj));
 
     m_treeModelRequests.remove(requestId);
-}
-
-void ApiInterface::parseUsers(const QJsonObject &obj, const QByteArray &requestId)
-{
-    auto model = qobject_cast<UsersModel *>(m_paginationModelRequests.value(requestId, nullptr));
-
-    if (model == nullptr)
-        return;
-
-    // get identifier and users
-    QJsonValue count;
-    QJsonObject users;
-
-    switch (model->modelType()) {
-    case User::Contributor:
-        users = obj.value(ApiKey::NODE).toObject()
-                   .value(ApiKey::MENTIONABLE_USERS).toObject();
-        count = obj.value(ApiKey::TOTAL_COUNT);
-        break;
-
-    case User::Stargazer:
-        users = obj.value(ApiKey::NODE).toObject()
-                   .value(ApiKey::STARGAZERS).toObject();
-        count = obj.value(ApiKey::TOTAL_COUNT);
-        break;
-
-    case User::Watcher:
-        users = obj.value(ApiKey::NODE).toObject()
-                   .value(ApiKey::WATCHERS).toObject();
-        count = obj.value(ApiKey::TOTAL_COUNT);
-        break;
-
-    case User::Follower:
-        users = obj.value(ApiKey::NODE).toObject()
-                   .value(ApiKey::FOLLOWERS).toObject();
-        count = obj.value(ApiKey::TOTAL_COUNT);
-        break;
-
-    case User::Following:
-        users = obj.value(ApiKey::NODE).toObject()
-                   .value(ApiKey::FOLLOWING).toObject();
-        count = obj.value(ApiKey::TOTAL_COUNT);
-        break;
-
-    case User::OrganizationMember:
-        users = obj.value(ApiKey::NODE).toObject()
-                   .value(ApiKey::MEMBERS_WITH_ROLE).toObject();
-        count = obj.value(ApiKey::TOTAL_COUNT);
-        break;
-
-    case User::Search:
-        users = obj.value(ApiKey::SEARCH).toObject();
-        count = users.value(ApiKey::USER_COUNT);
-        break;
-
-    default:
-        return;
-    }
-
-    model->setPageInfo(DataUtils::pageInfoFromJson(users, count));
-    model->addUsers(DataUtils::usersFromJson(users));
-    model->setLoading(false);
-
-    // cleanup
-    m_paginationModelRequests.remove(requestId);
 }

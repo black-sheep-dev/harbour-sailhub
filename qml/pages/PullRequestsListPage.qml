@@ -7,11 +7,11 @@ import "../delegates/"
 
 Page {
     property string description
-    property string identifier
-    property int type: PullRequest.Repo
-    property int states: PullRequest.StateOpen
-    property int sortRole: PullRequestsModel.UpdatedAtRole
-    property int sortOrder: Qt.DescendingOrder
+    property alias identifier: pullRequestsModel.identifier
+    property alias type: pullRequestsModel.modelType
+    property alias states: pullRequestsModel.state
+    property alias sortRole: pullRequestsModel.sortRole
+    property alias sortOrder: pullRequestsModel.sortOrder
 
     id: page
     allowedOrientations: Orientation.All
@@ -73,14 +73,7 @@ Page {
 
         VerticalScrollDecorator {}
 
-        model: PullRequestsModel{
-            id: pullRequestsModel
-            identifier: page.identifier
-            modelType: page.type
-            state: page.state
-            sortRole: PullRequestsModel.UpdatedAtRole
-            sortOrder: Qt.DescendingOrder
-        }
+        model: PullRequestsModel{ id: pullRequestsModel }
 
         opacity: busyIndicator.running ? 0.3 : 1.0
         Behavior on opacity { FadeAnimator {} }

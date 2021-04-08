@@ -7,11 +7,11 @@ import "../delegates/"
 
 Page {
     property string description
-    property string identifier
-    property int type: Issue.Repo
-    property int states: Issue.StateOpen
-    property int sortRole: IssuesModel.UpdatedAtRole
-    property int sortOrder: Qt.DescendingOrder
+    property alias identifier: issuesModel.identifier
+    property alias type: issuesModel.modelType
+    property alias states: issuesModel.state
+    property alias sortRole: issuesModel.sortRole
+    property alias sortOrder: issuesModel.sortOrder
 
     id: page
     allowedOrientations: Orientation.All
@@ -108,14 +108,7 @@ Page {
 
         VerticalScrollDecorator {}
 
-        model: IssuesModel {
-            id: issuesModel
-            identifier: page.identifier
-            modelType: page.type
-            state: page.states
-            sortRole: page.sortRole
-            sortOrder: page.sortOrder
-        }
+        model: IssuesModel { id: issuesModel }
 
         opacity: busyIndicator.running ? 0.3 : 1.0
         Behavior on opacity { FadeAnimator {} }

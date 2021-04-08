@@ -57,6 +57,8 @@ Dialog {
             placeholderText: qsTr("Enter access token")
 
             onTextChanged: checkInput()
+
+            focus: true
         }
     }
 

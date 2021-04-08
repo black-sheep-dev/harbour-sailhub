@@ -79,7 +79,8 @@ static const QString SAILHUB_QUERY_GET_USER_ISSUES =
 IssuesModel::IssuesModel(QObject *parent) :
     PaginationModel(parent)
 {
-
+    setSortRole(UpdatedAtRole);
+    setSortOrder(Qt::DescendingOrder);
 }
 
 void IssuesModel::addIssue(const IssueListItem &issue)

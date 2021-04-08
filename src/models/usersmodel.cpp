@@ -1,9 +1,161 @@
 #include "usersmodel.h"
 
+#include "src/api/datautils.h"
+#include "src/api/keys.h"
+#include "src/api/queryvars.h"
+#include "src/api/query_items.h"
+
+// GET ORGANIZATION MEMBERS
+static const QString SAILHUB_QUERY_GET_ORGANIZATION_MEMBERS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on Organization {"
+                       "            id"
+                       "            membersWithRole(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET REPOSITORY CONTRIBUTORS
+static const QString SAILHUB_QUERY_GET_REPOSITORY_CONTRIBUTORS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on Repository {"
+                       "            id"
+                       "            mentionableUsers(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET REPOSITORY STARGAZERS
+static const QString SAILHUB_QUERY_GET_REPOSITORY_STARGAZERS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on Repository {"
+                       "            id"
+                       "            stargazers(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET REPOSITORY WATCHERS
+static const QString SAILHUB_QUERY_GET_REPOSITORY_WATCHERS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on Repository {"
+                       "            id"
+                       "            watchers(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET USER FOLLOWERS
+static const QString SAILHUB_QUERY_GET_USER_FOLLOWERS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on User {"
+                       "            id"
+                       "            login"
+                       "            followers(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET USER FOLLOWING
+static const QString SAILHUB_QUERY_GET_USER_FOLLOWING =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on User {"
+                       "            id"
+                       "            login"
+                       "            following(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// SEARCH USER
+static const QString SAILHUB_QUERY_SEARCH_USER =
+        QStringLiteral("query searchUsers($queryString: String!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    search(query: $queryString, type: USER, first: $itemCount, after: $itemCursor) {"
+                       "        %1"
+                       "        userCount"
+                       "        nodes {"
+                       "            ... on User {"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_PAGE_INFO, SAILHUB_QUERY_ITEM_USER_LIST_ITEM).simplified();
+
 UsersModel::UsersModel(QObject *parent) :
     PaginationModel(parent)
 {
-
+    setSortRole(NameRole);
+    setSortOrder(Qt::AscendingOrder);
 }
 
 void UsersModel::addUser(const UserListItem &user)
@@ -77,4 +229,102 @@ void UsersModel::clear()
     beginResetModel();
     m_users.clear();
     endResetModel();
+}
+
+void UsersModel::parseQueryResult(const QJsonObject &data)
+{
+    QJsonValue count;
+    QJsonObject users;
+
+    switch (modelType()) {
+    case User::Contributor:
+        users = data.value(ApiKey::NODE).toObject()
+                    .value(ApiKey::MENTIONABLE_USERS).toObject();
+        count = data.value(ApiKey::TOTAL_COUNT);
+        break;
+
+    case User::Stargazer:
+        users = data.value(ApiKey::NODE).toObject()
+                    .value(ApiKey::STARGAZERS).toObject();
+        count = data.value(ApiKey::TOTAL_COUNT);
+        break;
+
+    case User::Watcher:
+        users = data.value(ApiKey::NODE).toObject()
+                    .value(ApiKey::WATCHERS).toObject();
+        count = data.value(ApiKey::TOTAL_COUNT);
+        break;
+
+    case User::Follower:
+        users = data.value(ApiKey::NODE).toObject()
+                    .value(ApiKey::FOLLOWERS).toObject();
+        count = data.value(ApiKey::TOTAL_COUNT);
+        break;
+
+    case User::Following:
+        users = data.value(ApiKey::NODE).toObject()
+                    .value(ApiKey::FOLLOWING).toObject();
+        count = data.value(ApiKey::TOTAL_COUNT);
+        break;
+
+    case User::OrganizationMember:
+        users = data.value(ApiKey::NODE).toObject()
+                    .value(ApiKey::MEMBERS_WITH_ROLE).toObject();
+        count = data.value(ApiKey::TOTAL_COUNT);
+        break;
+
+    case User::Search:
+        users = data.value(ApiKey::SEARCH).toObject();
+        count = users.value(ApiKey::USER_COUNT);
+        break;
+
+    default:
+        break;
+    }
+
+    setPageInfo(DataUtils::pageInfoFromJson(users, count));
+    addUsers(DataUtils::usersFromJson(users));
+    setLoading(false);
+}
+
+GraphQLQuery UsersModel::query() const
+{
+    GraphQLQuery query;
+    query.variables = defaultQueryVariables();
+
+    switch (modelType()) {
+    case User::Follower:
+        query.query = SAILHUB_QUERY_GET_USER_FOLLOWERS;
+        break;
+
+    case User::Following:
+        query.query = SAILHUB_QUERY_GET_USER_FOLLOWING;
+        break;
+
+    case User::OrganizationMember:
+        query.query = SAILHUB_QUERY_GET_ORGANIZATION_MEMBERS;
+        break;
+
+    case User::Contributor:
+        query.query = SAILHUB_QUERY_GET_REPOSITORY_CONTRIBUTORS;
+        break;
+
+    case User::Stargazer:
+        query.query = SAILHUB_QUERY_GET_REPOSITORY_STARGAZERS;
+        break;
+
+    case User::Watcher:
+        query.query = SAILHUB_QUERY_GET_REPOSITORY_WATCHERS;
+        break;
+
+    case User::Search:
+        query.query = SAILHUB_QUERY_SEARCH_USER;
+        query.variables.insert(QueryVar::QUERY_STRING, searchPattern());
+        break;
+
+    default:
+        break;
+    }
+
+    return query;
 }
