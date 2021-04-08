@@ -119,6 +119,7 @@ Page {
                                           })
             }
         }
+    }
 
     Connections {
         target: SailHub.api()
@@ -132,5 +133,3 @@ Page {
 
     Component.onCompleted: SailHub.api().getIssue(page.nodeId)
 }
-
-
