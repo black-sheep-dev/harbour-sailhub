@@ -5,132 +5,132 @@
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>关于</translation>
     </message>
     <message>
         <source>SailHub</source>
-        <translation type="unfinished"></translation>
+        <translation>Sailhub</translation>
     </message>
     <message>
         <source>SailHub is a native Sailfish OS GitHub Client using the GraphQL Api 4 from github.com.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sailhub 是一个原生旗鱼系统 GitHub 客户端，它采用了来自 github.com 的 GraphQL Api 4 。</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation type="unfinished"></translation>
+        <translation>翻译</translation>
     </message>
     <message>
         <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
-        <translation type="unfinished"></translation>
+        <translation>尚未支持你的语言？欢迎在我的 Weblate 服务器项目提供翻译。</translation>
     </message>
     <message>
         <source>Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>源</translation>
     </message>
     <message>
         <source>Donations</source>
-        <translation type="unfinished"></translation>
+        <translation>捐赠</translation>
     </message>
     <message>
         <source>If you like my work why not buy me a beer?</source>
-        <translation type="unfinished"></translation>
+        <translation>如果你喜欢我的作品，为何不考虑给我买杯啤酒？</translation>
     </message>
     <message>
         <source>Donate with PayPal</source>
-        <translation type="unfinished"></translation>
+        <translation>通过 PayPal 捐赠</translation>
     </message>
     <message>
         <source>Donate with Liberpay</source>
-        <translation type="unfinished"></translation>
+        <translation>通过 Liberpay 捐赠</translation>
     </message>
 </context>
 <context>
     <name>EditIssueDialog</name>
     <message>
         <source>Edit Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑问题（Issue）</translation>
     </message>
     <message>
         <source>Create Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>创建问题（Issue）</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存</translation>
     </message>
     <message>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation>创建</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>标题</translation>
     </message>
     <message>
         <source>Enter title</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑标题</translation>
     </message>
 </context>
 <context>
     <name>ImageViewerPage</name>
     <message>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>高度</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>宽度</translation>
     </message>
 </context>
 <context>
     <name>IssuePage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>问题（Issue）</translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation type="unfinished"></translation>
+        <translation>已关闭</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>打开</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>评论</translation>
     </message>
 </context>
 <context>
     <name>IssuesListPage</name>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>问题（Issues）</translation>
     </message>
     <message>
         <source>Show closed issues</source>
-        <translation type="unfinished"></translation>
+        <translation>显示已关闭的问题（Issues）</translation>
     </message>
     <message>
         <source>Show open issues</source>
-        <translation type="unfinished"></translation>
+        <translation>显示开启的问题（issues）</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>No issues available</source>
-        <translation type="unfinished"></translation>
+        <translation>没有可显示的问题（issues）</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
 </context>
@@ -138,43 +138,43 @@
     <name>OrganizationPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>组织</translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>库（Repositories）</translation>
     </message>
     <message>
         <source>Projects</source>
-        <translation type="unfinished"></translation>
+        <translation>项目（Projects）</translation>
     </message>
     <message>
         <source>Teams</source>
-        <translation type="unfinished"></translation>
+        <translation>团队</translation>
     </message>
     <message>
         <source>Members</source>
-        <translation type="unfinished"></translation>
+        <translation>成员</translation>
     </message>
 </context>
 <context>
     <name>OrganizationsListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>No organizations available</source>
-        <translation type="unfinished"></translation>
+        <translation>没有可用组织</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
 </context>
