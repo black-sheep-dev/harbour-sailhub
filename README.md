@@ -39,7 +39,8 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 Available translations:
 
 - English
-- German  
+- German
+- Polish (by [atlochowski](https://github.com/atlochowski))
   
 If you missing your native language you are welcome to support this project with your translation.
 

@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.2
+VERSION = 0.0.3
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -110,7 +110,9 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/harbour-sailhub-de.ts
+TRANSLATIONS += \
+    translations/harbour-sailhub-de.ts \
+    translations/harbour-sailhub-pl.ts
 
 RESOURCES += \
     ressources.qrc
