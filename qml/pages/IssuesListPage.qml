@@ -45,8 +45,8 @@ Page {
                         page.states = Issue.StateOpen
 
                     issuesModel.state = page.states
-                    issuesModel.reset()
-                    SailHub.api().getIssues(issuesModel)
+
+                    refresh()
                 }
 
             }
@@ -65,8 +65,7 @@ Page {
             MenuItem {
                 text: qsTr("Refresh")
                 onClicked: {
-                    issuesModel.reset()
-                    SailHub.api().getIssues(issuesModel)
+                    refresh()
                 }
             }
         }
@@ -91,6 +90,8 @@ Page {
             identifier: page.identifier
             modelType: page.type
             state: page.states
+            sortRole: IssuesModel.UpdatedAtRole
+            sortOrder: Qt.AscendingOrder
         }
 
         opacity: busyIndicator.running ? 0.3 : 1.0
@@ -118,14 +119,16 @@ Page {
         }
     }
 
-    Connections {
-        target: SailHub.api()
-        onIssueCreated: {
-            issuesModel.reset()
-            SailHub.api().getIssues(issuesModel)
-        }
+    function refresh() {
+        issuesModel.reset()
+        SailHub.api().getPaginationModel(Api.GetIssues, issuesModel)
     }
 
-    Component.onCompleted: SailHub.api().getIssues(issuesModel)
+    Connections {
+        target: SailHub.api()
+        onIssueCreated: refresh()
+    }
+
+    Component.onCompleted: refresh()
 }
 

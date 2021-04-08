@@ -74,6 +74,7 @@ IssueListItem DataUtils::issueListItemFromJson(const QJsonObject &obj)
     item.closed = obj.value(ApiKey::CLOSED).toBool();
     item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
     item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
     item.number = obj.value(ApiKey::NUMBER).toInt();
     item.repository = obj.value(ApiKey::REPOSITORY).toObject()
                          .value(ApiKey::NAME_WITH_OWNER).toString();
@@ -85,7 +86,8 @@ IssueListItem DataUtils::issueListItemFromJson(const QJsonObject &obj)
         item.state = Issue::StateClosed;
 
     item.title = obj.value(ApiKey::TITLE).toString();
-    item.timeSpan = timeSpanText(item.createdAt, true);
+    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    item.updatedAtTimeSpan = timeSpanText(item.updatedAt, true);
 
     return item;
 }

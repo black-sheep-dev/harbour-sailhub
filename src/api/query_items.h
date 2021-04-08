@@ -32,7 +32,8 @@ static const QString SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM =
                        "        nameWithOwner"
                        "    }"
                        "    state"
-                       "    title").simplified();
+                       "    title"
+                       "    updatedAt").simplified();
 
 static const QString SAILHUB_QUERY_ITEM_ORGANIZATION =
         QStringLiteral("    id"

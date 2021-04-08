@@ -6,21 +6,6 @@
 #include "query_items.h"
 
 // ------------------------------------------------------------------------------------------------------------------
-// VARS
-// ------------------------------------------------------------------------------------------------------------------
-static const QString SAILHUB_QUERY_VAR_BRANCH                   = QStringLiteral("branch");
-static const QString SAILHUB_QUERY_VAR_ITEM_COUNT               = QStringLiteral("itemCount");
-static const QString SAILHUB_QUERY_VAR_ITEM_CURSOR              = QStringLiteral("itemCursor");
-static const QString SAILHUB_QUERY_VAR_NODE_ID                  = QStringLiteral("nodeId");
-static const QString SAILHUB_QUERY_VAR_PATH                     = QStringLiteral("path");
-static const QString SAILHUB_QUERY_VAR_QUERY_STRING             = QStringLiteral("queryString");
-static const QString SAILHUB_QUERY_VAR_REPO_NAME                = QStringLiteral("repoName");
-static const QString SAILHUB_QUERY_VAR_USER_LOGIN               = QStringLiteral("userLogin");
-static const QString SAILHUB_QUERY_VAR_STATES                   = QStringLiteral("states");
-
-
-
-// ------------------------------------------------------------------------------------------------------------------
 // QUERIES
 // ------------------------------------------------------------------------------------------------------------------
 
@@ -209,7 +194,14 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY =
 
 // GET REPOSITORY ISSUES
 static const QString SAILHUB_QUERY_GET_REPOSITORY_ISSUES =
-        QStringLiteral("query($nodeId: ID!, $states: [IssueState!]!, $itemCount: Int = 20, $itemCursor: String = null) {"
+        QStringLiteral("query("
+                       "        $nodeId: ID!, "
+                       "        $states: [IssueState!]!, "
+                       "        $orderField: IssueOrderField = UPDATED_AT, "
+                       "        $orderDirection: OrderDirection = ASC, "
+                       "        $itemCount: Int = 20, "
+                       "        $itemCursor: String = null) "
+                       "    {"
                        "    rateLimit {"
                        "        remaining"
                        "        resetAt"
@@ -217,7 +209,14 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_ISSUES =
                        "    node(id: $nodeId) {"
                        "        ... on Repository {"
                        "            id"
-                       "            issues(first: $itemCount, after: $itemCursor, states: $states) {"
+                       "            issues("
+                       "                first: $itemCount, "
+                       "                after: $itemCursor, "
+                       "                states: $states, "
+                       "                orderBy: { "
+                       "                    direction: $orderDirection, "
+                       "                    field: $orderField} ) "
+                       "                {"
                        "                nodes {"
                        "                    %1"
                        "                }"

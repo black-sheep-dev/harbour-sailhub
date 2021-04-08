@@ -77,9 +77,9 @@ public:
     Q_INVOKABLE void getComments(CommentsModel *model);
     Q_INVOKABLE void getFileContent(const QString &nodeId, const QString &branch);
     Q_INVOKABLE void getIssue(const QString &nodeId);
-    Q_INVOKABLE void getIssues(IssuesModel *model);
     Q_INVOKABLE void getOrganization(const QString &nodeId);
     Q_INVOKABLE void getOrganizations(OrganizationsModel *model);
+    Q_INVOKABLE void getPaginationModel(quint8 requestType, PaginationModel *model);
     Q_INVOKABLE void getProfile();
     Q_INVOKABLE void getPullRequest(const QString &nodeId);
     Q_INVOKABLE void getPullRequests(PullRequestsModel *model);

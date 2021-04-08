@@ -11,15 +11,18 @@ class IssuesModel : public PaginationModel
 
 public:
     enum IssueRoles {
-        ClosedRole          = Qt::UserRole + 1,
+        ClosedRole                  = Qt::UserRole + 1,
         CommentCountRole,
         CreatedAtRole,
+        CreatedAtTimeSpanRole,
         NodeIdRole,
         NumberRole,
         RepositoryRole,
-        TimeSpanRole,
         TitleRole,
-        StateRole
+        SortRole,
+        StateRole,
+        UpdatedAtRole,
+        UpdatedAtTimeSpanRole
     };
     Q_ENUM(IssueRoles)
 
@@ -41,6 +44,11 @@ public:
     // PaginationModel interface
 public:
     void clear() override;
+
+    // PaginationModel interface
+public:
+    GraphQLQuery query() const override;
+    QString sortField() const override;
 };
 
 #endif // ISSUESMODEL_H

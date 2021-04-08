@@ -12,12 +12,14 @@ struct IssueListItem {
     bool closed{false};
     quint32 commentCount{0};
     QDateTime createdAt;
+    QString createdAtTimeSpan;
     QString nodeId;
     quint32 number{0};
     QString repository;
-    QString timeSpan;
     QString title;
     quint8 state{0};
+    QDateTime updatedAt;
+    QString updatedAtTimeSpan;
 };
 
 class Issue : public Node

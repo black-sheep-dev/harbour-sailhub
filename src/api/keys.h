@@ -92,6 +92,7 @@ struct ApiKey {
     static const QString TWITTER_USERNAME;
     static const QString TYPE;
     static const QString UNFOLLOW_USER;
+    static const QString UPDATED_AT;
     static const QString UPDATE_SUBSCRIPTION;
     static const QString URL;
     static const QString USER;

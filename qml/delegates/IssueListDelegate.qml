@@ -52,7 +52,7 @@ ListItem {
                         id: timeSpanLabel
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: model.timeSpan
+                        text: model.sortRole === IssuesModel.UpdatedAtRole ? model.updatedAtTimeSpan : model.createdAtTimeSpan
                     }
                 }
 

@@ -88,6 +88,7 @@ const QString ApiKey::TOTAL_COUNT                   = QStringLiteral("totalCount
 const QString ApiKey::TWITTER_USERNAME              = QStringLiteral("twitterUsername");
 const QString ApiKey::TYPE                          = QStringLiteral("type");
 const QString ApiKey::UNFOLLOW_USER                 = QStringLiteral("unfolloweUser");
+const QString ApiKey::UPDATED_AT                    = QStringLiteral("updatedAt");
 const QString ApiKey::UPDATE_SUBSCRIPTION           = QStringLiteral("updateSubscription");
 const QString ApiKey::URL                           = QStringLiteral("url");
 const QString ApiKey::USER                          = QStringLiteral("user");
