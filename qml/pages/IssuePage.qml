@@ -28,12 +28,12 @@ Page {
         }
 
         anchors.fill: parent
-        contentHeight: contentColumn.height
+        contentHeight: headerColumn.height
 
         Column {
-            id: contentColumn
+            id: headerColumn
             width: parent.width
-            spacing: Theme.paddingSmall
+            spacing: Theme.paddingMedium
 
             opacity: busyIndicator.running ? 0.1 : 1.0
             Behavior on opacity { FadeAnimator {} }
@@ -45,11 +45,13 @@ Page {
             Row {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
+                height: Theme.itemSizeSmall
                 spacing: Theme.paddingMedium
 
                 CircleImage {
                     id: avatarIcon
-                    width: Theme.itemSizeSmall
+                    width: parent.height / 2
+                    height: width
                     source: issue.author.avatarUrl
                     anchors.verticalCenter: parent.verticalCenter
 
@@ -63,25 +65,22 @@ Page {
                 }
 
                 Label {
-                    font.pixelSize: Theme.fontSizeLarge
+                    font.pixelSize: Theme.fontSizeSmall
                     color: Theme.highlightColor
                     anchors.verticalCenter: avatarIcon.verticalCenter
 
-                    text: issue.author.login
+                    text: issue.repository + " #" + issue.number
                 }
-            }
-
-            Item {
-                height: Theme.paddingSmall
-                width: 1
             }
 
             Label {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
                 wrapMode: Text.Wrap
+                font.pixelSize: Theme.paddingLarge
+                color: Theme.highlightColor
 
-                text: issue.title
+                text: issue.title   
             }
 
             Row {
@@ -98,7 +97,7 @@ Page {
                     width: parent.width - closedIcon.width - parent.spacing
                     anchors.verticalCenter: closedIcon.verticalCenter
                     font.pixelSize: Theme.fontSizeSmall
-                    color: pressed ? Theme.highlightColor : Theme.primaryColor
+                    color: Theme.highlightColor
 
                     text: (issue.states & Issue.StateClosed) ? qsTr("Closed") : qsTr("Open")
                 }
@@ -110,14 +109,16 @@ Page {
             }
 
             RelatedValueItem {
-                width: parent.width
-
-                icon: "image://theme/icon-s-chat"
                 label: qsTr("Comments")
                 value: issue.commentCount
+
+                onClicked: pageStack.push(Qt.resolvedUrl("CommentsListPage.qml"), {
+                                              description: issue.repository + " #" + issue.number,
+                                              identifier: issue.nodeId,
+                                              type: Comment.Issue
+                                          })
             }
         }
-    }
 
     Connections {
         target: SailHub.api()
@@ -128,7 +129,6 @@ Page {
             page.busy = false;
         }
     }
-
 
     Component.onCompleted: SailHub.api().getIssue(page.nodeId)
 }

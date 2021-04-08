@@ -13,7 +13,7 @@ Comment *DataUtils::commentFromJson(const QJsonObject &obj)
 {
     Comment *comment = new Comment;
 
-    Owner *author = ownerFromJson(obj.value(ApiKey::AUTHOR).toObject());
+    auto author = ownerFromJson(obj.value(ApiKey::AUTHOR).toObject());
     if (author != nullptr) {
         author->setParent(comment);
         comment->setAuthor(author);
@@ -21,12 +21,14 @@ Comment *DataUtils::commentFromJson(const QJsonObject &obj)
 
     comment->setBody(obj.value(ApiKey::BODY_HTML).toString());
     comment->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    comment->setCreatedAtTimeSpan(timeSpanText(comment->createdAt(), true));
     comment->setLastEditAt(QDateTime::fromString(obj.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
     comment->setViewerCanDelete(obj.value(ApiKey::VIEWER_CAN_DELETE).toBool());
     comment->setViewerCanReact(obj.value(ApiKey::VIEWER_CAN_REACT).toBool());
     comment->setViewerCanUpdate(obj.value(ApiKey::VIEWER_CAN_UPDATE).toBool());
     comment->setViewerDidAuthor(obj.value(ApiKey::VIEWER_DID_AUTHOR).toBool());
 
+    comment->setEdited(comment->createdAt() < comment->lastEditAt());
 
     return comment;
 }
@@ -54,6 +56,9 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj)
 
     issue->setNodeId(obj.value(ApiKey::ID).toString());
     issue->setTitle(obj.value(ApiKey::TITLE).toString());
+    issue->setNumber(obj.value(ApiKey::NUMBER).toInt());
+    issue->setRepository(obj.value(ApiKey::REPOSITORY).toObject()
+                         .value(ApiKey::NAME_WITH_OWNER).toString());
     issue->setStates(obj.value(ApiKey::STATE).toInt());
     issue->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
 
