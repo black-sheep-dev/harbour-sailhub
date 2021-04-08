@@ -57,6 +57,7 @@ const QString ApiKey::PATH                          = QStringLiteral("path");
 const QString ApiKey::PRIMARY_LANGUAGE              = QStringLiteral("primaryLanguage");
 const QString ApiKey::PROJECTS                      = QStringLiteral("projects");
 const QString ApiKey::PULL_REQUESTS                 = QStringLiteral("pullRequests");
+const QString ApiKey::PUSHED_AT                     = QStringLiteral("pushedAt");
 const QString ApiKey::RATE_LIMIT                    = QStringLiteral("rateLimit");
 const QString ApiKey::REF                           = QStringLiteral("ref");
 const QString ApiKey::REFS                          = QStringLiteral("refs");

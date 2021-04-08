@@ -61,6 +61,7 @@ struct ApiKey {
     static const QString PRIMARY_LANGUAGE;
     static const QString PROJECTS;
     static const QString PULL_REQUESTS;
+    static const QString PUSHED_AT;
     static const QString RATE_LIMIT;
     static const QString REF;
     static const QString REFS;

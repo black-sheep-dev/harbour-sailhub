@@ -317,17 +317,20 @@ RepoListItem DataUtils::repoListItemFromJson(const QJsonObject &obj)
 {
     RepoListItem item;
 
+    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
     item.description = obj.value(ApiKey::SHORT_DESCRIPTION_HTML).toString();
     item.isPrivate = obj.value(ApiKey::IS_PRIVATE).toBool();
     item.name = obj.value(ApiKey::NAME).toString();
     item.nodeId = obj.value(ApiKey::ID).toString();
     item.owner = obj.value(ApiKey::OWNER).toObject()
                  .value(ApiKey::LOGIN).toString();
+    item.pushedAt = QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
     item.stargazerCount = quint32(obj.value(ApiKey::STARGAZER_COUNT).toInt());
 
     const QJsonObject lang = obj.value(ApiKey::PRIMARY_LANGUAGE).toObject();
     item.language.name = lang.value(ApiKey::NAME).toString();
     item.language.color = lang.value(ApiKey::COLOR).toString();
+    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
 
     return item;
 }

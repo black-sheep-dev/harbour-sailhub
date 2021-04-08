@@ -415,6 +415,30 @@
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
     </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">Sortierung</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">Erstellt am</translation>
+    </message>
+    <message>
+        <source>Pushed at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished">Aktualisiert am</translation>
+    </message>
+    <message>
+        <source>Stargazers</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SailHub</name>

@@ -3,6 +3,7 @@
 
 #include "node.h"
 
+#include <QDateTime>
 #include <QJsonObject>
 
 #include "language.h"
@@ -12,13 +13,16 @@
 #include "src/entities/owner.h"
 
 struct RepoListItem {
+    QDateTime createdAt;
     QString description;
     Language language;
     bool isPrivate{false};
     QString name;
     QString nodeId;
     QString owner;
+    QDateTime pushedAt;
     quint32 stargazerCount{0};
+    QDateTime updatedAt;
 };
 
 class Repo : public Node

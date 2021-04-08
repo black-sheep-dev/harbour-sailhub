@@ -89,17 +89,20 @@ static const QString SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM =
 
 static const QString SAILHUB_QUERY_ITEM_REPO_LIST_ITEM =
         QStringLiteral("    id"
+                       "    createdAt"
                        "    isPrivate"
                        "    shortDescriptionHTML"
                        "    primaryLanguage {"
                        "        color"
                        "        name"
                        "    }"
+                       "    pushedAt"
                        "    name"
                        "    owner {"
                        "        login"
                        "    }"
-                       "    stargazerCount").simplified();
+                       "    stargazerCount"
+                       "    updatedAt").simplified();
 
 static const QString SAILHUB_QUERY_ITEM_USER =
         QStringLiteral("    id"

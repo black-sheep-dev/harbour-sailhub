@@ -194,52 +194,6 @@ void ApiInterface::getRepo(const QString &nodeId)
     m_connector->sendQuery(query, RequestType::GetRepo);
 }
 
-void ApiInterface::getRepos(ReposModel *model)
-{
-    if (model == nullptr)
-        return;
-
-    GraphQLQuery query;
-    const quint8 repoType = model->modelType();
-
-    switch (repoType) {
-    case Repo::User:
-        query.query = SAILHUB_QUERY_GET_USER_REPOSITORIES;
-        break;
-
-    case Repo::Organization:
-        query.query = SAILHUB_QUERY_GET_ORGANIZATION_REPOSITORIES;
-        break;
-
-    case Repo::Fork:
-        query.query = SAILHUB_QUERY_GET_REPOSITORY_FORKS;
-        break;
-
-    case Repo::Starred:
-        query.query = SAILHUB_QUERY_GET_USER_REPOSITORIES_STARRED;
-        break;
-
-    default:
-        return;
-    }
-
-    query.variables.insert(QueryVar::NODE_ID, model->identifier());
-    query.variables.insert(QueryVar::ITEM_COUNT, m_paginationCount);
-
-    // if next insert item cursor
-    if (!model->lastItemCursor().isEmpty()) {
-        query.variables.insert(QueryVar::ITEM_CURSOR, model->lastItemCursor());
-    }
-
-    model->setLoading(true);
-
-    // save and send
-
-    const QByteArray uuid = model->uuid();
-    m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::GetRepos, uuid);
-}
-
 void ApiInterface::getRepoTree(const QString &nodeId, const QString &branch, const QString &path, TreeModel *model)
 {
     if (model == nullptr)
@@ -367,7 +321,7 @@ void ApiInterface::searchRepo(const QString &pattern, ReposModel *model)
 
     const QByteArray uuid = model->uuid();
     m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::SearchRepo, uuid);
+    m_connector->sendQuery(query, RequestType::GetPaginationModel, uuid);
 }
 
 void ApiInterface::searchUser(const QString &pattern, UsersModel *model)
@@ -543,11 +497,6 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         emit repoAvailable(DataUtils::repoFromJson(data.value(ApiKey::NODE).toObject()));
         break;
 
-    case RequestType::GetRepos:
-    case RequestType::SearchRepo:
-        parseRepos(data, requestId);
-        break;
-
     case RequestType::GetRepoTree:
         parseRepoTree(data, requestId);
         break;
@@ -699,54 +648,6 @@ void ApiInterface::parsePaginationModel(const QJsonObject &obj, const QByteArray
 
     // parse data
     model->parseQueryResult(obj);
-
-    // cleanup
-    m_paginationModelRequests.remove(requestId);
-}
-
-void ApiInterface::parseRepos(const QJsonObject &obj, const QByteArray &requestId)
-{
-    auto model = qobject_cast<ReposModel *>(m_paginationModelRequests.value(requestId, nullptr));
-
-    if (model == nullptr)
-        return;
-
-    // get identifier and repos
-    QJsonValue count;
-    QJsonObject repos;
-
-    switch (model->modelType()) {
-    case Repo::User:
-    case Repo::Organization:
-        repos = obj.value(ApiKey::NODE).toObject()
-                   .value(ApiKey::REPOSITORIES).toObject();
-        count = repos.value(ApiKey::TOTAL_COUNT);
-        break;
-
-    case Repo::Fork:
-        repos = obj.value(ApiKey::NODE).toObject()
-                   .value(ApiKey::FORKS).toObject();
-        count = repos.value(ApiKey::TOTAL_COUNT);
-        break;
-
-    case Repo::Search:
-        repos = obj.value(ApiKey::SEARCH).toObject();
-        count = repos.value(ApiKey::REPOSITORY_COUNT);
-        break;
-
-    case Repo::Starred:
-        repos = obj.value(ApiKey::NODE).toObject()
-                   .value(ApiKey::STARRED_REPOSITORIES).toObject();
-        count = repos.value(ApiKey::REPOSITORY_COUNT);
-        break;
-
-    default:
-        return;
-    }
-
-    model->setPageInfo(DataUtils::pageInfoFromJson(repos, count));
-    model->addRepos(DataUtils::reposFromJson(repos));
-    model->setLoading(false);
 
     // cleanup
     m_paginationModelRequests.remove(requestId);

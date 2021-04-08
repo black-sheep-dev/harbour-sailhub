@@ -52,10 +52,8 @@ public:
         GetUser,
         GetUsers,
         GetRepo,
-        GetRepos,
         GetRepoTree,
         SearchOrganization,
-        SearchRepo,
         SearchUser,
         StarRepo,
         UnfollowUser,
@@ -82,7 +80,6 @@ public:
     Q_INVOKABLE void getProfile();
     Q_INVOKABLE void getPullRequest(const QString &nodeId);
     Q_INVOKABLE void getRepo(const QString &nodeId);
-    Q_INVOKABLE void getRepos(ReposModel *model);
     Q_INVOKABLE void getRepoTree(const QString &nodeId,const QString &branch, const QString &path,  TreeModel *model);
     Q_INVOKABLE void getUser(const QString &nodeId);
     Q_INVOKABLE void getUsers(UsersModel *model);
@@ -132,7 +129,6 @@ private:
     void parseFileContent(const QJsonObject &obj);
     void parseOrganizations(const QJsonObject &obj, const QByteArray &requestId);
     void parsePaginationModel(const QJsonObject &obj, const QByteArray &requestId);
-    void parseRepos(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepoSubscription(const QJsonObject &obj);
     void parseRepoTree(const QJsonObject &obj, const QByteArray &requestId);
     void parseUsers(const QJsonObject &obj, const QByteArray &requestId);
