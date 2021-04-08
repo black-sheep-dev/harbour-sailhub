@@ -192,41 +192,6 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY =
                        "    }"
                        "}").simplified();
 
-// GET REPOSITORY ISSUES
-static const QString SAILHUB_QUERY_GET_REPOSITORY_ISSUES =
-        QStringLiteral("query("
-                       "        $nodeId: ID!, "
-                       "        $states: [IssueState!]!, "
-                       "        $orderField: IssueOrderField = UPDATED_AT, "
-                       "        $orderDirection: OrderDirection = ASC, "
-                       "        $itemCount: Int = 20, "
-                       "        $itemCursor: String = null) "
-                       "    {"
-                       "    rateLimit {"
-                       "        remaining"
-                       "        resetAt"
-                       "    }"
-                       "    node(id: $nodeId) {"
-                       "        ... on Repository {"
-                       "            id"
-                       "            issues("
-                       "                first: $itemCount, "
-                       "                after: $itemCursor, "
-                       "                states: $states, "
-                       "                orderBy: { "
-                       "                    direction: $orderDirection, "
-                       "                    field: $orderField} ) "
-                       "                {"
-                       "                nodes {"
-                       "                    %1"
-                       "                }"
-                       "                totalCount"
-                       "                %2"
-                       "            }"
-                       "        }"
-                       "    }"
-                       "}").arg(SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
-
 // GET REPOSITORY FORKS
 static const QString SAILHUB_QUERY_GET_REPOSITORY_FORKS =
         QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
@@ -290,7 +255,7 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_FILE_CONTENT =
                        "    }"
                        "}").simplified();
 
-// GET REPOSITORY PULL REQUESTS
+// GET REPOSITORY FILES
 static const QString SAILHUB_QUERY_GET_REPOSITORY_FILES =
         QStringLiteral("query($nodeId: ID!, $branch: String!, $path: String!) {"
                        "    rateLimit {"
@@ -326,27 +291,6 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_FILES =
                        "        }"
                        "    }"
                        "}").simplified();
-
-// GET REPOSITORY PULL REQUESTS
-static const QString SAILHUB_QUERY_GET_REPOSITORY_PULL_REQUESTS =
-        QStringLiteral("query($nodeId: ID!, $states: [PullRequestState!]!, $itemCount: Int = 20, $itemCursor: String = null) {"
-                       "    rateLimit {"
-                       "        remaining"
-                       "        resetAt"
-                       "    }"
-                       "    node(id: $nodeId) {"
-                       "        ... on Repository {"
-                       "            id"
-                       "            pullRequests(first: $itemCount, after: $itemCursor, states: $states, orderBy: { direction: DESC, field: CREATED_AT } ) {"
-                       "                nodes {"
-                       "                    %1"
-                       "                }"
-                       "                totalCount"
-                       "                %2"
-                       "            }"
-                       "        }"
-                       "    }"
-                       "}").arg(SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
 // GET REPOSITORY STARGAZERS
 static const QString SAILHUB_QUERY_GET_REPOSITORY_STARGAZERS =
@@ -448,27 +392,6 @@ static const QString SAILHUB_QUERY_GET_USER_FOLLOWING =
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
-// GET USER ISSUES
-static const QString SAILHUB_QUERY_GET_USER_ISSUES =
-        QStringLiteral("query($nodeId: ID!, $states: [IssueState!]!, $itemCount: Int = 20, $itemCursor: String = null) {"
-                       "    rateLimit {"
-                       "        remaining"
-                       "        resetAt"
-                       "    }"
-                       "    node(id: $nodeId,) {"
-                       "        ... on User {"
-                       "            id"
-                       "            login"
-                       "            issues(first: $itemCount, after: $itemCursor, states: $states) {"
-                       "                nodes {"
-                       "                    %1"
-                       "                }"
-                       "                totalCount"
-                       "                %2"
-                       "            }"
-                       "        }"
-                       "    }"
-                       "}").arg(SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
 // GET USER ORGANIZATIONS
 static const QString SAILHUB_QUERY_GET_USER_ORGANIZATIONS =
@@ -491,27 +414,6 @@ static const QString SAILHUB_QUERY_GET_USER_ORGANIZATIONS =
                        "        }"
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_ORGANIZATION_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
-
-// GET USER PULL REQUESTS
-static const QString SAILHUB_QUERY_GET_USER_PULL_REQUESTS =
-        QStringLiteral("query($nodeId: ID!, $states: [PullRequestState!]!, $itemCount: Int = 20, $itemCursor: String = null) {"
-                       "    rateLimit {"
-                       "        remaining"
-                       "        resetAt"
-                       "    }"
-                       "    node(id: $nodeId) {"
-                       "        ... on User {"
-                       "            id"
-                       "            pullRequests(first: $itemCount, after: $itemCursor, states: $states ,orderBy: { direction: DESC, field: CREATED_AT } ) {"
-                       "                nodes {"
-                       "                    %1"
-                       "                }"
-                       "                totalCount"
-                       "                %2"
-                       "            }"
-                       "        }"
-                       "    }"
-                       "}").arg(SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
 // GET USER REPOSITORIES
 static const QString SAILHUB_QUERY_GET_USER_REPOSITORIES =

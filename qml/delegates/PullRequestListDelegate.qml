@@ -70,7 +70,7 @@ ListItem {
                         id: timeSpanLabel
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: model.timeSpan
+                        text: model.sortRole === PullRequestsModel.UpdatedAtRole ? model.updatedAtTimeSpan : model.createdAtTimeSpan
                     }
                 }
 

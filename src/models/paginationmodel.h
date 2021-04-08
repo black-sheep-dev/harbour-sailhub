@@ -92,6 +92,7 @@ private:
     // virtual
 public:
     virtual void clear() = 0;
+    virtual void parseQueryResult(const QJsonObject &data);
     virtual GraphQLQuery query() const;
     virtual QString sortField() const;
 };

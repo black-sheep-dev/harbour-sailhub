@@ -84,7 +84,8 @@ static const QString SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM =
                        "        nameWithOwner"
                        "    }"
                        "    state"
-                       "    title").simplified();
+                       "    title"
+                       "    updatedAt").simplified();
 
 static const QString SAILHUB_QUERY_ITEM_REPO_LIST_ITEM =
         QStringLiteral("    id"

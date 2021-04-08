@@ -70,6 +70,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/dialogs/EditIssueDialog.qml \
     qml/dialogs/SelectBranchDialog.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
+    qml/dialogs/SortSelectionDialog.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
     qml/pages/IssuesListPage.qml \

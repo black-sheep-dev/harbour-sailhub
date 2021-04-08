@@ -43,13 +43,12 @@ public:
         GetComments,
         GetFileContent,
         GetIssue,
-        GetIssues,
         GetLogin,
         GetOrganization,
         GetOrganizations,
+        GetPaginationModel,
         GetProfile,
         GetPullRequest,
-        GetPullRequests,
         GetUser,
         GetUsers,
         GetRepo,
@@ -79,10 +78,9 @@ public:
     Q_INVOKABLE void getIssue(const QString &nodeId);
     Q_INVOKABLE void getOrganization(const QString &nodeId);
     Q_INVOKABLE void getOrganizations(OrganizationsModel *model);
-    Q_INVOKABLE void getPaginationModel(quint8 requestType, PaginationModel *model);
+    Q_INVOKABLE void getPaginationModel(PaginationModel *model);
     Q_INVOKABLE void getProfile();
     Q_INVOKABLE void getPullRequest(const QString &nodeId);
-    Q_INVOKABLE void getPullRequests(PullRequestsModel *model);
     Q_INVOKABLE void getRepo(const QString &nodeId);
     Q_INVOKABLE void getRepos(ReposModel *model);
     Q_INVOKABLE void getRepoTree(const QString &nodeId,const QString &branch, const QString &path,  TreeModel *model);
@@ -132,9 +130,8 @@ private:
     void initialize();
     void parseComments(const QJsonObject &obj, const QByteArray &requestId);
     void parseFileContent(const QJsonObject &obj);
-    void parseIssues(const QJsonObject &obj, const QByteArray &requestId);
     void parseOrganizations(const QJsonObject &obj, const QByteArray &requestId);
-    void parsePullRequests(const QJsonObject &obj, const QByteArray &requestId);
+    void parsePaginationModel(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepos(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepoSubscription(const QJsonObject &obj);
     void parseRepoTree(const QJsonObject &obj, const QByteArray &requestId);

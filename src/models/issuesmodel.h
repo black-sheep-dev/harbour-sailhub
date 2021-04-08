@@ -44,9 +44,7 @@ public:
     // PaginationModel interface
 public:
     void clear() override;
-
-    // PaginationModel interface
-public:
+    void parseQueryResult(const QJsonObject &data) override;
     GraphQLQuery query() const override;
     QString sortField() const override;
 };

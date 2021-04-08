@@ -3,6 +3,7 @@
 #include <QJsonObject>
 #include <QUuid>
 
+#include "src/api/datautils.h"
 #include "src/api/queryvars.h"
 
 PaginationModel::PaginationModel(QObject *parent) :
@@ -206,6 +207,11 @@ void PaginationModel::setUuid(const QByteArray &uuid)
 
     m_uuid = uuid;
     emit uuidChanged(m_uuid);
+}
+
+void PaginationModel::parseQueryResult(const QJsonObject &data)
+{
+    Q_UNUSED(data)
 }
 
 GraphQLQuery PaginationModel::query() const

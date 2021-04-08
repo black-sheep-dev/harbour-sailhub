@@ -118,6 +118,18 @@ Page {
             }
 
             // bio
+//            TextArea {
+//                visible: user.bio.length > 0
+
+//                width: parent.width
+//                wrapMode: Text.Wrap
+
+//                readOnly: true
+//                softwareInputPanelEnabled: false
+
+//                text: user.bio
+//            }
+
             Label {
                 visible: user.bio.length > 0
 

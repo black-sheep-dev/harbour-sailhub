@@ -93,7 +93,7 @@ void ApiInterface::getComments(CommentsModel *model)
 
     const QByteArray uuid = model->uuid();
     m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::GetIssues, uuid);
+    m_connector->sendQuery(query, RequestType::GetComments, uuid);
 }
 
 void ApiInterface::getFileContent(const QString &nodeId, const QString &branch)
@@ -156,7 +156,7 @@ void ApiInterface::getOrganizations(OrganizationsModel *model)
     m_connector->sendQuery(query, RequestType::GetOrganizations, uuid);
 }
 
-void ApiInterface::getPaginationModel(quint8 requestType, PaginationModel *model)
+void ApiInterface::getPaginationModel(PaginationModel *model)
 {
     if (model == nullptr)
         return;
@@ -169,7 +169,7 @@ void ApiInterface::getPaginationModel(quint8 requestType, PaginationModel *model
     // save and send
     const QByteArray uuid = model->uuid();
     m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, requestType, uuid);
+    m_connector->sendQuery(query, RequestType::GetPaginationModel, uuid);
 }
 
 void ApiInterface::getProfile()
@@ -183,61 +183,6 @@ void ApiInterface::getProfile()
 void ApiInterface::getPullRequest(const QString &nodeId)
 {
 
-}
-
-void ApiInterface::getPullRequests(PullRequestsModel *model)
-{
-    if (model == nullptr)
-        return;
-
-    GraphQLQuery query;
-    const quint8 pullRequestType = model->modelType();
-
-    // states
-    const quint8 state = model->modelType();
-
-    if (state == 0)
-        return;
-
-    QJsonArray states;
-    if (state & PullRequest::StateOpen)
-        states.append(QStringLiteral("OPEN"));
-    if (state & PullRequest::StateClosed)
-        states.append(QStringLiteral("CLOSED"));
-    if (state & PullRequest::StateMerged)
-        states.append(QStringLiteral("MERGED"));
-
-    query.variables.insert(QueryVar::STATES, states);
-
-    // query selection
-    switch (pullRequestType) {
-    case PullRequest::Repo:
-        query.query = SAILHUB_QUERY_GET_REPOSITORY_PULL_REQUESTS;
-        break;
-
-    case PullRequest::User:
-        query.query = SAILHUB_QUERY_GET_USER_PULL_REQUESTS;
-        break;
-
-    default:
-        return;
-    }
-
-    query.variables.insert(QueryVar::NODE_ID, model->identifier());
-    query.variables.insert(QueryVar::ITEM_COUNT, m_paginationCount);
-
-    // if next insert item cursor
-    if (!model->lastItemCursor().isEmpty()) {
-        query.variables.insert(QueryVar::ITEM_CURSOR, model->lastItemCursor());
-    }
-
-    model->setLoading(true);
-
-    // save and send
-
-    const QByteArray uuid = model->uuid();
-    m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::GetPullRequests, uuid);
 }
 
 void ApiInterface::getRepo(const QString &nodeId)
@@ -616,16 +561,12 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         parseOrganizations(data, requestId);
         break;
 
-    case RequestType::GetPullRequests:
-        parsePullRequests(data, requestId);
+    case RequestType::GetPaginationModel:
+        parsePaginationModel(data, requestId);
         break;
 
     case RequestType::GetIssue:
         emit issueAvailable(DataUtils::issueFromJson(data.value(ApiKey::NODE).toObject()));
-        break;
-
-    case RequestType::GetIssues:
-        parseIssues(data, requestId);
         break;
 
     case RequestType::CreateIssue:
@@ -714,27 +655,6 @@ void ApiInterface::parseFileContent(const QJsonObject &obj)
     emit fileContentAvailable(data.value(ApiKey::TEXT).toString());
 }
 
-void ApiInterface::parseIssues(const QJsonObject &obj, const QByteArray &requestId)
-{
-    auto model = qobject_cast<IssuesModel *>(m_paginationModelRequests.value(requestId, nullptr));
-
-    if (model == nullptr)
-        return;
-
-    // get identifier and repos
-
-    const QJsonObject issues = obj.value(ApiKey::NODE).toObject()
-                                  .value(ApiKey::ISSUES).toObject();
-    const QJsonValue count = issues.value(ApiKey::TOTAL_COUNT);
-
-    model->setPageInfo(DataUtils::pageInfoFromJson(issues, count));
-    model->addIssues(DataUtils::issuesFromJson(issues));
-    model->setLoading(false);
-
-    // cleanup
-    m_paginationModelRequests.remove(requestId);
-}
-
 void ApiInterface::parseOrganizations(const QJsonObject &obj, const QByteArray &requestId)
 {
     auto model = qobject_cast<OrganizationsModel *>(m_paginationModelRequests.value(requestId, nullptr));
@@ -770,32 +690,15 @@ void ApiInterface::parseOrganizations(const QJsonObject &obj, const QByteArray &
     m_paginationModelRequests.remove(requestId);
 }
 
-void ApiInterface::parsePullRequests(const QJsonObject &obj, const QByteArray &requestId)
+void ApiInterface::parsePaginationModel(const QJsonObject &obj, const QByteArray &requestId)
 {
-    auto model = qobject_cast<PullRequestsModel *>(m_paginationModelRequests.value(requestId, nullptr));
+    auto model = m_paginationModelRequests.value(requestId, nullptr);
 
     if (model == nullptr)
         return;
 
-    // get identifier and pull request
-    QJsonValue count;
-    QJsonObject prs;
-
-    switch (model->modelType()) {
-    case PullRequest::Repo:
-    case PullRequest::User:
-        prs = obj.value(ApiKey::NODE).toObject()
-                   .value(ApiKey::PULL_REQUESTS).toObject();
-        count = prs.value(ApiKey::TOTAL_COUNT);
-        break;
-
-    default:
-        return;
-    }
-
-    model->setPageInfo(DataUtils::pageInfoFromJson(prs, count));
-    model->addPullRequests(DataUtils::pullRequestsFromJson(prs));
-    model->setLoading(false);
+    // parse data
+    model->parseQueryResult(obj);
 
     // cleanup
     m_paginationModelRequests.remove(requestId);

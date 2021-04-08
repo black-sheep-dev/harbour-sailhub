@@ -2,6 +2,8 @@
 
 #include <QJsonArray>
 
+#include "src/api/datautils.h"
+#include "src/api/keys.h"
 #include "src/api/queryvars.h"
 #include "src/api/query_items.h"
 
@@ -11,10 +13,9 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_ISSUES =
                        "        $nodeId: ID!, "
                        "        $states: [IssueState!]!, "
                        "        $orderField: IssueOrderField = UPDATED_AT, "
-                       "        $orderDirection: OrderDirection = ASC, "
+                       "        $orderDirection: OrderDirection = DESC, "
                        "        $itemCount: Int = 20, "
-                       "        $itemCursor: String = null) "
-                       "    {"
+                       "        $itemCursor: String = null) {"
                        "    rateLimit {"
                        "        remaining"
                        "        resetAt"
@@ -23,13 +24,13 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_ISSUES =
                        "        ... on Repository {"
                        "            id"
                        "            issues("
-                       "                first: $itemCount, "
-                       "                after: $itemCursor, "
-                       "                states: $states, "
-                       "                orderBy: { "
-                       "                    direction: $orderDirection, "
-                       "                    field: $orderField} ) "
-                       "                {"
+                       "                    first: $itemCount, "
+                       "                    after: $itemCursor, "
+                       "                    states: $states, "
+                       "                    orderBy: { "
+                       "                        direction: $orderDirection, "
+                       "                        field: $orderField"
+                       "                    } ) {"
                        "                nodes {"
                        "                    %1"
                        "                }"
@@ -42,7 +43,13 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_ISSUES =
 
 // GET USER ISSUES
 static const QString SAILHUB_QUERY_GET_USER_ISSUES =
-        QStringLiteral("query($nodeId: ID!, $states: [IssueState!]!, $itemCount: Int = 20, $itemCursor: String = null) {"
+        QStringLiteral("query("
+                       "        $nodeId: ID!, "
+                       "        $states: [IssueState!]!, "
+                       "        $orderField: IssueOrderField = UPDATED_AT, "
+                       "        $orderDirection: OrderDirection = DESC, "
+                       "        $itemCount: Int = 20, "
+                       "        $itemCursor: String = null) {"
                        "    rateLimit {"
                        "        remaining"
                        "        resetAt"
@@ -51,7 +58,14 @@ static const QString SAILHUB_QUERY_GET_USER_ISSUES =
                        "        ... on User {"
                        "            id"
                        "            login"
-                       "            issues(first: $itemCount, after: $itemCursor, states: $states) {"
+                       "            issues("
+                       "                    first: $itemCount, "
+                       "                    after: $itemCursor, "
+                       "                    states: $states, "
+                       "                    orderBy: { "
+                       "                        direction: $orderDirection, "
+                       "                        field: $orderField"
+                       "                    } ) {"
                        "                nodes {"
                        "                    %1"
                        "                }"
@@ -171,6 +185,17 @@ void IssuesModel::clear()
     beginResetModel();
     m_issues.clear();
     endResetModel();
+}
+
+void IssuesModel::parseQueryResult(const QJsonObject &data)
+{
+    const QJsonObject issues = data.value(ApiKey::NODE).toObject()
+                                  .value(ApiKey::ISSUES).toObject();
+    const QJsonValue count = issues.value(ApiKey::TOTAL_COUNT);
+
+    setPageInfo(DataUtils::pageInfoFromJson(issues, count));
+    addIssues(DataUtils::issuesFromJson(issues));
+    setLoading(false);
 }
 
 GraphQLQuery IssuesModel::query() const

@@ -10,6 +10,8 @@ Page {
     property string identifier
     property int type: PullRequest.Repo
     property int states: PullRequest.StateOpen
+    property int sortRole: PullRequestsModel.UpdatedAtRole
+    property int sortOrder: Qt.DescendingOrder
 
     id: page
     allowedOrientations: Orientation.All
@@ -32,9 +34,26 @@ Page {
             busy: pullRequestsModel.loading
             MenuItem {
                 text: qsTr("Refresh")
+                onClicked: refresh()
+            }
+            MenuItem {
+                text: qsTr("Sorting")
                 onClicked: {
-                    pullRequestsModel.reset()
-                    SailHub.api().getPullRequests(pullRequestsModel)
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
+                                                    order: sortOrder,
+                                                    field: getSortFieldIndex(),
+                                                    fields: [
+                                                        qsTr("Created at"),
+                                                        qsTr("Updated at")
+                                                    ]
+                                                })
+
+                    dialog.accepted.connect(function() {
+                        sortOrder = dialog.order
+                        sortRole = getSortRoleFromIndex(dialog.field)
+
+                        refresh()
+                    })
                 }
             }
         }
@@ -59,6 +78,8 @@ Page {
             identifier: page.identifier
             modelType: page.type
             state: page.state
+            sortRole: PullRequestsModel.UpdatedAtRole
+            sortOrder: Qt.DescendingOrder
         }
 
         opacity: busyIndicator.running ? 0.3 : 1.0
@@ -81,11 +102,46 @@ Page {
 
             MenuItem {
                 text: qsTr("Load more (%n to go)", "", pullRequestsModel.totalCount - listView.count)
-                onClicked: SailHub.api().getPullRequests(pullRequestsModel)
+                onClicked: getPullRequests()
             }
         }
     }
 
-    Component.onCompleted: SailHub.api().getPullRequests(pullRequestsModel)
+    function getPullRequests() {
+        SailHub.api().getPaginationModel(pullRequestsModel)
+    }
+
+    function getSortRoleFromIndex(index) {
+        switch (index) {
+        case 0:
+            return PullRequestsModel.CreatedAtRole
+
+        case 1:
+            return PullRequestsModel.UpdatedAtRole
+
+        default:
+            return PullRequestsModel.UpdatedAtRole
+        }
+    }
+
+    function getSortFieldIndex() {
+        switch (page.sortRole) {
+        case PullRequestsModel.CreatedAtRole:
+            return 0;
+
+        case PullRequestsModel.UpdatedAtRole:
+            return 1;
+
+        default:
+            return 0
+        }
+    }
+
+    function refresh() {
+        pullRequestsModel.reset()
+        getPullRequests()
+    }
+
+    Component.onCompleted: refresh()
 }
 
