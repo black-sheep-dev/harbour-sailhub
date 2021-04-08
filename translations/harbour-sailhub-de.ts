@@ -48,29 +48,29 @@
     <name>CommentListDelegate</name>
     <message>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation>Bearbeitet</translation>
     </message>
 </context>
 <context>
     <name>CommentsListPage</name>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">Kommentare</translation>
+        <translation>Kommentare</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Aktualisieren</translation>
-    </message>
-    <message>
-        <source>No issues available</source>
-        <translation type="unfinished">Keine Issues verfügbar</translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>No comments available</source>
+        <translation>Keine Kommentare vorhanden</translation>
     </message>
 </context>
 <context>
@@ -123,7 +123,7 @@
     </message>
     <message>
         <source>Closed</source>
-        <translation>Geschlossen</translation>
+        <translation>Geshlossen</translation>
     </message>
     <message>
         <source>Open</source>
@@ -131,7 +131,7 @@
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">Kommentare</translation>
+        <translation>Kommentare</translation>
     </message>
 </context>
 <context>

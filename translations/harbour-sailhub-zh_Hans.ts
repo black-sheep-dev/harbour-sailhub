@@ -45,6 +45,34 @@
     </message>
 </context>
 <context>
+    <name>CommentListDelegate</name>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CommentsListPage</name>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">评论</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>No comments available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditIssueDialog</name>
     <message>
         <source>Edit Issue</source>
@@ -86,23 +114,23 @@
     <name>IssuePage</name>
     <message>
         <source>Refresh</source>
-        <translation>刷新</translation>
+        <translation type="unfinished">刷新</translation>
     </message>
     <message>
         <source>Issue</source>
-        <translation>问题（Issue）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation>已关闭</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open</source>
-        <translation>打开</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation>评论</translation>
+        <translation type="unfinished">评论</translation>
     </message>
 </context>
 <context>
@@ -132,6 +160,22 @@
         <translation>
             <numerusform>加载更多（ %n ）</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">评论</translation>
     </message>
 </context>
 <context>
@@ -182,96 +226,108 @@
     <name>OverviewPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>关于</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>简介</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索</translation>
     </message>
     <message>
         <source>App initializing ...</source>
-        <translation type="unfinished"></translation>
+        <translation>软件正在初始化…</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>主页</translation>
     </message>
     <message>
         <source>My Work</source>
-        <translation type="unfinished"></translation>
+        <translation>我的作品</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>问题（Issues）</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>发起请求（Pull Requests）</translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>库（Repositories）</translation>
     </message>
     <message>
         <source>Organizations</source>
-        <translation type="unfinished"></translation>
+        <translation>组织</translation>
     </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
     <message>
         <source>Pull Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>发起请求（Pull Requests）</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>No pull requests available</source>
-        <translation type="unfinished"></translation>
+        <translation>没有可用请求（pull requests）</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message numerus="yes">
         <source>%n minute(s) ago</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 分钟前</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 小时前</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 天前</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 月前</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 年前</numerusform>
         </translation>
     </message>
 </context>
@@ -279,149 +335,173 @@
     <name>RepoPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>Watch</source>
-        <translation type="unfinished"></translation>
+        <translation>查看</translation>
     </message>
     <message>
         <source>Unwatch</source>
-        <translation type="unfinished"></translation>
+        <translation>取消查看</translation>
     </message>
     <message>
         <source>Unstar</source>
-        <translation type="unfinished"></translation>
+        <translation>取消星标（Unstar）</translation>
     </message>
     <message>
         <source>Star</source>
-        <translation type="unfinished"></translation>
+        <translation>星标（Star）</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>隐私</translation>
     </message>
     <message numerus="yes">
         <source>%n Star(s)</source>
         <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 个星标</numerusform>
         </translation>
     </message>
     <message>
         <source>Stargazer</source>
-        <translation type="unfinished"></translation>
+        <translation>天文学家（Stargazer）</translation>
     </message>
     <message numerus="yes">
         <source>%n Fork(s)</source>
         <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 个分支（Forks）</numerusform>
         </translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>问题（Issues）</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>发起请求（Pull Request）</translation>
     </message>
     <message>
         <source>Watchers</source>
-        <translation type="unfinished"></translation>
+        <translation>查看者</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation>贡献者</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>许可证</translation>
     </message>
     <message>
         <source>README</source>
-        <translation type="unfinished"></translation>
+        <translation>README</translation>
     </message>
     <message>
         <source>Browse code</source>
-        <translation type="unfinished"></translation>
+        <translation>浏览代码</translation>
     </message>
 </context>
 <context>
     <name>ReposListPage</name>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>库（Repositories）</translation>
     </message>
     <message>
         <source>Forks</source>
-        <translation type="unfinished"></translation>
+        <translation>分支（Forks）</translation>
     </message>
     <message>
         <source>Starred Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索库（Repositories）</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>No repositories available</source>
-        <translation type="unfinished"></translation>
+        <translation>没有可用库（Repositories）</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pushed at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stargazers</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SailHub</name>
     <message>
         <source>SailHub</source>
-        <translation type="unfinished"></translation>
+        <translation>SailHub</translation>
     </message>
     <message>
         <source>Unauthorized</source>
-        <translation type="unfinished"></translation>
+        <translation>未授权</translation>
     </message>
     <message>
         <source>Did you provide a valid access token?</source>
-        <translation type="unfinished"></translation>
+        <translation>你是否提供了可用的访问凭证？</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>默认</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>错误</translation>
     </message>
     <message>
         <source>An error occured when connecting to GitHub!</source>
-        <translation type="unfinished"></translation>
+        <translation>连接到 Github 错误！</translation>
     </message>
 </context>
 <context>
     <name>SearchOrganizationPage</name>
     <message>
         <source>Search Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索组织</translation>
     </message>
     <message>
         <source>No organization found</source>
-        <translation type="unfinished"></translation>
+        <translation>没有找到组织</translation>
     </message>
     <message>
         <source>Type in search pattern to find organizations</source>
-        <translation type="unfinished"></translation>
+        <translation>输入搜索内容以查找组织</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
 </context>
@@ -429,20 +509,20 @@
     <name>SearchRepositoryPage</name>
     <message>
         <source>Search Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索库（Repositories）</translation>
     </message>
     <message>
         <source>No repositories found</source>
-        <translation type="unfinished"></translation>
+        <translation>没有找到库（Repositories）</translation>
     </message>
     <message>
         <source>Type in search pattern to find repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>输入搜索内容以查找库</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（Repositories）</numerusform>
         </translation>
     </message>
 </context>
@@ -450,39 +530,39 @@
     <name>SearchSelectionPage</name>
     <message>
         <source>Search Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索选择</translation>
     </message>
     <message>
         <source>Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>库（Repositories）</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>用户</translation>
     </message>
     <message>
         <source>Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>组织</translation>
     </message>
 </context>
 <context>
     <name>SearchUserPage</name>
     <message>
         <source>Search User</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索用户</translation>
     </message>
     <message>
         <source>No users found</source>
-        <translation type="unfinished"></translation>
+        <translation>没有找到用户</translation>
     </message>
     <message>
         <source>Type in search pattern to find users</source>
-        <translation type="unfinished"></translation>
+        <translation>输入搜索内容以查找用户</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
 </context>
@@ -490,159 +570,186 @@
     <name>SelectBranchDialog</name>
     <message>
         <source>Choose Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>选择分支（Branch）</translation>
     </message>
     <message>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>选择</translation>
     </message>
     <message>
         <source>default</source>
-        <translation type="unfinished"></translation>
+        <translation>默认</translation>
     </message>
     <message>
         <source>No branches available</source>
-        <translation type="unfinished"></translation>
+        <translation>没有可用分支（braches）</translation>
     </message>
 </context>
 <context>
     <name>SelectSubscriptionDialog</name>
     <message>
         <source>Choose Subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>选择订阅（Subscription）</translation>
     </message>
     <message>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>选择</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished"></translation>
+        <translation>取消订阅</translation>
     </message>
     <message>
         <source>Disable all notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>禁用所有通知</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation type="unfinished"></translation>
+        <translation>订阅</translation>
     </message>
     <message>
         <source>Get notified only when participating or mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>仅当加入或提及时通知我</translation>
     </message>
     <message>
         <source>Subscribe (all)</source>
-        <translation type="unfinished"></translation>
+        <translation>订阅（所有）</translation>
     </message>
     <message>
         <source>Get notified of all conversation</source>
-        <translation type="unfinished"></translation>
+        <translation>获取所有对话通知</translation>
     </message>
 </context>
 <context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <source>Access Token</source>
-        <translation type="unfinished"></translation>
+        <translation>访问凭证</translation>
     </message>
     <message>
         <source>Enter access token</source>
-        <translation type="unfinished"></translation>
+        <translation>输入访问凭证</translation>
     </message>
     <message>
         <source>Pagination</source>
-        <translation type="unfinished"></translation>
+        <translation>页码</translation>
     </message>
     <message>
         <source>Choose the number of items to fetch in a single query. This value should be between 1-100.</source>
-        <translation type="unfinished"></translation>
+        <translation>选择每个搜索获取的项目数量。值需要介于1至100之间。</translation>
     </message>
     <message numerus="yes">
         <source>%n Item(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 个项目</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>SortSelectionDialog</name>
+    <message>
+        <source>Select Sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ascending</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Descending</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>No files available</source>
-        <translation type="unfinished"></translation>
+        <translation>没有可用文件</translation>
     </message>
 </context>
 <context>
     <name>UserPage</name>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>Unfollow</source>
-        <translation type="unfinished"></translation>
+        <translation>取消关注</translation>
     </message>
     <message>
         <source>Follow</source>
-        <translation type="unfinished"></translation>
+        <translation>关注</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>简介</translation>
     </message>
     <message numerus="yes">
         <source>%n follower(s)</source>
         <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 个关注者</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n following(s)</source>
         <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 个关注者</numerusform>
         </translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>库（Repositories）</translation>
     </message>
     <message>
         <source>Organizations</source>
-        <translation type="unfinished"></translation>
+        <translation>组织</translation>
     </message>
     <message>
         <source>Starred</source>
-        <translation type="unfinished"></translation>
+        <translation>已标星（Starred）</translation>
     </message>
 </context>
 <context>
     <name>UsersListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>No users available</source>
-        <translation type="unfinished"></translation>
+        <translation>没有可用用户</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
 </context>
@@ -650,81 +757,81 @@
     <name>WizardFinalPage</name>
     <message>
         <source>Complete</source>
-        <translation type="unfinished"></translation>
+        <translation>完成</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>返回</translation>
     </message>
     <message>
         <source>Setup process completed</source>
-        <translation type="unfinished"></translation>
+        <translation>设置流程已完成</translation>
     </message>
 </context>
 <context>
     <name>WizardIntroPage</name>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>继续</translation>
     </message>
     <message>
         <source>Welcome to SailHub</source>
-        <translation type="unfinished"></translation>
+        <translation>欢迎使用 SailHub</translation>
     </message>
     <message>
         <source>This app is not configured yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>软件尚未配置</translation>
     </message>
     <message>
         <source>The setup wizard will guide you through the configuration process.</source>
-        <translation type="unfinished"></translation>
+        <translation>设置引导程序将会指导你整个配置过程。</translation>
     </message>
     <message>
         <source>If there are errors during the setup process, you can try to reset the data from a previous installation.</source>
-        <translation type="unfinished"></translation>
+        <translation>如果设置过程中出现错误，你可以从先前的安装程序中重置数据。</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>重置</translation>
     </message>
     <message>
         <source>Resetting application</source>
-        <translation type="unfinished"></translation>
+        <translation>正在重置软件</translation>
     </message>
 </context>
 <context>
     <name>WizardTokenPage</name>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>继续</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>返回</translation>
     </message>
     <message>
         <source>Personal Access Token</source>
-        <translation type="unfinished"></translation>
+        <translation>个人访问凭证</translation>
     </message>
     <message>
         <source>You need to provide a personal access token to connect to GitHub.</source>
-        <translation type="unfinished"></translation>
+        <translation>你需要提供个人访问凭证以连接到 GitHub 。</translation>
     </message>
     <message>
         <source>This token can be created in developer settings on GitHub.</source>
-        <translation type="unfinished"></translation>
+        <translation>你可以在 GitHub 的开发者设置中创建访问凭证。</translation>
     </message>
     <message>
         <source>For a detailed description please refer the README in project repository!</source>
-        <translation type="unfinished"></translation>
+        <translation>请参阅项目库的 README 以获取详细描述!</translation>
     </message>
     <message>
         <source>Access Token</source>
-        <translation type="unfinished"></translation>
+        <translation>访问凭证</translation>
     </message>
     <message>
         <source>Enter access token</source>
-        <translation type="unfinished"></translation>
+        <translation>输入访问凭证</translation>
     </message>
 </context>
 </TS>

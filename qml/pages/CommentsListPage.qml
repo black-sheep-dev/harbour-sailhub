@@ -48,7 +48,7 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No issues available")
+            text: qsTr("No comments available")
         }
 
         VerticalScrollDecorator {}

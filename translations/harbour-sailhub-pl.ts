@@ -61,10 +61,6 @@
         <source>Refresh</source>
         <translation type="unfinished">Odśwież</translation>
     </message>
-    <message>
-        <source>No issues available</source>
-        <translation type="unfinished">Brak problemów</translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
@@ -72,6 +68,10 @@
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
+    </message>
+    <message>
+        <source>No comments available</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -116,19 +116,19 @@
     <name>IssuePage</name>
     <message>
         <source>Refresh</source>
-        <translation>Odśwież</translation>
+        <translation type="unfinished">Odśwież</translation>
     </message>
     <message>
         <source>Issue</source>
-        <translation>Problem</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation>Zamknięty</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open</source>
-        <translation>Otwarty</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Comments</source>
