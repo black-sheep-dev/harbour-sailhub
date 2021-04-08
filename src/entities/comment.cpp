@@ -21,6 +21,16 @@ QDateTime Comment::createdAt() const
     return m_createdAt;
 }
 
+QString Comment::createdAtTimeSpan() const
+{
+    return m_createdAtTimeSpan;
+}
+
+bool Comment::edited() const
+{
+    return m_edited;
+}
+
 QDateTime Comment::lastEditAt() const
 {
     return m_lastEditAt;
@@ -71,6 +81,24 @@ void Comment::setCreatedAt(const QDateTime &createdAt)
 
     m_createdAt = createdAt;
     emit createdAtChanged(m_createdAt);
+}
+
+void Comment::setCreatedAtTimeSpan(QString createdAtTimeSpan)
+{
+    if (m_createdAtTimeSpan == createdAtTimeSpan)
+        return;
+
+    m_createdAtTimeSpan = createdAtTimeSpan;
+    emit createdAtTimeSpanChanged(m_createdAtTimeSpan);
+}
+
+void Comment::setEdited(bool edited)
+{
+    if (m_edited == edited)
+        return;
+
+    m_edited = edited;
+    emit editedChanged(m_edited);
 }
 
 void Comment::setLastEditAt(const QDateTime &lastEditAt)

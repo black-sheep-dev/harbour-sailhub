@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<ApiInterface>("org.nubecula.harbour.sailhub", 1, 0, "Api");
     qmlRegisterType<Comment>("org.nubecula.harbour.sailhub", 1, 0, "Comment");
+    qmlRegisterType<CommentsModel>("org.nubecula.harbour.sailhub", 1, 0, "CommentsModel");
     qmlRegisterType<File>("org.nubecula.harbour.sailhub", 1, 0, "File");
     qmlRegisterType<License>("org.nubecula.harbour.sailhub", 1, 0, "License");
     qmlRegisterType<Issue>("org.nubecula.harbour.sailhub", 1, 0, "Issue");

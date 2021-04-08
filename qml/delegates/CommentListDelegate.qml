@@ -6,21 +6,16 @@ import org.nubecula.harbour.sailhub 1.0
 import "../components/"
 
 ListItem {
-    property string avatar
-    property string body
-    property date createdAt
-    property string login
-    property date lastEditAt
     property bool lastItem: false
 
     id: delegate
     width: parent.width
-    contentHeight: Theme.itemSizeLarge
+    contentHeight: contentColumn.height
 
     Column {
         id: contentColumn
         width: parent.width
-        spacing: Theme.paddingMedium
+        spacing: Theme.paddingSmall
 
         Row {
             x: Theme.horizontalPageMargin
@@ -30,7 +25,7 @@ ListItem {
             CircleImage {
                 id: avatarIcon
                 width: parent.height - 2 * Theme.paddingSmall
-                source: avatar
+                source: model.authorAvatarUrl
                 anchors.verticalCenter: parent.verticalCenter
 
                 fallbackItemVisible: false
@@ -46,13 +41,18 @@ ListItem {
                     font.pixelSize: Theme.fontSizeMedium
                     font.bold: true
 
-                    text: login
+                    text: model.authorLogin
                 }
                 Label {
                     color: pressed ? Theme.highlightColor : Theme.primaryColor
                     font.pixelSize: Theme.fontSizeSmall
 
-                    text: createdAt.toLocaleString(Qt.locale())
+                    text: {
+                        if (model.edited)
+                            return model.createdAtTimeSpan + " - " + qsTr("Edited")
+
+                        return model.createdAtTimeSpan
+                    }
                 }
             }
         }
@@ -62,7 +62,7 @@ ListItem {
             width: parent.width - 2*x
             wrapMode: Text.Wrap
 
-            text: body
+            text: model.body
         }
 
         Separator {

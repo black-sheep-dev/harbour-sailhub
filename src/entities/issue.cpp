@@ -16,6 +16,16 @@ quint32 Issue::commentCount() const
     return m_commentCount;
 }
 
+quint32 Issue::number() const
+{
+    return m_number;
+}
+
+QString Issue::repository() const
+{
+    return m_repository;
+}
+
 quint8 Issue::states() const
 {
     return m_states;
@@ -42,6 +52,24 @@ void Issue::setCommentCount(quint32 count)
 
     m_commentCount = count;
     emit commentCountChanged(m_commentCount);
+}
+
+void Issue::setNumber(quint32 number)
+{
+    if (m_number == number)
+        return;
+
+    m_number = number;
+    emit numberChanged(m_number);
+}
+
+void Issue::setRepository(const QString &repository)
+{
+    if (m_repository == repository)
+        return;
+
+    m_repository = repository;
+    emit repositoryChanged(m_repository);
 }
 
 void Issue::setStates(quint8 states)

@@ -26,33 +26,16 @@ static const QString SAILHUB_QUERY_GET_ISSUE =
                        "            comments {"
                        "                totalCount"
                        "            }"
+                       "            number"
+                       "            repository {"
+                       "                nameWithOwner"
+                       "            }"
                        "            title"
                        "            state"
                        "        }"
                        "    }"
                        "    "
                        "}").simplified();
-
-static const QString SAILHUB_QUERY_GET_ISSUE_COMMENTS =
-        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
-                       "    rateLimit {"
-                       "        remaining"
-                       "        resetAt"
-                       "    }"
-                       "    node(id: $nodeId) {"
-                       "        ... on Issue {"
-                       "            id"
-                       "            comments(first: $itemCount, after: $itemCursor) {"
-                       "                nodes {"
-                       "                    %1"
-                       "                }"
-                       "                totalCount"
-                       "                %2"
-                       "            }"
-                       "        }"
-                       "    }"
-                       "    "
-                       "}").arg(SAILHUB_QUERY_ITEM_COMMMENT, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
 
 // GET ORGANIZATION PROFILE
