@@ -61,6 +61,7 @@ struct ApiKey {
     static const QString PRIMARY_LANGUAGE;
     static const QString PROJECTS;
     static const QString PULL_REQUESTS;
+    static const QString PUSHED_AT;
     static const QString RATE_LIMIT;
     static const QString REF;
     static const QString REFS;
@@ -92,6 +93,7 @@ struct ApiKey {
     static const QString TWITTER_USERNAME;
     static const QString TYPE;
     static const QString UNFOLLOW_USER;
+    static const QString UPDATED_AT;
     static const QString UPDATE_SUBSCRIPTION;
     static const QString URL;
     static const QString USER;

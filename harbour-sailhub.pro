@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.1
+VERSION = 0.0.2
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -32,6 +32,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/datautils.cpp \
     src/api/graphqlconnector.cpp \
     src/api/keys.cpp \
+    src/api/queryvars.cpp \
     src/entities/comment.cpp \
     src/entities/file.cpp \
     src/entities/issue.cpp \
@@ -69,6 +70,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/dialogs/EditIssueDialog.qml \
     qml/dialogs/SelectBranchDialog.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
+    qml/dialogs/SortSelectionDialog.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
     qml/pages/IssuesListPage.qml \
@@ -117,10 +119,12 @@ HEADERS += \
     src/api/apiinterface.h \
     src/api/datautils.h \
     src/api/graphqlconnector.h \
+    src/api/graphqlquery.h \
     src/api/keys.h \
     src/api/mutations.h \
     src/api/queries.h \
     src/api/query_items.h \
+    src/api/queryvars.h \
     src/api/ratelimit.h \
     src/entities/comment.h \
     src/entities/file.h \

@@ -134,6 +134,22 @@
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
     </message>
+    <message>
+        <source>Sorting</source>
+        <translation>Sortierung</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation>Erstellt am</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation>Aktualisiert am</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Kommentare</translation>
+    </message>
 </context>
 <context>
     <name>OrganizationPage</name>
@@ -196,7 +212,7 @@
     </message>
     <message>
         <source>App initializing ...</source>
-        <translation>App inttialisiert ...</translation>
+        <translation>App initialisiert ...</translation>
     </message>
     <message>
         <source>Home</source>
@@ -243,6 +259,18 @@
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation>Sortierung</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation>Erstellt am</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation>Aktualisiert am</translation>
     </message>
 </context>
 <context>
@@ -386,6 +414,30 @@
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation>Sortierung</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation>Erstellt am</translation>
+    </message>
+    <message>
+        <source>Pushed at</source>
+        <translation>Gepushed am</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation>Aktualisiert am</translation>
+    </message>
+    <message>
+        <source>Stargazers</source>
+        <translation>Stargazers</translation>
     </message>
 </context>
 <context>
@@ -582,6 +634,33 @@
             <numerusform>%n Eintrag</numerusform>
             <numerusform>%n Einträge</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>SortSelectionDialog</name>
+    <message>
+        <source>Select Sorting</source>
+        <translation>Sortierung auswählen</translation>
+    </message>
+    <message>
+        <source>Field</source>
+        <translation>Feld</translation>
+    </message>
+    <message>
+        <source>Order</source>
+        <translation>Reihenfolge</translation>
+    </message>
+    <message>
+        <source>Ascending</source>
+        <translation>Aufsteigend</translation>
+    </message>
+    <message>
+        <source>Descending</source>
+        <translation>Absteigend</translation>
+    </message>
+    <message>
+        <source>Sort</source>
+        <translation>Sortieren</translation>
     </message>
 </context>
 <context>

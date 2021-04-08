@@ -74,6 +74,7 @@ IssueListItem DataUtils::issueListItemFromJson(const QJsonObject &obj)
     item.closed = obj.value(ApiKey::CLOSED).toBool();
     item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
     item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
     item.number = obj.value(ApiKey::NUMBER).toInt();
     item.repository = obj.value(ApiKey::REPOSITORY).toObject()
                          .value(ApiKey::NAME_WITH_OWNER).toString();
@@ -85,7 +86,8 @@ IssueListItem DataUtils::issueListItemFromJson(const QJsonObject &obj)
         item.state = Issue::StateClosed;
 
     item.title = obj.value(ApiKey::TITLE).toString();
-    item.timeSpan = timeSpanText(item.createdAt, true);
+    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    item.updatedAtTimeSpan = timeSpanText(item.updatedAt, true);
 
     return item;
 }
@@ -209,6 +211,7 @@ PullRequestListItem DataUtils::pullRequestListItemFromJson(const QJsonObject &ob
 
     item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
     item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
     item.number = quint32(obj.value(ApiKey::NUMBER).toInt());
     item.repository = obj.value(ApiKey::REPOSITORY).toObject()
             .value(ApiKey::NAME_WITH_OWNER).toString();
@@ -223,6 +226,8 @@ PullRequestListItem DataUtils::pullRequestListItemFromJson(const QJsonObject &ob
 
     item.timeSpan = timeSpanText(item.createdAt, true);
     item.title = obj.value(ApiKey::TITLE).toString();
+    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    item.updatedAtTimeSpan = timeSpanText(item.updatedAt, true);
 
     return item;
 }
@@ -312,17 +317,20 @@ RepoListItem DataUtils::repoListItemFromJson(const QJsonObject &obj)
 {
     RepoListItem item;
 
+    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
     item.description = obj.value(ApiKey::SHORT_DESCRIPTION_HTML).toString();
     item.isPrivate = obj.value(ApiKey::IS_PRIVATE).toBool();
     item.name = obj.value(ApiKey::NAME).toString();
     item.nodeId = obj.value(ApiKey::ID).toString();
     item.owner = obj.value(ApiKey::OWNER).toObject()
                  .value(ApiKey::LOGIN).toString();
+    item.pushedAt = QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
     item.stargazerCount = quint32(obj.value(ApiKey::STARGAZER_COUNT).toInt());
 
     const QJsonObject lang = obj.value(ApiKey::PRIMARY_LANGUAGE).toObject();
     item.language.name = lang.value(ApiKey::NAME).toString();
     item.language.color = lang.value(ApiKey::COLOR).toString();
+    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
 
     return item;
 }

@@ -7,8 +7,10 @@ import "../delegates/"
 
 Page {
     property string login
-    property string identifier
-    property int repoType
+    property alias identifier: reposModel.identifier
+    property alias repoType: reposModel.modelType
+    property alias sortRole: reposModel.sortRole
+    property alias sortOrder: reposModel.sortOrder
 
     id: page
     allowedOrientations: Orientation.All
@@ -45,9 +47,30 @@ Page {
             busy: reposModel.loading
             MenuItem {
                 text: qsTr("Refresh")
+                onClicked: refresh()
+            }
+
+            MenuItem {
+                text: qsTr("Sorting")
                 onClicked: {
-                    reposModel.reset()
-                    SailHub.api().getRepos(reposModel)
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
+                                                    order: sortOrder,
+                                                    field: getSortFieldIndex(),
+                                                    fields: [
+                                                        qsTr("Name"),
+                                                        qsTr("Created at"),
+                                                        qsTr("Pushed at"),
+                                                        qsTr("Updated at"),
+                                                        qsTr("Stargazers")
+                                                    ]
+                                                })
+
+                    dialog.accepted.connect(function() {
+                        sortOrder = dialog.order
+                        sortRole = getSortRoleFromIndex(dialog.field)
+
+                        refresh()
+                    })
                 }
             }
         }
@@ -67,11 +90,7 @@ Page {
 
         VerticalScrollDecorator {}
 
-        model: ReposModel {
-            id: reposModel
-            identifier: page.identifier
-            modelType: page.repoType
-        }
+        model: ReposModel { id: reposModel }
 
         opacity: busyIndicator.running ? 0.3 : 1.0
         Behavior on opacity { FadeAnimator {} }
@@ -101,12 +120,63 @@ Page {
 
             MenuItem {
                 text: qsTr("Load more (%n to go)", "", reposModel.totalCount - listView.count)
-                onClicked: SailHub.api().getRepos(reposModel)
+                onClicked: getRepos()
             }
         }
     }
 
-    Component.onCompleted: {
-        SailHub.api().getRepos(reposModel)
+    function getRepos() {
+        SailHub.api().getPaginationModel(reposModel)
     }
+
+    function getSortRoleFromIndex(index) {
+        switch (index) {
+        case 0:
+            return ReposModel.NameRole
+
+        case 1:
+            return ReposModel.CreatedAtRole
+
+        case 2:
+            return ReposModel.PushedAtRole
+
+        case 3:
+            return ReposModel.UpdatedAtRole
+
+        case 4:
+            return ReposModel.StargazerCountRole
+
+        default:
+            return ReposModel.NameRole
+        }
+    }
+
+    function getSortFieldIndex() {
+        switch (page.sortRole) {
+        case ReposModel.NameRole:
+            return 0;
+
+        case ReposModel.CreatedAtRole:
+            return 1;
+
+        case ReposModel.PushedAtRole:
+            return 2;
+
+        case ReposModel.UpdatedAtRole:
+            return 3;
+
+        case ReposModel.StargazerCountRole:
+            return 4;
+
+        default:
+            return 0
+        }
+    }
+
+    function refresh() {
+        reposModel.reset()
+        getRepos()
+    }
+
+    Component.onCompleted: refresh()
 }

@@ -9,10 +9,7 @@
 #include <QNetworkRequest>
 #include <QUuid>
 
-struct GraphQLQuery {
-    QString query;
-    QJsonObject variables;
-};
+#include "graphqlquery.h"
 
 class GraphQLConnector : public QObject
 {

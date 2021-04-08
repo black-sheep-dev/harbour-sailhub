@@ -1,7 +1,7 @@
 # SailHub
 SailHub is an inoffical native GitHub app for Sailfish OS using GitHub GraphQL API (v4).
 
-I made this app to familiarize myself with GraphQL API concepts. GitHub API is well documented and ideal for my purpose.
+I made this app to familiarize myself with GraphQL API concepts. GitHub API is well documented and ideal for this purpose.
 
 >![](icons/128x128/harbour-sailhub.png)
 
@@ -31,7 +31,8 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 - Commenting (issues and pull requests)
 - Notifications
 - Discussion
-- Feature requests
+- Some useful cover action /content
+- Feature requests (any ideas are welcome!)
 - ...
 
 ## Translations
