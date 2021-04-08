@@ -135,6 +135,24 @@ static const QString SAILHUB_QUERY_GET_USER_REPOSITORIES_STARRED =
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_REPO_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
+// SEARCH USER
+static const QString SAILHUB_QUERY_SEARCH_REPOSITORY =
+        QStringLiteral("query searchRepos($queryString: String!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    search(query: $queryString, type: REPOSITORY, first: $itemCount, after: $itemCursor) {"
+                       "        %1"
+                       "        repositoryCount"
+                       "        nodes {"
+                       "            ... on Repository {"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_PAGE_INFO, SAILHUB_QUERY_ITEM_REPO_LIST_ITEM).simplified();
+
 ReposModel::ReposModel(QObject *parent) :
     PaginationModel(parent)
 {
@@ -290,6 +308,7 @@ void ReposModel::parseQueryResult(const QJsonObject &data)
 GraphQLQuery ReposModel::query() const
 {
     GraphQLQuery query;
+    query.variables = defaultQueryVariables();
 
     switch (modelType()) {
     case Repo::User:
@@ -308,12 +327,14 @@ GraphQLQuery ReposModel::query() const
         query.query = SAILHUB_QUERY_GET_USER_REPOSITORIES_STARRED;
         break;
 
+    case Repo::Search:
+        query.query = SAILHUB_QUERY_SEARCH_REPOSITORY;
+        query.variables.insert(QueryVar::QUERY_STRING, searchPattern());
+        break;
+
     default:
         break;
     }
-
-    // variables
-    query.variables = defaultQueryVariables();
 
     return query;
 }

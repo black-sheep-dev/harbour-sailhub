@@ -10,6 +10,12 @@ Page {
 
     allowedOrientations: Orientation.All
 
+    PageBusyIndicator {
+        anchors.centerIn: parent
+        running: searchModel.loading
+        size: Theme.itemSizeLarge
+    }
+
     SilicaFlickable {
         anchors.fill: parent
 
@@ -31,13 +37,15 @@ Page {
                 EnterKey.iconSource: "image://theme/icon-m-search"
                 EnterKey.onClicked: {
                     focus = false
-                    SailHub.api().searchRepo(searchField.text, reposModel)
+                    searchModel.reset()
+                    searchModel.searchPattern = searchField.text
+                    SailHub.api().getPaginationModel(searchModel)
                 }
 
                 onTextChanged: {
                     if (text.length === 0) {
                         focus = true
-                        reposModel.reset()
+                        searchModel.reset()
                     }
                 }
             }
@@ -52,6 +60,9 @@ Page {
 
             clip: true
 
+            //opacity: searchModel.loading ? 0 : 1
+            //Behavior on opacity { FadeAnimation {} }
+
             ViewPlaceholder {
                 enabled: listView.count == 0
                 text: qsTr("No repositories found")
@@ -60,7 +71,7 @@ Page {
             }
 
             model: ReposModel {
-                id: reposModel
+                id: searchModel
                 modelType: Repo.Search
             }
 
@@ -77,12 +88,12 @@ Page {
             }
 
             PushUpMenu {
-                busy: reposModel.loading
-                visible: reposModel.hasNextPage
+                busy: searchModel.loading
+                visible: searchModel.hasNextPage
 
                 MenuItem {
-                    text: qsTr("Load more (%n to go)", "", reposModel.totalCount - listView.count)
-                    onClicked: SailHub.api().searchRepo(searchField.text, reposModel)
+                    text: qsTr("Load more (%n to go)", "", searchModel.totalCount - listView.count)
+                    onClicked: SailHub.api().getPaginationModel(searchModel)
                 }
             }
             VerticalScrollDecorator {}

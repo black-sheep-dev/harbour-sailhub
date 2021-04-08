@@ -8,8 +8,8 @@ import "../delegates/"
 Page {
     property string title
     property string description
-    property string identifier
-    property int userType: User.Undefined
+    property alias identifier: usersModel.identifier
+    property alias userType: usersModel.modelType
 
     id: page
     allowedOrientations: Orientation.All
@@ -32,10 +32,7 @@ Page {
             busy: usersModel.loading
             MenuItem {
                 text: qsTr("Refresh")
-                onClicked: {
-                    usersModel.reset()
-                    SailHub.api().getUsers(usersModel)
-                }
+                onClicked: refresh()
             }
         }
 
@@ -54,11 +51,7 @@ Page {
 
         VerticalScrollDecorator {}
 
-        model: UsersModel {
-            id: usersModel
-            identifier: page.identifier
-            modelType: page.userType
-        }
+        model: UsersModel { id: usersModel }
 
         opacity: busyIndicator.running ? 0.3 : 1.0
         Behavior on opacity { FadeAnimator {} }
@@ -77,12 +70,19 @@ Page {
 
             MenuItem {
                 text: qsTr("Load more (%n to go)", "", usersModel.totalCount - listView.count)
-                onClicked: SailHub.api().getUsers(usersModel)
+                onClicked: getUsers()
             }
         }
     }
 
-    Component.onCompleted: {
-        SailHub.api().getUsers(usersModel)
+    function getUsers() {
+        SailHub.api().getPaginationModel(usersModel)
     }
+
+    function refresh() {
+        usersModel.reset()
+        getUsers()
+    }
+
+    Component.onCompleted: refresh()
 }

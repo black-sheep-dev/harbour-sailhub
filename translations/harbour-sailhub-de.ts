@@ -515,7 +515,7 @@
     <name>SearchSelectionPage</name>
     <message>
         <source>Search Selection</source>
-        <translation>Scuhauswahl</translation>
+        <translation>Suchauswahl</translation>
     </message>
     <message>
         <source>Repository</source>

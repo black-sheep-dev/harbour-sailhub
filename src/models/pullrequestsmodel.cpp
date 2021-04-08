@@ -79,7 +79,8 @@ static const QString SAILHUB_QUERY_GET_USER_PULL_REQUESTS =
 PullRequestsModel::PullRequestsModel(QObject *parent) :
     PaginationModel(parent)
 {
-
+    setSortRole(UpdatedAtRole);
+    setSortOrder(Qt::DescendingOrder);
 }
 
 void PullRequestsModel::addPullRequest(const PullRequestListItem &repo)

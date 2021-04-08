@@ -21,6 +21,7 @@ class PaginationModel : public QAbstractListModel
     Q_PROPERTY(QString lastItemCursor READ lastItemCursor WRITE setLastItemCursor NOTIFY lastItemCursorChanged)
     Q_PROPERTY(bool loading READ loading WRITE setLoading NOTIFY loadingChanged)
     Q_PROPERTY(quint8 modelType READ modelType WRITE setModelType NOTIFY modelTypeChanged)
+    Q_PROPERTY(QString searchPattern READ searchPattern WRITE setSearchPattern NOTIFY searchPatternChanged)
     Q_PROPERTY(Qt::SortOrder sortOrder READ sortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
     Q_PROPERTY(quint32 sortRole READ sortRole WRITE setSortRole NOTIFY sortRoleChanged)
     Q_PROPERTY(quint8 state READ state WRITE setState NOTIFY stateChanged)
@@ -41,6 +42,7 @@ public:
     QString lastItemCursor() const;
     bool loading() const;
     quint8 modelType() const;
+    QString searchPattern() const;
     Qt::SortOrder sortOrder() const;
     quint32 sortRole() const;
     quint8 state() const;
@@ -55,6 +57,7 @@ signals:
     void lastItemCursorChanged(const QString &cursor);
     void loadingChanged(bool loading);
     void modelTypeChanged(quint8 modelType);
+    void searchPatternChanged(const QString &pattern);
     void sortOrderChanged(Qt::SortOrder order);
     void sortRoleChanged(quint32 role);
     void stateChanged(quint8 state);
@@ -69,6 +72,7 @@ public slots:
     void setLastItemCursor(const QString &cursor);
     void setLoading(bool loading);
     void setModelType(quint8 modelType);
+    void setSearchPattern(const QString &pattern);
     void setSortOrder(Qt::SortOrder order);
     void setSortRole(quint32 role);
     void setState(quint8 state);
@@ -83,6 +87,7 @@ private:
     QString m_lastItemCursor;
     bool m_loading{true};
     quint8 m_modelType{0};
+    QString m_searchPattern;
     Qt::SortOrder m_sortOrder{Qt::AscendingOrder};
     quint32 m_sortRole{0};
     quint8 m_state{0};

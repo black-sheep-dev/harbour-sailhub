@@ -85,6 +85,11 @@ quint8 PaginationModel::modelType() const
     return m_modelType;
 }
 
+QString PaginationModel::searchPattern() const
+{
+    return m_searchPattern;
+}
+
 Qt::SortOrder PaginationModel::sortOrder() const
 {
     return m_sortOrder;
@@ -162,6 +167,15 @@ void PaginationModel::setModelType(quint8 modelType)
 
     m_modelType = modelType;
     emit modelTypeChanged(m_modelType);
+}
+
+void PaginationModel::setSearchPattern(const QString &pattern)
+{
+    if (m_searchPattern == pattern)
+        return;
+
+    m_searchPattern = pattern;
+    emit searchPatternChanged(m_searchPattern);
 }
 
 void PaginationModel::setSortOrder(Qt::SortOrder order)

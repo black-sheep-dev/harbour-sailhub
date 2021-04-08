@@ -37,6 +37,8 @@ public:
     // PaginationModel interface
 public:
     void clear() override;
+    void parseQueryResult(const QJsonObject &data) override;
+    GraphQLQuery query() const override;
 };
 
 #endif // USERSMODEL_H
