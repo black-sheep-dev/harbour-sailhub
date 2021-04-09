@@ -48,7 +48,7 @@
     <name>CommentItem</name>
     <message>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">已编辑</translation>
     </message>
 </context>
 <context>

@@ -1,3 +1,10 @@
+* Fri Apr 09 2021 Black Sheep <blacksheep@nubecula.org> 0.0.5-1
+- Complete CRUD functionality for issues
+- Complete CRUD functionality for issue comments
+- Code / UI improvements and cleanup
+- Chinese translation update by dashinfantry
+- Polish translation update by atlochowski
+
 * Thu Apr 08 2021 Black Sheep <blacksheep@nubecula.org> 0.0.4-1
 - Chinese translation by dashinfantry
 - Browse issue comments

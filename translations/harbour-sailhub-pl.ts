@@ -48,7 +48,7 @@
     <name>CommentItem</name>
     <message>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Edytowany</translation>
     </message>
 </context>
 <context>
