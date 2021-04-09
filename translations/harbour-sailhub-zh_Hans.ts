@@ -55,7 +55,7 @@
     <name>CommentListDelegate</name>
     <message>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation>已编辑</translation>
     </message>
 </context>
 <context>
@@ -81,21 +81,21 @@
     <name>CommentsListPage</name>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">评论</translation>
+        <translation>评论</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
     <message>
         <source>No comments available</source>
-        <translation type="unfinished"></translation>
+        <translation>没有可用评论</translation>
     </message>
     <message>
         <source>New comment</source>
@@ -171,23 +171,23 @@
     <name>IssuePage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>问题（Issue）</translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation type="unfinished"></translation>
+        <translation>已关闭</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>打开</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">评论</translation>
+        <translation>评论</translation>
     </message>
     <message>
         <source>Edit issue</source>
@@ -240,19 +240,19 @@
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>分类</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished"></translation>
+        <translation>创建于</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished"></translation>
+        <translation>更新于</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">评论</translation>
+        <translation>评论</translation>
     </message>
     <message>
         <source>New issue</source>
@@ -368,15 +368,15 @@
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>分类</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished"></translation>
+        <translation>创建于</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished"></translation>
+        <translation>更新于</translation>
     </message>
 </context>
 <context>
@@ -515,27 +515,27 @@
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>分类</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>名称</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished"></translation>
+        <translation>创建于</translation>
     </message>
     <message>
         <source>Pushed at</source>
-        <translation type="unfinished"></translation>
+        <translation>推送于（Pushed）</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished"></translation>
+        <translation>更新于</translation>
     </message>
     <message>
         <source>Stargazers</source>
-        <translation type="unfinished"></translation>
+        <translation>天文学家</translation>
     </message>
 </context>
 <context>
@@ -734,27 +734,27 @@
     <name>SortSelectionDialog</name>
     <message>
         <source>Select Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>选择分类</translation>
     </message>
     <message>
         <source>Sort</source>
-        <translation type="unfinished"></translation>
+        <translation>分类</translation>
     </message>
     <message>
         <source>Field</source>
-        <translation type="unfinished"></translation>
+        <translation>字段</translation>
     </message>
     <message>
         <source>Order</source>
-        <translation type="unfinished"></translation>
+        <translation>顺序</translation>
     </message>
     <message>
         <source>Ascending</source>
-        <translation type="unfinished"></translation>
+        <translation>升序</translation>
     </message>
     <message>
         <source>Descending</source>
-        <translation type="unfinished"></translation>
+        <translation>降序</translation>
     </message>
 </context>
 <context>
@@ -861,7 +861,7 @@
     </message>
     <message>
         <source>This app is not configured yet.</source>
-        <translation>软件尚未配置</translation>
+        <translation>软件尚未配置。</translation>
     </message>
     <message>
         <source>The setup wizard will guide you through the configuration process.</source>
