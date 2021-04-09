@@ -14,10 +14,12 @@ public:
         AuthorAvatarUrlRole,
         AuthorLoginRole,
         BodyRole,
+        BodyExcerptRole,
         CreatedAtRole,
         CreatedAtTimeSpanRole,
         EditedRole,
         LastEditAtRole,
+        NodeIdRole,
         ViewerCanDeleteRole,
         ViewerCanReactRole,
         ViewerCanUpdateRole,
@@ -26,6 +28,9 @@ public:
     Q_ENUM(CommentRoles)
 
     explicit CommentsModel(QObject *parent = nullptr);
+
+    Q_INVOKABLE Comment *commentAt(const int index);
+    Q_INVOKABLE void deleteComment(const int index);
 
     void addComment(Comment *comment);
     void addComments(const QList<Comment *> &comments);

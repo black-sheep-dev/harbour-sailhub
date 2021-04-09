@@ -39,6 +39,7 @@ struct ApiKey {
     static const QString IS_BINARY;
     static const QString IS_PRIVATE;
     static const QString IS_VIEWER;
+    static const QString ISSUE_ID;
     static const QString ISSUES;
     static const QString LANGUAGES;
     static const QString LAST_EDITED_AT;
@@ -83,6 +84,7 @@ struct ApiKey {
     static const QString STARRED_REPOSITORIES;
     static const QString STATE;
     static const QString STATUS;
+    static const QString SUBJECT_ID;
     static const QString SUBSCRIBABLE;
     static const QString SUBSCRIBABLE_ID;
     static const QString TARGET;

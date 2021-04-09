@@ -3,8 +3,8 @@ import Sailfish.Silica 1.0
 
 Dialog {
     property bool edit: false
-    property string title
-    property string body
+    property alias title: titleField.text
+    property alias body: bodyTextArea.text
 
     id: dialog
     canAccept: titleField.text.length > 0
@@ -26,7 +26,6 @@ Dialog {
             label: qsTr("Title")
             focus: true
 
-            text: title
             placeholderText: qsTr("Enter title")
 
             EnterKey.enabled: text.length > 0
@@ -43,11 +42,8 @@ Dialog {
         TextArea {
             id: bodyTextArea
 
-            visible: !edit
             width: parent.width
             height: dialog.height / 2
-
-            text: body
 
             EnterKey.iconSource: "image://theme/icon-m-enter-close"
             EnterKey.onClicked: focus = false

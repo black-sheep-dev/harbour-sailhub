@@ -55,6 +55,9 @@ SOURCES += src/harbour-sailhub.cpp \
     src/sailhub.cpp
 
 DISTFILES += qml/harbour-sailhub.qml \
+    qml/components/AuthorItem.qml \
+    qml/components/CommentItem \
+    qml/components/CommentItem.qml \
     qml/components/CounterItem.qml \
     qml/components/IconLabel.qml \
     qml/components/IconRelatedItem.qml \
@@ -67,10 +70,13 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/delegates/PullRequestListDelegate.qml \
     qml/delegates/RepoListDelegate.qml \
     qml/delegates/UserListDelegate.qml \
+    qml/dialogs/EditCommentDialog.qml \
     qml/dialogs/EditIssueDialog.qml \
     qml/dialogs/SelectBranchDialog.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
     qml/dialogs/SortSelectionDialog.qml \
+    qml/pages/CommentPage \
+    qml/pages/CommentPage.qml \
     qml/pages/CommentsListPage.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \

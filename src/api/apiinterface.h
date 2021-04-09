@@ -38,7 +38,11 @@ public:
 
     enum RequestType {
         Undefined,
+        AddComment,
+        CloseIssue,
         CreateIssue,
+        DeleteComment,
+        DeleteIssue,
         FollowUser,
         GetFileContent,
         GetIssue,
@@ -48,11 +52,14 @@ public:
         GetProfile,
         GetPullRequest,
         GetUser,
+        GetUserByLogin,
         GetRepo,
         GetRepoTree,
         StarRepo,
         UnfollowUser,
         UnstarRepo,
+        UpdateComment,
+        UpdateIssue,
         UpdateRepoSubscription
     };
     Q_ENUM(RequestType)
@@ -64,7 +71,11 @@ public:
 
     // api calls
     void getLogin();
+    Q_INVOKABLE void addComment(const QString &body, CommentsModel *model);
+    Q_INVOKABLE void closeIssue(const QString &nodeId);
     Q_INVOKABLE void createIssue(const QString &title, const QString &body, IssuesModel *model);
+    Q_INVOKABLE void deleteComment(const QString &nodeId);
+    Q_INVOKABLE void deleteIssue(const QString &nodeId);
     Q_INVOKABLE void followUser(const QString &nodeId, bool follow = true);
     Q_INVOKABLE void getFileContent(const QString &nodeId, const QString &branch);
     Q_INVOKABLE void getIssue(const QString &nodeId);
@@ -75,8 +86,11 @@ public:
     Q_INVOKABLE void getRepo(const QString &nodeId);
     Q_INVOKABLE void getRepoTree(const QString &nodeId,const QString &branch, const QString &path,  TreeModel *model);
     Q_INVOKABLE void getUser(const QString &nodeId);
+    Q_INVOKABLE void getUserByLogin(const QString &login);
     Q_INVOKABLE void starRepo(const QString &nodeId, bool star = true);
     Q_INVOKABLE void subscribeToRepo(const QString &nodeId, quint8 state);
+    Q_INVOKABLE void updateComment(Comment *comment);
+    Q_INVOKABLE void updateIssue(Issue *issue);
 
     // properties
     quint8 paginationCount() const;
@@ -91,8 +105,12 @@ public slots:
 
 signals:
     void apiError(quint8 error, const QString &msg = QString());
+    void commentAdded(bool added = true);
+    void commentDeleted(bool deleted = true);
     void fileContentAvailable(const QString &content);
-    void issueCreated(Issue *issue);
+    void issueClosed(bool closed = true);
+    void issueCreated(bool created = true);
+    void issueDeleted(bool deleted = true);
     void issueAvailable(Issue *issue);
     void organizationAvailable(Organization *organization);
     void repoAvailable(Repo *repo);
