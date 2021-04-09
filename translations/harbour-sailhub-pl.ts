@@ -48,14 +48,14 @@
     <name>CommentItem</name>
     <message>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Edytowany</translation>
     </message>
 </context>
 <context>
     <name>CommentListDelegate</name>
     <message>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytowany</translation>
     </message>
 </context>
 <context>
@@ -81,23 +81,23 @@
     <name>CommentsListPage</name>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">Komentarze</translation>
+        <translation>Komentarze</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
     <message>
         <source>No comments available</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak dostępnych komentarzy</translation>
     </message>
     <message>
         <source>New comment</source>
@@ -173,23 +173,23 @@
     <name>IssuePage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Problem</translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknięty</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwarty</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">Komentarze</translation>
+        <translation>Komentarze</translation>
     </message>
     <message>
         <source>Edit issue</source>
