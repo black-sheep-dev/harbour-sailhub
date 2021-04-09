@@ -14,6 +14,7 @@ Page {
 
     SilicaFlickable {
         PullDownMenu {
+            visible: comment.viewerCanDelete || comment.viewerCanUpdate
             MenuItem {
                 visible: comment.viewerCanUpdate
                 text: qsTr("Edit")

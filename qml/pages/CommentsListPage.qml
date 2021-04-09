@@ -116,8 +116,9 @@ Page {
     Connections {
         target: SailHub.api()
         onCommentAdded: refresh()
+        onCommentDeleted: refresh()
     }
 
-    onStatusChanged: if (status === PageStatus.Active) refresh()
+    Component.onCompleted: refresh()
 }
 

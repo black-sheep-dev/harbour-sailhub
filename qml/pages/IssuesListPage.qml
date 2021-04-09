@@ -180,8 +180,10 @@ Page {
     Connections {
         target: SailHub.api()
         onIssueCreated: refresh()
+        onIssueDeleted: refresh()
+        onIssueClosed: refresh()
     }
 
-    onStatusChanged: if (status === PageStatus.Active) refresh()
+    Component.onCompleted: refresh()
 }
 
