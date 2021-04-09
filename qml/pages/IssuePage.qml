@@ -25,10 +25,45 @@ Page {
                     SailHub.api().getIssue(page.nodeId)
                 }
             }
+            MenuItem {
+                visible: issue.viewerCanUpdate
+                text: qsTr("Edit issue")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"), {
+                                                    edit: true,
+                                                    title: issue.title,
+                                                    body: issue.body
+                                                })
+
+                    dialog.accepted.connect(function() {
+                        issue.title = dialog.title
+                        issue.body = dialog.body
+                        SailHub.api().updateIssue(issue)
+                    })
+                }
+            }
+            MenuItem {
+                visible: issue.viewerCanUpdate
+                text: qsTr("Delete")
+
+                onClicked: remorse.execute(qsTr("Deleting issue"), function() {
+                    SailHub.api().deleteIssue(issue.nodeId)
+                })
+            }
+            MenuItem {
+                visible: issue.viewerCanUpdate
+                text: qsTr("Close")
+
+                onClicked: remorse.execute(qsTr("Closing issue"), function() {
+                    SailHub.api().closeIssue(issue.nodeId)
+                })
+            }
         }
 
         anchors.fill: parent
         contentHeight: headerColumn.height
+
+        RemorsePopup { id: remorse }
 
         Column {
             id: headerColumn
@@ -77,7 +112,7 @@ Page {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
                 wrapMode: Text.Wrap
-                font.pixelSize: Theme.paddingLarge
+                font.pixelSize: Theme.fontSizeLarge
                 color: Theme.highlightColor
 
                 text: issue.title   
@@ -101,6 +136,14 @@ Page {
 
                     text: (issue.states & Issue.StateClosed) ? qsTr("Closed") : qsTr("Open")
                 }
+            }
+
+            CommentItem {
+                authorAvatar: issue.author.avatarUrl
+                authorLogin: issue.author.login
+                body: issue.body
+                edited: issue.edited
+                timeSpan: issue.createdAtTimeSpan
             }
 
             Separator {
@@ -129,6 +172,8 @@ Page {
             page.issue = issue;
             page.busy = false;
         }
+        onIssueClosed: pageStack.navigateBack()
+        onIssueDeleted: pageStack.navigateBack()
     }
 
     Component.onCompleted: SailHub.api().getIssue(page.nodeId)

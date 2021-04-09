@@ -45,10 +45,36 @@
     </message>
 </context>
 <context>
+    <name>CommentItem</name>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished">已编辑</translation>
+    </message>
+</context>
+<context>
     <name>CommentListDelegate</name>
     <message>
         <source>Edited</source>
         <translation>已编辑</translation>
+    </message>
+</context>
+<context>
+    <name>CommentPage</name>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -70,6 +96,37 @@
     <message>
         <source>No comments available</source>
         <translation>没有可用评论</translation>
+    </message>
+    <message>
+        <source>New comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditCommentDialog</name>
+    <message>
+        <source>Edit Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
+    </message>
+    <message>
+        <source>Add Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -132,6 +189,26 @@
         <source>Comments</source>
         <translation>评论</translation>
     </message>
+    <message>
+        <source>Edit issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closing issue</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IssuesListPage</name>
@@ -176,6 +253,10 @@
     <message>
         <source>Comments</source>
         <translation>评论</translation>
+    </message>
+    <message>
+        <source>New issue</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

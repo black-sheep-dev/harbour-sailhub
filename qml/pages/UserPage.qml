@@ -9,6 +9,7 @@ Page {
     property bool busy: false
     property bool loading: false
     property string nodeId
+    property string login
     property User user
 
     id: page
@@ -264,7 +265,8 @@ Page {
     Connections {
         target: SailHub.api()
         onUserAvailable: {
-            if (page.nodeId !== user.nodeId) return
+            if ( page.nodeId !== user.nodeId
+                || page.login.length > 0 ) return
 
             page.user = user
             page.loading = false
@@ -284,6 +286,9 @@ Page {
         if (page.nodeId.length > 0) {
             page.loading = true
             SailHub.api().getUser(page.nodeId)
+        } else if (page.login.length > 0) {
+            page.loading = true
+            SailHub.api().getUserByLogin(page.login)
         } else {
             page.nodeId = user.nodeId
         }

@@ -45,10 +45,36 @@
     </message>
 </context>
 <context>
+    <name>CommentItem</name>
+    <message>
+        <source>Edited</source>
+        <translation>Bearbeitet</translation>
+    </message>
+</context>
+<context>
     <name>CommentListDelegate</name>
     <message>
         <source>Edited</source>
         <translation>Bearbeitet</translation>
+    </message>
+</context>
+<context>
+    <name>CommentPage</name>
+    <message>
+        <source>Edit</source>
+        <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation>Lösche Kommentar</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Kommentar</translation>
     </message>
 </context>
 <context>
@@ -71,6 +97,37 @@
     <message>
         <source>No comments available</source>
         <translation>Keine Kommentare vorhanden</translation>
+    </message>
+    <message>
+        <source>New comment</source>
+        <translation>Neuer Kommentar</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation>Lösche Kommentar</translation>
+    </message>
+</context>
+<context>
+    <name>EditCommentDialog</name>
+    <message>
+        <source>Edit Comment</source>
+        <translation>Berarbeite Kommentar</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Speichern</translation>
+    </message>
+    <message>
+        <source>Add Comment</source>
+        <translation>Kommentar hinzufügen</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -133,6 +190,26 @@
         <source>Comments</source>
         <translation>Kommentare</translation>
     </message>
+    <message>
+        <source>Edit issue</source>
+        <translation>Issue bearbeiten</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Deleting issue</source>
+        <translation>Lösche Issue</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Schließen</translation>
+    </message>
+    <message>
+        <source>Closing issue</source>
+        <translation>Schließe Issue</translation>
+    </message>
 </context>
 <context>
     <name>IssuesListPage</name>
@@ -178,6 +255,10 @@
     <message>
         <source>Comments</source>
         <translation>Kommentare</translation>
+    </message>
+    <message>
+        <source>New issue</source>
+        <translation>Neues Issue</translation>
     </message>
 </context>
 <context>

@@ -16,6 +16,11 @@ QString Comment::body() const
     return m_body;
 }
 
+QString Comment::bodyExcerpt() const
+{
+    return m_bodyExcerpt;
+}
+
 QDateTime Comment::createdAt() const
 {
     return m_createdAt;
@@ -72,6 +77,15 @@ void Comment::setBody(const QString &body)
 
     m_body = body;
     emit bodyChanged(m_body);
+}
+
+void Comment::setBodyExcerpt(const QString &excerpt)
+{
+    if (m_bodyExcerpt == excerpt)
+        return;
+
+    m_bodyExcerpt = excerpt;
+    emit bodyExcerptChanged(m_bodyExcerpt);
 }
 
 void Comment::setCreatedAt(const QDateTime &createdAt)

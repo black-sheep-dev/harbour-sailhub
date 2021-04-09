@@ -17,6 +17,11 @@ ListItem {
         width: parent.width
         spacing: Theme.paddingSmall
 
+        Item {
+            width: 1
+            height: Theme.paddingSmall
+        }
+
         Row {
             x: Theme.horizontalPageMargin
             width: parent.width - 2*x
@@ -62,7 +67,12 @@ ListItem {
             width: parent.width - 2*x
             wrapMode: Text.Wrap
 
-            text: model.body
+            text: model.body + "..."
+        }
+
+        Item {
+            width: 1
+            height: Theme.paddingSmall
         }
 
         Separator {

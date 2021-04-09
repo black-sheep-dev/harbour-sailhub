@@ -16,7 +16,7 @@ static const QString SAILHUB_QUERY_GET_ISSUE_COMMENTS =
                        "            id"
                        "            comments("
                        "                    first: $itemCount, "
-                       "                    after: $itemCursor"
+                       "                    after: $itemCursor "
                        "                    ) {"
                        "                nodes {"
                        "                    %1"
@@ -27,12 +27,30 @@ static const QString SAILHUB_QUERY_GET_ISSUE_COMMENTS =
                        "        }"
                        "    }"
                        "    "
-                       "}").arg(SAILHUB_QUERY_ITEM_COMMMENT, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+                       "}").arg(SAILHUB_QUERY_ITEM_COMMENT, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
 CommentsModel::CommentsModel(QObject *parent) :
     PaginationModel(parent)
 {
 
+}
+
+Comment *CommentsModel::commentAt(const int index)
+{
+    if (index < 0 || index > (m_comments.count() - 1))
+        return nullptr;
+
+    return m_comments.at(index);
+}
+
+void CommentsModel::deleteComment(const int index)
+{
+    if (index < 0 || index > (m_comments.count() - 1))
+        return;
+
+    beginRemoveRows(QModelIndex(), index, index);
+    m_comments.takeAt(index)->deleteLater();
+    endRemoveRows();
 }
 
 void CommentsModel::addComment(Comment *comment)
@@ -107,6 +125,9 @@ QVariant CommentsModel::data(const QModelIndex &index, int role) const
     case BodyRole:
         return comment->body();
 
+    case BodyExcerptRole:
+        return comment->bodyExcerpt();
+
     case CreatedAtRole:
         return comment->createdAt();
 
@@ -118,6 +139,9 @@ QVariant CommentsModel::data(const QModelIndex &index, int role) const
 
     case LastEditAtRole:
         return comment->lastEditAt();
+
+    case NodeIdRole:
+        return comment->nodeId();
 
     case ViewerCanReactRole:
         return comment->viewerCanReact();
@@ -144,10 +168,12 @@ QHash<int, QByteArray> CommentsModel::roleNames() const
     roles[AuthorAvatarUrlRole]      = "authorAvatarUrl";
     roles[AuthorLoginRole]          = "authorLogin";
     roles[BodyRole]                 = "body";
+    roles[BodyExcerptRole]          = "bodyExcerpt";
     roles[CreatedAtRole]            = "createdAt";
     roles[CreatedAtTimeSpanRole]    = "createdAtTimeSpan";
     roles[EditedRole]               = "edited";
     roles[LastEditAtRole]           = "lastEditAt";
+    roles[NodeIdRole]               = "nodeId";
     roles[ViewerCanDeleteRole]      = "viewerCanDelete";
     roles[ViewerCanReactRole]       = "viewerCanReact";
     roles[ViewerCanUpdateRole]      = "viewerCanUpdate";

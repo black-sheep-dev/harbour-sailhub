@@ -6,13 +6,14 @@
 // ------------------------------------------------------------------------------------------------------------------
 // QUERY ITEMS
 // ------------------------------------------------------------------------------------------------------------------
-static const QString SAILHUB_QUERY_ITEM_COMMMENT =
+static const QString SAILHUB_QUERY_ITEM_COMMENT =
         QStringLiteral("    id"
                        "    author {"
                        "        avatarUrl"
                        "        login"
                        "    }"
                        "    bodyHTML"
+                       "    bodyText"
                        "    createdAt"
                        "    lastEditedAt"
                        "    viewerCanDelete"
