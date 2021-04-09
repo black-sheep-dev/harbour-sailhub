@@ -176,7 +176,7 @@
     </message>
     <message>
         <source>Issue</source>
-        <translation>Issue</translation>
+        <translation>Problem</translation>
     </message>
     <message>
         <source>Closed</source>
@@ -192,7 +192,7 @@
     </message>
     <message>
         <source>Edit issue</source>
-        <translation>Issue bearbeiten</translation>
+        <translation>Problem bearbeiten</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>Deleting issue</source>
-        <translation>Lösche Issue</translation>
+        <translation>Lösche Problem</translation>
     </message>
     <message>
         <source>Close</source>
@@ -208,22 +208,22 @@
     </message>
     <message>
         <source>Closing issue</source>
-        <translation>Schließe Issue</translation>
+        <translation>Schließe Problem</translation>
     </message>
 </context>
 <context>
     <name>IssuesListPage</name>
     <message>
         <source>Issues</source>
-        <translation>Issues</translation>
+        <translation>Probleme</translation>
     </message>
     <message>
         <source>Show closed issues</source>
-        <translation>Zeige geschlossene Issues</translation>
+        <translation>Zeige geschlossene Probleme</translation>
     </message>
     <message>
         <source>Show open issues</source>
-        <translation>Zeige offene Issues</translation>
+        <translation>Zeige offene Probleme</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -231,7 +231,7 @@
     </message>
     <message>
         <source>No issues available</source>
-        <translation>Keine Issues verfügbar</translation>
+        <translation>Keine Probleme vorhanden</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -258,7 +258,7 @@
     </message>
     <message>
         <source>New issue</source>
-        <translation>Neues Issue</translation>
+        <translation>Neues Problem</translation>
     </message>
 </context>
 <context>
@@ -334,7 +334,7 @@
     </message>
     <message>
         <source>Issues</source>
-        <translation>Issues</translation>
+        <translation>Probleme</translation>
     </message>
     <message>
         <source>Pull Requests</source>
@@ -361,7 +361,7 @@
     </message>
     <message>
         <source>No pull requests available</source>
-        <translation>Keine Pull Requests verügbar</translation>
+        <translation>Keine Pull Requests vorhanden</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -469,7 +469,7 @@
     </message>
     <message>
         <source>Issues</source>
-        <translation>Issues</translation>
+        <translation>Probleme</translation>
     </message>
     <message>
         <source>Pull Requests</source>
@@ -516,7 +516,7 @@
     </message>
     <message>
         <source>No repositories available</source>
-        <translation>Keine Repositories verfügbar</translation>
+        <translation>Keine Repositories vorhanden</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -843,7 +843,7 @@
     </message>
     <message>
         <source>No users available</source>
-        <translation>Keine Benutzer verügbar</translation>
+        <translation>Keine Benutzer vorhanden</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
