@@ -45,10 +45,36 @@
     </message>
 </context>
 <context>
+    <name>CommentItem</name>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished">Bearbeitet</translation>
+    </message>
+</context>
+<context>
     <name>CommentListDelegate</name>
     <message>
         <source>Edited</source>
         <translation>Bearbeitet</translation>
+    </message>
+</context>
+<context>
+    <name>CommentPage</name>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -71,6 +97,37 @@
     <message>
         <source>No comments available</source>
         <translation>Keine Kommentare vorhanden</translation>
+    </message>
+    <message>
+        <source>New comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditCommentDialog</name>
+    <message>
+        <source>Edit Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Speichern</translation>
+    </message>
+    <message>
+        <source>Add Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -131,7 +188,27 @@
     </message>
     <message>
         <source>Comments</source>
-        <translation>Kommentare</translation>
+        <translation type="unfinished">Kommentare</translation>
+    </message>
+    <message>
+        <source>Edit issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closing issue</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -178,6 +255,10 @@
     <message>
         <source>Comments</source>
         <translation>Kommentare</translation>
+    </message>
+    <message>
+        <source>New issue</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

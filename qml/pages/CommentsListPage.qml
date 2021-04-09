@@ -36,6 +36,17 @@ Page {
                     refresh()
                 }
             }
+
+            MenuItem {
+                text: qsTr("New comment")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
+
+                    dialog.accepted.connect(function() {
+                        SailHub.api().addComment(dialog.body, commentsModel)
+                    })
+                }
+            }
         }
 
         BusyIndicator {
@@ -61,12 +72,25 @@ Page {
         delegate: CommentListDelegate {
             id: delegate
 
+            menu: ContextMenu {
+                visible: model.viewerCanDelete
+                MenuItem {
+                    text: qsTr("Delete")
+                    onClicked: remorse.execute(delegate, qsTr("Deleting comment"), function() {
+                        SailHub.api().deleteComment(model.nodeId)
+                        commentsModel.deleteComment(model.index)
+                    })
+                }
+            }
+
+            RemorseItem { id: remorse }
+
             lastItem: index == (listView.count - 1)
 
-//            onClicked: pageStack.push(Qt.resolvedUrl("IssuePage.qml"), {
-//                                          nodeId: model.nodeId
-//                                      })
-
+            onClicked: pageStack.push(Qt.resolvedUrl("CommentPage.qml"), {
+                                          comment: commentsModel.commentAt(model.index),
+                                          description: page.description
+                                      })
         }
 
         PushUpMenu {
@@ -91,9 +115,9 @@ Page {
 
     Connections {
         target: SailHub.api()
-        onIssueCreated: refresh()
+        onCommentAdded: refresh()
     }
 
-    Component.onCompleted: refresh()
+    onStatusChanged: if (status === PageStatus.Active) refresh()
 }
 

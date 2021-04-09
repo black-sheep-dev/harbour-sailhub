@@ -15,21 +15,27 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 
 ![](doc/images/github_personal_access_token.png)
 
-## Implemented Features
-- Search repos, users, organizations
-- Browse repos
-- Browse repo files
-- Browse issues
-- Browse pull requests
-- Browse comments (issues)
-- Display file content (without code highlighting)
+## Implemented CRUD Features
+Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
+
+- Repository [*RS*]
+- Organization [*RS*]
+- User [*RS*]
+- Issue [*CRUD*] + close
+- Issue comment [*CRUD*]
+- Pull request [*R*]
+- Repository files [*R*]
+- File content [*R*]
+
+## Implemented Social Features
+
 - Follow / Unfollow user
-- Watch / Star repos
+- Watch / Star repository
+- Commenting (Issue)
 
 ## Planned Features
 - Markdown rendering support for displaying e.g. README.md
 - Code highlighting
-- Commenting (issues and pull requests)
 - Notifications
 - Discussion
 - Some useful cover action /content
@@ -50,6 +56,10 @@ If you missing your native language you are welcome to support this project with
 
 [![https://weblate.nubecula.org/engage/harbour-sailhub/](https://weblate.nubecula.org/widgets/harbour-sailhub/-/multi-auto.svg)](https://weblate.nubecula.org/engage/harbour-sailhub/)
 
+## Testing
+If you like to test the functionality you can use my dummy repository:
+
+[black-sheep-dev/dumm-repo](https://github.com/black-sheep-dev/dummy-repo)
 
 ## Donations
 

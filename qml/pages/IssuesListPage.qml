@@ -53,16 +53,17 @@ Page {
 
             }
 
-//            MenuItem {
-//                text: qsTr("Create new Issue")
-//                onClicked: {
-//                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))
+            MenuItem {
+                visible: type !== Issue.User
+                text: qsTr("New issue")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))
 
-//                    dialog.accepted.connect(function() {
-//                        SailHub.api().createIssue(dialog.title, dialog.body, issuesModel)
-//                    })
-//                }
-//            }
+                    dialog.accepted.connect(function() {
+                        SailHub.api().createIssue(dialog.title, dialog.body, issuesModel)
+                    })
+                }
+            }
 
             MenuItem {
                 text: qsTr("Refresh")
@@ -181,6 +182,6 @@ Page {
         onIssueCreated: refresh()
     }
 
-    Component.onCompleted: refresh()
+    onStatusChanged: if (status === PageStatus.Active) refresh()
 }
 
