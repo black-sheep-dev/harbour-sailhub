@@ -43,6 +43,7 @@ Item {
 
             font.pixelSize: Theme.fontSizeSmall
             color: Theme.primaryColor
+            linkColor: Theme.highlightColor
 
             onLinkActivated: Qt.openUrlExternally(link)
         }

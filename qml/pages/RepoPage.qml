@@ -257,6 +257,7 @@ Page {
                     pageStack.push(Qt.resolvedUrl("PullRequestsListPage.qml"), {
                                               description: repo.owner.login + "/" + repo.name,
                                               identifier: repo.nodeId,
+                                              type: PullRequest.Repo,
                                               states: PullRequest.StateOpen
                                           })
                 }
