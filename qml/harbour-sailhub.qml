@@ -26,7 +26,7 @@ ApplicationWindow
 
         function token() {
             __silica_applicationwindow_instance.activate()
-            pageStack.push(Qt.resolvedUrl("pages/SettingsPage.qml"))
+            pageStack.push(Qt.resolvedUrl("pages/settings/SettingsAuthenticationPage.qml"))
         }
     }
 }

@@ -3,8 +3,10 @@
 
 #include <QList>
 
+#include "src/entities/comment.h"
 #include "src/entities/file.h"
 #include "src/entities/issue.h"
+#include "src/entities/label.h"
 #include "src/entities/organization.h"
 #include "src/entities/pullrequest.h"
 #include "src/entities/repo.h"
@@ -21,6 +23,8 @@ public:
     static Issue *issueFromJson(const QJsonObject &obj);
     static IssueListItem issueListItemFromJson(const QJsonObject &obj);
     static QList<IssueListItem> issuesFromJson(const QJsonObject &obj);
+    static LabelListItem labelListItemFromJson(const QJsonObject &obj);
+    static QList<LabelListItem> labelsFromJson(const QJsonObject &obj);
     static Organization *organizationFromJson(const QJsonObject &obj, Organization *organization = nullptr);
     static OrganizationListItem organizationListItemFromJson(const QJsonObject &obj);
     static QList<OrganizationListItem> organizationsFromJson(const QJsonObject &obj);

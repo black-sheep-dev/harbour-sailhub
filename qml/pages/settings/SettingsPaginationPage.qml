@@ -18,34 +18,22 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: qsTr("Settings")
+                title: qsTr("Pagination Settings")
             }
 
-            PasswordField {
-                id: tokenField
-                width: parent.width
-
-                label: qsTr("Access Token")
-
-                placeholderText: qsTr("Enter access token")
-            }
-
-            SectionHeader {
-                text: qsTr("Pagination")
-            }
             Label {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
                 wrapMode: Text.Wrap
 
-                text: qsTr("Choose the number of items to fetch in a single query. This value should be between 1-100.")
+                text: qsTr("Choose the number of items to fetch in a single query. This value should be between 10-100.")
                 color: Theme.highlightColor
             }
 
             Slider {
                 id: itemCountSlider
                 width: parent.width
-                minimumValue: 1
+                minimumValue: 10
                 maximumValue: 100
                 value: 20
                 valueText: qsTr("%n Item(s)", "", value)
@@ -57,12 +45,7 @@ Page {
         }
     }
 
-    onStatusChanged: {
-        if (status == PageStatus.Deactivating) {
-            if (tokenField.text.length > 0) SailHub.accessToken = tokenField.text
-
-            SailHub.saveSettings()
-        }
-    }
+    onStatusChanged: if (status == PageStatus.Deactivating) SailHub.saveSettings()
 }
+
 

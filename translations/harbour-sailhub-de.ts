@@ -210,6 +210,18 @@
         <source>Closing issue</source>
         <translation>Schließe Problem</translation>
     </message>
+    <message>
+        <source>Participants</source>
+        <translation>Beteiligte</translation>
+    </message>
+    <message>
+        <source>Assignees</source>
+        <translation>Beauftragte</translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation>Labels</translation>
+    </message>
 </context>
 <context>
     <name>IssuesListPage</name>
@@ -259,6 +271,40 @@
     <message>
         <source>New issue</source>
         <translation>Neues Problem</translation>
+    </message>
+</context>
+<context>
+    <name>LabelsListPage</name>
+    <message>
+        <source>Issues</source>
+        <translation>Probleme</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation>Sortierung</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation>Erstellt am</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>No labels available</source>
+        <translation>Keine Labels vorhanden</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -313,10 +359,6 @@
         <translation>Über</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
@@ -347,6 +389,10 @@
     <message>
         <source>Organizations</source>
         <translation>Organisationen</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
     </message>
 </context>
 <context>
@@ -419,6 +465,29 @@
             <numerusform>vor %n Jahr</numerusform>
             <numerusform>vor %n Jahren</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>ReactionDialog</name>
+    <message>
+        <source>Choose</source>
+        <translation>Auswählen</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Speichern</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation>Erstellen</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <source>Enter title</source>
+        <translation>Titel eingeben</translation>
     </message>
 </context>
 <context>
@@ -678,7 +747,7 @@
     </message>
     <message>
         <source>No branches available</source>
-        <translation>Keine Branches verfügbar</translation>
+        <translation>Keine Branches vorhanden</translation>
     </message>
 </context>
 <context>
@@ -717,10 +786,18 @@
     </message>
 </context>
 <context>
-    <name>SettingsPage</name>
+    <name>SettingsAuthenticationPage</name>
     <message>
-        <source>Settings</source>
-        <translation>Einstellungen</translation>
+        <source>Reset</source>
+        <translation>Zurücksetzen</translation>
+    </message>
+    <message>
+        <source>Resetting credentials and close app</source>
+        <translation>Setze Authentifizerungsdaten zurück und schließe die Anwendung</translation>
+    </message>
+    <message>
+        <source>Authentication Settings</source>
+        <translation>Authentifizerungs Einstellungen</translation>
     </message>
     <message>
         <source>Access Token</source>
@@ -730,13 +807,39 @@
         <source>Enter access token</source>
         <translation>Access Token eingeben</translation>
     </message>
+</context>
+<context>
+    <name>SettingsPage</name>
+    <message>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
+    </message>
     <message>
         <source>Pagination</source>
         <translation>Pagination</translation>
     </message>
     <message>
-        <source>Choose the number of items to fetch in a single query. This value should be between 1-100.</source>
-        <translation>Die Anzahl von Einträgen wählen, die bei jeder Anfrage geladen werden sollen. Diese Zahl sollte zwischen 1-100 liegen.</translation>
+        <source>Manage pagination options</source>
+        <translation>Verwalte Pagination Einstellungen</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Authentifizierung</translation>
+    </message>
+    <message>
+        <source>Manage authentication data</source>
+        <translation>Verwalte Authentifizerungsdaten</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsPaginationPage</name>
+    <message>
+        <source>Pagination Settings</source>
+        <translation>Pagination Einstellungen</translation>
+    </message>
+    <message>
+        <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>
+        <translation>Die Anzahl von Einträgen wählen, die bei jeder Anfrage geladen werden sollen. Diese Zahl sollte zwischen 10-100 liegen.</translation>
     </message>
     <message numerus="yes">
         <source>%n Item(s)</source>
@@ -786,10 +889,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Settings</source>
-        <translation>Einstellungen</translation>
-    </message>
     <message>
         <source>Refresh</source>
         <translation>Aktualisieren</translation>

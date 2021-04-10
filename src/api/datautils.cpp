@@ -73,7 +73,11 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj)
     issue->setEdited(issue->updatedAt() > issue->createdAt());
     issue->setViewerCanUpdate(obj.value(ApiKey::VIEWER_CAN_UPDATE).toBool());
 
-    Owner *author = ownerFromJson(obj.value(ApiKey::AUTHOR).toObject());
+    issue->setAssigneeCount(getTotalCount(obj.value(ApiKey::ASSIGNEES).toObject()));
+    issue->setLabelCount(getTotalCount(obj.value(ApiKey::LABELS).toObject()));
+    issue->setParticipantCount(getTotalCount(obj.value(ApiKey::PARTICIPANTS).toObject()));
+
+    auto author = ownerFromJson(obj.value(ApiKey::AUTHOR).toObject());
     if (author != nullptr) {
         author->setParent(issue);
         issue->setAuthor(author);
@@ -123,6 +127,34 @@ QList<IssueListItem> DataUtils::issuesFromJson(const QJsonObject &obj)
     }
 
     return issues;
+}
+
+LabelListItem DataUtils::labelListItemFromJson(const QJsonObject &obj)
+{
+    LabelListItem item;
+
+    item.color = obj.value(ApiKey::COLOR).toString();
+    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    item.name = obj.value(ApiKey::NAME).toString();
+
+    return item;
+}
+
+QList<LabelListItem> DataUtils::labelsFromJson(const QJsonObject &obj)
+{
+    QList<LabelListItem> items;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject label = node.toObject();
+        if (label.isEmpty())
+            continue;
+
+        items.append(labelListItemFromJson(label));
+    }
+
+    return items;
 }
 
 Organization *DataUtils::organizationFromJson(const QJsonObject &obj, Organization *organization)

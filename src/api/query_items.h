@@ -36,6 +36,11 @@ static const QString SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM =
                        "    title"
                        "    updatedAt").simplified();
 
+static const QString SAILHUB_QUERY_ITEM_LABEL_LIST_ITEM =
+        QStringLiteral("    color"
+                       "    createdAt"
+                       "    name").simplified();
+
 static const QString SAILHUB_QUERY_ITEM_ORGANIZATION =
         QStringLiteral("    id"
                        "    avatarUrl"

@@ -153,6 +153,7 @@ Page {
 
             RelatedValueItem {
                 label: qsTr("Comments")
+                icon: "image://theme/icon-m-chat"
                 value: issue.commentCount
 
                 onClicked: pageStack.push(Qt.resolvedUrl("CommentsListPage.qml"), {
@@ -160,6 +161,57 @@ Page {
                                               identifier: issue.nodeId,
                                               type: Comment.Issue
                                           })
+            }
+
+            RelatedValueItem {
+                label: qsTr("Labels")
+                icon: "image://theme/icon-m-link"
+                value: issue.labelCount
+
+                onClicked: {
+                    if (issue.labelCount === 0) return;
+
+                    pageStack.push(Qt.resolvedUrl("LabelsListPage.qml"), {
+                                              title: qsTr("Labels"),
+                                              description: issue.repository + " #" + issue.number,
+                                              identifier: issue.nodeId,
+                                              type: LabelEntity.Issue
+                                          })
+                }
+            }
+
+            RelatedValueItem {
+                label: qsTr("Assignees")
+                icon: "image://theme/icon-m-media-artists"
+                value: issue.assigneeCount
+
+                onClicked: {
+                    if (issue.assigneeCount === 0) return;
+
+                    pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
+                                              title: qsTr("Assignees"),
+                                              description: issue.repository + " #" + issue.number,
+                                              identifier: issue.nodeId,
+                                              userType: User.IssueAssignee
+                                          })
+                }
+            }
+
+            RelatedValueItem {
+                label: qsTr("Participants")
+                icon: "image://theme/icon-m-media-artists"
+                value: issue.participantCount
+
+                onClicked: {
+                    if (issue.participantCount === 0) return;
+
+                    pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
+                                              title: qsTr("Participants"),
+                                              description: issue.repository + " #" + issue.number,
+                                              identifier: issue.nodeId,
+                                              userType: User.IssueParticipant
+                                          })
+                }
             }
         }
     }

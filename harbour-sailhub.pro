@@ -36,6 +36,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/comment.cpp \
     src/entities/file.cpp \
     src/entities/issue.cpp \
+    src/entities/label.cpp \
     src/entities/license.cpp \
     src/entities/node.cpp \
     src/entities/organization.cpp \
@@ -45,6 +46,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/user.cpp \
     src/models/commentsmodel.cpp \
     src/models/issuesmodel.cpp \
+    src/models/labelsmodel.cpp \
     src/models/organizationsmodel.cpp \
     src/models/paginationmodel.cpp \
     src/models/pullrequestsmodel.cpp \
@@ -66,12 +68,14 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/cover/CoverPage.qml \
     qml/delegates/CommentListDelegate.qml \
     qml/delegates/IssueListDelegate.qml \
+    qml/delegates/LabelListDelegate.qml \
     qml/delegates/OrganizationListDelegate.qml \
     qml/delegates/PullRequestListDelegate.qml \
     qml/delegates/RepoListDelegate.qml \
     qml/delegates/UserListDelegate.qml \
     qml/dialogs/EditCommentDialog.qml \
     qml/dialogs/EditIssueDialog.qml \
+    qml/dialogs/ReactionDialog.qml \
     qml/dialogs/SelectBranchDialog.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
     qml/dialogs/SortSelectionDialog.qml \
@@ -81,6 +85,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
     qml/pages/IssuesListPage.qml \
+    qml/pages/LabelsListPage.qml \
     qml/pages/OrganizationPage.qml \
     qml/pages/OrganizationsListPage.qml \
     qml/pages/OverviewPage.qml \
@@ -91,12 +96,14 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/SearchRepositoryPage.qml \
     qml/pages/SearchSelectionPage.qml \
     qml/pages/SearchUserPage.qml \
-    qml/pages/SettingsPage.qml \
     qml/pages/TextFileViewerPage.qml \
     qml/pages/TreeListPage.qml \
     qml/pages/UserPage.qml \
     qml/pages/UserPage.qml \
     qml/pages/UsersListPage.qml \
+    qml/pages/settings/SettingsAuthenticationPage.qml \
+    qml/pages/settings/SettingsPage.qml \
+    qml/pages/settings/SettingsPaginationPage.qml \
     qml/pages/wizard/WizardFinalPage.qml \
     qml/pages/wizard/WizardIntroPage.qml \
     qml/pages/wizard/WizardTokenPage.qml \
@@ -139,17 +146,20 @@ HEADERS += \
     src/entities/comment.h \
     src/entities/file.h \
     src/entities/issue.h \
+    src/entities/label.h \
     src/entities/language.h \
     src/entities/license.h \
     src/entities/node.h \
     src/entities/organization.h \
     src/entities/owner.h \
     src/entities/pullrequest.h \
+    src/entities/reaction.h \
     src/entities/repo.h \
     src/entities/treeitem.h \
     src/entities/user.h \
     src/models/commentsmodel.h \
     src/models/issuesmodel.h \
+    src/models/labelsmodel.h \
     src/models/organizationsmodel.h \
     src/models/paginationmodel.h \
     src/models/pullrequestsmodel.h \

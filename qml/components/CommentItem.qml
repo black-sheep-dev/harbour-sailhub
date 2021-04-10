@@ -20,8 +20,6 @@ Item {
 
         AuthorItem {
             id: authorItem
-            width: parent.width
-            height: Theme.itemSizeMedium
 
             interactive: true
             subtitle: {

@@ -1,6 +1,7 @@
 #include "keys.h"
 
 const QString ApiKey::ADD_STAR                      = QStringLiteral("addStar");
+const QString ApiKey::ASSIGNEES                     = QStringLiteral("assignees");
 const QString ApiKey::AUTHOR                        = QStringLiteral("author");
 const QString ApiKey::AVATAR_URL                    = QStringLiteral("avatarUrl");
 const QString ApiKey::BIO                           = QStringLiteral("bio");
@@ -37,6 +38,7 @@ const QString ApiKey::IS_PRIVATE                    = QStringLiteral("isPrivate"
 const QString ApiKey::IS_VIEWER                     = QStringLiteral("isViewer");
 const QString ApiKey::ISSUE_ID                      = QStringLiteral("issueId");
 const QString ApiKey::ISSUES                        = QStringLiteral("issues");
+const QString ApiKey::LABELS                        = QStringLiteral("labels");
 const QString ApiKey::LANGUAGES                     = QStringLiteral("languages");
 const QString ApiKey::LAST_EDITED_AT                = QStringLiteral("lastEditedAt");
 const QString ApiKey::LICENSE_INFO                  = QStringLiteral("licenseInfo");
@@ -54,6 +56,7 @@ const QString ApiKey::OBJECT                        = QStringLiteral("object");
 const QString ApiKey::ORGANIZATIONS                 = QStringLiteral("organizations");
 const QString ApiKey::OWNER                         = QStringLiteral("owner");
 const QString ApiKey::PAGE_INFO                     = QStringLiteral("pageInfo");
+const QString ApiKey::PARTICIPANTS                  = QStringLiteral("participants");
 const QString ApiKey::PATH                          = QStringLiteral("path");
 const QString ApiKey::PRIMARY_LANGUAGE              = QStringLiteral("primaryLanguage");
 const QString ApiKey::PROJECTS                      = QStringLiteral("projects");

@@ -55,6 +55,8 @@ public:
         Contributor,
         Follower,
         Following,
+        IssueAssignee,
+        IssueParticipant,
         OrganizationMember,
         Search,
         Stargazer,

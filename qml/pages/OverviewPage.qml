@@ -18,10 +18,8 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
             MenuItem {
-                text: qsTr("Profile")
-                onClicked: pageStack.push(Qt.resolvedUrl("UserPage.qml"), {
-                                              user: SailHub.api().profile
-                                          })
+                text: qsTr("Settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("settings/SettingsPage.qml"))
             }
             MenuItem {
                 text: qsTr("Search")
@@ -52,6 +50,19 @@ Page {
 
             PageHeader {
                 title: qsTr("Home")
+            }
+
+            AuthorItem {
+                id: authorItem
+
+                interactive: true
+                title: SailHub.api().profile.login
+                subtitle: SailHub.api().profile.name
+                avatar: SailHub.api().profile.avatarUrl
+
+                onClicked: pageStack.push(Qt.resolvedUrl("../pages/UserPage.qml"), {
+                                              user: SailHub.api().profile
+                                          })
             }
 
             SectionHeader {

@@ -1,0 +1,29 @@
+#ifndef LABEL_H
+#define LABEL_H
+
+#include <QObject>
+
+#include <QDateTime>
+
+struct LabelListItem {
+    QString color;
+    QDateTime createdAt;
+    QString name;
+};
+
+class Label : public QObject
+{
+    Q_OBJECT
+
+public:
+    enum LabelType {
+        Undefined,
+        Issue,
+        PullRequest
+    };
+    Q_ENUM(LabelType)
+
+    explicit Label(QObject *parent = nullptr);
+};
+
+#endif // LABEL_H

@@ -209,6 +209,18 @@
         <source>Closing issue</source>
         <translation>正在克隆问题（issue）</translation>
     </message>
+    <message>
+        <source>Participants</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assignees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IssuesListPage</name>
@@ -257,6 +269,39 @@
     <message>
         <source>New issue</source>
         <translation>新问题（issue）</translation>
+    </message>
+</context>
+<context>
+    <name>LabelsListPage</name>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished">问题（Issues）</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">分类</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">创建于</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">名称</translation>
+    </message>
+    <message>
+        <source>No labels available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -310,10 +355,6 @@
         <translation>关于</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>简介</translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation>搜索</translation>
     </message>
@@ -344,6 +385,10 @@
     <message>
         <source>Organizations</source>
         <translation>组织</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished">设置</translation>
     </message>
 </context>
 <context>
@@ -410,6 +455,29 @@
         <translation>
             <numerusform>%n 年前</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>ReactionDialog</name>
+    <message>
+        <source>Choose</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation type="unfinished">创建</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">标题</translation>
+    </message>
+    <message>
+        <source>Enter title</source>
+        <translation type="unfinished">编辑标题</translation>
     </message>
 </context>
 <context>
@@ -702,30 +770,64 @@
     </message>
 </context>
 <context>
+    <name>SettingsAuthenticationPage</name>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished">重置</translation>
+    </message>
+    <message>
+        <source>Resetting credentials and close app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Access Token</source>
+        <translation type="unfinished">访问凭证</translation>
+    </message>
+    <message>
+        <source>Enter access token</source>
+        <translation type="unfinished">输入访问凭证</translation>
+    </message>
+</context>
+<context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <source>Access Token</source>
-        <translation>访问凭证</translation>
-    </message>
-    <message>
-        <source>Enter access token</source>
-        <translation>输入访问凭证</translation>
-    </message>
-    <message>
         <source>Pagination</source>
         <translation>页码</translation>
     </message>
     <message>
-        <source>Choose the number of items to fetch in a single query. This value should be between 1-100.</source>
-        <translation>选择每个搜索获取的项目数量。值需要介于1至100之间。</translation>
+        <source>Manage pagination options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage authentication data</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsPaginationPage</name>
+    <message>
+        <source>Pagination Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>
+        <translation type="unfinished">选择每个搜索获取的项目数量。值需要介于1至100之间。 {10-100.?}</translation>
     </message>
     <message numerus="yes">
         <source>%n Item(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>%n 个项目</numerusform>
         </translation>
     </message>
@@ -770,10 +872,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Settings</source>
-        <translation>设置</translation>
-    </message>
     <message>
         <source>Refresh</source>
         <translation>刷新</translation>
