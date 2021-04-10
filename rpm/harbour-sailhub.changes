@@ -1,9 +1,10 @@
-* Sat Apr 10 2021 Black Sheep <blacksheep@nubecula.org> 0.0.8-1
+* Sat Apr 10 2021 Black Sheep <blacksheep@nubecula.org> 0.0.9-1
 - Show assignees, participants and labels for issues
 - Fixed a bug with organization list view
 - New settings management
 - UI changes
 - Bugfixes
+- Polish translation update by atlochowski
 
 * Fri Apr 09 2021 Black Sheep <blacksheep@nubecula.org> 0.0.7-1
 - Bugfixes
