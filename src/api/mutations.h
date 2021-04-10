@@ -39,7 +39,7 @@ static const QString SAILHUB_MUTATION_CLOSE_ISSUE =
                        "    closeIssue(input: $input) {"
                        "        clientMutationId"
                        "    }"
-                       "}").arg(SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM).simplified();
+                       "}").simplified();
 
 // DELETE COMMENT
 static const QString SAILHUB_MUTATION_DELETE_COMMENT =
@@ -55,7 +55,7 @@ static const QString SAILHUB_MUTATION_DELETE_ISSUE =
                        "    deleteIssue(input: $input) {"
                        "        clientMutationId"
                        "    }"
-                       "}").arg(SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM).simplified();
+                       "}").simplified();
 
 // FOLLOW USER
 static const QString SAILHUB_MUTATION_FOLLOW_USER =

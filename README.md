@@ -26,6 +26,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Pull request [*R*]
 - Repository files [*R*]
 - File content [*R*]
+- Labels (Issue) [*R*]
 
 ## Implemented Social Features
 

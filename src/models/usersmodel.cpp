@@ -5,6 +5,48 @@
 #include "src/api/queryvars.h"
 #include "src/api/query_items.h"
 
+// GET ISSUE ASSIGNEES
+static const QString SAILHUB_QUERY_GET_ISSUE_ASSIGNEES =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on Issue {"
+                       "            id"
+                       "            assignees(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET ISSUE PARTICIPANTS
+static const QString SAILHUB_QUERY_GET_ISSUE_PARTICIPANTS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on Issue {"
+                       "            id"
+                       "            participants(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
 // GET ORGANIZATION MEMBERS
 static const QString SAILHUB_QUERY_GET_ORGANIZATION_MEMBERS =
         QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
@@ -273,6 +315,18 @@ void UsersModel::parseQueryResult(const QJsonObject &data)
         count = data.value(ApiKey::TOTAL_COUNT);
         break;
 
+    case User::IssueAssignee:
+        users = data.value(ApiKey::NODE).toObject()
+                    .value(ApiKey::ASSIGNEES).toObject();
+        count = data.value(ApiKey::TOTAL_COUNT);
+        break;
+
+    case User::IssueParticipant:
+        users = data.value(ApiKey::NODE).toObject()
+                    .value(ApiKey::PARTICIPANTS).toObject();
+        count = data.value(ApiKey::TOTAL_COUNT);
+        break;
+
     case User::Search:
         users = data.value(ApiKey::SEARCH).toObject();
         count = users.value(ApiKey::USER_COUNT);
@@ -315,6 +369,14 @@ GraphQLQuery UsersModel::query() const
 
     case User::Watcher:
         query.query = SAILHUB_QUERY_GET_REPOSITORY_WATCHERS;
+        break;
+
+    case User::IssueAssignee:
+        query.query = SAILHUB_QUERY_GET_ISSUE_ASSIGNEES;
+        break;
+
+    case User::IssueParticipant:
+        query.query = SAILHUB_QUERY_GET_ISSUE_PARTICIPANTS;
         break;
 
     case User::Search:

@@ -17,6 +17,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<Comment>("org.nubecula.harbour.sailhub", 1, 0, "Comment");
     qmlRegisterType<CommentsModel>("org.nubecula.harbour.sailhub", 1, 0, "CommentsModel");
     qmlRegisterType<File>("org.nubecula.harbour.sailhub", 1, 0, "File");
+    qmlRegisterType<Label>("org.nubecula.harbour.sailhub", 1, 0, "LabelEntity");
+    qmlRegisterType<LabelsModel>("org.nubecula.harbour.sailhub", 1, 0, "LabelsModel");
     qmlRegisterType<License>("org.nubecula.harbour.sailhub", 1, 0, "License");
     qmlRegisterType<Issue>("org.nubecula.harbour.sailhub", 1, 0, "Issue");
     qmlRegisterType<IssuesModel>("org.nubecula.harbour.sailhub", 1, 0, "IssuesModel");

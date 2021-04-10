@@ -211,6 +211,18 @@
         <source>Closing issue</source>
         <translation>Zamykanie problemu</translation>
     </message>
+    <message>
+        <source>Participants</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assignees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IssuesListPage</name>
@@ -261,6 +273,41 @@
     <message>
         <source>New issue</source>
         <translation>Nowy problem</translation>
+    </message>
+</context>
+<context>
+    <name>LabelsListPage</name>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished">Problemy</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">Sortowanie</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">Utworzono</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nazwa</translation>
+    </message>
+    <message>
+        <source>No labels available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -316,10 +363,6 @@
         <translation>O</translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation>Profil</translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation>Wyszukaj</translation>
     </message>
@@ -350,6 +393,10 @@
     <message>
         <source>Organizations</source>
         <translation>Organizacje</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished">Ustawienia</translation>
     </message>
 </context>
 <context>
@@ -428,6 +475,29 @@
             <numerusform>%n lata temu</numerusform>
             <numerusform>%n lat temu</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>ReactionDialog</name>
+    <message>
+        <source>Choose</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Zapisz</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation type="unfinished">Utwórz</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Tytuł</translation>
+    </message>
+    <message>
+        <source>Enter title</source>
+        <translation type="unfinished">Wprowadź tytuł</translation>
     </message>
 </context>
 <context>
@@ -732,30 +802,64 @@
     </message>
 </context>
 <context>
+    <name>SettingsAuthenticationPage</name>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished">Reset</translation>
+    </message>
+    <message>
+        <source>Resetting credentials and close app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Access Token</source>
+        <translation type="unfinished">Token dostępu</translation>
+    </message>
+    <message>
+        <source>Enter access token</source>
+        <translation type="unfinished">Wprowadź token dostępu</translation>
+    </message>
+</context>
+<context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
         <translation>Ustawienia</translation>
     </message>
     <message>
-        <source>Access Token</source>
-        <translation>Token dostępu</translation>
-    </message>
-    <message>
-        <source>Enter access token</source>
-        <translation>Wprowadź token dostępu</translation>
-    </message>
-    <message>
         <source>Pagination</source>
         <translation>Paginacja</translation>
     </message>
     <message>
-        <source>Choose the number of items to fetch in a single query. This value should be between 1-100.</source>
-        <translation>Wybierz liczbę elementów do pobrania w jednym zapytaniu. Ta wartość powinna zawierać się w przedziale 1-100.</translation>
+        <source>Manage pagination options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage authentication data</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsPaginationPage</name>
+    <message>
+        <source>Pagination Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>
+        <translation type="unfinished">Wybierz liczbę elementów do pobrania w jednym zapytaniu. Ta wartość powinna zawierać się w przedziale 1-100. {10-100.?}</translation>
     </message>
     <message numerus="yes">
         <source>%n Item(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform>%n element</numerusform>
             <numerusform>%n elementy</numerusform>
             <numerusform>%n elementów</numerusform>
@@ -802,10 +906,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Settings</source>
-        <translation>Ustawienia</translation>
-    </message>
     <message>
         <source>Refresh</source>
         <translation>Odśwież</translation>
