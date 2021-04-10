@@ -48,7 +48,7 @@
     <name>CommentItem</name>
     <message>
         <source>Edited</source>
-        <translation type="unfinished">Edytowany</translation>
+        <translation>Edytowany</translation>
     </message>
 </context>
 <context>
@@ -62,19 +62,19 @@
     <name>CommentPage</name>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <source>Deleting comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwanie komentarza</translation>
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Komentarz</translation>
     </message>
 </context>
 <context>
@@ -101,34 +101,34 @@
     </message>
     <message>
         <source>New comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy komentarz</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <source>Deleting comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwanie komentarza</translation>
     </message>
 </context>
 <context>
     <name>EditCommentDialog</name>
     <message>
         <source>Edit Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj komentarz</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Zapisz</translation>
+        <translation>Zapisz</translation>
     </message>
     <message>
         <source>Add Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj komentarz</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj</translation>
     </message>
 </context>
 <context>
@@ -193,23 +193,23 @@
     </message>
     <message>
         <source>Edit issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj problem</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <source>Deleting issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwanie problemu</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij</translation>
     </message>
     <message>
         <source>Closing issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamykanie problemu</translation>
     </message>
     <message>
         <source>Participants</source>
@@ -272,7 +272,7 @@
     </message>
     <message>
         <source>New issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy problem</translation>
     </message>
 </context>
 <context>
