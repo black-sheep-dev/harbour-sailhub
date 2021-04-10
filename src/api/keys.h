@@ -5,6 +5,7 @@
 
 struct ApiKey {
     static const QString ADD_STAR;
+    static const QString ASSIGNEES;
     static const QString AUTHOR;
     static const QString AVATAR_URL;
     static const QString BIO;
@@ -41,6 +42,7 @@ struct ApiKey {
     static const QString IS_VIEWER;
     static const QString ISSUE_ID;
     static const QString ISSUES;
+    static const QString LABELS;
     static const QString LANGUAGES;
     static const QString LAST_EDITED_AT;
     static const QString LICENSE_INFO;
@@ -58,6 +60,7 @@ struct ApiKey {
     static const QString ORGANIZATIONS;
     static const QString OWNER;    
     static const QString PAGE_INFO;
+    static const QString PARTICIPANTS;
     static const QString PATH;
     static const QString PRIMARY_LANGUAGE;
     static const QString PROJECTS;

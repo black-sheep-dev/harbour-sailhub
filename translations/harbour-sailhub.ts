@@ -209,6 +209,18 @@
         <source>Closing issue</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Participants</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assignees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IssuesListPage</name>
@@ -257,6 +269,39 @@
     <message>
         <source>New issue</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LabelsListPage</name>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No labels available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -310,10 +355,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Profile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -343,6 +384,10 @@
     </message>
     <message>
         <source>Organizations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -410,6 +455,29 @@
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>ReactionDialog</name>
+    <message>
+        <source>Choose</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter title</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -702,9 +770,17 @@
     </message>
 </context>
 <context>
-    <name>SettingsPage</name>
+    <name>SettingsAuthenticationPage</name>
     <message>
-        <source>Settings</source>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resetting credentials and close app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -715,12 +791,38 @@
         <source>Enter access token</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>SettingsPage</name>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Pagination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Choose the number of items to fetch in a single query. This value should be between 1-100.</source>
+        <source>Manage pagination options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage authentication data</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsPaginationPage</name>
+    <message>
+        <source>Pagination Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
@@ -770,10 +872,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Refresh</source>
         <translation type="unfinished"></translation>

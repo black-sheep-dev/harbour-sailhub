@@ -8,7 +8,9 @@
 
 #include "graphqlconnector.h"
 #include "src/entities/user.h"
+#include "src/models/commentsmodel.h"
 #include "src/models/issuesmodel.h"
+#include "src/models/labelsmodel.h"
 #include "src/models/organizationsmodel.h"
 #include "src/models/pullrequestsmodel.h"
 #include "src/models/reposmodel.h"

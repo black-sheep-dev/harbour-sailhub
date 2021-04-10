@@ -27,12 +27,6 @@ Page {
         PullDownMenu {
             busy: page.busy
             MenuItem {
-                visible: user.isViewer
-                text: qsTr("Settings")
-                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
-            }
-
-            MenuItem {
                 text: qsTr("Refresh")
                 onClicked: {
                     page.busy = true

@@ -6,6 +6,11 @@ Issue::Issue(QObject *parent) :
 
 }
 
+quint32 Issue::assigneeCount() const
+{
+    return m_assigneeCount;
+}
+
 Owner *Issue::author() const
 {
     return m_author;
@@ -36,9 +41,19 @@ bool Issue::edited() const
     return m_edited;
 }
 
+quint32 Issue::labelCount() const
+{
+    return m_labelCount;
+}
+
 quint32 Issue::number() const
 {
     return m_number;
+}
+
+quint32 Issue::participantCount() const
+{
+    return m_participantCount;
 }
 
 QString Issue::repository() const
@@ -64,6 +79,15 @@ QDateTime Issue::updatedAt() const
 bool Issue::viewerCanUpdate() const
 {
     return m_viewerCanUpdate;
+}
+
+void Issue::setAssigneeCount(quint32 count)
+{
+    if (m_assigneeCount == count)
+        return;
+
+    m_assigneeCount = count;
+    emit assigneeCountChanged(m_assigneeCount);
 }
 
 void Issue::setAuthor(Owner *author)
@@ -120,6 +144,15 @@ void Issue::setEdited(bool edited)
     emit editedChanged(m_edited);
 }
 
+void Issue::setLabelCount(quint32 count)
+{
+    if (m_labelCount == count)
+        return;
+
+    m_labelCount = count;
+    emit labelCountChanged(m_labelCount);
+}
+
 void Issue::setNumber(quint32 number)
 {
     if (m_number == number)
@@ -127,6 +160,15 @@ void Issue::setNumber(quint32 number)
 
     m_number = number;
     emit numberChanged(m_number);
+}
+
+void Issue::setParticipantCount(quint32 count)
+{
+    if (m_participantCount == count)
+        return;
+
+    m_participantCount = count;
+    emit participantCountChanged(m_participantCount);
 }
 
 void Issue::setRepository(const QString &repository)

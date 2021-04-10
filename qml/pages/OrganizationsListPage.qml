@@ -6,7 +6,7 @@ import org.nubecula.harbour.sailhub 1.0
 import "../delegates/"
 
 Page {
-    property string title
+    property alias title: pageHeader.title
     property string identifier
     property int organizationType: Organization.Undefined
 
@@ -17,10 +17,7 @@ Page {
         id: listView
         anchors.fill: parent
 
-        header: PageHeader {
-            title: page.title
-            description: page.description
-        }
+        header: PageHeader { id: pageHeader }
 
         footer: Item {
             width: parent.width
@@ -31,10 +28,7 @@ Page {
             busy: organizationsModel.loading
             MenuItem {
                 text: qsTr("Refresh")
-                onClicked: {
-                    organizationsModel.reset()
-                    SailHub.api().getOrganizations(organizationsModel)
-                }
+                onClicked: refresh()
             }
         }
 
@@ -76,12 +70,19 @@ Page {
 
             MenuItem {
                 text: qsTr("Load more (%n to go)", "", organizationsModel.totalCount - listView.count)
-                onClicked: SailHub.api().getOrganizations(organizationsModel)
+                onClicked: getOrganizations()
             }
         }
     }
 
-    Component.onCompleted: {
-        SailHub.api().getOrganizations(organizationsModel)
+    function getOrganizations() {
+        SailHub.api().getPaginationModel(organizationsModel)
     }
+
+    function refresh() {
+        organizationsModel.reset()
+        getOrganizations()
+    }
+
+    Component.onCompleted: refresh()
 }
