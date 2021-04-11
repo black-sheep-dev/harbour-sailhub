@@ -303,59 +303,6 @@
     </message>
 </context>
 <context>
-    <name>IssuesListPage.bkp</name>
-    <message>
-        <source>New issue</source>
-        <translation>新问题</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation>刷新</translation>
-    </message>
-    <message>
-        <source>Sorting</source>
-        <translation>分类</translation>
-    </message>
-    <message>
-        <source>Created at</source>
-        <translation>创建于</translation>
-    </message>
-    <message>
-        <source>Updated at</source>
-        <translation>更新于</translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation>评论</translation>
-    </message>
-    <message>
-        <source>Issues</source>
-        <translation>问题</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation>状态</translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation>打开</translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation>已关闭</translation>
-    </message>
-    <message>
-        <source>No issues available</source>
-        <translation>没有可显示的问题</translation>
-    </message>
-    <message numerus="yes">
-        <source>Load more (%n to go)</source>
-        <translation>
-            <numerusform>加载更多（ %n ）</numerusform>
-        </translation>
-    </message>
-</context>
-<context>
     <name>LabelsListPage</name>
     <message>
         <source>Issues</source>
