@@ -73,11 +73,9 @@ Page {
                 icon: "image://theme/icon-m-about"
                 title: qsTr("Issues")
 
-                onClicked: pageStack.push(Qt.resolvedUrl("IssuesListPage.qml"), {
-                                              description: SailHub.api().profile.login,
-                                              identifier: SailHub.api().profile.nodeId,
-                                              type: Issue.User,
-                                              states: Issue.StateOpen
+                onClicked: pageStack.push(Qt.resolvedUrl("IssueSelectionPage.qml"), {
+                                              userId: SailHub.api().profile.nodeId,
+                                              userLogin: SailHub.api().profile.login
                                           })
             }
             IconRelatedItem {

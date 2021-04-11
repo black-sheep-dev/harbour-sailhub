@@ -224,6 +224,37 @@
     </message>
 </context>
 <context>
+    <name>IssueSelectionPage</name>
+    <message>
+        <source>Created</source>
+        <translation>Erstellt</translation>
+    </message>
+    <message>
+        <source>Issues created by user</source>
+        <translation>Vom Benutzer erstellte Probleme</translation>
+    </message>
+    <message>
+        <source>Assigned</source>
+        <translation>Beauftragt</translation>
+    </message>
+    <message>
+        <source>Issues assigned to user</source>
+        <translation>Dem benutzer zugeteilte Probleme</translation>
+    </message>
+    <message>
+        <source>Mentioned</source>
+        <translation>Erwähnt</translation>
+    </message>
+    <message>
+        <source>Issues where user is mentioned</source>
+        <translation>Probleme mit Erwähnung des Benutzer</translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation>Probleme</translation>
+    </message>
+</context>
+<context>
     <name>IssuesListPage</name>
     <message>
         <source>Issues</source>

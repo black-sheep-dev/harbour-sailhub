@@ -52,6 +52,9 @@ public:
 
     enum IssueType {
         Undefined,
+        Assigned,
+        CreatedBy,
+        Mentioned,
         Repo,
         User
     };

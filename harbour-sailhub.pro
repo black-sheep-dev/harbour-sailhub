@@ -84,6 +84,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/CommentsListPage.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
+    qml/pages/IssueSelectionPage.qml \
     qml/pages/IssuesListPage.qml \
     qml/pages/LabelsListPage.qml \
     qml/pages/OrganizationPage.qml \
