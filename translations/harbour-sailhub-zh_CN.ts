@@ -226,31 +226,31 @@
     <name>IssueSelectionPage</name>
     <message>
         <source>Created</source>
-        <translation type="unfinished"></translation>
+        <translation>已创建</translation>
     </message>
     <message>
         <source>Issues created by user</source>
-        <translation type="unfinished"></translation>
+        <translation>用户提出的问题</translation>
     </message>
     <message>
         <source>Assigned</source>
-        <translation type="unfinished"></translation>
+        <translation>已分配</translation>
     </message>
     <message>
         <source>Issues assigned to user</source>
-        <translation type="unfinished"></translation>
+        <translation>分配给用户的问题</translation>
     </message>
     <message>
         <source>Mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>已提及</translation>
     </message>
     <message>
         <source>Issues where user is mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>用户被提及的问题</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished">问题</translation>
+        <translation>问题</translation>
     </message>
 </context>
 <context>
