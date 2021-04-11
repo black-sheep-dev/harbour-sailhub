@@ -1,3 +1,9 @@
+* Sun Apr 11 2021 Black Sheep <blacksheep@nubecula.org> 0.0.10-1
+- Changed chinese translation locale to zh_CN
+- Add basic pull request functionality (comments, labels, etc.)
+- Bugfixes
+- Code improvements and cleanup
+
 * Sat Apr 10 2021 Black Sheep <blacksheep@nubecula.org> 0.0.9-1
 - Show assignees, participants and labels for issues
 - Fixed a bug with organization list view
