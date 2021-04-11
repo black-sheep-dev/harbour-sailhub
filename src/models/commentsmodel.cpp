@@ -29,6 +29,30 @@ static const QString SAILHUB_QUERY_GET_ISSUE_COMMENTS =
                        "    "
                        "}").arg(SAILHUB_QUERY_ITEM_COMMENT, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
+static const QString SAILHUB_QUERY_GET_PULL_REQUEST_COMMENTS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on PullRequest {"
+                       "            id"
+                       "            comments("
+                       "                    first: $itemCount, "
+                       "                    after: $itemCursor "
+                       "                    ) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "    "
+                       "}").arg(SAILHUB_QUERY_ITEM_COMMENT, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
 CommentsModel::CommentsModel(QObject *parent) :
     PaginationModel(parent)
 {
@@ -143,14 +167,8 @@ QVariant CommentsModel::data(const QModelIndex &index, int role) const
     case NodeIdRole:
         return comment->nodeId();
 
-    case ViewerCanReactRole:
-        return comment->viewerCanReact();
-
-    case ViewerCanDeleteRole:
-        return comment->viewerCanDelete();
-
-    case ViewerCanUpdateRole:
-        return comment->viewerCanUpdate();
+    case ViewerAbilitiesRole:
+        return comment->viewerAbilities();
 
     case ViewerDidAuthorRole:
         return comment->viewerDidAuthor();
@@ -174,9 +192,7 @@ QHash<int, QByteArray> CommentsModel::roleNames() const
     roles[EditedRole]               = "edited";
     roles[LastEditAtRole]           = "lastEditAt";
     roles[NodeIdRole]               = "nodeId";
-    roles[ViewerCanDeleteRole]      = "viewerCanDelete";
-    roles[ViewerCanReactRole]       = "viewerCanReact";
-    roles[ViewerCanUpdateRole]      = "viewerCanUpdate";
+    roles[ViewerAbilitiesRole]      = "viewerAbilities";
     roles[ViewerDidAuthorRole]      = "viewerDidAuthor";
 
     return roles;
@@ -209,6 +225,10 @@ GraphQLQuery CommentsModel::query() const
     switch (modelType()) {
     case Comment::Issue:
         query.query = SAILHUB_QUERY_GET_ISSUE_COMMENTS;
+        break;
+
+    case Comment::PullRequest:
+        query.query = SAILHUB_QUERY_GET_PULL_REQUEST_COMMENTS;
         break;
 
     default:

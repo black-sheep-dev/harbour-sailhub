@@ -22,15 +22,13 @@ class Comment : public Node
     Q_PROPERTY(QString createdAtTimeSpan READ createdAtTimeSpan WRITE setCreatedAtTimeSpan NOTIFY createdAtTimeSpanChanged)
     Q_PROPERTY(bool edited READ edited WRITE setEdited NOTIFY editedChanged)
     Q_PROPERTY(QDateTime lastEditAt READ lastEditAt WRITE setLastEditAt NOTIFY lastEditAtChanged)
-    Q_PROPERTY(bool viewerCanDelete READ viewerCanDelete WRITE setViewerCanDelete NOTIFY viewerCanDeleteChanged)
-    Q_PROPERTY(bool viewerCanReact READ viewerCanReact WRITE setViewerCanReact NOTIFY viewerCanReactChanged)
-    Q_PROPERTY(bool viewerCanUpdate READ viewerCanUpdate WRITE setViewerCanUpdate NOTIFY viewerCanUpdateChanged)
     Q_PROPERTY(bool viewerDidAuthor READ viewerDidAuthor WRITE setViewerDidAuthor NOTIFY viewerDidAuthorChanged)
 
 public:
     enum CommentType {
         Undefined,
-        Issue
+        Issue,
+        PullRequest
     };
     Q_ENUM(CommentType)
 
@@ -43,9 +41,6 @@ public:
     QString createdAtTimeSpan() const;
     bool edited() const;
     QDateTime lastEditAt() const;
-    bool viewerCanDelete() const;
-    bool viewerCanReact() const;
-    bool viewerCanUpdate() const;
     bool viewerDidAuthor() const;
 
 signals:
@@ -56,9 +51,6 @@ signals:
     void createdAtTimeSpanChanged(const QString &timeSpan);
     void editedChanged(bool edited);
     void lastEditAtChanged(const QDateTime &lastEditAt);
-    void viewerCanDeleteChanged(bool viewerCanDelete);
-    void viewerCanReactChanged(bool viewerCanReact);
-    void viewerCanUpdateChanged(bool viewerCanUpdate);
     void viewerDidAuthorChanged(bool viewerDidAuthor);
 
 public slots:
@@ -69,9 +61,6 @@ public slots:
     void setCreatedAtTimeSpan(QString createdAtTimeSpan);
     void setEdited(bool edited);
     void setLastEditAt(const QDateTime &lastEditAt);
-    void setViewerCanDelete(bool viewerCanDelete);
-    void setViewerCanReact(bool viewerCanReact);
-    void setViewerCanUpdate(bool viewerCanUpdate);
     void setViewerDidAuthor(bool viewerDidAuthor);
 
 private:
@@ -82,9 +71,6 @@ private:
     QString m_createdAtTimeSpan;
     bool m_edited{false};
     QDateTime m_lastEditAt;
-    bool m_viewerCanDelete{false};
-    bool m_viewerCanReact{false};
-    bool m_viewerCanUpdate{false};
     bool m_viewerDidAuthor{false}; 
 };
 

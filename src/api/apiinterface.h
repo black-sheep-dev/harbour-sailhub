@@ -115,6 +115,7 @@ signals:
     void issueDeleted(bool deleted = true);
     void issueAvailable(Issue *issue);
     void organizationAvailable(Organization *organization);
+    void pullRequestAvailable(PullRequest *request);
     void repoAvailable(Repo *repo);
     void repoStarred(const QString &nodeId, bool starred);
     void subscribedToRepo(const QString &nodeId, quint8 state);

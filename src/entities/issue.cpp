@@ -76,11 +76,6 @@ QDateTime Issue::updatedAt() const
     return m_updatedAt;
 }
 
-bool Issue::viewerCanUpdate() const
-{
-    return m_viewerCanUpdate;
-}
-
 void Issue::setAssigneeCount(quint32 count)
 {
     if (m_assigneeCount == count)
@@ -205,13 +200,4 @@ void Issue::setUpdatedAt(const QDateTime &timestamp)
 
     m_updatedAt = timestamp;
     emit updatedAtChanged(m_updatedAt);
-}
-
-void Issue::setViewerCanUpdate(bool viewerCanUpdate)
-{
-    if (m_viewerCanUpdate == viewerCanUpdate)
-        return;
-
-    m_viewerCanUpdate = viewerCanUpdate;
-    emit viewerCanUpdateChanged(m_viewerCanUpdate);
 }

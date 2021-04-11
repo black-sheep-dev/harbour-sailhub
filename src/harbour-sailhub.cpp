@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<TreeSortFilterModel>("org.nubecula.harbour.sailhub", 1, 0, "TreeSortFilterModel");
     qmlRegisterType<User>("org.nubecula.harbour.sailhub", 1, 0, "User");
     qmlRegisterType<UsersModel>("org.nubecula.harbour.sailhub", 1, 0, "UsersModel");
+    qmlRegisterType<Viewer>("org.nubecula.harbour.sailhub", 1, 0, "Viewer");
 
     qmlRegisterSingletonType<SailHub>("org.nubecula.harbour.sailhub",
                                               1,

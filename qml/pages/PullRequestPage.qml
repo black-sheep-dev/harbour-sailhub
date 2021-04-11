@@ -9,7 +9,7 @@ import "../delegates/"
 Page {
     property bool busy: false
     property string nodeId
-    property Issue issue
+    property PullRequest request
 
     id: page
 
@@ -22,42 +22,34 @@ Page {
                 text: qsTr("Refresh")
                 onClicked: {
                     page.busy = true
-                    SailHub.api().getIssue(page.nodeId)
+                    SailHub.api().getPullRequest(page.nodeId)
                 }
             }
-            MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate
-                text: qsTr("Edit issue")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"), {
-                                                    edit: true,
-                                                    title: issue.title,
-                                                    body: issue.body
-                                                })
+//            MenuItem {
+//                visible: issue.viewerCanUpdate
+//                text: qsTr("Edit Pull Request")
+//                onClicked: {
+//                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"), {
+//                                                    edit: true,
+//                                                    title: issue.title,
+//                                                    body: issue.body
+//                                                })
 
-                    dialog.accepted.connect(function() {
-                        issue.title = dialog.title
-                        issue.body = dialog.body
-                        SailHub.api().updateIssue(issue)
-                    })
-                }
-            }
-            MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate
-                text: qsTr("Delete")
+//                    dialog.accepted.connect(function() {
+//                        issue.title = dialog.title
+//                        issue.body = dialog.body
+//                        SailHub.api().updateIssue(issue)
+//                    })
+//                }
+//            }
+//            MenuItem {
+//                visible: request.viewerAbilities & Viewer.CanUpdate
+//                text: qsTr("Close")
 
-                onClicked: remorse.execute(qsTr("Deleting issue"), function() {
-                    SailHub.api().deleteIssue(issue.nodeId)
-                })
-            }
-            MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate
-                text: qsTr("Close")
-
-                onClicked: remorse.execute(qsTr("Closing issue"), function() {
-                    SailHub.api().closeIssue(issue.nodeId)
-                })
-            }
+//                onClicked: remorse.execute(qsTr("Closing request"), function() {
+//                    SailHub.api().closeIssue(issue.nodeId)
+//                })
+//            }
         }
 
         anchors.fill: parent
@@ -74,7 +66,7 @@ Page {
             Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
-                title: qsTr("Issue")
+                title: qsTr("Pull Request")
             }
 
             Row {
@@ -87,7 +79,7 @@ Page {
                     id: avatarIcon
                     width: parent.height / 2
                     height: width
-                    source: issue.author.avatarUrl
+                    source: request.author.avatarUrl
                     anchors.verticalCenter: parent.verticalCenter
 
                     fallbackItemVisible: false
@@ -104,7 +96,7 @@ Page {
                     color: Theme.highlightColor
                     anchors.verticalCenter: avatarIcon.verticalCenter
 
-                    text: issue.repository + " #" + issue.number
+                    text: request.repository + " #" + request.number
                 }
             }
 
@@ -115,7 +107,7 @@ Page {
                 font.pixelSize: Theme.fontSizeLarge
                 color: Theme.highlightColor
 
-                text: issue.title   
+                text: request.title
             }
 
             Row {
@@ -125,7 +117,7 @@ Page {
 
                 Icon {
                     id: closedIcon
-                    source: (issue.states & Issue.StateClosed) ? "image://theme/icon-s-installed?00ff00" : "image://theme/icon-s-high-importance?#ff0000"
+                    source: (request.states & request.StateClosed) ? "image://theme/icon-s-installed?00ff00" : "image://theme/icon-s-high-importance?#ff0000"
                 }
 
                 Label {
@@ -134,16 +126,16 @@ Page {
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.highlightColor
 
-                    text: (issue.states & Issue.StateClosed) ? qsTr("Closed") : qsTr("Open")
+                    text: (request.states & PullRequest.StateClosed) ? qsTr("Closed") : qsTr("Open")
                 }
             }
 
             CommentItem {
-                authorAvatar: issue.author.avatarUrl
-                authorLogin: issue.author.login
-                body: issue.body
-                edited: issue.edited
-                timeSpan: issue.createdAtTimeSpan
+                authorAvatar: request.author.avatarUrl
+                authorLogin: request.author.login
+                body: request.body
+                edited: request.edited
+                timeSpan: request.createdAtTimeSpan
             }
 
             Separator {
@@ -154,28 +146,28 @@ Page {
             RelatedValueItem {
                 label: qsTr("Comments")
                 icon: "image://theme/icon-m-chat"
-                value: issue.commentCount
+                value: request.commentCount
 
                 onClicked: pageStack.push(Qt.resolvedUrl("CommentsListPage.qml"), {
-                                              description: issue.repository + " #" + issue.number,
-                                              identifier: issue.nodeId,
-                                              type: Comment.Issue
+                                              description: request.repository + " #" + request.number,
+                                              identifier: request.nodeId,
+                                              type: Comment.PullRequest
                                           })
             }
 
             RelatedValueItem {
                 label: qsTr("Labels")
                 icon: "image://theme/icon-m-link"
-                value: issue.labelCount
+                value: request.labelCount
 
                 onClicked: {
-                    if (issue.labelCount === 0) return;
+                    if (request.labelCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("LabelsListPage.qml"), {
                                               title: qsTr("Labels"),
-                                              description: issue.repository + " #" + issue.number,
-                                              identifier: issue.nodeId,
-                                              type: LabelEntity.Issue
+                                              description: request.repository + " #" + request.number,
+                                              identifier: request.nodeId,
+                                              type: LabelEntity.PullRequest
                                           })
                 }
             }
@@ -183,16 +175,16 @@ Page {
             RelatedValueItem {
                 label: qsTr("Assignees")
                 icon: "image://theme/icon-m-media-artists"
-                value: issue.assigneeCount
+                value: request.assigneeCount
 
                 onClicked: {
-                    if (issue.assigneeCount === 0) return;
+                    if (request.assigneeCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
                                               title: qsTr("Assignees"),
-                                              description: issue.repository + " #" + issue.number,
-                                              identifier: issue.nodeId,
-                                              userType: User.IssueAssignee
+                                              description: request.repository + " #" + request.number,
+                                              identifier: request.nodeId,
+                                              userType: User.PullRequestAssignee
                                           })
                 }
             }
@@ -200,16 +192,16 @@ Page {
             RelatedValueItem {
                 label: qsTr("Participants")
                 icon: "image://theme/icon-m-media-artists"
-                value: issue.participantCount
+                value: request.participantCount
 
                 onClicked: {
-                    if (issue.participantCount === 0) return;
+                    if (request.participantCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
                                               title: qsTr("Participants"),
-                                              description: issue.repository + " #" + issue.number,
-                                              identifier: issue.nodeId,
-                                              userType: User.IssueParticipant
+                                              description: request.repository + " #" + request.number,
+                                              identifier: request.nodeId,
+                                              userType: User.PullRequestParticipant
                                           })
                 }
             }
@@ -218,15 +210,13 @@ Page {
 
     Connections {
         target: SailHub.api()
-        onIssueAvailable: {
-            if (issue.nodeId !== page.nodeId) return
+        onPullRequestAvailable: {
+            if (request.nodeId !== page.nodeId) return
 
-            page.issue = issue;
+            page.request = request;
             page.busy = false;
         }
-        onIssueClosed: pageStack.navigateBack()
-        onIssueDeleted: pageStack.navigateBack()
     }
 
-    Component.onCompleted: SailHub.api().getIssue(page.nodeId)
+    Component.onCompleted: SailHub.api().getPullRequest(page.nodeId)
 }

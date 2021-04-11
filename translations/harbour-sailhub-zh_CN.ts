@@ -229,14 +229,6 @@
         <translation>问题（Issues）</translation>
     </message>
     <message>
-        <source>Show closed issues</source>
-        <translation>显示已关闭的问题（Issues）</translation>
-    </message>
-    <message>
-        <source>Show open issues</source>
-        <translation>显示开启的问题（issues）</translation>
-    </message>
-    <message>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
@@ -269,6 +261,67 @@
     <message>
         <source>New issue</source>
         <translation>新问题（issue）</translation>
+    </message>
+    <message>
+        <source>Show closed issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show open issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>IssuesListPage.bkp</name>
+    <message>
+        <source>New issue</source>
+        <translation type="unfinished">新问题（issue）</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">分类</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">创建于</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished">更新于</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">评论</translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished">问题（Issues）</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">打开</translation>
+    </message>
+    <message>
+        <source>Closed</source>
+        <translation type="unfinished">已关闭</translation>
+    </message>
+    <message>
+        <source>No issues available</source>
+        <translation type="unfinished">没有可显示的问题（issues）</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -392,6 +445,41 @@
     </message>
 </context>
 <context>
+    <name>PullRequestPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Pull Request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closed</source>
+        <translation type="unfinished">已关闭</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">打开</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">评论</translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assignees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Participants</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PullRequestsListPage</name>
     <message>
         <source>Pull Requests</source>
@@ -422,6 +510,14 @@
     <message>
         <source>Updated at</source>
         <translation>更新于</translation>
+    </message>
+    <message>
+        <source>Show closed pull requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show open pull requests</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
