@@ -20,9 +20,7 @@ public:
         EditedRole,
         LastEditAtRole,
         NodeIdRole,
-        ViewerCanDeleteRole,
-        ViewerCanReactRole,
-        ViewerCanUpdateRole,
+        ViewerAbilitiesRole,
         ViewerDidAuthorRole
     };
     Q_ENUM(CommentRoles)

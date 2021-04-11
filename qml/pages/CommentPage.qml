@@ -14,9 +14,9 @@ Page {
 
     SilicaFlickable {
         PullDownMenu {
-            visible: comment.viewerCanDelete || comment.viewerCanUpdate
+            visible: comment.viewerAbilities & (Viewer.CanDelete | Viewer.CanUpdate)
             MenuItem {
-                visible: comment.viewerCanUpdate
+                visible: comment.viewerAbilities & Viewer.CanUpdate
                 text: qsTr("Edit")
 
                 onClicked: {
@@ -32,7 +32,7 @@ Page {
                 }
             }
             MenuItem {
-                visible: comment.viewerCanDelete
+                visible: comment.viewerAbilities & Viewer.CanDelete
                 text: qsTr("Delete")
 
                 onClicked: remorse.execute(qsTr("Deleting comment"), function() {

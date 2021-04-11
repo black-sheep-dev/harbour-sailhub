@@ -1,7 +1,7 @@
 #ifndef PULLREQUEST_H
 #define PULLREQUEST_H
 
-#include "node.h"
+#include "issue.h"
 
 #include <QDateTime>
 
@@ -19,7 +19,7 @@ struct PullRequestListItem {
     QString updatedAtTimeSpan;
 };
 
-class PullRequest : public Node
+class PullRequest : public Issue
 {
     Q_OBJECT
 
@@ -28,7 +28,7 @@ public:
         StateUnknown    = 0x0,
         StateOpen       = 0x1,
         StateClosed     = 0x2,
-        StateMerged     = 0x3
+        StateMerged     = 0x4
     };
     Q_ENUM(PullRequestState)
     Q_DECLARE_FLAGS(PullRequestStates, PullRequestState)
@@ -41,9 +41,6 @@ public:
     Q_ENUM(PullRequestType)
 
     explicit PullRequest(QObject *parent = nullptr);
-
-signals:
-
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(PullRequest::PullRequestStates)
 

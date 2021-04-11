@@ -67,7 +67,7 @@ ListItem {
             width: parent.width - 2*x
             wrapMode: Text.Wrap
 
-            text: model.bodyExcerpt + "..."
+            text: model.bodyExcerpt
         }
 
         Item {

@@ -4,6 +4,7 @@
 #include "node.h"
 
 #include "src/entities/owner.h"
+#include "viewer.h"
 
 #include <QDateTime>
 
@@ -39,7 +40,6 @@ class Issue : public Node
     Q_PROPERTY(quint8 states READ states WRITE setStates NOTIFY statesChanged)
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
     Q_PROPERTY(QDateTime updatedAt READ updatedAt WRITE setUpdatedAt NOTIFY updatedAtChanged)
-    Q_PROPERTY(bool viewerCanUpdate READ viewerCanUpdate WRITE setViewerCanUpdate NOTIFY viewerCanUpdateChanged)
 
 public:
     enum IssueState {
@@ -73,8 +73,7 @@ public:
     QString repository() const;
     quint8 states() const;
     QString title() const;
-    QDateTime updatedAt() const;
-    bool viewerCanUpdate() const;
+    QDateTime updatedAt() const; 
 
 signals:
     // properties
@@ -92,7 +91,6 @@ signals:
     void statesChanged(quint8 states);
     void titleChanged(const QString &title);
     void updatedAtChanged(const QDateTime &timestamp);
-    void viewerCanUpdateChanged(bool viewerCanUpdate);  
 
 public slots:
     // properties
@@ -109,11 +107,11 @@ public slots:
     void setRepository(const QString &repository);
     void setStates(quint8 states);
     void setTitle(const QString &title);
-    void setUpdatedAt(const QDateTime &timestamp);
-    void setViewerCanUpdate(bool viewerCanUpdate);
+    void setUpdatedAt(const QDateTime &timestamp); 
 
 private:
     // properties
+
     quint32 m_assigneeCount{0};
     Owner* m_author{nullptr};
     QString m_body;
@@ -128,8 +126,6 @@ private:
     quint8 m_states{StateUnknown};
     QString m_title;
     QDateTime m_updatedAt;
-    bool m_viewerCanUpdate{false};
-
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(Issue::IssueStates)
 

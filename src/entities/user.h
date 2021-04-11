@@ -58,6 +58,8 @@ public:
         IssueAssignee,
         IssueParticipant,
         OrganizationMember,
+        PullRequestAssignee,
+        PullRequestParticipant,
         Search,
         Stargazer,
         Watcher

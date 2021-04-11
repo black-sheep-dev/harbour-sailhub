@@ -42,9 +42,7 @@ void ApiInterface::addComment(const QString &body, CommentsModel *model)
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
     vars.insert(ApiKey::SUBJECT_ID, model->identifier());
-
-    if (!body.isEmpty())
-        vars.insert(ApiKey::BODY, body);
+    vars.insert(ApiKey::BODY, body);
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
@@ -194,7 +192,11 @@ void ApiInterface::getProfile()
 
 void ApiInterface::getPullRequest(const QString &nodeId)
 {
+    GraphQLQuery query;
+    query.query = SAILHUB_QUERY_GET_PULL_REQUEST;
+    query.variables.insert(QueryVar::NODE_ID, nodeId);
 
+    m_connector->sendQuery(query, RequestType::GetPullRequest);
 }
 
 void ApiInterface::getRepo(const QString &nodeId)
@@ -450,6 +452,10 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     case RequestType::GetIssue:
         emit issueAvailable(DataUtils::issueFromJson(data.value(ApiKey::NODE).toObject()));
+        break;
+
+    case RequestType::GetPullRequest:
+        emit pullRequestAvailable(DataUtils::pullRequestFromJson(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::AddComment:

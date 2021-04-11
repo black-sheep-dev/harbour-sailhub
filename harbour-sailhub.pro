@@ -89,6 +89,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/OrganizationPage.qml \
     qml/pages/OrganizationsListPage.qml \
     qml/pages/OverviewPage.qml \
+    qml/pages/PullRequestPage.qml \
     qml/pages/PullRequestsListPage.qml \
     qml/pages/RepoPage.qml \
     qml/pages/ReposListPage.qml \
@@ -127,7 +128,7 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += \
     translations/harbour-sailhub-de.ts \
     translations/harbour-sailhub-pl.ts \
-    translations/harbour-sailhub-zh_Hans.ts
+    translations/harbour-sailhub-zh_CN.ts
 
 RESOURCES += \
     ressources.qrc
@@ -157,6 +158,7 @@ HEADERS += \
     src/entities/repo.h \
     src/entities/treeitem.h \
     src/entities/user.h \
+    src/entities/viewer.h \
     src/models/commentsmodel.h \
     src/models/issuesmodel.h \
     src/models/labelsmodel.h \

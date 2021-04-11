@@ -213,15 +213,15 @@
     </message>
     <message>
         <source>Participants</source>
-        <translation type="unfinished"></translation>
+        <translation>Uczestnicy</translation>
     </message>
     <message>
         <source>Assignees</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesjonariusze</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Etykiety</translation>
     </message>
 </context>
 <context>
@@ -229,14 +229,6 @@
     <message>
         <source>Issues</source>
         <translation>Problemy</translation>
-    </message>
-    <message>
-        <source>Show closed issues</source>
-        <translation>Pokaż zamknięte problemy</translation>
-    </message>
-    <message>
-        <source>Show open issues</source>
-        <translation>Pokaż otwarte problemy</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -274,12 +266,20 @@
         <source>New issue</source>
         <translation>Nowy problem</translation>
     </message>
+    <message>
+        <source>Show closed issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show open issues</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
-    <name>LabelsListPage</name>
+    <name>IssuesListPage.bkp</name>
     <message>
-        <source>Issues</source>
-        <translation type="unfinished">Problemy</translation>
+        <source>New issue</source>
+        <translation type="unfinished">Nowy problem</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -294,12 +294,32 @@
         <translation type="unfinished">Utworzono</translation>
     </message>
     <message>
-        <source>Name</source>
-        <translation type="unfinished">Nazwa</translation>
+        <source>Updated at</source>
+        <translation type="unfinished">Zaktualizowano</translation>
     </message>
     <message>
-        <source>No labels available</source>
+        <source>Comments</source>
+        <translation type="unfinished">Komentarze</translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished">Problemy</translation>
+    </message>
+    <message>
+        <source>Status</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Otwarty</translation>
+    </message>
+    <message>
+        <source>Closed</source>
+        <translation type="unfinished">Zamknięty</translation>
+    </message>
+    <message>
+        <source>No issues available</source>
+        <translation type="unfinished">Brak problemów</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -307,6 +327,41 @@
             <numerusform></numerusform>
             <numerusform></numerusform>
             <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>LabelsListPage</name>
+    <message>
+        <source>Issues</source>
+        <translation>Problemy</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Odśwież</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation>Sortowanie</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation>Utworzono</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nazwa</translation>
+    </message>
+    <message>
+        <source>No labels available</source>
+        <translation>Brak dostępnych etykiet</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -396,7 +451,42 @@
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Ustawienia</translation>
+        <translation>Ustawienia</translation>
+    </message>
+</context>
+<context>
+    <name>PullRequestPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>Pull Request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closed</source>
+        <translation type="unfinished">Zamknięty</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Otwarty</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">Komentarze</translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished">Etykiety</translation>
+    </message>
+    <message>
+        <source>Assignees</source>
+        <translation type="unfinished">Cesjonariusze</translation>
+    </message>
+    <message>
+        <source>Participants</source>
+        <translation type="unfinished">Uczestnicy</translation>
     </message>
 </context>
 <context>
@@ -432,6 +522,14 @@
     <message>
         <source>Updated at</source>
         <translation>Zaktualizowano</translation>
+    </message>
+    <message>
+        <source>Show closed pull requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show open pull requests</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -481,23 +579,23 @@
     <name>ReactionDialog</name>
     <message>
         <source>Choose</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Zapisz</translation>
+        <translation>Zapisz</translation>
     </message>
     <message>
         <source>Create</source>
-        <translation type="unfinished">Utwórz</translation>
+        <translation>Utwórz</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <source>Enter title</source>
-        <translation type="unfinished">Wprowadź tytuł</translation>
+        <translation>Wprowadź tytuł</translation>
     </message>
 </context>
 <context>
@@ -805,23 +903,23 @@
     <name>SettingsAuthenticationPage</name>
     <message>
         <source>Reset</source>
-        <translation type="unfinished">Reset</translation>
+        <translation>Reset</translation>
     </message>
     <message>
         <source>Resetting credentials and close app</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetowanie poświadczeń i zamykanie aplikacji</translation>
     </message>
     <message>
         <source>Authentication Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia uwierzytelniania</translation>
     </message>
     <message>
         <source>Access Token</source>
-        <translation type="unfinished">Token dostępu</translation>
+        <translation>Token dostępu</translation>
     </message>
     <message>
         <source>Enter access token</source>
-        <translation type="unfinished">Wprowadź token dostępu</translation>
+        <translation>Wprowadź token dostępu</translation>
     </message>
 </context>
 <context>
@@ -836,30 +934,30 @@
     </message>
     <message>
         <source>Manage pagination options</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządzaj opcjami paginacji</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Uwierzytelnianie</translation>
     </message>
     <message>
         <source>Manage authentication data</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządzaj danymi uwierzytelniającymi</translation>
     </message>
 </context>
 <context>
     <name>SettingsPaginationPage</name>
     <message>
         <source>Pagination Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia paginacji</translation>
     </message>
     <message>
         <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>
-        <translation type="unfinished">Wybierz liczbę elementów do pobrania w jednym zapytaniu. Ta wartość powinna zawierać się w przedziale 1-100. {10-100.?}</translation>
+        <translation>Wybierz liczbę elementów do pobrania w jednym zapytaniu. Ta wartość powinna zawierać się w przedziale 1-100.</translation>
     </message>
     <message numerus="yes">
         <source>%n Item(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n element</numerusform>
             <numerusform>%n elementy</numerusform>
             <numerusform>%n elementów</numerusform>

@@ -105,7 +105,11 @@ struct ApiKey {
     static const QString USER_COUNT;
     static const QString USER_ID;
     static const QString VIEWER;
+    static const QString VIEWER_CAN_APPLY_SUGGESTION;
     static const QString VIEWER_CAN_DELETE;
+    static const QString VIEWER_CAN_DELETE_HEAD_REF;
+    static const QString VIEWER_CAN_DISABLE_AUTO_MERGE;
+    static const QString VIEWER_CAN_ENABLE_AUTO_MERGE;
     static const QString VIEWER_CAN_REACT;
     static const QString VIEWER_CAN_SUBSCRIBE;
     static const QString VIEWER_CAN_UPDATE;

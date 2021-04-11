@@ -20,7 +20,7 @@ public:
     // entities
     static Comment *commentFromJson(const QJsonObject &obj);
     static QList<Comment *> commentsFromJson(const QJsonObject &obj);
-    static Issue *issueFromJson(const QJsonObject &obj);
+    static Issue *issueFromJson(const QJsonObject &obj, Issue *issue = nullptr);
     static IssueListItem issueListItemFromJson(const QJsonObject &obj);
     static QList<IssueListItem> issuesFromJson(const QJsonObject &obj);
     static LabelListItem labelListItemFromJson(const QJsonObject &obj);
@@ -30,6 +30,7 @@ public:
     static QList<OrganizationListItem> organizationsFromJson(const QJsonObject &obj);
     static Owner *ownerFromJson(const QJsonObject &obj);
     static PageInfo pageInfoFromJson(const QJsonObject &obj, const QJsonValue &count = QJsonValue());
+    static PullRequest *pullRequestFromJson(const QJsonObject &obj);
     static QList<PullRequestListItem> pullRequestsFromJson(const QJsonObject &obj);
     static PullRequestListItem pullRequestListItemFromJson(const QJsonObject &obj);
     static Repo *repoFromJson(const QJsonObject &obj);
@@ -45,6 +46,7 @@ public:
     static QString timeSpanText(const QDateTime &start, bool shortText = false);
 
 private:
+    static quint32 getViewerAbilities(const QJsonObject &obj);
     static QJsonArray getNodes(const QJsonObject &obj);
     static quint32 getTotalCount(const QJsonObject &obj);
 };

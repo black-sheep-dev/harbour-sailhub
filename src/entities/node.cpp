@@ -16,6 +16,11 @@ QString Node::nodeId() const
     return m_nodeId;
 }
 
+quint32 Node::viewerAbilities() const
+{
+    return m_viewerAbilities;
+}
+
 void Node::setName(const QString &name)
 {
     if (m_name == name)
@@ -32,4 +37,13 @@ void Node::setNodeId(const QString &id)
 
     m_nodeId = id;
     emit nodeIdChanged(m_nodeId);
+}
+
+void Node::setViewerAbilities(quint32 viewerAbilities)
+{
+    if (m_viewerAbilities == viewerAbilities)
+        return;
+
+    m_viewerAbilities = viewerAbilities;
+    emit viewerAbilitiesChanged(m_viewerAbilities);
 }
