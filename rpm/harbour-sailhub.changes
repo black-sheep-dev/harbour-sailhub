@@ -1,6 +1,7 @@
 * Sun Apr 11 2021 Black Sheep <blacksheep@nubecula.org> 0.0.11-1
 - Add issue selection for ASSIGNED, CREATED_BY, MENTIONED
 - Updated translations
+- Bugfixes
 
 * Sun Apr 11 2021 Black Sheep <blacksheep@nubecula.org> 0.0.10-1
 - Changed chinese translation locale to zh_CN
