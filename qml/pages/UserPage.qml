@@ -259,8 +259,11 @@ Page {
     Connections {
         target: SailHub.api()
         onUserAvailable: {
-            if ( page.nodeId !== user.nodeId
-                || page.login.length > 0 ) return
+            if (page.login.length > 0) {
+                if (page.login !== user.login) return
+            } else {
+                if ( page.nodeId !== user.nodeId) return
+            }
 
             page.user = user
             page.loading = false

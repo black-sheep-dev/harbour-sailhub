@@ -223,6 +223,37 @@
     </message>
 </context>
 <context>
+    <name>IssueSelectionPage</name>
+    <message>
+        <source>Created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues created by user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assigned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues assigned to user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mentioned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues where user is mentioned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished">问题</translation>
+    </message>
+</context>
+<context>
     <name>IssuesListPage</name>
     <message>
         <source>Issues</source>
@@ -275,52 +306,52 @@
     <name>IssuesListPage.bkp</name>
     <message>
         <source>New issue</source>
-        <translation type="unfinished">新问题（issue）</translation>
+        <translation>新问题</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished">分类</translation>
+        <translation>分类</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished">创建于</translation>
+        <translation>创建于</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished">更新于</translation>
+        <translation>更新于</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">评论</translation>
+        <translation>评论</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished">问题（Issues）</translation>
+        <translation>问题</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>状态</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">打开</translation>
+        <translation>打开</translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation type="unfinished">已关闭</translation>
+        <translation>已关闭</translation>
     </message>
     <message>
         <source>No issues available</source>
-        <translation type="unfinished">没有可显示的问题（issues）</translation>
+        <translation>没有可显示的问题</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
 </context>
@@ -448,35 +479,35 @@
     <name>PullRequestPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>Pull Request</source>
-        <translation type="unfinished"></translation>
+        <translation>发起请求</translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation type="unfinished">已关闭</translation>
+        <translation>已关闭</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">打开</translation>
+        <translation>打开</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">评论</translation>
+        <translation>评论</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished">标签</translation>
+        <translation>标签</translation>
     </message>
     <message>
         <source>Assignees</source>
-        <translation type="unfinished">受让人</translation>
+        <translation>受让人</translation>
     </message>
     <message>
         <source>Participants</source>
-        <translation type="unfinished">参与者</translation>
+        <translation>参与者</translation>
     </message>
 </context>
 <context>
@@ -513,11 +544,11 @@
     </message>
     <message>
         <source>Show closed pull requests</source>
-        <translation type="unfinished"></translation>
+        <translation>显示已关闭请求</translation>
     </message>
     <message>
         <source>Show open pull requests</source>
-        <translation type="unfinished"></translation>
+        <translation>显示已开启请求</translation>
     </message>
 </context>
 <context>

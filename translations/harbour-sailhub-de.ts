@@ -21,7 +21,7 @@
     </message>
     <message>
         <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
-        <translation>Deine Sprache ist nicht verfügbar? Du kannst das Projekt gerne unterstüzten, indem Du eine Übersetzung auf meinen selbst gehosteten Weblate Server machst.</translation>
+        <translation>Deine Sprache ist nicht verfügbar? Du kannst das Projekt gerne unterstützen, indem Du eine Übersetzung auf meinem selbst gehosteten Weblate Server machst.</translation>
     </message>
     <message>
         <source>Sources</source>
@@ -33,7 +33,7 @@
     </message>
     <message>
         <source>If you like my work why not buy me a beer?</source>
-        <translation>Wenn Du meine Arbeit magst, warum gibtst du mir nicht einfach ein Bier aus?</translation>
+        <translation>Wenn Du meine Arbeit magst, warum gibst du mir nicht einfach ein Bier aus?</translation>
     </message>
     <message>
         <source>Donate with PayPal</source>
@@ -221,6 +221,37 @@
     <message>
         <source>Labels</source>
         <translation>Labels</translation>
+    </message>
+</context>
+<context>
+    <name>IssueSelectionPage</name>
+    <message>
+        <source>Created</source>
+        <translation>Erstellt</translation>
+    </message>
+    <message>
+        <source>Issues created by user</source>
+        <translation>Vom Benutzer erstellte Probleme</translation>
+    </message>
+    <message>
+        <source>Assigned</source>
+        <translation>Beauftragt</translation>
+    </message>
+    <message>
+        <source>Issues assigned to user</source>
+        <translation>Dem benutzer zugeteilte Probleme</translation>
+    </message>
+    <message>
+        <source>Mentioned</source>
+        <translation>Erwähnt</translation>
+    </message>
+    <message>
+        <source>Issues where user is mentioned</source>
+        <translation>Probleme mit Erwähnung des Benutzer</translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation>Probleme</translation>
     </message>
 </context>
 <context>

@@ -60,7 +60,7 @@ If you missing your native language you are welcome to support this project with
 ## Testing
 If you like to test the functionality you can use my dummy repository:
 
-[black-sheep-dev/dumm-repo](https://github.com/black-sheep-dev/dummy-repo)
+[black-sheep-dev/dummy-repo](https://github.com/black-sheep-dev/dummy-repo)
 
 ## Donations
 

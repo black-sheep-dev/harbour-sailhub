@@ -223,6 +223,37 @@
     </message>
 </context>
 <context>
+    <name>IssueSelectionPage</name>
+    <message>
+        <source>Created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues created by user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assigned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues assigned to user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mentioned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues where user is mentioned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>IssuesListPage</name>
     <message>
         <source>Issues</source>
