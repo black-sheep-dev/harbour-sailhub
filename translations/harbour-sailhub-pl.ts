@@ -231,14 +231,6 @@
         <translation>Problemy</translation>
     </message>
     <message>
-        <source>Show closed issues</source>
-        <translation>Pokaż zamknięte problemy</translation>
-    </message>
-    <message>
-        <source>Show open issues</source>
-        <translation>Pokaż otwarte problemy</translation>
-    </message>
-    <message>
         <source>Refresh</source>
         <translation>Odśwież</translation>
     </message>
@@ -273,6 +265,69 @@
     <message>
         <source>New issue</source>
         <translation>Nowy problem</translation>
+    </message>
+    <message>
+        <source>Show closed issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show open issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>IssuesListPage.bkp</name>
+    <message>
+        <source>New issue</source>
+        <translation type="unfinished">Nowy problem</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">Sortowanie</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">Utworzono</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished">Zaktualizowano</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">Komentarze</translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished">Problemy</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Otwarty</translation>
+    </message>
+    <message>
+        <source>Closed</source>
+        <translation type="unfinished">Zamknięty</translation>
+    </message>
+    <message>
+        <source>No issues available</source>
+        <translation type="unfinished">Brak problemów</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -400,6 +455,41 @@
     </message>
 </context>
 <context>
+    <name>PullRequestPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>Pull Request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closed</source>
+        <translation type="unfinished">Zamknięty</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Otwarty</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">Komentarze</translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished">Etykiety</translation>
+    </message>
+    <message>
+        <source>Assignees</source>
+        <translation type="unfinished">Cesjonariusze</translation>
+    </message>
+    <message>
+        <source>Participants</source>
+        <translation type="unfinished">Uczestnicy</translation>
+    </message>
+</context>
+<context>
     <name>PullRequestsListPage</name>
     <message>
         <source>Pull Requests</source>
@@ -432,6 +522,14 @@
     <message>
         <source>Updated at</source>
         <translation>Zaktualizowano</translation>
+    </message>
+    <message>
+        <source>Show closed pull requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show open pull requests</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

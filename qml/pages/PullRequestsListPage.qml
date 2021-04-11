@@ -33,6 +33,23 @@ Page {
         PullDownMenu {
             busy: pullRequestsModel.loading
             MenuItem {
+                text: {
+                    if (page.states & PullRequest.StateOpen)
+                        return qsTr("Show closed pull requests")
+                    else if (page.states & PullRequest.StateClosed)
+                        return qsTr("Show open pull requests")
+                }
+
+                onClicked: {
+                    if (page.states & PullRequest.StateOpen)
+                        page.states = PullRequest.StateClosed | PullRequest.StateMerged
+                    else if (page.states & PullRequest.StateClosed)
+                        page.states = PullRequest.StateOpen
+
+                    refresh()
+                }
+            }
+            MenuItem {
                 text: qsTr("Refresh")
                 onClicked: refresh()
             }
@@ -83,9 +100,9 @@ Page {
 
             lastItem: index == (listView.count - 1)
 
-//            onClicked: pageStack.push(Qt.resolvedUrl("IssuePage.qml"), {
-//                                          nodeId: model.nodeId
-//                                      })
+            onClicked: pageStack.push(Qt.resolvedUrl("PullRequestPage.qml"), {
+                                          nodeId: model.nodeId
+                                      })
 
         }
 

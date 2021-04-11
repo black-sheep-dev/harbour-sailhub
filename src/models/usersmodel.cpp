@@ -68,6 +68,48 @@ static const QString SAILHUB_QUERY_GET_ORGANIZATION_MEMBERS =
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
+// GET PULL REQEUST ASSIGNEES
+static const QString SAILHUB_QUERY_GET_PULL_REQUEST_ASSIGNEES =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on PullRequest {"
+                       "            id"
+                       "            assignees(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET PULL REQEUST PARTICIPANTS
+static const QString SAILHUB_QUERY_GET_PULL_REQUEST_PARTICIPANTS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on PullRequest {"
+                       "            id"
+                       "            participants(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
 // GET REPOSITORY CONTRIBUTORS
 static const QString SAILHUB_QUERY_GET_REPOSITORY_CONTRIBUTORS =
         QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
@@ -316,12 +358,14 @@ void UsersModel::parseQueryResult(const QJsonObject &data)
         break;
 
     case User::IssueAssignee:
+    case User::PullRequestAssignee:
         users = data.value(ApiKey::NODE).toObject()
                     .value(ApiKey::ASSIGNEES).toObject();
         count = data.value(ApiKey::TOTAL_COUNT);
         break;
 
     case User::IssueParticipant:
+    case User::PullRequestParticipant:
         users = data.value(ApiKey::NODE).toObject()
                     .value(ApiKey::PARTICIPANTS).toObject();
         count = data.value(ApiKey::TOTAL_COUNT);
@@ -377,6 +421,14 @@ GraphQLQuery UsersModel::query() const
 
     case User::IssueParticipant:
         query.query = SAILHUB_QUERY_GET_ISSUE_PARTICIPANTS;
+        break;
+
+    case User::PullRequestAssignee:
+        query.query = SAILHUB_QUERY_GET_PULL_REQUEST_ASSIGNEES;
+        break;
+
+    case User::PullRequestParticipant:
+        query.query = SAILHUB_QUERY_GET_PULL_REQUEST_PARTICIPANTS;
         break;
 
     case User::Search:

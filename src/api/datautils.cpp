@@ -22,16 +22,24 @@ Comment *DataUtils::commentFromJson(const QJsonObject &obj)
     comment->setNodeId(obj.value(ApiKey::ID).toString());
     comment->setBody(obj.value(ApiKey::BODY_HTML).toString());
 
-    const QString excerpt = obj.value(ApiKey::BODY_TEXT).toString().mid(0, 160);
-    comment->setBodyExcerpt(excerpt.mid(0, excerpt.lastIndexOf(' ')).simplified());
+    constexpr int max = 160;
+    const QString body = obj.value(ApiKey::BODY_TEXT).toString();
+
+    if (body.length() <= max) {
+        comment->setBodyExcerpt(body);
+    } else {
+        const QString excerpt = body.mid(0, max);
+        comment->setBodyExcerpt(
+                    excerpt.mid(0, excerpt.lastIndexOf(' '))
+                    .simplified()
+                    .append(QStringLiteral("...")));
+    }
 
     comment->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
     comment->setCreatedAtTimeSpan(timeSpanText(comment->createdAt(), true));
     comment->setLastEditAt(QDateTime::fromString(obj.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
-    comment->setViewerCanDelete(obj.value(ApiKey::VIEWER_CAN_DELETE).toBool());
-    comment->setViewerCanReact(obj.value(ApiKey::VIEWER_CAN_REACT).toBool());
-    comment->setViewerCanUpdate(obj.value(ApiKey::VIEWER_CAN_UPDATE).toBool());
     comment->setViewerDidAuthor(obj.value(ApiKey::VIEWER_DID_AUTHOR).toBool());
+    comment->setViewerAbilities(getViewerAbilities(obj));
 
     comment->setEdited(comment->createdAt() < comment->lastEditAt());
 
@@ -55,9 +63,10 @@ QList<Comment *> DataUtils::commentsFromJson(const QJsonObject &obj)
     return comments;
 }
 
-Issue *DataUtils::issueFromJson(const QJsonObject &obj)
+Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
 {
-    Issue *issue = new Issue;
+    if (issue == nullptr)
+        issue = new Issue;
 
     issue->setNodeId(obj.value(ApiKey::ID).toString());
     issue->setTitle(obj.value(ApiKey::TITLE).toString());
@@ -71,11 +80,10 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj)
     issue->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
     issue->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
     issue->setEdited(issue->updatedAt() > issue->createdAt());
-    issue->setViewerCanUpdate(obj.value(ApiKey::VIEWER_CAN_UPDATE).toBool());
-
     issue->setAssigneeCount(getTotalCount(obj.value(ApiKey::ASSIGNEES).toObject()));
     issue->setLabelCount(getTotalCount(obj.value(ApiKey::LABELS).toObject()));
     issue->setParticipantCount(getTotalCount(obj.value(ApiKey::PARTICIPANTS).toObject()));
+    issue->setViewerAbilities(getViewerAbilities(obj));
 
     auto author = ownerFromJson(obj.value(ApiKey::AUTHOR).toObject());
     if (author != nullptr) {
@@ -236,6 +244,15 @@ PageInfo DataUtils::pageInfoFromJson(const QJsonObject &obj, const QJsonValue &c
     return info;
 }
 
+PullRequest *DataUtils::pullRequestFromJson(const QJsonObject &obj)
+{
+    PullRequest *request = new PullRequest();
+
+    issueFromJson(obj, request);
+
+    return request;
+}
+
 QList<PullRequestListItem> DataUtils::pullRequestsFromJson(const QJsonObject &obj)
 {
     QList<PullRequestListItem>  prs;
@@ -257,6 +274,7 @@ PullRequestListItem DataUtils::pullRequestListItemFromJson(const QJsonObject &ob
 {
     PullRequestListItem item;
 
+    item.nodeId = obj.value(ApiKey::ID).toString();
     item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
     item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
     item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
@@ -540,6 +558,37 @@ QString DataUtils::timeSpanText(const QDateTime &start, bool shortText)
 
     const quint64 years = start.daysTo(now) / 365;
     return shortText ? QStringLiteral("%1y").arg(years) : QObject::tr("%n year(s) ago", "", years);
+}
+
+quint32 DataUtils::getViewerAbilities(const QJsonObject &obj)
+{
+    quint32 abilities{0};
+
+    if (obj.value(ApiKey::VIEWER_CAN_APPLY_SUGGESTION).toBool())
+        abilities |= Viewer::CanApplySuggestion;
+
+    if (obj.value(ApiKey::VIEWER_CAN_DELETE).toBool())
+        abilities |= Viewer::CanDelete;
+
+    if (obj.value(ApiKey::VIEWER_CAN_DELETE_HEAD_REF).toBool())
+        abilities |= Viewer::CanDeleteHeadRef;
+
+    if (obj.value(ApiKey::VIEWER_CAN_DISABLE_AUTO_MERGE).toBool())
+        abilities |= Viewer::CanDisableAutoMerge;
+
+    if (obj.value(ApiKey::VIEWER_CAN_ENABLE_AUTO_MERGE).toBool())
+        abilities |= Viewer::CanEnableAutoMerge;
+
+    if (obj.value(ApiKey::VIEWER_CAN_REACT).toBool())
+        abilities |= Viewer::CanReact;
+
+    if (obj.value(ApiKey::VIEWER_CAN_SUBSCRIBE).toBool())
+        abilities |= Viewer::CanSubscribe;
+
+    if (obj.value(ApiKey::VIEWER_CAN_UPDATE).toBool())
+        abilities |= Viewer::CanUpdate;
+
+    return abilities;
 }
 
 QJsonArray DataUtils::getNodes(const QJsonObject &obj)

@@ -6,7 +6,7 @@ import org.nubecula.harbour.sailhub 1.0
 import "../delegates/"
 
 Page {
-    property string description
+    property alias description: pageHeader.description
     property alias identifier: issuesModel.identifier
     property alias type: issuesModel.modelType
     property alias states: issuesModel.state
@@ -16,39 +16,9 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
-    SilicaListView {
-        id: listView
-        anchors.fill: parent
-
-        header: PageHeader {
-            title: qsTr("Issues")
-            description: page.description
-        }
-
-        footer: Item {
-            width: parent.width
-            height: Theme.horizontalPageMargin
-        }
-
+    SilicaFlickable {
         PullDownMenu {
             busy: issuesModel.loading
-            MenuItem {
-                text: {
-                    if (page.states & Issue.StateOpen)
-                        return qsTr("Show closed issues")
-                    else if (page.states & Issue.StateClosed)
-                        return qsTr("Show open issues")
-                }
-
-                onClicked: {
-                    if (page.states & Issue.StateOpen)
-                        page.states = Issue.StateClosed
-                    else if (page.states & Issue.StateClosed)
-                        page.states = Issue.StateOpen
-
-                    refresh()
-                }
-            }
 
             MenuItem {
                 visible: type !== Issue.User
@@ -91,35 +61,74 @@ Page {
             }
         }
 
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: issuesModel.loading
+        anchors.fill: parent
+
+        PageHeader {
+            id: pageHeader
+            title: qsTr("Issues")
         }
 
-        ViewPlaceholder {
-            enabled: listView.count == 0
-            text: qsTr("No issues available")
+        ComboBox {
+            id: statusComboBox
+            width: parent.width
+            anchors.top: pageHeader.bottom
+
+            label: qsTr("Status")
+
+            menu: ContextMenu {
+                MenuItem {
+                    text: qsTr("Open")
+                    onClicked: {
+                        page.states = Issue.StateOpen
+                        refresh()
+                    }
+                }
+                MenuItem {
+                    text: qsTr("Closed")
+                    onClicked: {
+                        page.states = Issue.StateClosed
+                        refresh()
+                    }
+                }
+            }
         }
+        SilicaListView {
+            id: listView
+            width: parent.width
+            anchors.top: statusComboBox.bottom
+            anchors.bottom: parent.bottom
+            clip: true
 
-        VerticalScrollDecorator {}
+            BusyIndicator {
+                id: busyIndicator
+                visible: running
+                size: BusyIndicatorSize.Large
+                anchors.centerIn: parent
+                running: issuesModel.loading
+            }
 
-        model: IssuesModel { id: issuesModel }
+            ViewPlaceholder {
+                enabled: listView.count == 0
+                text: qsTr("No issues available")
+            }
 
-        opacity: busyIndicator.running ? 0.3 : 1.0
-        Behavior on opacity { FadeAnimator {} }
+            VerticalScrollDecorator {}
 
-        delegate: IssueListDelegate {
-            id: delegate
+            model: IssuesModel { id: issuesModel }
 
-            lastItem: index == (listView.count - 1)
+            opacity: busyIndicator.running ? 0.3 : 1.0
+            Behavior on opacity { FadeAnimator {} }
 
-            onClicked: pageStack.push(Qt.resolvedUrl("IssuePage.qml"), {
-                                          nodeId: model.nodeId
-                                      })
+            delegate: IssueListDelegate {
+                id: delegate
 
+                lastItem: index == (listView.count - 1)
+
+                onClicked: pageStack.push(Qt.resolvedUrl("IssuePage.qml"), {
+                                              nodeId: model.nodeId
+                                          })
+
+            }
         }
 
         PushUpMenu {

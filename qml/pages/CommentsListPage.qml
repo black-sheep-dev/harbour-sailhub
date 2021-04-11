@@ -73,7 +73,7 @@ Page {
             id: delegate
 
             menu: ContextMenu {
-                visible: model.viewerCanDelete
+                visible: model.viewerAbilities & Viewer.CanDelete
                 MenuItem {
                     text: qsTr("Delete")
                     onClicked: remorse.execute(delegate, qsTr("Deleting comment"), function() {

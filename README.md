@@ -26,13 +26,13 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Pull request [*R*]
 - Repository files [*R*]
 - File content [*R*]
-- Labels (Issue) [*R*]
+- Labels (Issue / Pull Request) [*R*]
 
 ## Implemented Social Features
 
 - Follow / Unfollow user
 - Watch / Star repository
-- Commenting (Issue)
+- Commenting (Issue / Pull Requests)
 
 ## Planned Features
 - Markdown rendering support for displaying e.g. README.md
