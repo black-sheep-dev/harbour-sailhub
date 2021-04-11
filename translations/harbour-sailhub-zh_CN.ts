@@ -133,11 +133,11 @@
     <name>EditIssueDialog</name>
     <message>
         <source>Edit Issue</source>
-        <translation>编辑问题（Issue）</translation>
+        <translation>编辑问题</translation>
     </message>
     <message>
         <source>Create Issue</source>
-        <translation>创建问题（Issue）</translation>
+        <translation>创建问题</translation>
     </message>
     <message>
         <source>Save</source>
@@ -175,7 +175,7 @@
     </message>
     <message>
         <source>Issue</source>
-        <translation>问题（Issue）</translation>
+        <translation>问题</translation>
     </message>
     <message>
         <source>Closed</source>
@@ -191,7 +191,7 @@
     </message>
     <message>
         <source>Edit issue</source>
-        <translation>编辑问题（issue）</translation>
+        <translation>编辑问题</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>Deleting issue</source>
-        <translation>正在删除问题（issue）</translation>
+        <translation>正在删除问题</translation>
     </message>
     <message>
         <source>Close</source>
@@ -207,26 +207,34 @@
     </message>
     <message>
         <source>Closing issue</source>
-        <translation>正在克隆问题（issue）</translation>
+        <translation>正在克隆问题</translation>
     </message>
     <message>
         <source>Participants</source>
-        <translation type="unfinished"></translation>
+        <translation>参与者</translation>
     </message>
     <message>
         <source>Assignees</source>
-        <translation type="unfinished"></translation>
+        <translation>受让人</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>标签</translation>
     </message>
 </context>
 <context>
     <name>IssuesListPage</name>
     <message>
         <source>Issues</source>
-        <translation>问题（Issues）</translation>
+        <translation>问题</translation>
+    </message>
+    <message>
+        <source>Show closed issues</source>
+        <translation>显示已关闭的问题</translation>
+    </message>
+    <message>
+        <source>Show open issues</source>
+        <translation>显示开启的问题</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -234,7 +242,7 @@
     </message>
     <message>
         <source>No issues available</source>
-        <translation>没有可显示的问题（issues）</translation>
+        <translation>没有可显示的问题</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -260,7 +268,7 @@
     </message>
     <message>
         <source>New issue</source>
-        <translation>新问题（issue）</translation>
+        <translation>新问题</translation>
     </message>
     <message>
         <source>Show closed issues</source>
@@ -328,32 +336,32 @@
     <name>LabelsListPage</name>
     <message>
         <source>Issues</source>
-        <translation type="unfinished">问题（Issues）</translation>
+        <translation>问题</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished">分类</translation>
+        <translation>分类</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished">创建于</translation>
+        <translation>创建于</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">名称</translation>
+        <translation>名称</translation>
     </message>
     <message>
         <source>No labels available</source>
-        <translation type="unfinished"></translation>
+        <translation>没有可用标签</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
 </context>
@@ -369,11 +377,11 @@
     </message>
     <message>
         <source>Repositories</source>
-        <translation>库（Repositories）</translation>
+        <translation>仓库</translation>
     </message>
     <message>
         <source>Projects</source>
-        <translation>项目（Projects）</translation>
+        <translation>项目</translation>
     </message>
     <message>
         <source>Teams</source>
@@ -425,15 +433,15 @@
     </message>
     <message>
         <source>Issues</source>
-        <translation>问题（Issues）</translation>
+        <translation>问题</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation>发起请求（Pull Requests）</translation>
+        <translation>发起请求</translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation>库（Repositories）</translation>
+        <translation>仓库</translation>
     </message>
     <message>
         <source>Organizations</source>
@@ -441,7 +449,7 @@
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">设置</translation>
+        <translation>设置</translation>
     </message>
 </context>
 <context>
@@ -483,7 +491,7 @@
     <name>PullRequestsListPage</name>
     <message>
         <source>Pull Requests</source>
-        <translation>发起请求（Pull Requests）</translation>
+        <translation>发起请求</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -491,7 +499,7 @@
     </message>
     <message>
         <source>No pull requests available</source>
-        <translation>没有可用请求（pull requests）</translation>
+        <translation>没有可用请求</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -557,23 +565,23 @@
     <name>ReactionDialog</name>
     <message>
         <source>Choose</source>
-        <translation type="unfinished"></translation>
+        <translation>选择</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">保存</translation>
+        <translation>保存</translation>
     </message>
     <message>
         <source>Create</source>
-        <translation type="unfinished">创建</translation>
+        <translation>创建</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">标题</translation>
+        <translation>标题</translation>
     </message>
     <message>
         <source>Enter title</source>
-        <translation type="unfinished">编辑标题</translation>
+        <translation>输入标题</translation>
     </message>
 </context>
 <context>
@@ -592,11 +600,11 @@
     </message>
     <message>
         <source>Unstar</source>
-        <translation>取消星标（Unstar）</translation>
+        <translation>取消星标</translation>
     </message>
     <message>
         <source>Star</source>
-        <translation>星标（Star）</translation>
+        <translation>星标</translation>
     </message>
     <message>
         <source>Private</source>
@@ -611,22 +619,22 @@
     </message>
     <message>
         <source>Stargazer</source>
-        <translation>天文学家（Stargazer）</translation>
+        <translation>天文学家</translation>
     </message>
     <message numerus="yes">
         <source>%n Fork(s)</source>
         <comment>0</comment>
         <translation>
-            <numerusform>%n 个分支（Forks）</numerusform>
+            <numerusform>%n 个分支</numerusform>
         </translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation>问题（Issues）</translation>
+        <translation>问题</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation>发起请求（Pull Request）</translation>
+        <translation>发起请求</translation>
     </message>
     <message>
         <source>Watchers</source>
@@ -653,15 +661,15 @@
     <name>ReposListPage</name>
     <message>
         <source>Repositories</source>
-        <translation>库（Repositories）</translation>
+        <translation>仓库</translation>
     </message>
     <message>
         <source>Forks</source>
-        <translation>分支（Forks）</translation>
+        <translation>分支</translation>
     </message>
     <message>
         <source>Starred Repositories</source>
-        <translation>搜索库（Repositories）</translation>
+        <translation>搜索仓库</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -669,7 +677,7 @@
     </message>
     <message>
         <source>No repositories available</source>
-        <translation>没有可用库（Repositories）</translation>
+        <translation>没有可用仓库</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -691,7 +699,7 @@
     </message>
     <message>
         <source>Pushed at</source>
-        <translation>推送于（Pushed）</translation>
+        <translation>推送于</translation>
     </message>
     <message>
         <source>Updated at</source>
@@ -754,20 +762,20 @@
     <name>SearchRepositoryPage</name>
     <message>
         <source>Search Repository</source>
-        <translation>搜索库（Repositories）</translation>
+        <translation>搜索仓库</translation>
     </message>
     <message>
         <source>No repositories found</source>
-        <translation>没有找到库（Repositories）</translation>
+        <translation>没有找到仓库</translation>
     </message>
     <message>
         <source>Type in search pattern to find repositories</source>
-        <translation>输入搜索内容以查找库</translation>
+        <translation>输入搜索内容以查找仓库</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation>
-            <numerusform>加载更多（Repositories）</numerusform>
+            <numerusform>加载更多</numerusform>
         </translation>
     </message>
 </context>
@@ -779,7 +787,7 @@
     </message>
     <message>
         <source>Repository</source>
-        <translation>库（Repositories）</translation>
+        <translation>仓库</translation>
     </message>
     <message>
         <source>User</source>
@@ -815,7 +823,7 @@
     <name>SelectBranchDialog</name>
     <message>
         <source>Choose Branch</source>
-        <translation>选择分支（Branch）</translation>
+        <translation>选择分支</translation>
     </message>
     <message>
         <source>Select</source>
@@ -827,14 +835,14 @@
     </message>
     <message>
         <source>No branches available</source>
-        <translation>没有可用分支（braches）</translation>
+        <translation>没有可用分支</translation>
     </message>
 </context>
 <context>
     <name>SelectSubscriptionDialog</name>
     <message>
         <source>Choose Subscription</source>
-        <translation>选择订阅（Subscription）</translation>
+        <translation>选择订阅</translation>
     </message>
     <message>
         <source>Select</source>
@@ -869,23 +877,23 @@
     <name>SettingsAuthenticationPage</name>
     <message>
         <source>Reset</source>
-        <translation type="unfinished">重置</translation>
+        <translation>重置</translation>
     </message>
     <message>
         <source>Resetting credentials and close app</source>
-        <translation type="unfinished"></translation>
+        <translation>正在重置凭证并关闭软件</translation>
     </message>
     <message>
         <source>Authentication Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>授权设置</translation>
     </message>
     <message>
         <source>Access Token</source>
-        <translation type="unfinished">访问凭证</translation>
+        <translation>访问凭证</translation>
     </message>
     <message>
         <source>Enter access token</source>
-        <translation type="unfinished">输入访问凭证</translation>
+        <translation>输入访问凭证</translation>
     </message>
 </context>
 <context>
@@ -900,30 +908,30 @@
     </message>
     <message>
         <source>Manage pagination options</source>
-        <translation type="unfinished"></translation>
+        <translation>管理页码选项</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>授权</translation>
     </message>
     <message>
         <source>Manage authentication data</source>
-        <translation type="unfinished"></translation>
+        <translation>管理授权数据</translation>
     </message>
 </context>
 <context>
     <name>SettingsPaginationPage</name>
     <message>
         <source>Pagination Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>页码设置</translation>
     </message>
     <message>
         <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>
-        <translation type="unfinished">选择每个搜索获取的项目数量。值需要介于1至100之间。 {10-100.?}</translation>
+        <translation>选择每个搜索获取的项目数量。值需要介于10-100之间。</translation>
     </message>
     <message numerus="yes">
         <source>%n Item(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n 个项目</numerusform>
         </translation>
     </message>
@@ -1000,7 +1008,7 @@
     </message>
     <message>
         <source>Repositories</source>
-        <translation>库（Repositories）</translation>
+        <translation>仓库</translation>
     </message>
     <message>
         <source>Organizations</source>
@@ -1008,7 +1016,7 @@
     </message>
     <message>
         <source>Starred</source>
-        <translation>已标星（Starred）</translation>
+        <translation>已星标</translation>
     </message>
 </context>
 <context>
