@@ -305,60 +305,6 @@
     </message>
 </context>
 <context>
-    <name>IssuesListPage.bkp</name>
-    <message>
-        <source>New issue</source>
-        <translation>Neues Problem</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
-    <message>
-        <source>Sorting</source>
-        <translation>Sortierung</translation>
-    </message>
-    <message>
-        <source>Created at</source>
-        <translation>Erstellt am</translation>
-    </message>
-    <message>
-        <source>Updated at</source>
-        <translation>Aktualisiert am</translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation>Kommentare</translation>
-    </message>
-    <message>
-        <source>Issues</source>
-        <translation>Probleme</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation>Status</translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation>Offen</translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation>Geshlossen</translation>
-    </message>
-    <message>
-        <source>No issues available</source>
-        <translation>Keine Probleme vorhanden</translation>
-    </message>
-    <message numerus="yes">
-        <source>Load more (%n to go)</source>
-        <translation>
-            <numerusform>Lade mehr (%n verbleibend)</numerusform>
-            <numerusform>Lade mehr (%n verbleibend)</numerusform>
-        </translation>
-    </message>
-</context>
-<context>
     <name>LabelsListPage</name>
     <message>
         <source>Issues</source>
