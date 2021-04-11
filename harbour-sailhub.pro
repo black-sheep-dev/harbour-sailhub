@@ -127,7 +127,7 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += \
     translations/harbour-sailhub-de.ts \
     translations/harbour-sailhub-pl.ts \
-    translations/harbour-sailhub-zh_Hans.ts
+    translations/harbour-sailhub-zh_CN.ts
 
 RESOURCES += \
     ressources.qrc
