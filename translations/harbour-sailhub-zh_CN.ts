@@ -270,14 +270,6 @@
         <source>New issue</source>
         <translation>新问题</translation>
     </message>
-    <message>
-        <source>Show closed issues</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show open issues</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>IssuesListPage.bkp</name>
@@ -476,15 +468,15 @@
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">标签</translation>
     </message>
     <message>
         <source>Assignees</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">受让人</translation>
     </message>
     <message>
         <source>Participants</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">参与者</translation>
     </message>
 </context>
 <context>
