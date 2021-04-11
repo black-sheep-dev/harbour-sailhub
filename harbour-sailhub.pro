@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.10
+VERSION = 0.0.11
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -84,6 +84,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/CommentsListPage.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
+    qml/pages/IssueSelectionPage.qml \
     qml/pages/IssuesListPage.qml \
     qml/pages/LabelsListPage.qml \
     qml/pages/OrganizationPage.qml \

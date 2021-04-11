@@ -223,6 +223,37 @@
     </message>
 </context>
 <context>
+    <name>IssueSelectionPage</name>
+    <message>
+        <source>Created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues created by user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assigned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues assigned to user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mentioned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues where user is mentioned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>IssuesListPage</name>
     <message>
         <source>Issues</source>
@@ -269,59 +300,6 @@
     <message>
         <source>Show open issues</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>IssuesListPage.bkp</name>
-    <message>
-        <source>New issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sorting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Created at</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Updated at</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Issues</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No issues available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message numerus="yes">
-        <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
     </message>
 </context>
 <context>

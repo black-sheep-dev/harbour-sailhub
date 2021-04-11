@@ -1,7 +1,12 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import org.nubecula.harbour.sailhub 1.0
+
 Page {
+    property string userId
+    property string userLogin
+
     id: page
 
     allowedOrientations: Orientation.All
@@ -10,22 +15,28 @@ Page {
         id: listView
         model: ListModel {
             ListElement {
-                title: qsTr("Authentication");
-                description: qsTr("Manage authentication data")
-                icon: "image://theme/icon-m-keys"
-                page: "SettingsAuthenticationPage.qml"
+                title: qsTr("Created");
+                description: qsTr("Issues created by user")
+                icon: "image://theme/icon-m-edit"
+                issueType: Issue.CreatedBy
             }
             ListElement {
-                title: qsTr("Pagination");
-                description: qsTr("Manage pagination options")
-                icon: "image://theme/icon-m-levels"
-                page: "SettingsPaginationPage.qml"
+                title: qsTr("Assigned");
+                description: qsTr("Issues assigned to user")
+                icon: "image://theme/icon-m-attach"
+                issueType: Issue.Assigned
+            }
+            ListElement {
+                title: qsTr("Mentioned");
+                description: qsTr("Issues where user is mentioned")
+                icon: "image://theme/icon-m-annotation"
+                issueType: Issue.Mentioned
             }
         }
 
         anchors.fill: parent
         header: PageHeader {
-            title: qsTr("Settings")
+            title: qsTr("Issues")
         }
 
         delegate: ListItem {
@@ -65,11 +76,17 @@ Page {
                 }
             }
 
-            onClicked: pageStack.push(Qt.resolvedUrl(page))
+            onClicked: pageStack.push(Qt.resolvedUrl("IssuesListPage.qml"), {
+                                          description: userLogin,
+                                          identifier: userLogin,
+                                          type: issueType,
+                                          states: Issue.StateOpen
+                                      })
         }
 
         VerticalScrollDecorator {}
     }
 }
+
 
 

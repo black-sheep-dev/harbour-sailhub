@@ -7,6 +7,7 @@
 #include "src/api/queryvars.h"
 #include "src/api/query_items.h"
 
+
 // GET REPOSITORY ISSUES
 static const QString SAILHUB_QUERY_GET_REPOSITORY_ISSUES =
         QStringLiteral("query("
@@ -62,6 +63,120 @@ static const QString SAILHUB_QUERY_GET_USER_ISSUES =
                        "                    first: $itemCount, "
                        "                    after: $itemCursor, "
                        "                    states: $states, "
+                       "                    orderBy: { "
+                       "                        direction: $orderDirection, "
+                       "                        field: $orderField"
+                       "                    } ) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET USER CREATED ISSUES
+static const QString SAILHUB_QUERY_GET_USER_ASSIGNED_ISSUES =
+        QStringLiteral("query("
+                       "        $userLogin: String!, "
+                       "        $states: [IssueState!]!, "
+                       "        $orderField: IssueOrderField = UPDATED_AT, "
+                       "        $orderDirection: OrderDirection = DESC, "
+                       "        $itemCount: Int = 20, "
+                       "        $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    user(login: $userLogin) {"
+                       "        ... on User {"
+                       "            id"
+                       "            login"
+                       "            issues("
+                       "                    first: $itemCount, "
+                       "                    after: $itemCursor, "
+                       "                    states: $states, "
+                       "                    filterBy: {"
+                       "                        assignee: $userLogin"
+                       "                    }"
+                       "                    orderBy: { "
+                       "                        direction: $orderDirection, "
+                       "                        field: $orderField"
+                       "                    } ) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET USER CREATED ISSUES
+static const QString SAILHUB_QUERY_GET_USER_CREATED_ISSUES =
+        QStringLiteral("query("
+                       "        $userLogin: String!, "
+                       "        $states: [IssueState!]!, "
+                       "        $orderField: IssueOrderField = UPDATED_AT, "
+                       "        $orderDirection: OrderDirection = DESC, "
+                       "        $itemCount: Int = 20, "
+                       "        $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    user(login: $userLogin) {"
+                       "        ... on User {"
+                       "            id"
+                       "            login"
+                       "            issues("
+                       "                    first: $itemCount, "
+                       "                    after: $itemCursor, "
+                       "                    states: $states, "
+                       "                    filterBy: {"
+                       "                        createdBy: $userLogin"
+                       "                    }"
+                       "                    orderBy: { "
+                       "                        direction: $orderDirection, "
+                       "                        field: $orderField"
+                       "                    } ) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET USER MENTIONED ISSUES
+static const QString SAILHUB_QUERY_GET_USER_MENTIONED_ISSUES =
+        QStringLiteral("query("
+                       "        $userLogin: String!, "
+                       "        $states: [IssueState!]!, "
+                       "        $orderField: IssueOrderField = UPDATED_AT, "
+                       "        $orderDirection: OrderDirection = DESC, "
+                       "        $itemCount: Int = 20, "
+                       "        $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    user(login: $userLogin) {"
+                       "        ... on User {"
+                       "            id"
+                       "            login"
+                       "            issues("
+                       "                    first: $itemCount, "
+                       "                    after: $itemCursor, "
+                       "                    states: $states, "
+                       "                    filterBy: {"
+                       "                        mentioned: $userLogin"
+                       "                    }"
                        "                    orderBy: { "
                        "                        direction: $orderDirection, "
                        "                        field: $orderField"
@@ -190,8 +305,22 @@ void IssuesModel::clear()
 
 void IssuesModel::parseQueryResult(const QJsonObject &data)
 {
-    const QJsonObject issues = data.value(ApiKey::NODE).toObject()
-                                  .value(ApiKey::ISSUES).toObject();
+    QJsonObject issues;
+
+    switch (modelType()) {
+    case Issue::Assigned:
+    case Issue::CreatedBy:
+    case Issue::Mentioned:
+        issues = data.value(ApiKey::USER).toObject()
+                     .value(ApiKey::ISSUES).toObject();
+        break;
+
+    default:
+        issues = data.value(ApiKey::NODE).toObject()
+                     .value(ApiKey::ISSUES).toObject();
+        break;
+    }
+
     const QJsonValue count = issues.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(issues, count));
@@ -202,9 +331,25 @@ void IssuesModel::parseQueryResult(const QJsonObject &data)
 GraphQLQuery IssuesModel::query() const
 {
     GraphQLQuery query;
+    query.variables = defaultQueryVariables();
 
     // query
     switch (modelType()) {
+    case Issue::Assigned:
+        query.query = SAILHUB_QUERY_GET_USER_ASSIGNED_ISSUES;
+        query.variables.insert(QueryVar::USER_LOGIN, identifier());
+        break;
+
+    case Issue::CreatedBy:
+        query.query = SAILHUB_QUERY_GET_USER_CREATED_ISSUES;
+        query.variables.insert(QueryVar::USER_LOGIN, identifier());
+        break;
+
+    case Issue::Mentioned:
+        query.query = SAILHUB_QUERY_GET_USER_MENTIONED_ISSUES;
+        query.variables.insert(QueryVar::USER_LOGIN, identifier());
+        break;
+
     case Issue::Repo:
         query.query = SAILHUB_QUERY_GET_REPOSITORY_ISSUES;
         break;
@@ -216,9 +361,6 @@ GraphQLQuery IssuesModel::query() const
     default:
         break;
     }
-
-    // variables
-    query.variables = defaultQueryVariables();
 
     QJsonArray states;
     if (state() & Issue::StateOpen)

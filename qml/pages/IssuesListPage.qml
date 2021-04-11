@@ -33,36 +33,6 @@ Page {
         PullDownMenu {
             busy: issuesModel.loading
             MenuItem {
-                text: {
-                    if (page.states & Issue.StateOpen)
-                        return qsTr("Show closed issues")
-                    else if (page.states & Issue.StateClosed)
-                        return qsTr("Show open issues")
-                }
-
-                onClicked: {
-                    if (page.states & Issue.StateOpen)
-                        page.states = Issue.StateClosed
-                    else if (page.states & Issue.StateClosed)
-                        page.states = Issue.StateOpen
-
-                    refresh()
-                }
-            }
-
-            MenuItem {
-                visible: type !== Issue.User
-                text: qsTr("New issue")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))
-
-                    dialog.accepted.connect(function() {
-                        SailHub.api().createIssue(dialog.title, dialog.body, issuesModel)
-                    })
-                }
-            }
-
-            MenuItem {
                 text: qsTr("Refresh")
                 onClicked: {
                     refresh()
@@ -87,6 +57,34 @@ Page {
 
                         refresh()
                     })
+                }
+            }
+            MenuItem {
+                visible: type !== Issue.User
+                text: qsTr("New issue")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))
+
+                    dialog.accepted.connect(function() {
+                        SailHub.api().createIssue(dialog.title, dialog.body, issuesModel)
+                    })
+                }
+            }
+            MenuItem {
+                text: {
+                    if (page.states & Issue.StateOpen)
+                        return qsTr("Show closed issues")
+                    else if (page.states & Issue.StateClosed)
+                        return qsTr("Show open issues")
+                }
+
+                onClicked: {
+                    if (page.states & Issue.StateOpen)
+                        page.states = Issue.StateClosed
+                    else if (page.states & Issue.StateClosed)
+                        page.states = Issue.StateOpen
+
+                    refresh()
                 }
             }
         }

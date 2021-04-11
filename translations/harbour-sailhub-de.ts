@@ -224,6 +224,37 @@
     </message>
 </context>
 <context>
+    <name>IssueSelectionPage</name>
+    <message>
+        <source>Created</source>
+        <translation>Erstellt</translation>
+    </message>
+    <message>
+        <source>Issues created by user</source>
+        <translation>Vom Benutzer erstellte Probleme</translation>
+    </message>
+    <message>
+        <source>Assigned</source>
+        <translation>Beauftragt</translation>
+    </message>
+    <message>
+        <source>Issues assigned to user</source>
+        <translation>Dem benutzer zugeteilte Probleme</translation>
+    </message>
+    <message>
+        <source>Mentioned</source>
+        <translation>Erwähnt</translation>
+    </message>
+    <message>
+        <source>Issues where user is mentioned</source>
+        <translation>Probleme mit Erwähnung des Benutzer</translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation>Probleme</translation>
+    </message>
+</context>
+<context>
     <name>IssuesListPage</name>
     <message>
         <source>Issues</source>
@@ -271,60 +302,6 @@
     <message>
         <source>Show open issues</source>
         <translation>Zeige offene Probleme</translation>
-    </message>
-</context>
-<context>
-    <name>IssuesListPage.bkp</name>
-    <message>
-        <source>New issue</source>
-        <translation>Neues Problem</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
-    <message>
-        <source>Sorting</source>
-        <translation>Sortierung</translation>
-    </message>
-    <message>
-        <source>Created at</source>
-        <translation>Erstellt am</translation>
-    </message>
-    <message>
-        <source>Updated at</source>
-        <translation>Aktualisiert am</translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation>Kommentare</translation>
-    </message>
-    <message>
-        <source>Issues</source>
-        <translation>Probleme</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation>Status</translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation>Offen</translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation>Geshlossen</translation>
-    </message>
-    <message>
-        <source>No issues available</source>
-        <translation>Keine Probleme vorhanden</translation>
-    </message>
-    <message numerus="yes">
-        <source>Load more (%n to go)</source>
-        <translation>
-            <numerusform>Lade mehr (%n verbleibend)</numerusform>
-            <numerusform>Lade mehr (%n verbleibend)</numerusform>
-        </translation>
     </message>
 </context>
 <context>
