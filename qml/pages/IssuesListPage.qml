@@ -6,6 +6,7 @@ import org.nubecula.harbour.sailhub 1.0
 import "../delegates/"
 
 Page {
+    property bool canCreateNew: true
     property string description
     property alias identifier: issuesModel.identifier
     property alias type: issuesModel.modelType
@@ -60,7 +61,7 @@ Page {
                 }
             }
             MenuItem {
-                visible: type !== Issue.User
+                visible: type !== Issue.User && canCreateNew
                 text: qsTr("New issue")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))

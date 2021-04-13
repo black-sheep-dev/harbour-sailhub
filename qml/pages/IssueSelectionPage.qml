@@ -77,6 +77,7 @@ Page {
             }
 
             onClicked: pageStack.push(Qt.resolvedUrl("IssuesListPage.qml"), {
+                                          canCreateNew: false,
                                           description: userLogin,
                                           identifier: userLogin,
                                           type: issueType,
