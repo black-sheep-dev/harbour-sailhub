@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import Nemo.Configuration 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
@@ -11,6 +12,14 @@ Page {
     property alias repoType: reposModel.modelType
     property alias sortRole: reposModel.sortRole
     property alias sortOrder: reposModel.sortOrder
+
+    ConfigurationGroup {
+        id: config
+        path: "/apps/harbour-sailhub/repos"
+
+        property alias sortRole: reposModel.sortRole
+        property alias sortOrder: reposModel.sortOrder
+    }
 
     id: page
     allowedOrientations: Orientation.All
@@ -54,7 +63,7 @@ Page {
                 text: qsTr("Sorting")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
-                                                    order: sortOrder,
+                                                    order: config.sortOrder,
                                                     field: getSortFieldIndex(),
                                                     fields: [
                                                         qsTr("Name"),
@@ -66,8 +75,8 @@ Page {
                                                 })
 
                     dialog.accepted.connect(function() {
-                        sortOrder = dialog.order
-                        sortRole = getSortRoleFromIndex(dialog.field)
+                        config.sortOrder = dialog.order
+                        config.sortRole = getSortRoleFromIndex(dialog.field)
 
                         refresh()
                     })
@@ -152,7 +161,7 @@ Page {
     }
 
     function getSortFieldIndex() {
-        switch (page.sortRole) {
+        switch (config.sortRole) {
         case ReposModel.NameRole:
             return 0;
 

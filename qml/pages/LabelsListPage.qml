@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import Nemo.Configuration 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
@@ -10,8 +11,14 @@ Page {
     property alias identifier: labelsModel.identifier
     property alias type: labelsModel.modelType
     property alias states: labelsModel.state
-    property alias sortRole: labelsModel.sortRole
-    property alias sortOrder: labelsModel.sortOrder
+
+    ConfigurationGroup {
+        id: config
+        path: "/apps/harbour-sailhub/labels"
+
+        property alias sortRole: labelsModel.sortRole
+        property alias sortOrder: labelsModel.sortOrder
+    }
 
     id: page
     allowedOrientations: Orientation.All
@@ -42,7 +49,7 @@ Page {
                 text: qsTr("Sorting")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
-                                                    order: sortOrder,
+                                                    order: config.sortOrder,
                                                     field: getSortFieldIndex(),
                                                     fields: [
                                                         qsTr("Created at"),
@@ -51,8 +58,8 @@ Page {
                                                 })
 
                     dialog.accepted.connect(function() {
-                        sortOrder = dialog.order
-                        sortRole = getSortRoleFromIndex(dialog.field)
+                        config.sortOrder = dialog.order
+                        config.sortRole = getSortRoleFromIndex(dialog.field)
 
                         refresh()
                     })
@@ -108,7 +115,7 @@ Page {
     }
 
     function getSortFieldIndex() {
-        switch (page.sortRole) {
+        switch (config.sortRole) {
         case LabelsModel.CreatedAtRole:
             return 0;
 
