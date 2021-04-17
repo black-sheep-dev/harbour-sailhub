@@ -254,6 +254,14 @@
         <source>Issues</source>
         <translation>Problemy</translation>
     </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Otwarty</translation>
+    </message>
+    <message>
+        <source>Open issues in user repos</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IssuesListPage</name>

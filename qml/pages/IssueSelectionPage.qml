@@ -15,22 +15,36 @@ Page {
         id: listView
         model: ListModel {
             ListElement {
+                title: qsTr("Open");
+                description: qsTr("Open issues in user repos")
+                icon: "image://theme/icon-m-warning"
+                issueType: Issue.Repos
+                sorting: false
+                editState: false
+            }
+            ListElement {
                 title: qsTr("Created");
                 description: qsTr("Issues created by user")
                 icon: "image://theme/icon-m-edit"
                 issueType: Issue.CreatedBy
+                sorting: true
+                editState: true
             }
             ListElement {
                 title: qsTr("Assigned");
                 description: qsTr("Issues assigned to user")
                 icon: "image://theme/icon-m-attach"
                 issueType: Issue.Assigned
+                sorting: true
+                editState: true
             }
             ListElement {
                 title: qsTr("Mentioned");
                 description: qsTr("Issues where user is mentioned")
                 icon: "image://theme/icon-m-annotation"
                 issueType: Issue.Mentioned
+                sorting: true
+                editState: true
             }
         }
 
@@ -81,7 +95,9 @@ Page {
                                           description: userLogin,
                                           identifier: userLogin,
                                           type: issueType,
-                                          states: Issue.StateOpen
+                                          states: Issue.StateOpen,
+                                          sorting: sorting,
+                                          editState: editState
                                       })
         }
 

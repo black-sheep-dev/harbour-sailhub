@@ -56,6 +56,7 @@ public:
         CreatedBy,
         Mentioned,
         Repo,
+        Repos,
         User
     };
     Q_ENUM(IssueType)

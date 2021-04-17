@@ -9,8 +9,10 @@ import "../delegates/"
 Page {
     property bool canCreateNew: true
     property string description
+    property bool editState: true
     property alias identifier: issuesModel.identifier
     property alias type: issuesModel.modelType
+    property bool sorting: true
     property alias states: issuesModel.state
 
     ConfigurationGroup {
@@ -47,6 +49,7 @@ Page {
                 }
             }
             MenuItem {
+                visible: sorting
                 text: qsTr("Sorting")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
@@ -79,6 +82,7 @@ Page {
                 }
             }
             MenuItem {
+                visible: editState
                 text: {
                     if (page.states & Issue.StateOpen)
                         return qsTr("Show closed issues")

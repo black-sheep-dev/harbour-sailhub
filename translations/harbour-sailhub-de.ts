@@ -253,6 +253,14 @@
         <source>Issues</source>
         <translation>Probleme</translation>
     </message>
+    <message>
+        <source>Open</source>
+        <translation>Offen</translation>
+    </message>
+    <message>
+        <source>Open issues in user repos</source>
+        <translation>Offene Problem in Benutzer Repos</translation>
+    </message>
 </context>
 <context>
     <name>IssuesListPage</name>
