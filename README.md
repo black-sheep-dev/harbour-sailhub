@@ -22,17 +22,19 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Organization [*RS*]
 - User [*RS*]
 - Issue [*CRUD*] + close
-- Issue comment [*CRUD*]
+- Comment (Issue / Pull Request) [*CRUD*]
 - Pull request [*R*]
 - Repository files [*R*]
 - File content [*R*]
 - Labels (Issue / Pull Request) [*R*]
+- Reaction (Comment / Issue / Pull Request) [*RU*]
 
 ## Implemented Social Features
 
 - Follow / Unfollow user
 - Watch / Star repository
 - Commenting (Issue / Pull Requests)
+- Reactions (Comment / Issue / Pull Request)
 
 ## Planned Features
 - Markdown rendering support for displaying e.g. README.md

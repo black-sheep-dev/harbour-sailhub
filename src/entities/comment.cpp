@@ -1,19 +1,9 @@
 #include "comment.h"
 
 Comment::Comment(QObject *parent) :
-    Node(parent)
+    Interactable(parent)
 {
 
-}
-
-Owner *Comment::author() const
-{
-    return m_author;
-}
-
-QString Comment::body() const
-{
-    return m_body;
 }
 
 QString Comment::bodyExcerpt() const
@@ -31,37 +21,9 @@ QString Comment::createdAtTimeSpan() const
     return m_createdAtTimeSpan;
 }
 
-bool Comment::edited() const
-{
-    return m_edited;
-}
-
 QDateTime Comment::lastEditAt() const
 {
     return m_lastEditAt;
-}
-
-bool Comment::viewerDidAuthor() const
-{
-    return m_viewerDidAuthor;
-}
-
-void Comment::setAuthor(Owner *author)
-{
-    if (m_author == author)
-        return;
-
-    m_author = author;
-    emit authorChanged(m_author);
-}
-
-void Comment::setBody(const QString &body)
-{
-    if (m_body == body)
-        return;
-
-    m_body = body;
-    emit bodyChanged(m_body);
 }
 
 void Comment::setBodyExcerpt(const QString &excerpt)
@@ -91,15 +53,6 @@ void Comment::setCreatedAtTimeSpan(QString createdAtTimeSpan)
     emit createdAtTimeSpanChanged(m_createdAtTimeSpan);
 }
 
-void Comment::setEdited(bool edited)
-{
-    if (m_edited == edited)
-        return;
-
-    m_edited = edited;
-    emit editedChanged(m_edited);
-}
-
 void Comment::setLastEditAt(const QDateTime &lastEditAt)
 {
     if (m_lastEditAt == lastEditAt)
@@ -107,13 +60,4 @@ void Comment::setLastEditAt(const QDateTime &lastEditAt)
 
     m_lastEditAt = lastEditAt;
     emit lastEditAtChanged(m_lastEditAt);
-}
-
-void Comment::setViewerDidAuthor(bool viewerDidAuthor)
-{
-    if (m_viewerDidAuthor == viewerDidAuthor)
-        return;
-
-    m_viewerDidAuthor = viewerDidAuthor;
-    emit viewerDidAuthorChanged(m_viewerDidAuthor);
 }

@@ -43,6 +43,14 @@
         <source>Donate with Liberpay</source>
         <translation>通过 Liberpay 捐赠</translation>
     </message>
+    <message>
+        <source>Attributions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CommentItem</name>
@@ -75,6 +83,10 @@
     <message>
         <source>Comment</source>
         <translation>评论</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -220,6 +232,14 @@
     <message>
         <source>Labels</source>
         <translation>标签</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -464,6 +484,14 @@
         <source>Participants</source>
         <translation>参与者</translation>
     </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
@@ -542,24 +570,8 @@
 <context>
     <name>ReactionDialog</name>
     <message>
-        <source>Choose</source>
-        <translation>选择</translation>
-    </message>
-    <message>
         <source>Save</source>
-        <translation>保存</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>创建</translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation>标题</translation>
-    </message>
-    <message>
-        <source>Enter title</source>
-        <translation>输入标题</translation>
+        <translation type="unfinished">保存</translation>
     </message>
 </context>
 <context>

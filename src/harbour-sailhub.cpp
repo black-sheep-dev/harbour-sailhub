@@ -4,6 +4,7 @@
 
 #include "sailhub.h"
 #include "entities/file.h"
+#include "entities/reaction.h"
 #include "models/treesortfiltermodel.h"
 //#include "entities/language.h"
 
@@ -20,6 +21,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<Label>("org.nubecula.harbour.sailhub", 1, 0, "LabelEntity");
     qmlRegisterType<LabelsModel>("org.nubecula.harbour.sailhub", 1, 0, "LabelsModel");
     qmlRegisterType<License>("org.nubecula.harbour.sailhub", 1, 0, "License");
+    qmlRegisterType<Interactable>("org.nubecula.harbour.sailhub", 1, 0, "Interactable");
     qmlRegisterType<Issue>("org.nubecula.harbour.sailhub", 1, 0, "Issue");
     qmlRegisterType<IssuesModel>("org.nubecula.harbour.sailhub", 1, 0, "IssuesModel");
     qmlRegisterType<Organization>("org.nubecula.harbour.sailhub", 1, 0, "Organization");
@@ -27,6 +29,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<Owner>("org.nubecula.harbour.sailhub", 1, 0, "Owner");
     qmlRegisterType<PullRequest>("org.nubecula.harbour.sailhub", 1, 0, "PullRequest");
     qmlRegisterType<PullRequestsModel>("org.nubecula.harbour.sailhub", 1, 0, "PullRequestsModel");
+    qmlRegisterType<Reaction>("org.nubecula.harbour.sailhub", 1, 0, "Reaction");
     qmlRegisterType<Repo>("org.nubecula.harbour.sailhub", 1, 0, "Repo");
     qmlRegisterType<ReposModel>("org.nubecula.harbour.sailhub", 1, 0, "ReposModel");
     qmlRegisterType<TreeItem>("org.nubecula.harbour.sailhub", 1, 0, "TreeItem");

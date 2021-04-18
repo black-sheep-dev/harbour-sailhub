@@ -2,8 +2,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 BackgroundItem {
-    property string icon
-    property string label
+    property alias icon: iconImage.source
+    property alias label: textLabel.text
 
     id: iconLabel
     width: parent.width
@@ -20,18 +20,15 @@ BackgroundItem {
             width: Theme.iconSizeSmall
             height: width
             anchors.verticalCenter: parent.verticalCenter
-
-            source: icon
         }
 
         Label {
+            id: textLabel
             width: parent.width - iconImage.width - parent.spacing
             anchors.verticalCenter: parent.verticalCenter
             wrapMode: Text.Wrap
 
             color: iconLabel.highlighted ? Theme.highlightColor : Theme.primaryColor
-
-            text: label
         }
     }
 }

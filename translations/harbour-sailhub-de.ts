@@ -43,6 +43,14 @@
         <source>Donate with Liberpay</source>
         <translation>Spenden via Liberpay</translation>
     </message>
+    <message>
+        <source>Attributions</source>
+        <translation>Zuschreibungen</translation>
+    </message>
+    <message>
+        <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
+        <translation>Alle Emojis wurden von %1 entworfen - Das Open Source Emoji und Icon Projekt. Lizenz: %2</translation>
+    </message>
 </context>
 <context>
     <name>CommentItem</name>
@@ -75,6 +83,10 @@
     <message>
         <source>Comment</source>
         <translation>Kommentar</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation>Reaktionen</translation>
     </message>
 </context>
 <context>
@@ -221,6 +233,14 @@
     <message>
         <source>Labels</source>
         <translation>Labels</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation>Reaktionen</translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation>Beziehungen</translation>
     </message>
 </context>
 <context>
@@ -468,6 +488,14 @@
         <source>Participants</source>
         <translation>Beteiligte</translation>
     </message>
+    <message>
+        <source>Reactions</source>
+        <translation>Reaktionen</translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation>Beziehungen</translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
@@ -552,24 +580,8 @@
 <context>
     <name>ReactionDialog</name>
     <message>
-        <source>Choose</source>
-        <translation>Auswählen</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Speichern</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>Erstellen</translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation>Titel</translation>
-    </message>
-    <message>
-        <source>Enter title</source>
-        <translation>Titel eingeben</translation>
     </message>
 </context>
 <context>

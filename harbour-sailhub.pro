@@ -35,6 +35,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/queryvars.cpp \
     src/entities/comment.cpp \
     src/entities/file.cpp \
+    src/entities/interactable.cpp \
     src/entities/issue.cpp \
     src/entities/label.cpp \
     src/entities/license.cpp \
@@ -50,6 +51,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/models/organizationsmodel.cpp \
     src/models/paginationmodel.cpp \
     src/models/pullrequestsmodel.cpp \
+    src/models/reactionsmodel.cpp \
     src/models/reposmodel.cpp \
     src/models/treemodel.cpp \
     src/models/treesortfiltermodel.cpp \
@@ -64,6 +66,9 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/IconLabel.qml \
     qml/components/IconRelatedItem.qml \
     qml/components/InfoItem.qml \
+    qml/components/ReactionGridItem.qml \
+    qml/components/ReactionLabel.qml \
+    qml/components/ReactionsItem.qml \
     qml/components/RelatedItem.qml \
     qml/cover/CoverPage.qml \
     qml/delegates/CommentListDelegate.qml \
@@ -147,6 +152,7 @@ HEADERS += \
     src/api/ratelimit.h \
     src/entities/comment.h \
     src/entities/file.h \
+    src/entities/interactable.h \
     src/entities/issue.h \
     src/entities/label.h \
     src/entities/language.h \
@@ -166,6 +172,7 @@ HEADERS += \
     src/models/organizationsmodel.h \
     src/models/paginationmodel.h \
     src/models/pullrequestsmodel.h \
+    src/models/reactionsmodel.h \
     src/models/reposmodel.h \
     src/models/treemodel.h \
     src/models/treesortfiltermodel.h \

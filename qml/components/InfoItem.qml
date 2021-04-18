@@ -2,9 +2,9 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 BackgroundItem {
-    property string label
+    property alias label: textLabel.text
     property real labelSize: 0.4
-    property string value
+    property alias value: valueLabel.text
 
     width: parent.width
 
@@ -14,21 +14,20 @@ BackgroundItem {
         height: parent.height
 
         Label {
+            id: textLabel
             width: parent.width * labelSize
             anchors.verticalCenter: parent.verticalCenter
 
             color: Theme.highlightColor
-            text: label
         }
 
         Label {
+            id: valueLabel
             width: parent.width * (1.0 - labelSize)
             anchors.verticalCenter: parent.verticalCenter
 
             wrapMode: Text.Wrap
             horizontalAlignment: Text.AlignRight
-
-            text: value
         }
     }
 }

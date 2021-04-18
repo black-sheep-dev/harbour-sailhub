@@ -167,6 +167,30 @@ QVariant CommentsModel::data(const QModelIndex &index, int role) const
     case NodeIdRole:
         return comment->nodeId();
 
+    case ReactionConfusedCountRole:
+        return comment->reactionConfusedCount();
+
+    case ReactionEyesCountRole:
+        return comment->reactionEyesCount();
+
+    case ReactionHeartCountRole:
+        return comment->reactionHeartCount();
+
+    case ReactionHoorayCountRole:
+        return comment->reactionHoorayCount();
+
+    case ReactionLaughCountRole:
+        return comment->reactionLaughCount();
+
+    case ReactionRocketCountRole:
+        return comment->reactionRocketCount();
+
+    case ReactionThumbsDownCountRole:
+        return comment->reactionThumbsDownCount();
+
+    case ReactionThumbsUpCountRole:
+        return comment->reactionThumbsUpCount();
+
     case ViewerAbilitiesRole:
         return comment->viewerAbilities();
 
@@ -182,18 +206,26 @@ QHash<int, QByteArray> CommentsModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
 
-    roles[AuthorIdRole]             = "authorId";
-    roles[AuthorAvatarUrlRole]      = "authorAvatarUrl";
-    roles[AuthorLoginRole]          = "authorLogin";
-    roles[BodyRole]                 = "body";
-    roles[BodyExcerptRole]          = "bodyExcerpt";
-    roles[CreatedAtRole]            = "createdAt";
-    roles[CreatedAtTimeSpanRole]    = "createdAtTimeSpan";
-    roles[EditedRole]               = "edited";
-    roles[LastEditAtRole]           = "lastEditAt";
-    roles[NodeIdRole]               = "nodeId";
-    roles[ViewerAbilitiesRole]      = "viewerAbilities";
-    roles[ViewerDidAuthorRole]      = "viewerDidAuthor";
+    roles[AuthorIdRole]                 = "authorId";
+    roles[AuthorAvatarUrlRole]          = "authorAvatarUrl";
+    roles[AuthorLoginRole]              = "authorLogin";
+    roles[BodyRole]                     = "body";
+    roles[BodyExcerptRole]              = "bodyExcerpt";
+    roles[CreatedAtRole]                = "createdAt";
+    roles[CreatedAtTimeSpanRole]        = "createdAtTimeSpan";
+    roles[EditedRole]                   = "edited";
+    roles[LastEditAtRole]               = "lastEditAt";
+    roles[NodeIdRole]                   = "nodeId";
+    roles[ReactionConfusedCountRole]    = "reactionConfusedCount";
+    roles[ReactionEyesCountRole]        = "reactionEyesCount";
+    roles[ReactionHeartCountRole]       = "reactionHeartCount";
+    roles[ReactionHoorayCountRole]      = "reactionHoorayCount";
+    roles[ReactionLaughCountRole]       = "reactionLaughCount";
+    roles[ReactionRocketCountRole]      = "reactionRocketCount";
+    roles[ReactionThumbsDownCountRole]  = "reactionThumbsDownCount";
+    roles[ReactionThumbsUpCountRole]    = "reactionThumbsUpCount";
+    roles[ViewerAbilitiesRole]          = "viewerAbilities";
+    roles[ViewerDidAuthorRole]          = "viewerDidAuthor";
 
     return roles;
 }

@@ -48,6 +48,7 @@ public:
 private:
     static quint32 getViewerAbilities(const QJsonObject &obj);
     static QJsonArray getNodes(const QJsonObject &obj);
+    static void getInteractable(const QJsonObject &obj, Interactable *node);
     static quint32 getTotalCount(const QJsonObject &obj);
 };
 

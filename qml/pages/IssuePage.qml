@@ -12,7 +12,6 @@ Page {
     property Issue issue
 
     id: page
-
     allowedOrientations: Orientation.All
 
     SilicaFlickable {
@@ -68,7 +67,7 @@ Page {
         Column {
             id: headerColumn
             width: parent.width
-            spacing: Theme.paddingMedium
+            spacing: Theme.paddingSmall
 
             opacity: busyIndicator.running ? 0.1 : 1.0
             Behavior on opacity { FadeAnimator {} }
@@ -146,9 +145,34 @@ Page {
                 timeSpan: issue.createdAtTimeSpan
             }
 
-            Separator {
-                width: parent.width
-                color: Theme.highlightBackgroundColor
+            SectionHeader {
+                text: qsTr("Reactions")
+            }
+
+            ReactionsItem {
+                node: issue
+
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ReactionDialog.qml"), {
+                                                    reactions: issue.viewerReactions
+                                                })
+
+                    dialog.accepted.connect(function() {
+                        if (issue.viewerReactions === dialog.reactions) return;
+
+                        SailHub.api().updateReactions(
+                                    issue.nodeId,
+                                    issue.viewerReactions,
+                                    dialog.reactions)
+
+                        issue.updateReactionCount(dialog.reactions)
+                        issue.viewerReactions = dialog.reactions
+                    })
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("Relations")
             }
 
             RelatedValueItem {

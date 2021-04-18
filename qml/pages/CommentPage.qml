@@ -49,7 +49,7 @@ Page {
         Column {
             id: contentColumn
             width: parent.width
-            spacing: Theme.paddingMedium
+            spacing: Theme.paddingSmall
 
             PageHeader {
                 id: pageHeader
@@ -62,6 +62,32 @@ Page {
                 body: comment.body
                 edited: comment.edited
                 timeSpan: comment.createdAtTimeSpan
+            }
+
+            SectionHeader {
+                text: qsTr("Reactions")
+            }
+
+            ReactionsItem {
+                node: comment
+
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ReactionDialog.qml"), {
+                                                    reactions: comment.viewerReactions
+                                                })
+
+                    dialog.accepted.connect(function() {
+                        if (comment.viewerReactions === dialog.reactions) return;
+
+                        SailHub.api().updateReactions(
+                                    comment.nodeId,
+                                    comment.viewerReactions,
+                                    dialog.reactions)
+
+                        comment.updateReactionCount(dialog.reactions)
+                        comment.viewerReactions = dialog.reactions
+                    })
+                }
             }
         }
     }
