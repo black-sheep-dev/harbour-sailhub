@@ -60,7 +60,25 @@ Page {
                 text: qsTr("SailHub is a native Sailfish OS GitHub Client using the GraphQL Api 4 from github.com.")
             }
 
-            SectionHeader{
+            SectionHeader {
+                text: qsTr("Attributions")
+            }
+
+            Label {
+                x : Theme.horizontalPageMargin
+                width: parent.width - 2*x
+                wrapMode: Text.WordWrap
+                font.pixelSize: Theme.fontSizeSmall
+                linkColor: Theme.highlightColor
+
+                text: qsTr("All emojis designed by %1 – the open-source emoji and icon project. License: %2")
+                    .arg("<a href=\"https://openmoji.org/\">OpenMoji</a>")
+                    .arg("<a href=\"https://creativecommons.org/licenses/by-sa/4.0/#\">CC BY-SA 4.0</a>")
+
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            SectionHeader {
                 text: qsTr("Translations")
             }
 
@@ -101,7 +119,7 @@ Page {
 
                     }
                 }
-                onClicked: Qt.openUrlExternally("https://weblate.nubecula.org/projects/" + Qt.application.name)
+                onClicked: Qt.openUrlExternally("https://weblate.nubecula.org/engage/" + Qt.application.name)
             }
 
             Image {

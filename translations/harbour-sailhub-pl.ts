@@ -43,6 +43,14 @@
         <source>Donate with Liberpay</source>
         <translation>Wspomóż za pomocą Liberpay</translation>
     </message>
+    <message>
+        <source>Attributions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CommentItem</name>
@@ -75,6 +83,10 @@
     <message>
         <source>Comment</source>
         <translation>Komentarz</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -223,36 +235,52 @@
         <source>Labels</source>
         <translation>Etykiety</translation>
     </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
     <message>
         <source>Created</source>
-        <translation type="unfinished"></translation>
+        <translation>Utworzono</translation>
     </message>
     <message>
         <source>Issues created by user</source>
-        <translation type="unfinished"></translation>
+        <translation>Problem utworzony przez użytkownika</translation>
     </message>
     <message>
         <source>Assigned</source>
-        <translation type="unfinished"></translation>
+        <translation>Przypisany</translation>
     </message>
     <message>
         <source>Issues assigned to user</source>
-        <translation type="unfinished"></translation>
+        <translation>Problem przypisany do użytkownika</translation>
     </message>
     <message>
         <source>Mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>Wspomniany</translation>
     </message>
     <message>
         <source>Issues where user is mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>Problem gdzie wspomniany jest użytkownik</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished">Problemy</translation>
+        <translation>Problemy</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Otwarty</translation>
+    </message>
+    <message>
+        <source>Open issues in user repos</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -299,11 +327,11 @@
     </message>
     <message>
         <source>Show closed issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż zamknięte problemy</translation>
     </message>
     <message>
         <source>Show open issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż otwarte problemy</translation>
     </message>
 </context>
 <context>
@@ -434,35 +462,43 @@
     <name>PullRequestPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>Pull Request</source>
-        <translation type="unfinished"></translation>
+        <translation>Pull Request</translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation type="unfinished">Zamknięty</translation>
+        <translation>Zamknięty</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">Otwarty</translation>
+        <translation>Otwarty</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">Komentarze</translation>
+        <translation>Komentarze</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished">Etykiety</translation>
+        <translation>Etykiety</translation>
     </message>
     <message>
         <source>Assignees</source>
-        <translation type="unfinished">Cesjonariusze</translation>
+        <translation>Cesjonariusze</translation>
     </message>
     <message>
         <source>Participants</source>
-        <translation type="unfinished">Uczestnicy</translation>
+        <translation>Uczestnicy</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -501,11 +537,11 @@
     </message>
     <message>
         <source>Show closed pull requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż zamknięte pull requesty</translation>
     </message>
     <message>
         <source>Show open pull requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż otwarte pull requesty</translation>
     </message>
 </context>
 <context>
@@ -554,24 +590,8 @@
 <context>
     <name>ReactionDialog</name>
     <message>
-        <source>Choose</source>
-        <translation>Wybierz</translation>
-    </message>
-    <message>
         <source>Save</source>
-        <translation>Zapisz</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>Utwórz</translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation>Tytuł</translation>
-    </message>
-    <message>
-        <source>Enter title</source>
-        <translation>Wprowadź tytuł</translation>
+        <translation type="unfinished">Zapisz</translation>
     </message>
 </context>
 <context>

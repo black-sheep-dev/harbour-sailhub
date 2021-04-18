@@ -43,6 +43,14 @@
         <source>Donate with Liberpay</source>
         <translation>通过 Liberpay 捐赠</translation>
     </message>
+    <message>
+        <source>Attributions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CommentItem</name>
@@ -75,6 +83,10 @@
     <message>
         <source>Comment</source>
         <translation>评论</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -221,36 +233,52 @@
         <source>Labels</source>
         <translation>标签</translation>
     </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
     <message>
         <source>Created</source>
-        <translation type="unfinished"></translation>
+        <translation>已创建</translation>
     </message>
     <message>
         <source>Issues created by user</source>
-        <translation type="unfinished"></translation>
+        <translation>用户提出的问题</translation>
     </message>
     <message>
         <source>Assigned</source>
-        <translation type="unfinished"></translation>
+        <translation>已分配</translation>
     </message>
     <message>
         <source>Issues assigned to user</source>
-        <translation type="unfinished"></translation>
+        <translation>分配给用户的问题</translation>
     </message>
     <message>
         <source>Mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>已提及</translation>
     </message>
     <message>
         <source>Issues where user is mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>用户被提及的问题</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished">问题</translation>
+        <translation>问题</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">打开</translation>
+    </message>
+    <message>
+        <source>Open issues in user repos</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -456,6 +484,14 @@
         <source>Participants</source>
         <translation>参与者</translation>
     </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
@@ -534,24 +570,8 @@
 <context>
     <name>ReactionDialog</name>
     <message>
-        <source>Choose</source>
-        <translation>选择</translation>
-    </message>
-    <message>
         <source>Save</source>
-        <translation>保存</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>创建</translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation>标题</translation>
-    </message>
-    <message>
-        <source>Enter title</source>
-        <translation>输入标题</translation>
+        <translation type="unfinished">保存</translation>
     </message>
 </context>
 <context>

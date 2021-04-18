@@ -18,6 +18,7 @@ struct ApiKey {
     static const QString COLOR;
     static const QString COMMENTS;
     static const QString COMPANY;
+    static const QString CONTENT;
     static const QString CREATED_AT;
     static const QString DATA;
     static const QString DEFAULT_BRANCH_REF;
@@ -67,6 +68,7 @@ struct ApiKey {
     static const QString PULL_REQUESTS;
     static const QString PUSHED_AT;
     static const QString RATE_LIMIT;
+    static const QString REACTION_GROUPS;
     static const QString REF;
     static const QString REFS;
     static const QString RELEASES;
@@ -102,6 +104,7 @@ struct ApiKey {
     static const QString UPDATE_SUBSCRIPTION;
     static const QString URL;
     static const QString USER;
+    static const QString USERS;
     static const QString USER_COUNT;
     static const QString USER_ID;
     static const QString VIEWER;
@@ -117,6 +120,7 @@ struct ApiKey {
     static const QString VIEWER_IS_MEMBER;
     static const QString VIEWER_IS_FOLLOWING;
     static const QString VIEWER_IS_SPONSORING;
+    static const QString VIEWER_HAS_REACTED;
     static const QString VIEWER_HAS_STARRED;
     static const QString VIEWER_SUBSCRIPTION;
     static const QString WATCHERS;

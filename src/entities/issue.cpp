@@ -1,7 +1,7 @@
 #include "issue.h"
 
 Issue::Issue(QObject *parent) :
-    Node(parent)
+    Interactable(parent)
 {
 
 }
@@ -9,16 +9,6 @@ Issue::Issue(QObject *parent) :
 quint32 Issue::assigneeCount() const
 {
     return m_assigneeCount;
-}
-
-Owner *Issue::author() const
-{
-    return m_author;
-}
-
-QString Issue::body() const
-{
-    return m_body;
 }
 
 quint32 Issue::commentCount() const
@@ -34,11 +24,6 @@ QDateTime Issue::createdAt() const
 QString Issue::createdAtTimeSpan() const
 {
     return m_createdAtTimeSpan;
-}
-
-bool Issue::edited() const
-{
-    return m_edited;
 }
 
 quint32 Issue::labelCount() const
@@ -85,24 +70,6 @@ void Issue::setAssigneeCount(quint32 count)
     emit assigneeCountChanged(m_assigneeCount);
 }
 
-void Issue::setAuthor(Owner *author)
-{
-    if (m_author == author)
-        return;
-
-    m_author = author;
-    emit authorChanged(m_author);
-}
-
-void Issue::setBody(const QString &body)
-{
-    if (m_body == body)
-        return;
-
-    m_body = body;
-    emit bodyChanged(m_body);
-}
-
 void Issue::setCommentCount(quint32 count)
 {
     if (m_commentCount == count)
@@ -128,15 +95,6 @@ void Issue::setCreatedAtTimeSpan(const QString &timeSpan)
 
     m_createdAtTimeSpan = timeSpan;
     emit createdAtTimeSpanChanged(m_createdAtTimeSpan);
-}
-
-void Issue::setEdited(bool edited)
-{
-    if (m_edited == edited)
-        return;
-
-    m_edited = edited;
-    emit editedChanged(m_edited);
 }
 
 void Issue::setLabelCount(quint32 count)

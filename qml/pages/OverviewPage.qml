@@ -25,6 +25,10 @@ Page {
                 text: qsTr("Search")
                 onClicked: pageStack.push(Qt.resolvedUrl("SearchSelectionPage.qml"))
             }
+            MenuItem {
+                text: "TEST"
+                onClicked: pageStack.push(Qt.resolvedUrl("../dialogs/ReactionDialog.qml"))
+            }
         }
 
         ViewPlaceholder {

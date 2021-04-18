@@ -3,9 +3,9 @@ import Sailfish.Silica 1.0
 
 BackgroundItem {
     property string icon
-    property string label
+    property alias label: textLabel.text
     property real labelSize: 0.4
-    property string value
+    property alias value: valueLabel.text
 
     width: parent.width
 
@@ -23,6 +23,7 @@ BackgroundItem {
         }
 
         Label {
+            id: textLabel
             width: {
                 if (icon.length === 0)
                     return (parent.width - parent.spacing) * labelSize
@@ -31,11 +32,10 @@ BackgroundItem {
             }
 
             anchors.verticalCenter: parent.verticalCenter
-
-            text: label
         }
 
         Label {
+            id: valueLabel
             width: {
                 if (icon.length === 0)
                     return (parent.width - parent.spacing) * (1.0 - labelSize)
@@ -46,8 +46,6 @@ BackgroundItem {
 
             wrapMode: Text.Wrap
             horizontalAlignment: Text.AlignRight
-
-            text: value
         }
     }
 }

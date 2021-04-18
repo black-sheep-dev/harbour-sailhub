@@ -22,6 +22,15 @@ static const QString SAILHUB_MUTATION_ADD_COMMENT =
                        "    }"
                        "}").simplified();
 
+// DELETE COMMENT
+static const QString SAILHUB_MUTATION_DELETE_COMMENT =
+        QStringLiteral("mutation($input: DeleteIssueCommentInput!) {"
+                       "    deleteIssueComment(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
+
 // ADD ISSUE
 static const QString SAILHUB_MUTATION_CREATE_ISSUE =
         QStringLiteral("mutation($input: CreateIssueInput!) {"
@@ -41,14 +50,6 @@ static const QString SAILHUB_MUTATION_CLOSE_ISSUE =
                        "    }"
                        "}").simplified();
 
-// DELETE COMMENT
-static const QString SAILHUB_MUTATION_DELETE_COMMENT =
-        QStringLiteral("mutation($input: DeleteIssueCommentInput!) {"
-                       "    deleteIssueComment(input: $input) {"
-                       "        clientMutationId"
-                       "    }"
-                       "}").simplified();
-
 // DELETE ISSUE
 static const QString SAILHUB_MUTATION_DELETE_ISSUE =
         QStringLiteral("mutation($input: DeleteIssueInput!) {"
@@ -56,6 +57,23 @@ static const QString SAILHUB_MUTATION_DELETE_ISSUE =
                        "        clientMutationId"
                        "    }"
                        "}").simplified();
+
+// REACTION ADD
+static const QString SAILHUB_MUTATION_ADD_REACTION =
+        QStringLiteral("mutation($input: AddReactionInput!) {"
+                       "    addReaction(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
+// REACTION REMOVE
+static const QString SAILHUB_MUTATION_REMOVE_REACTION =
+        QStringLiteral("mutation($input: RemoveReactionInput!) {"
+                       "    removeReaction(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
 
 // FOLLOW USER
 static const QString SAILHUB_MUTATION_FOLLOW_USER =

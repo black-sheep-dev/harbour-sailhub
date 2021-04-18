@@ -20,6 +20,14 @@ public:
         EditedRole,
         LastEditAtRole,
         NodeIdRole,
+        ReactionConfusedCountRole,
+        ReactionEyesCountRole,
+        ReactionHeartCountRole,
+        ReactionHoorayCountRole,
+        ReactionLaughCountRole,
+        ReactionRocketCountRole,
+        ReactionThumbsDownCountRole,
+        ReactionThumbsUpCountRole,
         ViewerAbilitiesRole,
         ViewerDidAuthorRole
     };

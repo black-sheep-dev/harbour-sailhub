@@ -33,6 +33,8 @@ public:
     void setIssues(const QList<IssueListItem> &issues);
 
 private:
+    void parseUserReposIssues(const QJsonObject &obj);
+
     QList<IssueListItem> m_issues;
 
     // QAbstractItemModel interface

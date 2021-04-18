@@ -43,6 +43,14 @@
         <source>Donate with Liberpay</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Attributions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CommentItem</name>
@@ -74,6 +82,10 @@
     </message>
     <message>
         <source>Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reactions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -221,6 +233,14 @@
         <source>Labels</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
@@ -250,6 +270,14 @@
     </message>
     <message>
         <source>Issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open issues in user repos</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -456,6 +484,14 @@
         <source>Participants</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
@@ -534,23 +570,7 @@
 <context>
     <name>ReactionDialog</name>
     <message>
-        <source>Choose</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enter title</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

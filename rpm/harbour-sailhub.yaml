@@ -22,6 +22,7 @@ PkgConfigBR:
   - Qt5Core
   - Qt5Qml
   - Qt5Quick
+  - nemonotifications-qt5
 
 # Build dependencies without a pkgconfig setup can be listed here
 # PkgBR:
@@ -29,7 +30,9 @@ PkgConfigBR:
 
 # Runtime dependencies which are not automatically detected
 Requires:
-  - sailfishsilica-qt5 >= 0.10.9 
+  - sailfishsilica-qt5 >= 0.10.9
+  - nemo-qml-plugin-notifications-qt5
+  - nemo-qml-plugin-dbus-qt5
 
 # All installed files
 Files:
