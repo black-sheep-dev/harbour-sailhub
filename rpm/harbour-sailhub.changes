@@ -1,4 +1,7 @@
 * Sun Apr 18 2021 Black Sheep <blacksheep@nubecula.org> 0.0.12-1
+- Bugfixes
+
+* Sun Apr 18 2021 Black Sheep <blacksheep@nubecula.org> 0.0.12-1
 - Add overview for all open issues in user repositories
 - Add reaction functionality to comments, issue and pull requests
 - Updated translations
