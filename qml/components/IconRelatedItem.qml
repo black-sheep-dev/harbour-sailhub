@@ -3,9 +3,9 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 BackgroundItem {
-    property string icon
+    property alias icon: itemIcon.source
     property bool showNextIcon: true
-    property string title
+    property alias title: titleLabel.text
 
     width: parent.width
     height: Theme.itemSizeSmall
@@ -19,7 +19,6 @@ BackgroundItem {
             id: itemIcon
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-            source: icon
         }
 
         Item {
@@ -34,8 +33,6 @@ BackgroundItem {
             anchors.left: spacerItem.right
             anchors.right: openNextIcon.left
             anchors.verticalCenter: parent.verticalCenter
-
-            text: title
         }
 
         Icon {

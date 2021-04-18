@@ -138,9 +138,34 @@ Page {
                 timeSpan: request.createdAtTimeSpan
             }
 
-            Separator {
-                width: parent.width
-                color: Theme.highlightBackgroundColor
+            SectionHeader {
+                text: qsTr("Reactions")
+            }
+
+            ReactionsItem {
+                node: request
+
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ReactionDialog.qml"), {
+                                                    reactions: request.viewerReactions
+                                                })
+
+                    dialog.accepted.connect(function() {
+                        if (request.viewerReactions === dialog.reactions) return;
+
+                        SailHub.api().updateReactions(
+                                    request.nodeId,
+                                    request.viewerReactions,
+                                    dialog.reactions)
+
+                        request.updateReactionCount(dialog.reactions)
+                        request.viewerReactions = dialog.reactions
+                    })
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("Relations")
             }
 
             RelatedValueItem {

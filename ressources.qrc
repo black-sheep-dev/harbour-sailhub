@@ -12,4 +12,15 @@
     <qresource prefix="/cover">
         <file alias="cover-background">icons/cover-background.svg</file>
     </qresource>
+    <qresource prefix="/emoji">
+        <file alias="laugh">icons/emoji/laugh.svg</file>
+        <file alias="confused">icons/emoji/confused.svg</file>
+        <file alias="eyes">icons/emoji/eyes.svg</file>
+        <file alias="heart">icons/emoji/heart.svg</file>
+        <file alias="hooray">icons/emoji/hooray.svg</file>
+        <file alias="rocket">icons/emoji/rocket.svg</file>
+        <file alias="thumbs_down">icons/emoji/thumbs_down.svg</file>
+        <file alias="thumbs_up">icons/emoji/thumbs_up.svg</file>
+        <file alias="default">icons/emoji/default.svg</file>
+    </qresource>
 </RCC>

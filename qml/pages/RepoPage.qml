@@ -13,7 +13,6 @@ Page {
     property string selectedBranch: repo.defaultBranch
 
     id: page
-
     allowedOrientations: Orientation.All
 
     PageBusyIndicator {

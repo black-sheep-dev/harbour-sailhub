@@ -1,59 +1,115 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+
+import org.nubecula.harbour.sailhub 1.0
+
+import "../components/"
+
 Dialog {
-    property alias title: titleField.text
-    property alias body: bodyTextArea.text
+    property int reactions: 0
 
     id: dialog
-    canAccept: titleField.text.length > 0
 
-    Column {
-        id: contentColumn
-        width: parent.width
-        spacing: Theme.paddingSmall
+    DialogHeader {
+        id: header
+        acceptText: qsTr("Save")
+    }
 
-        DialogHeader {
-            title: qsTr("Choose")
-            acceptText: edit ? qsTr("Save") : qsTr("Create")
-        }
+    Grid {
+        anchors.top: header.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
 
-        TextField {
-            id: titleField
-            width: parent.width
+        ReactionGridItem {
+            icon: "qrc:///emoji/thumbs_up"
+            selected: reactions & Reaction.ThumbsUp
 
-            label: qsTr("Title")
-            focus: true
-
-            placeholderText: qsTr("Enter title")
-
-            EnterKey.enabled: text.length > 0
-            EnterKey.iconSource: edit ? "image://theme/icon-m-enter-close" : "image://theme/icon-m-enter-next"
-            EnterKey.onClicked: {
-                if (edit) {
-                    focus = false
-                } else {
-                    bodyTextArea.focus = true
-                }
+            onSelectedChanged: {
+                if (selected)
+                    reactions |= Reaction.ThumbsUp
+                else
+                    reactions &= ~Reaction.ThumbsUp
             }
         }
+        ReactionGridItem {
+            icon: "qrc:///emoji/thumbs_down"
+            selected: reactions & Reaction.ThumbsDown
 
-        TextArea {
-            id: bodyTextArea
+            onSelectedChanged: {
+                if (selected)
+                    reactions |= Reaction.ThumbsDown
+                else
+                    reactions &= ~Reaction.ThumbsDown
+            }
+        }
+        ReactionGridItem {
+            icon: "qrc:///emoji/laugh"
+            selected: reactions & Reaction.Laugh
 
-            width: parent.width
-            height: dialog.height / 2
+            onSelectedChanged: {
+                if (selected)
+                    reactions |= Reaction.Laugh
+                else
+                    reactions &= ~Reaction.Laugh
+            }
+        }
+        ReactionGridItem {
+            icon: "qrc:///emoji/hooray"
+            selected: reactions & Reaction.Hooray
 
-            EnterKey.iconSource: "image://theme/icon-m-enter-close"
-            EnterKey.onClicked: focus = false
+            onSelectedChanged: {
+                if (selected)
+                    reactions |= Reaction.Hooray
+                else
+                    reactions &= ~Reaction.Hooray
+            }
+        }
+        ReactionGridItem {
+            icon: "qrc:///emoji/confused"
+            selected: reactions & Reaction.Confused
+
+            onSelectedChanged: {
+                if (selected)
+                    reactions |= Reaction.Confused
+                else
+                    reactions &= ~Reaction.Confused
+            }
+        }
+        ReactionGridItem {
+            icon: "qrc:///emoji/heart"
+            selected: reactions & Reaction.Heart
+
+            onSelectedChanged: {
+                if (selected)
+                    reactions |= Reaction.Heart
+                else
+                    reactions &= ~Reaction.Heart
+            }
+        }
+        ReactionGridItem {
+            icon: "qrc:///emoji/rocket"
+            selected: reactions & Reaction.Rocket
+
+            onSelectedChanged: {
+                if (selected)
+                    reactions |= Reaction.Rocket
+                else
+                    reactions &= ~Reaction.Rocket
+            }
+        }
+        ReactionGridItem {
+            icon: "qrc:///emoji/eyes"
+            selected: reactions & Reaction.Eyes
+
+            onSelectedChanged: {
+                if (selected)
+                    reactions |= Reaction.Eyes
+                else
+                    reactions &= ~Reaction.Eyes
+            }
         }
     }
 
-    onDone: {
-        if (result != DialogResult.Accepted) return
-
-        title = titleField.text
-        body = bodyTextArea.text
-    }
+    onReactionsChanged: console.log(reactions)
 }
 

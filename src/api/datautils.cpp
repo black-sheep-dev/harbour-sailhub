@@ -9,18 +9,13 @@
 
 #include "keys.h"
 
+#include "src/entities/reaction.h"
+
 Comment *DataUtils::commentFromJson(const QJsonObject &obj)
 {
     Comment *comment = new Comment;
 
-    auto author = ownerFromJson(obj.value(ApiKey::AUTHOR).toObject());
-    if (author != nullptr) {
-        author->setParent(comment);
-        comment->setAuthor(author);
-    }
-
     comment->setNodeId(obj.value(ApiKey::ID).toString());
-    comment->setBody(obj.value(ApiKey::BODY_HTML).toString());
 
     constexpr int max = 160;
     const QString body = obj.value(ApiKey::BODY_TEXT).toString();
@@ -38,10 +33,12 @@ Comment *DataUtils::commentFromJson(const QJsonObject &obj)
     comment->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
     comment->setCreatedAtTimeSpan(timeSpanText(comment->createdAt(), true));
     comment->setLastEditAt(QDateTime::fromString(obj.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
-    comment->setViewerDidAuthor(obj.value(ApiKey::VIEWER_DID_AUTHOR).toBool());
     comment->setViewerAbilities(getViewerAbilities(obj));
 
     comment->setEdited(comment->createdAt() < comment->lastEditAt());
+
+    // reactions
+    getInteractable(obj, comment);
 
     return comment;
 }
@@ -70,7 +67,6 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
 
     issue->setNodeId(obj.value(ApiKey::ID).toString());
     issue->setTitle(obj.value(ApiKey::TITLE).toString());
-    issue->setBody(obj.value(ApiKey::BODY_HTML).toString());
     issue->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
     issue->setCreatedAtTimeSpan(timeSpanText(issue->createdAt(), true));
     issue->setNumber(obj.value(ApiKey::NUMBER).toInt());
@@ -85,11 +81,7 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
     issue->setParticipantCount(getTotalCount(obj.value(ApiKey::PARTICIPANTS).toObject()));
     issue->setViewerAbilities(getViewerAbilities(obj));
 
-    auto author = ownerFromJson(obj.value(ApiKey::AUTHOR).toObject());
-    if (author != nullptr) {
-        author->setParent(issue);
-        issue->setAuthor(author);
-    }
+    getInteractable(obj, issue);
 
     return issue;
 }
@@ -594,6 +586,80 @@ quint32 DataUtils::getViewerAbilities(const QJsonObject &obj)
 QJsonArray DataUtils::getNodes(const QJsonObject &obj)
 {
     return obj.value(ApiKey::NODES).toArray();
+}
+
+void DataUtils::getInteractable(const QJsonObject &obj, Interactable *node)
+{
+    // author
+    auto author = ownerFromJson(obj.value(ApiKey::AUTHOR).toObject());
+    if (author != nullptr) {
+        author->setParent(node);
+        node->setAuthor(author);
+    }
+
+    node->setViewerDidAuthor(obj.value(ApiKey::VIEWER_DID_AUTHOR).toBool());
+
+    // body
+    node->setBody(obj.value(ApiKey::BODY_HTML).toString());
+
+    // reactions
+    const QJsonArray reactionGroups = obj.value(ApiKey::REACTION_GROUPS).toArray();
+
+    if (reactionGroups.isEmpty())
+        return;
+
+    quint8 viewerReactions{Reaction::None};
+
+    for (const auto &item : reactionGroups) {
+        const QJsonObject group = item.toObject();
+        const QString content = group.value(ApiKey::CONTENT).toString();
+        const bool viewerReacted = group.value(ApiKey::VIEWER_HAS_REACTED).toBool();
+        const quint32 count = getTotalCount(group.value(ApiKey::USERS).toObject());
+
+        if (content == QLatin1String("CONFUSED")) {
+            node->setReactionConfusedCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Confused;
+
+        } else if (content == QLatin1String("EYES")) {
+            node->setReactionEyesCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Eyes;
+
+        } else if (content == QLatin1String("HEART")) {
+            node->setReactionHeartCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Heart;
+
+        } else if (content == QLatin1String("HOORAY")) {
+            node->setReactionHoorayCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Hooray;
+
+        } else if (content == QLatin1String("LAUGH")) {
+            node->setReactionLaughCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Laugh;
+
+        } else if (content == QLatin1String("ROCKET")) {
+            node->setReactionRocketCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Rocket;
+
+        } else if (content == QLatin1String("THUMBS_DOWN")) {
+            node->setReactionThumbsDownCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::ThumbsDown;
+
+        } else if (content == QLatin1String("THUMBS_UP")) {
+            node->setReactionThumbsUpCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::ThumbsUp;
+
+        }
+    }
+
+    node->setViewerReactions(viewerReactions);
 }
 
 quint32 DataUtils::getTotalCount(const QJsonObject &obj)

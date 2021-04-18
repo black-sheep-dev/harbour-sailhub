@@ -43,6 +43,14 @@
         <source>Donate with Liberpay</source>
         <translation>Wspomóż za pomocą Liberpay</translation>
     </message>
+    <message>
+        <source>Attributions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CommentItem</name>
@@ -75,6 +83,10 @@
     <message>
         <source>Comment</source>
         <translation>Komentarz</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -223,6 +235,14 @@
         <source>Labels</source>
         <translation>Etykiety</translation>
     </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
@@ -253,6 +273,14 @@
     <message>
         <source>Issues</source>
         <translation>Problemy</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Otwarty</translation>
+    </message>
+    <message>
+        <source>Open issues in user repos</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -464,6 +492,14 @@
         <source>Participants</source>
         <translation>Uczestnicy</translation>
     </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
@@ -554,24 +590,8 @@
 <context>
     <name>ReactionDialog</name>
     <message>
-        <source>Choose</source>
-        <translation>Wybierz</translation>
-    </message>
-    <message>
         <source>Save</source>
-        <translation>Zapisz</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>Utwórz</translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation>Tytuł</translation>
-    </message>
-    <message>
-        <source>Enter title</source>
-        <translation>Wprowadź tytuł</translation>
+        <translation type="unfinished">Zapisz</translation>
     </message>
 </context>
 <context>

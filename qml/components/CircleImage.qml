@@ -11,6 +11,7 @@ Image {
     height: width
 
     asynchronous: true
+    cache: true
     layer.enabled:true
     layer.effect: OpacityMask {
         maskSource: Item {

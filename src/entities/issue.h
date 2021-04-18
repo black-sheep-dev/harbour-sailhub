@@ -1,7 +1,7 @@
 #ifndef ISSUE_H
 #define ISSUE_H
 
-#include "node.h"
+#include "interactable.h"
 
 #include "src/entities/owner.h"
 #include "viewer.h"
@@ -22,17 +22,14 @@ struct IssueListItem {
     QString updatedAtTimeSpan;
 };
 
-class Issue : public Node
+class Issue : public Interactable
 {
     Q_OBJECT
 
     Q_PROPERTY(quint32 assigneeCount READ assigneeCount WRITE setAssigneeCount NOTIFY assigneeCountChanged)
-    Q_PROPERTY(Owner* author READ author WRITE setAuthor NOTIFY authorChanged)
-    Q_PROPERTY(QString body READ body WRITE setBody NOTIFY bodyChanged)
     Q_PROPERTY(quint32 commentCount READ commentCount WRITE setCommentCount NOTIFY commentCountChanged)
     Q_PROPERTY(QDateTime createdAt READ createdAt WRITE setCreatedAt NOTIFY createdAtChanged)
     Q_PROPERTY(QString createdAtTimeSpan READ createdAtTimeSpan WRITE setCreatedAtTimeSpan NOTIFY createdAtTimeSpanChanged)
-    Q_PROPERTY(bool edited READ edited WRITE setEdited NOTIFY editedChanged)
     Q_PROPERTY(quint32 labelCount READ labelCount WRITE setLabelCount NOTIFY labelCountChanged)
     Q_PROPERTY(quint32 number READ number WRITE setNumber NOTIFY numberChanged)
     Q_PROPERTY(quint32 participantCount READ participantCount WRITE setParticipantCount NOTIFY participantCountChanged)
@@ -56,6 +53,7 @@ public:
         CreatedBy,
         Mentioned,
         Repo,
+        Repos,
         User
     };
     Q_ENUM(IssueType)
@@ -64,8 +62,6 @@ public:
 
     // properties
     quint32 assigneeCount() const;
-    Owner *author() const;
-    QString body() const;
     quint32 commentCount() const;
     QDateTime createdAt() const;
     QString createdAtTimeSpan() const;
@@ -81,12 +77,9 @@ public:
 signals:
     // properties
     void assigneeCountChanged(quint32 count);
-    void authorChanged(Owner *author);
-    void bodyChanged(const QString &body);
     void commentCountChanged(quint32 count);
     void createdAtChanged(const QDateTime &timestamp);
     void createdAtTimeSpanChanged(const QString &timeSpan);
-    void editedChanged(bool edited);
     void labelCountChanged(quint32 count);
     void numberChanged(quint32 number);
     void participantCountChanged(quint32 count);
@@ -98,12 +91,9 @@ signals:
 public slots:
     // properties
     void setAssigneeCount(quint32 count);
-    void setAuthor(Owner *author);
-    void setBody(const QString &body);
     void setCommentCount(quint32 count);
     void setCreatedAt(const QDateTime &timestamp);
     void setCreatedAtTimeSpan(const QString &timeSpan);
-    void setEdited(bool edited);
     void setLabelCount(quint32 count);
     void setNumber(quint32 number);
     void setParticipantCount(quint32 count);
@@ -116,12 +106,9 @@ private:
     // properties
 
     quint32 m_assigneeCount{0};
-    Owner* m_author{nullptr};
-    QString m_body;
     quint32 m_commentCount{0};
     QDateTime m_createdAt;
     QString m_createdAtTimeSpan;
-    bool m_edited{false};
     quint32 m_labelCount{0};
     quint32 m_number{0};
     quint32 m_participantCount{0};

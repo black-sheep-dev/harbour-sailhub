@@ -13,6 +13,8 @@
 #include "queries.h"
 #include "queryvars.h"
 
+#include "src/entities/reaction.h"
+
 ApiInterface::ApiInterface(QObject *parent) :
     QObject(parent)
 {
@@ -47,6 +49,24 @@ void ApiInterface::addComment(const QString &body, CommentsModel *model)
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
     m_connector->sendQuery(query, RequestType::AddComment);
+}
+
+void ApiInterface::addReaction(const QString &nodeId, quint8 reaction)
+{
+    if (m_profile == nullptr)
+        return;
+
+    GraphQLQuery query;
+    query.query = SAILHUB_MUTATION_ADD_REACTION;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::SUBJECT_ID, nodeId);
+    vars.insert(ApiKey::CONTENT, Reaction::content(reaction));
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_connector->sendQuery(query, RequestType::AddReaction);
 }
 
 void ApiInterface::closeIssue(const QString &nodeId)
@@ -268,6 +288,24 @@ void ApiInterface::starRepo(const QString &nodeId, bool star)
     m_connector->sendQuery(query, star ? RequestType::StarRepo : RequestType::UnstarRepo);
 }
 
+void ApiInterface::removeReaction(const QString &nodeId, quint8 reaction)
+{
+    if (m_profile == nullptr)
+        return;
+
+    GraphQLQuery query;
+    query.query = SAILHUB_MUTATION_REMOVE_REACTION;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::SUBJECT_ID, nodeId);
+    vars.insert(ApiKey::CONTENT, Reaction::content(reaction));
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_connector->sendQuery(query, RequestType::RemoveReaction);
+}
+
 void ApiInterface::subscribeToRepo(const QString &nodeId, quint8 state)
 {
     if (m_profile == nullptr)
@@ -337,6 +375,26 @@ void ApiInterface::updateIssue(Issue *issue)
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
     m_connector->sendQuery(query, RequestType::UpdateIssue);
+}
+
+void ApiInterface::updateReactions(const QString &nodeId, quint8 before, quint8 after)
+{
+    quint8 flag{1};
+
+    for (int i = 0; i < 8; ++i) {
+
+        if ( (before & flag) == (after & flag)) {
+            flag *= 2;
+            continue;
+        }
+
+        if (after & flag)
+            addReaction(nodeId, flag);
+        else
+            removeReaction(nodeId, flag);
+
+        flag *= 2;
+    }
 }
 
 quint8 ApiInterface::paginationCount() const
