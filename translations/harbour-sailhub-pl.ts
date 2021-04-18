@@ -45,11 +45,11 @@
     </message>
     <message>
         <source>Attributions</source>
-        <translation type="unfinished"></translation>
+        <translation>Przypisania</translation>
     </message>
     <message>
         <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkie emotikony zaprojektowane przez %1 - projekt emoji i ikon typu open source. Licencja: %2</translation>
     </message>
 </context>
 <context>
@@ -86,7 +86,7 @@
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>Reakcje</translation>
     </message>
 </context>
 <context>
@@ -237,11 +237,11 @@
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>Reakcje</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation type="unfinished"></translation>
+        <translation>Relacje</translation>
     </message>
 </context>
 <context>
@@ -276,11 +276,11 @@
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">Otwarty</translation>
+        <translation>Otwarty</translation>
     </message>
     <message>
         <source>Open issues in user repos</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz problem w repozytorium użytkownika</translation>
     </message>
 </context>
 <context>
@@ -494,11 +494,11 @@
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>Reakcje</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation type="unfinished"></translation>
+        <translation>Relacje</translation>
     </message>
 </context>
 <context>
@@ -591,7 +591,7 @@
     <name>ReactionDialog</name>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Zapisz</translation>
+        <translation>Zapisz</translation>
     </message>
 </context>
 <context>
