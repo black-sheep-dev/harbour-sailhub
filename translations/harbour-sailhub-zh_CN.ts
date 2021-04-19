@@ -45,11 +45,11 @@
     </message>
     <message>
         <source>Attributions</source>
-        <translation type="unfinished"></translation>
+        <translation>贡献</translation>
     </message>
     <message>
         <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>所有图标都由 %1 设计-开源表情及图标项目。许可证:%2</translation>
     </message>
 </context>
 <context>
@@ -86,7 +86,7 @@
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>反应</translation>
     </message>
 </context>
 <context>
@@ -235,11 +235,11 @@
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>反应</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation type="unfinished"></translation>
+        <translation>关系</translation>
     </message>
 </context>
 <context>
@@ -274,11 +274,11 @@
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">打开</translation>
+        <translation>打开</translation>
     </message>
     <message>
         <source>Open issues in user repos</source>
-        <translation type="unfinished"></translation>
+        <translation>打开用户仓库的问题</translation>
     </message>
 </context>
 <context>
@@ -486,11 +486,11 @@
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>反应</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation type="unfinished"></translation>
+        <translation>关系</translation>
     </message>
 </context>
 <context>
@@ -571,7 +571,7 @@
     <name>ReactionDialog</name>
     <message>
         <source>Save</source>
-        <translation type="unfinished">保存</translation>
+        <translation>保存</translation>
     </message>
 </context>
 <context>
