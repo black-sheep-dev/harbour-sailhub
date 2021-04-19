@@ -90,7 +90,7 @@
     </message>
     <message>
         <source>Quote reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Zitieren</translation>
     </message>
 </context>
 <context>
@@ -128,7 +128,7 @@
     </message>
     <message>
         <source>Quote reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Zitieren</translation>
     </message>
 </context>
 <context>
