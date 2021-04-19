@@ -92,6 +92,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/IssueSelectionPage.qml \
     qml/pages/IssuesListPage.qml \
     qml/pages/LabelsListPage.qml \
+    qml/pages/MarkdownViewerPage.qml \
     qml/pages/OrganizationPage.qml \
     qml/pages/OrganizationsListPage.qml \
     qml/pages/OverviewPage.qml \
