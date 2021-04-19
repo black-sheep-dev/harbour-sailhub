@@ -1,4 +1,9 @@
-* Sun Apr 18 2021 Black Sheep <blacksheep@nubecula.org> 0.0.12-1
+* Mon Apr 19 2021 Black Sheep <blacksheep@nubecula.org> 0.0.14-1
+- Updated polish translation by atlochowski
+- Updated chinese translation by dashinfantry
+- Fixed bug with dbus service
+
+* Sun Apr 18 2021 Black Sheep <blacksheep@nubecula.org> 0.0.13-1
 - Bugfixes
 
 * Sun Apr 18 2021 Black Sheep <blacksheep@nubecula.org> 0.0.12-1
