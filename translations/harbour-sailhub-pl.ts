@@ -88,6 +88,10 @@
         <source>Reactions</source>
         <translation>Reakcje</translation>
     </message>
+    <message>
+        <source>Quote reply</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CommentsListPage</name>
@@ -122,6 +126,10 @@
     <message>
         <source>Deleting comment</source>
         <translation>Usuwanie komentarza</translation>
+    </message>
+    <message>
+        <source>Quote reply</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

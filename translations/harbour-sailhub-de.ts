@@ -88,6 +88,10 @@
         <source>Reactions</source>
         <translation>Reaktionen</translation>
     </message>
+    <message>
+        <source>Quote reply</source>
+        <translation>Zitieren</translation>
+    </message>
 </context>
 <context>
     <name>CommentsListPage</name>
@@ -121,6 +125,10 @@
     <message>
         <source>Deleting comment</source>
         <translation>Lösche Kommentar</translation>
+    </message>
+    <message>
+        <source>Quote reply</source>
+        <translation>Zitieren</translation>
     </message>
 </context>
 <context>

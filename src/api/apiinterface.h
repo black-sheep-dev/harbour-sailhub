@@ -75,7 +75,7 @@ public:
 
     // api calls
     void getLogin();
-    Q_INVOKABLE void addComment(const QString &body, CommentsModel *model);
+    Q_INVOKABLE void addComment(const QString &body, const QString &subjectId);
     Q_INVOKABLE void addReaction(const QString &nodeId, quint8 reaction);
     Q_INVOKABLE void closeIssue(const QString &nodeId);
     Q_INVOKABLE void createIssue(const QString &title, const QString &body, IssuesModel *model);

@@ -26,8 +26,9 @@ Dialog {
 
             focus: true
 
+            cursorPosition: length
+
             EnterKey.iconSource: "image://theme/icon-m-enter-close"
-            EnterKey.onClicked: focus = false
         }
     }
 

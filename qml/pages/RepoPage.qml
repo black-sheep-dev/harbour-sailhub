@@ -386,7 +386,7 @@ Page {
             RelatedItem {
                 title: qsTr("README")
 
-                onClicked: pageStack.push(Qt.resolvedUrl("TextFileViewerPage.qml"), {
+                onClicked: pageStack.push(Qt.resolvedUrl("MarkdownViewerPage.qml"), {
                                               branch: repo.defaultBranch,
                                               owner: repo.owner.login,
                                               path: "README.md",
