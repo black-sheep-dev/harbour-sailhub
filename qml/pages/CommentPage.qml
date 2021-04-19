@@ -6,6 +6,7 @@ import org.nubecula.harbour.sailhub 1.0
 import "../components/"
 
 Page {
+    property string subjectId
     property Comment comment
     property alias description: pageHeader.description
 
@@ -15,6 +16,14 @@ Page {
     SilicaFlickable {
         PullDownMenu {
             visible: comment.viewerAbilities & (Viewer.CanDelete | Viewer.CanUpdate)
+            MenuItem {
+                visible: comment.viewerAbilities & Viewer.CanDelete
+                text: qsTr("Delete")
+
+                onClicked: remorse.execute(qsTr("Deleting comment"), function() {
+                    SailHub.api().deleteComment(comment.nodeId)
+                })
+            }
             MenuItem {
                 visible: comment.viewerAbilities & Viewer.CanUpdate
                 text: qsTr("Edit")
@@ -32,12 +41,18 @@ Page {
                 }
             }
             MenuItem {
-                visible: comment.viewerAbilities & Viewer.CanDelete
-                text: qsTr("Delete")
+                text: qsTr("Quote reply")
+                onClicked: {
+                    const text = ">"+ comment.body + "\n\n";
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"), {
+                                                    edit: false,
+                                                    body: text
+                                                })
 
-                onClicked: remorse.execute(qsTr("Deleting comment"), function() {
-                    SailHub.api().deleteComment(comment.nodeId)
-                })
+                    dialog.accepted.connect(function() {
+                        SailHub.api().addComment(dialog.body, subjectId)
+                    })
+                }
             }
         }
 
@@ -95,5 +110,6 @@ Page {
     Connections {
         target: SailHub.api()
         onCommentDeleted: pageStack.navigateBack()
+        onCommentAdded: pageStack.navigateBack()
     }
 }

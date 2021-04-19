@@ -43,7 +43,7 @@ Page {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
 
                     dialog.accepted.connect(function() {
-                        SailHub.api().addComment(dialog.body, commentsModel)
+                        SailHub.api().addComment(dialog.body, commentsModel.identifier)
                     })
                 }
             }
@@ -75,6 +75,20 @@ Page {
             menu: ContextMenu {
                 visible: model.viewerAbilities & Viewer.CanDelete
                 MenuItem {
+                    text: qsTr("Quote reply")
+                    onClicked: {
+                        const text = ">"+ model.body + "\n\n";
+                        var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"), {
+                                                        edit: false,
+                                                        body: text
+                                                    })
+
+                        dialog.accepted.connect(function() {
+                            SailHub.api().addComment(dialog.body, commentsModel.identifier)
+                        })
+                    }
+                }
+                MenuItem {
                     text: qsTr("Delete")
                     onClicked: remorse.execute(delegate, qsTr("Deleting comment"), function() {
                         SailHub.api().deleteComment(model.nodeId)
@@ -88,6 +102,7 @@ Page {
             lastItem: index == (listView.count - 1)
 
             onClicked: pageStack.push(Qt.resolvedUrl("CommentPage.qml"), {
+                                          subjectId: commentsModel.identifier,
                                           comment: commentsModel.commentAt(model.index),
                                           description: page.description
                                       })

@@ -88,6 +88,10 @@
         <source>Reactions</source>
         <translation>反应</translation>
     </message>
+    <message>
+        <source>Quote reply</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CommentsListPage</name>
@@ -120,6 +124,10 @@
     <message>
         <source>Deleting comment</source>
         <translation>正在删除评论</translation>
+    </message>
+    <message>
+        <source>Quote reply</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
