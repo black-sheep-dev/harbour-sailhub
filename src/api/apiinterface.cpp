@@ -33,9 +33,9 @@ QString ApiInterface::token() const
     return m_connector->token();
 }
 
-void ApiInterface::addComment(const QString &body, CommentsModel *model)
+void ApiInterface::addComment(const QString &body, const QString &subjectId)
 {
-    if (m_profile == nullptr || model == nullptr)
+    if (m_profile == nullptr)
         return;
 
     GraphQLQuery query;
@@ -43,7 +43,7 @@ void ApiInterface::addComment(const QString &body, CommentsModel *model)
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
-    vars.insert(ApiKey::SUBJECT_ID, model->identifier());
+    vars.insert(ApiKey::SUBJECT_ID, subjectId);
     vars.insert(ApiKey::BODY, body);
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);

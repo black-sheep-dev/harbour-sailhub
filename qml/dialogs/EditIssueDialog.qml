@@ -45,8 +45,9 @@ Dialog {
             width: parent.width
             height: dialog.height / 2
 
+            cursorPosition: length
+
             EnterKey.iconSource: "image://theme/icon-m-enter-close"
-            EnterKey.onClicked: focus = false
         }
     }
 
