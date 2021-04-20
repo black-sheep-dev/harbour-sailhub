@@ -455,6 +455,14 @@ TreeItemListItem DataUtils::treeListItemFromJson(const QJsonObject &obj)
             return item;
         }
 
+        // Markdown
+        regex.setPattern(".(md)");
+
+        if (regex.exactMatch(item.extension)) {
+            item.fileType = File::Markdown;
+            return item;
+        }
+
         item.fileType = File::Text;
     }
 
@@ -600,7 +608,9 @@ void DataUtils::getInteractable(const QJsonObject &obj, Interactable *node)
     node->setViewerDidAuthor(obj.value(ApiKey::VIEWER_DID_AUTHOR).toBool());
 
     // body
-    node->setBody(obj.value(ApiKey::BODY_HTML).toString());
+    //node->setBody(obj.value(ApiKey::BODY_HTML).toString());
+    node->setBody(obj.value(ApiKey::BODY).toString());
+    //qDebug() << "BODY: " << node->body();
 
     // reactions
     const QJsonArray reactionGroups = obj.value(ApiKey::REACTION_GROUPS).toArray();

@@ -127,6 +127,14 @@ Page {
                                                   repo: page.repoName,
                                                   repoId: page.repoId
                                               })
+                    } else if (model.fileType === File.Markdown) {
+                        pageStack.push(Qt.resolvedUrl("MarkdownViewerPage.qml"), {
+                                                  branch: page.branch,
+                                                  owner: page.owner,
+                                                  path: model.path,
+                                                  repo: page.repoName,
+                                                  repoId: page.repoId
+                                              })
                     }
 
                 }

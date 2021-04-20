@@ -16,7 +16,7 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 ![](doc/images/github_personal_access_token.png)
 
 ## Implemented Features
-- Basic Markdown rendering using ShowdownJS (only used to show README.md at the moment)
+- Basic Markdown rendering using ShowdownJS
 
 ## Implemented CRUD Features
 Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch

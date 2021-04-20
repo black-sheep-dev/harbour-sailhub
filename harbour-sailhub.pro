@@ -66,6 +66,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/IconLabel.qml \
     qml/components/IconRelatedItem.qml \
     qml/components/InfoItem.qml \
+    qml/components/MarkdownLabel.qml \
     qml/components/ReactionGridItem.qml \
     qml/components/ReactionLabel.qml \
     qml/components/ReactionsItem.qml \
@@ -115,6 +116,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/wizard/WizardFinalPage.qml \
     qml/pages/wizard/WizardIntroPage.qml \
     qml/pages/wizard/WizardTokenPage.qml \
+    qml/tools/MarkdownParser.qml \
     rpm/harbour-sailhub.changes \
     rpm/harbour-sailhub.changes.run.in \
     rpm/harbour-sailhub.spec \
