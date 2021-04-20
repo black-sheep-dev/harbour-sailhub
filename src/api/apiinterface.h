@@ -5,8 +5,10 @@
 
 #include <QDateTime>
 #include <QHash>
+#include <QNetworkAccessManager>
 
 #include "graphqlconnector.h"
+#include "restapiconnector.h"
 #include "src/entities/user.h"
 #include "src/models/commentsmodel.h"
 #include "src/models/issuesmodel.h"
@@ -50,6 +52,7 @@ public:
         GetFileContent,
         GetIssue,
         GetLogin,
+        GetNotifications,
         GetOrganization,
         GetPaginationModel,
         GetProfile,
@@ -84,6 +87,7 @@ public:
     Q_INVOKABLE void followUser(const QString &nodeId, bool follow = true);
     Q_INVOKABLE void getFileContent(const QString &nodeId, const QString &branch);
     Q_INVOKABLE void getIssue(const QString &nodeId);
+    Q_INVOKABLE void getNotifications();
     Q_INVOKABLE void getOrganization(const QString &nodeId);
     Q_INVOKABLE void getPaginationModel(PaginationModel *model);
     Q_INVOKABLE void getProfile();
@@ -137,6 +141,7 @@ signals:
 private slots:
     void onConnectionError(quint16 error, const QString &msg);
     void parseData(const QJsonObject &obj, quint8 requestType, const QByteArray &requestId);
+    void parseRestData(const QJsonDocument &doc, quint8 requestType, const QByteArray &requestId);
 
 private:
     void initialize();
@@ -146,7 +151,10 @@ private:
     void parseRepoSubscription(const QJsonObject &obj);
     void parseRepoTree(const QJsonObject &obj, const QByteArray &requestId);
 
-    GraphQLConnector *m_connector{new GraphQLConnector(SAILHUB_API_GRAPHQL_URL, this)};
+    GraphQLConnector *m_graphqlConnector{nullptr};
+    RestApiConnector *m_restApiConnector{nullptr};
+
+    QNetworkAccessManager *m_manager{new QNetworkAccessManager(this)};
     QHash<QByteArray, PaginationModel *> m_paginationModelRequests;
     QHash<QByteArray, TreeModel *> m_treeModelRequests;
 

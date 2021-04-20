@@ -1,66 +1,52 @@
-#include "graphqlconnector.h"
+#include "restapiconnector.h"
 
 #ifdef QT_DEBUG
 #include <QDebug>
 #endif
 
+#include <QJsonArray>
 #include <QJsonParseError>
 #include <QJsonDocument>
+#include <QJsonObject>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 
-#include <zlib.h>
+#include "src/tools/compress.h"
 
-GraphQLConnector::GraphQLConnector(const QString &endpoint, QNetworkAccessManager *manager, QObject *parent) :
+RestApiConnector::RestApiConnector(QNetworkAccessManager *manager, QObject *parent) :
     QObject(parent),
-    m_endpoint(endpoint),
     m_manager(manager)
 {
-    //connect(m_manager, &QNetworkAccessManager::finished, this, &GraphQLConnector::onRequestFinished);
+
 }
 
-void GraphQLConnector::sendQuery(const GraphQLQuery &query, quint8 requestType, const QByteArray &requestId)
-{    
-    // create payload
-    QJsonObject payload;
-    payload.insert(QStringLiteral("query"), query.query);
+void RestApiConnector::setToken(const QString &token)
+{
+    m_token = token;
+}
 
-    if (!query.variables.isEmpty())
-        payload.insert(QStringLiteral("variables"), query.variables);
+QString RestApiConnector::token() const
+{
+    return m_token;
+}
 
-#ifdef QT_DEBUG
-    qDebug() << payload;
-#endif
-
+void RestApiConnector::get(const QString &endpoint, quint8 requestType, const QByteArray &requestId)
+{
     //create request
-    QNetworkRequest request(m_endpoint);
+    QNetworkRequest request(QStringLiteral("https://api.github.com") + endpoint);
     request.setSslConfiguration(QSslConfiguration::defaultConfiguration());
     request.setRawHeader("Content-Type", "application/json");
     request.setRawHeader("Accept-Encoding", "gzip");
     request.setRawHeader("Authorization", "token " + m_token.toUtf8());
 
     // send request
-    QNetworkReply *reply = m_manager->post(request,
-                                           QJsonDocument(payload).toJson(QJsonDocument::Compact));
+    QNetworkReply *reply = m_manager->get(request);
     reply->setProperty("request_type", requestType);
     reply->setProperty("request_uuid", requestId);
-    connect(reply, &QNetworkReply::finished, this, &GraphQLConnector::onRequestFinished);
+    connect(reply, &QNetworkReply::finished, this, &RestApiConnector::onRequestFinished);
 }
 
-void GraphQLConnector::setEndpoint(const QString &endpoint)
-{
-    m_endpoint = endpoint;
-}
-
-void GraphQLConnector::setToken(const QString &token)
-{
-    m_token = token;
-}
-
-QString GraphQLConnector::token() const
-{
-    return m_token;
-}
-
-void GraphQLConnector::onRequestFinished()
+void RestApiConnector::onRequestFinished()
 {
 #ifdef QT_DEBUG
     qDebug() << "API REPLY";
@@ -96,7 +82,7 @@ void GraphQLConnector::onRequestFinished()
     // parse response
     QJsonParseError error{};
 
-    const QJsonObject obj = QJsonDocument::fromJson(data, &error).object();
+    const QJsonDocument doc = QJsonDocument::fromJson(data, &error);
 
     if (error.error) {
 #ifdef QT_DEBUG
@@ -106,5 +92,7 @@ void GraphQLConnector::onRequestFinished()
         return;
     }
 
-    emit requestFinished(obj, request, uuid);
+    emit requestFinished(doc, request, uuid);
 }
+
+

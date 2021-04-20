@@ -33,6 +33,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/graphqlconnector.cpp \
     src/api/keys.cpp \
     src/api/queryvars.cpp \
+    src/api/restapiconnector.cpp \
     src/entities/comment.cpp \
     src/entities/file.cpp \
     src/entities/interactable.cpp \
@@ -56,7 +57,8 @@ SOURCES += src/harbour-sailhub.cpp \
     src/models/treemodel.cpp \
     src/models/treesortfiltermodel.cpp \
     src/models/usersmodel.cpp \
-    src/sailhub.cpp
+    src/sailhub.cpp \
+    src/tools/compress.cpp
 
 DISTFILES += qml/harbour-sailhub.qml \
     qml/components/AuthorItem.qml \
@@ -153,6 +155,7 @@ HEADERS += \
     src/api/query_items.h \
     src/api/queryvars.h \
     src/api/ratelimit.h \
+    src/api/restapiconnector.h \
     src/entities/comment.h \
     src/entities/file.h \
     src/entities/interactable.h \
@@ -180,7 +183,8 @@ HEADERS += \
     src/models/treemodel.h \
     src/models/treesortfiltermodel.h \
     src/models/usersmodel.h \
-    src/sailhub.h
+    src/sailhub.h \
+    src/tools/compress.h
 
 dbus.files = data/harbour.sailhub.service
 dbus.path = $$INSTALL_ROOT/usr/share/dbus-1/services

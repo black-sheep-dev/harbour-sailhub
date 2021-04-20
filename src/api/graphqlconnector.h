@@ -11,12 +11,14 @@
 
 #include "graphqlquery.h"
 
+#include "src/tools/compress.h"
+
 class GraphQLConnector : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit GraphQLConnector(const QString &endpoint, QObject *parent = nullptr);
+    explicit GraphQLConnector(const QString &endpoint, QNetworkAccessManager *manager, QObject *parent = nullptr);
 
     void sendQuery(const GraphQLQuery &query, quint8 requestType, const QByteArray &requestId = QUuid::createUuid().toByteArray());
     void setEndpoint(const QString &endpoint);
@@ -28,13 +30,11 @@ signals:
     void requestFinished(const QJsonObject &data, quint8 type, const QByteArray &requestId);
 
 private slots:
-    void onRequestFinished(QNetworkReply *reply);
+    void onRequestFinished();
 
 private:
-    QByteArray gunzip(const QByteArray &data);
-
     QString m_endpoint;
-    QNetworkAccessManager *m_manager{new QNetworkAccessManager(this)};
+    QNetworkAccessManager *m_manager{nullptr};
     QString m_token;
 
 };
