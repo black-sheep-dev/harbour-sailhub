@@ -1,3 +1,9 @@
+* Tue Apr 20 2021 Black Sheep <blacksheep@nubecula.org> 0.0.16-1
+- Improved markdown rendering
+- Render all markdown files in the file viewer
+- Use markdown instead of HTML
+- Translation updates
+
 * Mon Apr 19 2021 Black Sheep <blacksheep@nubecula.org> 0.0.15-1
 - Add quote reply for comments
 - Add basic markdown rendering to show repository README.md using ShowdownJS
