@@ -84,6 +84,9 @@ Page {
                             case File.Image:
                                 return "image://theme/icon-m-file-image"
 
+                            case File.Markdown:
+                                return "image://theme/icon-m-file-formatted-light"
+
                             case File.Text:
                                 return "image://theme/icon-m-file-document-light"
 
