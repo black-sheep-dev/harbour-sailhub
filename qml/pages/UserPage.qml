@@ -4,6 +4,7 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import "../tools/"
 
 Page {
     property bool busy: false
@@ -15,6 +16,8 @@ Page {
     id: page
 
     allowedOrientations: Orientation.All
+
+    MarkdownParser { id: markdownParser }
 
     PageBusyIndicator {
         id: busyIndicator
@@ -112,29 +115,13 @@ Page {
                 width: 1
             }
 
-            // bio
-//            TextArea {
-//                visible: user.bio.length > 0
-
-//                width: parent.width
-//                wrapMode: Text.Wrap
-
-//                readOnly: true
-//                softwareInputPanelEnabled: false
-
-//                text: user.bio
-//            }
-
-            Label {
+            MarkdownLabel {
                 visible: user.bio.length > 0
 
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
-                wrapMode: Text.WordWrap
 
-                color: Theme.highlightColor
-
-                text: user.bio
+                text: markdownParser.parse(user.bio)
             }
 
             // Info
