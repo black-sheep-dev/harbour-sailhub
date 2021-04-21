@@ -33,11 +33,7 @@ QString RestApiConnector::token() const
 void RestApiConnector::get(const QString &endpoint, quint8 requestType, const QByteArray &requestId)
 {
     //create request
-    QNetworkRequest request(QStringLiteral("https://api.github.com") + endpoint);
-    request.setSslConfiguration(QSslConfiguration::defaultConfiguration());
-    request.setRawHeader("Content-Type", "application/json");
-    request.setRawHeader("Accept-Encoding", "gzip");
-    request.setRawHeader("Authorization", "token " + m_token.toUtf8());
+    QNetworkRequest request = getRequest(endpoint);
 
     // send request
     QNetworkReply *reply = m_manager->get(request);
@@ -93,6 +89,18 @@ void RestApiConnector::onRequestFinished()
     }
 
     emit requestFinished(doc, request, uuid);
+}
+
+QNetworkRequest RestApiConnector::getRequest(const QString &endpoint)
+{
+    QNetworkRequest request(QStringLiteral("https://api.github.com") + endpoint);
+    request.setSslConfiguration(QSslConfiguration::defaultConfiguration());
+    request.setRawHeader("Accept", "application/vnd.github.v3+json");
+    request.setRawHeader("Content-Type", "application/json");
+    request.setRawHeader("Accept-Encoding", "gzip");
+    request.setRawHeader("Authorization", "token " + m_token.toUtf8());
+
+    return request;
 }
 
 

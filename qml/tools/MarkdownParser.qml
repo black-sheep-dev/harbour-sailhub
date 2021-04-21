@@ -25,7 +25,7 @@ Item {
                "li.tasklist { font-size:large; margin: " + Theme.paddingMedium + "px 0px; }\n" +
                "del { text-decoration: line-through; }\n" +
                "table { border-color: " + Theme.secondaryColor + "; }\n" +
-               "blockquote { font-style: italic }\n" +
+               "blockquote { font-style: italic; background: #f9f9f9; border-left: 10px solid " + Theme.highlightColor + "; color: "+ Theme.highlightColor + ";}\n" +
                "</style>\n" +
                convertedText +
                "<br><br>"

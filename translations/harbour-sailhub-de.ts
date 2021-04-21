@@ -375,6 +375,21 @@
     </message>
 </context>
 <context>
+    <name>NotificationsListPage</name>
+    <message>
+        <source>Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Aktualisieren</translation>
+    </message>
+    <message>
+        <source>No notifications available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>OrganizationPage</name>
     <message>
         <source>Refresh</source>
@@ -460,6 +475,14 @@
     <message>
         <source>Settings</source>
         <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <source>Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Activities</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

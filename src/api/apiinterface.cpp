@@ -6,6 +6,7 @@
 
 #include <QHashIterator>
 #include <QJsonArray>
+#include <QJsonDocument>
 
 #include "datautils.h"
 #include "keys.h"
@@ -184,9 +185,18 @@ void ApiInterface::getIssue(const QString &nodeId)
     m_graphqlConnector->sendQuery(query, RequestType::GetIssue);
 }
 
-void ApiInterface::getNotifications()
+void ApiInterface::getNotifications(NotificationsModel *model)
 {
-    m_restApiConnector->get(QStringLiteral("/notifications"), RequestType::GetNotifications);
+    if (model == nullptr)
+        return;
+
+    model->setLoading(true);
+
+    // save and send
+    m_notificationsModelRequests.insert(model->uuid(), model);
+    m_restApiConnector->get(QStringLiteral("/notifications?all=true"),
+                            RequestType::GetNotifications,
+                            model->uuid());
 }
 
 void ApiInterface::getOrganization(const QString &nodeId)
@@ -597,7 +607,14 @@ void ApiInterface::parseRestData(const QJsonDocument &doc, quint8 requestType, c
     qDebug() << doc;
 #endif
 
+    switch (requestType) {
+    case GetNotifications:
+        parseNotificationsModel(doc.array(), requestId);
+        break;
 
+    default:
+        break;
+    }
 }
 
 void ApiInterface::initialize()
@@ -634,6 +651,20 @@ void ApiInterface::parseFileContent(const QJsonObject &obj)
         return;
 
     emit fileContentAvailable(data.value(ApiKey::TEXT).toString());
+}
+
+void ApiInterface::parseNotificationsModel(const QJsonArray &array, const QByteArray &requestId)
+{
+    auto model = m_notificationsModelRequests.value(requestId, nullptr);
+
+    if (model == nullptr)
+        return;
+
+    // parse data
+    model->setNotifications(DataUtils::notificationsFromJson(array));
+
+    // cleanup
+    m_notificationsModelRequests.remove(requestId);
 }
 
 void ApiInterface::parsePaginationModel(const QJsonObject &obj, const QByteArray &requestId)

@@ -41,6 +41,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/label.cpp \
     src/entities/license.cpp \
     src/entities/node.cpp \
+    src/entities/notificationobject.cpp \
     src/entities/organization.cpp \
     src/entities/owner.cpp \
     src/entities/pullrequest.cpp \
@@ -49,6 +50,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/models/commentsmodel.cpp \
     src/models/issuesmodel.cpp \
     src/models/labelsmodel.cpp \
+    src/models/notificationsmodel.cpp \
     src/models/organizationsmodel.cpp \
     src/models/paginationmodel.cpp \
     src/models/pullrequestsmodel.cpp \
@@ -77,6 +79,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/delegates/CommentListDelegate.qml \
     qml/delegates/IssueListDelegate.qml \
     qml/delegates/LabelListDelegate.qml \
+    qml/delegates/NotificationListDelegate.qml \
     qml/delegates/OrganizationListDelegate.qml \
     qml/delegates/PullRequestListDelegate.qml \
     qml/delegates/RepoListDelegate.qml \
@@ -96,6 +99,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/IssuesListPage.qml \
     qml/pages/LabelsListPage.qml \
     qml/pages/MarkdownViewerPage.qml \
+    qml/pages/NotificationsListPage.qml \
     qml/pages/OrganizationPage.qml \
     qml/pages/OrganizationsListPage.qml \
     qml/pages/OverviewPage.qml \
@@ -164,6 +168,7 @@ HEADERS += \
     src/entities/language.h \
     src/entities/license.h \
     src/entities/node.h \
+    src/entities/notificationobject.h \
     src/entities/organization.h \
     src/entities/owner.h \
     src/entities/pullrequest.h \
@@ -175,6 +180,7 @@ HEADERS += \
     src/models/commentsmodel.h \
     src/models/issuesmodel.h \
     src/models/labelsmodel.h \
+    src/models/notificationsmodel.h \
     src/models/organizationsmodel.h \
     src/models/paginationmodel.h \
     src/models/pullrequestsmodel.h \

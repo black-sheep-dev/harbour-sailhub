@@ -43,7 +43,7 @@ ListItem {
                     Label {
                         width: parent.width - timeSpanLabel.width - parent.spacing
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                        font.pixelSize: Theme.fontSizeSmall
+                        font.pixelSize: Theme.fontSizeTiny
 
                         text: model.repository + " #" + model.number
                     }

@@ -21,6 +21,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<Label>("org.nubecula.harbour.sailhub", 1, 0, "LabelEntity");
     qmlRegisterType<LabelsModel>("org.nubecula.harbour.sailhub", 1, 0, "LabelsModel");
     qmlRegisterType<License>("org.nubecula.harbour.sailhub", 1, 0, "License");
+    qmlRegisterType<NotificationObject>("org.nubecula.harbour.sailhub", 1, 0, "Notification");
+    qmlRegisterType<NotificationsModel>("org.nubecula.harbour.sailhub", 1, 0, "NotificationsModel");
     qmlRegisterType<Interactable>("org.nubecula.harbour.sailhub", 1, 0, "Interactable");
     qmlRegisterType<Issue>("org.nubecula.harbour.sailhub", 1, 0, "Issue");
     qmlRegisterType<IssuesModel>("org.nubecula.harbour.sailhub", 1, 0, "IssuesModel");

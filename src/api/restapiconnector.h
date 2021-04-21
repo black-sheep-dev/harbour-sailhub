@@ -26,6 +26,8 @@ private slots:
     void onRequestFinished();
 
 private:
+    QNetworkRequest getRequest(const QString &endpoint);
+
     QNetworkAccessManager *m_manager{nullptr};
     QString m_token;
 

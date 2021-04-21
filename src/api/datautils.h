@@ -12,6 +12,7 @@
 #include "src/entities/repo.h"
 #include "src/entities/treeitem.h"
 #include "src/entities/user.h"
+#include "src/models/notificationsmodel.h"
 #include "src/models/paginationmodel.h"
 
 class DataUtils
@@ -25,6 +26,7 @@ public:
     static QList<IssueListItem> issuesFromJson(const QJsonObject &obj);
     static LabelListItem labelListItemFromJson(const QJsonObject &obj);
     static QList<LabelListItem> labelsFromJson(const QJsonObject &obj);
+    static QList<NotificationListItem> notificationsFromJson(const QJsonArray &array);
     static Organization *organizationFromJson(const QJsonObject &obj, Organization *organization = nullptr);
     static OrganizationListItem organizationListItemFromJson(const QJsonObject &obj);
     static QList<OrganizationListItem> organizationsFromJson(const QJsonObject &obj);

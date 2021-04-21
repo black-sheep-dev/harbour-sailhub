@@ -13,6 +13,7 @@
 #include "src/models/commentsmodel.h"
 #include "src/models/issuesmodel.h"
 #include "src/models/labelsmodel.h"
+#include "src/models/notificationsmodel.h"
 #include "src/models/organizationsmodel.h"
 #include "src/models/pullrequestsmodel.h"
 #include "src/models/reposmodel.h"
@@ -87,7 +88,7 @@ public:
     Q_INVOKABLE void followUser(const QString &nodeId, bool follow = true);
     Q_INVOKABLE void getFileContent(const QString &nodeId, const QString &branch);
     Q_INVOKABLE void getIssue(const QString &nodeId);
-    Q_INVOKABLE void getNotifications();
+    Q_INVOKABLE void getNotifications(NotificationsModel *model);
     Q_INVOKABLE void getOrganization(const QString &nodeId);
     Q_INVOKABLE void getPaginationModel(PaginationModel *model);
     Q_INVOKABLE void getProfile();
@@ -147,6 +148,7 @@ private:
     void initialize();
     void parseComments(const QJsonObject &obj, const QByteArray &requestId);
     void parseFileContent(const QJsonObject &obj);
+    void parseNotificationsModel(const QJsonArray &array, const QByteArray &requestId);
     void parsePaginationModel(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepoSubscription(const QJsonObject &obj);
     void parseRepoTree(const QJsonObject &obj, const QByteArray &requestId);
@@ -155,6 +157,7 @@ private:
     RestApiConnector *m_restApiConnector{nullptr};
 
     QNetworkAccessManager *m_manager{new QNetworkAccessManager(this)};
+    QHash<QByteArray, NotificationsModel *> m_notificationsModelRequests;
     QHash<QByteArray, PaginationModel *> m_paginationModelRequests;
     QHash<QByteArray, TreeModel *> m_treeModelRequests;
 
