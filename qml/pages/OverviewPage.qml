@@ -70,6 +70,17 @@ Page {
             }
 
             SectionHeader {
+                text: qsTr("Activities")
+            }
+
+            IconRelatedItem {
+                icon: "image://theme/icon-m-alarm"
+                title: qsTr("Notifications")
+
+                onClicked: pageStack.push(Qt.resolvedUrl("NotificationsListPage.qml"))
+            }
+
+            SectionHeader {
                 text: qsTr("My Work")
             }
 

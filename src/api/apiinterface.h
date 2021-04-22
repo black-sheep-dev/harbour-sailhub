@@ -5,12 +5,15 @@
 
 #include <QDateTime>
 #include <QHash>
+#include <QNetworkAccessManager>
 
 #include "graphqlconnector.h"
+#include "restapiconnector.h"
 #include "src/entities/user.h"
 #include "src/models/commentsmodel.h"
 #include "src/models/issuesmodel.h"
 #include "src/models/labelsmodel.h"
+#include "src/models/notificationsmodel.h"
 #include "src/models/organizationsmodel.h"
 #include "src/models/pullrequestsmodel.h"
 #include "src/models/reposmodel.h"
@@ -50,6 +53,7 @@ public:
         GetFileContent,
         GetIssue,
         GetLogin,
+        GetNotifications,
         GetOrganization,
         GetPaginationModel,
         GetProfile,
@@ -84,6 +88,7 @@ public:
     Q_INVOKABLE void followUser(const QString &nodeId, bool follow = true);
     Q_INVOKABLE void getFileContent(const QString &nodeId, const QString &branch);
     Q_INVOKABLE void getIssue(const QString &nodeId);
+    Q_INVOKABLE void getNotifications(NotificationsModel *model = nullptr);
     Q_INVOKABLE void getOrganization(const QString &nodeId);
     Q_INVOKABLE void getPaginationModel(PaginationModel *model);
     Q_INVOKABLE void getProfile();
@@ -119,6 +124,7 @@ signals:
     void issueCreated(bool created = true);
     void issueDeleted(bool deleted = true);
     void issueAvailable(Issue *issue);
+    void notificationsAvailable(const QList<NotificationListItem> &notifications);
     void organizationAvailable(Organization *organization);
     void pullRequestAvailable(PullRequest *request);
     void repoAvailable(Repo *repo);
@@ -137,16 +143,22 @@ signals:
 private slots:
     void onConnectionError(quint16 error, const QString &msg);
     void parseData(const QJsonObject &obj, quint8 requestType, const QByteArray &requestId);
+    void parseRestData(const QJsonDocument &doc, quint8 requestType, const QByteArray &requestId);
 
 private:
     void initialize();
     void parseComments(const QJsonObject &obj, const QByteArray &requestId);
     void parseFileContent(const QJsonObject &obj);
+    void parseNotificationsModel(const QJsonArray &array, const QByteArray &requestId);
     void parsePaginationModel(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepoSubscription(const QJsonObject &obj);
     void parseRepoTree(const QJsonObject &obj, const QByteArray &requestId);
 
-    GraphQLConnector *m_connector{new GraphQLConnector(SAILHUB_API_GRAPHQL_URL, this)};
+    GraphQLConnector *m_graphqlConnector{nullptr};
+    RestApiConnector *m_restApiConnector{nullptr};
+
+    QNetworkAccessManager *m_manager{new QNetworkAccessManager(this)};
+    QHash<QByteArray, NotificationsModel *> m_notificationsModelRequests;
     QHash<QByteArray, PaginationModel *> m_paginationModelRequests;
     QHash<QByteArray, TreeModel *> m_treeModelRequests;
 

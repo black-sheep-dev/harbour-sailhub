@@ -28,5 +28,10 @@ ApplicationWindow
             __silica_applicationwindow_instance.activate()
             pageStack.push(Qt.resolvedUrl("pages/settings/SettingsAuthenticationPage.qml"))
         }
+
+        function open() {
+            __silica_applicationwindow_instance.activate()
+            pageStack.push(Qt.resolvedUrl("pages/NotificationsListPage.qml"))
+        }
     }
 }
