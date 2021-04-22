@@ -54,7 +54,6 @@ Page {
                 text: release.name
             }
 
-
             CommentItem {
                 authorAvatar: release.author.avatarUrl
                 authorLogin: release.author.login

@@ -158,6 +158,7 @@ static const QString SAILHUB_QUERY_GET_RELEASE =
                        "            isDraft"
                        "            isLatest"
                        "            isPrerelease"
+                       "            name"
                        "            publishedAt"
                        "            repository {"
                        "                nameWithOwner"

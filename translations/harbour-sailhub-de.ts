@@ -619,53 +619,53 @@
     <name>ReleaseListDelegate</name>
     <message>
         <source>Latest release</source>
-        <translation type="unfinished"></translation>
+        <translation>Letztes Release</translation>
     </message>
 </context>
 <context>
     <name>ReleasePage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Aktualisieren</translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>Release</source>
-        <translation type="unfinished"></translation>
+        <translation>Release</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info</translation>
     </message>
 </context>
 <context>
     <name>ReleasesListPage</name>
     <message>
         <source>Releases</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Aktualisieren</translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished">Sortierung</translation>
+        <translation>Sortierung</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished">Erstellt am</translation>
+        <translation>Erstellt am</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Name</translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>No releases available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Releases vorhanden</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
@@ -747,7 +747,7 @@
     </message>
     <message>
         <source>Releases</source>
-        <translation type="unfinished"></translation>
+        <translation>Releases</translation>
     </message>
 </context>
 <context>
