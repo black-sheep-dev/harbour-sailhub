@@ -9,6 +9,7 @@
 #include "src/entities/label.h"
 #include "src/entities/organization.h"
 #include "src/entities/pullrequest.h"
+#include "src/entities/release.h"
 #include "src/entities/repo.h"
 #include "src/entities/treeitem.h"
 #include "src/entities/user.h"
@@ -35,6 +36,9 @@ public:
     static PullRequest *pullRequestFromJson(const QJsonObject &obj);
     static QList<PullRequestListItem> pullRequestsFromJson(const QJsonObject &obj);
     static PullRequestListItem pullRequestListItemFromJson(const QJsonObject &obj);
+    static Release *releaseFromJson(const QJsonObject &obj);
+    static ReleaseListItem releaseListItemFromJson(const QJsonObject &obj);
+    static QList<ReleaseListItem> releaseListItemsFromJson(const QJsonObject &obj);
     static Repo *repoFromJson(const QJsonObject &obj);
     static QList<RepoListItem> reposFromJson(const QJsonObject &obj);
     static RepoListItem repoListItemFromJson(const QJsonObject &obj);

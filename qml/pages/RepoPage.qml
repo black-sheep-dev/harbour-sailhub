@@ -264,6 +264,21 @@ Page {
             RelatedValueItem {
                 width: parent.width
 
+                label: qsTr("Releases")
+                value: repo.releaseCount
+
+                onClicked: {
+                    if (repo.releaseCount === 0) return;
+
+                    pageStack.push(Qt.resolvedUrl("ReleasesListPage.qml"), {
+                                              description: repo.owner.login + "/" + repo.name,
+                                              identifier: repo.nodeId
+                                          })
+                }
+            }
+            RelatedValueItem {
+                width: parent.width
+
                 label: qsTr("Watchers")
                 value: repo.watcherCount
 

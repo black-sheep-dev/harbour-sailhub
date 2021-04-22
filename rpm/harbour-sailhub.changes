@@ -1,3 +1,8 @@
+* Thu Apr 22 2021 Black Sheep <blacksheep@nubecula.org> 0.0.18-1
+- Fixed notification can not be turned of at app start
+- Add releases to repository page
+- Translation updates
+
 * Thu Apr 22 2021 Black Sheep <blacksheep@nubecula.org> 0.0.17-1
 - Added very basic notification functionality (unreaded notifications only)
 - Added RestAPI V3 functionality (for fetching notifications)

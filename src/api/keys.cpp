@@ -1,6 +1,7 @@
 #include "keys.h"
 
 // ApiKey
+const QString ApiKey::ABBREVIATED_OID               = QStringLiteral("abbreviatedOid");
 const QString ApiKey::ADD_STAR                      = QStringLiteral("addStar");
 const QString ApiKey::ASSIGNEES                     = QStringLiteral("assignees");
 const QString ApiKey::AUTHOR                        = QStringLiteral("author");
@@ -36,6 +37,9 @@ const QString ApiKey::HAS_NEXT_PAGE                 = QStringLiteral("hasNextPag
 const QString ApiKey::HOMEPAGE_URL                  = QStringLiteral("homepageUrl");
 const QString ApiKey::ID                            = QStringLiteral("id");
 const QString ApiKey::IS_BINARY                     = QStringLiteral("isBinary");
+const QString ApiKey::IS_DRAFT                      = QStringLiteral("isDraft");
+const QString ApiKey::IS_LATEST                     = QStringLiteral("isLatest");
+const QString ApiKey::IS_PRERELEASE                 = QStringLiteral("isPrelease");
 const QString ApiKey::IS_PRIVATE                    = QStringLiteral("isPrivate");
 const QString ApiKey::IS_VIEWER                     = QStringLiteral("isViewer");
 const QString ApiKey::ISSUE_ID                      = QStringLiteral("issueId");
@@ -62,6 +66,7 @@ const QString ApiKey::PARTICIPANTS                  = QStringLiteral("participan
 const QString ApiKey::PATH                          = QStringLiteral("path");
 const QString ApiKey::PRIMARY_LANGUAGE              = QStringLiteral("primaryLanguage");
 const QString ApiKey::PROJECTS                      = QStringLiteral("projects");
+const QString ApiKey::PUBLISHED_AT                  = QStringLiteral("publishedAt");
 const QString ApiKey::PULL_REQUESTS                 = QStringLiteral("pullRequests");
 const QString ApiKey::PUSHED_AT                     = QStringLiteral("pushedAt");
 const QString ApiKey::RATE_LIMIT                    = QStringLiteral("rateLimit");
@@ -89,6 +94,8 @@ const QString ApiKey::STATUS                        = QStringLiteral("status");
 const QString ApiKey::SUBJECT_ID                    = QStringLiteral("subjectId");
 const QString ApiKey::SUBSCRIBABLE                  = QStringLiteral("subscribable");
 const QString ApiKey::SUBSCRIBABLE_ID               = QStringLiteral("subscribableId");
+const QString ApiKey::TAG_COMMIT                    = QStringLiteral("tagCommit");
+const QString ApiKey::TAG_NAME                      = QStringLiteral("tagName");
 const QString ApiKey::TARGET                        = QStringLiteral("target");
 const QString ApiKey::TEAMS                         = QStringLiteral("teams");
 const QString ApiKey::TEXT                          = QStringLiteral("text");

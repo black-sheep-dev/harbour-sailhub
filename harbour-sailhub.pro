@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.17
+VERSION = 0.0.18
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -46,6 +46,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/organization.cpp \
     src/entities/owner.cpp \
     src/entities/pullrequest.cpp \
+    src/entities/release.cpp \
     src/entities/repo.cpp \
     src/entities/user.cpp \
     src/models/commentsmodel.cpp \
@@ -56,6 +57,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/models/paginationmodel.cpp \
     src/models/pullrequestsmodel.cpp \
     src/models/reactionsmodel.cpp \
+    src/models/releasesmodel.cpp \
     src/models/reposmodel.cpp \
     src/models/treemodel.cpp \
     src/models/treesortfiltermodel.cpp \
@@ -83,6 +85,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/delegates/NotificationListDelegate.qml \
     qml/delegates/OrganizationListDelegate.qml \
     qml/delegates/PullRequestListDelegate.qml \
+    qml/delegates/ReleaseListDelegate.qml \
     qml/delegates/RepoListDelegate.qml \
     qml/delegates/UserListDelegate.qml \
     qml/dialogs/EditCommentDialog.qml \
@@ -106,6 +109,8 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/OverviewPage.qml \
     qml/pages/PullRequestPage.qml \
     qml/pages/PullRequestsListPage.qml \
+    qml/pages/ReleasePage.qml \
+    qml/pages/ReleasesListPage.qml \
     qml/pages/RepoPage.qml \
     qml/pages/ReposListPage.qml \
     qml/pages/SearchOrganizationPage.qml \
@@ -175,6 +180,7 @@ HEADERS += \
     src/entities/owner.h \
     src/entities/pullrequest.h \
     src/entities/reaction.h \
+    src/entities/release.h \
     src/entities/repo.h \
     src/entities/treeitem.h \
     src/entities/user.h \
@@ -187,6 +193,7 @@ HEADERS += \
     src/models/paginationmodel.h \
     src/models/pullrequestsmodel.h \
     src/models/reactionsmodel.h \
+    src/models/releasesmodel.h \
     src/models/reposmodel.h \
     src/models/treemodel.h \
     src/models/treesortfiltermodel.h \

@@ -616,6 +616,62 @@
     </message>
 </context>
 <context>
+    <name>ReleaseListDelegate</name>
+    <message>
+        <source>Latest release</source>
+        <translation>Letztes Release</translation>
+    </message>
+</context>
+<context>
+    <name>ReleasePage</name>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Release</source>
+        <translation>Release</translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation>Info</translation>
+    </message>
+</context>
+<context>
+    <name>ReleasesListPage</name>
+    <message>
+        <source>Releases</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation>Sortierung</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation>Erstellt am</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>No releases available</source>
+        <translation>Keine Releases vorhanden</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>RepoPage</name>
     <message>
         <source>Refresh</source>
@@ -688,6 +744,10 @@
     <message>
         <source>Browse code</source>
         <translation>Code durchsuchen</translation>
+    </message>
+    <message>
+        <source>Releases</source>
+        <translation>Releases</translation>
     </message>
 </context>
 <context>

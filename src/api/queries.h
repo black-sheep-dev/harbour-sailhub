@@ -139,6 +139,38 @@ static const QString SAILHUB_QUERY_GET_VIEWER_PROFILE =
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_USER).simplified();
 
+// GET RELEASE
+static const QString SAILHUB_QUERY_GET_RELEASE =
+        QStringLiteral("query($nodeId: ID!) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on Release {"
+                       "            id"
+                       "            author {"
+                       "                avatarUrl"
+                       "                login"
+                       "            }"
+                       "            createdAt"
+                       "            description"
+                       "            isDraft"
+                       "            isLatest"
+                       "            isPrerelease"
+                       "            name"
+                       "            publishedAt"
+                       "            repository {"
+                       "                nameWithOwner"
+                       "            }"
+                       "            tagCommit {"
+                       "                abbreviatedOid"
+                       "            }"
+                       "            tagName"
+                       "        }"
+                       "    }"
+                       "}").simplified();
+
 // GET REPOSITORY
 static const QString SAILHUB_QUERY_GET_REPOSITORY =
         QStringLiteral("query($nodeId: ID!) {"
