@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
-import "../js/showdown.js" as ShowDown
+import "../tools/"
 
 Page {
     property string branch
@@ -16,28 +16,17 @@ Page {
 
     property string body
 
-    property var showdown: ShowDown.showdown
-    property var converter: new showdown.Converter({
-                                    simplifiedAutoLink: true,
-                                    excludeTrailingPunctuationFromURLs: true,
-                                    strikethrough: true,
-                                    tables: true,
-                                    tasklists: false,
-                                    parseImgDimensions: true,
-                                    simpleLineBreaks: true,
-                                    emoji: true })
+
+    MarkdownParser {
+        id: markdownParser
+    }
 
     function parseContent() {
-        var convertedText = converter.makeHtml(body)
+        var convertedText = markdownParser.parse(body)
 
-        bodyLabel.text = "<style>\n" +
-                "ul,ol,table,img { margin: " + Theme.paddingLarge + "px 0px; }\n" +
-                "a:link { color: " + Theme.primaryColor + "; }\n" +
-                "a.checkbox { text-decoration: none; padding: " + Theme.paddingSmall + "px; display: inline-block; }\n" +
-                "li.tasklist { font-size:large; margin: " + Theme.paddingMedium + "px 0px; }\n" +
-                "del { text-decoration: line-through; }\n" +
-                "table { border-color: " + Theme.secondaryColor + "; }\n" +
-                "</style>\n" + convertedText + "<br><br>"
+        const url = "https://github.com/" + owner + "/" + repo + "/raw/" + branch + "/"
+
+        bodyLabel.text = convertedText.replace(/src="(?!http)/gmi, "src=\"" + url)
     }
 
     id: page
@@ -68,7 +57,6 @@ Page {
 
             font.pixelSize: Theme.fontSizeSmall
             color: Theme.primaryColor
-            linkColor: Theme.highlightColor
             textFormat: Text.RichText
 
             onLinkActivated: Qt.openUrlExternally(link)

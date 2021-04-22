@@ -378,6 +378,21 @@
     </message>
 </context>
 <context>
+    <name>NotificationsListPage</name>
+    <message>
+        <source>Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>No notifications available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>OrganizationPage</name>
     <message>
         <source>Refresh</source>
@@ -464,6 +479,14 @@
     <message>
         <source>Settings</source>
         <translation>Ustawienia</translation>
+    </message>
+    <message>
+        <source>Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Activities</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -927,6 +950,33 @@
     </message>
 </context>
 <context>
+    <name>SettingsNotificationPage</name>
+    <message>
+        <source>Notification Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get notified of activities on your GitHub account.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n min(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
@@ -947,6 +997,14 @@
     <message>
         <source>Manage authentication data</source>
         <translation>Zarządzaj danymi uwierzytelniającymi</translation>
+    </message>
+    <message>
+        <source>Notification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage notification options</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

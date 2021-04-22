@@ -9,11 +9,12 @@
 
 #include <zlib.h>
 
-GraphQLConnector::GraphQLConnector(const QString &endpoint, QObject *parent) :
+GraphQLConnector::GraphQLConnector(const QString &endpoint, QNetworkAccessManager *manager, QObject *parent) :
     QObject(parent),
-    m_endpoint(endpoint)
+    m_endpoint(endpoint),
+    m_manager(manager)
 {
-    connect(m_manager, &QNetworkAccessManager::finished, this, &GraphQLConnector::onRequestFinished);
+    //connect(m_manager, &QNetworkAccessManager::finished, this, &GraphQLConnector::onRequestFinished);
 }
 
 void GraphQLConnector::sendQuery(const GraphQLQuery &query, quint8 requestType, const QByteArray &requestId)
@@ -41,6 +42,7 @@ void GraphQLConnector::sendQuery(const GraphQLQuery &query, quint8 requestType, 
                                            QJsonDocument(payload).toJson(QJsonDocument::Compact));
     reply->setProperty("request_type", requestType);
     reply->setProperty("request_uuid", requestId);
+    connect(reply, &QNetworkReply::finished, this, &GraphQLConnector::onRequestFinished);
 }
 
 void GraphQLConnector::setEndpoint(const QString &endpoint)
@@ -58,11 +60,16 @@ QString GraphQLConnector::token() const
     return m_token;
 }
 
-void GraphQLConnector::onRequestFinished(QNetworkReply *reply)
+void GraphQLConnector::onRequestFinished()
 {
 #ifdef QT_DEBUG
     qDebug() << "API REPLY";
 #endif
+
+    auto reply = qobject_cast<QNetworkReply *>(sender());
+
+    if (reply == nullptr)
+        return;
 
     // handel errors
     if (reply->error()) {
@@ -79,7 +86,7 @@ void GraphQLConnector::onRequestFinished(QNetworkReply *reply)
     const quint8 request = quint8(reply->property("request_type").toUInt());
     const QByteArray uuid = reply->property("request_uuid").toByteArray();
     const QByteArray raw = reply->readAll();
-    QByteArray data = gunzip(raw);
+    QByteArray data = Compress::gunzip(raw);
 
     if (data.isEmpty())
         data = raw;
@@ -100,53 +107,4 @@ void GraphQLConnector::onRequestFinished(QNetworkReply *reply)
     }
 
     emit requestFinished(obj, request, uuid);
-}
-
-QByteArray GraphQLConnector::gunzip(const QByteArray &data)
-{
-    if (data.size() <= 4) {
-            return QByteArray();
-        }
-
-        QByteArray result;
-
-        int ret;
-        z_stream strm;
-        static const int CHUNK_SIZE = 1024;
-        char out[CHUNK_SIZE];
-
-        /* allocate inflate state */
-        strm.zalloc = Z_NULL;
-        strm.zfree = Z_NULL;
-        strm.opaque = Z_NULL;
-        strm.avail_in = data.size();
-        strm.next_in = (Bytef*)(data.data());
-
-        ret = inflateInit2(&strm, 15 +  32); // gzip decoding
-        if (ret != Z_OK)
-            return QByteArray();
-
-        // run inflate()
-        do {
-            strm.avail_out = CHUNK_SIZE;
-            strm.next_out = (Bytef*)(out);
-
-            ret = inflate(&strm, Z_NO_FLUSH);
-            Q_ASSERT(ret != Z_STREAM_ERROR);  // state not clobbered
-
-            switch (ret) {
-            case Z_NEED_DICT:
-                ret = Z_DATA_ERROR;     // and fall through
-            case Z_DATA_ERROR:
-            case Z_MEM_ERROR:
-                (void)inflateEnd(&strm);
-                return QByteArray();
-            }
-
-            result.append(out, CHUNK_SIZE - strm.avail_out);
-        } while (strm.avail_out == 0);
-
-        // clean up and return
-        inflateEnd(&strm);
-        return result;
 }

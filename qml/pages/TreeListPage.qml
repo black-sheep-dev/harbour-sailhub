@@ -84,6 +84,9 @@ Page {
                             case File.Image:
                                 return "image://theme/icon-m-file-image"
 
+                            case File.Markdown:
+                                return "image://theme/icon-m-file-formatted-light"
+
                             case File.Text:
                                 return "image://theme/icon-m-file-document-light"
 
@@ -121,6 +124,14 @@ Page {
                                               })
                     } else if (model.fileType === File.Text) {
                         pageStack.push(Qt.resolvedUrl("TextFileViewerPage.qml"), {
+                                                  branch: page.branch,
+                                                  owner: page.owner,
+                                                  path: model.path,
+                                                  repo: page.repoName,
+                                                  repoId: page.repoId
+                                              })
+                    } else if (model.fileType === File.Markdown) {
+                        pageStack.push(Qt.resolvedUrl("MarkdownViewerPage.qml"), {
                                                   branch: page.branch,
                                                   owner: page.owner,
                                                   path: model.path,

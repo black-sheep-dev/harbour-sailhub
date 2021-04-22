@@ -12,7 +12,7 @@ static const QString SAILHUB_QUERY_ITEM_COMMENT =
                        "        avatarUrl"
                        "        login"
                        "    }"
-                       "    bodyHTML"
+                       "    body"
                        "    bodyText"
                        "    createdAt"
                        "    lastEditedAt"

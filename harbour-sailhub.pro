@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.15
+VERSION = 0.0.17
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -25,6 +25,7 @@ QT += dbus
 CONFIG += link_pkgconfig sailfishapp
 PKGCONFIG += sailfishsecrets nemonotifications-qt5
 
+LIBS += -L../../lib -lkeepalive
 LIBS += -lz
 
 SOURCES += src/harbour-sailhub.cpp \
@@ -33,6 +34,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/graphqlconnector.cpp \
     src/api/keys.cpp \
     src/api/queryvars.cpp \
+    src/api/restapiconnector.cpp \
     src/entities/comment.cpp \
     src/entities/file.cpp \
     src/entities/interactable.cpp \
@@ -40,6 +42,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/label.cpp \
     src/entities/license.cpp \
     src/entities/node.cpp \
+    src/entities/notificationobject.cpp \
     src/entities/organization.cpp \
     src/entities/owner.cpp \
     src/entities/pullrequest.cpp \
@@ -48,6 +51,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/models/commentsmodel.cpp \
     src/models/issuesmodel.cpp \
     src/models/labelsmodel.cpp \
+    src/models/notificationsmodel.cpp \
     src/models/organizationsmodel.cpp \
     src/models/paginationmodel.cpp \
     src/models/pullrequestsmodel.cpp \
@@ -56,7 +60,8 @@ SOURCES += src/harbour-sailhub.cpp \
     src/models/treemodel.cpp \
     src/models/treesortfiltermodel.cpp \
     src/models/usersmodel.cpp \
-    src/sailhub.cpp
+    src/sailhub.cpp \
+    src/tools/compress.cpp
 
 DISTFILES += qml/harbour-sailhub.qml \
     qml/components/AuthorItem.qml \
@@ -66,6 +71,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/IconLabel.qml \
     qml/components/IconRelatedItem.qml \
     qml/components/InfoItem.qml \
+    qml/components/MarkdownLabel.qml \
     qml/components/ReactionGridItem.qml \
     qml/components/ReactionLabel.qml \
     qml/components/ReactionsItem.qml \
@@ -74,6 +80,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/delegates/CommentListDelegate.qml \
     qml/delegates/IssueListDelegate.qml \
     qml/delegates/LabelListDelegate.qml \
+    qml/delegates/NotificationListDelegate.qml \
     qml/delegates/OrganizationListDelegate.qml \
     qml/delegates/PullRequestListDelegate.qml \
     qml/delegates/RepoListDelegate.qml \
@@ -93,6 +100,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/IssuesListPage.qml \
     qml/pages/LabelsListPage.qml \
     qml/pages/MarkdownViewerPage.qml \
+    qml/pages/NotificationsListPage.qml \
     qml/pages/OrganizationPage.qml \
     qml/pages/OrganizationsListPage.qml \
     qml/pages/OverviewPage.qml \
@@ -110,11 +118,13 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/UserPage.qml \
     qml/pages/UsersListPage.qml \
     qml/pages/settings/SettingsAuthenticationPage.qml \
+    qml/pages/settings/SettingsNotificationPage.qml \
     qml/pages/settings/SettingsPage.qml \
     qml/pages/settings/SettingsPaginationPage.qml \
     qml/pages/wizard/WizardFinalPage.qml \
     qml/pages/wizard/WizardIntroPage.qml \
     qml/pages/wizard/WizardTokenPage.qml \
+    qml/tools/MarkdownParser.qml \
     rpm/harbour-sailhub.changes \
     rpm/harbour-sailhub.changes.run.in \
     rpm/harbour-sailhub.spec \
@@ -151,6 +161,7 @@ HEADERS += \
     src/api/query_items.h \
     src/api/queryvars.h \
     src/api/ratelimit.h \
+    src/api/restapiconnector.h \
     src/entities/comment.h \
     src/entities/file.h \
     src/entities/interactable.h \
@@ -159,6 +170,7 @@ HEADERS += \
     src/entities/language.h \
     src/entities/license.h \
     src/entities/node.h \
+    src/entities/notificationobject.h \
     src/entities/organization.h \
     src/entities/owner.h \
     src/entities/pullrequest.h \
@@ -170,6 +182,7 @@ HEADERS += \
     src/models/commentsmodel.h \
     src/models/issuesmodel.h \
     src/models/labelsmodel.h \
+    src/models/notificationsmodel.h \
     src/models/organizationsmodel.h \
     src/models/paginationmodel.h \
     src/models/pullrequestsmodel.h \
@@ -178,7 +191,8 @@ HEADERS += \
     src/models/treemodel.h \
     src/models/treesortfiltermodel.h \
     src/models/usersmodel.h \
-    src/sailhub.h
+    src/sailhub.h \
+    src/tools/compress.h
 
 dbus.files = data/harbour.sailhub.service
 dbus.path = $$INSTALL_ROOT/usr/share/dbus-1/services

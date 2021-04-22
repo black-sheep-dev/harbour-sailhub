@@ -59,15 +59,17 @@ ListItem {
                     spacing: Theme.paddingSmall
 
                     Label {
+                        anchors.verticalCenter: parent.verticalCenter
                         width: parent.width - timeSpanLabel.width - parent.spacing
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                        font.pixelSize: Theme.fontSizeSmall
+                        font.pixelSize: Theme.fontSizeTiny
 
                         text: model.repository + " #" + model.number
                     }
 
                     Label {
                         id: timeSpanLabel
+                        anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: Theme.fontSizeSmall
 
                         text: model.sortRole === PullRequestsModel.UpdatedAtRole ? model.updatedAtTimeSpan : model.createdAtTimeSpan

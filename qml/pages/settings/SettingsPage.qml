@@ -16,6 +16,12 @@ Page {
                 page: "SettingsAuthenticationPage.qml"
             }
             ListElement {
+                title: qsTr("Notification");
+                description: qsTr("Manage notification options")
+                icon: "image://theme/icon-m-alarm"
+                page: "SettingsNotificationPage.qml"
+            }
+            ListElement {
                 title: qsTr("Pagination");
                 description: qsTr("Manage pagination options")
                 icon: "image://theme/icon-m-levels"

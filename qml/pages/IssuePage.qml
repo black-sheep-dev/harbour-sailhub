@@ -5,6 +5,7 @@ import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
 import "../delegates/"
+import "../tools"
 
 Page {
     property bool busy: false

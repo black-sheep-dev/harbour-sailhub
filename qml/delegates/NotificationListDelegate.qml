@@ -30,7 +30,21 @@ ListItem {
             Icon {
                 id: delegateIcon
                 anchors.top: parent.top
-                source: model.closed ? "image://theme/icon-s-installed?00ff00" : "image://theme/icon-s-high-importance?#ff0000"
+                width: Theme.iconSizeSmall
+                height: Theme.iconSizeSmall
+                fillMode: Image.PreserveAspectFit
+                source: {
+                    switch (model.type) {
+                    case Notification.Issue:
+                        return "image://theme/icon-s-high-importance";
+
+                    case Notification.PullRequest:
+                        return "qrc:///icons/icon-m-pull-request";
+
+                    default:
+                        return "image://theme/icon-s-alarm"
+                    }
+                }
             }
 
             Column {
@@ -46,7 +60,7 @@ ListItem {
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         font.pixelSize: Theme.fontSizeTiny
 
-                        text: model.repository + " #" + model.number
+                        text: model.repoName + " #" + model.number
                     }
 
                     Label {
@@ -54,7 +68,7 @@ ListItem {
                         anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: model.sortRole === IssuesModel.UpdatedAtRole ? model.updatedAtTimeSpan : model.createdAtTimeSpan
+                        text: model.updatedAtTimeSpan
                     }
                 }
 
@@ -64,47 +78,6 @@ ListItem {
                     font.bold: true
 
                     text: model.title
-                }
-
-                Item {
-                    width: 1
-                    height: parent.spacing
-                }
-
-                Row {
-                    width: parent.width
-                    spacing: Theme.paddingSmall
-
-                    Icon {
-                        id: dateIcon
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "image://theme/icon-s-date"
-                    }
-
-                    Label {
-                        width: parent.width - dateIcon.width - commentIcon.width - commentsLabel.width - 3 * parent.spacing
-                        anchors.verticalCenter: commentIcon.verticalCenter
-                        font.pixelSize: Theme.fontSizeTiny
-                        color: pressed ? Theme.highlightColor : Theme.primaryColor
-
-                        text: model.createdAt.toLocaleDateString(Qt.locale())
-                    }
-
-                    Icon {
-                        id: commentIcon
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "image://theme/icon-s-chat"
-
-                    }
-
-                    Label {
-                        id: commentsLabel
-                        anchors.verticalCenter: commentIcon.verticalCenter
-                        font.pixelSize: Theme.fontSizeSmall
-                        color: pressed ? Theme.highlightColor : Theme.primaryColor
-
-                        text: model.commentCount
-                    }
                 }
             }
         }

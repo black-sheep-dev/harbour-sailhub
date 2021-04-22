@@ -127,4 +127,15 @@ struct ApiKey {
     static const QString WEBSITE_URL;
 };
 
+struct RestApiKey {
+    static const QString FULL_NAME;
+    static const QString LAST_READ_AT;
+    static const QString NODE_ID;
+    static const QString REASON;
+    static const QString SUBJECT;
+    static const QString UNREAD;
+    static const QString UPDATED_AT;
+
+};
+
 #endif // KEYS_H

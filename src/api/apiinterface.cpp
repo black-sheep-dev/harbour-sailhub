@@ -6,6 +6,7 @@
 
 #include <QHashIterator>
 #include <QJsonArray>
+#include <QJsonDocument>
 
 #include "datautils.h"
 #include "keys.h"
@@ -18,19 +19,26 @@
 ApiInterface::ApiInterface(QObject *parent) :
     QObject(parent)
 {
-    connect(m_connector, &GraphQLConnector::requestFinished, this, &ApiInterface::parseData);
-    connect(m_connector, &GraphQLConnector::connectionError, this, &ApiInterface::onConnectionError);
+    m_graphqlConnector = new GraphQLConnector(SAILHUB_API_GRAPHQL_URL, m_manager, this);
+    m_restApiConnector = new RestApiConnector(m_manager, this);
+
+    connect(m_graphqlConnector, &GraphQLConnector::requestFinished, this, &ApiInterface::parseData);
+    connect(m_graphqlConnector, &GraphQLConnector::connectionError, this, &ApiInterface::onConnectionError);
+
+    connect(m_restApiConnector, &RestApiConnector::connectionError, this, &ApiInterface::onConnectionError);
+    connect(m_restApiConnector, &RestApiConnector::requestFinished, this, &ApiInterface::parseRestData);
 }
 
 void ApiInterface::setToken(const QString &token)
 {
-    m_connector->setToken(token);
+    m_graphqlConnector->setToken(token);
+    m_restApiConnector->setToken(token);
     initialize();
 }
 
 QString ApiInterface::token() const
 {
-    return m_connector->token();
+    return m_graphqlConnector->token();
 }
 
 void ApiInterface::addComment(const QString &body, const QString &subjectId)
@@ -48,7 +56,7 @@ void ApiInterface::addComment(const QString &body, const QString &subjectId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, RequestType::AddComment);
+    m_graphqlConnector->sendQuery(query, RequestType::AddComment);
 }
 
 void ApiInterface::addReaction(const QString &nodeId, quint8 reaction)
@@ -66,7 +74,7 @@ void ApiInterface::addReaction(const QString &nodeId, quint8 reaction)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, RequestType::AddReaction);
+    m_graphqlConnector->sendQuery(query, RequestType::AddReaction);
 }
 
 void ApiInterface::closeIssue(const QString &nodeId)
@@ -83,7 +91,7 @@ void ApiInterface::closeIssue(const QString &nodeId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, RequestType::CloseIssue);
+    m_graphqlConnector->sendQuery(query, RequestType::CloseIssue);
 }
 
 void ApiInterface::createIssue(const QString &title, const QString &body, IssuesModel *model)
@@ -104,7 +112,7 @@ void ApiInterface::createIssue(const QString &title, const QString &body, Issues
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, RequestType::CreateIssue);
+    m_graphqlConnector->sendQuery(query, RequestType::CreateIssue);
 }
 
 void ApiInterface::deleteComment(const QString &nodeId)
@@ -121,7 +129,7 @@ void ApiInterface::deleteComment(const QString &nodeId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, RequestType::DeleteComment);
+    m_graphqlConnector->sendQuery(query, RequestType::DeleteComment);
 }
 
 void ApiInterface::deleteIssue(const QString &nodeId)
@@ -138,7 +146,7 @@ void ApiInterface::deleteIssue(const QString &nodeId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, RequestType::DeleteIssue);
+    m_graphqlConnector->sendQuery(query, RequestType::DeleteIssue);
 }
 
 void ApiInterface::followUser(const QString &nodeId, bool follow)
@@ -155,7 +163,7 @@ void ApiInterface::followUser(const QString &nodeId, bool follow)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, follow ? RequestType::FollowUser : RequestType::UnfollowUser);
+    m_graphqlConnector->sendQuery(query, follow ? RequestType::FollowUser : RequestType::UnfollowUser);
 }
 
 void ApiInterface::getFileContent(const QString &nodeId, const QString &branch)
@@ -165,7 +173,7 @@ void ApiInterface::getFileContent(const QString &nodeId, const QString &branch)
     query.variables.insert(QueryVar::NODE_ID, nodeId);
     query.variables.insert(QueryVar::BRANCH, branch);
 
-    m_connector->sendQuery(query, RequestType::GetFileContent);
+    m_graphqlConnector->sendQuery(query, RequestType::GetFileContent);
 }
 
 void ApiInterface::getIssue(const QString &nodeId)
@@ -174,7 +182,24 @@ void ApiInterface::getIssue(const QString &nodeId)
     query.query = SAILHUB_QUERY_GET_ISSUE;
     query.variables.insert(QueryVar::NODE_ID, nodeId);
 
-    m_connector->sendQuery(query, RequestType::GetIssue);
+    m_graphqlConnector->sendQuery(query, RequestType::GetIssue);
+}
+
+void ApiInterface::getNotifications(NotificationsModel *model)
+{
+    if (model != nullptr) {
+        model->setLoading(true);
+
+        // save and send
+        m_notificationsModelRequests.insert(model->uuid(), model);
+        m_restApiConnector->get(QStringLiteral("/notifications?all=false"),
+                                RequestType::GetNotifications,
+                                model->uuid());
+    } else {
+        // only unreaded notifications
+        m_restApiConnector->get(QStringLiteral("/notifications"),
+                                RequestType::GetNotifications);
+    }
 }
 
 void ApiInterface::getOrganization(const QString &nodeId)
@@ -183,7 +208,7 @@ void ApiInterface::getOrganization(const QString &nodeId)
     query.query = SAILHUB_QUERY_GET_ORGANIZATION;
     query.variables.insert(QueryVar::NODE_ID, nodeId);
 
-    m_connector->sendQuery(query, RequestType::GetOrganization);
+    m_graphqlConnector->sendQuery(query, RequestType::GetOrganization);
 }
 
 void ApiInterface::getPaginationModel(PaginationModel *model)
@@ -199,7 +224,7 @@ void ApiInterface::getPaginationModel(PaginationModel *model)
     // save and send
     const QByteArray uuid = model->uuid();
     m_paginationModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::GetPaginationModel, uuid);
+    m_graphqlConnector->sendQuery(query, RequestType::GetPaginationModel, uuid);
 }
 
 void ApiInterface::getProfile()
@@ -207,7 +232,7 @@ void ApiInterface::getProfile()
     GraphQLQuery query;
     query.query = SAILHUB_QUERY_GET_VIEWER_PROFILE;
 
-    m_connector->sendQuery(query, RequestType::GetProfile);
+    m_graphqlConnector->sendQuery(query, RequestType::GetProfile);
 }
 
 void ApiInterface::getPullRequest(const QString &nodeId)
@@ -216,7 +241,7 @@ void ApiInterface::getPullRequest(const QString &nodeId)
     query.query = SAILHUB_QUERY_GET_PULL_REQUEST;
     query.variables.insert(QueryVar::NODE_ID, nodeId);
 
-    m_connector->sendQuery(query, RequestType::GetPullRequest);
+    m_graphqlConnector->sendQuery(query, RequestType::GetPullRequest);
 }
 
 void ApiInterface::getRepo(const QString &nodeId)
@@ -225,7 +250,7 @@ void ApiInterface::getRepo(const QString &nodeId)
     query.query = SAILHUB_QUERY_GET_REPOSITORY;
     query.variables.insert(QueryVar::NODE_ID, nodeId);
 
-    m_connector->sendQuery(query, RequestType::GetRepo);
+    m_graphqlConnector->sendQuery(query, RequestType::GetRepo);
 }
 
 void ApiInterface::getRepoTree(const QString &nodeId, const QString &branch, const QString &path, TreeModel *model)
@@ -250,7 +275,7 @@ void ApiInterface::getRepoTree(const QString &nodeId, const QString &branch, con
 
     const QByteArray uuid = QUuid::createUuid().toByteArray();
     m_treeModelRequests.insert(uuid, model);
-    m_connector->sendQuery(query, RequestType::GetRepoTree, uuid);
+    m_graphqlConnector->sendQuery(query, RequestType::GetRepoTree, uuid);
 }
 
 void ApiInterface::getUser(const QString &nodeId)
@@ -259,7 +284,7 @@ void ApiInterface::getUser(const QString &nodeId)
     query.query = SAILHUB_QUERY_GET_USER;
     query.variables.insert(QueryVar::NODE_ID, nodeId);
 
-    m_connector->sendQuery(query, RequestType::GetUser);
+    m_graphqlConnector->sendQuery(query, RequestType::GetUser);
 }
 
 void ApiInterface::getUserByLogin(const QString &login)
@@ -268,7 +293,7 @@ void ApiInterface::getUserByLogin(const QString &login)
     query.query = SAILHUB_QUERY_GET_USER_BY_LOGIN;
     query.variables.insert(QueryVar::USER_LOGIN, login);
 
-    m_connector->sendQuery(query, RequestType::GetUserByLogin);
+    m_graphqlConnector->sendQuery(query, RequestType::GetUserByLogin);
 }
 
 void ApiInterface::starRepo(const QString &nodeId, bool star)
@@ -285,7 +310,7 @@ void ApiInterface::starRepo(const QString &nodeId, bool star)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, star ? RequestType::StarRepo : RequestType::UnstarRepo);
+    m_graphqlConnector->sendQuery(query, star ? RequestType::StarRepo : RequestType::UnstarRepo);
 }
 
 void ApiInterface::removeReaction(const QString &nodeId, quint8 reaction)
@@ -303,7 +328,7 @@ void ApiInterface::removeReaction(const QString &nodeId, quint8 reaction)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, RequestType::RemoveReaction);
+    m_graphqlConnector->sendQuery(query, RequestType::RemoveReaction);
 }
 
 void ApiInterface::subscribeToRepo(const QString &nodeId, quint8 state)
@@ -337,7 +362,7 @@ void ApiInterface::subscribeToRepo(const QString &nodeId, quint8 state)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, RequestType::UpdateRepoSubscription);
+    m_graphqlConnector->sendQuery(query, RequestType::UpdateRepoSubscription);
 }
 
 void ApiInterface::updateComment(Comment *comment)
@@ -355,7 +380,7 @@ void ApiInterface::updateComment(Comment *comment)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, RequestType::UpdateComment);
+    m_graphqlConnector->sendQuery(query, RequestType::UpdateComment);
 }
 
 void ApiInterface::updateIssue(Issue *issue)
@@ -374,7 +399,7 @@ void ApiInterface::updateIssue(Issue *issue)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_connector->sendQuery(query, RequestType::UpdateIssue);
+    m_graphqlConnector->sendQuery(query, RequestType::UpdateIssue);
 }
 
 void ApiInterface::updateReactions(const QString &nodeId, quint8 before, quint8 after)
@@ -578,6 +603,23 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
     }
 }
 
+void ApiInterface::parseRestData(const QJsonDocument &doc, quint8 requestType, const QByteArray &requestId)
+{
+#ifdef QT_DEBUG
+    qDebug() << requestType;
+    qDebug() << doc;
+#endif
+
+    switch (requestType) {
+    case GetNotifications:
+        parseNotificationsModel(doc.array(), requestId);
+        break;
+
+    default:
+        break;
+    }
+}
+
 void ApiInterface::initialize()
 {
     getProfile();
@@ -612,6 +654,37 @@ void ApiInterface::parseFileContent(const QJsonObject &obj)
         return;
 
     emit fileContentAvailable(data.value(ApiKey::TEXT).toString());
+}
+
+void ApiInterface::parseNotificationsModel(const QJsonArray &array, const QByteArray &requestId)
+{
+    // check notifications for unread ones
+    const QList<NotificationListItem> items = DataUtils::notificationsFromJson(array);
+
+    QList<NotificationListItem> unreaded;
+    for (const auto &item : items) {
+        if (!item.unread)
+            continue;
+
+        unreaded.append(item);
+    }
+
+    if (!unreaded.isEmpty())
+        emit notificationsAvailable(unreaded);
+
+
+    // update model
+    auto model = m_notificationsModelRequests.value(requestId, nullptr);
+
+    if (model == nullptr) {
+        return;
+    }
+
+    // parse data
+    model->setNotifications(items);
+
+    // cleanup
+    m_notificationsModelRequests.remove(requestId);
 }
 
 void ApiInterface::parsePaginationModel(const QJsonObject &obj, const QByteArray &requestId)

@@ -157,6 +157,85 @@ QList<LabelListItem> DataUtils::labelsFromJson(const QJsonObject &obj)
     return items;
 }
 
+QList<NotificationListItem> DataUtils::notificationsFromJson(const QJsonArray &array)
+{
+    QList<NotificationListItem> items;
+
+    for (const auto &value : array) {
+        const QJsonObject obj = value.toObject();
+
+        NotificationListItem item;
+
+        item.id = obj.value(ApiKey::ID).toString();
+        item.lastReadAt = QDateTime::fromString(obj.value(RestApiKey::LAST_READ_AT).toString(), Qt::ISODate);
+
+        // reason
+        const QString reason = obj.value(RestApiKey::REASON).toString();
+
+        if (reason == QLatin1String("assign")) {
+            item.reason = NotificationObject::Assign;
+        } else if (reason == QLatin1String("author")) {
+            item.reason = NotificationObject::Author;
+        } else if (reason == QLatin1String("comment")) {
+            item.reason = NotificationObject::Comment;
+        } else if (reason == QLatin1String("invitation")) {
+            item.reason = NotificationObject::Invitation;
+        } else if (reason == QLatin1String("manual")) {
+            item.reason = NotificationObject::Manual;
+        } else if (reason == QLatin1String("mention")) {
+            item.reason = NotificationObject::Mention;
+        } else if (reason == QLatin1String("review_request")) {
+            item.reason = NotificationObject::ReviewRequest;
+        } else if (reason == QLatin1String("security_alert")) {
+            item.reason = NotificationObject::SecurityAlert;
+        } else if (reason == QLatin1String("state_change")) {
+            item.reason = NotificationObject::StateChange;
+        } else if (reason == QLatin1String("subscribed")) {
+            item.reason = NotificationObject::Subscribed;
+        } else if (reason == QLatin1String("team_mention")) {
+            item.reason = NotificationObject::TeamMention;
+        }
+
+        // repo
+        const QJsonObject repo = obj.value(ApiKey::REPOSITORY).toObject();
+        item.repoId = repo.value(RestApiKey::NODE_ID).toString();
+        item.repoName = repo.value(RestApiKey::FULL_NAME).toString();
+
+        // subject title
+        const QJsonObject subject = obj.value(RestApiKey::SUBJECT).toObject();
+        item.title = subject.value(ApiKey::TITLE).toString();
+
+        // number
+        const QStringList urlItems = subject.value(ApiKey::URL).toString().split('/');
+        if (urlItems.count() > 1)
+            item.number = urlItems.last().toInt();
+
+        // type
+        const QString type = subject.value(ApiKey::TYPE).toString();
+
+        if (type == QLatin1String("Issue")) {
+            item.type = NotificationObject::Issue;
+        } else if (type == QLatin1String("PullRequest")) {
+            item.type = NotificationObject::PullRequest;
+        } else if (type == QLatin1String("RepositoryVulnerabilityAlert")) {
+            item.type = NotificationObject::RepositoryVulnerabilityAlert;
+        }
+
+        // unread
+        item.unread = obj.value(RestApiKey::UNREAD).toBool();
+
+        // updated at
+        item.updatedAt = QDateTime::fromString(obj.value(RestApiKey::UPDATED_AT).toString(), Qt::ISODate);
+        item.updatedAtTimeSpan = timeSpanText(item.updatedAt, true);
+
+        //
+
+        items.append(item);
+    }
+
+    return items;
+}
+
 Organization *DataUtils::organizationFromJson(const QJsonObject &obj, Organization *organization)
 {
     if (organization == nullptr)
@@ -455,6 +534,14 @@ TreeItemListItem DataUtils::treeListItemFromJson(const QJsonObject &obj)
             return item;
         }
 
+        // Markdown
+        regex.setPattern(".(md)");
+
+        if (regex.exactMatch(item.extension)) {
+            item.fileType = File::Markdown;
+            return item;
+        }
+
         item.fileType = File::Text;
     }
 
@@ -600,7 +687,9 @@ void DataUtils::getInteractable(const QJsonObject &obj, Interactable *node)
     node->setViewerDidAuthor(obj.value(ApiKey::VIEWER_DID_AUTHOR).toBool());
 
     // body
-    node->setBody(obj.value(ApiKey::BODY_HTML).toString());
+    //node->setBody(obj.value(ApiKey::BODY_HTML).toString());
+    node->setBody(obj.value(ApiKey::BODY).toString());
+    //qDebug() << "BODY: " << node->body();
 
     // reactions
     const QJsonArray reactionGroups = obj.value(ApiKey::REACTION_GROUPS).toArray();

@@ -2,16 +2,21 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "../components/"
+import "../tools/"
 
 Item {
     property alias authorLogin: authorItem.title
     property alias authorAvatar: authorItem.avatar
-    property alias body: bodyLabel.text
+    property string body
     property bool edited: false
     property string timeSpan
 
     width: parent.width
     height: contentColumn.height
+
+    MarkdownParser {
+        id: markdownParser
+    }
 
     Column {
         id: contentColumn
@@ -34,16 +39,11 @@ Item {
                                       })
         }
 
-        LinkedLabel {
+        MarkdownLabel {
             id: bodyLabel
             x: Theme.horizontalPageMargin
             width: parent.width - 2*x
-
-            font.pixelSize: Theme.fontSizeSmall
-            color: Theme.primaryColor
-            linkColor: Theme.highlightColor
-
-            onLinkActivated: Qt.openUrlExternally(link)
+            text: markdownParser.parse(body)
         }
     }
 }

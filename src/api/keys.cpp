@@ -1,5 +1,6 @@
 #include "keys.h"
 
+// ApiKey
 const QString ApiKey::ADD_STAR                      = QStringLiteral("addStar");
 const QString ApiKey::ASSIGNEES                     = QStringLiteral("assignees");
 const QString ApiKey::AUTHOR                        = QStringLiteral("author");
@@ -121,3 +122,13 @@ const QString ApiKey::VIEWER_HAS_STARRED            = QStringLiteral("viewerHasS
 const QString ApiKey::VIEWER_SUBSCRIPTION           = QStringLiteral("viewerSubscription");
 const QString ApiKey::WATCHERS                      = QStringLiteral("watchers");
 const QString ApiKey::WEBSITE_URL                   = QStringLiteral("websiteUrl");
+
+
+// RestApiKey
+const QString RestApiKey::FULL_NAME                 = QStringLiteral("full_name");
+const QString RestApiKey::LAST_READ_AT              = QStringLiteral("last_read_at");
+const QString RestApiKey::NODE_ID                   = QStringLiteral("node_id");
+const QString RestApiKey::REASON                    = QStringLiteral("reason");
+const QString RestApiKey::SUBJECT                   = QStringLiteral("subject");;
+const QString RestApiKey::UNREAD                    = QStringLiteral("unread");;
+const QString RestApiKey::UPDATED_AT                = QStringLiteral("updated_at");;

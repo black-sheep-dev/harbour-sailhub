@@ -18,6 +18,7 @@ public:
         Unsupported,
         Binary,
         Image,
+        Markdown,
         Text
     };
     Q_ENUM(Type)
