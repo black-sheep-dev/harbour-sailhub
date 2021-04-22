@@ -244,6 +244,15 @@ void ApiInterface::getPullRequest(const QString &nodeId)
     m_graphqlConnector->sendQuery(query, RequestType::GetPullRequest);
 }
 
+void ApiInterface::getRelease(const QString &nodeId)
+{
+    GraphQLQuery query;
+    query.query = SAILHUB_QUERY_GET_RELEASE;
+    query.variables.insert(QueryVar::NODE_ID, nodeId);
+
+    m_graphqlConnector->sendQuery(query, RequestType::GetRelease);
+}
+
 void ApiInterface::getRepo(const QString &nodeId)
 {
     GraphQLQuery query;
@@ -519,6 +528,10 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     case RequestType::GetRepo:
         emit repoAvailable(DataUtils::repoFromJson(data.value(ApiKey::NODE).toObject()));
+        break;
+
+    case RequestType::GetRelease:
+        emit releaseAvailable(DataUtils::releaseFromJson(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetRepoTree:

@@ -369,6 +369,69 @@ PullRequestListItem DataUtils::pullRequestListItemFromJson(const QJsonObject &ob
     return item;
 }
 
+Release *DataUtils::releaseFromJson(const QJsonObject &obj)
+{
+    if (obj.isEmpty())
+        return nullptr;
+
+    Release *release = new Release;
+
+    // author
+    auto author = ownerFromJson(obj.value(ApiKey::AUTHOR).toObject());
+    if (author != nullptr) {
+        author->setParent(release);
+        release->setAuthor(author);
+    }
+
+    release->setNodeId(obj.value(ApiKey::ID).toString());
+
+    release->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    release->setDescription(obj.value(ApiKey::DESCRIPTION).toString());
+    release->setName(obj.value(ApiKey::NAME).toString());
+    release->setIsDraft(obj.value(ApiKey::IS_DRAFT).toBool());
+    release->setIsLatest(obj.value(ApiKey::IS_LATEST).toBool());
+    release->setIsPrerelease(obj.value(ApiKey::IS_PRERELEASE).toBool());
+    release->setPublishedAt(QDateTime::fromString(obj.value(ApiKey::PUBLISHED_AT).toString(), Qt::ISODate));
+    release->setRepository(obj.value(ApiKey::REPOSITORY).toObject()
+                           .value(ApiKey::NAME_WITH_OWNER).toString());
+    release->setTagCommit(obj.value(ApiKey::TAG_COMMIT).toObject()
+                          .value(ApiKey::ABBREVIATED_OID).toString());
+    release->setTagName(obj.value(ApiKey::TAG_NAME).toString());
+
+
+    return release;
+}
+
+ReleaseListItem DataUtils::releaseListItemFromJson(const QJsonObject &obj)
+{
+    ReleaseListItem item;
+
+    item.nodeId = obj.value(ApiKey::ID).toString();
+    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
+    item.name = obj.value(ApiKey::NAME).toString();
+    item.isLatest = obj.value(ApiKey::IS_LATEST).toBool();
+
+    return item;
+}
+
+QList<ReleaseListItem> DataUtils::releaseListItemsFromJson(const QJsonObject &obj)
+{
+    QList<ReleaseListItem>  releases;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject release = node.toObject();
+        if (release.isEmpty())
+            continue;
+
+        releases.append(releaseListItemFromJson(release));
+    }
+
+    return releases;
+}
+
 Repo *DataUtils::repoFromJson(const QJsonObject &obj)
 {
     if (obj.isEmpty())
@@ -396,10 +459,10 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     repo->setName(obj.value(ApiKey::NAME).toString());
     repo->setNodeId(obj.value(ApiKey::ID).toString());
     repo->setProjects(getTotalCount(obj.value(ApiKey::PROJECTS).toObject()));
-    repo->setReleases(getTotalCount(obj.value(ApiKey::RELEASES).toObject()));
+    repo->setReleaseCount(getTotalCount(obj.value(ApiKey::RELEASES).toObject()));
     repo->setPullRequestsCount(getTotalCount(obj.value(ApiKey::PULL_REQUESTS).toObject()));
     //repo->setReadme(obj.value(ApiKey::OBJECT).toObject().value(ApiKey::TEXT).toString());
-    repo->setReleases(getTotalCount(obj.value(ApiKey::RELEASES).toObject()));
+    repo->setReleaseCount(getTotalCount(obj.value(ApiKey::RELEASES).toObject()));
     repo->setStargazerCount(obj.value(ApiKey::STARGAZER_COUNT).toInt());
     repo->setViewerCanSubscribe(obj.value(ApiKey::VIEWER_CAN_SUBSCRIBE).toBool());
     repo->setViewerHasStarred(obj.value(ApiKey::VIEWER_HAS_STARRED).toBool());

@@ -208,6 +208,9 @@ void SailHub::onBackgroundActivityRunning()
 
 void SailHub::onNotificationsAvailable(const QList<NotificationListItem> &items)
 {
+    if (!m_notify)
+        return;
+
     for (const auto &item : items) {
         if (m_notifications.contains(item.id))
             continue;

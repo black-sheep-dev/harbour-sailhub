@@ -102,6 +102,12 @@ static const QString SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM =
                        "    title"
                        "    updatedAt").simplified();
 
+static const QString SAILHUB_QUERY_ITEM_RELEASE_LIST_ITEM =
+        QStringLiteral("    id"
+                       "    createdAt"
+                       "    isLatest"
+                       "    name").simplified();
+
 static const QString SAILHUB_QUERY_ITEM_REPO_LIST_ITEM =
         QStringLiteral("    id"
                        "    createdAt"
