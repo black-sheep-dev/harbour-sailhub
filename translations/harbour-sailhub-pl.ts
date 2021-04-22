@@ -5,7 +5,7 @@
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation>O</translation>
+        <translation>O SailHub</translation>
     </message>
     <message>
         <source>SailHub</source>
@@ -381,15 +381,15 @@
     <name>NotificationsListPage</name>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiadomienia</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>No notifications available</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak dostępnych powiadomień</translation>
     </message>
 </context>
 <context>
@@ -482,11 +482,11 @@
     </message>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiadomienia</translation>
     </message>
     <message>
         <source>Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywności</translation>
     </message>
 </context>
 <context>
@@ -1014,26 +1014,26 @@
     <name>SettingsNotificationPage</name>
     <message>
         <source>Notification Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia powiadomień</translation>
     </message>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiadomienia</translation>
     </message>
     <message>
         <source>Get notified of activities on your GitHub account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Otrzymuj powiadomienia o aktywności na Twoim koncie GitHub.</translation>
     </message>
     <message>
         <source>Update Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Interwał aktualizacji</translation>
     </message>
     <message numerus="yes">
         <source>%n min(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n min</numerusform>
+            <numerusform>%n min</numerusform>
+            <numerusform>%n min</numerusform>
         </translation>
     </message>
 </context>
@@ -1061,11 +1061,11 @@
     </message>
     <message>
         <source>Notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiadomienia</translation>
     </message>
     <message>
         <source>Manage notification options</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządzaj opcjami powiadomień</translation>
     </message>
 </context>
 <context>
