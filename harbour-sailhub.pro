@@ -25,6 +25,7 @@ QT += dbus
 CONFIG += link_pkgconfig sailfishapp
 PKGCONFIG += sailfishsecrets nemonotifications-qt5
 
+LIBS += -L../../lib -lkeepalive
 LIBS += -lz
 
 SOURCES += src/harbour-sailhub.cpp \
@@ -117,6 +118,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/UserPage.qml \
     qml/pages/UsersListPage.qml \
     qml/pages/settings/SettingsAuthenticationPage.qml \
+    qml/pages/settings/SettingsNotificationPage.qml \
     qml/pages/settings/SettingsPage.qml \
     qml/pages/settings/SettingsPaginationPage.qml \
     qml/pages/wizard/WizardFinalPage.qml \

@@ -187,16 +187,19 @@ void ApiInterface::getIssue(const QString &nodeId)
 
 void ApiInterface::getNotifications(NotificationsModel *model)
 {
-    if (model == nullptr)
-        return;
+    if (model != nullptr) {
+        model->setLoading(true);
 
-    model->setLoading(true);
-
-    // save and send
-    m_notificationsModelRequests.insert(model->uuid(), model);
-    m_restApiConnector->get(QStringLiteral("/notifications?all=true"),
-                            RequestType::GetNotifications,
-                            model->uuid());
+        // save and send
+        m_notificationsModelRequests.insert(model->uuid(), model);
+        m_restApiConnector->get(QStringLiteral("/notifications?all=false"),
+                                RequestType::GetNotifications,
+                                model->uuid());
+    } else {
+        // only unreaded notifications
+        m_restApiConnector->get(QStringLiteral("/notifications"),
+                                RequestType::GetNotifications);
+    }
 }
 
 void ApiInterface::getOrganization(const QString &nodeId)
@@ -655,13 +658,30 @@ void ApiInterface::parseFileContent(const QJsonObject &obj)
 
 void ApiInterface::parseNotificationsModel(const QJsonArray &array, const QByteArray &requestId)
 {
+    // check notifications for unread ones
+    const QList<NotificationListItem> items = DataUtils::notificationsFromJson(array);
+
+    QList<NotificationListItem> unreaded;
+    for (const auto &item : items) {
+        if (!item.unread)
+            continue;
+
+        unreaded.append(item);
+    }
+
+    if (!unreaded.isEmpty())
+        emit notificationsAvailable(unreaded);
+
+
+    // update model
     auto model = m_notificationsModelRequests.value(requestId, nullptr);
 
-    if (model == nullptr)
+    if (model == nullptr) {
         return;
+    }
 
     // parse data
-    model->setNotifications(DataUtils::notificationsFromJson(array));
+    model->setNotifications(items);
 
     // cleanup
     m_notificationsModelRequests.remove(requestId);

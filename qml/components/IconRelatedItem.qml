@@ -10,36 +10,30 @@ BackgroundItem {
     width: parent.width
     height: Theme.itemSizeSmall
 
-    Item {
+    Row {
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
         height: parent.height
+        spacing: Theme.paddingMedium
 
         Icon {
             id: itemIcon
-            anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-        }
-
-        Item {
-            id: spacerItem
-            anchors.left: itemIcon.right
-            width: Theme.paddingMedium
-            height: 1
+            width: Theme.iconSizeMedium
+            height: Theme.iconSizeMedium
+            fillMode: Image.PreserveAspectFit
         }
 
         Label {
             id: titleLabel
-            anchors.left: spacerItem.right
-            anchors.right: openNextIcon.left
             anchors.verticalCenter: parent.verticalCenter
+            width: parent.width - itemIcon.width - openNextIcon.width - 2 * parent.spacing
         }
 
         Icon {
             visible: showNextIcon
             id: openNextIcon
             anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
             source: "image://theme/icon-m-right"
         }
     }

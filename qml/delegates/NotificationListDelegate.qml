@@ -30,7 +30,21 @@ ListItem {
             Icon {
                 id: delegateIcon
                 anchors.top: parent.top
-                source: "image://theme/icon-s-alarm"
+                width: Theme.iconSizeSmall
+                height: Theme.iconSizeSmall
+                fillMode: Image.PreserveAspectFit
+                source: {
+                    switch (model.type) {
+                    case Notification.Issue:
+                        return "image://theme/icon-s-high-importance";
+
+                    case Notification.PullRequest:
+                        return "qrc:///icons/icon-m-pull-request";
+
+                    default:
+                        return "image://theme/icon-s-alarm"
+                    }
+                }
             }
 
             Column {
@@ -41,6 +55,7 @@ ListItem {
                     spacing: Theme.paddingSmall
 
                     Label {
+                        anchors.verticalCenter: parent.verticalCenter
                         width: parent.width - timeSpanLabel.width - parent.spacing
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         font.pixelSize: Theme.fontSizeTiny
@@ -50,6 +65,7 @@ ListItem {
 
                     Label {
                         id: timeSpanLabel
+                        anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: Theme.fontSizeSmall
 
                         text: model.updatedAtTimeSpan

@@ -918,6 +918,31 @@
     </message>
 </context>
 <context>
+    <name>SettingsNotificationPage</name>
+    <message>
+        <source>Notification Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get notified of activities on your GitHub account.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n min(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
@@ -938,6 +963,14 @@
     <message>
         <source>Manage authentication data</source>
         <translation>管理授权数据</translation>
+    </message>
+    <message>
+        <source>Notification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage notification options</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

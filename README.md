@@ -17,6 +17,7 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 
 ## Implemented Features
 - Basic Markdown rendering using ShowdownJS
+- Very basic notifications (using GitHub APIv3 but I am not happy with it at the moment)
 
 ## Implemented CRUD Features
 Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
@@ -31,6 +32,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - File content [*R*]
 - Labels (Issue / Pull Request) [*R*]
 - Reaction (Comment / Issue / Pull Request) [*RU*]
+- Notification (Unreaded) [*R*]
 
 ## Implemented Social Features
 
@@ -41,7 +43,10 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 
 ## Planned Features
 - Code highlighting
-- Notifications
+- Gist
+- Commits
+- Releases
+- Packages
 - Discussion
 - Some useful cover action /content
 - Feature requests (any ideas are welcome!)

@@ -88,7 +88,7 @@ public:
     Q_INVOKABLE void followUser(const QString &nodeId, bool follow = true);
     Q_INVOKABLE void getFileContent(const QString &nodeId, const QString &branch);
     Q_INVOKABLE void getIssue(const QString &nodeId);
-    Q_INVOKABLE void getNotifications(NotificationsModel *model);
+    Q_INVOKABLE void getNotifications(NotificationsModel *model = nullptr);
     Q_INVOKABLE void getOrganization(const QString &nodeId);
     Q_INVOKABLE void getPaginationModel(PaginationModel *model);
     Q_INVOKABLE void getProfile();
@@ -124,6 +124,7 @@ signals:
     void issueCreated(bool created = true);
     void issueDeleted(bool deleted = true);
     void issueAvailable(Issue *issue);
+    void notificationsAvailable(const QList<NotificationListItem> &notifications);
     void organizationAvailable(Organization *organization);
     void pullRequestAvailable(PullRequest *request);
     void repoAvailable(Repo *repo);

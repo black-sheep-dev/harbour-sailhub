@@ -49,6 +49,17 @@ Page {
         delegate: NotificationListDelegate {
             id: delegate
             lastItem: index == (listView.count - 1)
+
+//            menu: ContextMenu {
+//                MenuItem {
+//                    text: qsTr("Mark as done")
+//                }
+
+//                MenuItem {
+//                    text: qsTr("Mark as readed")
+//                }
+
+//            }
         }
     }
 
