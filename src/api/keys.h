@@ -4,6 +4,7 @@
 #include <QString>
 
 struct ApiKey {
+    static const QString ABBREVIATED_OID;
     static const QString ADD_STAR;
     static const QString ASSIGNEES;
     static const QString AUTHOR;
@@ -39,6 +40,9 @@ struct ApiKey {
     static const QString HOMEPAGE_URL;
     static const QString ID;
     static const QString IS_BINARY;
+    static const QString IS_DRAFT;
+    static const QString IS_LATEST;
+    static const QString IS_PRERELEASE;
     static const QString IS_PRIVATE;
     static const QString IS_VIEWER;
     static const QString ISSUE_ID;
@@ -65,6 +69,7 @@ struct ApiKey {
     static const QString PATH;
     static const QString PRIMARY_LANGUAGE;
     static const QString PROJECTS;
+    static const QString PUBLISHED_AT;
     static const QString PULL_REQUESTS;
     static const QString PUSHED_AT;
     static const QString RATE_LIMIT;
@@ -92,6 +97,8 @@ struct ApiKey {
     static const QString SUBJECT_ID;
     static const QString SUBSCRIBABLE;
     static const QString SUBSCRIBABLE_ID;
+    static const QString TAG_COMMIT;
+    static const QString TAG_NAME;
     static const QString TARGET;
     static const QString TEAMS;
     static const QString TEXT;

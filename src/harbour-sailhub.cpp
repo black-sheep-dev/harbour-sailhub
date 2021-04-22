@@ -32,6 +32,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<PullRequest>("org.nubecula.harbour.sailhub", 1, 0, "PullRequest");
     qmlRegisterType<PullRequestsModel>("org.nubecula.harbour.sailhub", 1, 0, "PullRequestsModel");
     qmlRegisterType<Reaction>("org.nubecula.harbour.sailhub", 1, 0, "Reaction");
+    qmlRegisterType<Release>("org.nubecula.harbour.sailhub", 1, 0, "Release");
+    qmlRegisterType<ReleasesModel>("org.nubecula.harbour.sailhub", 1, 0, "ReleasesModel");
     qmlRegisterType<Repo>("org.nubecula.harbour.sailhub", 1, 0, "Repo");
     qmlRegisterType<ReposModel>("org.nubecula.harbour.sailhub", 1, 0, "ReposModel");
     qmlRegisterType<TreeItem>("org.nubecula.harbour.sailhub", 1, 0, "TreeItem");

@@ -42,7 +42,7 @@ class Repo : public Node
     Q_PROPERTY(quint32 projects READ projects WRITE setProjects NOTIFY projectsChanged)
     Q_PROPERTY(quint32 pullRequestCount READ pullRequestsCount WRITE setPullRequestsCount NOTIFY pullRequestsCountChanged)
     Q_PROPERTY(QString readme READ readme WRITE setReadme NOTIFY readmeChanged)
-    Q_PROPERTY(quint32 releases READ releases WRITE setReleases NOTIFY releasesChanged)
+    Q_PROPERTY(quint32 releaseCount READ releaseCount WRITE setReleaseCount NOTIFY releaseCountChanged)
     Q_PROPERTY(quint32 stargazerCount READ stargazerCount WRITE setStargazerCount NOTIFY stargazerCountChanged)
     Q_PROPERTY(bool viewerCanSubscribe READ viewerCanSubscribe WRITE setViewerCanSubscribe NOTIFY viewerCanSubscribeChanged)
     Q_PROPERTY(bool viewerHasStarred READ viewerHasStarred WRITE setViewerHasStarred NOTIFY viewerHasStarredChanged)
@@ -83,7 +83,7 @@ public:
     quint32 projects() const;
     quint32 pullRequestsCount() const;
     QString readme() const;
-    quint32 releases() const;
+    quint32 releaseCount() const;
     quint32 stargazerCount() const;
     bool viewerCanSubscribe() const;
     bool viewerHasStarred() const;
@@ -104,7 +104,7 @@ signals:
     void projectsChanged(quint32 projects);
     void pullRequestsCountChanged(quint32 count);
     void readmeChanged(const QString &readme);
-    void releasesChanged(quint32 releases);
+    void releaseCountChanged(quint32 releaseCount);
     void stargazerCountChanged(quint32 count);
     void viewerCanSubscribeChanged(bool subscribable);
     void viewerHasStarredChanged(bool starred);
@@ -125,7 +125,7 @@ public slots:
     void setProjects(quint32 projects);
     void setPullRequestsCount(quint32 count);
     void setReadme(const QString &readme);
-    void setReleases(quint32 releases);
+    void setReleaseCount(quint32 releaseCount);
     void setStargazerCount(quint32 count);
     void setViewerCanSubscribe(bool subscribable);
     void setViewerHasStarred(bool starred);
@@ -147,7 +147,7 @@ private:
     quint32 m_pullRequestCount{0};
     quint32 m_stargazerCount{0};
     QString m_readme;
-    quint32 m_releases{0};
+    quint32 m_releaseCount{0};
     bool m_viewerCanSubscribe{false};
     bool m_viewerHasStarred{false};
     quint8 m_viewerSubscription{SubscriptionIgnored};

@@ -606,6 +606,61 @@
     </message>
 </context>
 <context>
+    <name>ReleaseListDelegate</name>
+    <message>
+        <source>Latest release</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ReleasePage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Release</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ReleasesListPage</name>
+    <message>
+        <source>Releases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">分类</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">创建于</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">名称</translation>
+    </message>
+    <message>
+        <source>No releases available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>RepoPage</name>
     <message>
         <source>Refresh</source>
@@ -676,6 +731,10 @@
     <message>
         <source>Browse code</source>
         <translation>浏览代码</translation>
+    </message>
+    <message>
+        <source>Releases</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

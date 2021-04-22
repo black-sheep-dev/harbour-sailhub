@@ -32,6 +32,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - File content [*R*]
 - Labels (Issue / Pull Request) [*R*]
 - Reaction (Comment / Issue / Pull Request) [*RU*]
+- Releases [*R*]
 - Notification (Unreaded) [*R*]
 
 ## Implemented Social Features
@@ -45,7 +46,6 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Code highlighting
 - Gist
 - Commits
-- Releases
 - Packages
 - Discussion
 - Some useful cover action /content

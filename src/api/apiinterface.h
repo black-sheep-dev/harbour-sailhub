@@ -16,6 +16,7 @@
 #include "src/models/notificationsmodel.h"
 #include "src/models/organizationsmodel.h"
 #include "src/models/pullrequestsmodel.h"
+#include "src/models/releasesmodel.h"
 #include "src/models/reposmodel.h"
 #include "src/models/treemodel.h"
 #include "src/models/usersmodel.h"
@@ -60,6 +61,8 @@ public:
         GetPullRequest,
         GetUser,
         GetUserByLogin,
+        GetRelease,
+        GetReleases,
         GetRepo,
         GetRepoTree,
         RemoveReaction,
@@ -93,6 +96,7 @@ public:
     Q_INVOKABLE void getPaginationModel(PaginationModel *model);
     Q_INVOKABLE void getProfile();
     Q_INVOKABLE void getPullRequest(const QString &nodeId);
+    Q_INVOKABLE void getRelease(const QString &nodeId);
     Q_INVOKABLE void getRepo(const QString &nodeId);
     Q_INVOKABLE void getRepoTree(const QString &nodeId,const QString &branch, const QString &path,  TreeModel *model);
     Q_INVOKABLE void getUser(const QString &nodeId);
@@ -127,6 +131,7 @@ signals:
     void notificationsAvailable(const QList<NotificationListItem> &notifications);
     void organizationAvailable(Organization *organization);
     void pullRequestAvailable(PullRequest *request);
+    void releaseAvailable(Release *release);
     void repoAvailable(Repo *repo);
     void repoStarred(const QString &nodeId, bool starred);
     void subscribedToRepo(const QString &nodeId, quint8 state);

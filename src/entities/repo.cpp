@@ -71,9 +71,9 @@ QString Repo::readme() const
     return m_readme;
 }
 
-quint32 Repo::releases() const
+quint32 Repo::releaseCount() const
 {
-    return m_releases;
+    return m_releaseCount;
 }
 
 quint32 Repo::stargazerCount() const
@@ -218,13 +218,13 @@ void Repo::setReadme(const QString &readme)
     emit readmeChanged(m_readme);
 }
 
-void Repo::setReleases(quint32 releases)
+void Repo::setReleaseCount(quint32 releases)
 {
-    if (m_releases == releases)
+    if (m_releaseCount == releases)
         return;
 
-    m_releases = releases;
-    emit releasesChanged(m_releases);
+    m_releaseCount = releases;
+    emit releaseCountChanged(m_releaseCount);
 }
 
 void Repo::setStargazerCount(quint32 count)
