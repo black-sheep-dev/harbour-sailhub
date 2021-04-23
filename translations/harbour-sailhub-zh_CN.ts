@@ -375,15 +375,15 @@
     <name>NotificationsListPage</name>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>通知</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>No notifications available</source>
-        <translation type="unfinished"></translation>
+        <translation>暂无可显示通知</translation>
     </message>
 </context>
 <context>
@@ -474,11 +474,11 @@
     </message>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>通知</translation>
     </message>
     <message>
         <source>Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>动态</translation>
     </message>
 </context>
 <context>
@@ -609,7 +609,7 @@
     <name>ReleaseListDelegate</name>
     <message>
         <source>Latest release</source>
-        <translation type="unfinished"></translation>
+        <translation>最新发布</translation>
     </message>
 </context>
 <context>
