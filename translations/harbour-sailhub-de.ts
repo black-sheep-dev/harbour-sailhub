@@ -621,6 +621,14 @@
         <source>Latest release</source>
         <translation>Letztes Release</translation>
     </message>
+    <message>
+        <source>Draft</source>
+        <translation>Entwurf</translation>
+    </message>
+    <message>
+        <source>Pre-release</source>
+        <translation>Pre-Release</translation>
+    </message>
 </context>
 <context>
     <name>ReleasePage</name>
@@ -635,6 +643,18 @@
     <message>
         <source>Info</source>
         <translation>Info</translation>
+    </message>
+    <message>
+        <source>Draft</source>
+        <translation>Entwurf</translation>
+    </message>
+    <message>
+        <source>Latest release</source>
+        <translation>Letztes Release</translation>
+    </message>
+    <message>
+        <source>Pre-release</source>
+        <translation>Pre Release</translation>
     </message>
 </context>
 <context>

@@ -13,7 +13,9 @@ public:
     enum ReleaseRoles {
         CreatedAtRole           = Qt::UserRole + 1,
         CreatedAtTimeSpanRole,
+        IsDraftRole,
         IsLatestRole,
+        IsPrereleaseRole,
         NameRole,
         NodeIdRole
     };

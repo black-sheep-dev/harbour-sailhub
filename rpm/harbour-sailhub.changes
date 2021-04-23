@@ -1,3 +1,8 @@
+* Fri Apr 23 2021 Black Sheep <blacksheep@nubecula.org> 0.0.19-1
+- Fixed a bug in organizations list page
+- Improved releases functionality
+- Translation updates
+
 * Thu Apr 22 2021 Black Sheep <blacksheep@nubecula.org> 0.0.18-1
 - Fixed notification can not be turned of at app start
 - Add releases to repository page

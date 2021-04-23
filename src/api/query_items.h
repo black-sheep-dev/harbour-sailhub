@@ -105,7 +105,9 @@ static const QString SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM =
 static const QString SAILHUB_QUERY_ITEM_RELEASE_LIST_ITEM =
         QStringLiteral("    id"
                        "    createdAt"
+                       "    isDraft"
                        "    isLatest"
+                       "    isPrerelease"
                        "    name").simplified();
 
 static const QString SAILHUB_QUERY_ITEM_REPO_LIST_ITEM =
