@@ -40,10 +40,24 @@ ListItem {
             }
 
             Label {
+                visible: model.isDraft
+                font.pixelSize: Theme.fontSizeSmall
+                color: "#b71c1c"
+                text: qsTr("Draft")
+            }
+
+            Label {
                 visible: model.isLatest
                 font.pixelSize: Theme.fontSizeSmall
                 color: "#64DD17"
                 text: qsTr("Latest release")
+            }
+
+            Label {
+                visible: model.isPrerelease
+                font.pixelSize: Theme.fontSizeSmall
+                color: "#f29312"
+                text: qsTr("Pre-release")
             }
         }
 
