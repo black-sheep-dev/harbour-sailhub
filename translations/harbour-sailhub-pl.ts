@@ -629,56 +629,56 @@
     <name>ReleaseListDelegate</name>
     <message>
         <source>Latest release</source>
-        <translation type="unfinished"></translation>
+        <translation>Najnowsza wersja</translation>
     </message>
 </context>
 <context>
     <name>ReleasePage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>Release</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje</translation>
     </message>
 </context>
 <context>
     <name>ReleasesListPage</name>
     <message>
         <source>Releases</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersje</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished">Sortowanie</translation>
+        <translation>Sortowanie</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished">Utworzono</translation>
+        <translation>Utworzono</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nazwa</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <source>No releases available</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak dostępnych wersji</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -760,7 +760,7 @@
     </message>
     <message>
         <source>Releases</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersje</translation>
     </message>
 </context>
 <context>
