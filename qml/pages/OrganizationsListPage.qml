@@ -6,7 +6,7 @@ import org.nubecula.harbour.sailhub 1.0
 import "../delegates/"
 
 Page {
-    property alias title: pageHeader.title
+    property string title
     property string identifier
     property int organizationType: Organization.Undefined
 
@@ -17,7 +17,7 @@ Page {
         id: listView
         anchors.fill: parent
 
-        header: PageHeader { id: pageHeader }
+        header: PageHeader { title: page.title }
 
         footer: Item {
             width: parent.width

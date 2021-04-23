@@ -611,6 +611,14 @@
         <source>Latest release</source>
         <translation>最新发布</translation>
     </message>
+    <message>
+        <source>Draft</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pre-release</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ReleasePage</name>
@@ -624,6 +632,18 @@
     </message>
     <message>
         <source>Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draft</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Latest release</source>
+        <translation type="unfinished">最新发布</translation>
+    </message>
+    <message>
+        <source>Pre-release</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -984,7 +1004,7 @@
     </message>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">通知</translation>
     </message>
     <message>
         <source>Get notified of activities on your GitHub account.</source>

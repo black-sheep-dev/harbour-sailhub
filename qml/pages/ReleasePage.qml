@@ -54,6 +54,33 @@ Page {
                 text: release.name
             }
 
+            Row {
+                x: Theme.horizontalPageMargin
+                width: parent.width - 2*x
+                spacing: Theme.paddingMedium
+
+                Label {
+                    visible: release.isDraft
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: "#b71c1c"
+                    text: qsTr("Draft")
+                }
+
+                Label {
+                    visible: release.isLatest
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: "#64DD17"
+                    text: qsTr("Latest release")
+                }
+
+                Label {
+                    visible: release.isPrerelease
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: "#f29312"
+                    text: qsTr("Pre-release")
+                }
+            }
+
             CommentItem {
                 authorAvatar: release.author.avatarUrl
                 authorLogin: release.author.login

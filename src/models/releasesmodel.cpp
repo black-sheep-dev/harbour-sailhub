@@ -89,8 +89,14 @@ QVariant ReleasesModel::data(const QModelIndex &index, int role) const
     case CreatedAtTimeSpanRole:
         return release.createdAtTimeSpan;
 
+    case IsDraftRole:
+        return release.isDraft;
+
     case IsLatestRole:
         return release.isLatest;
+
+    case IsPrereleaseRole:
+        return release.isPrerelease;
 
     case NameRole:
         return release.name;
@@ -109,7 +115,9 @@ QHash<int, QByteArray> ReleasesModel::roleNames() const
 
     roles[CreatedAtRole]            = "createdAt";
     roles[CreatedAtTimeSpanRole]    = "createdAtTimeSpan";
+    roles[IsDraftRole]              = "isDraft";
     roles[IsLatestRole]             = "isLatest";
+    roles[IsPrereleaseRole]         = "isPrerelease";
     roles[NameRole]                 = "name";
     roles[NodeIdRole]               = "nodeId";
 

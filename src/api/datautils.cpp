@@ -410,7 +410,9 @@ ReleaseListItem DataUtils::releaseListItemFromJson(const QJsonObject &obj)
     item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
     item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
     item.name = obj.value(ApiKey::NAME).toString();
+    item.isDraft = obj.value(ApiKey::IS_DRAFT).toBool();
     item.isLatest = obj.value(ApiKey::IS_LATEST).toBool();
+    item.isPrerelease = obj.value(ApiKey::IS_PRERELEASE).toBool();
 
     return item;
 }
