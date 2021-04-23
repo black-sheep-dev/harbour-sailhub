@@ -984,7 +984,7 @@
     </message>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">通知</translation>
     </message>
     <message>
         <source>Get notified of activities on your GitHub account.</source>
