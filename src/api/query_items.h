@@ -102,6 +102,16 @@ static const QString SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM =
                        "    title"
                        "    updatedAt").simplified();
 
+static const QString SAILHUB_QUERY_ITEM_RELEASE_ASSET_LIST_ITEM =
+        QStringLiteral("    id"
+                       "    contentType"
+                       "    createdAt"
+                       "    downloadCount"
+                       "    downloadUrl"
+                       "    name"
+                       "    size"
+                       "    updatedAt").simplified();
+
 static const QString SAILHUB_QUERY_ITEM_RELEASE_LIST_ITEM =
         QStringLiteral("    id"
                        "    createdAt"

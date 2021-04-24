@@ -4,11 +4,22 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import "../js/stringhelper.js" as StringHelper
 
 ListItem {
+    property int downloadProgress: 0
+
     id: delegate
     width: parent.width
     contentHeight: delegateContent.height + 2*Theme.paddingSmall
+
+    Rectangle {
+        height: parent.height
+        width: parent.width * (downloadProgress / 100)
+
+        color: Theme.highlightColor
+        opacity: 0.5
+    }
 
     Row {
         id: delegateContent
@@ -20,7 +31,7 @@ ListItem {
         Icon {
             id: icon
             anchors.verticalCenter: parent.verticalCenter
-            source: "image://theme/icon-m-events"
+            source: "image://theme/icon-m-file-other-light"
         }
 
         Column {
@@ -39,34 +50,28 @@ ListItem {
                 width: parent.width
                 spacing: Theme.paddingMedium
 
-                Label {
-                    font.pixelSize: Theme.fontSizeSmall
-                    text: model.createdAtTimeSpan
+                Icon {
+                    anchors.verticalCenter: parent.verticalCenter
+                    source: "image://theme/icon-s-sd-card"
                 }
 
                 Label {
-                    visible: model.isDraft
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: "#b71c1c"
-                    text: qsTr("Draft")
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                    text: StringHelper.fileSize(model.size)
+                }
+
+                Icon {
+                    anchors.verticalCenter: parent.verticalCenter
+                    source: "image://theme/icon-s-cloud-download"
                 }
 
                 Label {
-                    visible: model.isLatest
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: "#64DD17"
-                    text: qsTr("Latest release")
-                }
-
-                Label {
-                    visible: model.isPrerelease
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: "#f29312"
-                    text: qsTr("Pre-release")
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                    text: StringHelper.count(model.downloadCount)
                 }
             }
         }
     }
 }
-
-

@@ -93,12 +93,9 @@ Page {
         delegate: ReleaseListDelegate {
             id: delegate
 
-            lastItem: index == (listView.count - 1)
-
             onClicked: pageStack.push(Qt.resolvedUrl("ReleasePage.qml"), {
                                           nodeId: model.nodeId
                                       })
-
         }
 
         PushUpMenu {
@@ -107,7 +104,7 @@ Page {
 
             MenuItem {
                 text: qsTr("Load more (%n to go)", "", releasesModel.totalCount - listView.count)
-                onClicked: getIssues()
+                onClicked: getReleases()
             }
         }
     }

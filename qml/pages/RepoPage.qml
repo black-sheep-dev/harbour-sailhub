@@ -327,27 +327,8 @@ Page {
 
             }
 
-            // Readme
-            /*
             SectionHeader {
-                visible: repo.readme.length > 0
-                text: qsTr("README")
-            }
-
-            TextArea {
-                visible: repo.readme.length > 0
-                x: Theme.horizontalPageMargin
-                width: parent.width - 2*x
-
-                readOnly: true
-
-                text: repo.readme
-            }
-            */
-
-            Separator {
-                width: parent.width
-                color: Theme.highlightBackgroundColor
+                text: qsTr("Content")
             }
 
             BackgroundItem {

@@ -6,6 +6,11 @@ Release::Release(QObject *parent) :
 
 }
 
+quint32 Release::assetCount() const
+{
+    return m_assetCount;
+}
+
 Owner *Release::author() const
 {
     return m_author;
@@ -54,6 +59,15 @@ QString Release::tagCommit() const
 QString Release::tagName() const
 {
     return m_tagName;
+}
+
+void Release::setAssetCount(quint32 assetCount)
+{
+    if (m_assetCount == assetCount)
+        return;
+
+    m_assetCount = assetCount;
+    emit assetCountChanged(m_assetCount);
 }
 
 void Release::setAuthor(Owner *author)

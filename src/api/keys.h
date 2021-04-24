@@ -20,10 +20,13 @@ struct ApiKey {
     static const QString COMMENTS;
     static const QString COMPANY;
     static const QString CONTENT;
+    static const QString CONTENT_TYPE;
     static const QString CREATED_AT;
     static const QString DATA;
     static const QString DEFAULT_BRANCH_REF;
     static const QString DESCRIPTION;
+    static const QString DOWNLOAD_COUNT;
+    static const QString DOWNLOAD_URL;
     static const QString EDGES;
     static const QString EMAIL;
     static const QString EMOJI;
@@ -76,6 +79,7 @@ struct ApiKey {
     static const QString REACTION_GROUPS;
     static const QString REF;
     static const QString REFS;
+    static const QString RELEASE_ASSETS;
     static const QString RELEASES;
     static const QString REMAINING;
     static const QString REMOVE_STAR;
@@ -86,6 +90,7 @@ struct ApiKey {
     static const QString RESET_AT;
     static const QString SEARCH;
     static const QString SHORT_DESCRIPTION_HTML;
+    static const QString SIZE;
     static const QString SPDX_ID;
     static const QString STARGAZER_COUNT;
     static const QString STARGAZERS;

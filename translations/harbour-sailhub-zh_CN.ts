@@ -606,6 +606,31 @@
     </message>
 </context>
 <context>
+    <name>ReleaseAssetsListPage</name>
+    <message>
+        <source>Release Assets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>No assets available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ReleaseListDelegate</name>
     <message>
         <source>Latest release</source>
@@ -645,6 +670,18 @@
     <message>
         <source>Pre-release</source>
         <translation>预发布</translation>
+    </message>
+    <message>
+        <source>Assets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source code</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -755,6 +792,10 @@
     <message>
         <source>Releases</source>
         <translation>发布</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

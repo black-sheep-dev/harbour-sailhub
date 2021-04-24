@@ -616,6 +616,32 @@
     </message>
 </context>
 <context>
+    <name>ReleaseAssetsListPage</name>
+    <message>
+        <source>Release Assets</source>
+        <translation>Release Dateien</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>No assets available</source>
+        <translation>Keine Dateien vorhanden</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation>Herunterladen</translation>
+    </message>
+</context>
+<context>
     <name>ReleaseListDelegate</name>
     <message>
         <source>Latest release</source>
@@ -655,6 +681,18 @@
     <message>
         <source>Pre-release</source>
         <translation>Pre Release</translation>
+    </message>
+    <message>
+        <source>Assets</source>
+        <translation>Dateien</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation>Inhalt</translation>
+    </message>
+    <message>
+        <source>Source code</source>
+        <translation>Quellcode</translation>
     </message>
 </context>
 <context>
@@ -768,6 +806,10 @@
     <message>
         <source>Releases</source>
         <translation>Releases</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation>Inhalt</translation>
     </message>
 </context>
 <context>
