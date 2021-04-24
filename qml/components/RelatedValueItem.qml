@@ -6,6 +6,7 @@ BackgroundItem {
     property alias label: textLabel.text
     property real labelSize: 0.4
     property alias value: valueLabel.text
+    property bool showValue: true
 
     width: parent.width
 
@@ -36,6 +37,7 @@ BackgroundItem {
 
         Label {
             id: valueLabel
+            visible: showValue
             width: {
                 if (icon.length === 0)
                     return (parent.width - parent.spacing) * (1.0 - labelSize)

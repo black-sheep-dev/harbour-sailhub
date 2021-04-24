@@ -385,6 +385,7 @@ Release *DataUtils::releaseFromJson(const QJsonObject &obj)
 
     release->setNodeId(obj.value(ApiKey::ID).toString());
 
+    release->setAssetCount(getTotalCount(obj.value(ApiKey::RELEASE_ASSETS).toObject()));
     release->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
     release->setDescription(obj.value(ApiKey::DESCRIPTION).toString());
     release->setName(obj.value(ApiKey::NAME).toString());
@@ -432,6 +433,33 @@ QList<ReleaseListItem> DataUtils::releaseListItemsFromJson(const QJsonObject &ob
     }
 
     return releases;
+}
+
+QList<ReleaseAssetListItem> DataUtils::releaseAssetListItemsFromJson(const QJsonObject &obj)
+{
+    QList<ReleaseAssetListItem>  assets;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject asset = node.toObject();
+        if (asset.isEmpty())
+            continue;
+
+        ReleaseAssetListItem item;
+
+        item.contentType = asset.value(ApiKey::CONTENT_TYPE).toString();
+        item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+        item.downloadCount = asset.value(ApiKey::DOWNLOAD_COUNT).toInt();
+        item.downloadUrl = asset.value(ApiKey::DOWNLOAD_URL).toString();
+        item.name = asset.value(ApiKey::NAME).toString();
+        item.size = asset.value(ApiKey::SIZE).toInt();
+        item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+
+        assets.append(item);
+    }
+
+    return assets;
 }
 
 Repo *DataUtils::repoFromJson(const QJsonObject &obj)

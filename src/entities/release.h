@@ -21,6 +21,7 @@ class Release : public Node
 {
     Q_OBJECT
 
+    Q_PROPERTY(quint32 assetCount READ assetCount WRITE setAssetCount NOTIFY assetCountChanged)
     Q_PROPERTY(Owner* author READ author WRITE setAuthor NOTIFY authorChanged)
     Q_PROPERTY(QDateTime createdAt READ createdAt WRITE setCreatedAt NOTIFY createdAtChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
@@ -35,6 +36,7 @@ class Release : public Node
 public:
     explicit Release(QObject *parent = nullptr);
 
+    quint32 assetCount() const;
     Owner *author() const;
     QDateTime createdAt() const;
     QString description() const;
@@ -47,6 +49,7 @@ public:
     QString tagName() const;
 
 signals:
+    void assetCountChanged(quint32 count);
     void authorChanged(Owner *author);
     void createdAtChanged(const QDateTime &createdAt);
     void descriptionChanged(const QString &description);
@@ -59,6 +62,7 @@ signals:
     void tagNameChanged(const QString &tagName);
 
 public slots:
+    void setAssetCount(quint32 count);
     void setAuthor(Owner *author);
     void setCreatedAt(const QDateTime &createdAt);
     void setDescription(const QString &description);
@@ -71,6 +75,7 @@ public slots:
     void setTagName(const QString &tagName);
 
 private:
+    quint32 m_assetCount{0};
     Owner *m_author{nullptr};
     QDateTime m_createdAt;
     QString m_description;
@@ -80,8 +85,7 @@ private:
     QDateTime m_publishedAt;
     QString m_repository;
     QString m_tagCommit;
-    QString m_tagName;
-
+    QString m_tagName;  
 };
 
 #endif // RELEASE_H

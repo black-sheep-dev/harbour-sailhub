@@ -19,6 +19,7 @@
 ApiInterface::ApiInterface(QObject *parent) :
     QObject(parent)
 {
+    //m_downloader = new Downloader(m_manager, this);
     m_graphqlConnector = new GraphQLConnector(SAILHUB_API_GRAPHQL_URL, m_manager, this);
     m_restApiConnector = new RestApiConnector(m_manager, this);
 
@@ -28,6 +29,11 @@ ApiInterface::ApiInterface(QObject *parent) :
     connect(m_restApiConnector, &RestApiConnector::connectionError, this, &ApiInterface::onConnectionError);
     connect(m_restApiConnector, &RestApiConnector::requestFinished, this, &ApiInterface::parseRestData);
 }
+
+//Downloader *ApiInterface::downloader()
+//{
+//    return m_downloader;
+//}
 
 void ApiInterface::setToken(const QString &token)
 {

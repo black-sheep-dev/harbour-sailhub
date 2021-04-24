@@ -10,6 +10,7 @@
 #include "src/entities/organization.h"
 #include "src/entities/pullrequest.h"
 #include "src/entities/release.h"
+#include "src/entities/releaseasset.h"
 #include "src/entities/repo.h"
 #include "src/entities/treeitem.h"
 #include "src/entities/user.h"
@@ -39,6 +40,7 @@ public:
     static Release *releaseFromJson(const QJsonObject &obj);
     static ReleaseListItem releaseListItemFromJson(const QJsonObject &obj);
     static QList<ReleaseListItem> releaseListItemsFromJson(const QJsonObject &obj);
+    static QList<ReleaseAssetListItem> releaseAssetListItemsFromJson(const QJsonObject &obj);
     static Repo *repoFromJson(const QJsonObject &obj);
     static QList<RepoListItem> reposFromJson(const QJsonObject &obj);
     static RepoListItem repoListItemFromJson(const QJsonObject &obj);

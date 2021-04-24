@@ -31,6 +31,7 @@ LIBS += -lz
 SOURCES += src/harbour-sailhub.cpp \
     src/api/apiinterface.cpp \
     src/api/datautils.cpp \
+    src/api/downloader.cpp \
     src/api/graphqlconnector.cpp \
     src/api/keys.cpp \
     src/api/queryvars.cpp \
@@ -57,6 +58,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/models/paginationmodel.cpp \
     src/models/pullrequestsmodel.cpp \
     src/models/reactionsmodel.cpp \
+    src/models/releaseassetsmodel.cpp \
     src/models/releasesmodel.cpp \
     src/models/reposmodel.cpp \
     src/models/treemodel.cpp \
@@ -79,6 +81,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/ReactionsItem.qml \
     qml/components/RelatedItem.qml \
     qml/cover/CoverPage.qml \
+    qml/delegates/AssetListDelegate.qml \
     qml/delegates/CommentListDelegate.qml \
     qml/delegates/IssueListDelegate.qml \
     qml/delegates/LabelListDelegate.qml \
@@ -94,6 +97,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/dialogs/SelectBranchDialog.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
     qml/dialogs/SortSelectionDialog.qml \
+    qml/js/stringhelper.js \
     qml/pages/CommentPage \
     qml/pages/CommentPage.qml \
     qml/pages/CommentsListPage.qml \
@@ -109,6 +113,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/OverviewPage.qml \
     qml/pages/PullRequestPage.qml \
     qml/pages/PullRequestsListPage.qml \
+    qml/pages/ReleaseAssetsListPage.qml \
     qml/pages/ReleasePage.qml \
     qml/pages/ReleasesListPage.qml \
     qml/pages/RepoPage.qml \
@@ -158,6 +163,7 @@ RESOURCES += \
 HEADERS += \
     src/api/apiinterface.h \
     src/api/datautils.h \
+    src/api/downloader.h \
     src/api/graphqlconnector.h \
     src/api/graphqlquery.h \
     src/api/keys.h \
@@ -181,6 +187,7 @@ HEADERS += \
     src/entities/pullrequest.h \
     src/entities/reaction.h \
     src/entities/release.h \
+    src/entities/releaseasset.h \
     src/entities/repo.h \
     src/entities/treeitem.h \
     src/entities/user.h \
@@ -193,6 +200,7 @@ HEADERS += \
     src/models/paginationmodel.h \
     src/models/pullrequestsmodel.h \
     src/models/reactionsmodel.h \
+    src/models/releaseassetsmodel.h \
     src/models/releasesmodel.h \
     src/models/reposmodel.h \
     src/models/treemodel.h \

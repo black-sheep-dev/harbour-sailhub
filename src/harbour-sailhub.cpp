@@ -14,6 +14,9 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName(QStringLiteral("nubecula.org"));
     QCoreApplication::setOrganizationDomain(QStringLiteral("nubecula.org"));
 
+
+    qmlRegisterUncreatableType<Downloader>("org.nubecula.harbour.sailhub", 1, 0, "Downloader", "");
+
     qmlRegisterType<ApiInterface>("org.nubecula.harbour.sailhub", 1, 0, "Api");
     qmlRegisterType<Comment>("org.nubecula.harbour.sailhub", 1, 0, "Comment");
     qmlRegisterType<CommentsModel>("org.nubecula.harbour.sailhub", 1, 0, "CommentsModel");
@@ -34,6 +37,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<Reaction>("org.nubecula.harbour.sailhub", 1, 0, "Reaction");
     qmlRegisterType<Release>("org.nubecula.harbour.sailhub", 1, 0, "Release");
     qmlRegisterType<ReleasesModel>("org.nubecula.harbour.sailhub", 1, 0, "ReleasesModel");
+    qmlRegisterType<ReleaseAssetsModel>("org.nubecula.harbour.sailhub", 1, 0, "ReleaseAssetsModel");
     qmlRegisterType<Repo>("org.nubecula.harbour.sailhub", 1, 0, "Repo");
     qmlRegisterType<ReposModel>("org.nubecula.harbour.sailhub", 1, 0, "ReposModel");
     qmlRegisterType<TreeItem>("org.nubecula.harbour.sailhub", 1, 0, "TreeItem");
