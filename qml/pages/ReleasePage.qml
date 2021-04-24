@@ -103,6 +103,22 @@ Page {
                 icon: "image://theme/icon-m-link"
                 showNextIcon: false
             }
+
+            SectionHeader {
+                text: qsTr("Content")
+            }
+
+            RelatedValueItem {
+                width: parent.width
+
+                label: qsTr("Assets")
+                value: release.assetCount
+
+                onClicked: pageStack.push(Qt.resolvedUrl("ReleaseAssetsListPage.qml"), {
+                                              description: release.name,
+                                              identifier: release.nodeId
+                                          })
+            }
         }
     }
 

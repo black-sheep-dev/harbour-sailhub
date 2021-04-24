@@ -17,6 +17,7 @@
 #include "src/models/organizationsmodel.h"
 #include "src/models/pullrequestsmodel.h"
 #include "src/models/releasesmodel.h"
+#include "src/models/releaseassetsmodel.h"
 #include "src/models/reposmodel.h"
 #include "src/models/treemodel.h"
 #include "src/models/usersmodel.h"
@@ -63,6 +64,7 @@ public:
         GetUserByLogin,
         GetRelease,
         GetReleases,
+        GetReleaseAssets,
         GetRepo,
         GetRepoTree,
         RemoveReaction,

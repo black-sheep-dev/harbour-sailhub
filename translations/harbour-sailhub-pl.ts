@@ -626,6 +626,33 @@
     </message>
 </context>
 <context>
+    <name>ReleaseAssetsListPage</name>
+    <message>
+        <source>Release Assets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>No assets available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ReleaseListDelegate</name>
     <message>
         <source>Latest release</source>
@@ -664,6 +691,14 @@
     </message>
     <message>
         <source>Pre-release</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
