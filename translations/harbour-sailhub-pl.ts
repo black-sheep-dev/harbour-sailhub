@@ -817,6 +817,10 @@
         <source>Releases</source>
         <translation>Wersje</translation>
     </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ReposListPage</name>
