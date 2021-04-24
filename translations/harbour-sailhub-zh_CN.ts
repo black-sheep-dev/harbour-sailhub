@@ -613,70 +613,70 @@
     </message>
     <message>
         <source>Draft</source>
-        <translation type="unfinished"></translation>
+        <translation>草稿</translation>
     </message>
     <message>
         <source>Pre-release</source>
-        <translation type="unfinished"></translation>
+        <translation>预发布</translation>
     </message>
 </context>
 <context>
     <name>ReleasePage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>Release</source>
-        <translation type="unfinished"></translation>
+        <translation>发布</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>信息</translation>
     </message>
     <message>
         <source>Draft</source>
-        <translation type="unfinished"></translation>
+        <translation>草稿</translation>
     </message>
     <message>
         <source>Latest release</source>
-        <translation type="unfinished">最新发布</translation>
+        <translation>最新发布</translation>
     </message>
     <message>
         <source>Pre-release</source>
-        <translation type="unfinished"></translation>
+        <translation>预发布</translation>
     </message>
 </context>
 <context>
     <name>ReleasesListPage</name>
     <message>
         <source>Releases</source>
-        <translation type="unfinished"></translation>
+        <translation>发布</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished">分类</translation>
+        <translation>分类</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished">创建于</translation>
+        <translation>创建于</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">名称</translation>
+        <translation>名称</translation>
     </message>
     <message>
         <source>No releases available</source>
-        <translation type="unfinished"></translation>
+        <translation>暂无可用发布</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
 </context>
@@ -754,7 +754,7 @@
     </message>
     <message>
         <source>Releases</source>
-        <translation type="unfinished"></translation>
+        <translation>发布</translation>
     </message>
 </context>
 <context>
@@ -1000,24 +1000,24 @@
     <name>SettingsNotificationPage</name>
     <message>
         <source>Notification Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>通知设置</translation>
     </message>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished">通知</translation>
+        <translation>通知</translation>
     </message>
     <message>
         <source>Get notified of activities on your GitHub account.</source>
-        <translation type="unfinished"></translation>
+        <translation>获取你的 GitHub 帐户通知</translation>
     </message>
     <message>
         <source>Update Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>更新间隔</translation>
     </message>
     <message numerus="yes">
         <source>%n min(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 分钟</numerusform>
         </translation>
     </message>
 </context>
@@ -1045,11 +1045,11 @@
     </message>
     <message>
         <source>Notification</source>
-        <translation type="unfinished"></translation>
+        <translation>通知</translation>
     </message>
     <message>
         <source>Manage notification options</source>
-        <translation type="unfinished"></translation>
+        <translation>管理通知选项</translation>
     </message>
 </context>
 <context>
