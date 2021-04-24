@@ -33,6 +33,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Labels (Issue / Pull Request) [*R*]
 - Reaction (Comment / Issue / Pull Request) [*RU*]
 - Releases [*R*]
+- Release Assets [*R*]
 - Notification (Unreaded) [*R*]
 
 ## Implemented Social Features

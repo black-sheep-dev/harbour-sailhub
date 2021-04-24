@@ -112,12 +112,33 @@ Page {
                 width: parent.width
 
                 label: qsTr("Assets")
+                icon: "image://theme/icon-m-levels"
                 value: release.assetCount
 
                 onClicked: pageStack.push(Qt.resolvedUrl("ReleaseAssetsListPage.qml"), {
                                               description: release.name,
                                               identifier: release.nodeId
                                           })
+            }
+
+            RelatedValueItem {
+                width: parent.width
+
+                label: qsTr("Source code") + " (zip)"
+                icon: "image://theme/icon-m-file-archive-folder"
+                showValue: false
+
+                onClicked: Qt.openUrlExternally("https://github.com/" + release.repository + "/archive/refs/tags/" + release.tagName + ".zip")
+            }
+
+            RelatedValueItem {
+                width: parent.width
+
+                label: qsTr("Source code") + " (tar.gz)"
+                icon: "image://theme/icon-m-file-archive-folder"
+                showValue: false
+
+                onClicked: Qt.openUrlExternally("https://github.com/" + release.repository + "/archive/refs/tags/" + release.tagName + ".tar.gz")
             }
         }
     }

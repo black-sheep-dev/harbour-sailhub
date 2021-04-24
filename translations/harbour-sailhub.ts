@@ -679,6 +679,10 @@
         <source>Content</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Source code</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ReleasesListPage</name>

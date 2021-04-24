@@ -31,6 +31,7 @@ LIBS += -lz
 SOURCES += src/harbour-sailhub.cpp \
     src/api/apiinterface.cpp \
     src/api/datautils.cpp \
+    src/api/downloader.cpp \
     src/api/graphqlconnector.cpp \
     src/api/keys.cpp \
     src/api/queryvars.cpp \
@@ -162,6 +163,7 @@ RESOURCES += \
 HEADERS += \
     src/api/apiinterface.h \
     src/api/datautils.h \
+    src/api/downloader.h \
     src/api/graphqlconnector.h \
     src/api/graphqlquery.h \
     src/api/keys.h \

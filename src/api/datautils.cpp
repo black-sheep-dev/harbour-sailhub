@@ -451,7 +451,7 @@ QList<ReleaseAssetListItem> DataUtils::releaseAssetListItemsFromJson(const QJson
         item.contentType = asset.value(ApiKey::CONTENT_TYPE).toString();
         item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
         item.downloadCount = asset.value(ApiKey::DOWNLOAD_COUNT).toInt();
-        item.contentType = asset.value(ApiKey::DOWNLOAD_URL).toString();
+        item.downloadUrl = asset.value(ApiKey::DOWNLOAD_URL).toString();
         item.name = asset.value(ApiKey::NAME).toString();
         item.size = asset.value(ApiKey::SIZE).toInt();
         item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);

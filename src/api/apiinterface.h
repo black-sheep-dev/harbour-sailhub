@@ -7,8 +7,10 @@
 #include <QHash>
 #include <QNetworkAccessManager>
 
+#include "downloader.h"
 #include "graphqlconnector.h"
 #include "restapiconnector.h"
+
 #include "src/entities/user.h"
 #include "src/models/commentsmodel.h"
 #include "src/models/issuesmodel.h"
@@ -79,6 +81,7 @@ public:
 
     explicit ApiInterface(QObject *parent = nullptr);
 
+    //Q_INVOKABLE Downloader *downloader();
     void setToken(const QString &token);
     Q_INVOKABLE QString token() const;
 
@@ -161,6 +164,7 @@ private:
     void parseRepoSubscription(const QJsonObject &obj);
     void parseRepoTree(const QJsonObject &obj, const QByteArray &requestId);
 
+    //Downloader *m_downloader{nullptr};
     GraphQLConnector *m_graphqlConnector{nullptr};
     RestApiConnector *m_restApiConnector{nullptr};
 

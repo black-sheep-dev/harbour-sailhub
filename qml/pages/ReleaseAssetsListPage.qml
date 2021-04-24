@@ -64,7 +64,15 @@ Page {
             menu: ContextMenu {
                 MenuItem {
                     text: qsTr("Download")
+                    //onClicked: SailHub.api().downloader().download(model.downloadUrl, model.name)
+                    onClicked: Qt.openUrlExternally(model.downloadUrl)
                 }
+            }
+
+            Connections {
+                target: SailHub.api().downloader()
+                onDownloadProgress: if (url === model.downloadUrl) delegate.downloadProgress = percentage
+                onFinished: if (url === model.downloadUrl) delegate.downloadProgress = 100
             }
         }
 
