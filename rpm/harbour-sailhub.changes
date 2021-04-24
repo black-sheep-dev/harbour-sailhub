@@ -1,3 +1,9 @@
+* Sat Apr 24 2021 Black Sheep <blacksheep@nubecula.org> 0.0.20-1
+- Add release assets functionality
+- UI improvements
+- Bugfixes
+- Translation updates
+
 * Fri Apr 23 2021 Black Sheep <blacksheep@nubecula.org> 0.0.19-1
 - Fixed a bug in organizations list page
 - Improved releases functionality
