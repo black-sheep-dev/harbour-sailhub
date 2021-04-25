@@ -56,43 +56,43 @@
     <name>AssignUserDialog</name>
     <message>
         <source>Assign User</source>
-        <translation type="unfinished"></translation>
+        <translation>分配用户</translation>
     </message>
     <message>
         <source>Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>分配</translation>
     </message>
     <message>
         <source>No users available</source>
-        <translation type="unfinished">没有可用用户</translation>
+        <translation>暂无可用用户</translation>
     </message>
 </context>
 <context>
     <name>AssigneesListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>Assign user</source>
-        <translation type="unfinished"></translation>
+        <translation>分配用户</translation>
     </message>
     <message>
         <source>No users available</source>
-        <translation type="unfinished">没有可用用户</translation>
+        <translation>暂无可用用户</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>移除</translation>
     </message>
     <message>
         <source>Remove user from assignees</source>
-        <translation type="unfinished"></translation>
+        <translation>从被分配者中移除帐户</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
 </context>
@@ -653,25 +653,25 @@
     <name>ReleaseAssetsListPage</name>
     <message>
         <source>Release Assets</source>
-        <translation type="unfinished"></translation>
+        <translation>发布资产</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>No assets available</source>
-        <translation type="unfinished"></translation>
+        <translation>没有可用资产</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>下载</translation>
     </message>
 </context>
 <context>
@@ -717,15 +717,15 @@
     </message>
     <message>
         <source>Assets</source>
-        <translation type="unfinished"></translation>
+        <translation>资产</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>内容</translation>
     </message>
     <message>
         <source>Source code</source>
-        <translation type="unfinished"></translation>
+        <translation>源代码</translation>
     </message>
 </context>
 <context>
@@ -839,7 +839,7 @@
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>内容</translation>
     </message>
 </context>
 <context>
