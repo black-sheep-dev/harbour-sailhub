@@ -52,6 +52,7 @@ class User : public Node
 public:    
     enum UserType {
         Undefined,
+        Assignable,
         Contributor,
         Follower,
         Following,

@@ -66,12 +66,17 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
         issue = new Issue;
 
     issue->setNodeId(obj.value(ApiKey::ID).toString());
+    issue->setAssigneeCount(getTotalCount(obj.value(ApiKey::ASSIGNEES).toObject()));
     issue->setTitle(obj.value(ApiKey::TITLE).toString());
     issue->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
     issue->setCreatedAtTimeSpan(timeSpanText(issue->createdAt(), true));
     issue->setNumber(obj.value(ApiKey::NUMBER).toInt());
-    issue->setRepository(obj.value(ApiKey::REPOSITORY).toObject()
-                         .value(ApiKey::NAME_WITH_OWNER).toString());
+
+    const QJsonObject repo = obj.value(ApiKey::REPOSITORY).toObject();
+    issue->setRepository(repo.value(ApiKey::NAME_WITH_OWNER).toString());
+    issue->setRepositoryId(repo.value(ApiKey::ID).toString());
+    issue->setRepositoryPermission(getViewerPermission(repo.value(ApiKey::VIEWER_PERMISSION).toString()));
+
     issue->setStates(obj.value(ApiKey::STATE).toInt());
     issue->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
     issue->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
@@ -512,6 +517,9 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
         repo->setOwner(owner);
     }
 
+    // permisson
+    repo->setViewerPermission(getViewerPermission(obj.value(ApiKey::VIEWER_PERMISSION).toString()));
+
     // subscription
     const QString subscription = obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString();
     if (subscription == QLatin1String("IGNORED")) {
@@ -730,6 +738,27 @@ QString DataUtils::timeSpanText(const QDateTime &start, bool shortText)
 
     const quint64 years = start.daysTo(now) / 365;
     return shortText ? QStringLiteral("%1y").arg(years) : QObject::tr("%n year(s) ago", "", years);
+}
+
+quint8 DataUtils::getViewerPermission(const QString &permission)
+{
+    if (permission == QLatin1String("ADMIN"))
+        return Repo::PermissionAdmin;
+
+    if (permission == QLatin1String("MAINTAIN"))
+        return Repo::PermissionMaintain;
+
+    if (permission == QLatin1String("READ"))
+        return Repo::PermissionRead;
+
+    if (permission == QLatin1String("TRIAGE"))
+        return Repo::PermissionTriage;
+
+    if (permission == QLatin1String("WRITE"))
+        return Repo::PermissionWrite;
+
+
+    return Repo::PermissionNone;
 }
 
 quint32 DataUtils::getViewerAbilities(const QJsonObject &obj)

@@ -14,6 +14,22 @@ static const QString SAILHUB_MUTATION_VAR_INPUT               = QStringLiteral("
 // MUTATIONS
 // ------------------------------------------------------------------------------------------------------------------
 
+// ASSIGN USERS TO ASSIGNABLE
+static const QString SAILHUB_MUTATION_ASSIGN_USERS_TO_ASSIGNABLE =
+        QStringLiteral("mutation($input: AddAssigneesToAssignableInput!) {"
+                       "    addAssigneesToAssignable(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
+// UNASSIGN USERS FROM ASSIGNABLE
+static const QString SAILHUB_MUTATION_UNASSIGN_USERS_FROM_ASSIGNABLE =
+        QStringLiteral("mutation($input: RemoveAssigneesFromAssignableInput!) {"
+                       "    removeAssigneesFromAssignable(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
 // ADD COMMENT
 static const QString SAILHUB_MUTATION_ADD_COMMENT =
         QStringLiteral("mutation($input: AddCommentInput!) {"

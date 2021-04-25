@@ -11,7 +11,7 @@ ListItem {
 
     id: delegate
     width: parent.width
-    contentHeight: delegateContent.height
+    contentHeight: delegateContent.height + 2*Theme.paddingSmall
 
     Column {
         id: delegateContent

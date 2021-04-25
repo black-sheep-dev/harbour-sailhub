@@ -49,6 +49,7 @@ public:
         Undefined,
         AddComment,
         AddReaction,
+        AssignUsers,
         CloseIssue,
         CreateIssue,
         DeleteComment,
@@ -71,6 +72,7 @@ public:
         GetRepoTree,
         RemoveReaction,
         StarRepo,
+        UnassignUser,
         UnfollowUser,
         UnstarRepo,
         UpdateComment,
@@ -89,6 +91,7 @@ public:
     void getLogin();
     Q_INVOKABLE void addComment(const QString &body, const QString &subjectId);
     Q_INVOKABLE void addReaction(const QString &nodeId, quint8 reaction);
+    Q_INVOKABLE void assignUsers(const QString &nodeId, const QJsonArray &userIds);
     Q_INVOKABLE void closeIssue(const QString &nodeId);
     Q_INVOKABLE void createIssue(const QString &title, const QString &body, IssuesModel *model);
     Q_INVOKABLE void deleteComment(const QString &nodeId);
@@ -109,6 +112,7 @@ public:
     Q_INVOKABLE void starRepo(const QString &nodeId, bool star = true);
     Q_INVOKABLE void removeReaction(const QString &nodeId, quint8 reaction);
     Q_INVOKABLE void subscribeToRepo(const QString &nodeId, quint8 state);
+    Q_INVOKABLE void unassignUser(const QString &nodeId, const QString &userId);
     Q_INVOKABLE void updateComment(Comment *comment);
     Q_INVOKABLE void updateIssue(Issue *issue);
     Q_INVOKABLE void updateReactions(const QString &nodeId, quint8 before, quint8 after);
@@ -142,6 +146,8 @@ signals:
     void subscribedToRepo(const QString &nodeId, quint8 state);
     void userAvailable(User *user);
     void userFollowed(const QString &nodeId, bool following);
+    void userUnassigned(bool unassigned = true);
+    void usersAssigned(bool assigned = true);
 
     // properties
     void paginationCountChanged(quint8 count);

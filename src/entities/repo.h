@@ -46,10 +46,21 @@ class Repo : public Node
     Q_PROPERTY(quint32 stargazerCount READ stargazerCount WRITE setStargazerCount NOTIFY stargazerCountChanged)
     Q_PROPERTY(bool viewerCanSubscribe READ viewerCanSubscribe WRITE setViewerCanSubscribe NOTIFY viewerCanSubscribeChanged)
     Q_PROPERTY(bool viewerHasStarred READ viewerHasStarred WRITE setViewerHasStarred NOTIFY viewerHasStarredChanged)
+    Q_PROPERTY(quint8 viewerPermission READ viewerPermission WRITE setViewerPermission NOTIFY viewerPermissionChanged)
     Q_PROPERTY(quint8 viewerSubscription READ viewerSubscription WRITE setViewerSubscription NOTIFY viewerSubscriptionChanged)
     Q_PROPERTY(quint32 watcherCount READ watcherCount WRITE setWatcherCount NOTIFY watcherCountChanged)
 
 public:
+    enum RepoPermission {
+        PermissionNone,
+        PermissionAdmin,
+        PermissionMaintain,
+        PermissionRead,
+        PermissionTriage,
+        PermissionWrite
+    };
+    Q_ENUM(RepoPermission)
+
     enum RepoSubscription {
         SubscriptionIgnored,
         Subscribed,
@@ -87,6 +98,7 @@ public:
     quint32 stargazerCount() const;
     bool viewerCanSubscribe() const;
     bool viewerHasStarred() const;
+    quint8 viewerPermission() const;
     quint8 viewerSubscription() const;
     quint32 watcherCount() const;
 
@@ -108,8 +120,9 @@ signals:
     void stargazerCountChanged(quint32 count);
     void viewerCanSubscribeChanged(bool subscribable);
     void viewerHasStarredChanged(bool starred);
+    void viewerPermissionChanged(quint8 permission);
     void viewerSubscriptionChanged(quint8 state);
-    void watcherCountChanged(quint32 count); 
+    void watcherCountChanged(quint32 count);  
 
 public slots:
     void setBranches(const QStringList &branches);
@@ -129,6 +142,7 @@ public slots:
     void setStargazerCount(quint32 count);
     void setViewerCanSubscribe(bool subscribable);
     void setViewerHasStarred(bool starred);
+    void setViewerPermission(quint8 permission);
     void setViewerSubscription(quint8 state);
     void setWatcherCount(quint32 count);
 
@@ -150,8 +164,10 @@ private:
     quint32 m_releaseCount{0};
     bool m_viewerCanSubscribe{false};
     bool m_viewerHasStarred{false};
+    quint8 m_viewerPermission{PermissionNone};
     quint8 m_viewerSubscription{SubscriptionIgnored};
     quint32 m_watcherCount{0};
+
 };
 
 #endif // REPO_H

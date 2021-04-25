@@ -91,6 +91,11 @@ bool Repo::viewerHasStarred() const
     return m_viewerHasStarred;
 }
 
+quint8 Repo::viewerPermission() const
+{
+    return m_viewerPermission;
+}
+
 quint8 Repo::viewerSubscription() const
 {
     return m_viewerSubscription;
@@ -252,6 +257,15 @@ void Repo::setViewerHasStarred(bool starred)
 
     m_viewerHasStarred = starred;
     emit viewerHasStarredChanged(m_viewerHasStarred);
+}
+
+void Repo::setViewerPermission(quint8 permission)
+{
+    if (m_viewerPermission == permission)
+        return;
+
+    m_viewerPermission = permission;
+    emit viewerPermissionChanged(m_viewerPermission);
 }
 
 void Repo::setViewerSubscription(quint8 viewerSubscription)

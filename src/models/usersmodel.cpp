@@ -111,6 +111,27 @@ static const QString SAILHUB_QUERY_GET_PULL_REQUEST_PARTICIPANTS =
                        "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
 // GET REPOSITORY CONTRIBUTORS
+static const QString SAILHUB_QUERY_GET_REPOSITORY_ASSIGNABLE_USERS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on Repository {"
+                       "            id"
+                       "            assignableUsers(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET REPOSITORY CONTRIBUTORS
 static const QString SAILHUB_QUERY_GET_REPOSITORY_CONTRIBUTORS =
         QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
                        "    rateLimit {"
@@ -321,6 +342,12 @@ void UsersModel::parseQueryResult(const QJsonObject &data)
     QJsonObject users;
 
     switch (modelType()) {
+    case User::Assignable:
+        users = data.value(ApiKey::NODE).toObject()
+                    .value(ApiKey::ASSIGNABLE_USERS).toObject();
+        count = data.value(ApiKey::TOTAL_COUNT);
+        break;
+
     case User::Contributor:
         users = data.value(ApiKey::NODE).toObject()
                     .value(ApiKey::MENTIONABLE_USERS).toObject();
@@ -401,6 +428,10 @@ GraphQLQuery UsersModel::query() const
 
     case User::OrganizationMember:
         query.query = SAILHUB_QUERY_GET_ORGANIZATION_MEMBERS;
+        break;
+
+    case User::Assignable:
+        query.query = SAILHUB_QUERY_GET_REPOSITORY_ASSIGNABLE_USERS;
         break;
 
     case User::Contributor:

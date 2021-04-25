@@ -54,6 +54,7 @@ public:
     static QString timeSpanText(const QDateTime &start, bool shortText = false);
 
 private:
+    static quint8 getViewerPermission(const QString &permission);
     static quint32 getViewerAbilities(const QJsonObject &obj);
     static QJsonArray getNodes(const QJsonObject &obj);
     static void getInteractable(const QJsonObject &obj, Interactable *node);

@@ -34,6 +34,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Reaction (Comment / Issue / Pull Request) [*RU*]
 - Releases [*R*]
 - Release Assets [*R*]
+- Assignee (Issue / Pull Request) [*CRUD*]
 - Notification (Unreaded) [*R*]
 
 ## Implemented Social Features
@@ -42,6 +43,10 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Watch / Star repository
 - Commenting (Issue / Pull Requests)
 - Reactions (Comment / Issue / Pull Request)
+
+## Administration Features
+
+- Assign users to issues and pull requests
 
 ## Planned Features
 - Code highlighting

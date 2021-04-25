@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.20
+VERSION = 0.0.21
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -91,6 +91,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/delegates/ReleaseListDelegate.qml \
     qml/delegates/RepoListDelegate.qml \
     qml/delegates/UserListDelegate.qml \
+    qml/dialogs/AssignUserDialog.qml \
     qml/dialogs/EditCommentDialog.qml \
     qml/dialogs/EditIssueDialog.qml \
     qml/dialogs/ReactionDialog.qml \
@@ -98,6 +99,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
     qml/dialogs/SortSelectionDialog.qml \
     qml/js/stringhelper.js \
+    qml/pages/AssigneesListPage.qml \
     qml/pages/CommentPage \
     qml/pages/CommentPage.qml \
     qml/pages/CommentsListPage.qml \
