@@ -3,6 +3,9 @@
 // ApiKey
 const QString ApiKey::ABBREVIATED_OID               = QStringLiteral("abbreviatedOid");
 const QString ApiKey::ADD_STAR                      = QStringLiteral("addStar");
+const QString ApiKey::ASSIGNABLE_ID                 = QStringLiteral("assignableId");
+const QString ApiKey::ASSIGNABLE_USERS              = QStringLiteral("assignableUsers");
+const QString ApiKey::ASSIGNEE_IDS                  = QStringLiteral("assigneeIds");
 const QString ApiKey::ASSIGNEES                     = QStringLiteral("assignees");
 const QString ApiKey::AUTHOR                        = QStringLiteral("author");
 const QString ApiKey::AVATAR_URL                    = QStringLiteral("avatarUrl");
@@ -131,6 +134,7 @@ const QString ApiKey::VIEWER_IS_FOLLOWING           = QStringLiteral("viewerIsFo
 const QString ApiKey::VIEWER_IS_SPONSORING          = QStringLiteral("viewerIsSponsoring");
 const QString ApiKey::VIEWER_HAS_REACTED            = QStringLiteral("viewerHasReacted");
 const QString ApiKey::VIEWER_HAS_STARRED            = QStringLiteral("viewerHasStarred");
+const QString ApiKey::VIEWER_PERMISSION             = QStringLiteral("viewerPermission");
 const QString ApiKey::VIEWER_SUBSCRIPTION           = QStringLiteral("viewerSubscription");
 const QString ApiKey::WATCHERS                      = QStringLiteral("watchers");
 const QString ApiKey::WEBSITE_URL                   = QStringLiteral("websiteUrl");

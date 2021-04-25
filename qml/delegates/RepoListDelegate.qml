@@ -9,18 +9,13 @@ ListItem {
 
     id: delegate
     width: parent.width
-    contentHeight: delegateColumn.height
+    contentHeight: delegateColumn.height + 2*Theme.paddingSmall
 
     Column {
         id: delegateColumn
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
         spacing: Theme.paddingSmall
-
-        Item {
-            width: 1
-            height: Theme.paddingSmall
-        }
 
         Row {
             width: parent.width

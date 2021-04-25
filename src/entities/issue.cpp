@@ -46,6 +46,16 @@ QString Issue::repository() const
     return m_repository;
 }
 
+quint8 Issue::repositoryPermission() const
+{
+    return m_repositoryPermission;
+}
+
+QString Issue::repositoryId() const
+{
+    return m_repositoryId;
+}
+
 quint8 Issue::states() const
 {
     return m_states;
@@ -131,6 +141,24 @@ void Issue::setRepository(const QString &repository)
 
     m_repository = repository;
     emit repositoryChanged(m_repository);
+}
+
+void Issue::setRepositoryId(const QString &id)
+{
+    if (m_repositoryId == id)
+        return;
+
+    m_repositoryId = id;
+    emit repositoryIdChanged(m_repositoryId);
+}
+
+void Issue::setRepositoryPermission(quint8 permission)
+{
+    if (m_repositoryPermission == permission)
+        return;
+
+    m_repositoryPermission = permission;
+    emit repositoryPermissionChanged(m_repositoryPermission);
 }
 
 void Issue::setStates(quint8 states)

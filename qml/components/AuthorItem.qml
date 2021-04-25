@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 
 BackgroundItem {
     property bool interactive: true
-    property alias avatar: avatarIcon.source
+    property string avatar
     property alias subtitle: subtitleLabel.text
     property alias title: titleLabel.text
 
@@ -24,6 +24,8 @@ BackgroundItem {
             anchors.verticalCenter: parent.verticalCenter
 
             fallbackItemVisible: false
+
+            source: avatar + "?size=" + width
 
             BusyIndicator {
                 size: BusyIndicatorSize.Medium

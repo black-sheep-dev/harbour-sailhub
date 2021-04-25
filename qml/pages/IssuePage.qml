@@ -24,7 +24,7 @@ Page {
                     page.busy = true
                     SailHub.api().getIssue(page.nodeId)
                 }
-            }
+            }     
             MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanUpdate
                 text: qsTr("Edit issue")
@@ -210,16 +210,14 @@ Page {
                 icon: "image://theme/icon-m-media-artists"
                 value: issue.assigneeCount
 
-                onClicked: {
-                    if (issue.assigneeCount === 0) return;
-
-                    pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
+                onClicked: pageStack.push(Qt.resolvedUrl("AssigneesListPage.qml"), {
                                               title: qsTr("Assignees"),
                                               description: issue.repository + " #" + issue.number,
                                               identifier: issue.nodeId,
-                                              userType: User.IssueAssignee
+                                              userType: User.IssueAssignee,
+                                              repoId: issue.repositoryId,
+                                              permission: issue.repositoryPermission
                                           })
-                }
             }
 
             RelatedValueItem {

@@ -202,16 +202,14 @@ Page {
                 icon: "image://theme/icon-m-media-artists"
                 value: request.assigneeCount
 
-                onClicked: {
-                    if (request.assigneeCount === 0) return;
-
-                    pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
+                onClicked: pageStack.push(Qt.resolvedUrl("AssigneesListPage.qml"), {
                                               title: qsTr("Assignees"),
                                               description: request.repository + " #" + request.number,
                                               identifier: request.nodeId,
-                                              userType: User.PullRequestAssignee
+                                              userType: User.PullRequestAssignee,
+                                              repoId: request.repositoryId,
+                                              permission: request.repositoryPermission
                                           })
-                }
             }
 
             RelatedValueItem {

@@ -53,6 +53,50 @@
     </message>
 </context>
 <context>
+    <name>AssignUserDialog</name>
+    <message>
+        <source>Assign User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assign</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No users available</source>
+        <translation type="unfinished">没有可用用户</translation>
+    </message>
+</context>
+<context>
+    <name>AssigneesListPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Assign user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No users available</source>
+        <translation type="unfinished">没有可用用户</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove user from assignees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>CommentItem</name>
     <message>
         <source>Edited</source>

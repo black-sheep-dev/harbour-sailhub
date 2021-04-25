@@ -34,6 +34,8 @@ class Issue : public Interactable
     Q_PROPERTY(quint32 number READ number WRITE setNumber NOTIFY numberChanged)
     Q_PROPERTY(quint32 participantCount READ participantCount WRITE setParticipantCount NOTIFY participantCountChanged)
     Q_PROPERTY(QString repository READ repository WRITE setRepository NOTIFY repositoryChanged)
+    Q_PROPERTY(QString repositoryId READ repositoryId WRITE setRepositoryId NOTIFY repositoryIdChanged)
+    Q_PROPERTY(quint8 repositoryPermission READ repositoryPermission WRITE setRepositoryPermission NOTIFY repositoryPermissionChanged)
     Q_PROPERTY(quint8 states READ states WRITE setStates NOTIFY statesChanged)
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
     Q_PROPERTY(QDateTime updatedAt READ updatedAt WRITE setUpdatedAt NOTIFY updatedAtChanged)
@@ -70,6 +72,8 @@ public:
     quint32 number() const;
     quint32 participantCount() const;
     QString repository() const;
+    quint8 repositoryPermission() const;
+    QString repositoryId() const;
     quint8 states() const;
     QString title() const;
     QDateTime updatedAt() const; 
@@ -84,9 +88,13 @@ signals:
     void numberChanged(quint32 number);
     void participantCountChanged(quint32 count);
     void repositoryChanged(const QString &repository);
+    void repositoryIdChanged(const QString &id);
+    void repositoryPermissionChanged(quint8 permission);
     void statesChanged(quint8 states);
     void titleChanged(const QString &title);
-    void updatedAtChanged(const QDateTime &timestamp);
+    void updatedAtChanged(const QDateTime &timestamp); 
+
+
 
 public slots:
     // properties
@@ -98,13 +106,14 @@ public slots:
     void setNumber(quint32 number);
     void setParticipantCount(quint32 count);
     void setRepository(const QString &repository);
+    void setRepositoryId(const QString &id);
+    void setRepositoryPermission(quint8 permission);
     void setStates(quint8 states);
     void setTitle(const QString &title);
     void setUpdatedAt(const QDateTime &timestamp); 
 
 private:
     // properties
-
     quint32 m_assigneeCount{0};
     quint32 m_commentCount{0};
     QDateTime m_createdAt;
@@ -113,6 +122,8 @@ private:
     quint32 m_number{0};
     quint32 m_participantCount{0};
     QString m_repository;
+    QString m_repositoryId;
+    quint8 m_repositoryPermission{0};
     quint8 m_states{StateUnknown};
     QString m_title;
     QDateTime m_updatedAt;

@@ -6,6 +6,9 @@
 struct ApiKey {
     static const QString ABBREVIATED_OID;
     static const QString ADD_STAR;
+    static const QString ASSIGNABLE_ID;
+    static const QString ASSIGNABLE_USERS;
+    static const QString ASSIGNEE_IDS;
     static const QString ASSIGNEES;
     static const QString AUTHOR;
     static const QString AVATAR_URL;
@@ -134,6 +137,7 @@ struct ApiKey {
     static const QString VIEWER_IS_SPONSORING;
     static const QString VIEWER_HAS_REACTED;
     static const QString VIEWER_HAS_STARRED;
+    static const QString VIEWER_PERMISSION;
     static const QString VIEWER_SUBSCRIPTION;
     static const QString WATCHERS;
     static const QString WEBSITE_URL;
