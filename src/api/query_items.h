@@ -6,6 +6,25 @@
 // ------------------------------------------------------------------------------------------------------------------
 // QUERY ITEMS
 // ------------------------------------------------------------------------------------------------------------------
+static const QString SAILHUB_QUERY_ITEM_GIST_LIST_ITEM =
+        QStringLiteral("    id"
+                       "    comments {"
+                       "        totalCount"
+                       "    }"
+                       "    createdAt"
+                       "    description"
+                       "    forks {"
+                       "        totalCount"
+                       "    }"
+                       "    isPublic"
+                       "    owner {"
+                       "        avatarUrl"
+                       "        login"
+                       "    }"
+                       "    pushedAt"
+                       "    stargazerCount"
+                       "    updatedAt").simplified();
+
 static const QString SAILHUB_QUERY_ITEM_COMMENT =
         QStringLiteral("    id"
                        "    author {"
@@ -146,6 +165,9 @@ static const QString SAILHUB_QUERY_ITEM_USER =
                        "        totalCount"
                        "    }"
                        "    following {"
+                       "        totalCount"
+                       "    }"
+                       "    gists ( privacy: ALL ) {"
                        "        totalCount"
                        "    }"
                        "    location"

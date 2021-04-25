@@ -9,6 +9,41 @@
 // QUERIES
 // ------------------------------------------------------------------------------------------------------------------
 
+// GET GIST
+static const QString SAILHUB_QUERY_GET_GIST =
+        QStringLiteral("query($nodeId: ID!) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on Gist {"
+                       "            id"
+                       "            comments {"
+                       "                totalCount"
+                       "            }"
+                       "            createdAt"
+                       "            description"
+                       "            forks {"
+                       "                totalCount"
+                       "            }"
+                       "            isFork"
+                       "            isPublic"
+                       "            name"
+                       "            owner {"
+                       "                id"
+                       "                avatarUrl"
+                       "                login"
+                       "            }"
+                       "            pushedAt"
+                       "            stargazerCount"
+                       "            updatedAt"
+                       "            viewerHasStarred"
+                       "        }"
+                       "    }"
+                       "    "
+                       "}").simplified();
+
 // GET ISSUE
 static const QString SAILHUB_QUERY_GET_ISSUE =
         QStringLiteral("query($nodeId: ID!) {"

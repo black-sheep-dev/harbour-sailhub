@@ -38,6 +38,7 @@ class User : public Node
     Q_PROPERTY(QString company READ company WRITE setCompany NOTIFY companyChanged)
     Q_PROPERTY(quint32 followers READ followers WRITE setFollowers NOTIFY followersChanged)
     Q_PROPERTY(quint32 following READ following WRITE setFollowing NOTIFY followingChanged)
+    Q_PROPERTY(quint32 gistCount READ gistCount WRITE setGistCount NOTIFY gistCountChanged)
     Q_PROPERTY(QString location READ location WRITE setLocation NOTIFY locationChanged)
     Q_PROPERTY(QString login READ login WRITE setLogin NOTIFY loginChanged)
     Q_PROPERTY(bool isViewer READ isViewer WRITE setIsViewer NOTIFY isViewerChanged)
@@ -75,6 +76,7 @@ public:
     QString company() const;
     quint32 followers() const;
     quint32 following() const;
+    quint32 gistCount() const;
     QString location() const;
     QString login() const;
     bool isViewer() const;
@@ -93,6 +95,7 @@ signals:
     void companyChanged(const QString &company);
     void followersChanged(quint32 followers);
     void followingChanged(quint32 following);
+    void gistCountChanged(quint32 count);
     void locationChanged(const QString &location);
     void loginChanged(const QString &login);
     void isViewerChanged(bool isViewer);
@@ -111,6 +114,7 @@ public slots:
     void setCompany(const QString &company);
     void setFollowers(quint32 followers);
     void setFollowing(quint32 following);
+    void setGistCount(quint32 count);
     void setLocation(const QString &location);
     void setLogin(const QString &login);
     void setIsViewer(bool isViewer);
@@ -129,6 +133,7 @@ private:
     QString m_company;
     quint32 m_followers{0};
     quint32 m_following{0};
+    quint32 m_gistCount{0};
     QString m_location;
     QString m_login;
     bool m_isViewer{false};
@@ -139,7 +144,6 @@ private:
     QString m_twitterUsername;
     bool m_viewerIsFollowing{false};
     QString m_websiteUrl;
-
 };
 
 #endif // USER_H

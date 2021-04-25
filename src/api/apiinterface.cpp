@@ -200,6 +200,15 @@ void ApiInterface::getFileContent(const QString &nodeId, const QString &branch)
     m_graphqlConnector->sendQuery(query, RequestType::GetFileContent);
 }
 
+void ApiInterface::getGist(const QString &nodeId)
+{
+    GraphQLQuery query;
+    query.query = SAILHUB_QUERY_GET_GIST;
+    query.variables.insert(QueryVar::NODE_ID, nodeId);
+
+    m_graphqlConnector->sendQuery(query, RequestType::GetGist);
+}
+
 void ApiInterface::getIssue(const QString &nodeId)
 {
     GraphQLQuery query;
@@ -587,10 +596,14 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     case RequestType::GetIssue:
         emit issueAvailable(DataUtils::issueFromJson(data.value(ApiKey::NODE).toObject()));
-        break;
+        break;     
 
     case RequestType::GetPullRequest:
         emit pullRequestAvailable(DataUtils::pullRequestFromJson(data.value(ApiKey::NODE).toObject()));
+        break;
+
+    case RequestType::GetGist:
+        emit gistAvailable(DataUtils::gistFromJson(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::AddComment:

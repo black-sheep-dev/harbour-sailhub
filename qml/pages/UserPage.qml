@@ -214,6 +214,18 @@ Page {
                 }
             }
             RelatedValueItem {
+                label: qsTr("Gists")
+                value: user.gistCount
+
+                onClicked: {
+                    if (user.gistCount === 0) return;
+
+                    pageStack.push(Qt.resolvedUrl("GistsListPage.qml"), {
+                                                                  identifier: user.nodeId
+                                                              })
+                }
+            }
+            RelatedValueItem {
                 label: qsTr("Organizations")
                 value: user.organizations
 

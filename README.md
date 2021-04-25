@@ -22,20 +22,21 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 ## Implemented CRUD Features
 Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 
-- Repository [*RS*]
-- Organization [*RS*]
-- User [*RS*]
-- Issue [*CRUD*] + close
+- Assignee (Issue / Pull Request) [*CRUD*]
 - Comment (Issue / Pull Request) [*CRUD*]
-- Pull request [*R*]
-- Repository files [*R*]
 - File content [*R*]
+- Gists [*R*]
+- Issue [*CRUD*] + close
 - Labels (Issue / Pull Request) [*R*]
+- Notification (Unreaded) [*R*]
+- Organization [*RS*]
+- Pull request [*R*]
 - Reaction (Comment / Issue / Pull Request) [*RU*]
 - Releases [*R*]
 - Release Assets [*R*]
-- Assignee (Issue / Pull Request) [*CRUD*]
-- Notification (Unreaded) [*R*]
+- Repository [*RS*]
+- Repository files [*R*]
+- User [*RS*]
 
 ## Implemented Social Features
 
@@ -44,13 +45,12 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Commenting (Issue / Pull Requests)
 - Reactions (Comment / Issue / Pull Request)
 
-## Administration Features
+## Administrative Features
 
 - Assign users to issues and pull requests
 
 ## Planned Features
 - Code highlighting
-- Gist
 - Commits
 - Packages
 - Discussion

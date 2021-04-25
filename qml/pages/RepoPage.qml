@@ -207,7 +207,7 @@ Page {
                     width: parent.width / 3
 
                     title: qsTr("%n Fork(s)", "0", repo.forkCount)
-                    icon: "qrc:///icons/fork"
+                    icon: "qrc:///icons/icon-m-fork"
 
                     onClicked: {
                         if (repo.forkCount === 0) return;

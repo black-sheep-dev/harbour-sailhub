@@ -38,6 +38,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/restapiconnector.cpp \
     src/entities/comment.cpp \
     src/entities/file.cpp \
+    src/entities/gist.cpp \
     src/entities/interactable.cpp \
     src/entities/issue.cpp \
     src/entities/label.cpp \
@@ -51,6 +52,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/repo.cpp \
     src/entities/user.cpp \
     src/models/commentsmodel.cpp \
+    src/models/gistsmodel.cpp \
     src/models/issuesmodel.cpp \
     src/models/labelsmodel.cpp \
     src/models/notificationsmodel.cpp \
@@ -83,6 +85,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/cover/CoverPage.qml \
     qml/delegates/AssetListDelegate.qml \
     qml/delegates/CommentListDelegate.qml \
+    qml/delegates/GistListDelegate.qml \
     qml/delegates/IssueListDelegate.qml \
     qml/delegates/LabelListDelegate.qml \
     qml/delegates/NotificationListDelegate.qml \
@@ -103,6 +106,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/CommentPage \
     qml/pages/CommentPage.qml \
     qml/pages/CommentsListPage.qml \
+    qml/pages/GistsListPage.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
     qml/pages/IssueSelectionPage.qml \
@@ -177,6 +181,7 @@ HEADERS += \
     src/api/restapiconnector.h \
     src/entities/comment.h \
     src/entities/file.h \
+    src/entities/gist.h \
     src/entities/interactable.h \
     src/entities/issue.h \
     src/entities/label.h \
@@ -195,6 +200,7 @@ HEADERS += \
     src/entities/user.h \
     src/entities/viewer.h \
     src/models/commentsmodel.h \
+    src/models/gistsmodel.h \
     src/models/issuesmodel.h \
     src/models/labelsmodel.h \
     src/models/notificationsmodel.h \

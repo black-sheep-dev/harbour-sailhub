@@ -5,6 +5,7 @@
 
 #include "src/entities/comment.h"
 #include "src/entities/file.h"
+#include "src/entities/gist.h"
 #include "src/entities/issue.h"
 #include "src/entities/label.h"
 #include "src/entities/organization.h"
@@ -23,6 +24,9 @@ public:
     // entities
     static Comment *commentFromJson(const QJsonObject &obj);
     static QList<Comment *> commentsFromJson(const QJsonObject &obj);
+    static Gist *gistFromJson(const QJsonObject &obj, Gist *gist = nullptr);
+    static GistListItem gistListItemFromJson(const QJsonObject &obj);
+    static QList<GistListItem> gistsFromJson(const QJsonObject &obj);
     static Issue *issueFromJson(const QJsonObject &obj, Issue *issue = nullptr);
     static IssueListItem issueListItemFromJson(const QJsonObject &obj);
     static QList<IssueListItem> issuesFromJson(const QJsonObject &obj);

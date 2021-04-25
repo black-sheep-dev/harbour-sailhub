@@ -13,6 +13,7 @@
 
 #include "src/entities/user.h"
 #include "src/models/commentsmodel.h"
+#include "src/models/gistsmodel.h"
 #include "src/models/issuesmodel.h"
 #include "src/models/labelsmodel.h"
 #include "src/models/notificationsmodel.h"
@@ -56,6 +57,7 @@ public:
         DeleteIssue,
         FollowUser,
         GetFileContent,
+        GetGist,
         GetIssue,
         GetLogin,
         GetNotifications,
@@ -98,6 +100,7 @@ public:
     Q_INVOKABLE void deleteIssue(const QString &nodeId);
     Q_INVOKABLE void followUser(const QString &nodeId, bool follow = true);
     Q_INVOKABLE void getFileContent(const QString &nodeId, const QString &branch);
+    Q_INVOKABLE void getGist(const QString &nodeId);
     Q_INVOKABLE void getIssue(const QString &nodeId);
     Q_INVOKABLE void getNotifications(NotificationsModel *model = nullptr);
     Q_INVOKABLE void getOrganization(const QString &nodeId);
@@ -133,6 +136,7 @@ signals:
     void commentAdded(bool added = true);
     void commentDeleted(bool deleted = true);
     void fileContentAvailable(const QString &content);
+    void gistAvailable(Gist *gist);
     void issueClosed(bool closed = true);
     void issueCreated(bool created = true);
     void issueDeleted(bool deleted = true);

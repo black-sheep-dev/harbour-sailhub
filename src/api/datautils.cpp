@@ -60,12 +60,77 @@ QList<Comment *> DataUtils::commentsFromJson(const QJsonObject &obj)
     return comments;
 }
 
+Gist *DataUtils::gistFromJson(const QJsonObject &obj, Gist *gist)
+{
+    if (gist == nullptr)
+        gist = new Gist;
+
+    gist->setNodeId(obj.value(ApiKey::ID).toString());
+    gist->setName(obj.value(ApiKey::NAME).toString());
+
+    gist->setCommetCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
+    gist->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    gist->setDescription(obj.value(ApiKey::DESCRIPTION).toString());
+    gist->setForkCount(getTotalCount(obj.value(ApiKey::FORKS).toObject()));
+    gist->setIsFork(obj.value(ApiKey::IS_FORK).toBool());
+    gist->setIsPublic(obj.value(ApiKey::IS_PUBLIC).toBool());
+    gist->setOwner(ownerFromJson(obj.value(ApiKey::OWNER).toObject()));
+    gist->setPushedAt(QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate));
+    gist->setStargazerCount(obj.value(ApiKey::STARGAZER_COUNT).toInt());
+    gist->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
+    gist->setViewerHasStarred(obj.value(ApiKey::VIEWER_HAS_STARRED).toBool());
+
+    return gist;
+}
+
+GistListItem DataUtils::gistListItemFromJson(const QJsonObject &obj)
+{
+    GistListItem item;
+
+    item.nodeId = obj.value(ApiKey::ID).toString();
+
+    item.description = obj.value(ApiKey::DESCRIPTION).toString();
+    item.isPublic = obj.value(ApiKey::IS_PUBLIC).toBool();
+    item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
+    item.fileCount = getTotalCount(obj.value(ApiKey::FILES).toObject());
+    item.forkCount = getTotalCount(obj.value(ApiKey::FORKS).toObject());
+    item.stargazerCount = obj.value(ApiKey::STARGAZER_COUNT).toInt();
+    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    item.pushedAt = QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
+    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+
+    const QJsonObject owner = obj.value(ApiKey::OWNER).toObject();
+
+    item.ownerLogin = owner.value(ApiKey::LOGIN).toString();
+    item.ownerAvatar = owner.value(ApiKey::AVATAR_URL).toString();
+
+    return item;
+}
+
+QList<GistListItem> DataUtils::gistsFromJson(const QJsonObject &obj)
+{
+    QList<GistListItem> gists;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject gist = node.toObject();
+        if (gist.isEmpty())
+            continue;
+
+        gists.append(gistListItemFromJson(gist));
+    }
+
+    return gists;
+}
+
 Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
 {
     if (issue == nullptr)
         issue = new Issue;
 
     issue->setNodeId(obj.value(ApiKey::ID).toString());
+
     issue->setAssigneeCount(getTotalCount(obj.value(ApiKey::ASSIGNEES).toObject()));
     issue->setTitle(obj.value(ApiKey::TITLE).toString());
     issue->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
@@ -81,7 +146,6 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
     issue->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
     issue->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
     issue->setEdited(issue->updatedAt() > issue->createdAt());
-    issue->setAssigneeCount(getTotalCount(obj.value(ApiKey::ASSIGNEES).toObject()));
     issue->setLabelCount(getTotalCount(obj.value(ApiKey::LABELS).toObject()));
     issue->setParticipantCount(getTotalCount(obj.value(ApiKey::PARTICIPANTS).toObject()));
     issue->setViewerAbilities(getViewerAbilities(obj));
@@ -659,6 +723,7 @@ User *DataUtils::userFromJson(const QJsonObject &obj, User *user)
     user->setCompany(obj.value(ApiKey::COMPANY).toString());
     user->setFollowers(getTotalCount(obj.value(ApiKey::FOLLOWERS).toObject()));
     user->setFollowing(getTotalCount(obj.value(ApiKey::FOLLOWING).toObject()));
+    user->setGistCount(getTotalCount(obj.value(ApiKey::GISTS).toObject()));
     user->setLocation(obj.value(ApiKey::LOCATION).toString());
     user->setLogin(obj.value(ApiKey::LOGIN).toString());
     user->setIsViewer(obj.value(ApiKey::IS_VIEWER).toBool());

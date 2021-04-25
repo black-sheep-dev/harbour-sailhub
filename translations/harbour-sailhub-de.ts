@@ -223,6 +223,44 @@
     </message>
 </context>
 <context>
+    <name>GistsListPage</name>
+    <message>
+        <source>Gists</source>
+        <translation>Gists</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation>Sortierung</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation>Erstellt am</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation>Aktualisiert am</translation>
+    </message>
+    <message>
+        <source>Pushed at</source>
+        <translation>Gepushed am</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>No gists available</source>
+        <translation>Keine Gists verfügbar</translation>
+    </message>
+</context>
+<context>
     <name>ImageViewerPage</name>
     <message>
         <source>Height</source>
@@ -1258,6 +1296,10 @@
     <message>
         <source>Starred</source>
         <translation>Starred</translation>
+    </message>
+    <message>
+        <source>Gists</source>
+        <translation>Gists</translation>
     </message>
 </context>
 <context>

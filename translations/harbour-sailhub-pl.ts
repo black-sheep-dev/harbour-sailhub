@@ -225,6 +225,45 @@
     </message>
 </context>
 <context>
+    <name>GistsListPage</name>
+    <message>
+        <source>Gists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">Sortowanie</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">Utworzono</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished">Zaktualizowano</translation>
+    </message>
+    <message>
+        <source>Pushed at</source>
+        <translation type="unfinished">Pchnięte</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>No gists available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ImageViewerPage</name>
     <message>
         <source>Height</source>
@@ -1281,6 +1320,10 @@
     <message>
         <source>Starred</source>
         <translation>Oznaczone gwiazdką</translation>
+    </message>
+    <message>
+        <source>Gists</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
