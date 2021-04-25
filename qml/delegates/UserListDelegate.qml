@@ -8,19 +8,19 @@ import "../components/"
 ListItem {
     id: delegate
     width: parent.width
-    contentHeight: Theme.itemSizeLarge
+    contentHeight: contentRow.height + 2*Theme.paddingSmall
 
     Row {
+        id: contentRow
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
-        height: parent.height
         anchors.verticalCenter: parent.verticalCenter
         spacing: Theme.paddingMedium
 
         CircleImage {
             id: avatarIcon
-            width: parent.height - 2 * Theme.paddingSmall
-            source: model.avatarUrl
+            width: Theme.iconSizeLarge
+            source: model.avatarUrl + "?size=" + width
             anchors.verticalCenter: parent.verticalCenter
 
             fallbackItemVisible: false

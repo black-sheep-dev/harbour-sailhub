@@ -83,6 +83,24 @@ void ApiInterface::addReaction(const QString &nodeId, quint8 reaction)
     m_graphqlConnector->sendQuery(query, RequestType::AddReaction);
 }
 
+void ApiInterface::assignUsers(const QString &nodeId, const QJsonArray &userIds)
+{
+    if (userIds.isEmpty())
+        return;
+
+    GraphQLQuery query;
+    query.query = SAILHUB_MUTATION_ASSIGN_USERS_TO_ASSIGNABLE;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::ASSIGNABLE_ID, nodeId);
+    vars.insert(ApiKey::ASSIGNEE_IDS, userIds);
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_graphqlConnector->sendQuery(query, RequestType::AssignUsers);
+}
+
 void ApiInterface::closeIssue(const QString &nodeId)
 {
     if (m_profile == nullptr)
@@ -380,6 +398,21 @@ void ApiInterface::subscribeToRepo(const QString &nodeId, quint8 state)
     m_graphqlConnector->sendQuery(query, RequestType::UpdateRepoSubscription);
 }
 
+void ApiInterface::unassignUser(const QString &nodeId, const QString &userId)
+{
+    GraphQLQuery query;
+    query.query = SAILHUB_MUTATION_UNASSIGN_USERS_FROM_ASSIGNABLE;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::ASSIGNABLE_ID, nodeId);
+    vars.insert(ApiKey::ASSIGNEE_IDS, QJsonArray() << userId);
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_graphqlConnector->sendQuery(query, RequestType::UnassignUser);
+}
+
 void ApiInterface::updateComment(Comment *comment)
 {
     if (comment == nullptr)
@@ -603,6 +636,14 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
     case RequestType::GetProfile:
         emit profileChanged(DataUtils::userFromJson(data.value(ApiKey::VIEWER).toObject(), m_profile));
         setReady(true);
+        break;
+
+    case RequestType::AssignUsers:
+        emit usersAssigned();
+        break;
+
+    case RequestType::UnassignUser:
+        emit userUnassigned();
         break;
 
     case RequestType::CloseIssue:

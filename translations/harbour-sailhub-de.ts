@@ -53,6 +53,51 @@
     </message>
 </context>
 <context>
+    <name>AssignUserDialog</name>
+    <message>
+        <source>Assign User</source>
+        <translation>Benutzer beauftragen</translation>
+    </message>
+    <message>
+        <source>Assign</source>
+        <translation>Beauftragen</translation>
+    </message>
+    <message>
+        <source>No users available</source>
+        <translation>Keine Benutzer vorhanden</translation>
+    </message>
+</context>
+<context>
+    <name>AssigneesListPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Assign user</source>
+        <translation>Benutzer beauftragen</translation>
+    </message>
+    <message>
+        <source>No users available</source>
+        <translation>Keine Benutzer vorhanden</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Entfernen</translation>
+    </message>
+    <message>
+        <source>Remove user from assignees</source>
+        <translation>Entferne den Benutzer von den Beauftragten</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>CommentItem</name>
     <message>
         <source>Edited</source>

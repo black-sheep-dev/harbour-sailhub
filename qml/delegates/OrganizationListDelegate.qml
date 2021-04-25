@@ -8,7 +8,7 @@ import "../components/"
 ListItem {
     id: delegate
     width: parent.width
-    contentHeight: contentRow.height
+    contentHeight: contentRow.height + 2*Theme.paddingSmall
 
     Row {
         id: contentRow
@@ -55,11 +55,6 @@ ListItem {
                 wrapMode: Text.Wrap
 
                 text: model.description
-            }
-
-            Item {
-                width: 1
-                height: Theme.paddingSmall
             }
         }
     }
