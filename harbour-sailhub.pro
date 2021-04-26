@@ -37,6 +37,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/queryvars.cpp \
     src/api/restapiconnector.cpp \
     src/entities/comment.cpp \
+    src/entities/discussion.cpp \
     src/entities/file.cpp \
     src/entities/gist.cpp \
     src/entities/interactable.cpp \
@@ -52,6 +53,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/repo.cpp \
     src/entities/user.cpp \
     src/models/commentsmodel.cpp \
+    src/models/discussionsmodel.cpp \
     src/models/gistsmodel.cpp \
     src/models/issuesmodel.cpp \
     src/models/labelsmodel.cpp \
@@ -106,6 +108,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/CommentPage \
     qml/pages/CommentPage.qml \
     qml/pages/CommentsListPage.qml \
+    qml/pages/DiscussionsListPage.qml \
     qml/pages/GistsListPage.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
@@ -180,6 +183,7 @@ HEADERS += \
     src/api/ratelimit.h \
     src/api/restapiconnector.h \
     src/entities/comment.h \
+    src/entities/discussion.h \
     src/entities/file.h \
     src/entities/gist.h \
     src/entities/interactable.h \
@@ -200,6 +204,7 @@ HEADERS += \
     src/entities/user.h \
     src/entities/viewer.h \
     src/models/commentsmodel.h \
+    src/models/discussionsmodel.h \
     src/models/gistsmodel.h \
     src/models/issuesmodel.h \
     src/models/labelsmodel.h \

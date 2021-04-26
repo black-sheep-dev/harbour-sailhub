@@ -25,6 +25,7 @@ const QString ApiKey::CREATED_AT                    = QStringLiteral("createdAt"
 const QString ApiKey::DATA                          = QStringLiteral("data");
 const QString ApiKey::DEFAULT_BRANCH_REF            = QStringLiteral("defaultBranchRef");
 const QString ApiKey::DESCRIPTION                   = QStringLiteral("description");
+const QString ApiKey::DISCUSSIONS                   = QStringLiteral("discussions");
 const QString ApiKey::DOWNLOAD_COUNT                = QStringLiteral("downloadCount");
 const QString ApiKey::DOWNLOAD_URL                  = QStringLiteral("downloadUrl");
 const QString ApiKey::EDGES                         = QStringLiteral("edges");

@@ -551,6 +551,7 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     repo->setDefaultBranch(obj.value(ApiKey::DEFAULT_BRANCH_REF).toObject()
                            .value(ApiKey::NAME).toString());
     repo->setDescription(obj.value(ApiKey::DESCRIPTION).toString());
+    repo->setDiscussionCount(getTotalCount(obj.value(ApiKey::DISCUSSIONS).toObject()));
     repo->setForkCount(obj.value(ApiKey::FORK_COUNT).toInt());
     repo->setHomepageUrl(obj.value(ApiKey::HOMEPAGE_URL).toString());
     repo->setIsPrivate(obj.value(ApiKey::IS_PRIVATE).toBool());

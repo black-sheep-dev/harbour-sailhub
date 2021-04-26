@@ -6,6 +6,24 @@
 // ------------------------------------------------------------------------------------------------------------------
 // QUERY ITEMS
 // ------------------------------------------------------------------------------------------------------------------
+static const QString SAILHUB_QUERY_ITEM_DISCUSSION_LIST_ITEM =
+        QStringLiteral("    id"
+                       "    author {"
+                       "        avatarUrl"
+                       "        login"
+                       "    }"
+                       "    category {"
+                       "        emoji"
+                       "        emojiHTML"
+                       "        name"
+                       "    }"
+                       "    comments {"
+                       "        totalCount"
+                       "    }"
+                       "    createdAt"
+                       "    title"
+                       "    updatedAt").simplified();
+
 static const QString SAILHUB_QUERY_ITEM_GIST_LIST_ITEM =
         QStringLiteral("    id"
                        "    comments {"

@@ -175,6 +175,39 @@
     </message>
 </context>
 <context>
+    <name>DiscussionsListPage</name>
+    <message>
+        <source>Discussions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">分类</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">创建于</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished">更新于</translation>
+    </message>
+    <message>
+        <source>No discussions available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>EditCommentDialog</name>
     <message>
         <source>Edit Comment</source>
@@ -876,6 +909,10 @@
     </message>
     <message>
         <source>Content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Discussions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

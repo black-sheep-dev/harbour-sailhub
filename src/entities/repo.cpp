@@ -26,6 +26,11 @@ QString Repo::description() const
     return m_description;
 }
 
+quint32 Repo::discussionCount() const
+{
+    return m_discussionCount;
+}
+
 quint32 Repo::forkCount() const
 {
     return m_forkCount;
@@ -140,6 +145,15 @@ void Repo::setDescription(const QString &description)
 
     m_description = description;
     emit descriptionChanged(m_description);
+}
+
+void Repo::setDiscussionCount(quint32 count)
+{
+    if (m_discussionCount == count)
+        return;
+
+    m_discussionCount = count;
+    emit discussionCountChanged(m_discussionCount);
 }
 
 void Repo::setForkCount(quint32 count)

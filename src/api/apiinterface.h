@@ -13,6 +13,7 @@
 
 #include "src/entities/user.h"
 #include "src/models/commentsmodel.h"
+#include "src/models/discussionsmodel.h"
 #include "src/models/gistsmodel.h"
 #include "src/models/issuesmodel.h"
 #include "src/models/labelsmodel.h"

@@ -33,6 +33,7 @@ class Repo : public Node
     Q_PROPERTY(quint32 contributorCount READ contributorCount WRITE setContributorCount NOTIFY contributorCountChanged)
     Q_PROPERTY(QString defaultBranch READ defaultBranch WRITE setDefaultBranch NOTIFY defaultBranchChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
+    Q_PROPERTY(quint32 discussionCount READ discussionCount WRITE setDiscussionCount NOTIFY discussionCountChanged)
     Q_PROPERTY(quint32 forkCount READ forkCount WRITE setForkCount NOTIFY forkCountChanged)
     Q_PROPERTY(QString homepageUrl READ homepageUrl WRITE setHomepageUrl NOTIFY homepageUrlChanged)
     Q_PROPERTY(bool isPrivate READ isPrivate WRITE setIsPrivate NOTIFY isPrivateChanged)
@@ -85,6 +86,7 @@ public:
     quint32 contributorCount() const;
     QString defaultBranch() const;
     QString description() const;
+    quint32 discussionCount() const;
     quint32 forkCount() const;
     QString homepageUrl() const;
     bool isPrivate() const;
@@ -107,6 +109,7 @@ signals:
     void contributorCountChanged(quint32 count);
     void defaultBranchChanged(const QString &branch);
     void descriptionChanged(const QString &description);
+    void discussionCountChanged(quint32 count);
     void forkCountChanged(quint32 count);
     void homepageUrlChanged(const QString &url);
     void isPrivateChanged(bool isPrivate);
@@ -122,13 +125,14 @@ signals:
     void viewerHasStarredChanged(bool starred);
     void viewerPermissionChanged(quint8 permission);
     void viewerSubscriptionChanged(quint8 state);
-    void watcherCountChanged(quint32 count);  
+    void watcherCountChanged(quint32 count);
 
 public slots:
     void setBranches(const QStringList &branches);
     void setContributorCount(quint32 count);
     void setDefaultBranch(const QString &branch);
     void setDescription(const QString &description);
+    void setDiscussionCount(quint32 count);
     void setForkCount(quint32 count);
     void setHomepageUrl(const QString &url);
     void setIsPrivate(bool isPrivate);
@@ -151,6 +155,7 @@ private:
     quint32 m_contributorCount{0};
     QString m_defaultBranch;
     QString m_description;
+    quint32 m_discussionCount{0};
     quint32 m_forkCount{0};
     QString m_homepageUrl;
     bool m_isPrivate{false};
@@ -167,7 +172,6 @@ private:
     quint8 m_viewerPermission{PermissionNone};
     quint8 m_viewerSubscription{SubscriptionIgnored};
     quint32 m_watcherCount{0};
-
 };
 
 #endif // REPO_H

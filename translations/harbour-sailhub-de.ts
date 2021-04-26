@@ -177,6 +177,40 @@
     </message>
 </context>
 <context>
+    <name>DiscussionsListPage</name>
+    <message>
+        <source>Discussions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">Sortierung</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">Erstellt am</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished">Aktualisiert am</translation>
+    </message>
+    <message>
+        <source>No discussions available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>EditCommentDialog</name>
     <message>
         <source>Edit Comment</source>
@@ -893,6 +927,10 @@
     <message>
         <source>Content</source>
         <translation>Inhalt</translation>
+    </message>
+    <message>
+        <source>Discussions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

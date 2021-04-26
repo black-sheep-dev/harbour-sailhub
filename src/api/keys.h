@@ -28,6 +28,7 @@ struct ApiKey {
     static const QString DATA;
     static const QString DEFAULT_BRANCH_REF;
     static const QString DESCRIPTION;
+    static const QString DISCUSSIONS;
     static const QString DOWNLOAD_COUNT;
     static const QString DOWNLOAD_URL;
     static const QString EDGES;
