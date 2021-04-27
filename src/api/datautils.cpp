@@ -78,7 +78,7 @@ Discussion *DataUtils::discussionFromJson(const QJsonObject &obj, Discussion *di
     const QJsonObject category = obj.value(ApiKey::CATEGORY).toObject();
     discussion->setCategory(category.value(ApiKey::NAME).toString());
     discussion->setCategoryId(category.value(ApiKey::ID).toString());
-    discussion->setCategoryEmoji(getLinkFromString(category.value(ApiKey::EMOJI_HTML).toString()));
+    discussion->setCategoryEmoji(getEmojiLinkFromString(category.value(ApiKey::EMOJI_HTML).toString()));
 
     discussion->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
     discussion->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
@@ -112,7 +112,7 @@ DiscussionListItem DataUtils::discussionListItemFromJson(const QJsonObject &obj)
 
     const QJsonObject category = obj.value(ApiKey::CATEGORY).toObject();
     item.category = category.value(ApiKey::NAME).toString();
-    item.emoji = getLinkFromString(category.value(ApiKey::EMOJI_HTML).toString());
+    item.emoji = getEmojiLinkFromString(category.value(ApiKey::EMOJI_HTML).toString());
 
     item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
     item.title = obj.value(ApiKey::TITLE).toString();
@@ -884,6 +884,17 @@ QString DataUtils::timeSpanText(const QDateTime &start, bool shortText)
 
     const quint64 years = start.daysTo(now) / 365;
     return shortText ? QStringLiteral("%1y").arg(years) : QObject::tr("%n year(s) ago", "", years);
+}
+
+QString DataUtils::getEmojiLinkFromString(const QString &string)
+{
+    QRegularExpression re(QStringLiteral("(?<=unicode\\/)(.*)(?=\">)"));
+    QRegularExpressionMatch match = re.match(string);
+
+    if (!match.hasMatch())
+        return QString();
+
+    return QStringLiteral("/usr/share/harbour-twemoji/72x72/") + match.captured(0);
 }
 
 QString DataUtils::getLinkFromString(const QString &string)

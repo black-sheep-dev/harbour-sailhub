@@ -88,6 +88,7 @@ public:
     static QString timeSpanText(const QDateTime &start, bool shortText = false);
 
 private:
+    static QString getEmojiLinkFromString(const QString &string);
     static QString getLinkFromString(const QString &string);
     static quint8 getViewerPermission(const QString &permission);
     static quint32 getViewerAbilities(const QJsonObject &obj);
