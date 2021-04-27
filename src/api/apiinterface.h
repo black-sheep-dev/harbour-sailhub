@@ -57,6 +57,7 @@ public:
         DeleteComment,
         DeleteIssue,
         FollowUser,
+        GetDiscussion,
         GetFileContent,
         GetGist,
         GetIssue,
@@ -100,6 +101,7 @@ public:
     Q_INVOKABLE void deleteComment(const QString &nodeId);
     Q_INVOKABLE void deleteIssue(const QString &nodeId);
     Q_INVOKABLE void followUser(const QString &nodeId, bool follow = true);
+    Q_INVOKABLE void getDiscussion(const QString &nodeId);
     Q_INVOKABLE void getFileContent(const QString &nodeId, const QString &branch);
     Q_INVOKABLE void getGist(const QString &nodeId);
     Q_INVOKABLE void getIssue(const QString &nodeId);
@@ -136,6 +138,7 @@ signals:
     void apiError(quint8 error, const QString &msg = QString());
     void commentAdded(bool added = true);
     void commentDeleted(bool deleted = true);
+    void discussionAvailable(Discussion *discussion);
     void fileContentAvailable(const QString &content);
     void gistAvailable(Gist *gist);
     void issueClosed(bool closed = true);

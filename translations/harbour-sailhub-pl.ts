@@ -48,8 +48,8 @@
         <translation>Przypisania</translation>
     </message>
     <message>
-        <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
-        <translation>Wszystkie emotikony zaprojektowane przez %1 - projekt emoji i ikon typu open source. Licencja: %2</translation>
+        <source>All emojis designed by %1. License: %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -176,6 +176,36 @@
     <message>
         <source>Quote reply</source>
         <translation>Cytuj odpowiedź</translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionListDelegate</name>
+    <message>
+        <source>started the discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>Discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished">Reakcje</translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished">Relacje</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">Komentarze</translation>
     </message>
 </context>
 <context>

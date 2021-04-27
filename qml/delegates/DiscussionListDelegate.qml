@@ -1,13 +1,12 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import QtGraphicalEffects 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import "../js/stringhelper.js" as StringHelper
 
 ListItem {
-
     id: delegate
     width: parent.width
     contentHeight: delegateContent.height + 2*Theme.paddingMedium
@@ -23,27 +22,12 @@ ListItem {
             width: parent.width
             spacing: Theme.paddingMedium
 
-            Icon {
+            Image {
                 id: delegateIcon
                 anchors.top: parent.top
-                source: model.state === PullRequest.StateMerged ?  "qrc:///icons/icon-m-merged" : "qrc:///icons/icon-m-pull-request"
-
-                ColorOverlay {
-                    anchors.fill: parent
-                    source: parent
-                    color: {
-                        if (model.state === PullRequest.StateOpen)
-                            return "#64DD17"
-
-                        if (model.state === PullRequest.StateClosed)
-                            return "#D50000"
-
-                        if (model.state === PullRequest.StateMerged)
-                            return "#D500F9"
-
-                        return "#FFFFFF"
-                    }
-                }
+                source: model.emoji
+                width: Theme.iconSizeSmallPlus
+                height: Theme.iconSizeSmallPlus
             }
 
             Column {
@@ -57,9 +41,9 @@ ListItem {
                         anchors.verticalCenter: parent.verticalCenter
                         width: parent.width - timeSpanLabel.width - parent.spacing
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                        font.pixelSize: Theme.fontSizeTiny
+                        font.pixelSize: Theme.fontSizeSmall
 
-                        text: model.repository + " #" + model.number
+                        text: model.category
                     }
 
                     Label {
@@ -67,7 +51,7 @@ ListItem {
                         anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: model.sortRole === PullRequestsModel.UpdatedAtRole ? model.updatedAtTimeSpan : model.createdAtTimeSpan
+                        text: model.updatedAtTimeSpan
                     }
                 }
 
@@ -88,26 +72,28 @@ ListItem {
                     width: parent.width
                     spacing: Theme.paddingSmall
 
-                    Icon {
-                        id: dateIcon
+                    CircleImage {
+                        id: authorAvatar
                         anchors.verticalCenter: parent.verticalCenter
-                        source: "image://theme/icon-s-date"
+                        width: Theme.iconSizeSmall
+                        fallbackItemVisible: false
+
+                        source: model.authorAvatar
                     }
 
                     Label {
-                        width: parent.width - dateIcon.width - commentIcon.width - commentsLabel.width - 3 * parent.spacing
+                        width: parent.width - authorAvatar.width - commentIcon.width - commentsLabel.width - 3 * parent.spacing
                         anchors.verticalCenter: commentIcon.verticalCenter
-                        font.pixelSize: Theme.fontSizeTiny
+                        font.pixelSize: Theme.fontSizeExtraSmall
                         color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                        text: model.createdAt.toLocaleDateString(Qt.locale())
+                        text: model.authorLogin + " " + qsTr("started the discussion")
                     }
 
                     Icon {
                         id: commentIcon
                         anchors.verticalCenter: parent.verticalCenter
                         source: "image://theme/icon-s-chat"
-
                     }
 
                     Label {
@@ -116,7 +102,7 @@ ListItem {
                         font.pixelSize: Theme.fontSizeSmall
                         color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                        text: model.commentCount
+                        text: StringHelper.count(model.commentCount)
                     }
                 }
             }

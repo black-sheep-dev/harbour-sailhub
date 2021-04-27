@@ -36,7 +36,7 @@ Page {
                 enabled: repo.viewerCanSubscribe
                 text: {
                     switch (repo.viewerSubscription) {
-                    case Repo.SubscriptionIgnored:
+                    case SubscriptionState.Ignored:
                         return qsTr("Watch")
 
                     default:
@@ -50,6 +50,7 @@ Page {
 
                     dialog.accepted.connect(function() {
                         page.busy = true
+                        console.log(dialog.subscription)
                         SailHub.api().subscribeToRepo(repo.nodeId, dialog.subscription)
                     })
                 }

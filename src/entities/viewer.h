@@ -20,7 +20,10 @@ public:
         CanReact                = 0x0080,
         CanSubscribe            = 0x0100,
         CanUpdate               = 0x0200,
-        CanUpdateTopics         = 0x0400
+        CanUpdateTopics         = 0x0400,
+        CanMarkAsAnswer         = 0x0800,
+        CanMinimize             = 0x1000,
+        CanUnmarkAsAnswer       = 0x2000
     };
     Q_ENUM(Ability)
     Q_DECLARE_FLAGS(Abilities, Ability)

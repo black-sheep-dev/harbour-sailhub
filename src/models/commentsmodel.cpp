@@ -162,7 +162,7 @@ QVariant CommentsModel::data(const QModelIndex &index, int role) const
         return comment->edited();
 
     case LastEditAtRole:
-        return comment->lastEditAt();
+        return comment->lastEditedAt();
 
     case NodeIdRole:
         return comment->nodeId();

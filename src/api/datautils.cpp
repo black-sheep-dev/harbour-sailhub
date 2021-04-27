@@ -6,8 +6,12 @@
 
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QRegularExpression>
 
 #include "keys.h"
+
+#include "src/enums/lockreason.h"
+#include "src/enums/subscriptionstate.h"
 
 #include "src/entities/reaction.h"
 
@@ -32,10 +36,10 @@ Comment *DataUtils::commentFromJson(const QJsonObject &obj)
 
     comment->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
     comment->setCreatedAtTimeSpan(timeSpanText(comment->createdAt(), true));
-    comment->setLastEditAt(QDateTime::fromString(obj.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
+    comment->setLastEditedAt(QDateTime::fromString(obj.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
     comment->setViewerAbilities(getViewerAbilities(obj));
 
-    comment->setEdited(comment->createdAt() < comment->lastEditAt());
+    comment->setEdited(comment->createdAt() < comment->lastEditedAt());
 
     // reactions
     getInteractable(obj, comment);
@@ -58,6 +62,89 @@ QList<Comment *> DataUtils::commentsFromJson(const QJsonObject &obj)
     }
 
     return comments;
+}
+
+Discussion *DataUtils::discussionFromJson(const QJsonObject &obj, Discussion *discussion)
+{
+    if (discussion == nullptr)
+        discussion = new Discussion;
+
+    discussion->setNodeId(obj.value(ApiKey::ID).toString());
+
+    discussion->setActiveLockReason(LockReason::fromString(obj.value(ApiKey::ACTIVE_LOCK_REASON).toString()));
+    discussion->setAnswerChosenAt(QDateTime::fromString(obj.value(ApiKey::ANSWER_CHOSEN_AT).toString(), Qt::ISODate));
+    discussion->setAnswerChosenBy(ownerFromJson(obj.value(ApiKey::ANSWER_CHOSEN_BY).toObject()));
+
+    const QJsonObject category = obj.value(ApiKey::CATEGORY).toObject();
+    discussion->setCategory(category.value(ApiKey::NAME).toString());
+    discussion->setCategoryId(category.value(ApiKey::ID).toString());
+    discussion->setCategoryEmoji(getLinkFromString(category.value(ApiKey::EMOJI_HTML).toString()));
+
+    discussion->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
+    discussion->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    discussion->setCreatedAtTimeSpan(timeSpanText(discussion->createdAt()));
+    discussion->setCreatedViaEmail(obj.value(ApiKey::CREATED_VIA_EMAIL).toBool());
+    discussion->setEditor(ownerFromJson(obj.value(ApiKey::EDITOR).toObject()));
+    discussion->setLastEditedAt(QDateTime::fromString(obj.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
+    discussion->setLocked(obj.value(ApiKey::LOCKED).toBool());
+    discussion->setNumber(obj.value(ApiKey::NUMBER).toInt());
+    discussion->setPublishedAt(QDateTime::fromString(obj.value(ApiKey::PUBLISHED_AT).toString(), Qt::ISODate));
+
+    const QJsonObject repo = obj.value(ApiKey::REPOSITORY).toObject();
+    discussion->setRepository(repo.value(ApiKey::NAME_WITH_OWNER).toString());
+    discussion->setRepositoryId(repo.value(ApiKey::ID).toString());
+    discussion->setTitle(obj.value(ApiKey::TITLE).toString());
+    discussion->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
+    discussion->setUpdatedAtTimeSpan(timeSpanText(discussion->updatedAt()));
+    discussion->setViewerSubscription(SubscriptionState::fromString(obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
+
+    // reactions
+    getInteractable(obj, discussion);
+
+    return discussion;
+}
+
+DiscussionListItem DataUtils::discussionListItemFromJson(const QJsonObject &obj)
+{
+    DiscussionListItem item;
+
+    item.nodeId = obj.value(ApiKey::ID).toString();
+
+    const QJsonObject category = obj.value(ApiKey::CATEGORY).toObject();
+    item.category = category.value(ApiKey::NAME).toString();
+    item.emoji = getLinkFromString(category.value(ApiKey::EMOJI_HTML).toString());
+
+    item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
+    item.title = obj.value(ApiKey::TITLE).toString();
+
+    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
+    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    item.updatedAtTimeSpan = timeSpanText(item.updatedAt, true);
+
+    const QJsonObject author = obj.value(ApiKey::AUTHOR).toObject();
+
+    item.authorLogin = author.value(ApiKey::LOGIN).toString();
+    item.authorAvatar = author.value(ApiKey::AVATAR_URL).toString();
+
+    return item;
+}
+
+QList<DiscussionListItem> DataUtils::discussionsFromJson(const QJsonObject &obj)
+{
+    QList<DiscussionListItem> discussions;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject discussion = node.toObject();
+        if (discussion.isEmpty())
+            continue;
+
+        discussions.append(discussionListItemFromJson(discussion));
+    }
+
+    return discussions;
 }
 
 Gist *DataUtils::gistFromJson(const QJsonObject &obj, Gist *gist)
@@ -487,7 +574,7 @@ ReleaseListItem DataUtils::releaseListItemFromJson(const QJsonObject &obj)
     return item;
 }
 
-QList<ReleaseListItem> DataUtils::releaseListItemsFromJson(const QJsonObject &obj)
+QList<ReleaseListItem> DataUtils::releasesFromJson(const QJsonObject &obj)
 {
     QList<ReleaseListItem>  releases;
 
@@ -504,7 +591,7 @@ QList<ReleaseListItem> DataUtils::releaseListItemsFromJson(const QJsonObject &ob
     return releases;
 }
 
-QList<ReleaseAssetListItem> DataUtils::releaseAssetListItemsFromJson(const QJsonObject &obj)
+QList<ReleaseAssetListItem> DataUtils::releaseAssetsFromJson(const QJsonObject &obj)
 {
     QList<ReleaseAssetListItem>  assets;
 
@@ -586,14 +673,7 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     repo->setViewerPermission(getViewerPermission(obj.value(ApiKey::VIEWER_PERMISSION).toString()));
 
     // subscription
-    const QString subscription = obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString();
-    if (subscription == QLatin1String("IGNORED")) {
-        repo->setViewerSubscription(Repo::SubscriptionIgnored);
-    } else if (subscription == QLatin1String("SUBSCRIBED")) {
-        repo->setViewerSubscription(Repo::Subscribed);
-    } else if (subscription == QLatin1String("UNSUBSCRIBED")) {
-        repo->setViewerSubscription(Repo::Unsubscribed);
-    }
+    repo->setViewerSubscription(SubscriptionState::fromString(obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
 
     return repo;
 }
@@ -806,6 +886,17 @@ QString DataUtils::timeSpanText(const QDateTime &start, bool shortText)
     return shortText ? QStringLiteral("%1y").arg(years) : QObject::tr("%n year(s) ago", "", years);
 }
 
+QString DataUtils::getLinkFromString(const QString &string)
+{
+    QRegularExpression re(QStringLiteral("(https):\\/\\/([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])?"));
+    QRegularExpressionMatch match = re.match(string);
+
+    if (!match.hasMatch())
+        return QString();
+
+    return match.captured(0);
+}
+
 quint8 DataUtils::getViewerPermission(const QString &permission)
 {
     if (permission == QLatin1String("ADMIN"))
@@ -831,8 +922,14 @@ quint32 DataUtils::getViewerAbilities(const QJsonObject &obj)
 {
     quint32 abilities{0};
 
+    if (obj.value(ApiKey::VIEWER_CAN_ADMINISTER).toBool())
+        abilities |= Viewer::CanAdminister;
+
     if (obj.value(ApiKey::VIEWER_CAN_APPLY_SUGGESTION).toBool())
         abilities |= Viewer::CanApplySuggestion;
+
+    if (obj.value(ApiKey::VIEWER_CAN_CREATE_PROJECTS).toBool())
+        abilities |= Viewer::CanCreateProjects;
 
     if (obj.value(ApiKey::VIEWER_CAN_DELETE).toBool())
         abilities |= Viewer::CanDelete;
@@ -854,6 +951,18 @@ quint32 DataUtils::getViewerAbilities(const QJsonObject &obj)
 
     if (obj.value(ApiKey::VIEWER_CAN_UPDATE).toBool())
         abilities |= Viewer::CanUpdate;
+
+    if (obj.value(ApiKey::VIEWER_CAN_UPDATE_TOPICS).toBool())
+        abilities |= Viewer::CanUpdateTopics;
+
+    if (obj.value(ApiKey::VIEWER_CAN_MARK_AS_ANSWER).toBool())
+        abilities |= Viewer::CanMarkAsAnswer;
+
+    if (obj.value(ApiKey::VIEWER_CAN_MINIMIZE).toBool())
+        abilities |= Viewer::CanMinimize;
+
+    if (obj.value(ApiKey::VIEWER_CAN_UNMARK_AS_ANSWER).toBool())
+        abilities |= Viewer::CanUnmarkAsAnswer;
 
     return abilities;
 }

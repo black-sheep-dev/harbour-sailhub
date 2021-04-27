@@ -48,8 +48,8 @@
         <translation>贡献</translation>
     </message>
     <message>
-        <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
-        <translation>所有图标都由 %1 设计-开源表情及图标项目。许可证:%2</translation>
+        <source>All emojis designed by %1. License: %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -172,6 +172,36 @@
     <message>
         <source>Quote reply</source>
         <translation>引用回复</translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionListDelegate</name>
+    <message>
+        <source>started the discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished">反应</translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished">关系</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">评论</translation>
     </message>
 </context>
 <context>

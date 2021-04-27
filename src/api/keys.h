@@ -5,7 +5,10 @@
 
 struct ApiKey {
     static const QString ABBREVIATED_OID;
+    static const QString ACTIVE_LOCK_REASON;
     static const QString ADD_STAR;
+    static const QString ANSWER_CHOSEN_AT;
+    static const QString ANSWER_CHOSEN_BY;
     static const QString ASSIGNABLE_ID;
     static const QString ASSIGNABLE_USERS;
     static const QString ASSIGNEE_IDS;
@@ -16,6 +19,7 @@ struct ApiKey {
     static const QString BODY;
     static const QString BODY_HTML;
     static const QString BODY_TEXT;
+    static const QString CATEGORY;
     static const QString CLIENT_MUTATION_ID;
     static const QString CLOSED;
     static const QString COLLABORATORS;
@@ -25,6 +29,7 @@ struct ApiKey {
     static const QString CONTENT;
     static const QString CONTENT_TYPE;
     static const QString CREATED_AT;
+    static const QString CREATED_VIA_EMAIL;
     static const QString DATA;
     static const QString DEFAULT_BRANCH_REF;
     static const QString DESCRIPTION;
@@ -32,8 +37,10 @@ struct ApiKey {
     static const QString DOWNLOAD_COUNT;
     static const QString DOWNLOAD_URL;
     static const QString EDGES;
+    static const QString EDITOR;
     static const QString EMAIL;
     static const QString EMOJI;
+    static const QString EMOJI_HTML;
     static const QString END_CURSOR;
     static const QString ENTRIES;
     static const QString EXTENSION;
@@ -63,6 +70,7 @@ struct ApiKey {
     static const QString LAST_EDITED_AT;
     static const QString LICENSE_INFO;
     static const QString LOCATION;
+    static const QString LOCKED;
     static const QString LOGIN;
     static const QString MEMBERS_WITH_ROLE;
     static const QString MENTIONABLE_USERS;
@@ -128,14 +136,20 @@ struct ApiKey {
     static const QString USER_COUNT;
     static const QString USER_ID;
     static const QString VIEWER;
+    static const QString VIEWER_CAN_ADMINISTER;
     static const QString VIEWER_CAN_APPLY_SUGGESTION;
+    static const QString VIEWER_CAN_CREATE_PROJECTS;
     static const QString VIEWER_CAN_DELETE;
     static const QString VIEWER_CAN_DELETE_HEAD_REF;
     static const QString VIEWER_CAN_DISABLE_AUTO_MERGE;
     static const QString VIEWER_CAN_ENABLE_AUTO_MERGE;
+    static const QString VIEWER_CAN_MARK_AS_ANSWER;
+    static const QString VIEWER_CAN_MINIMIZE;
     static const QString VIEWER_CAN_REACT;
     static const QString VIEWER_CAN_SUBSCRIBE;
+    static const QString VIEWER_CAN_UNMARK_AS_ANSWER;
     static const QString VIEWER_CAN_UPDATE;
+    static const QString VIEWER_CAN_UPDATE_TOPICS;
     static const QString VIEWER_DID_AUTHOR;
     static const QString VIEWER_IS_MEMBER;
     static const QString VIEWER_IS_FOLLOWING;

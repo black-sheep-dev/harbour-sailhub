@@ -5,16 +5,16 @@ import Sailfish.Silica 1.0
 
 ListItem {
     property string name
-    property bool lastItem: false
 
     id: delegate
     width: parent.width
-    contentHeight: delegateColumn.height + 2*Theme.paddingSmall
+    contentHeight: delegateColumn.height + 2*Theme.paddingMedium
 
     Column {
         id: delegateColumn
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
+        anchors.verticalCenter: parent.verticalCenter
         spacing: Theme.paddingSmall
 
         Row {
@@ -70,6 +70,7 @@ ListItem {
             }
 
             Rectangle {
+                visible: model.languageName.length > 0
                 height: stargazerCountIcon.height * 0.5
                 width: height
                 anchors.verticalCenter: parent.verticalCenter
@@ -79,18 +80,13 @@ ListItem {
             }
 
             Label {
+                visible: model.languageName.length > 0
                 anchors.verticalCenter: parent.verticalCenter
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
                 text: model.languageName
             }
-        }
-
-        Separator {
-            visible: !lastItem
-            width: parent.width
-            color: Theme.highlightBackgroundColor
         }
     }
 }

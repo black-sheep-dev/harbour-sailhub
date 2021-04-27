@@ -105,8 +105,6 @@ Page {
         delegate: PullRequestListDelegate {
             id: delegate
 
-            lastItem: index == (listView.count - 1)
-
             onClicked: pageStack.push(Qt.resolvedUrl("PullRequestPage.qml"), {
                                           nodeId: model.nodeId
                                       })

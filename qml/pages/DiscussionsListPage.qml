@@ -90,14 +90,12 @@ Page {
         opacity: busyIndicator.running ? 0.3 : 1.0
         Behavior on opacity { FadeAnimator {} }
 
-        delegate: IssueListDelegate {
+        delegate: DiscussionListDelegate {
             id: delegate
 
-            lastItem: index == (listView.count - 1)
-
-//            onClicked: pageStack.push(Qt.resolvedUrl("DiscussionPage.qml"), {
-//                                          nodeId: model.nodeId
-//                                      })
+            onClicked: pageStack.push(Qt.resolvedUrl("DiscussionPage.qml"), {
+                                          nodeId: model.nodeId
+                                      })
 
         }
 

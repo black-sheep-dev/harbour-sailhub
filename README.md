@@ -77,6 +77,9 @@ If you like to test the functionality you can use my dummy repository:
 
 [black-sheep-dev/dummy-repo](https://github.com/black-sheep-dev/dummy-repo)
 
+## Attribution
+This projects uses the emoji from [Twitter Emoji (twemoji)](https://twemoji.twitter.com/) - Graphics licensed under CC-BY 4.0
+
 ## Donations
 
 If you like my work, you can buy me a beer! 

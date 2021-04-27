@@ -17,6 +17,7 @@ public:
         CommentCountRole,
         CreatedAtRole,
         CreatedAtTimeSpanRole,
+        EmojiRole,
         NodeIdRole,
         TitleRole,
         UpdatedAtRole,

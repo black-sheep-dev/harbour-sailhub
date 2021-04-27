@@ -124,8 +124,6 @@ Page {
         delegate: IssueListDelegate {
             id: delegate
 
-            lastItem: index == (listView.count - 1)
-
             onClicked: pageStack.push(Qt.resolvedUrl("IssuePage.qml"), {
                                           nodeId: model.nodeId
                                       })

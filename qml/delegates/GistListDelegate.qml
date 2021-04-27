@@ -8,12 +8,13 @@ ListItem {
 
     id: delegate
     width: parent.width
-    contentHeight: delegateColumn.height + 2*Theme.paddingSmall
+    contentHeight: delegateColumn.height + 2*Theme.paddingMedium
 
     Column {
         id: delegateColumn
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
+        anchors.verticalCenter: parent.verticalCenter
         spacing: Theme.paddingSmall
 
         Row {
@@ -120,12 +121,6 @@ ListItem {
 
                 text: model.commentCount
             }
-        }
-
-        Separator {
-            visible: !lastItem
-            width: parent.width
-            color: Theme.highlightBackgroundColor
         }
     }
 }

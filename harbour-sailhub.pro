@@ -38,6 +38,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/restapiconnector.cpp \
     src/entities/comment.cpp \
     src/entities/discussion.cpp \
+    src/entities/discussioncomment.cpp \
     src/entities/file.cpp \
     src/entities/gist.cpp \
     src/entities/interactable.cpp \
@@ -87,6 +88,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/cover/CoverPage.qml \
     qml/delegates/AssetListDelegate.qml \
     qml/delegates/CommentListDelegate.qml \
+    qml/delegates/DiscussionListDelegate.qml \
     qml/delegates/GistListDelegate.qml \
     qml/delegates/IssueListDelegate.qml \
     qml/delegates/LabelListDelegate.qml \
@@ -108,6 +110,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/CommentPage \
     qml/pages/CommentPage.qml \
     qml/pages/CommentsListPage.qml \
+    qml/pages/DiscussionPage.qml \
     qml/pages/DiscussionsListPage.qml \
     qml/pages/GistsListPage.qml \
     qml/pages/ImageViewerPage.qml \
@@ -184,6 +187,7 @@ HEADERS += \
     src/api/restapiconnector.h \
     src/entities/comment.h \
     src/entities/discussion.h \
+    src/entities/discussioncomment.h \
     src/entities/file.h \
     src/entities/gist.h \
     src/entities/interactable.h \
@@ -203,6 +207,9 @@ HEADERS += \
     src/entities/treeitem.h \
     src/entities/user.h \
     src/entities/viewer.h \
+    src/enums/enums.h \
+    src/enums/lockreason.h \
+    src/enums/subscriptionstate.h \
     src/models/commentsmodel.h \
     src/models/discussionsmodel.h \
     src/models/gistsmodel.h \

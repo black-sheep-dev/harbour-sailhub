@@ -28,8 +28,6 @@ class Issue : public Interactable
 
     Q_PROPERTY(quint32 assigneeCount READ assigneeCount WRITE setAssigneeCount NOTIFY assigneeCountChanged)
     Q_PROPERTY(quint32 commentCount READ commentCount WRITE setCommentCount NOTIFY commentCountChanged)
-    Q_PROPERTY(QDateTime createdAt READ createdAt WRITE setCreatedAt NOTIFY createdAtChanged)
-    Q_PROPERTY(QString createdAtTimeSpan READ createdAtTimeSpan WRITE setCreatedAtTimeSpan NOTIFY createdAtTimeSpanChanged)
     Q_PROPERTY(quint32 labelCount READ labelCount WRITE setLabelCount NOTIFY labelCountChanged)
     Q_PROPERTY(quint32 number READ number WRITE setNumber NOTIFY numberChanged)
     Q_PROPERTY(quint32 participantCount READ participantCount WRITE setParticipantCount NOTIFY participantCountChanged)
@@ -38,7 +36,6 @@ class Issue : public Interactable
     Q_PROPERTY(quint8 repositoryPermission READ repositoryPermission WRITE setRepositoryPermission NOTIFY repositoryPermissionChanged)
     Q_PROPERTY(quint8 states READ states WRITE setStates NOTIFY statesChanged)
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
-    Q_PROPERTY(QDateTime updatedAt READ updatedAt WRITE setUpdatedAt NOTIFY updatedAtChanged)
 
 public:
     enum IssueState {
@@ -65,8 +62,6 @@ public:
     // properties
     quint32 assigneeCount() const;
     quint32 commentCount() const;
-    QDateTime createdAt() const;
-    QString createdAtTimeSpan() const;
     bool edited() const;
     quint32 labelCount() const;
     quint32 number() const;
@@ -76,14 +71,11 @@ public:
     QString repositoryId() const;
     quint8 states() const;
     QString title() const;
-    QDateTime updatedAt() const; 
 
 signals:
     // properties
     void assigneeCountChanged(quint32 count);
     void commentCountChanged(quint32 count);
-    void createdAtChanged(const QDateTime &timestamp);
-    void createdAtTimeSpanChanged(const QString &timeSpan);
     void labelCountChanged(quint32 count);
     void numberChanged(quint32 number);
     void participantCountChanged(quint32 count);
@@ -92,16 +84,11 @@ signals:
     void repositoryPermissionChanged(quint8 permission);
     void statesChanged(quint8 states);
     void titleChanged(const QString &title);
-    void updatedAtChanged(const QDateTime &timestamp); 
-
-
 
 public slots:
     // properties
     void setAssigneeCount(quint32 count);
     void setCommentCount(quint32 count);
-    void setCreatedAt(const QDateTime &timestamp);
-    void setCreatedAtTimeSpan(const QString &timeSpan);
     void setLabelCount(quint32 count);
     void setNumber(quint32 number);
     void setParticipantCount(quint32 count);
@@ -110,14 +97,11 @@ public slots:
     void setRepositoryPermission(quint8 permission);
     void setStates(quint8 states);
     void setTitle(const QString &title);
-    void setUpdatedAt(const QDateTime &timestamp); 
 
 private:
     // properties
     quint32 m_assigneeCount{0};
     quint32 m_commentCount{0};
-    QDateTime m_createdAt;
-    QString m_createdAtTimeSpan;
     quint32 m_labelCount{0};
     quint32 m_number{0};
     quint32 m_participantCount{0};
@@ -126,7 +110,6 @@ private:
     quint8 m_repositoryPermission{0};
     quint8 m_states{StateUnknown};
     QString m_title;
-    QDateTime m_updatedAt;
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(Issue::IssueStates)
 

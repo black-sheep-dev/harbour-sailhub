@@ -14,6 +14,7 @@
 #include "queries.h"
 #include "queryvars.h"
 
+#include "src/enums/enums.h"
 #include "src/entities/reaction.h"
 
 ApiInterface::ApiInterface(QObject *parent) :
@@ -188,6 +189,15 @@ void ApiInterface::followUser(const QString &nodeId, bool follow)
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
     m_graphqlConnector->sendQuery(query, follow ? RequestType::FollowUser : RequestType::UnfollowUser);
+}
+
+void ApiInterface::getDiscussion(const QString &nodeId)
+{
+    GraphQLQuery query;
+    query.query = SAILHUB_QUERY_GET_DISCUSSION;
+    query.variables.insert(QueryVar::NODE_ID, nodeId);
+
+    m_graphqlConnector->sendQuery(query, RequestType::GetDiscussion);
 }
 
 void ApiInterface::getFileContent(const QString &nodeId, const QString &branch)
@@ -384,23 +394,7 @@ void ApiInterface::subscribeToRepo(const QString &nodeId, quint8 state)
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
     vars.insert(ApiKey::SUBSCRIBABLE_ID, nodeId);
-
-    switch (state) {
-    case Repo::SubscriptionIgnored:
-        vars.insert(ApiKey::STATE, QStringLiteral("IGNORED"));
-        break;
-
-    case Repo::Subscribed:
-        vars.insert(ApiKey::STATE, QStringLiteral("SUBSCRIBED"));
-        break;
-
-    case Repo::Unsubscribed:
-        vars.insert(ApiKey::STATE, QStringLiteral("UNSUBSCRIBED"));
-        break;
-
-    default:
-        break;
-    }
+    vars.insert(ApiKey::STATE, SubscriptionState::toString(state));
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
@@ -602,6 +596,10 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         emit pullRequestAvailable(DataUtils::pullRequestFromJson(data.value(ApiKey::NODE).toObject()));
         break;
 
+    case RequestType::GetDiscussion:
+        emit discussionAvailable(DataUtils::discussionFromJson(data.value(ApiKey::NODE).toObject()));
+        break;
+
     case RequestType::GetGist:
         emit gistAvailable(DataUtils::gistFromJson(data.value(ApiKey::NODE).toObject()));
         break;
@@ -781,15 +779,7 @@ void ApiInterface::parseRepoSubscription(const QJsonObject &obj)
 
     const QString state = subscription.value(ApiKey::VIEWER_SUBSCRIPTION).toString();
 
-    quint8 value{0};
-
-    if (state == QLatin1String("IGNORED")) {
-        value = Repo::SubscriptionIgnored;
-    } else if (state == QLatin1String("UNSUBSCRIBED")) {
-        value = Repo::Unsubscribed;
-    } else if (state == QLatin1String("SUBSCRIBED")) {
-        value = Repo::Subscribed;
-    }
+    quint8 value = SubscriptionState::fromString(state);
 
     emit subscribedToRepo(subscription.value(ApiKey::ID).toString(), value);
 }

@@ -4,24 +4,19 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import "../js/stringhelper.js" as StringHelper
 
 ListItem {
-    property bool lastItem: false
-
     id: delegate
     width: parent.width
-    contentHeight: delegateContent.height
+    contentHeight: delegateContent.height + 2*Theme.paddingMedium
 
     Column {
         id: delegateContent
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
+        anchors.verticalCenter: parent.verticalCenter
         spacing: Theme.paddingSmall
-
-        Item {
-            width: 1
-            height: Theme.paddingMedium
-        }
 
         Row {
             width: parent.width
@@ -83,7 +78,7 @@ ListItem {
 
                     Label {
                         width: parent.width - dateIcon.width - commentIcon.width - commentsLabel.width - 3 * parent.spacing
-                        anchors.verticalCenter: commentIcon.verticalCenter
+                        anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: Theme.fontSizeTiny
                         color: pressed ? Theme.highlightColor : Theme.primaryColor
 
@@ -103,22 +98,10 @@ ListItem {
                         font.pixelSize: Theme.fontSizeSmall
                         color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                        text: model.commentCount
+                        text: StringHelper.count(model.commentCount)
                     }
                 }
             }
         }
-
-        Item {
-            width: 1
-            height: Theme.paddingMedium
-        }
-    }
-
-    Separator {
-        visible: !lastItem
-        anchors.top: delegateContent.bottom
-        width: parent.width
-        color: Theme.highlightBackgroundColor
     }
 }

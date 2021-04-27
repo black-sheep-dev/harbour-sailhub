@@ -3,6 +3,7 @@
 #include <sailfishapp.h>
 
 #include "sailhub.h"
+#include "enums/enums.h"
 #include "entities/file.h"
 #include "entities/reaction.h"
 #include "models/treesortfiltermodel.h"
@@ -17,6 +18,11 @@ int main(int argc, char *argv[])
 
     qmlRegisterUncreatableType<Downloader>("org.nubecula.harbour.sailhub", 1, 0, "Downloader", "");
 
+    // enums
+    qmlRegisterUncreatableType<LockReason>("org.nubecula.harbour.sailhub", 1, 0, "LockReason", "");
+    qmlRegisterUncreatableType<SubscriptionState>("org.nubecula.harbour.sailhub", 1, 0, "SubscriptionState", "");
+
+    // object
     qmlRegisterType<ApiInterface>("org.nubecula.harbour.sailhub", 1, 0, "Api");
     qmlRegisterType<Comment>("org.nubecula.harbour.sailhub", 1, 0, "Comment");
     qmlRegisterType<CommentsModel>("org.nubecula.harbour.sailhub", 1, 0, "CommentsModel");

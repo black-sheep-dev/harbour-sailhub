@@ -9,6 +9,7 @@
 #include "language.h"
 #include "user.h"
 
+#include "src/enums/subscriptionstate.h"
 #include "src/entities/license.h"
 #include "src/entities/owner.h"
 
@@ -170,7 +171,7 @@ private:
     bool m_viewerCanSubscribe{false};
     bool m_viewerHasStarred{false};
     quint8 m_viewerPermission{PermissionNone};
-    quint8 m_viewerSubscription{SubscriptionIgnored};
+    quint8 m_viewerSubscription{SubscriptionState::Ignored};
     quint32 m_watcherCount{0};
 };
 

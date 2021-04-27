@@ -101,6 +101,9 @@ QVariant DiscussionsModel::data(const QModelIndex &index, int role) const
     case CreatedAtTimeSpanRole:
         return discussion.createdAtTimeSpan;
 
+    case EmojiRole:
+        return discussion.emoji;
+
     case NodeIdRole:
         return discussion.nodeId;
 
@@ -128,6 +131,7 @@ QHash<int, QByteArray> DiscussionsModel::roleNames() const
     roles[CommentCountRole]         = "commentCount";
     roles[CreatedAtRole]            = "createdAt";
     roles[CreatedAtTimeSpanRole]    = "createdAtTimeSpan";
+    roles[EmojiRole]                = "emoji";
     roles[NodeIdRole]               = "nodeId";
     roles[TitleRole]                = "title";
     roles[UpdatedAtRole]            = "updatedAt";
@@ -145,7 +149,13 @@ void DiscussionsModel::clear()
 
 void DiscussionsModel::parseQueryResult(const QJsonObject &data)
 {
+    QJsonObject discussion = data.value(ApiKey::NODE).toObject()
+                           .value(ApiKey::DISCUSSIONS).toObject();
+    QJsonValue count = discussion.value(ApiKey::TOTAL_COUNT);
 
+    setPageInfo(DataUtils::pageInfoFromJson(discussion, count));
+    addDiscussions(DataUtils::discussionsFromJson(discussion));
+    setLoading(false);
 }
 
 GraphQLQuery DiscussionsModel::query() const

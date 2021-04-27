@@ -10,9 +10,11 @@ BackgroundItem {
 
     Image {
         id: iconImage
-        anchors.fill: parent
-        sourceSize.height: parent.height
-        sourceSize.width: parent.width
+        anchors.centerIn: parent
+        width: parent.width - 2*Theme.paddingMedium
+        height: parent.width - 2*Theme.paddingMedium
+        sourceSize.height: height
+        sourceSize.width: width
 
         smooth: true
 
@@ -20,7 +22,9 @@ BackgroundItem {
             visible: selected
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-            source: "image://theme/icon-s-installed"
+            width: Theme.iconSizeMedium
+            height: Theme.iconSizeMedium
+            source: "image://theme/icon-s-installed?#00FF00"
         }
     }
 

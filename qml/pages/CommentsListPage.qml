@@ -99,8 +99,6 @@ Page {
 
             RemorseItem { id: remorse }
 
-            lastItem: index == (listView.count - 1)
-
             onClicked: pageStack.push(Qt.resolvedUrl("CommentPage.qml"), {
                                           subjectId: commentsModel.identifier,
                                           comment: commentsModel.commentAt(model.index),

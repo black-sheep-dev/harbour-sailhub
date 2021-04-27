@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "../js/showdown.js" as ShowDown
+import "../js/twemoji.min.js" as Twemoji
 
 Item {
     property var showdown: ShowDown.showdown
@@ -16,7 +17,8 @@ Item {
                                     emoji: true })
 
     function parse(content) {
-        const convertedText = converter.makeHtml(content)
+        var convertedText = converter.makeHtml(content)
+        convertedText = Twemoji.twemoji.parse(convertedText)
 
         return "<style>\n" +
                "ul,ol,table,img { margin: " + Theme.paddingLarge + "px 0px; }\n" +
