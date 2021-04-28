@@ -37,6 +37,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Repository [*RS*]
 - Repository files [*R*]
 - User [*RS*]
+- Discussions [*CRUD*]
 
 ## Implemented Social Features
 
@@ -44,6 +45,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Watch / Star repository
 - Commenting (Issue / Pull Requests)
 - Reactions (Comment / Issue / Pull Request)
+- Discussion on Repositories
 
 ## Administrative Features
 
@@ -53,7 +55,6 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Code highlighting
 - Commits
 - Packages
-- Discussion
 - Some useful cover action /content
 - Feature requests (any ideas are welcome!)
 - ...

@@ -5,6 +5,7 @@
 
 #include "src/entities/comment.h"
 #include "src/entities/discussion.h"
+#include "src/entities/discussioncategory.h"
 #include "src/entities/file.h"
 #include "src/entities/gist.h"
 #include "src/entities/issue.h"
@@ -30,6 +31,10 @@ public:
     static Discussion *discussionFromJson(const QJsonObject &obj, Discussion *discussion = nullptr);
     static DiscussionListItem discussionListItemFromJson(const QJsonObject &obj);
     static QList<DiscussionListItem> discussionsFromJson(const QJsonObject &obj);
+
+    // discussion categories
+    static DiscussionCategoryListItem discussionCategoryListItemFromJson(const QJsonObject &obj);
+    static QList<DiscussionCategoryListItem> discussionCategoriesFromJson(const QJsonObject &obj);
 
     // gists
     static Gist *gistFromJson(const QJsonObject &obj, Gist *gist = nullptr);

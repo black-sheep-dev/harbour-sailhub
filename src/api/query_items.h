@@ -22,7 +22,14 @@ static const QString SAILHUB_QUERY_ITEM_DISCUSSION_LIST_ITEM =
                        "    }"
                        "    createdAt"
                        "    title"
-                       "    updatedAt").simplified();
+                       "    updatedAt"
+                       "    viewerCanDelete").simplified();
+
+static const QString SAILHUB_QUERY_ITEM_DISCUSSION_CATEGORY_LIST_ITEM =
+        QStringLiteral("    id"
+                       "    description"
+                       "    emojiHTML"
+                       "    name").simplified();
 
 static const QString SAILHUB_QUERY_ITEM_GIST_LIST_ITEM =
         QStringLiteral("    id"

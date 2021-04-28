@@ -72,7 +72,7 @@ Page {
             }
             MenuItem {
                 visible: type !== Issue.User && canCreateNew
-                text: qsTr("New issue")
+                text: qsTr("Create new")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))
 

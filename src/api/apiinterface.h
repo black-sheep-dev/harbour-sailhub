@@ -14,6 +14,7 @@
 #include "src/entities/user.h"
 #include "src/models/commentsmodel.h"
 #include "src/models/discussionsmodel.h"
+#include "src/models/discussioncategoriesmodel.h"
 #include "src/models/gistsmodel.h"
 #include "src/models/issuesmodel.h"
 #include "src/models/labelsmodel.h"
@@ -53,8 +54,10 @@ public:
         AddReaction,
         AssignUsers,
         CloseIssue,
+        CreateDiscussion,
         CreateIssue,
         DeleteComment,
+        DeleteDiscussion,
         DeleteIssue,
         FollowUser,
         GetDiscussion,
@@ -80,6 +83,7 @@ public:
         UnfollowUser,
         UnstarRepo,
         UpdateComment,
+        UpdateDiscussion,
         UpdateIssue,
         UpdateRepoSubscription
     };
@@ -97,8 +101,10 @@ public:
     Q_INVOKABLE void addReaction(const QString &nodeId, quint8 reaction);
     Q_INVOKABLE void assignUsers(const QString &nodeId, const QJsonArray &userIds);
     Q_INVOKABLE void closeIssue(const QString &nodeId);
+    Q_INVOKABLE void createDiscussion(const QString &title, const QString &body, const QString &categoryId, DiscussionsModel *model);
     Q_INVOKABLE void createIssue(const QString &title, const QString &body, IssuesModel *model);
     Q_INVOKABLE void deleteComment(const QString &nodeId);
+    Q_INVOKABLE void deleteDiscussion(const QString &nodeId);
     Q_INVOKABLE void deleteIssue(const QString &nodeId);
     Q_INVOKABLE void followUser(const QString &nodeId, bool follow = true);
     Q_INVOKABLE void getDiscussion(const QString &nodeId);
@@ -120,6 +126,7 @@ public:
     Q_INVOKABLE void subscribeToRepo(const QString &nodeId, quint8 state);
     Q_INVOKABLE void unassignUser(const QString &nodeId, const QString &userId);
     Q_INVOKABLE void updateComment(Comment *comment);
+    Q_INVOKABLE void updateDiscussion(Discussion *discussion);
     Q_INVOKABLE void updateIssue(Issue *issue);
     Q_INVOKABLE void updateReactions(const QString &nodeId, quint8 before, quint8 after);
 
@@ -139,6 +146,8 @@ signals:
     void commentAdded(bool added = true);
     void commentDeleted(bool deleted = true);
     void discussionAvailable(Discussion *discussion);
+    void discussionCreated(bool created = true);
+    void discussionDeleted(bool deleted = true);
     void fileContentAvailable(const QString &content);
     void gistAvailable(Gist *gist);
     void issueClosed(bool closed = true);

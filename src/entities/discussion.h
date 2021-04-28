@@ -17,6 +17,7 @@ struct DiscussionListItem {
     QString title;
     QDateTime updatedAt;
     QString updatedAtTimeSpan;
+    bool viewerCanDelete;
 };
 
 class Discussion : public Interactable

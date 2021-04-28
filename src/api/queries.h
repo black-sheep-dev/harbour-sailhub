@@ -63,6 +63,7 @@ static const QString SAILHUB_QUERY_GET_DISCUSSION =
                        "            }"
                        "            title"
                        "            updatedAt"
+                       "            viewerCanDelete"
                        "            viewerCanReact"
                        "            viewerCanSubscribe"
                        "            viewerCanUpdate"

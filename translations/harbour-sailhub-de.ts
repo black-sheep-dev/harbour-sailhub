@@ -49,7 +49,7 @@
     </message>
     <message>
         <source>All emojis designed by %1. License: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Emoji wurden von %1 entworfen. Lizenz: %2</translation>
     </message>
 </context>
 <context>
@@ -180,64 +180,88 @@
     <name>DiscussionListDelegate</name>
     <message>
         <source>started the discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>hat die Diskussion begonnen</translation>
     </message>
 </context>
 <context>
     <name>DiscussionPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Aktualisieren</translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>Discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>Diskussion</translation>
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished">Reaktionen</translation>
+        <translation>Reaktionen</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation type="unfinished">Beziehungen</translation>
+        <translation>Beziehungen</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">Kommentare</translation>
+        <translation>Kommentare</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation>Lösche Diskussion</translation>
     </message>
 </context>
 <context>
     <name>DiscussionsListPage</name>
     <message>
         <source>Discussions</source>
-        <translation type="unfinished"></translation>
+        <translation>Diskussionen</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Aktualisieren</translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished">Sortierung</translation>
+        <translation>Sortierung</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished">Erstellt am</translation>
+        <translation>Erstellt am</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished">Aktualisiert am</translation>
+        <translation>Aktualisiert am</translation>
     </message>
     <message>
         <source>No discussions available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Diskussionen vorhanden</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation>Lösche Diskussion</translation>
+    </message>
+    <message>
+        <source>Start new</source>
+        <translation>Starte Neue</translation>
     </message>
 </context>
 <context>
@@ -257,6 +281,33 @@
     <message>
         <source>Add</source>
         <translation>Hinzufügen</translation>
+    </message>
+</context>
+<context>
+    <name>EditDiscussionDialog</name>
+    <message>
+        <source>Edit discussion</source>
+        <translation>Diskussion bearbeiten</translation>
+    </message>
+    <message>
+        <source>Create discussion</source>
+        <translation>Diskussion erstellen</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Speichern</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation>Erstellen</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <source>Enter title</source>
+        <translation>Titel eingeben</translation>
     </message>
 </context>
 <context>
@@ -960,7 +1011,7 @@
     </message>
     <message>
         <source>Discussions</source>
-        <translation type="unfinished"></translation>
+        <translation>Dikussionen</translation>
     </message>
 </context>
 <context>
@@ -1146,6 +1197,21 @@
     <message>
         <source>No branches available</source>
         <translation>Keine Branches vorhanden</translation>
+    </message>
+</context>
+<context>
+    <name>SelectDiscussionCategoryDialog</name>
+    <message>
+        <source>Select Category</source>
+        <translation>Kategorie auswählen</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Auswählen</translation>
+    </message>
+    <message>
+        <source>No categories available</source>
+        <translation>Keine Kategorien vorhanden</translation>
     </message>
 </context>
 <context>

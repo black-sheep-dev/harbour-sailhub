@@ -203,6 +203,18 @@
         <source>Comments</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DiscussionsListPage</name>
@@ -236,6 +248,18 @@
             <numerusform></numerusform>
         </translation>
     </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start new</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditCommentDialog</name>
@@ -253,6 +277,33 @@
     </message>
     <message>
         <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditDiscussionDialog</name>
+    <message>
+        <source>Edit discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter title</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1124,6 +1175,21 @@
     </message>
     <message>
         <source>No branches available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SelectDiscussionCategoryDialog</name>
+    <message>
+        <source>Select Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No categories available</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

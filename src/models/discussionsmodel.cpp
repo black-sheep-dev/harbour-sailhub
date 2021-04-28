@@ -116,6 +116,9 @@ QVariant DiscussionsModel::data(const QModelIndex &index, int role) const
     case UpdatedAtTimeSpanRole:
         return discussion.updatedAtTimeSpan;
 
+    case ViewerCanDeleteRole:
+        return discussion.viewerCanDelete;
+
     default:
         return QVariant();
     }
@@ -136,6 +139,7 @@ QHash<int, QByteArray> DiscussionsModel::roleNames() const
     roles[TitleRole]                = "title";
     roles[UpdatedAtRole]            = "updatedAt";
     roles[UpdatedAtTimeSpanRole]    = "updatedAtTimeSpan";
+    roles[ViewerCanDeleteRole]      = "viewerCanDelete";
 
     return roles;
 }

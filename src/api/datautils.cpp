@@ -98,6 +98,8 @@ Discussion *DataUtils::discussionFromJson(const QJsonObject &obj, Discussion *di
     discussion->setUpdatedAtTimeSpan(timeSpanText(discussion->updatedAt()));
     discussion->setViewerSubscription(SubscriptionState::fromString(obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
 
+    discussion->setViewerAbilities(getViewerAbilities(obj));
+
     // reactions
     getInteractable(obj, discussion);
 
@@ -121,6 +123,7 @@ DiscussionListItem DataUtils::discussionListItemFromJson(const QJsonObject &obj)
     item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
     item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
     item.updatedAtTimeSpan = timeSpanText(item.updatedAt, true);
+    item.viewerCanDelete = obj.value(ApiKey::VIEWER_CAN_DELETE).toBool();
 
     const QJsonObject author = obj.value(ApiKey::AUTHOR).toObject();
 
@@ -145,6 +148,35 @@ QList<DiscussionListItem> DataUtils::discussionsFromJson(const QJsonObject &obj)
     }
 
     return discussions;
+}
+
+DiscussionCategoryListItem DataUtils::discussionCategoryListItemFromJson(const QJsonObject &obj)
+{
+    DiscussionCategoryListItem item;
+
+    item.nodeId = obj.value(ApiKey::ID).toString();
+    item.emoji = getEmojiLinkFromString(obj.value(ApiKey::EMOJI_HTML).toString());
+    item.description = obj.value(ApiKey::DESCRIPTION).toString();
+    item.name = obj.value(ApiKey::NAME).toString();
+
+    return item;
+}
+
+QList<DiscussionCategoryListItem> DataUtils::discussionCategoriesFromJson(const QJsonObject &obj)
+{
+    QList<DiscussionCategoryListItem> categories;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject category = node.toObject();
+        if (category.isEmpty())
+            continue;
+
+        categories.append(discussionCategoryListItemFromJson(category));
+    }
+
+    return categories;
 }
 
 Gist *DataUtils::gistFromJson(const QJsonObject &obj, Gist *gist)

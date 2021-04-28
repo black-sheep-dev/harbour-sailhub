@@ -21,7 +21,8 @@ public:
         NodeIdRole,
         TitleRole,
         UpdatedAtRole,
-        UpdatedAtTimeSpanRole
+        UpdatedAtTimeSpanRole,
+        ViewerCanDeleteRole
     };
     Q_ENUM(DiscussionRoles)
 

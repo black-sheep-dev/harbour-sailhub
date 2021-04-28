@@ -24,32 +24,33 @@ Page {
                     page.busy = true
                     SailHub.api().getDiscussion(page.nodeId)
                 }
-            }     
-//            MenuItem {
-//                visible: discussion.viewerAbilities & Viewer.CanUpdate
-//                text: qsTr("Edit discussion")
-//                onClicked: {
-//                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditDiscussionDialog.qml"), {
-//                                                    edit: true,
-//                                                    title: discussion.title,
-//                                                    body: discussion.body
-//                                                })
+            }
+            MenuItem {
+                visible: discussion.viewerAbilities & Viewer.CanUpdate
+                text: qsTr("Edit")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditDiscussionDialog.qml"), {
+                                                    edit: true,
+                                                    title: discussion.title,
+                                                    body: discussion.body
+                                                })
 
-//                    dialog.accepted.connect(function() {
-//                        discussion.title = dialog.title
-//                        discussion.body = dialog.body
-//                        SailHub.api().updateDiscussion(discussion)
-//                    })
-//                }
-//            }
-//            MenuItem {
-//                visible: discussion.viewerAbilities & Viewer.CanUpdate
-//                text: qsTr("Delete")
+                    dialog.accepted.connect(function() {
+                        discussion.title = dialog.title
+                        discussion.body = dialog.body
+                        SailHub.api().updateDiscussion(discussion)
+                    })
+                }
+            }
 
-//                onClicked: remorse.execute(qsTr("Deleting discussion"), function() {
-//                    SailHub.api().deleteDiscussion(discussion.nodeId)
-//                })
-//            }
+            MenuItem {
+                visible: discussion.viewerAbilities & Viewer.CanDelete
+                text: qsTr("Delete")
+
+                onClicked: remorse.execute(qsTr("Deleting discussion"), function() {
+                    SailHub.api().deleteDiscussion(discussion.nodeId)
+                })
+            }
         }
 
         anchors.fill: parent
@@ -195,6 +196,7 @@ Page {
             page.discussion = discussion;
             page.busy = false;
         }
+        onDiscussionDeleted: pageStack.navigateBack()
     }
 
     Component.onCompleted: SailHub.api().getDiscussion(page.nodeId)

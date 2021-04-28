@@ -27,7 +27,7 @@ Page {
             }     
             MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanUpdate
-                text: qsTr("Edit issue")
+                text: qsTr("Edit")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"), {
                                                     edit: true,

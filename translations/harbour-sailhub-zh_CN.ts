@@ -203,6 +203,18 @@
         <source>Comments</source>
         <translation type="unfinished">评论</translation>
     </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">编辑</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DiscussionsListPage</name>
@@ -236,6 +248,18 @@
             <numerusform></numerusform>
         </translation>
     </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start new</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditCommentDialog</name>
@@ -254,6 +278,33 @@
     <message>
         <source>Add</source>
         <translation>添加</translation>
+    </message>
+</context>
+<context>
+    <name>EditDiscussionDialog</name>
+    <message>
+        <source>Edit discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation type="unfinished">创建</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">标题</translation>
+    </message>
+    <message>
+        <source>Enter title</source>
+        <translation type="unfinished">编辑标题</translation>
     </message>
 </context>
 <context>
@@ -1125,6 +1176,21 @@
     <message>
         <source>No branches available</source>
         <translation>没有可用分支</translation>
+    </message>
+</context>
+<context>
+    <name>SelectDiscussionCategoryDialog</name>
+    <message>
+        <source>Select Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished">选择</translation>
+    </message>
+    <message>
+        <source>No categories available</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

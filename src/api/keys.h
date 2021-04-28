@@ -20,6 +20,7 @@ struct ApiKey {
     static const QString BODY_HTML;
     static const QString BODY_TEXT;
     static const QString CATEGORY;
+    static const QString CATEGORY_ID;
     static const QString CLIENT_MUTATION_ID;
     static const QString CLOSED;
     static const QString COLLABORATORS;
@@ -33,6 +34,8 @@ struct ApiKey {
     static const QString DATA;
     static const QString DEFAULT_BRANCH_REF;
     static const QString DESCRIPTION;
+    static const QString DISCUSSION_CATEGORIES;
+    static const QString DISCUSSION_ID;
     static const QString DISCUSSIONS;
     static const QString DOWNLOAD_COUNT;
     static const QString DOWNLOAD_URL;

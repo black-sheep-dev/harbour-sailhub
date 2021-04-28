@@ -16,7 +16,7 @@ Page {
 
     ConfigurationGroup {
         id: config
-        path: "/apps/harbour-sailhub/issues"
+        path: "/apps/harbour-sailhub/discussions"
 
         property alias sortRole: discussionsModel.sortRole
         property alias sortOrder: discussionsModel.sortOrder
@@ -68,6 +68,26 @@ Page {
                     })
                 }
             }
+
+            MenuItem {
+                text: qsTr("Start new")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectDiscussionCategoryDialog.qml"), {
+                                                    repoId: identifier
+                                                })
+
+                    dialog.accepted.connect(function() {
+                        var dialogContent = pageStack.push(Qt.resolvedUrl("../dialogs/EditDiscussionDialog.qml"), {
+                                                               acceptDestination: page,
+                                                               acceptDestinationAction: PageStackAction.Pop,
+                                                               edit: false
+                                                           })
+                        dialogContent.accepted.connect(function() {
+                            SailHub.api().createDiscussion(dialogContent.title, dialogContent.body, dialog.selected, discussionsModel)
+                        })
+                    })
+                }
+            }
         }
 
         BusyIndicator {
@@ -90,13 +110,24 @@ Page {
         opacity: busyIndicator.running ? 0.3 : 1.0
         Behavior on opacity { FadeAnimator {} }
 
+        RemorseItem { id: remorse }
+
         delegate: DiscussionListDelegate {
             id: delegate
+
+            menu: ContextMenu {
+                visible: model.viewerCanDelete
+                MenuItem {
+                    text: qsTr("Delete")
+                    onClicked: remorse.execute(delegate, qsTr("Deleting discussion"), function() {
+                        SailHub.api().deleteDiscussion(model.nodeId)
+                    })
+                }
+            }
 
             onClicked: pageStack.push(Qt.resolvedUrl("DiscussionPage.qml"), {
                                           nodeId: model.nodeId
                                       })
-
         }
 
         PushUpMenu {
@@ -145,6 +176,11 @@ Page {
         getDiscussions()
     }
 
+    Connections {
+        target: SailHub.api()
+        onDiscussionCreated: refresh()
+        onDiscussionDeleted: refresh()
+    }
 
     Component.onCompleted: refresh()
 }
