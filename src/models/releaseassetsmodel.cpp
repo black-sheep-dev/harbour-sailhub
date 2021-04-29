@@ -133,7 +133,7 @@ void ReleaseAssetsModel::parseQueryResult(const QJsonObject &data)
     const QJsonValue count = assets.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(assets, count));
-    addReleaseAssets(DataUtils::releaseAssetListItemsFromJson(assets));
+    addReleaseAssets(DataUtils::releaseAssetsFromJson(assets));
     setLoading(false);
 }
 

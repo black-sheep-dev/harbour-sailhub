@@ -3,6 +3,7 @@
 #include <sailfishapp.h>
 
 #include "sailhub.h"
+#include "enums/enums.h"
 #include "entities/file.h"
 #include "entities/reaction.h"
 #include "models/treesortfiltermodel.h"
@@ -17,18 +18,30 @@ int main(int argc, char *argv[])
 
     qmlRegisterUncreatableType<Downloader>("org.nubecula.harbour.sailhub", 1, 0, "Downloader", "");
 
+    // enums
+    qmlRegisterUncreatableType<LockReason>("org.nubecula.harbour.sailhub", 1, 0, "LockReason", "");
+    qmlRegisterUncreatableType<SubscriptionState>("org.nubecula.harbour.sailhub", 1, 0, "SubscriptionState", "");
+
+    // object
     qmlRegisterType<ApiInterface>("org.nubecula.harbour.sailhub", 1, 0, "Api");
     qmlRegisterType<Comment>("org.nubecula.harbour.sailhub", 1, 0, "Comment");
     qmlRegisterType<CommentsModel>("org.nubecula.harbour.sailhub", 1, 0, "CommentsModel");
+    qmlRegisterType<Discussion>("org.nubecula.harbour.sailhub", 1, 0, "Discussion");
+    qmlRegisterType<DiscussionsModel>("org.nubecula.harbour.sailhub", 1, 0, "DiscussionsModel");
+    qmlRegisterType<DiscussionCategoriesModel>("org.nubecula.harbour.sailhub", 1, 0, "DiscussionCategoriesModel");
+    qmlRegisterType<DiscussionComment>("org.nubecula.harbour.sailhub", 1, 0, "DiscussionComment");
+    qmlRegisterType<DiscussionCommentsModel>("org.nubecula.harbour.sailhub", 1, 0, "DiscussionCommentsModel");
     qmlRegisterType<File>("org.nubecula.harbour.sailhub", 1, 0, "File");
+    qmlRegisterType<Gist>("org.nubecula.harbour.sailhub", 1, 0, "Gist");
+    qmlRegisterType<GistsModel>("org.nubecula.harbour.sailhub", 1, 0, "GistsModel");
+    qmlRegisterType<Interactable>("org.nubecula.harbour.sailhub", 1, 0, "Interactable");
+    qmlRegisterType<Issue>("org.nubecula.harbour.sailhub", 1, 0, "Issue");
+    qmlRegisterType<IssuesModel>("org.nubecula.harbour.sailhub", 1, 0, "IssuesModel");
     qmlRegisterType<Label>("org.nubecula.harbour.sailhub", 1, 0, "LabelEntity");
     qmlRegisterType<LabelsModel>("org.nubecula.harbour.sailhub", 1, 0, "LabelsModel");
     qmlRegisterType<License>("org.nubecula.harbour.sailhub", 1, 0, "License");
     qmlRegisterType<NotificationObject>("org.nubecula.harbour.sailhub", 1, 0, "Notification");
-    qmlRegisterType<NotificationsModel>("org.nubecula.harbour.sailhub", 1, 0, "NotificationsModel");
-    qmlRegisterType<Interactable>("org.nubecula.harbour.sailhub", 1, 0, "Interactable");
-    qmlRegisterType<Issue>("org.nubecula.harbour.sailhub", 1, 0, "Issue");
-    qmlRegisterType<IssuesModel>("org.nubecula.harbour.sailhub", 1, 0, "IssuesModel");
+    qmlRegisterType<NotificationsModel>("org.nubecula.harbour.sailhub", 1, 0, "NotificationsModel");   
     qmlRegisterType<Organization>("org.nubecula.harbour.sailhub", 1, 0, "Organization");
     qmlRegisterType<OrganizationsModel>("org.nubecula.harbour.sailhub", 1, 0, "OrganizationsModel");
     qmlRegisterType<Owner>("org.nubecula.harbour.sailhub", 1, 0, "Owner");

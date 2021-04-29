@@ -38,7 +38,7 @@ Page {
             }
 
             MenuItem {
-                text: qsTr("New comment")
+                text: qsTr("Write comment")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
 
@@ -98,8 +98,6 @@ Page {
             }
 
             RemorseItem { id: remorse }
-
-            lastItem: index == (listView.count - 1)
 
             onClicked: pageStack.push(Qt.resolvedUrl("CommentPage.qml"), {
                                           subjectId: commentsModel.identifier,

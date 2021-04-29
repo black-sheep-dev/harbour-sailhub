@@ -48,8 +48,8 @@
         <translation>Przypisania</translation>
     </message>
     <message>
-        <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
-        <translation>Wszystkie emotikony zaprojektowane przez %1 - projekt emoji i ikon typu open source. Licencja: %2</translation>
+        <source>All emojis designed by %1. License: %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -162,10 +162,6 @@
         <translation>Brak dostępnych komentarzy</translation>
     </message>
     <message>
-        <source>New comment</source>
-        <translation>Nowy komentarz</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Usuń</translation>
     </message>
@@ -176,6 +172,177 @@
     <message>
         <source>Quote reply</source>
         <translation>Cytuj odpowiedź</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionCommentItem</name>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished">Edytowany</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Usuń</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">Edytuj</translation>
+    </message>
+    <message>
+        <source>Unmark as answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mark as answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quote reply</source>
+        <translation type="unfinished">Cytuj odpowiedź</translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation type="unfinished">Usuwanie komentarza</translation>
+    </message>
+    <message>
+        <source>Replies</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionCommentPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>Thread</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished">Reakcje</translation>
+    </message>
+    <message>
+        <source>Replies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Write Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionListDelegate</name>
+    <message>
+        <source>started the discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>Discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished">Reakcje</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">Edytuj</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Usuń</translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">Komentarze</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionsListPage</name>
+    <message>
+        <source>Discussions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">Sortowanie</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">Utworzono</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished">Zaktualizowano</translation>
+    </message>
+    <message>
+        <source>No discussions available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Usuń</translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start new</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -195,6 +362,41 @@
     <message>
         <source>Add</source>
         <translation>Dodaj</translation>
+    </message>
+    <message>
+        <source>Edit Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditDiscussionDialog</name>
+    <message>
+        <source>Edit discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Zapisz</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation type="unfinished">Utwórz</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Tytuł</translation>
+    </message>
+    <message>
+        <source>Enter title</source>
+        <translation type="unfinished">Wprowadź tytuł</translation>
     </message>
 </context>
 <context>
@@ -222,6 +424,45 @@
     <message>
         <source>Enter title</source>
         <translation>Wprowadź tytuł</translation>
+    </message>
+</context>
+<context>
+    <name>GistsListPage</name>
+    <message>
+        <source>Gists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">Sortowanie</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">Utworzono</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished">Zaktualizowano</translation>
+    </message>
+    <message>
+        <source>Pushed at</source>
+        <translation type="unfinished">Pchnięte</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>No gists available</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -258,10 +499,6 @@
         <translation>Komentarze</translation>
     </message>
     <message>
-        <source>Edit issue</source>
-        <translation>Edytuj problem</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Usuń</translation>
     </message>
@@ -296,6 +533,10 @@
     <message>
         <source>Relations</source>
         <translation>Relacje</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">Edytuj</translation>
     </message>
 </context>
 <context>
@@ -376,16 +617,16 @@
         <translation>Komentarze</translation>
     </message>
     <message>
-        <source>New issue</source>
-        <translation>Nowy problem</translation>
-    </message>
-    <message>
         <source>Show closed issues</source>
         <translation>Pokaż zamknięte problemy</translation>
     </message>
     <message>
         <source>Show open issues</source>
         <translation>Pokaż otwarte problemy</translation>
+    </message>
+    <message>
+        <source>Create new</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -871,6 +1112,10 @@
         <source>Content</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Discussions</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ReposListPage</name>
@@ -1059,6 +1304,21 @@
     <message>
         <source>No branches available</source>
         <translation>Brak dostępnych gałęzi</translation>
+    </message>
+</context>
+<context>
+    <name>SelectDiscussionCategoryDialog</name>
+    <message>
+        <source>Select Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished">Wybierz</translation>
+    </message>
+    <message>
+        <source>No categories available</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1281,6 +1541,10 @@
     <message>
         <source>Starred</source>
         <translation>Oznaczone gwiazdką</translation>
+    </message>
+    <message>
+        <source>Gists</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

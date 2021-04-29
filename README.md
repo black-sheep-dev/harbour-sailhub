@@ -15,6 +15,12 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 
 ![](doc/images/github_personal_access_token.png)
 
+## Dependencies (EMOJI)
+This package depends on an emoji pack I released on OpenRepos using the emojis from [Twitter Emoji](https://twemoji.twitter.com/) project.  
+I decided to split the emoji assets from the main app to reduce app size.
+Shipping these assets with every app release makes no sence.
+The installation should happen automatically.
+
 ## Implemented Features
 - Basic Markdown rendering using ShowdownJS
 - Very basic notifications (using GitHub APIv3 but I am not happy with it at the moment)
@@ -22,20 +28,23 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 ## Implemented CRUD Features
 Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 
-- Repository [*RS*]
-- Organization [*RS*]
-- User [*RS*]
-- Issue [*CRUD*] + close
+- Assignee (Issue / Pull Request) [*CRUD*]
 - Comment (Issue / Pull Request) [*CRUD*]
-- Pull request [*R*]
-- Repository files [*R*]
 - File content [*R*]
+- Gists [*R*]
+- Issue [*CRUD*] + close
 - Labels (Issue / Pull Request) [*R*]
+- Notification (Unreaded) [*R*]
+- Organization [*RS*]
+- Pull request [*R*]
 - Reaction (Comment / Issue / Pull Request) [*RU*]
 - Releases [*R*]
 - Release Assets [*R*]
-- Assignee (Issue / Pull Request) [*CRUD*]
-- Notification (Unreaded) [*R*]
+- Repository [*RS*]
+- Repository files [*R*]
+- User [*RS*]
+- Discussions [*CRUD*]
+- Discussion Comments [*CRUD*]
 
 ## Implemented Social Features
 
@@ -43,17 +52,16 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Watch / Star repository
 - Commenting (Issue / Pull Requests)
 - Reactions (Comment / Issue / Pull Request)
+- Discussion (Comment / Reply ) on Repositories
 
-## Administration Features
+## Administrative Features
 
 - Assign users to issues and pull requests
 
 ## Planned Features
 - Code highlighting
-- Gist
 - Commits
 - Packages
-- Discussion
 - Some useful cover action /content
 - Feature requests (any ideas are welcome!)
 - ...
@@ -76,6 +84,9 @@ If you missing your native language you are welcome to support this project with
 If you like to test the functionality you can use my dummy repository:
 
 [black-sheep-dev/dummy-repo](https://github.com/black-sheep-dev/dummy-repo)
+
+## Attribution
+This projects uses the emoji from [Twitter Emoji (twemoji)](https://twemoji.twitter.com/) - Graphics licensed under CC-BY 4.0
 
 ## Donations
 

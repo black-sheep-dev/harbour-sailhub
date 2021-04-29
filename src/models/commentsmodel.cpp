@@ -112,7 +112,7 @@ void CommentsModel::setComments(const QList<Comment *> &comments)
         m_comments.clear();
     }
 
-    for (auto *comment : comments) {
+    for (auto comment : comments) {
         if (comment == nullptr)
             continue;
 
@@ -162,7 +162,7 @@ QVariant CommentsModel::data(const QModelIndex &index, int role) const
         return comment->edited();
 
     case LastEditAtRole:
-        return comment->lastEditAt();
+        return comment->lastEditedAt();
 
     case NodeIdRole:
         return comment->nodeId();

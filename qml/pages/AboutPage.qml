@@ -71,9 +71,9 @@ Page {
                 font.pixelSize: Theme.fontSizeSmall
                 linkColor: Theme.highlightColor
 
-                text: qsTr("All emojis designed by %1 – the open-source emoji and icon project. License: %2")
-                    .arg("<a href=\"https://openmoji.org/\">OpenMoji</a>")
-                    .arg("<a href=\"https://creativecommons.org/licenses/by-sa/4.0/#\">CC BY-SA 4.0</a>")
+                text: qsTr("All emojis designed by %1. License: %2")
+                    .arg("<a href=\"https://github.com/twitter/twemoji\">Twitter Emoji (Twemoji)</a>")
+                    .arg("<a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a>")
 
                 onLinkActivated: Qt.openUrlExternally(link)
             }

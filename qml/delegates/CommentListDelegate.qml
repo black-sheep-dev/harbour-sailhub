@@ -4,21 +4,15 @@ import Sailfish.Silica 1.0
 import "../components/"
 
 ListItem {
-    property bool lastItem: false
-
     id: delegate
     width: parent.width
-    contentHeight: contentColumn.height
+    contentHeight: contentColumn.height + 2*Theme.paddingMedium
 
     Column {
         id: contentColumn
         width: parent.width
+        anchors.verticalCenter: parent.verticalCenter
         spacing: Theme.paddingSmall
-
-        Item {
-            width: 1
-            height: Theme.paddingSmall
-        }
 
         Row {
             x: Theme.horizontalPageMargin
@@ -66,17 +60,6 @@ ListItem {
             wrapMode: Text.Wrap
 
             text: model.bodyExcerpt
-        }
-
-        Item {
-            width: 1
-            height: Theme.paddingSmall
-        }
-
-        Separator {
-            visible: !lastItem
-            width: parent.width
-            color: Theme.highlightBackgroundColor
         }
     }
 }

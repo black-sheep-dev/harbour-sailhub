@@ -69,9 +69,24 @@ QString Interactable::body() const
     return m_body;
 }
 
+QDateTime Interactable::createdAt() const
+{
+    return m_createdAt;
+}
+
+QString Interactable::createdAtTimeSpan() const
+{
+    return m_createdAtTimeSpan;
+}
+
 bool Interactable::edited() const
 {
     return m_edited;
+}
+
+QDateTime Interactable::lastEditedAt() const
+{
+    return m_lastEditedAt;
 }
 
 quint32 Interactable::reactionConfusedCount() const
@@ -114,6 +129,16 @@ quint32 Interactable::reactionThumbsUpCount() const
     return m_reactionThumbsUpCount;
 }
 
+QDateTime Interactable::updatedAt() const
+{
+    return m_updatedAt;
+}
+
+QString Interactable::updatedAtTimeSpan() const
+{
+    return m_updatedAtTimeSpan;
+}
+
 bool Interactable::viewerDidAuthor() const
 {
     return m_viewerDidAuthor;
@@ -142,6 +167,24 @@ void Interactable::setBody(const QString &body)
     emit bodyChanged(m_body);
 }
 
+void Interactable::setCreatedAt(QDateTime createdAt)
+{
+    if (m_createdAt == createdAt)
+        return;
+
+    m_createdAt = createdAt;
+    emit createdAtChanged(m_createdAt);
+}
+
+void Interactable::setCreatedAtTimeSpan(QString createdAtTimeSpan)
+{
+    if (m_createdAtTimeSpan == createdAtTimeSpan)
+        return;
+
+    m_createdAtTimeSpan = createdAtTimeSpan;
+    emit createdAtTimeSpanChanged(m_createdAtTimeSpan);
+}
+
 void Interactable::setEdited(bool edited)
 {
     if (m_edited == edited)
@@ -149,6 +192,15 @@ void Interactable::setEdited(bool edited)
 
     m_edited = edited;
     emit editedChanged(m_edited);
+}
+
+void Interactable::setLastEditedAt(const QDateTime &lastEditAt)
+{
+    if (m_lastEditedAt == lastEditAt)
+        return;
+
+    m_lastEditedAt = lastEditAt;
+    emit lastEditedAtChanged(m_lastEditedAt);
 }
 
 void Interactable::setReactionConfusedCount(quint32 count)
@@ -221,6 +273,24 @@ void Interactable::setReactionThumbsUpCount(quint32 count)
 
     m_reactionThumbsUpCount = count;
     emit reactionThumbsUpCountChanged(m_reactionThumbsUpCount);
+}
+
+void Interactable::setUpdatedAt(const QDateTime &updatedAt)
+{
+    if (m_updatedAt == updatedAt)
+        return;
+
+    m_updatedAt = updatedAt;
+    emit updatedAtChanged(m_updatedAt);
+}
+
+void Interactable::setUpdatedAtTimeSpan(const QString &updatedAtTimeSpan)
+{
+    if (m_updatedAtTimeSpan == updatedAtTimeSpan)
+        return;
+
+    m_updatedAtTimeSpan = updatedAtTimeSpan;
+    emit updatedAtTimeSpanChanged(m_updatedAtTimeSpan);
 }
 
 void Interactable::setViewerDidAuthor(bool authored)

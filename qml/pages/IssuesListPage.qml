@@ -72,7 +72,7 @@ Page {
             }
             MenuItem {
                 visible: type !== Issue.User && canCreateNew
-                text: qsTr("New issue")
+                text: qsTr("Create new")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))
 
@@ -123,8 +123,6 @@ Page {
 
         delegate: IssueListDelegate {
             id: delegate
-
-            lastItem: index == (listView.count - 1)
 
             onClicked: pageStack.push(Qt.resolvedUrl("IssuePage.qml"), {
                                           nodeId: model.nodeId

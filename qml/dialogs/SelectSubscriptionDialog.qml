@@ -59,13 +59,13 @@ Dialog {
 
     function setSubcriptionState() {
         switch (subscription) {            
-        case Repo.Unsubscribed:
+        case SubscriptionState.Unsubscribed:
             unsubscribeSwitch.checked = true
             subscribeSwitch.checked = false
             ignoreSwitch.checked = false
             break;
 
-        case Repo.Subscribed:
+        case SubscriptionState.Subscribed:
             unsubscribeSwitch.checked = false
             subscribeSwitch.checked = true
             ignoreSwitch.checked = false
@@ -85,10 +85,10 @@ Dialog {
         if (result != DialogResult.Accepted) return
 
         if (unsubscribeSwitch.checked)
-            subscription = Repo.Unsubscribed
+            subscription = SubscriptionState.Unsubscribed
         else if (subscribeSwitch.checked)
-            subscription = Repo.Subscribed
+            subscription = SubscriptionState.Subscribed
         else
-            subscription = Repo.SubscriptionIgnored
+            subscription = SubscriptionState.SubscriptionIgnored
     }
 }

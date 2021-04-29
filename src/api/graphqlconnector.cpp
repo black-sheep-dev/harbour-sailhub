@@ -36,6 +36,7 @@ void GraphQLConnector::sendQuery(const GraphQLQuery &query, quint8 requestType, 
     request.setRawHeader("Content-Type", "application/json");
     request.setRawHeader("Accept-Encoding", "gzip");
     request.setRawHeader("Authorization", "token " + m_token.toUtf8());
+    request.setRawHeader("GraphQL-Features", "discussions_api");
 
     // send request
     QNetworkReply *reply = m_manager->post(request,

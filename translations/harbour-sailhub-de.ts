@@ -48,8 +48,8 @@
         <translation>Zuschreibungen</translation>
     </message>
     <message>
-        <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
-        <translation>Alle Emojis wurden von %1 entworfen - Das Open Source Emoji und Icon Projekt. Lizenz: %2</translation>
+        <source>All emojis designed by %1. License: %2</source>
+        <translation>Alle Emoji wurden von %1 entworfen. Lizenz: %2</translation>
     </message>
 </context>
 <context>
@@ -160,10 +160,6 @@
         <translation>Keine Kommentare vorhanden</translation>
     </message>
     <message>
-        <source>New comment</source>
-        <translation>Neuer Kommentar</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -174,6 +170,174 @@
     <message>
         <source>Quote reply</source>
         <translation>Zitieren</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation>Kommentar schreiben</translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionCommentItem</name>
+    <message>
+        <source>Edited</source>
+        <translation>Bearbeitet</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Unmark as answer</source>
+        <translation>Markierung als Antwort aufheben</translation>
+    </message>
+    <message>
+        <source>Mark as answer</source>
+        <translation>Als Antwort markieren</translation>
+    </message>
+    <message>
+        <source>Reply</source>
+        <translation>Antworten</translation>
+    </message>
+    <message>
+        <source>Quote reply</source>
+        <translation>Zitieren</translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation>Lösche Kommentar</translation>
+    </message>
+    <message>
+        <source>Replies</source>
+        <translation>Antworten</translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionCommentPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Thread</source>
+        <translation>Thread</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation>Reaktionen</translation>
+    </message>
+    <message>
+        <source>Replies</source>
+        <translation>Antworten</translation>
+    </message>
+    <message>
+        <source>Write Reply</source>
+        <translation>Antowort schreiben</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionListDelegate</name>
+    <message>
+        <source>started the discussion</source>
+        <translation>hat die Diskussion begonnen</translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Discussion</source>
+        <translation>Diskussion</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation>Reaktionen</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation>Lösche Diskussion</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Kommentare</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation>Kommentar schreiben</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionsListPage</name>
+    <message>
+        <source>Discussions</source>
+        <translation>Diskussionen</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation>Sortierung</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation>Erstellt am</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation>Aktualisiert am</translation>
+    </message>
+    <message>
+        <source>No discussions available</source>
+        <translation>Keine Diskussionen vorhanden</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation>Lösche Diskussion</translation>
+    </message>
+    <message>
+        <source>Start new</source>
+        <translation>Starte Neue</translation>
     </message>
 </context>
 <context>
@@ -193,6 +357,41 @@
     <message>
         <source>Add</source>
         <translation>Hinzufügen</translation>
+    </message>
+    <message>
+        <source>Edit Reply</source>
+        <translation>Antwort bearbeiten</translation>
+    </message>
+    <message>
+        <source>Add Reply</source>
+        <translation>Antwort hinzufügen</translation>
+    </message>
+</context>
+<context>
+    <name>EditDiscussionDialog</name>
+    <message>
+        <source>Edit discussion</source>
+        <translation>Diskussion bearbeiten</translation>
+    </message>
+    <message>
+        <source>Create discussion</source>
+        <translation>Diskussion erstellen</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Speichern</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation>Erstellen</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <source>Enter title</source>
+        <translation>Titel eingeben</translation>
     </message>
 </context>
 <context>
@@ -220,6 +419,44 @@
     <message>
         <source>Enter title</source>
         <translation>Titel eingeben</translation>
+    </message>
+</context>
+<context>
+    <name>GistsListPage</name>
+    <message>
+        <source>Gists</source>
+        <translation>Gists</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation>Sortierung</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation>Erstellt am</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation>Aktualisiert am</translation>
+    </message>
+    <message>
+        <source>Pushed at</source>
+        <translation>Gepushed am</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>No gists available</source>
+        <translation>Keine Gists verfügbar</translation>
     </message>
 </context>
 <context>
@@ -256,10 +493,6 @@
         <translation>Kommentare</translation>
     </message>
     <message>
-        <source>Edit issue</source>
-        <translation>Problem bearbeiten</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -294,6 +527,10 @@
     <message>
         <source>Relations</source>
         <translation>Beziehungen</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>Bearbeiten</translation>
     </message>
 </context>
 <context>
@@ -373,16 +610,16 @@
         <translation>Kommentare</translation>
     </message>
     <message>
-        <source>New issue</source>
-        <translation>Neues Problem</translation>
-    </message>
-    <message>
         <source>Show closed issues</source>
         <translation>Zeige geschlossene Probleme</translation>
     </message>
     <message>
         <source>Show open issues</source>
         <translation>Zeige offene Probleme</translation>
+    </message>
+    <message>
+        <source>Create new</source>
+        <translation>Neu erstellen</translation>
     </message>
 </context>
 <context>
@@ -856,6 +1093,10 @@
         <source>Content</source>
         <translation>Inhalt</translation>
     </message>
+    <message>
+        <source>Discussions</source>
+        <translation>Dikussionen</translation>
+    </message>
 </context>
 <context>
     <name>ReposListPage</name>
@@ -1040,6 +1281,21 @@
     <message>
         <source>No branches available</source>
         <translation>Keine Branches vorhanden</translation>
+    </message>
+</context>
+<context>
+    <name>SelectDiscussionCategoryDialog</name>
+    <message>
+        <source>Select Category</source>
+        <translation>Kategorie auswählen</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Auswählen</translation>
+    </message>
+    <message>
+        <source>No categories available</source>
+        <translation>Keine Kategorien vorhanden</translation>
     </message>
 </context>
 <context>
@@ -1258,6 +1514,10 @@
     <message>
         <source>Starred</source>
         <translation>Starred</translation>
+    </message>
+    <message>
+        <source>Gists</source>
+        <translation>Gists</translation>
     </message>
 </context>
 <context>

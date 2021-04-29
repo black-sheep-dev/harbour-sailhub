@@ -48,7 +48,6 @@ Page {
 
         delegate: NotificationListDelegate {
             id: delegate
-            lastItem: index == (listView.count - 1)
 
 //            menu: ContextMenu {
 //                MenuItem {

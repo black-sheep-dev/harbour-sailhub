@@ -4,7 +4,7 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 BackgroundItem {
-    property int iconSize: Theme.iconSizeMedium
+    property int iconSize: Theme.iconSizeSmall
     property Interactable node
 
     id: reactionsItem

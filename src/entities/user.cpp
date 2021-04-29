@@ -31,6 +31,11 @@ quint32 User::following() const
     return m_following;
 }
 
+quint32 User::gistCount() const
+{
+    return m_gistCount;
+}
+
 QString User::location() const
 {
     return m_location;
@@ -124,6 +129,15 @@ void User::setFollowing(quint32 following)
 
     m_following = following;
     emit followingChanged(m_following);
+}
+
+void User::setGistCount(quint32 count)
+{
+    if (m_gistCount == count)
+        return;
+
+    m_gistCount = count;
+    emit gistCountChanged(m_gistCount);
 }
 
 void User::setLocation(const QString &location)
