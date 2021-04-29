@@ -19,12 +19,14 @@ Item {
 
     function parse(content) {
         var convertedText = converter.makeHtml(content)
-        convertedText = Twemoji.twemoji.parse(convertedText)
-
-        console.log(convertedText)
+        convertedText = Twemoji.twemoji.parse(convertedText, {
+                                                  foder: "svg",
+                                                  ext: ".svg"
+                                              })
 
         return "<style>\n" +
                "ul,ol,table,img { margin: " + Theme.paddingLarge + "px 0px; }\n" +
+               "img.emoji { height: 1em; width: 1em; margin 0.05em .1em; vertical-align: -0.1em; }\n" +
                "a:link { color: " + Theme.highlightColor + "; }\n" +
                "a.checkbox { text-decoration: none; padding: " + Theme.paddingSmall + "px; display: inline-block; }\n" +
                "li.tasklist { font-size:large; margin: " + Theme.paddingMedium + "px 0px; }\n" +

@@ -4,6 +4,7 @@ import Sailfish.Silica 1.0
 Dialog {
     property bool edit: false
     property alias body: bodyTextArea.text
+    property bool reply: false
 
     id: dialog
     canAccept: bodyTextArea.text.length > 0
@@ -14,7 +15,12 @@ Dialog {
         spacing: Theme.paddingSmall
 
         DialogHeader {
-            title: edit ? qsTr("Edit Comment") : qsTr("Add Comment")
+            title: {
+                if (reply)
+                    return edit ? qsTr("Edit Reply") : qsTr("Add Reply")
+                else
+                    return edit ? qsTr("Edit Comment") : qsTr("Add Comment")
+            }
             acceptText: edit ? qsTr("Save") : qsTr("Add")
         }
 

@@ -15,6 +15,38 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
+    // model
+    DiscussionCommentsModel {
+        id: commentsModel
+        identifier: discussion.nodeId
+        modelType: DiscussionComment.Comment
+    }
+
+    Connections {
+        target: commentsModel
+        onCommentsAdded: {
+            page.busy = false
+            updateComments(lastIndex, count)
+        }
+    }
+
+    function updateComments(index, count) {
+        for (var i=index; i < (index + count); i++) {
+            var comment = commentsModel.commentAt(i)
+
+            if (comment === undefined) continue
+
+            var component = Qt.createComponent("../components/DiscussionCommentItem.qml")
+
+            if (component.status !== Component.Ready)
+                console.log("NOT READY")
+
+            var obj = component.createObject(commentsColumn, {comment: comment})
+        }
+    }
+
+    //
+
     SilicaFlickable {
         PullDownMenu {
             busy: page.busy
@@ -54,7 +86,7 @@ Page {
         }
 
         anchors.fill: parent
-        contentHeight: headerColumn.height
+        contentHeight: headerColumn.height + commentsColumn.height
 
         RemorsePopup { id: remorse }
 
@@ -135,7 +167,7 @@ Page {
                 authorAvatar: discussion.author.avatarUrl
                 authorLogin: discussion.author.login
                 body: discussion.body
-                //edited: discussion.edited
+                edited: discussion.edited
                 timeSpan: discussion.updatedAtTimeSpan
             }
 
@@ -147,6 +179,8 @@ Page {
                 node: discussion
 
                 onClicked: {
+                    if (!(discussion.viewerAbilities & Viewer.CanReact)) return;
+
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ReactionDialog.qml"), {
                                                     reactions: discussion.viewerReactions
                                                 })
@@ -166,26 +200,53 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Relations")
-            }
-
-            RelatedValueItem {
-                label: qsTr("Comments")
-                icon: "image://theme/icon-m-chat"
-                value: discussion.commentCount
-
-//                onClicked: pageStack.push(Qt.resolvedUrl("CommentsListPage.qml"), {
-//                                              description: discussion.repository + " #" + discussion.number,
-//                                              identifier: discussion.nodeId,
-//                                              type: Comment.Discussion
-//                                          })
-            }
-
-            Item {
-                width: 1
-                height: Theme.paddingMedium
+                text: qsTr("Comments")
             }
         }
+
+        Column {
+            id: commentsColumn
+            anchors.top: headerColumn.bottom
+            width: parent.width
+            spacing: Theme.paddingSmall
+        }
+
+        VerticalScrollDecorator {}
+
+
+        PushUpMenu {
+            busy: commentsModel.loading
+
+            MenuItem {
+                text: qsTr("Write comment")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
+
+                    dialog.accepted.connect(function() {
+                        SailHub.api().addDiscussionComment(dialog.body, commentsModel.identifier)
+                    })
+                }
+            }
+
+            MenuItem {
+                visible: commentsModel.hasNextPage
+                text: qsTr("Load more (%n to go)", "", commentsModel.totalCount - commentsColumn.children.length)
+                onClicked: getComments()
+            }
+        }
+    }
+
+    function getComments() {
+        page.busy = true;
+        SailHub.api().getPaginationModel(commentsModel)
+    }
+
+    function refresh() {
+        commentsModel.reset()
+        for(var i = commentsColumn.children.length; i > 0; i--) {
+            commentsColumn.children[i-1].destroy()
+        }
+        getComments()
     }
 
     Connections {
@@ -194,10 +255,13 @@ Page {
             if (discussion.nodeId !== page.nodeId) return
 
             page.discussion = discussion;
-            page.busy = false;
+            refresh()
         }
         onDiscussionDeleted: pageStack.navigateBack()
+        onDiscussionCommentAdded: refresh()
+        onDiscussionCommentDeleted: refresh()
     }
+
 
     Component.onCompleted: SailHub.api().getDiscussion(page.nodeId)
 }

@@ -6,6 +6,7 @@
 #include "src/entities/comment.h"
 #include "src/entities/discussion.h"
 #include "src/entities/discussioncategory.h"
+#include "src/entities/discussioncomment.h"
 #include "src/entities/file.h"
 #include "src/entities/gist.h"
 #include "src/entities/issue.h"
@@ -35,6 +36,10 @@ public:
     // discussion categories
     static DiscussionCategoryListItem discussionCategoryListItemFromJson(const QJsonObject &obj);
     static QList<DiscussionCategoryListItem> discussionCategoriesFromJson(const QJsonObject &obj);
+
+    // discussion comments
+    static DiscussionComment *discussionCommentFromJson(const QJsonObject &obj);
+    static QList<DiscussionComment *> discussionCommentsFromJson(const QJsonObject &obj);
 
     // gists
     static Gist *gistFromJson(const QJsonObject &obj, Gist *gist = nullptr);

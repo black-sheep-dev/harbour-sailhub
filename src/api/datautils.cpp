@@ -34,12 +34,7 @@ Comment *DataUtils::commentFromJson(const QJsonObject &obj)
                     .append(QStringLiteral("...")));
     }
 
-    comment->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
-    comment->setCreatedAtTimeSpan(timeSpanText(comment->createdAt(), true));
-    comment->setLastEditedAt(QDateTime::fromString(obj.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
     comment->setViewerAbilities(getViewerAbilities(obj));
-
-    comment->setEdited(comment->createdAt() < comment->lastEditedAt());
 
     // reactions
     getInteractable(obj, comment);
@@ -81,11 +76,8 @@ Discussion *DataUtils::discussionFromJson(const QJsonObject &obj, Discussion *di
     discussion->setCategoryEmoji(getEmojiLinkFromString(category.value(ApiKey::EMOJI_HTML).toString()));
 
     discussion->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
-    discussion->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
-    discussion->setCreatedAtTimeSpan(timeSpanText(discussion->createdAt()));
     discussion->setCreatedViaEmail(obj.value(ApiKey::CREATED_VIA_EMAIL).toBool());
     discussion->setEditor(ownerFromJson(obj.value(ApiKey::EDITOR).toObject()));
-    discussion->setLastEditedAt(QDateTime::fromString(obj.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
     discussion->setLocked(obj.value(ApiKey::LOCKED).toBool());
     discussion->setNumber(obj.value(ApiKey::NUMBER).toInt());
     discussion->setPublishedAt(QDateTime::fromString(obj.value(ApiKey::PUBLISHED_AT).toString(), Qt::ISODate));
@@ -94,8 +86,6 @@ Discussion *DataUtils::discussionFromJson(const QJsonObject &obj, Discussion *di
     discussion->setRepository(repo.value(ApiKey::NAME_WITH_OWNER).toString());
     discussion->setRepositoryId(repo.value(ApiKey::ID).toString());
     discussion->setTitle(obj.value(ApiKey::TITLE).toString());
-    discussion->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
-    discussion->setUpdatedAtTimeSpan(timeSpanText(discussion->updatedAt()));
     discussion->setViewerSubscription(SubscriptionState::fromString(obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
 
     discussion->setViewerAbilities(getViewerAbilities(obj));
@@ -179,6 +169,49 @@ QList<DiscussionCategoryListItem> DataUtils::discussionCategoriesFromJson(const 
     return categories;
 }
 
+DiscussionComment *DataUtils::discussionCommentFromJson(const QJsonObject &obj)
+{
+    DiscussionComment *comment = new DiscussionComment;
+
+    comment->setNodeId(obj.value(ApiKey::ID).toString());
+
+    comment->setCreatedViaEmail(obj.value(ApiKey::CREATED_VIA_EMAIL).toBool());
+    comment->setDeletedAt(QDateTime::fromString(obj.value(ApiKey::DELETED_AT).toString(), Qt::ISODate));
+    comment->setDiscussionId(obj.value(ApiKey::DISCUSSION).toObject().value(ApiKey::ID).toString());
+    comment->setEditor(ownerFromJson(obj.value(ApiKey::EDITOR).toObject()));
+    comment->setIncludesCreatedEdit(obj.value(ApiKey::INCLUDES_CREATED_EDIT).toBool());
+    comment->setIsAnswer(obj.value(ApiKey::IS_ANSWER).toBool());
+    comment->setIsMinimized(obj.value(ApiKey::IS_MINIMIZED).toBool());
+    comment->setMinimizedReason(obj.value(ApiKey::MINIMIZED_REASON).toString());
+    comment->setReplyCount(getTotalCount(obj.value(ApiKey::REPLIES).toObject()));
+    comment->setReplyToId(obj.value(ApiKey::REPLY_TO).toObject().value(ApiKey::ID).toString());
+
+
+    // reactions
+    getInteractable(obj, comment);
+
+    comment->setViewerAbilities(getViewerAbilities(obj));
+
+    return comment;
+}
+
+QList<DiscussionComment *> DataUtils::discussionCommentsFromJson(const QJsonObject &obj)
+{
+    QList<DiscussionComment *> comments;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject comment = node.toObject();
+        if (comment.isEmpty())
+            continue;
+
+        comments.append(discussionCommentFromJson(comment));
+    }
+
+    return comments;
+}
+
 Gist *DataUtils::gistFromJson(const QJsonObject &obj, Gist *gist)
 {
     if (gist == nullptr)
@@ -252,8 +285,6 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
 
     issue->setAssigneeCount(getTotalCount(obj.value(ApiKey::ASSIGNEES).toObject()));
     issue->setTitle(obj.value(ApiKey::TITLE).toString());
-    issue->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
-    issue->setCreatedAtTimeSpan(timeSpanText(issue->createdAt(), true));
     issue->setNumber(obj.value(ApiKey::NUMBER).toInt());
 
     const QJsonObject repo = obj.value(ApiKey::REPOSITORY).toObject();
@@ -263,10 +294,10 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
 
     issue->setStates(obj.value(ApiKey::STATE).toInt());
     issue->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
-    issue->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
     issue->setEdited(issue->updatedAt() > issue->createdAt());
     issue->setLabelCount(getTotalCount(obj.value(ApiKey::LABELS).toObject()));
     issue->setParticipantCount(getTotalCount(obj.value(ApiKey::PARTICIPANTS).toObject()));
+
     issue->setViewerAbilities(getViewerAbilities(obj));
 
     getInteractable(obj, issue);
@@ -1089,6 +1120,14 @@ void DataUtils::getInteractable(const QJsonObject &obj, Interactable *node)
     }
 
     node->setViewerReactions(viewerReactions);
+
+    // timespamps
+    node->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    node->setCreatedAtTimeSpan(timeSpanText(node->createdAt(), true));
+    node->setLastEditedAt(QDateTime::fromString(obj.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
+    node->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
+    node->setUpdatedAtTimeSpan(timeSpanText(node->updatedAt()));
+    node->setEdited(node->createdAt() < node->lastEditedAt());
 }
 
 quint32 DataUtils::getTotalCount(const QJsonObject &obj)

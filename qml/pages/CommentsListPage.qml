@@ -38,7 +38,7 @@ Page {
             }
 
             MenuItem {
-                text: qsTr("New comment")
+                text: qsTr("Write comment")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
 

@@ -158,10 +158,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>New comment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -172,6 +168,78 @@
     <message>
         <source>Quote reply</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionCommentItem</name>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unmark as answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mark as answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quote reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replies</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionCommentPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thread</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Write Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -196,14 +264,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Relations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -214,6 +274,20 @@
     <message>
         <source>Deleting discussion</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -277,6 +351,14 @@
     </message>
     <message>
         <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Reply</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -405,10 +487,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -442,6 +520,10 @@
     </message>
     <message>
         <source>Relations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -521,15 +603,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>New issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show closed issues</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show open issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create new</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

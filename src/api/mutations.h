@@ -70,6 +70,29 @@ static const QString SAILHUB_MUTATION_UPDATE_DISCUSSION =
                        "    }"
                        "}").simplified();
 
+// ADD DISCUSSION COMMENT
+static const QString SAILHUB_MUTATION_ADD_DISCUSSION_COMMENT =
+        QStringLiteral("mutation($input: AddDiscussionCommentInput!) {"
+                       "    addDiscussionComment(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
+// DELETE DISCUSSION COMMENT
+static const QString SAILHUB_MUTATION_DELETE_DISCUSSION_COMMENT =
+        QStringLiteral("mutation($input: DeleteDiscussionCommentInput!) {"
+                       "    deleteDiscussionComment(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
+// UPDATE DISCUSSION COMMENT
+static const QString SAILHUB_MUTATION_UPDATE_DISCUSSION_COMMENT =
+        QStringLiteral("mutation($input: UpdateDiscussionCommentInput!) {"
+                       "    updateDiscussionComment(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
 
 // ADD ISSUE
 static const QString SAILHUB_MUTATION_CREATE_ISSUE =

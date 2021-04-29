@@ -25,6 +25,7 @@ struct ApiKey {
     static const QString CLOSED;
     static const QString COLLABORATORS;
     static const QString COLOR;
+    static const QString COMMENT_ID;
     static const QString COMMENTS;
     static const QString COMPANY;
     static const QString CONTENT;
@@ -33,7 +34,9 @@ struct ApiKey {
     static const QString CREATED_VIA_EMAIL;
     static const QString DATA;
     static const QString DEFAULT_BRANCH_REF;
+    static const QString DELETED_AT;
     static const QString DESCRIPTION;
+    static const QString DISCUSSION;
     static const QString DISCUSSION_CATEGORIES;
     static const QString DISCUSSION_ID;
     static const QString DISCUSSIONS;
@@ -58,10 +61,13 @@ struct ApiKey {
     static const QString HAS_NEXT_PAGE;
     static const QString HOMEPAGE_URL;
     static const QString ID;
+    static const QString INCLUDES_CREATED_EDIT;
+    static const QString IS_ANSWER;
     static const QString IS_BINARY;
     static const QString IS_DRAFT;
     static const QString IS_FORK;
     static const QString IS_LATEST;
+    static const QString IS_MINIMIZED;
     static const QString IS_PRERELEASE;
     static const QString IS_PRIVATE;
     static const QString IS_PUBLIC;
@@ -78,6 +84,7 @@ struct ApiKey {
     static const QString MEMBERS_WITH_ROLE;
     static const QString MENTIONABLE_USERS;
     static const QString MESSAGE;
+    static const QString MINIMIZED_REASON;
     static const QString NAME;
     static const QString NAME_WITH_OWNER;
     static const QString NODE;
@@ -102,6 +109,9 @@ struct ApiKey {
     static const QString RELEASES;
     static const QString REMAINING;
     static const QString REMOVE_STAR;
+    static const QString REPLIES;
+    static const QString REPLY_TO;
+    static const QString REPLY_TO_ID;
     static const QString REPOSITORIES;
     static const QString REPOSITORY_COUNT;
     static const QString REPOSITORY;

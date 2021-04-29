@@ -158,10 +158,6 @@
         <translation>没有可用评论</translation>
     </message>
     <message>
-        <source>New comment</source>
-        <translation>新评论</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -172,6 +168,78 @@
     <message>
         <source>Quote reply</source>
         <translation>引用回复</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionCommentItem</name>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished">已编辑</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">编辑</translation>
+    </message>
+    <message>
+        <source>Unmark as answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mark as answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quote reply</source>
+        <translation type="unfinished">引用回复</translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation type="unfinished">正在删除评论</translation>
+    </message>
+    <message>
+        <source>Replies</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionCommentPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Thread</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished">反应</translation>
+    </message>
+    <message>
+        <source>Replies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Write Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -196,14 +264,6 @@
         <translation type="unfinished">反应</translation>
     </message>
     <message>
-        <source>Relations</source>
-        <translation type="unfinished">关系</translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation type="unfinished">评论</translation>
-    </message>
-    <message>
         <source>Edit</source>
         <translation type="unfinished">编辑</translation>
     </message>
@@ -214,6 +274,20 @@
     <message>
         <source>Deleting discussion</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">评论</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -278,6 +352,14 @@
     <message>
         <source>Add</source>
         <translation>添加</translation>
+    </message>
+    <message>
+        <source>Edit Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Reply</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -405,10 +487,6 @@
         <translation>评论</translation>
     </message>
     <message>
-        <source>Edit issue</source>
-        <translation>编辑问题</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -443,6 +521,10 @@
     <message>
         <source>Relations</source>
         <translation>关系</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">编辑</translation>
     </message>
 </context>
 <context>
@@ -529,8 +611,8 @@
         <translation>评论</translation>
     </message>
     <message>
-        <source>New issue</source>
-        <translation>新问题</translation>
+        <source>Create new</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

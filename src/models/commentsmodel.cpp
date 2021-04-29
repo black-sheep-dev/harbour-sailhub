@@ -112,7 +112,7 @@ void CommentsModel::setComments(const QList<Comment *> &comments)
         m_comments.clear();
     }
 
-    for (auto *comment : comments) {
+    for (auto comment : comments) {
         if (comment == nullptr)
             continue;
 

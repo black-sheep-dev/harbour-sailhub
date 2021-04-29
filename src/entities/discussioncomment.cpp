@@ -16,6 +16,11 @@ QDateTime DiscussionComment::deletedAt() const
     return m_deletedAt;
 }
 
+QString DiscussionComment::discussionId() const
+{
+    return m_discussionId;
+}
+
 Owner *DiscussionComment::editor() const
 {
     return m_editor;
@@ -67,6 +72,15 @@ void DiscussionComment::setDeletedAt(const QDateTime &deletedAt)
 
     m_deletedAt = deletedAt;
     emit deletedAtChanged(m_deletedAt);
+}
+
+void DiscussionComment::setDiscussionId(const QString &discussionId)
+{
+    if (m_discussionId == discussionId)
+        return;
+
+    m_discussionId = discussionId;
+    emit discussionIdChanged(m_discussionId);
 }
 
 void DiscussionComment::setEditor(Owner *editor)

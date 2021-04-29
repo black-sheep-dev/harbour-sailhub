@@ -9,6 +9,7 @@ class DiscussionComment : public Interactable
 
     Q_PROPERTY(bool createdViaEmail READ createdViaEmail WRITE setCreatedViaEmail NOTIFY createdViaEmailChanged)
     Q_PROPERTY(QDateTime deletedAt READ deletedAt WRITE setDeletedAt NOTIFY deletedAtChanged)
+    Q_PROPERTY(QString discussionId READ discussionId WRITE setDiscussionId NOTIFY discussionIdChanged)
     Q_PROPERTY(Owner* editor READ editor WRITE setEditor NOTIFY editorChanged)
     Q_PROPERTY(bool includesCreatedEdit READ includesCreatedEdit WRITE setIncludesCreatedEdit NOTIFY includesCreatedEditChanged)
     Q_PROPERTY(bool isAnswer READ isAnswer WRITE setIsAnswer NOTIFY isAnswerChanged)
@@ -18,10 +19,18 @@ class DiscussionComment : public Interactable
     Q_PROPERTY(QString replyToId READ replyToId WRITE setReplyToId NOTIFY replyToIdChanged)
 
 public:
+    enum DiscussionCommentType {
+        Undefined,
+        Comment,
+        Reply
+    };
+    Q_ENUM(DiscussionCommentType)
+
     explicit DiscussionComment(QObject *parent = nullptr);
 
     bool createdViaEmail() const;
     QDateTime deletedAt() const;
+    QString discussionId() const;
     Owner *editor() const;
     bool includesCreatedEdit() const;
     bool isAnswer() const;
@@ -33,6 +42,7 @@ public:
 signals:
     void createdViaEmailChanged(bool createdViaEmail);
     void deletedAtChanged(const QDateTime &deletedAt);
+    void discussionIdChanged(const QString &discussionId);
     void editorChanged(Owner *editor);
     void includesCreatedEditChanged(bool includesCreatedEdit);
     void isAnswerChanged(bool isAnswer);
@@ -44,6 +54,7 @@ signals:
 public slots:
     void setCreatedViaEmail(bool createdViaEmail);
     void setDeletedAt(const QDateTime &deletedAt);
+    void setDiscussionId(const QString &discussionId);
     void setEditor(Owner *editor);
     void setIncludesCreatedEdit(bool includesCreatedEdit);
     void setIsAnswer(bool isAnswer);
@@ -55,6 +66,7 @@ public slots:
 private:
     bool m_createdViaEmail{false};
     QDateTime m_deletedAt;
+    QString m_discussionId;
     Owner *m_editor{nullptr};
     bool m_includesCreatedEdit{false};
     bool m_isAnswer{false};

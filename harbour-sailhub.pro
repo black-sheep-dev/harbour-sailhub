@@ -56,6 +56,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/user.cpp \
     src/models/commentsmodel.cpp \
     src/models/discussioncategoriesmodel.cpp \
+    src/models/discussioncommentsmodel.cpp \
     src/models/discussionsmodel.cpp \
     src/models/gistsmodel.cpp \
     src/models/issuesmodel.cpp \
@@ -79,6 +80,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/CommentItem \
     qml/components/CommentItem.qml \
     qml/components/CounterItem.qml \
+    qml/components/DiscussionCommentItem.qml \
     qml/components/IconLabel.qml \
     qml/components/IconRelatedItem.qml \
     qml/components/InfoItem.qml \
@@ -115,6 +117,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/CommentPage \
     qml/pages/CommentPage.qml \
     qml/pages/CommentsListPage.qml \
+    qml/pages/DiscussionCommentPage.qml \
     qml/pages/DiscussionPage.qml \
     qml/pages/DiscussionsListPage.qml \
     qml/pages/GistsListPage.qml \
@@ -218,6 +221,7 @@ HEADERS += \
     src/enums/subscriptionstate.h \
     src/models/commentsmodel.h \
     src/models/discussioncategoriesmodel.h \
+    src/models/discussioncommentsmodel.h \
     src/models/discussionsmodel.h \
     src/models/gistsmodel.h \
     src/models/issuesmodel.h \

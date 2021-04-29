@@ -405,7 +405,7 @@ Page {
                 title: qsTr("README")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("MarkdownViewerPage.qml"), {
-                                              branch: repo.defaultBranch,
+                                              branch: selectedBranch,
                                               owner: repo.owner.login,
                                               path: "README.md",
                                               repo: repo.name,

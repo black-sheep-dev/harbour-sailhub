@@ -15,6 +15,12 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 
 ![](doc/images/github_personal_access_token.png)
 
+## Dependencies (EMOJI)
+This package depends on an emoji pack I released on OpenRepos using the emojis from [Twitter Emoji](https://twemoji.twitter.com/) project.  
+I decided to split the emoji assets from the main app to reduce app size.
+Shipping these assets with every app release makes no sence.
+The installation should happen automatically.
+
 ## Implemented Features
 - Basic Markdown rendering using ShowdownJS
 - Very basic notifications (using GitHub APIv3 but I am not happy with it at the moment)
@@ -38,6 +44,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Repository files [*R*]
 - User [*RS*]
 - Discussions [*CRUD*]
+- Discussion Comments [*CRUD*]
 
 ## Implemented Social Features
 
@@ -45,7 +52,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Watch / Star repository
 - Commenting (Issue / Pull Requests)
 - Reactions (Comment / Issue / Pull Request)
-- Discussion on Repositories
+- Discussion (Comment / Reply ) on Repositories
 
 ## Administrative Features
 
