@@ -52,7 +52,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Watch / Star repository
 - Commenting (Issue / Pull Requests)
 - Reactions (Comment / Issue / Pull Request)
-- Discussion (Comment / Reply ) on Repositories
+- Discussion (Comment / Reply ) on Repositories (when activated)
 
 ## Administrative Features
 
