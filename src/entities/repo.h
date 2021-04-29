@@ -35,6 +35,7 @@ class Repo : public Node
     Q_PROPERTY(QString defaultBranch READ defaultBranch WRITE setDefaultBranch NOTIFY defaultBranchChanged)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
     Q_PROPERTY(quint32 discussionCount READ discussionCount WRITE setDiscussionCount NOTIFY discussionCountChanged)
+    Q_PROPERTY(quint8 features READ features WRITE setFeatures NOTIFY featuresChanged)
     Q_PROPERTY(quint32 forkCount READ forkCount WRITE setForkCount NOTIFY forkCountChanged)
     Q_PROPERTY(QString homepageUrl READ homepageUrl WRITE setHomepageUrl NOTIFY homepageUrlChanged)
     Q_PROPERTY(bool isPrivate READ isPrivate WRITE setIsPrivate NOTIFY isPrivateChanged)
@@ -53,6 +54,15 @@ class Repo : public Node
     Q_PROPERTY(quint32 watcherCount READ watcherCount WRITE setWatcherCount NOTIFY watcherCountChanged)
 
 public:
+    enum RepoFeature {
+        FeatureNone         = 0x00,
+        FeatureIssues       = 0x01,
+        FeatureProjects     = 0x02,
+        FeatureWiki         = 0x04
+    };
+    Q_ENUM(RepoFeature)
+    Q_DECLARE_FLAGS(RepoFeatures, RepoFeature)
+
     enum RepoPermission {
         PermissionNone,
         PermissionAdmin,
@@ -88,6 +98,7 @@ public:
     QString defaultBranch() const;
     QString description() const;
     quint32 discussionCount() const;
+    quint8 features() const;
     quint32 forkCount() const;
     QString homepageUrl() const;
     bool isPrivate() const;
@@ -111,6 +122,7 @@ signals:
     void defaultBranchChanged(const QString &branch);
     void descriptionChanged(const QString &description);
     void discussionCountChanged(quint32 count);
+    void featuresChanged(quint8 features);
     void forkCountChanged(quint32 count);
     void homepageUrlChanged(const QString &url);
     void isPrivateChanged(bool isPrivate);
@@ -134,6 +146,7 @@ public slots:
     void setDefaultBranch(const QString &branch);
     void setDescription(const QString &description);
     void setDiscussionCount(quint32 count);
+    void setFeatures(quint8 features);
     void setForkCount(quint32 count);
     void setHomepageUrl(const QString &url);
     void setIsPrivate(bool isPrivate);
@@ -157,6 +170,7 @@ private:
     QString m_defaultBranch;
     QString m_description;
     quint32 m_discussionCount{0};
+    quint8 m_features{FeatureNone};
     quint32 m_forkCount{0};
     QString m_homepageUrl;
     bool m_isPrivate{false};
@@ -174,5 +188,6 @@ private:
     quint8 m_viewerSubscription{SubscriptionState::Ignored};
     quint32 m_watcherCount{0};
 };
+Q_DECLARE_OPERATORS_FOR_FLAGS(Repo::RepoFeatures)
 
 #endif // REPO_H

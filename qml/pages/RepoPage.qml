@@ -229,6 +229,7 @@ Page {
 
             // Related items
             RelatedValueItem {
+                visible: repo.features & Repo.FeatureIssues
                 width: parent.width
 
                 label: qsTr("Issues")

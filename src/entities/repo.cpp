@@ -31,6 +31,11 @@ quint32 Repo::discussionCount() const
     return m_discussionCount;
 }
 
+quint8 Repo::features() const
+{
+    return m_features;
+}
+
 quint32 Repo::forkCount() const
 {
     return m_forkCount;
@@ -154,6 +159,15 @@ void Repo::setDiscussionCount(quint32 count)
 
     m_discussionCount = count;
     emit discussionCountChanged(m_discussionCount);
+}
+
+void Repo::setFeatures(quint8 features)
+{
+    if (m_features == features)
+        return;
+
+    m_features = features;
+    emit featuresChanged(m_features);
 }
 
 void Repo::setForkCount(quint32 count)

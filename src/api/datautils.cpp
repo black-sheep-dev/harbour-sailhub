@@ -732,6 +732,20 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
         repo->setOwner(owner);
     }
 
+    // features
+    quint8 features{Repo::FeatureNone};
+
+    if (obj.value(ApiKey::HAS_ISSUES_ENABLED).toBool())
+        features |= Repo::FeatureIssues;
+
+    if (obj.value(ApiKey::HAS_PROJECTS_ENABLED).toBool())
+        features |= Repo::FeatureProjects;
+
+    if (obj.value(ApiKey::HAS_WIKI_ENABLED).toBool())
+        features |= Repo::FeatureWiki;
+
+    repo->setFeatures(features);
+
     // permisson
     repo->setViewerPermission(getViewerPermission(obj.value(ApiKey::VIEWER_PERMISSION).toString()));
 

@@ -58,7 +58,10 @@ struct ApiKey {
     static const QString FORK_COUNT;
     static const QString FORKS;
     static const QString GISTS;
+    static const QString HAS_ISSUES_ENABLED;
     static const QString HAS_NEXT_PAGE;
+    static const QString HAS_PROJECTS_ENABLED;
+    static const QString HAS_WIKI_ENABLED;
     static const QString HOMEPAGE_URL;
     static const QString ID;
     static const QString INCLUDES_CREATED_EDIT;
