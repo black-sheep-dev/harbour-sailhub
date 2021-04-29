@@ -49,7 +49,7 @@
     </message>
     <message>
         <source>All emojis designed by %1. License: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkie emotikony zaprojektowane przez %1. Licencja: %2</translation>
     </message>
 </context>
 <context>
@@ -175,76 +175,76 @@
     </message>
     <message>
         <source>Write comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Napisz komentarz</translation>
     </message>
 </context>
 <context>
     <name>DiscussionCommentItem</name>
     <message>
         <source>Edited</source>
-        <translation type="unfinished">Edytowany</translation>
+        <translation>Edytowany</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Usuń</translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">Edytuj</translation>
+        <translation>Edytuj</translation>
     </message>
     <message>
         <source>Unmark as answer</source>
-        <translation type="unfinished"></translation>
+        <translation>Odznacz jako odpowiedź</translation>
     </message>
     <message>
         <source>Mark as answer</source>
-        <translation type="unfinished"></translation>
+        <translation>Oznacz jako odpowiedź</translation>
     </message>
     <message>
         <source>Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpowiedz</translation>
     </message>
     <message>
         <source>Quote reply</source>
-        <translation type="unfinished">Cytuj odpowiedź</translation>
+        <translation>Cytuj odpowiedź</translation>
     </message>
     <message>
         <source>Deleting comment</source>
-        <translation type="unfinished">Usuwanie komentarza</translation>
+        <translation>Usuwanie komentarza</translation>
     </message>
     <message>
         <source>Replies</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpowiedzi</translation>
     </message>
 </context>
 <context>
     <name>DiscussionCommentPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>Thread</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek</translation>
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished">Reakcje</translation>
+        <translation>Reakcje</translation>
     </message>
     <message>
         <source>Replies</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpowiedzi</translation>
     </message>
     <message>
         <source>Write Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Napisz odpowiedź</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -252,49 +252,49 @@
     <name>DiscussionListDelegate</name>
     <message>
         <source>started the discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>rozpoczął dyskusję</translation>
     </message>
 </context>
 <context>
     <name>DiscussionPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>Discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>Dyskusja</translation>
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished">Reakcje</translation>
+        <translation>Reakcje</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">Edytuj</translation>
+        <translation>Edytuj</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Usuń</translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <source>Deleting discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwanie dyskusji</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished">Komentarze</translation>
+        <translation>Komentarze</translation>
     </message>
     <message>
         <source>Write comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Napisz komentarz</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -302,47 +302,47 @@
     <name>DiscussionsListPage</name>
     <message>
         <source>Discussions</source>
-        <translation type="unfinished"></translation>
+        <translation>Dyskusje</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished">Sortowanie</translation>
+        <translation>Sortowanie</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished">Utworzono</translation>
+        <translation>Utworzono</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished">Zaktualizowano</translation>
+        <translation>Zaktualizowano</translation>
     </message>
     <message>
         <source>No discussions available</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak dostępnych dyskusji</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Usuń</translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <source>Deleting discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwanie dyskusji</translation>
     </message>
     <message>
         <source>Start new</source>
-        <translation type="unfinished"></translation>
+        <translation>Zacznij nową</translation>
     </message>
 </context>
 <context>
@@ -365,38 +365,38 @@
     </message>
     <message>
         <source>Edit Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj odpowiedź</translation>
     </message>
     <message>
         <source>Add Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj odpowiedź</translation>
     </message>
 </context>
 <context>
     <name>EditDiscussionDialog</name>
     <message>
         <source>Edit discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj dyskusję</translation>
     </message>
     <message>
         <source>Create discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz dyskusję</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Zapisz</translation>
+        <translation>Zapisz</translation>
     </message>
     <message>
         <source>Create</source>
-        <translation type="unfinished">Utwórz</translation>
+        <translation>Utwórz</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <source>Enter title</source>
-        <translation type="unfinished">Wprowadź tytuł</translation>
+        <translation>Wprowadź tytuł</translation>
     </message>
 </context>
 <context>
@@ -434,30 +434,30 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished">Sortowanie</translation>
+        <translation>Sortowanie</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished">Utworzono</translation>
+        <translation>Utworzono</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished">Zaktualizowano</translation>
+        <translation>Zaktualizowano</translation>
     </message>
     <message>
         <source>Pushed at</source>
-        <translation type="unfinished">Pchnięte</translation>
+        <translation>Pchnięte</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
     <message>
@@ -536,7 +536,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">Edytuj</translation>
+        <translation>Edytuj</translation>
     </message>
 </context>
 <context>
@@ -626,7 +626,7 @@
     </message>
     <message>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz nowy</translation>
     </message>
 </context>
 <context>
@@ -1114,7 +1114,7 @@
     </message>
     <message>
         <source>Discussions</source>
-        <translation type="unfinished"></translation>
+        <translation>Dyskusje</translation>
     </message>
 </context>
 <context>
@@ -1310,15 +1310,15 @@
     <name>SelectDiscussionCategoryDialog</name>
     <message>
         <source>Select Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz kategorię</translation>
     </message>
     <message>
         <source>Select</source>
-        <translation type="unfinished">Wybierz</translation>
+        <translation>Wybierz</translation>
     </message>
     <message>
         <source>No categories available</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak dostępnych kategorii</translation>
     </message>
 </context>
 <context>
