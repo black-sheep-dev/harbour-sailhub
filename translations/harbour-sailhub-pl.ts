@@ -56,45 +56,45 @@
     <name>AssignUserDialog</name>
     <message>
         <source>Assign User</source>
-        <translation type="unfinished"></translation>
+        <translation>Przypisz użytkownika</translation>
     </message>
     <message>
         <source>Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>Przypisz</translation>
     </message>
     <message>
         <source>No users available</source>
-        <translation type="unfinished">Brak dostępnych użytkowników</translation>
+        <translation>Brak dostępnych użytkowników</translation>
     </message>
 </context>
 <context>
     <name>AssigneesListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>Assign user</source>
-        <translation type="unfinished"></translation>
+        <translation>Przypisz użytkownika</translation>
     </message>
     <message>
         <source>No users available</source>
-        <translation type="unfinished">Brak dostępnych użytkowników</translation>
+        <translation>Brak dostępnych użytkowników</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <source>Remove user from assignees</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń użytkownika z przypisanych</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -916,27 +916,27 @@
     <name>ReleaseAssetsListPage</name>
     <message>
         <source>Release Assets</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwolnij zasoby</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>No assets available</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak dostępnych zasobów</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobierz</translation>
     </message>
 </context>
 <context>
@@ -947,11 +947,11 @@
     </message>
     <message>
         <source>Draft</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja robocza</translation>
     </message>
     <message>
         <source>Pre-release</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja wstępna</translation>
     </message>
 </context>
 <context>
@@ -970,27 +970,27 @@
     </message>
     <message>
         <source>Draft</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja robocza</translation>
     </message>
     <message>
         <source>Latest release</source>
-        <translation type="unfinished">Najnowsza wersja</translation>
+        <translation>Najnowsza wersja</translation>
     </message>
     <message>
         <source>Pre-release</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja wstępna</translation>
     </message>
     <message>
         <source>Assets</source>
-        <translation type="unfinished"></translation>
+        <translation>Zasoby</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Zawartość</translation>
     </message>
     <message>
         <source>Source code</source>
-        <translation type="unfinished"></translation>
+        <translation>Kod źródłowy</translation>
     </message>
 </context>
 <context>
@@ -1110,7 +1110,7 @@
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Zawartość</translation>
     </message>
     <message>
         <source>Discussions</source>
