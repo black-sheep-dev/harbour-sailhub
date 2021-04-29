@@ -6,8 +6,12 @@
 
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QRegularExpression>
 
 #include "keys.h"
+
+#include "src/enums/lockreason.h"
+#include "src/enums/subscriptionstate.h"
 
 #include "src/entities/reaction.h"
 
@@ -30,12 +34,7 @@ Comment *DataUtils::commentFromJson(const QJsonObject &obj)
                     .append(QStringLiteral("...")));
     }
 
-    comment->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
-    comment->setCreatedAtTimeSpan(timeSpanText(comment->createdAt(), true));
-    comment->setLastEditAt(QDateTime::fromString(obj.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
     comment->setViewerAbilities(getViewerAbilities(obj));
-
-    comment->setEdited(comment->createdAt() < comment->lastEditAt());
 
     // reactions
     getInteractable(obj, comment);
@@ -60,16 +59,232 @@ QList<Comment *> DataUtils::commentsFromJson(const QJsonObject &obj)
     return comments;
 }
 
+Discussion *DataUtils::discussionFromJson(const QJsonObject &obj, Discussion *discussion)
+{
+    if (discussion == nullptr)
+        discussion = new Discussion;
+
+    discussion->setNodeId(obj.value(ApiKey::ID).toString());
+
+    discussion->setActiveLockReason(LockReason::fromString(obj.value(ApiKey::ACTIVE_LOCK_REASON).toString()));
+    discussion->setAnswerChosenAt(QDateTime::fromString(obj.value(ApiKey::ANSWER_CHOSEN_AT).toString(), Qt::ISODate));
+    discussion->setAnswerChosenBy(ownerFromJson(obj.value(ApiKey::ANSWER_CHOSEN_BY).toObject()));
+
+    const QJsonObject category = obj.value(ApiKey::CATEGORY).toObject();
+    discussion->setCategory(category.value(ApiKey::NAME).toString());
+    discussion->setCategoryId(category.value(ApiKey::ID).toString());
+    discussion->setCategoryEmoji(getEmojiLinkFromString(category.value(ApiKey::EMOJI_HTML).toString()));
+
+    discussion->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
+    discussion->setCreatedViaEmail(obj.value(ApiKey::CREATED_VIA_EMAIL).toBool());
+    discussion->setEditor(ownerFromJson(obj.value(ApiKey::EDITOR).toObject()));
+    discussion->setLocked(obj.value(ApiKey::LOCKED).toBool());
+    discussion->setNumber(obj.value(ApiKey::NUMBER).toInt());
+    discussion->setPublishedAt(QDateTime::fromString(obj.value(ApiKey::PUBLISHED_AT).toString(), Qt::ISODate));
+
+    const QJsonObject repo = obj.value(ApiKey::REPOSITORY).toObject();
+    discussion->setRepository(repo.value(ApiKey::NAME_WITH_OWNER).toString());
+    discussion->setRepositoryId(repo.value(ApiKey::ID).toString());
+    discussion->setTitle(obj.value(ApiKey::TITLE).toString());
+    discussion->setViewerSubscription(SubscriptionState::fromString(obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
+
+    discussion->setViewerAbilities(getViewerAbilities(obj));
+
+    // reactions
+    getInteractable(obj, discussion);
+
+    return discussion;
+}
+
+DiscussionListItem DataUtils::discussionListItemFromJson(const QJsonObject &obj)
+{
+    DiscussionListItem item;
+
+    item.nodeId = obj.value(ApiKey::ID).toString();
+
+    const QJsonObject category = obj.value(ApiKey::CATEGORY).toObject();
+    item.category = category.value(ApiKey::NAME).toString();
+    item.emoji = getEmojiLinkFromString(category.value(ApiKey::EMOJI_HTML).toString());
+
+    item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
+    item.title = obj.value(ApiKey::TITLE).toString();
+
+    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
+    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    item.updatedAtTimeSpan = timeSpanText(item.updatedAt, true);
+    item.viewerCanDelete = obj.value(ApiKey::VIEWER_CAN_DELETE).toBool();
+
+    const QJsonObject author = obj.value(ApiKey::AUTHOR).toObject();
+
+    item.authorLogin = author.value(ApiKey::LOGIN).toString();
+    item.authorAvatar = author.value(ApiKey::AVATAR_URL).toString();
+
+    return item;
+}
+
+QList<DiscussionListItem> DataUtils::discussionsFromJson(const QJsonObject &obj)
+{
+    QList<DiscussionListItem> discussions;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject discussion = node.toObject();
+        if (discussion.isEmpty())
+            continue;
+
+        discussions.append(discussionListItemFromJson(discussion));
+    }
+
+    return discussions;
+}
+
+DiscussionCategoryListItem DataUtils::discussionCategoryListItemFromJson(const QJsonObject &obj)
+{
+    DiscussionCategoryListItem item;
+
+    item.nodeId = obj.value(ApiKey::ID).toString();
+    item.emoji = getEmojiLinkFromString(obj.value(ApiKey::EMOJI_HTML).toString());
+    item.description = obj.value(ApiKey::DESCRIPTION).toString();
+    item.name = obj.value(ApiKey::NAME).toString();
+
+    return item;
+}
+
+QList<DiscussionCategoryListItem> DataUtils::discussionCategoriesFromJson(const QJsonObject &obj)
+{
+    QList<DiscussionCategoryListItem> categories;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject category = node.toObject();
+        if (category.isEmpty())
+            continue;
+
+        categories.append(discussionCategoryListItemFromJson(category));
+    }
+
+    return categories;
+}
+
+DiscussionComment *DataUtils::discussionCommentFromJson(const QJsonObject &obj)
+{
+    DiscussionComment *comment = new DiscussionComment;
+
+    comment->setNodeId(obj.value(ApiKey::ID).toString());
+
+    comment->setCreatedViaEmail(obj.value(ApiKey::CREATED_VIA_EMAIL).toBool());
+    comment->setDeletedAt(QDateTime::fromString(obj.value(ApiKey::DELETED_AT).toString(), Qt::ISODate));
+    comment->setDiscussionId(obj.value(ApiKey::DISCUSSION).toObject().value(ApiKey::ID).toString());
+    comment->setEditor(ownerFromJson(obj.value(ApiKey::EDITOR).toObject()));
+    comment->setIncludesCreatedEdit(obj.value(ApiKey::INCLUDES_CREATED_EDIT).toBool());
+    comment->setIsAnswer(obj.value(ApiKey::IS_ANSWER).toBool());
+    comment->setIsMinimized(obj.value(ApiKey::IS_MINIMIZED).toBool());
+    comment->setMinimizedReason(obj.value(ApiKey::MINIMIZED_REASON).toString());
+    comment->setReplyCount(getTotalCount(obj.value(ApiKey::REPLIES).toObject()));
+    comment->setReplyToId(obj.value(ApiKey::REPLY_TO).toObject().value(ApiKey::ID).toString());
+
+
+    // reactions
+    getInteractable(obj, comment);
+
+    comment->setViewerAbilities(getViewerAbilities(obj));
+
+    return comment;
+}
+
+QList<DiscussionComment *> DataUtils::discussionCommentsFromJson(const QJsonObject &obj)
+{
+    QList<DiscussionComment *> comments;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject comment = node.toObject();
+        if (comment.isEmpty())
+            continue;
+
+        comments.append(discussionCommentFromJson(comment));
+    }
+
+    return comments;
+}
+
+Gist *DataUtils::gistFromJson(const QJsonObject &obj, Gist *gist)
+{
+    if (gist == nullptr)
+        gist = new Gist;
+
+    gist->setNodeId(obj.value(ApiKey::ID).toString());
+    gist->setName(obj.value(ApiKey::NAME).toString());
+
+    gist->setCommetCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
+    gist->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    gist->setDescription(obj.value(ApiKey::DESCRIPTION).toString());
+    gist->setForkCount(getTotalCount(obj.value(ApiKey::FORKS).toObject()));
+    gist->setIsFork(obj.value(ApiKey::IS_FORK).toBool());
+    gist->setIsPublic(obj.value(ApiKey::IS_PUBLIC).toBool());
+    gist->setOwner(ownerFromJson(obj.value(ApiKey::OWNER).toObject()));
+    gist->setPushedAt(QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate));
+    gist->setStargazerCount(obj.value(ApiKey::STARGAZER_COUNT).toInt());
+    gist->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
+    gist->setViewerHasStarred(obj.value(ApiKey::VIEWER_HAS_STARRED).toBool());
+
+    return gist;
+}
+
+GistListItem DataUtils::gistListItemFromJson(const QJsonObject &obj)
+{
+    GistListItem item;
+
+    item.nodeId = obj.value(ApiKey::ID).toString();
+
+    item.description = obj.value(ApiKey::DESCRIPTION).toString();
+    item.isPublic = obj.value(ApiKey::IS_PUBLIC).toBool();
+    item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
+    item.fileCount = getTotalCount(obj.value(ApiKey::FILES).toObject());
+    item.forkCount = getTotalCount(obj.value(ApiKey::FORKS).toObject());
+    item.stargazerCount = obj.value(ApiKey::STARGAZER_COUNT).toInt();
+    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    item.pushedAt = QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
+    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+
+    const QJsonObject owner = obj.value(ApiKey::OWNER).toObject();
+
+    item.ownerLogin = owner.value(ApiKey::LOGIN).toString();
+    item.ownerAvatar = owner.value(ApiKey::AVATAR_URL).toString();
+
+    return item;
+}
+
+QList<GistListItem> DataUtils::gistsFromJson(const QJsonObject &obj)
+{
+    QList<GistListItem> gists;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject gist = node.toObject();
+        if (gist.isEmpty())
+            continue;
+
+        gists.append(gistListItemFromJson(gist));
+    }
+
+    return gists;
+}
+
 Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
 {
     if (issue == nullptr)
         issue = new Issue;
 
     issue->setNodeId(obj.value(ApiKey::ID).toString());
+
     issue->setAssigneeCount(getTotalCount(obj.value(ApiKey::ASSIGNEES).toObject()));
     issue->setTitle(obj.value(ApiKey::TITLE).toString());
-    issue->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
-    issue->setCreatedAtTimeSpan(timeSpanText(issue->createdAt(), true));
     issue->setNumber(obj.value(ApiKey::NUMBER).toInt());
 
     const QJsonObject repo = obj.value(ApiKey::REPOSITORY).toObject();
@@ -79,11 +294,10 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
 
     issue->setStates(obj.value(ApiKey::STATE).toInt());
     issue->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
-    issue->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
     issue->setEdited(issue->updatedAt() > issue->createdAt());
-    issue->setAssigneeCount(getTotalCount(obj.value(ApiKey::ASSIGNEES).toObject()));
     issue->setLabelCount(getTotalCount(obj.value(ApiKey::LABELS).toObject()));
     issue->setParticipantCount(getTotalCount(obj.value(ApiKey::PARTICIPANTS).toObject()));
+
     issue->setViewerAbilities(getViewerAbilities(obj));
 
     getInteractable(obj, issue);
@@ -423,7 +637,7 @@ ReleaseListItem DataUtils::releaseListItemFromJson(const QJsonObject &obj)
     return item;
 }
 
-QList<ReleaseListItem> DataUtils::releaseListItemsFromJson(const QJsonObject &obj)
+QList<ReleaseListItem> DataUtils::releasesFromJson(const QJsonObject &obj)
 {
     QList<ReleaseListItem>  releases;
 
@@ -440,7 +654,7 @@ QList<ReleaseListItem> DataUtils::releaseListItemsFromJson(const QJsonObject &ob
     return releases;
 }
 
-QList<ReleaseAssetListItem> DataUtils::releaseAssetListItemsFromJson(const QJsonObject &obj)
+QList<ReleaseAssetListItem> DataUtils::releaseAssetsFromJson(const QJsonObject &obj)
 {
     QList<ReleaseAssetListItem>  assets;
 
@@ -487,6 +701,7 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     repo->setDefaultBranch(obj.value(ApiKey::DEFAULT_BRANCH_REF).toObject()
                            .value(ApiKey::NAME).toString());
     repo->setDescription(obj.value(ApiKey::DESCRIPTION).toString());
+    repo->setDiscussionCount(getTotalCount(obj.value(ApiKey::DISCUSSIONS).toObject()));
     repo->setForkCount(obj.value(ApiKey::FORK_COUNT).toInt());
     repo->setHomepageUrl(obj.value(ApiKey::HOMEPAGE_URL).toString());
     repo->setIsPrivate(obj.value(ApiKey::IS_PRIVATE).toBool());
@@ -521,14 +736,7 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     repo->setViewerPermission(getViewerPermission(obj.value(ApiKey::VIEWER_PERMISSION).toString()));
 
     // subscription
-    const QString subscription = obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString();
-    if (subscription == QLatin1String("IGNORED")) {
-        repo->setViewerSubscription(Repo::SubscriptionIgnored);
-    } else if (subscription == QLatin1String("SUBSCRIBED")) {
-        repo->setViewerSubscription(Repo::Subscribed);
-    } else if (subscription == QLatin1String("UNSUBSCRIBED")) {
-        repo->setViewerSubscription(Repo::Unsubscribed);
-    }
+    repo->setViewerSubscription(SubscriptionState::fromString(obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
 
     return repo;
 }
@@ -659,6 +867,7 @@ User *DataUtils::userFromJson(const QJsonObject &obj, User *user)
     user->setCompany(obj.value(ApiKey::COMPANY).toString());
     user->setFollowers(getTotalCount(obj.value(ApiKey::FOLLOWERS).toObject()));
     user->setFollowing(getTotalCount(obj.value(ApiKey::FOLLOWING).toObject()));
+    user->setGistCount(getTotalCount(obj.value(ApiKey::GISTS).toObject()));
     user->setLocation(obj.value(ApiKey::LOCATION).toString());
     user->setLogin(obj.value(ApiKey::LOGIN).toString());
     user->setIsViewer(obj.value(ApiKey::IS_VIEWER).toBool());
@@ -740,6 +949,28 @@ QString DataUtils::timeSpanText(const QDateTime &start, bool shortText)
     return shortText ? QStringLiteral("%1y").arg(years) : QObject::tr("%n year(s) ago", "", years);
 }
 
+QString DataUtils::getEmojiLinkFromString(const QString &string)
+{
+    QRegularExpression re(QStringLiteral("(?<=unicode\\/)(.*)(?=\">)"));
+    QRegularExpressionMatch match = re.match(string);
+
+    if (!match.hasMatch())
+        return QString();
+
+    return QStringLiteral("/usr/share/harbour-twemoji/72x72/") + match.captured(0);
+}
+
+QString DataUtils::getLinkFromString(const QString &string)
+{
+    QRegularExpression re(QStringLiteral("(https):\\/\\/([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])?"));
+    QRegularExpressionMatch match = re.match(string);
+
+    if (!match.hasMatch())
+        return QString();
+
+    return match.captured(0);
+}
+
 quint8 DataUtils::getViewerPermission(const QString &permission)
 {
     if (permission == QLatin1String("ADMIN"))
@@ -765,8 +996,14 @@ quint32 DataUtils::getViewerAbilities(const QJsonObject &obj)
 {
     quint32 abilities{0};
 
+    if (obj.value(ApiKey::VIEWER_CAN_ADMINISTER).toBool())
+        abilities |= Viewer::CanAdminister;
+
     if (obj.value(ApiKey::VIEWER_CAN_APPLY_SUGGESTION).toBool())
         abilities |= Viewer::CanApplySuggestion;
+
+    if (obj.value(ApiKey::VIEWER_CAN_CREATE_PROJECTS).toBool())
+        abilities |= Viewer::CanCreateProjects;
 
     if (obj.value(ApiKey::VIEWER_CAN_DELETE).toBool())
         abilities |= Viewer::CanDelete;
@@ -788,6 +1025,18 @@ quint32 DataUtils::getViewerAbilities(const QJsonObject &obj)
 
     if (obj.value(ApiKey::VIEWER_CAN_UPDATE).toBool())
         abilities |= Viewer::CanUpdate;
+
+    if (obj.value(ApiKey::VIEWER_CAN_UPDATE_TOPICS).toBool())
+        abilities |= Viewer::CanUpdateTopics;
+
+    if (obj.value(ApiKey::VIEWER_CAN_MARK_AS_ANSWER).toBool())
+        abilities |= Viewer::CanMarkAsAnswer;
+
+    if (obj.value(ApiKey::VIEWER_CAN_MINIMIZE).toBool())
+        abilities |= Viewer::CanMinimize;
+
+    if (obj.value(ApiKey::VIEWER_CAN_UNMARK_AS_ANSWER).toBool())
+        abilities |= Viewer::CanUnmarkAsAnswer;
 
     return abilities;
 }
@@ -871,6 +1120,14 @@ void DataUtils::getInteractable(const QJsonObject &obj, Interactable *node)
     }
 
     node->setViewerReactions(viewerReactions);
+
+    // timespamps
+    node->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    node->setCreatedAtTimeSpan(timeSpanText(node->createdAt(), true));
+    node->setLastEditedAt(QDateTime::fromString(obj.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
+    node->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
+    node->setUpdatedAtTimeSpan(timeSpanText(node->updatedAt()));
+    node->setEdited(node->createdAt() < node->lastEditedAt());
 }
 
 quint32 DataUtils::getTotalCount(const QJsonObject &obj)

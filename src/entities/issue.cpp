@@ -16,16 +16,6 @@ quint32 Issue::commentCount() const
     return m_commentCount;
 }
 
-QDateTime Issue::createdAt() const
-{
-    return m_createdAt;
-}
-
-QString Issue::createdAtTimeSpan() const
-{
-    return m_createdAtTimeSpan;
-}
-
 quint32 Issue::labelCount() const
 {
     return m_labelCount;
@@ -66,11 +56,6 @@ QString Issue::title() const
     return m_title;
 }
 
-QDateTime Issue::updatedAt() const
-{
-    return m_updatedAt;
-}
-
 void Issue::setAssigneeCount(quint32 count)
 {
     if (m_assigneeCount == count)
@@ -87,24 +72,6 @@ void Issue::setCommentCount(quint32 count)
 
     m_commentCount = count;
     emit commentCountChanged(m_commentCount);
-}
-
-void Issue::setCreatedAt(const QDateTime &timestamp)
-{
-    if (m_createdAt == timestamp)
-        return;
-
-    m_createdAt = timestamp;
-    emit createdAtChanged(m_createdAt);
-}
-
-void Issue::setCreatedAtTimeSpan(const QString &timeSpan)
-{
-    if (m_createdAtTimeSpan == timeSpan)
-        return;
-
-    m_createdAtTimeSpan = timeSpan;
-    emit createdAtTimeSpanChanged(m_createdAtTimeSpan);
 }
 
 void Issue::setLabelCount(quint32 count)
@@ -177,13 +144,4 @@ void Issue::setTitle(const QString &title)
 
     m_title = title;
     emit titleChanged(m_title);
-}
-
-void Issue::setUpdatedAt(const QDateTime &timestamp)
-{
-    if (m_updatedAt == timestamp)
-        return;
-
-    m_updatedAt = timestamp;
-    emit updatedAtChanged(m_updatedAt);
 }

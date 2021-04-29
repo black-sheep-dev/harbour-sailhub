@@ -8,6 +8,9 @@
         <file alias="icon-m-fork">icons/scalable/icon-m-fork.svg</file>
         <file alias="icon-m-merged">icons/scalable/icon-m-merged.svg</file>
         <file alias="icon-m-pull-request">icons/scalable/icon-m-pull-request.svg</file>
+        <file alias="icon-m-eye">icons/scalable/icon-m-eye.svg</file>
+        <file alias="icon-m-tag">icons/scalable/icon-m-tag.svg</file>
+        <file alias="icon-m-issue">icons/scalable/icon-m-issue.svg</file>
     </qresource>
     <qresource prefix="/cover">
         <file alias="cover-background">icons/cover-background.svg</file>

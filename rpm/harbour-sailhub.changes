@@ -1,3 +1,12 @@
+* Thu Apr 29 2021 Black Sheep <blacksheep@nubecula.org> 0.0.22-1
+- Add repository discussion functionality (Comment / Reply / React)
+- Add basic gist functionality
+- Switch emoji icons to Twemoji pack
+- New icons added
+- UI redesign
+- Code Improvments
+- Many Bugfixes
+
 * Sun Apr 25 2021 Black Sheep <blacksheep@nubecula.org> 0.0.21-1
 - Add assign user to issues and pull requests functionality
 - UI improvements

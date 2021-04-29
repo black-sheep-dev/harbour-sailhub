@@ -25,7 +25,7 @@ BackgroundItem {
 
             fallbackItemVisible: false
 
-            source: avatar + "?size=" + width
+            source: avatar// + "?size=" + Math.round(width)
 
             BusyIndicator {
                 size: BusyIndicatorSize.Medium

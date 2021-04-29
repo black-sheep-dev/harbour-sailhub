@@ -116,7 +116,6 @@ Page {
                     return model.owner + "/" + model.name
                 }
             }
-            lastItem: index == (listView.count - 1)
 
             onClicked: pageStack.push(Qt.resolvedUrl("RepoPage.qml"), {
                                           nodeId: model.nodeId

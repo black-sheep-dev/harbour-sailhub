@@ -20,6 +20,9 @@ BackgroundItem {
             id: valueIcon
             visible: icon.length > 0
             anchors.verticalCenter: parent.verticalCenter
+            width: Theme.iconSizeMedium
+            height: Theme.iconSizeMedium
+            fillMode: Image.PreserveAspectFit
             source: icon
         }
 

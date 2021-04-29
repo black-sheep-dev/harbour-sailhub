@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.21
+VERSION = 0.0.22
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -37,7 +37,11 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/queryvars.cpp \
     src/api/restapiconnector.cpp \
     src/entities/comment.cpp \
+    src/entities/discussion.cpp \
+    src/entities/discussioncategory.cpp \
+    src/entities/discussioncomment.cpp \
     src/entities/file.cpp \
+    src/entities/gist.cpp \
     src/entities/interactable.cpp \
     src/entities/issue.cpp \
     src/entities/label.cpp \
@@ -51,6 +55,10 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/repo.cpp \
     src/entities/user.cpp \
     src/models/commentsmodel.cpp \
+    src/models/discussioncategoriesmodel.cpp \
+    src/models/discussioncommentsmodel.cpp \
+    src/models/discussionsmodel.cpp \
+    src/models/gistsmodel.cpp \
     src/models/issuesmodel.cpp \
     src/models/labelsmodel.cpp \
     src/models/notificationsmodel.cpp \
@@ -72,6 +80,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/CommentItem \
     qml/components/CommentItem.qml \
     qml/components/CounterItem.qml \
+    qml/components/DiscussionCommentItem.qml \
     qml/components/IconLabel.qml \
     qml/components/IconRelatedItem.qml \
     qml/components/InfoItem.qml \
@@ -83,6 +92,9 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/cover/CoverPage.qml \
     qml/delegates/AssetListDelegate.qml \
     qml/delegates/CommentListDelegate.qml \
+    qml/delegates/DiscussionCategoryListDelegate.qml \
+    qml/delegates/DiscussionListDelegate.qml \
+    qml/delegates/GistListDelegate.qml \
     qml/delegates/IssueListDelegate.qml \
     qml/delegates/LabelListDelegate.qml \
     qml/delegates/NotificationListDelegate.qml \
@@ -93,9 +105,11 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/delegates/UserListDelegate.qml \
     qml/dialogs/AssignUserDialog.qml \
     qml/dialogs/EditCommentDialog.qml \
+    qml/dialogs/EditDiscussionDialog.qml \
     qml/dialogs/EditIssueDialog.qml \
     qml/dialogs/ReactionDialog.qml \
     qml/dialogs/SelectBranchDialog.qml \
+    qml/dialogs/SelectDiscussionCategoryDialog.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
     qml/dialogs/SortSelectionDialog.qml \
     qml/js/stringhelper.js \
@@ -103,6 +117,10 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/CommentPage \
     qml/pages/CommentPage.qml \
     qml/pages/CommentsListPage.qml \
+    qml/pages/DiscussionCommentPage.qml \
+    qml/pages/DiscussionPage.qml \
+    qml/pages/DiscussionsListPage.qml \
+    qml/pages/GistsListPage.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
     qml/pages/IssueSelectionPage.qml \
@@ -176,7 +194,11 @@ HEADERS += \
     src/api/ratelimit.h \
     src/api/restapiconnector.h \
     src/entities/comment.h \
+    src/entities/discussion.h \
+    src/entities/discussioncategory.h \
+    src/entities/discussioncomment.h \
     src/entities/file.h \
+    src/entities/gist.h \
     src/entities/interactable.h \
     src/entities/issue.h \
     src/entities/label.h \
@@ -194,7 +216,14 @@ HEADERS += \
     src/entities/treeitem.h \
     src/entities/user.h \
     src/entities/viewer.h \
+    src/enums/enums.h \
+    src/enums/lockreason.h \
+    src/enums/subscriptionstate.h \
     src/models/commentsmodel.h \
+    src/models/discussioncategoriesmodel.h \
+    src/models/discussioncommentsmodel.h \
+    src/models/discussionsmodel.h \
+    src/models/gistsmodel.h \
     src/models/issuesmodel.h \
     src/models/labelsmodel.h \
     src/models/notificationsmodel.h \

@@ -7,22 +7,17 @@ import org.nubecula.harbour.sailhub 1.0
 import "../components/"
 
 ListItem {
-    property bool lastItem: false
 
     id: delegate
     width: parent.width
-    contentHeight: delegateContent.height + 2*Theme.paddingSmall
+    contentHeight: delegateContent.height + 2*Theme.paddingMedium
 
     Column {
         id: delegateContent
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
+        anchors.verticalCenter: parent.verticalCenter
         spacing: Theme.paddingSmall
-
-        Item {
-            width: 1
-            height: Theme.paddingMedium
-        }
 
         Row {
             width: parent.width
@@ -126,17 +121,5 @@ ListItem {
                 }
             }
         }
-
-        Item {
-            width: 1
-            height: Theme.paddingMedium
-        }
-    }
-
-    Separator {
-        visible: !lastItem
-        anchors.top: delegateContent.bottom
-        width: parent.width
-        color: Theme.highlightBackgroundColor
     }
 }

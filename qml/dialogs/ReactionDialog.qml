@@ -109,7 +109,5 @@ Dialog {
             }
         }
     }
-
-    onReactionsChanged: console.log(reactions)
 }
 

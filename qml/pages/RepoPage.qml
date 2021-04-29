@@ -36,7 +36,7 @@ Page {
                 enabled: repo.viewerCanSubscribe
                 text: {
                     switch (repo.viewerSubscription) {
-                    case Repo.SubscriptionIgnored:
+                    case SubscriptionState.Ignored:
                         return qsTr("Watch")
 
                     default:
@@ -50,6 +50,7 @@ Page {
 
                     dialog.accepted.connect(function() {
                         page.busy = true
+                        console.log(dialog.subscription)
                         SailHub.api().subscribeToRepo(repo.nodeId, dialog.subscription)
                     })
                 }
@@ -207,7 +208,7 @@ Page {
                     width: parent.width / 3
 
                     title: qsTr("%n Fork(s)", "0", repo.forkCount)
-                    icon: "qrc:///icons/fork"
+                    icon: "qrc:///icons/icon-m-fork"
 
                     onClicked: {
                         if (repo.forkCount === 0) return;
@@ -232,6 +233,7 @@ Page {
 
                 label: qsTr("Issues")
                 value: repo.issueCount
+                icon: "qrc:///icons/icon-m-issue"
 
                 onClicked: {
                     if (repo.issueCount === 0) return;
@@ -249,6 +251,7 @@ Page {
 
                 label: qsTr("Pull Requests")
                 value: repo.pullRequestCount
+                icon: "qrc:///icons/icon-m-pull-request"
 
                 onClicked: {
                     if (repo.pullRequestCount === 0) return;
@@ -264,8 +267,23 @@ Page {
             RelatedValueItem {
                 width: parent.width
 
+                label: qsTr("Discussions")
+                value: repo.discussionCount
+                icon: "image://theme/icon-m-chat"
+
+                onClicked: pageStack.push(Qt.resolvedUrl("DiscussionsListPage.qml"), {
+                                              description: repo.owner.login + "/" + repo.name,
+                                              identifier: repo.nodeId
+                                          })
+
+
+            }
+            RelatedValueItem {
+                width: parent.width
+
                 label: qsTr("Releases")
                 value: repo.releaseCount
+                icon: "qrc:///icons/icon-m-tag"
 
                 onClicked: {
                     if (repo.releaseCount === 0) return;
@@ -281,6 +299,7 @@ Page {
 
                 label: qsTr("Watchers")
                 value: repo.watcherCount
+                icon: "qrc:///icons/icon-m-eye"
 
                 onClicked: {
                     if (repo.watcherCount === 0) return;
@@ -298,6 +317,7 @@ Page {
 
                 label: qsTr("Contributors")
                 value: repo.contributorCount
+                icon: "image://theme/icon-m-media-artists"
 
                 onClicked: {
                     if (repo.contributorCount === 0) return;
@@ -316,6 +336,7 @@ Page {
 
                 label: qsTr("License")
                 value: repo.license.name
+                icon: "image://theme/icon-m-file-document-light"
 
                 onClicked: pageStack.push(Qt.resolvedUrl("TextFileViewerPage.qml"), {
                                               branch: repo.defaultBranch,
@@ -343,9 +364,10 @@ Page {
 
                     Icon {
                         id: iconBranch
-//                        height: 64
-//                        width: 64
                         anchors.verticalCenter: parent.verticalCenter
+                        width: Theme.iconSizeMedium
+                        height: Theme.iconSizeMedium
+                        fillMode: Image.PreserveAspectFit
                         source: "qrc:///icons/icon-m-branch"
                     }
 
@@ -383,7 +405,7 @@ Page {
                 title: qsTr("README")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("MarkdownViewerPage.qml"), {
-                                              branch: repo.defaultBranch,
+                                              branch: selectedBranch,
                                               owner: repo.owner.login,
                                               path: "README.md",
                                               repo: repo.name,

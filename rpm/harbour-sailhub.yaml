@@ -1,6 +1,6 @@
 Name: harbour-sailhub
 Summary: SailHub
-Version: 0.0.21
+Version: 0.0.22
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
@@ -33,6 +33,7 @@ Requires:
   - sailfishsilica-qt5 >= 0.10.9
   - nemo-qml-plugin-notifications-qt5
   - nemo-qml-plugin-dbus-qt5
+  - harbour-twemoji
 
 # All installed files
 Files:

@@ -48,8 +48,8 @@
         <translation>贡献</translation>
     </message>
     <message>
-        <source>All emojis designed by %1 – the open-source emoji and icon project. License: %2</source>
-        <translation>所有图标都由 %1 设计-开源表情及图标项目。许可证:%2</translation>
+        <source>All emojis designed by %1. License: %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -158,10 +158,6 @@
         <translation>没有可用评论</translation>
     </message>
     <message>
-        <source>New comment</source>
-        <translation>新评论</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -172,6 +168,171 @@
     <message>
         <source>Quote reply</source>
         <translation>引用回复</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionCommentItem</name>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished">已编辑</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">编辑</translation>
+    </message>
+    <message>
+        <source>Unmark as answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mark as answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quote reply</source>
+        <translation type="unfinished">引用回复</translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation type="unfinished">正在删除评论</translation>
+    </message>
+    <message>
+        <source>Replies</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionCommentPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Thread</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished">反应</translation>
+    </message>
+    <message>
+        <source>Replies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Write Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionListDelegate</name>
+    <message>
+        <source>started the discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionPage</name>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished">反应</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">编辑</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">评论</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>DiscussionsListPage</name>
+    <message>
+        <source>Discussions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">分类</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">创建于</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished">更新于</translation>
+    </message>
+    <message>
+        <source>No discussions available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <source>Deleting discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start new</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -191,6 +352,41 @@
     <message>
         <source>Add</source>
         <translation>添加</translation>
+    </message>
+    <message>
+        <source>Edit Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditDiscussionDialog</name>
+    <message>
+        <source>Edit discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create discussion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation type="unfinished">创建</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">标题</translation>
+    </message>
+    <message>
+        <source>Enter title</source>
+        <translation type="unfinished">编辑标题</translation>
     </message>
 </context>
 <context>
@@ -218,6 +414,43 @@
     <message>
         <source>Enter title</source>
         <translation>编辑标题</translation>
+    </message>
+</context>
+<context>
+    <name>GistsListPage</name>
+    <message>
+        <source>Gists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>Sorting</source>
+        <translation type="unfinished">分类</translation>
+    </message>
+    <message>
+        <source>Created at</source>
+        <translation type="unfinished">创建于</translation>
+    </message>
+    <message>
+        <source>Updated at</source>
+        <translation type="unfinished">更新于</translation>
+    </message>
+    <message>
+        <source>Pushed at</source>
+        <translation type="unfinished">推送于</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>No gists available</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -254,10 +487,6 @@
         <translation>评论</translation>
     </message>
     <message>
-        <source>Edit issue</source>
-        <translation>编辑问题</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -292,6 +521,10 @@
     <message>
         <source>Relations</source>
         <translation>关系</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">编辑</translation>
     </message>
 </context>
 <context>
@@ -378,8 +611,8 @@
         <translation>评论</translation>
     </message>
     <message>
-        <source>New issue</source>
-        <translation>新问题</translation>
+        <source>Create new</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -841,6 +1074,10 @@
         <source>Content</source>
         <translation>内容</translation>
     </message>
+    <message>
+        <source>Discussions</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ReposListPage</name>
@@ -1021,6 +1258,21 @@
     <message>
         <source>No branches available</source>
         <translation>没有可用分支</translation>
+    </message>
+</context>
+<context>
+    <name>SelectDiscussionCategoryDialog</name>
+    <message>
+        <source>Select Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished">选择</translation>
+    </message>
+    <message>
+        <source>No categories available</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1235,6 +1487,10 @@
     <message>
         <source>Starred</source>
         <translation>已星标</translation>
+    </message>
+    <message>
+        <source>Gists</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

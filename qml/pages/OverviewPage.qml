@@ -85,7 +85,7 @@ Page {
             }
 
             IconRelatedItem {
-                icon: "image://theme/icon-m-about"
+                icon: "qrc:///icons/icon-m-issue"
                 title: qsTr("Issues")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("IssueSelectionPage.qml"), {

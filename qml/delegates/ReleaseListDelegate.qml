@@ -8,7 +8,7 @@ import "../components/"
 ListItem {
     id: delegate
     width: parent.width
-    contentHeight: delegateContent.height + 2*Theme.paddingSmall
+    contentHeight: delegateContent.height + 2*Theme.paddingMedium
 
     Row {
         id: delegateContent
