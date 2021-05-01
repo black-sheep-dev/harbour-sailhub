@@ -424,12 +424,12 @@
 <context>
     <name>FundingLinksListPage</name>
     <message>
-        <source>Funding</source>
-        <translation type="unfinished"></translation>
+        <source>No funding links available</source>
+        <translation type="unfinished">Keine Finanzierungs Links verfügbar</translation>
     </message>
     <message>
-        <source>No funding links available</source>
-        <translation type="unfinished"></translation>
+        <source>Sponsor</source>
+        <translation>Sponsor</translation>
     </message>
 </context>
 <context>
