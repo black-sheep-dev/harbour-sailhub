@@ -51,9 +51,49 @@ QString Repo::homepageUrl() const
     return m_homepageUrl;
 }
 
+bool Repo::isArchived() const
+{
+    return m_isArchived;
+}
+
+bool Repo::isDisabled() const
+{
+    return m_isDisabled;
+}
+
+bool Repo::isEmpty() const
+{
+    return m_isEmpty;
+}
+
+bool Repo::isFork() const
+{
+    return m_isFork;
+}
+
+bool Repo::isInOrganization() const
+{
+    return m_isInOrganization;
+}
+
+bool Repo::isLocked() const
+{
+    return m_isLocked;
+}
+
+bool Repo::isMirror() const
+{
+    return m_isMirror;
+}
+
 bool Repo::isPrivate() const
 {
     return m_isPrivate;
+}
+
+bool Repo::isTemplate() const
+{
+    return m_isTemplate;
 }
 
 quint32 Repo::issuesCount() const
@@ -79,11 +119,6 @@ quint32 Repo::projects() const
 quint32 Repo::pullRequestsCount() const
 {
     return m_pullRequestCount;
-}
-
-QString Repo::readme() const
-{
-    return m_readme;
 }
 
 quint32 Repo::releaseCount() const
@@ -114,6 +149,11 @@ quint8 Repo::viewerPermission() const
 quint8 Repo::viewerSubscription() const
 {
     return m_viewerSubscription;
+}
+
+quint32 Repo::vulnerabilityAlertCount() const
+{
+    return m_vulnerabilityAlertCount;
 }
 
 quint32 Repo::watcherCount() const
@@ -202,6 +242,69 @@ void Repo::setHomepageUrl(const QString &url)
     emit homepageUrlChanged(m_homepageUrl);
 }
 
+void Repo::setIsArchived(bool isArchived)
+{
+    if (m_isArchived == isArchived)
+        return;
+
+    m_isArchived = isArchived;
+    emit isArchivedChanged(m_isArchived);
+}
+
+void Repo::setIsDisabled(bool isDisabled)
+{
+    if (m_isDisabled == isDisabled)
+        return;
+
+    m_isDisabled = isDisabled;
+    emit isDisabledChanged(m_isDisabled);
+}
+
+void Repo::setIsEmpty(bool isEmpty)
+{
+    if (m_isEmpty == isEmpty)
+        return;
+
+    m_isEmpty = isEmpty;
+    emit isEmptyChanged(m_isEmpty);
+}
+
+void Repo::setIsFork(bool isFork)
+{
+    if (m_isFork == isFork)
+        return;
+
+    m_isFork = isFork;
+    emit isForkChanged(m_isFork);
+}
+
+void Repo::setIsInOrganization(bool isInOrganization)
+{
+    if (m_isInOrganization == isInOrganization)
+        return;
+
+    m_isInOrganization = isInOrganization;
+    emit isInOrganizationChanged(m_isInOrganization);
+}
+
+void Repo::setIsLocked(bool isLocked)
+{
+    if (m_isLocked == isLocked)
+        return;
+
+    m_isLocked = isLocked;
+    emit isLockedChanged(m_isLocked);
+}
+
+void Repo::setIsMirror(bool isMirror)
+{
+    if (m_isMirror == isMirror)
+        return;
+
+    m_isMirror = isMirror;
+    emit isMirrorChanged(m_isMirror);
+}
+
 void Repo::setIsPrivate(bool isPrivate)
 {
     if (m_isPrivate == isPrivate)
@@ -209,6 +312,15 @@ void Repo::setIsPrivate(bool isPrivate)
 
     m_isPrivate = isPrivate;
     emit isPrivateChanged(m_isPrivate);
+}
+
+void Repo::setIsTemplate(bool isTemplate)
+{
+    if (m_isTemplate == isTemplate)
+        return;
+
+    m_isTemplate = isTemplate;
+    emit isTemplateChanged(m_isTemplate);
 }
 
 void Repo::setIssuesCount(quint32 count)
@@ -254,15 +366,6 @@ void Repo::setPullRequestsCount(quint32 count)
 
     m_pullRequestCount = count;
     emit pullRequestsCountChanged(m_pullRequestCount);
-}
-
-void Repo::setReadme(const QString &readme)
-{
-    if (m_readme == readme)
-        return;
-
-    m_readme = readme;
-    emit readmeChanged(m_readme);
 }
 
 void Repo::setReleaseCount(quint32 releases)
@@ -317,6 +420,15 @@ void Repo::setViewerSubscription(quint8 viewerSubscription)
 
     m_viewerSubscription = viewerSubscription;
     emit viewerSubscriptionChanged(m_viewerSubscription);
+}
+
+void Repo::setVulnerabilityAlertCount(quint32 count)
+{
+    if (m_vulnerabilityAlertCount == count)
+        return;
+
+    m_vulnerabilityAlertCount = count;
+    emit vulnerabilityAlertCountChanged(m_vulnerabilityAlertCount);
 }
 
 void Repo::setWatcherCount(quint32 count)

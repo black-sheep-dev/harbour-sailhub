@@ -106,6 +106,7 @@ private:
     static QJsonArray getNodes(const QJsonObject &obj);
     static void getInteractable(const QJsonObject &obj, Interactable *node);
     static quint32 getTotalCount(const QJsonObject &obj);
+    static QString removeEmojiTags(const QString &text);
 };
 
 #endif // DATAUTILS_H

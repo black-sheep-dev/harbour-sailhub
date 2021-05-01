@@ -425,7 +425,7 @@
     <name>FundingLinksListPage</name>
     <message>
         <source>No funding links available</source>
-        <translation type="unfinished">Keine Finanzierungs Links verfügbar</translation>
+        <translation>Keine Finanzierungs Links verfügbar</translation>
     </message>
     <message>
         <source>Sponsor</source>
@@ -1111,6 +1111,34 @@
     <message>
         <source>Sponsor</source>
         <translation>Sponsor</translation>
+    </message>
+    <message>
+        <source>Locked</source>
+        <translation>Gesperrt</translation>
+    </message>
+    <message>
+        <source>Archived</source>
+        <translation>Archiviert</translation>
+    </message>
+    <message>
+        <source>Fork</source>
+        <translation>Fork</translation>
+    </message>
+    <message>
+        <source>Mirror</source>
+        <translation>Gespiegelt</translation>
+    </message>
+    <message>
+        <source>Template</source>
+        <translation>Vorlage</translation>
+    </message>
+    <message>
+        <source>Vulnerability Alerts</source>
+        <translation>Sicherheitslückenwarnungen</translation>
+    </message>
+    <message>
+        <source>Organization</source>
+        <translation>Organisation</translation>
     </message>
 </context>
 <context>

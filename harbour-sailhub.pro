@@ -87,6 +87,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/IconRelatedItem.qml \
     qml/components/InfoItem.qml \
     qml/components/MarkdownLabel.qml \
+    qml/components/Pill.qml \
     qml/components/ReactionGridItem.qml \
     qml/components/ReactionLabel.qml \
     qml/components/ReactionsItem.qml \

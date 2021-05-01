@@ -36,4 +36,13 @@ Item {
                "</style>\n" +
                convertedText
     }
+
+    function parseRaw(content) {
+        var convertedText = converter.makeHtml(content)
+        convertedText = Twemoji.twemoji.parse(convertedText, {
+                                                  foder: "svg",
+                                                  ext: ".svg"
+                                              })
+        return convertedText
+    }
 }
