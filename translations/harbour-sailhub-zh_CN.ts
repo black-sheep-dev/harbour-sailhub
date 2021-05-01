@@ -418,6 +418,17 @@
     </message>
 </context>
 <context>
+    <name>FundingLinksListPage</name>
+    <message>
+        <source>No funding links available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sponsor</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GistsListPage</name>
     <message>
         <source>Gists</source>
@@ -1078,6 +1089,38 @@
     <message>
         <source>Discussions</source>
         <translation>讨论</translation>
+    </message>
+    <message>
+        <source>Sponsor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Archived</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fork</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mirror</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vulnerability Alerts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Organization</source>
+        <translation type="unfinished">组织</translation>
     </message>
 </context>
 <context>

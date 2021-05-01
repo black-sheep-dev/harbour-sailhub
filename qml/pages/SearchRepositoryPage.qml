@@ -80,7 +80,6 @@ Page {
                 id: delegate
 
                 name: model.name
-                lastItem: index == (listView.count - 1)
 
                 onClicked: pageStack.push(Qt.resolvedUrl("RepoPage.qml"), {
                                               nodeId: model.nodeId

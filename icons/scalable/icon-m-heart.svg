@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg17"
+   width="64"
+   height="64"
+   enable-background="new 0 0 86 86"
+   version="1.1"
+   viewBox="0 0 64 64"
+   xml:space="preserve"
+   sodipodi:docname="icon-m-heart.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"><defs
+   id="defs7" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1005"
+   id="namedview5"
+   showgrid="false"
+   inkscape:zoom="13.1875"
+   inkscape:cx="32"
+   inkscape:cy="32"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg17" /><metadata
+   id="metadata23"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata>
+
+
+<path
+   id="path2"
+   d="m9 22.13c0-12.696 17.588-17.402 23-2.7043 5.4118-14.699 23-9.9933 23 2.7043 0 13.796-23 31.287-23 31.287s-23-17.491-23-31.287z"
+   fill="none"
+   stroke="#d50000"
+   stroke-width="2"
+   style="stroke:#ef5350" /></svg>

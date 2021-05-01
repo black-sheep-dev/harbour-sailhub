@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<Downloader>("org.nubecula.harbour.sailhub", 1, 0, "Downloader", "");
 
     // enums
+    qmlRegisterUncreatableType<FundingLink>("org.nubecula.harbour.sailhub", 1, 0, "FundingLink", "");
     qmlRegisterUncreatableType<LockReason>("org.nubecula.harbour.sailhub", 1, 0, "LockReason", "");
     qmlRegisterUncreatableType<SubscriptionState>("org.nubecula.harbour.sailhub", 1, 0, "SubscriptionState", "");
 
@@ -32,6 +33,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<DiscussionComment>("org.nubecula.harbour.sailhub", 1, 0, "DiscussionComment");
     qmlRegisterType<DiscussionCommentsModel>("org.nubecula.harbour.sailhub", 1, 0, "DiscussionCommentsModel");
     qmlRegisterType<File>("org.nubecula.harbour.sailhub", 1, 0, "File");
+    qmlRegisterType<FundingLinksModel>("org.nubecula.harbour.sailhub", 1, 0, "FundingLinksModel");
     qmlRegisterType<Gist>("org.nubecula.harbour.sailhub", 1, 0, "Gist");
     qmlRegisterType<GistsModel>("org.nubecula.harbour.sailhub", 1, 0, "GistsModel");
     qmlRegisterType<Interactable>("org.nubecula.harbour.sailhub", 1, 0, "Interactable");

@@ -6,11 +6,11 @@ import org.nubecula.harbour.sailhub 1.0
 import "../delegates/"
 
 Page {
-    property string branch: "master"
+    property alias branch: treeModel.branch
     property string owner
-    property string path: "/"
+    property alias path: treeModel.path
     property string repoName
-    property string repoId
+    property alias repoId: treeModel.identifier
 
     id: page
     allowedOrientations: Orientation.All
@@ -34,7 +34,7 @@ Page {
             MenuItem {
                 text: qsTr("Refresh")
                 onClicked: {
-                    SailHub.api().getRepoTree(repoId, branch, path, treeModel)
+                    SailHub.api().getModel(treeModel)
                 }
             }
         }
@@ -150,5 +150,5 @@ Page {
         onLoadingChanged: treeSortFilterModel.sortModel()
     }
 
-    Component.onCompleted: SailHub.api().getRepoTree(repoId, branch, path, treeModel)
+    Component.onCompleted: SailHub.api().getModel(treeModel)
 }

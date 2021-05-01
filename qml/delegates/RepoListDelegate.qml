@@ -1,10 +1,13 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../js/stringhelper.js" as StringHelper
+
 //import org.nubecula.harbour.sailhub 1.0
 
 ListItem {
-    property string name
+    property alias name: nameLabel.text
+    property alias description: descriptionLabel.text
 
     id: delegate
     width: parent.width
@@ -28,26 +31,24 @@ ListItem {
             }
 
             Label {
+                id: nameLabel
                 width: parent.width
                 anchors.verticalCenter: privateIcon.verticalCenter
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
                 font.pixelSize: Theme.fontSizeMedium
                 font.bold: true
                 wrapMode: Text.Wrap
-
-                text: name
             }
         }
 
         Label {
             visible: model.description.length > 0
+            id: descriptionLabel
             width: parent.width
             font.pixelSize: Theme.fontSizeExtraSmall
             wrapMode: Text.Wrap
             font.bold: true
             color: pressed ? Theme.highlightColor : Theme.primaryColor
-
-            text: model.description
         }
 
         Row {
@@ -66,7 +67,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: model.stargazerCount
+                text: StringHelper.count(model.stargazerCount)
             }
 
             Rectangle {
