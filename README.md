@@ -53,6 +53,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Commenting (Issue / Pull Requests)
 - Reactions (Comment / Issue / Pull Request)
 - Discussion (Comment / Reply ) on Repositories (when activated)
+- Sponsoring / Funding
 
 ## Administrative Features
 

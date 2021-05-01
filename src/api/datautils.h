@@ -8,6 +8,7 @@
 #include "src/entities/discussioncategory.h"
 #include "src/entities/discussioncomment.h"
 #include "src/entities/file.h"
+#include "src/entities/fundinglink.h"
 #include "src/entities/gist.h"
 #include "src/entities/issue.h"
 #include "src/entities/label.h"

@@ -37,6 +37,7 @@ class Repo : public Node
     Q_PROPERTY(quint32 discussionCount READ discussionCount WRITE setDiscussionCount NOTIFY discussionCountChanged)
     Q_PROPERTY(quint8 features READ features WRITE setFeatures NOTIFY featuresChanged)
     Q_PROPERTY(quint32 forkCount READ forkCount WRITE setForkCount NOTIFY forkCountChanged)
+    Q_PROPERTY(bool hasFundingLinks READ hasFundingLinks WRITE setHasFundingLinks NOTIFY hasFundingLinksChanged)
     Q_PROPERTY(QString homepageUrl READ homepageUrl WRITE setHomepageUrl NOTIFY homepageUrlChanged)
     Q_PROPERTY(bool isPrivate READ isPrivate WRITE setIsPrivate NOTIFY isPrivateChanged)
     Q_PROPERTY(quint32 issueCount READ issuesCount WRITE setIssuesCount NOTIFY issuesCountChanged)
@@ -100,6 +101,7 @@ public:
     quint32 discussionCount() const;
     quint8 features() const;
     quint32 forkCount() const;
+    bool hasFundingLinks() const;
     QString homepageUrl() const;
     bool isPrivate() const;
     quint32 issuesCount() const;
@@ -124,6 +126,7 @@ signals:
     void discussionCountChanged(quint32 count);
     void featuresChanged(quint8 features);
     void forkCountChanged(quint32 count);
+    void hasFundingLinksChanged(bool hasFundingLinks);
     void homepageUrlChanged(const QString &url);
     void isPrivateChanged(bool isPrivate);
     void issuesCountChanged(quint32 count);
@@ -148,6 +151,7 @@ public slots:
     void setDiscussionCount(quint32 count);
     void setFeatures(quint8 features);
     void setForkCount(quint32 count);
+    void setHasFundingLinks(bool hasFundingLinks);
     void setHomepageUrl(const QString &url);
     void setIsPrivate(bool isPrivate);
     void setIssuesCount(quint32 count);
@@ -172,6 +176,7 @@ private:
     quint32 m_discussionCount{0};
     quint8 m_features{FeatureNone};
     quint32 m_forkCount{0};
+    bool m_hasFundingLinks{false};
     QString m_homepageUrl;
     bool m_isPrivate{false};
     quint32 m_issueCount{0};
@@ -187,6 +192,7 @@ private:
     quint8 m_viewerPermission{PermissionNone};
     quint8 m_viewerSubscription{SubscriptionState::Ignored};
     quint32 m_watcherCount{0};
+
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(Repo::RepoFeatures)
 

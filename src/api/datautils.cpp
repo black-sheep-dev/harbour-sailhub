@@ -697,17 +697,19 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     }
     repo->setBranches(branches);
 
+    repo->setNodeId(obj.value(ApiKey::ID).toString());
+
     repo->setContributorCount(getTotalCount(obj.value(ApiKey::MENTIONABLE_USERS).toObject()));
     repo->setDefaultBranch(obj.value(ApiKey::DEFAULT_BRANCH_REF).toObject()
                            .value(ApiKey::NAME).toString());
     repo->setDescription(obj.value(ApiKey::DESCRIPTION).toString());
     repo->setDiscussionCount(getTotalCount(obj.value(ApiKey::DISCUSSIONS).toObject()));
     repo->setForkCount(obj.value(ApiKey::FORK_COUNT).toInt());
+    repo->setHasFundingLinks(obj.value(ApiKey::FUNDING_LINKS).toArray().count() > 0);
     repo->setHomepageUrl(obj.value(ApiKey::HOMEPAGE_URL).toString());
     repo->setIsPrivate(obj.value(ApiKey::IS_PRIVATE).toBool());
     repo->setIssuesCount(getTotalCount(obj.value(ApiKey::ISSUES).toObject()));
-    repo->setName(obj.value(ApiKey::NAME).toString());
-    repo->setNodeId(obj.value(ApiKey::ID).toString());
+    repo->setName(obj.value(ApiKey::NAME).toString());   
     repo->setProjects(getTotalCount(obj.value(ApiKey::PROJECTS).toObject()));
     repo->setReleaseCount(getTotalCount(obj.value(ApiKey::RELEASES).toObject()));
     repo->setPullRequestsCount(getTotalCount(obj.value(ApiKey::PULL_REQUESTS).toObject()));

@@ -305,6 +305,9 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY =
                        "                totalCount"
                        "            }"
                        "            forkCount"
+                       "            fundingLinks {"
+                       "                platform"
+                       "            }"
                        "            hasIssuesEnabled"
                        "            hasProjectsEnabled"
                        "            hasWikiEnabled"
@@ -382,42 +385,6 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_FILE_CONTENT =
                        "    }"
                        "}").simplified();
 
-// GET REPOSITORY FILES
-static const QString SAILHUB_QUERY_GET_REPOSITORY_FILES =
-        QStringLiteral("query($nodeId: ID!, $branch: String!, $path: String!) {"
-                       "    rateLimit {"
-                       "        remaining"
-                       "        resetAt"
-                       "    }"
-                       "    node(id: $nodeId) {"
-                       "        ... on Repository {"
-                       "            id"
-                       "            ref(qualifiedName: $branch) {"
-                       "                target {"
-                       "                    ... on Commit {"
-                       "                        file(path: $path) {"
-                       "                            object {"
-                       "                                ... on Tree {"
-                       "                                    entries {"
-                       "                                        extension"
-                       "                                        name"
-                       "                                        path"
-                       "                                        type"
-                       "                                        object {"
-                       "                                            ... on Blob {"
-                       "                                                isBinary"
-                       "                                            }"
-                       "                                        }"
-                       "                                    }"
-                       "                                }"
-                       "                            }"
-                       "                        }"
-                       "                    }"
-                       "                }"
-                       "            }"
-                       "        }"
-                       "    }"
-                       "}").simplified();
 
 // GET USER PROFILE
 static const QString SAILHUB_QUERY_GET_USER =

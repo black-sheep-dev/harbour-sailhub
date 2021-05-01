@@ -1,7 +1,47 @@
 #include "treemodel.h"
 
+#include "src/api/datautils.h"
+#include "src/api/queryvars.h"
+
+// GET REPOSITORY FILES
+static const QString SAILHUB_QUERY_GET_REPOSITORY_FILES =
+        QStringLiteral("query($nodeId: ID!, $branch: String!, $path: String!) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on Repository {"
+                       "            id"
+                       "            ref(qualifiedName: $branch) {"
+                       "                target {"
+                       "                    ... on Commit {"
+                       "                        file(path: $path) {"
+                       "                            object {"
+                       "                                ... on Tree {"
+                       "                                    entries {"
+                       "                                        extension"
+                       "                                        name"
+                       "                                        path"
+                       "                                        type"
+                       "                                        object {"
+                       "                                            ... on Blob {"
+                       "                                                isBinary"
+                       "                                            }"
+                       "                                        }"
+                       "                                    }"
+                       "                                }"
+                       "                            }"
+                       "                        }"
+                       "                    }"
+                       "                }"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").simplified();
+
 TreeModel::TreeModel(QObject *parent) :
-    QAbstractListModel(parent)
+    BaseModel(parent)
 {
 
 }
@@ -16,18 +56,32 @@ void TreeModel::setItems(const QList<TreeItemListItem> &items)
     setLoading(false);
 }
 
-bool TreeModel::loading() const
+QString TreeModel::branch() const
 {
-    return m_loading;
+    return m_branch;
 }
 
-void TreeModel::setLoading(bool loading)
+QString TreeModel::path() const
 {
-    if (m_loading == loading)
+    return m_path;
+}
+
+void TreeModel::setBranch(const QString &branch)
+{
+    if (m_branch == branch)
         return;
 
-    m_loading = loading;
-    emit loadingChanged(m_loading);
+    m_branch = branch;
+    emit branchChanged(m_branch);
+}
+
+void TreeModel::setPath(const QString &path)
+{
+    if (m_path == path)
+        return;
+
+    m_path = path;
+    emit pathChanged(m_path);
 }
 
 int TreeModel::rowCount(const QModelIndex &parent) const
@@ -75,4 +129,28 @@ QHash<int, QByteArray> TreeModel::roleNames() const
     roles[TypeRole]             = "type";
 
     return roles;
+}
+
+void TreeModel::clear()
+{
+    beginResetModel();
+    m_items.clear();
+    endResetModel();
+}
+
+void TreeModel::parseQueryResult(const QJsonObject &data)
+{
+    setItems(DataUtils::treeListItemsFromJson(data));
+}
+
+GraphQLQuery TreeModel::query() const
+{
+    GraphQLQuery query;
+    query.variables.insert(QueryVar::NODE_ID, identifier());
+    query.variables.insert(QueryVar::BRANCH, m_branch);
+    query.variables.insert(QueryVar::PATH, m_path);
+
+    query.query = SAILHUB_QUERY_GET_REPOSITORY_FILES;
+
+    return query;
 }

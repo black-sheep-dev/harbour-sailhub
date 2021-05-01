@@ -427,6 +427,17 @@
     </message>
 </context>
 <context>
+    <name>FundingLinksListPage</name>
+    <message>
+        <source>Funding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No funding links available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GistsListPage</name>
     <message>
         <source>Gists</source>
@@ -1114,6 +1125,10 @@
     </message>
     <message>
         <source>Discussions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sponsor</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -235,7 +235,7 @@
     </message>
     <message>
         <source>Write Reply</source>
-        <translation>Antowort schreiben</translation>
+        <translation>Antwort schreiben</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -419,6 +419,17 @@
     <message>
         <source>Enter title</source>
         <translation>Titel eingeben</translation>
+    </message>
+</context>
+<context>
+    <name>FundingLinksListPage</name>
+    <message>
+        <source>Funding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No funding links available</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1096,6 +1107,10 @@
     <message>
         <source>Discussions</source>
         <translation>Dikussionen</translation>
+    </message>
+    <message>
+        <source>Sponsor</source>
+        <translation>Sponsor</translation>
     </message>
 </context>
 <context>

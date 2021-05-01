@@ -4,6 +4,7 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import "../js/stringhelper.js" as StringHelper
 
 Page {
     property bool busy: false
@@ -184,12 +185,12 @@ Page {
             Row {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
-                spacing: Theme.paddingSmall
+                spacing: Theme.paddingMedium
 
                 CounterItem {
                     width: parent.width / 3
 
-                    title: qsTr("%n Star(s)", "0", repo.stargazerCount)
+                    title: qsTr("%n Star(s)", "0", StringHelper.count(repo.stargazerCount))
                     icon: "image://theme/icon-m-favorite"
 
                     onClicked: {
@@ -207,7 +208,7 @@ Page {
                 CounterItem {
                     width: parent.width / 3
 
-                    title: qsTr("%n Fork(s)", "0", repo.forkCount)
+                    title: qsTr("%n Fork(s)", "0", StringHelper.count(repo.forkCount))
                     icon: "qrc:///icons/icon-m-fork"
 
                     onClicked: {
@@ -219,6 +220,18 @@ Page {
                                                                      repoType: Repo.Fork
                                                                  })
                     }
+                }
+
+                CounterItem {
+                    visible: repo.hasFundingLinks
+                    width: parent.width / 3
+
+                    title: qsTr("Sponsor")
+                    icon: "qrc:///icons/icon-m-heart"
+
+                    onClicked: pageStack.push(Qt.resolvedUrl("FundingLinksListPage.qml"), {
+                                                  identifier: repo.nodeId,
+                                              })
                 }
             }
 

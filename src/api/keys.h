@@ -57,6 +57,7 @@ struct ApiKey {
     static const QString FOLLOWING;
     static const QString FORK_COUNT;
     static const QString FORKS;
+    static const QString FUNDING_LINKS;
     static const QString GISTS;
     static const QString HAS_ISSUES_ENABLED;
     static const QString HAS_NEXT_PAGE;
@@ -99,6 +100,7 @@ struct ApiKey {
     static const QString PAGE_INFO;
     static const QString PARTICIPANTS;
     static const QString PATH;
+    static const QString PLATFORM;
     static const QString PRIMARY_LANGUAGE;
     static const QString PROJECTS;
     static const QString PUBLISHED_AT;

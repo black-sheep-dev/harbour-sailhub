@@ -41,6 +41,11 @@ quint32 Repo::forkCount() const
     return m_forkCount;
 }
 
+bool Repo::hasFundingLinks() const
+{
+    return m_hasFundingLinks;
+}
+
 QString Repo::homepageUrl() const
 {
     return m_homepageUrl;
@@ -177,6 +182,15 @@ void Repo::setForkCount(quint32 count)
 
     m_forkCount = count;
     emit forkCountChanged(m_forkCount);
+}
+
+void Repo::setHasFundingLinks(bool hasFundingLinks)
+{
+    if (m_hasFundingLinks == hasFundingLinks)
+        return;
+
+    m_hasFundingLinks = hasFundingLinks;
+    emit hasFundingLinksChanged(m_hasFundingLinks);
 }
 
 void Repo::setHomepageUrl(const QString &url)
