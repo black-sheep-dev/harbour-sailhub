@@ -16,6 +16,7 @@
 #include "src/models/discussionsmodel.h"
 #include "src/models/discussioncategoriesmodel.h"
 #include "src/models/discussioncommentsmodel.h"
+#include "src/models/fundinglinksmodel.h"
 #include "src/models/gistsmodel.h"
 #include "src/models/issuesmodel.h"
 #include "src/models/labelsmodel.h"
@@ -68,9 +69,9 @@ public:
         GetGist,
         GetIssue,
         GetLogin,
+        GetModel,
         GetNotifications,
         GetOrganization,
-        GetPaginationModel,
         GetProfile,
         GetPullRequest,
         GetUser,
@@ -79,7 +80,6 @@ public:
         GetReleases,
         GetReleaseAssets,
         GetRepo,
-        GetRepoTree,
         RemoveReaction,
         StarRepo,
         UnassignUser,
@@ -117,6 +117,7 @@ public:
     Q_INVOKABLE void getFileContent(const QString &nodeId, const QString &branch);
     Q_INVOKABLE void getGist(const QString &nodeId);
     Q_INVOKABLE void getIssue(const QString &nodeId);
+    Q_INVOKABLE void getModel(BaseModel *model);
     Q_INVOKABLE void getNotifications(NotificationsModel *model = nullptr);
     Q_INVOKABLE void getOrganization(const QString &nodeId);
     Q_INVOKABLE void getPaginationModel(PaginationModel *model);
@@ -124,7 +125,6 @@ public:
     Q_INVOKABLE void getPullRequest(const QString &nodeId);
     Q_INVOKABLE void getRelease(const QString &nodeId);
     Q_INVOKABLE void getRepo(const QString &nodeId);
-    Q_INVOKABLE void getRepoTree(const QString &nodeId,const QString &branch, const QString &path,  TreeModel *model);
     Q_INVOKABLE void getUser(const QString &nodeId);
     Q_INVOKABLE void getUserByLogin(const QString &login);
     Q_INVOKABLE void starRepo(const QString &nodeId, bool star = true);
@@ -189,21 +189,19 @@ private slots:
 
 private:
     void initialize();
-    void parseComments(const QJsonObject &obj, const QByteArray &requestId);
     void parseFileContent(const QJsonObject &obj);
     void parseNotificationsModel(const QJsonArray &array, const QByteArray &requestId);
-    void parsePaginationModel(const QJsonObject &obj, const QByteArray &requestId);
+    void parseModel(const QJsonObject &obj, const QByteArray &requestId);
     void parseRepoSubscription(const QJsonObject &obj);
-    void parseRepoTree(const QJsonObject &obj, const QByteArray &requestId);
 
     //Downloader *m_downloader{nullptr};
     GraphQLConnector *m_graphqlConnector{nullptr};
     RestApiConnector *m_restApiConnector{nullptr};
 
     QNetworkAccessManager *m_manager{new QNetworkAccessManager(this)};
+    QHash<QByteArray, BaseModel *> m_modelRequests;
     QHash<QByteArray, NotificationsModel *> m_notificationsModelRequests;
-    QHash<QByteArray, PaginationModel *> m_paginationModelRequests;
-    QHash<QByteArray, TreeModel *> m_treeModelRequests;
+
 
     // properties
     quint8 m_paginationCount{20};

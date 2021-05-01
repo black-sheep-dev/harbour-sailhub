@@ -5,6 +5,7 @@ import Nemo.Configuration 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../delegates/"
+import "../tools/"
 
 Page {
     property string login
@@ -23,6 +24,8 @@ Page {
 
     id: page
     allowedOrientations: Orientation.All
+
+    MarkdownParser { id: markdownParser }
 
     SilicaListView {
         id: listView
@@ -116,6 +119,7 @@ Page {
                     return model.owner + "/" + model.name
                 }
             }
+            description: markdownParser.parseRaw(model.description)
 
             onClicked: pageStack.push(Qt.resolvedUrl("RepoPage.qml"), {
                                           nodeId: model.nodeId

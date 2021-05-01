@@ -1,9 +1,8 @@
 #ifndef PAGINATIONMODEL_H
 #define PAGINATIONMODEL_H
 
-#include <QAbstractListModel>
+#include "basemodel.h"
 
-#include "src/api/graphqlquery.h"
 
 struct PageInfo {
     bool hasNextPage{false};
@@ -11,22 +10,19 @@ struct PageInfo {
     quint32 totalCount{0};
 };
 
-class PaginationModel : public QAbstractListModel
+class PaginationModel : public BaseModel
 {
     Q_OBJECT
 
     Q_PROPERTY(bool hasNextPage READ hasNextPage WRITE setHasNextPage NOTIFY hasNextPageChanged)
-    Q_PROPERTY(QString identifier READ identifier WRITE setIdentifier NOTIFY identifierChanged)
     Q_PROPERTY(quint8 itemCount READ itemCount WRITE setItemCount NOTIFY itemCountChanged)
     Q_PROPERTY(QString lastItemCursor READ lastItemCursor WRITE setLastItemCursor NOTIFY lastItemCursorChanged)
-    Q_PROPERTY(bool loading READ loading WRITE setLoading NOTIFY loadingChanged)
-    Q_PROPERTY(quint8 modelType READ modelType WRITE setModelType NOTIFY modelTypeChanged)
     Q_PROPERTY(QString searchPattern READ searchPattern WRITE setSearchPattern NOTIFY searchPatternChanged)
     Q_PROPERTY(Qt::SortOrder sortOrder READ sortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
     Q_PROPERTY(quint32 sortRole READ sortRole WRITE setSortRole NOTIFY sortRoleChanged)
     Q_PROPERTY(quint8 state READ state WRITE setState NOTIFY stateChanged)
     Q_PROPERTY(quint32 totalCount READ totalCount WRITE setTotalCount NOTIFY totalCountChanged)
-    Q_PROPERTY(QByteArray uuid READ uuid WRITE setUuid NOTIFY uuidChanged)
+
 
 public:
     explicit PaginationModel(QObject *parent = nullptr);
@@ -37,62 +33,46 @@ public:
 
     // properties
     bool hasNextPage() const;
-    QString identifier() const;
     quint8 itemCount() const;
     QString lastItemCursor() const;
-    bool loading() const;
-    quint8 modelType() const;
     QString searchPattern() const;
     Qt::SortOrder sortOrder() const;
     quint32 sortRole() const;
     quint8 state() const;
     quint32 totalCount() const;
-    QByteArray uuid() const;
 
 signals:
     // properties
     void hasNextPageChanged(bool hasNextPage);
-    void identifierChanged(const QString &identifier);
     void itemCountChanged(quint8 itemCount);
     void lastItemCursorChanged(const QString &cursor);
-    void loadingChanged(bool loading);
-    void modelTypeChanged(quint8 modelType);
     void searchPatternChanged(const QString &pattern);
     void sortOrderChanged(Qt::SortOrder order);
     void sortRoleChanged(quint32 role);
     void stateChanged(quint8 state);
     void totalCountChanged(quint32 count);
-    void uuidChanged(const QByteArray &uuid);
 
 public slots:
     // properties
     void setHasNextPage(bool hasNextPage);
-    void setIdentifier(const QString &identifier);
     void setItemCount(quint8 count);
     void setLastItemCursor(const QString &cursor);
-    void setLoading(bool loading);
-    void setModelType(quint8 modelType);
     void setSearchPattern(const QString &pattern);
     void setSortOrder(Qt::SortOrder order);
     void setSortRole(quint32 role);
     void setState(quint8 state);
     void setTotalCount(quint32 count);
-    void setUuid(const QByteArray &uuid);
 
 private:
     // properties
     bool m_hasNextPage{false};
-    QString m_identifier;
     quint8 m_itemCount{20};
     QString m_lastItemCursor;
-    bool m_loading{true};
-    quint8 m_modelType{0};
     QString m_searchPattern;
     Qt::SortOrder m_sortOrder{Qt::AscendingOrder};
     quint32 m_sortRole{0};
     quint8 m_state{0};
     quint32 m_totalCount{0};
-    QByteArray m_uuid;
 
     // virtual
 public:

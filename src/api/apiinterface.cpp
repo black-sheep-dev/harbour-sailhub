@@ -305,6 +305,22 @@ void ApiInterface::getIssue(const QString &nodeId)
     m_graphqlConnector->sendQuery(query, RequestType::GetIssue);
 }
 
+void ApiInterface::getModel(BaseModel *model)
+{
+    if (model == nullptr)
+        return;
+
+    GraphQLQuery query = model->query();
+    query.variables.insert(QueryVar::ITEM_COUNT, m_paginationCount);
+
+    model->setLoading(true);
+
+    // save and send
+    const QByteArray uuid = model->uuid();
+    m_modelRequests.insert(uuid, model);
+    m_graphqlConnector->sendQuery(query, RequestType::GetModel, uuid);
+}
+
 void ApiInterface::getNotifications(NotificationsModel *model)
 {
     if (model != nullptr) {
@@ -343,8 +359,8 @@ void ApiInterface::getPaginationModel(PaginationModel *model)
 
     // save and send
     const QByteArray uuid = model->uuid();
-    m_paginationModelRequests.insert(uuid, model);
-    m_graphqlConnector->sendQuery(query, RequestType::GetPaginationModel, uuid);
+    m_modelRequests.insert(uuid, model);
+    m_graphqlConnector->sendQuery(query, RequestType::GetModel, uuid);
 }
 
 void ApiInterface::getProfile()
@@ -380,31 +396,6 @@ void ApiInterface::getRepo(const QString &nodeId)
     query.variables.insert(QueryVar::NODE_ID, nodeId);
 
     m_graphqlConnector->sendQuery(query, RequestType::GetRepo);
-}
-
-void ApiInterface::getRepoTree(const QString &nodeId, const QString &branch, const QString &path, TreeModel *model)
-{
-    if (model == nullptr)
-        return;
-
-#ifdef QT_DEBUG
-    qDebug() << "NodeID: " << nodeId;
-    qDebug() << "branch: " << branch;
-    qDebug() << "path: " << path;
-#endif
-
-    model->setLoading(true);
-
-    GraphQLQuery query;
-    query.query = SAILHUB_QUERY_GET_REPOSITORY_FILES;
-
-    query.variables.insert(QueryVar::NODE_ID, nodeId);
-    query.variables.insert(QueryVar::BRANCH, branch);
-    query.variables.insert(QueryVar::PATH, path);
-
-    const QByteArray uuid = QUuid::createUuid().toByteArray();
-    m_treeModelRequests.insert(uuid, model);
-    m_graphqlConnector->sendQuery(query, RequestType::GetRepoTree, uuid);
 }
 
 void ApiInterface::getUser(const QString &nodeId)
@@ -690,16 +681,12 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         emit releaseAvailable(DataUtils::releaseFromJson(data.value(ApiKey::NODE).toObject()));
         break;
 
-    case RequestType::GetRepoTree:
-        parseRepoTree(data, requestId);
+    case RequestType::GetModel:
+        parseModel(data, requestId);
         break;
 
     case RequestType::GetOrganization:
         emit organizationAvailable(DataUtils::organizationFromJson(data.value(ApiKey::NODE).toObject()));
-        break;
-
-    case RequestType::GetPaginationModel:
-        parsePaginationModel(data, requestId);
         break;
 
     case RequestType::GetIssue:
@@ -826,26 +813,6 @@ void ApiInterface::initialize()
     getProfile();
 }
 
-void ApiInterface::parseComments(const QJsonObject &obj, const QByteArray &requestId)
-{
-    auto model = qobject_cast<CommentsModel *>(m_paginationModelRequests.value(requestId, nullptr));
-
-    if (model == nullptr)
-        return;
-
-    // get identifier and comments
-    const QJsonObject comments = obj.value(ApiKey::NODE).toObject()
-                                  .value(ApiKey::COMMENTS).toObject();
-    const QJsonValue count = comments.value(ApiKey::TOTAL_COUNT);
-
-    model->setPageInfo(DataUtils::pageInfoFromJson(comments, count));
-    model->addComments(DataUtils::commentsFromJson(comments));
-    model->setLoading(false);
-
-    // cleanup
-    m_paginationModelRequests.remove(requestId);
-}
-
 void ApiInterface::parseFileContent(const QJsonObject &obj)
 {
     const QJsonObject data = obj.value(ApiKey::NODE).toObject()
@@ -888,9 +855,9 @@ void ApiInterface::parseNotificationsModel(const QJsonArray &array, const QByteA
     m_notificationsModelRequests.remove(requestId);
 }
 
-void ApiInterface::parsePaginationModel(const QJsonObject &obj, const QByteArray &requestId)
+void ApiInterface::parseModel(const QJsonObject &obj, const QByteArray &requestId)
 {
-    auto model = m_paginationModelRequests.value(requestId, nullptr);
+    auto model = m_modelRequests.value(requestId, nullptr);
 
     if (model == nullptr)
         return;
@@ -899,7 +866,7 @@ void ApiInterface::parsePaginationModel(const QJsonObject &obj, const QByteArray
     model->parseQueryResult(obj);
 
     // cleanup
-    m_paginationModelRequests.remove(requestId);
+    m_modelRequests.remove(requestId);
 }
 
 void ApiInterface::parseRepoSubscription(const QJsonObject &obj)
@@ -912,16 +879,4 @@ void ApiInterface::parseRepoSubscription(const QJsonObject &obj)
     quint8 value = SubscriptionState::fromString(state);
 
     emit subscribedToRepo(subscription.value(ApiKey::ID).toString(), value);
-}
-
-void ApiInterface::parseRepoTree(const QJsonObject &obj, const QByteArray &requestId)
-{
-    auto model = m_treeModelRequests.value(requestId, nullptr);
-
-    if (model == nullptr)
-        return;
-
-    model->setItems(DataUtils::treeListItemsFromJson(obj));
-
-    m_treeModelRequests.remove(requestId);
 }

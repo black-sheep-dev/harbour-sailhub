@@ -697,26 +697,37 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     }
     repo->setBranches(branches);
 
+    repo->setNodeId(obj.value(ApiKey::ID).toString());
+
     repo->setContributorCount(getTotalCount(obj.value(ApiKey::MENTIONABLE_USERS).toObject()));
     repo->setDefaultBranch(obj.value(ApiKey::DEFAULT_BRANCH_REF).toObject()
                            .value(ApiKey::NAME).toString());
     repo->setDescription(obj.value(ApiKey::DESCRIPTION).toString());
     repo->setDiscussionCount(getTotalCount(obj.value(ApiKey::DISCUSSIONS).toObject()));
     repo->setForkCount(obj.value(ApiKey::FORK_COUNT).toInt());
+    repo->setHasFundingLinks(obj.value(ApiKey::FUNDING_LINKS).toArray().count() > 0);
     repo->setHomepageUrl(obj.value(ApiKey::HOMEPAGE_URL).toString());
+    repo->setIsArchived(obj.value(ApiKey::IS_ARCHIVED).toBool());
+    repo->setIsDisabled(obj.value(ApiKey::IS_DISABLED).toBool());
+    repo->setIsEmpty(obj.value(ApiKey::IS_EMPTY).toBool());
+    repo->setIsFork(obj.value(ApiKey::IS_FORK).toBool());
+    repo->setIsInOrganization(obj.value(ApiKey::IS_IN_ORGANIZATION).toBool());
+    repo->setIsLocked(obj.value(ApiKey::IS_LOCKED).toBool());
+    repo->setIsMirror(obj.value(ApiKey::IS_MIRROR).toBool());
     repo->setIsPrivate(obj.value(ApiKey::IS_PRIVATE).toBool());
+    repo->setIsTemplate(obj.value(ApiKey::IS_TEMPLATE).toBool());
     repo->setIssuesCount(getTotalCount(obj.value(ApiKey::ISSUES).toObject()));
-    repo->setName(obj.value(ApiKey::NAME).toString());
-    repo->setNodeId(obj.value(ApiKey::ID).toString());
+    repo->setName(obj.value(ApiKey::NAME).toString());   
     repo->setProjects(getTotalCount(obj.value(ApiKey::PROJECTS).toObject()));
     repo->setReleaseCount(getTotalCount(obj.value(ApiKey::RELEASES).toObject()));
     repo->setPullRequestsCount(getTotalCount(obj.value(ApiKey::PULL_REQUESTS).toObject()));
-    //repo->setReadme(obj.value(ApiKey::OBJECT).toObject().value(ApiKey::TEXT).toString());
+
     repo->setReleaseCount(getTotalCount(obj.value(ApiKey::RELEASES).toObject()));
     repo->setStargazerCount(obj.value(ApiKey::STARGAZER_COUNT).toInt());
     repo->setViewerCanSubscribe(obj.value(ApiKey::VIEWER_CAN_SUBSCRIBE).toBool());
     repo->setViewerHasStarred(obj.value(ApiKey::VIEWER_HAS_STARRED).toBool());
     repo->setViewerSubscription(obj.value(ApiKey::VIEWER_SUBSCRIPTION).toInt());
+    repo->setVulnerabilityAlertCount(getTotalCount(obj.value(ApiKey::VULNERABILITY_ALERTS).toObject()));
     repo->setWatcherCount(getTotalCount(obj.value(ApiKey::WATCHERS).toObject()));
 
     const QJsonObject lic = obj.value(ApiKey::LICENSE_INFO).toObject();
@@ -731,6 +742,20 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
         owner->setParent(repo);
         repo->setOwner(owner);
     }
+
+    // features
+    quint8 features{Repo::FeatureNone};
+
+    if (obj.value(ApiKey::HAS_ISSUES_ENABLED).toBool())
+        features |= Repo::FeatureIssues;
+
+    if (obj.value(ApiKey::HAS_PROJECTS_ENABLED).toBool())
+        features |= Repo::FeatureProjects;
+
+    if (obj.value(ApiKey::HAS_WIKI_ENABLED).toBool())
+        features |= Repo::FeatureWiki;
+
+    repo->setFeatures(features);
 
     // permisson
     repo->setViewerPermission(getViewerPermission(obj.value(ApiKey::VIEWER_PERMISSION).toString()));
@@ -764,7 +789,7 @@ RepoListItem DataUtils::repoListItemFromJson(const QJsonObject &obj)
     RepoListItem item;
 
     item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-    item.description = obj.value(ApiKey::SHORT_DESCRIPTION_HTML).toString();
+    item.description = removeEmojiTags(obj.value(ApiKey::SHORT_DESCRIPTION_HTML).toString());
     item.isPrivate = obj.value(ApiKey::IS_PRIVATE).toBool();
     item.name = obj.value(ApiKey::NAME).toString();
     item.nodeId = obj.value(ApiKey::ID).toString();
@@ -1133,4 +1158,16 @@ void DataUtils::getInteractable(const QJsonObject &obj, Interactable *node)
 quint32 DataUtils::getTotalCount(const QJsonObject &obj)
 {
     return quint32(obj.value(ApiKey::TOTAL_COUNT).toInt());
+}
+
+QString DataUtils::removeEmojiTags(const QString &text)
+{
+    QString out = text;
+
+    QRegularExpression re(QStringLiteral("<g-emoji(.*)\">"));
+
+    out.remove(re);
+    out.remove(QStringLiteral("</g-emoji>"));
+
+    return out;
 }

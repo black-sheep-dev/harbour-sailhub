@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.22
+VERSION = 0.0.23
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -54,10 +54,12 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/release.cpp \
     src/entities/repo.cpp \
     src/entities/user.cpp \
+    src/models/basemodel.cpp \
     src/models/commentsmodel.cpp \
     src/models/discussioncategoriesmodel.cpp \
     src/models/discussioncommentsmodel.cpp \
     src/models/discussionsmodel.cpp \
+    src/models/fundinglinksmodel.cpp \
     src/models/gistsmodel.cpp \
     src/models/issuesmodel.cpp \
     src/models/labelsmodel.cpp \
@@ -85,6 +87,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/IconRelatedItem.qml \
     qml/components/InfoItem.qml \
     qml/components/MarkdownLabel.qml \
+    qml/components/Pill.qml \
     qml/components/ReactionGridItem.qml \
     qml/components/ReactionLabel.qml \
     qml/components/ReactionsItem.qml \
@@ -120,6 +123,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/DiscussionCommentPage.qml \
     qml/pages/DiscussionPage.qml \
     qml/pages/DiscussionsListPage.qml \
+    qml/pages/FundingLinksListPage.qml \
     qml/pages/GistsListPage.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
@@ -198,6 +202,7 @@ HEADERS += \
     src/entities/discussioncategory.h \
     src/entities/discussioncomment.h \
     src/entities/file.h \
+    src/entities/fundinglink.h \
     src/entities/gist.h \
     src/entities/interactable.h \
     src/entities/issue.h \
@@ -219,10 +224,12 @@ HEADERS += \
     src/enums/enums.h \
     src/enums/lockreason.h \
     src/enums/subscriptionstate.h \
+    src/models/basemodel.h \
     src/models/commentsmodel.h \
     src/models/discussioncategoriesmodel.h \
     src/models/discussioncommentsmodel.h \
     src/models/discussionsmodel.h \
+    src/models/fundinglinksmodel.h \
     src/models/gistsmodel.h \
     src/models/issuesmodel.h \
     src/models/labelsmodel.h \

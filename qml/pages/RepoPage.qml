@@ -4,6 +4,8 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import "../tools"
+import "../js/stringhelper.js" as StringHelper
 
 Page {
     property bool busy: false
@@ -14,6 +16,8 @@ Page {
 
     id: page
     allowedOrientations: Orientation.All
+
+    MarkdownParser { id: markdownParser }
 
     PageBusyIndicator {
         id: busyIndicator
@@ -74,7 +78,7 @@ Page {
             width: parent.width
             spacing: Theme.paddingSmall
 
-            opacity: busyIndicator.running ? 0.1 : 1.0
+            opacity: busyIndicator.running ? 0 : 1.0
             Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
@@ -139,23 +143,83 @@ Page {
                 text: repo.name
             }
 
+            // info pills
+            Flow {
+                x: Theme.horizontalPageMargin
+                width: parent.width - 2*x
+                spacing: Theme.paddingSmall
+
+                Pill {
+                    visible: repo.isPrivate
+                    backgroundColor: Theme.highlightColor
+                    color: Theme.primaryColor
+                    icon: "image://theme/icon-m-home"
+                    text: qsTr("Private")
+                }
+
+                Pill {
+                    visible: repo.isLocked
+                    backgroundColor: Theme.highlightColor
+                    color: Theme.primaryColor
+                    icon: "image://theme/icon-s-secure"
+                    text: qsTr("Locked")
+                }
+
+                Pill {
+                    visible: repo.isArchived
+                    backgroundColor: Theme.highlightColor
+                    color: Theme.primaryColor
+                    icon: "image://theme/icon-m-file-archive-folder"
+                    text: qsTr("Archived")
+                }
+
+                Pill {
+                    visible: repo.isInOrganization
+                    backgroundColor: Theme.highlightColor
+                    color: Theme.primaryColor
+                    icon: "image://theme/icon-m-company"
+                    text: qsTr("Organization")
+                }
+
+                Pill {
+                    visible: repo.isFork
+                    backgroundColor: Theme.highlightColor
+                    color: Theme.primaryColor
+                    icon: "qrc:///icons/icon-m-fork"
+                    text: qsTr("Fork")
+                }
+
+                Pill {
+                    visible: repo.isMirror
+                    backgroundColor: Theme.highlightColor
+                    color: Theme.primaryColor
+                    icon: "image://theme/icon-m-flip"
+                    text: qsTr("Mirror")
+                }
+
+                Pill {
+                    visible: repo.isTemplate
+                    backgroundColor: Theme.highlightColor
+                    color: Theme.primaryColor
+                    icon: "image://theme/icon-m-levels"
+                    text: qsTr("Template")
+                }
+            }
+
             // description
-            Label {
+            MarkdownLabel {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
 
-                color: Theme.highlightColor
-                wrapMode: Text.Wrap
-
-                text: repo.description
+                text: markdownParser.parse(repo.description)
             }
 
-            // homepage
             Item {
-                visible: repo.homepageUrl.length > 0
                 height: Theme.paddingSmall
                 width: 1
             }
+
+            // homepage
 
             IconLabel {
                 visible: repo.homepageUrl.length > 0
@@ -166,30 +230,16 @@ Page {
                 onClicked: Qt.openUrlExternally(repo.homepageUrl)
             }
 
-            // private repo
-            Item {
-                visible: repo.isPrivate
-                height: Theme.paddingSmall
-                width: 1
-            }
-
-            IconLabel {
-                visible: repo.isPrivate
-
-                icon: "image://theme/icon-s-outline-secure"
-                label: qsTr("Private")
-            }
-
             // counters
             Row {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
-                spacing: Theme.paddingSmall
+                spacing: Theme.paddingMedium
 
                 CounterItem {
                     width: parent.width / 3
 
-                    title: qsTr("%n Star(s)", "0", repo.stargazerCount)
+                    title: qsTr("%n Star(s)", "0", StringHelper.count(repo.stargazerCount))
                     icon: "image://theme/icon-m-favorite"
 
                     onClicked: {
@@ -207,7 +257,7 @@ Page {
                 CounterItem {
                     width: parent.width / 3
 
-                    title: qsTr("%n Fork(s)", "0", repo.forkCount)
+                    title: qsTr("%n Fork(s)", "0", StringHelper.count(repo.forkCount))
                     icon: "qrc:///icons/icon-m-fork"
 
                     onClicked: {
@@ -220,6 +270,18 @@ Page {
                                                                  })
                     }
                 }
+
+                CounterItem {
+                    visible: repo.hasFundingLinks
+                    width: parent.width / 3
+
+                    title: qsTr("Sponsor")
+                    icon: "qrc:///icons/icon-m-heart"
+
+                    onClicked: pageStack.push(Qt.resolvedUrl("FundingLinksListPage.qml"), {
+                                                  identifier: repo.nodeId,
+                                              })
+                }
             }
 
             Separator {
@@ -229,6 +291,15 @@ Page {
 
             // Related items
             RelatedValueItem {
+                visible: repo.vulnerabilityAlertCount > 0
+                width: parent.width
+
+                label: qsTr("Vulnerability Alerts")
+                value: repo.vulnerabilityAlertCount
+                icon: "image://theme/icon-m-warning?" + Theme.errorColor
+            }
+            RelatedValueItem {
+                visible: repo.features & Repo.FeatureIssues
                 width: parent.width
 
                 label: qsTr("Issues")
@@ -380,8 +451,6 @@ Page {
 
                     Icon {
                         id: editIcon
-//                        height: 64
-//                        width: 64
                         anchors.verticalCenter: parent.verticalCenter
                         source: "image://theme/icon-m-shuffle"
                     }
