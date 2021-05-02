@@ -13,33 +13,9 @@ static const QString SAILHUB_QUERY_GET_DISCUSSION_COMMENTS =
                        "        resetAt"
                        "    }"
                        "    node(id: $nodeId) {"
-                       "        ... on Discussion {"
+                       "        ... on %3 {"
                        "            id"
                        "            comments("
-                       "                    first: $itemCount, "
-                       "                    after: $itemCursor "
-                       "                    ) {"
-                       "                nodes {"
-                       "                    %1"
-                       "                }"
-                       "                totalCount"
-                       "                %2"
-                       "            }"
-                       "        }"
-                       "    }"
-                       "    "
-                       "}").arg(SAILHUB_QUERY_ITEM_DISCUSSION_COMMENT, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
-
-static const QString SAILHUB_QUERY_GET_DISCUSSION_COMMENT_REPLIES =
-        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
-                       "    rateLimit {"
-                       "        remaining"
-                       "        resetAt"
-                       "    }"
-                       "    node(id: $nodeId) {"
-                       "        ... on DiscussionComment {"
-                       "            id"
-                       "            replies("
                        "                    first: $itemCount, "
                        "                    after: $itemCursor "
                        "                    ) {"
@@ -217,11 +193,11 @@ GraphQLQuery DiscussionCommentsModel::query() const
 
     switch (modelType()) {
     case DiscussionComment::Comment:
-        query.query = SAILHUB_QUERY_GET_DISCUSSION_COMMENTS;
+        query.query = SAILHUB_QUERY_GET_DISCUSSION_COMMENTS.arg(QStringLiteral("Discussion"));
         break;
 
     case DiscussionComment::Reply:
-        query.query = SAILHUB_QUERY_GET_DISCUSSION_COMMENT_REPLIES;
+        query.query = SAILHUB_QUERY_GET_DISCUSSION_COMMENTS.arg(QStringLiteral("DiscussionComment"));
         break;
 
     default:
