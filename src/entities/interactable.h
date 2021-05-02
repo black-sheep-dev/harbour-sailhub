@@ -79,8 +79,8 @@ public slots:
     // properties
     void setAuthor(Owner* author);
     void setBody(const QString &body);
-    void setCreatedAt(QDateTime createdAt);
-    void setCreatedAtTimeSpan(QString createdAtTimeSpan);
+    void setCreatedAt(const QDateTime &createdAt);
+    void setCreatedAtTimeSpan(const QString &createdAtTimeSpan);
     void setEdited(bool edited);
     void setLastEditedAt(const QDateTime &lastEditedAt);
     void setReactionConfusedCount(quint32 count);

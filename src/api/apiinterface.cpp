@@ -17,6 +17,8 @@
 #include "src/enums/enums.h"
 #include "src/entities/reaction.h"
 
+
+
 ApiInterface::ApiInterface(QObject *parent) :
     QObject(parent)
 {

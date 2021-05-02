@@ -210,7 +210,7 @@ private:
 
     // properties
     quint8 m_paginationCount{20};
-    quint16 m_rateLimitRemaining;
+    quint16 m_rateLimitRemaining{0};
     QDateTime m_rateLimitResetAt;
     bool m_ready{false};
     User *m_profile{new User(this)};

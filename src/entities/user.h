@@ -121,7 +121,7 @@ public slots:
     void setOrganizations(quint32 organizations);
     void setRepositories(quint32 repositories);
     void setStarredRepositories(quint32 starredRepositories);
-    void setStatus(UserStatus status);
+    void setStatus(const UserStatus &status);
     void setTwitterUsername(const QString &twitterUsername);
     void setViewerIsFollowing(bool following);
     void setWebsiteUrl(const QString &websiteUrl);

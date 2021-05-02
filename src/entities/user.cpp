@@ -194,7 +194,7 @@ void User::setStarredRepositories(quint32 starredRepositories)
     emit starredRepositoriesChanged(m_starredRepositories);
 }
 
-void User::setStatus(UserStatus status)
+void User::setStatus(const UserStatus &status)
 {
     if (m_status == status)
         return;

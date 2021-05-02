@@ -16,7 +16,7 @@
 
 Comment *DataUtils::commentFromJson(const QJsonObject &obj)
 {
-    Comment *comment = new Comment;
+    auto comment = new Comment;
 
     comment->setNodeId(obj.value(ApiKey::ID).toString());
 
@@ -172,7 +172,7 @@ QList<DiscussionCategoryListItem> DataUtils::discussionCategoriesFromJson(const 
 
 DiscussionComment *DataUtils::discussionCommentFromJson(const QJsonObject &obj)
 {
-    DiscussionComment *comment = new DiscussionComment;
+    auto comment = new DiscussionComment;
 
     comment->setNodeId(obj.value(ApiKey::ID).toString());
 
@@ -512,7 +512,7 @@ QList<OrganizationListItem> DataUtils::organizationsFromJson(const QJsonObject &
 
 Owner *DataUtils::ownerFromJson(const QJsonObject &obj)
 {
-    Owner *owner = new Owner;
+    auto owner = new Owner;
     owner->setNodeId(obj.value(ApiKey::ID).toString());
     owner->setLogin(obj.value(ApiKey::LOGIN).toString());
     owner->setAvatarUrl(obj.value(ApiKey::AVATAR_URL).toString());
@@ -537,7 +537,7 @@ PageInfo DataUtils::pageInfoFromJson(const QJsonObject &obj, const QJsonValue &c
 
 PullRequest *DataUtils::pullRequestFromJson(const QJsonObject &obj)
 {
-    PullRequest *request = new PullRequest();
+    auto request = new PullRequest();
 
     issueFromJson(obj, request);
 
@@ -594,7 +594,7 @@ Release *DataUtils::releaseFromJson(const QJsonObject &obj)
     if (obj.isEmpty())
         return nullptr;
 
-    Release *release = new Release;
+    auto release = new Release;
 
     // author
     auto author = ownerFromJson(obj.value(ApiKey::AUTHOR).toObject());
@@ -726,7 +726,7 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     repo->setWatcherCount(getTotalCount(obj.value(ApiKey::WATCHERS).toObject()));
 
     const QJsonObject lic = obj.value(ApiKey::LICENSE_INFO).toObject();
-    License *license = new License(repo);
+    auto license = new License(repo);
     license->setName(lic.value(ApiKey::SPDX_ID).toString());
     license->setUrl(lic.value(ApiKey::URL).toString());
     repo->setLicense(license);

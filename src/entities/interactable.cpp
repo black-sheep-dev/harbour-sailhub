@@ -167,7 +167,7 @@ void Interactable::setBody(const QString &body)
     emit bodyChanged(m_body);
 }
 
-void Interactable::setCreatedAt(QDateTime createdAt)
+void Interactable::setCreatedAt(const QDateTime &createdAt)
 {
     if (m_createdAt == createdAt)
         return;
@@ -176,7 +176,7 @@ void Interactable::setCreatedAt(QDateTime createdAt)
     emit createdAtChanged(m_createdAt);
 }
 
-void Interactable::setCreatedAtTimeSpan(QString createdAtTimeSpan)
+void Interactable::setCreatedAtTimeSpan(const QString &createdAtTimeSpan)
 {
     if (m_createdAtTimeSpan == createdAtTimeSpan)
         return;
