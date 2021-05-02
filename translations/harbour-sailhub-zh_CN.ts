@@ -653,7 +653,7 @@
     </message>
     <message>
         <source>Locked</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">已加密</translation>
     </message>
 </context>
 <context>
@@ -1067,11 +1067,11 @@
     </message>
     <message>
         <source>Locked</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">已加密</translation>
     </message>
     <message>
         <source>Archived</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">已存档</translation>
     </message>
     <message>
         <source>Organization</source>
@@ -1079,15 +1079,15 @@
     </message>
     <message>
         <source>Fork</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">分支</translation>
     </message>
     <message>
         <source>Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">镜像</translation>
     </message>
     <message>
         <source>Template</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">示例</translation>
     </message>
 </context>
 <context>
@@ -1175,36 +1175,9 @@
         <translation>赞助人</translation>
     </message>
     <message>
-        <source>Locked</source>
-        <translation>已加密</translation>
-    </message>
-    <message>
-        <source>Archived</source>
-        <translation>已存档</translation>
-    </message>
-    <message>
-        <source>Fork</source>
-        <translation>分支</translation>
-    </message>
-    <message>
-        <source>Mirror</source>
-        <translation>镜像</translation>
-    </message>
-    <message>
-        <source>Template</source>
-        <translation>示例</translation>
-    </message>
-    <message>
-
         <source>Vulnerability Alerts</source>
         <translation>漏洞评估报告</translation>
     </message>
-
-    <message>
-        <source>Organization</source>
-        <translation>组织</translation>
-    </message>
-
 </context>
 <context>
     <name>ReposListPage</name>
