@@ -1112,23 +1112,9 @@
         <source>Star</source>
         <translation>星标</translation>
     </message>
-    <message numerus="yes">
-        <source>%n Star(s)</source>
-        <comment>0</comment>
-        <translation>
-            <numerusform>%n 个星标</numerusform>
-        </translation>
-    </message>
     <message>
         <source>Stargazer</source>
         <translation>天文学家</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n Fork(s)</source>
-        <comment>0</comment>
-        <translation>
-            <numerusform>%n 个分支</numerusform>
-        </translation>
     </message>
     <message>
         <source>Issues</source>
@@ -1177,6 +1163,18 @@
     <message>
         <source>Vulnerability Alerts</source>
         <translation>漏洞评估报告</translation>
+    </message>
+    <message>
+        <source>Forks</source>
+        <translation type="unfinished">分支</translation>
+    </message>
+    <message>
+        <source>Fork</source>
+        <translation type="unfinished">分支</translation>
+    </message>
+    <message>
+        <source>Stars</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

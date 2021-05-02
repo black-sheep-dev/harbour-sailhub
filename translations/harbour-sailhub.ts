@@ -1111,23 +1111,9 @@
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
-    <message numerus="yes">
-        <source>%n Star(s)</source>
-        <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
     <message>
         <source>Stargazer</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n Fork(s)</source>
-        <comment>0</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
     </message>
     <message>
         <source>Issues</source>
@@ -1175,6 +1161,18 @@
     </message>
     <message>
         <source>Vulnerability Alerts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fork</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stars</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

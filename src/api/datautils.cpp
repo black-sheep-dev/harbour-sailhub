@@ -888,6 +888,7 @@ User *DataUtils::userFromJson(const QJsonObject &obj, User *user)
     user->setAvatarUrl(obj.value(ApiKey::AVATAR_URL).toString());
     user->setBio(obj.value(ApiKey::BIO).toString());
     user->setCompany(obj.value(ApiKey::COMPANY).toString());
+    user->setEmail(obj.value(ApiKey::EMAIL).toString());
     user->setFollowers(getTotalCount(obj.value(ApiKey::FOLLOWERS).toObject()));
     user->setFollowing(getTotalCount(obj.value(ApiKey::FOLLOWING).toObject()));
     user->setGistCount(getTotalCount(obj.value(ApiKey::GISTS).toObject()));
@@ -906,11 +907,8 @@ User *DataUtils::userFromJson(const QJsonObject &obj, User *user)
     // user status
     const QJsonObject status = obj.value(ApiKey::STATUS).toObject();
 
-    UserStatus sta;
-    sta.emoji = status.value(ApiKey::EMOJI).toString();
-    sta.message = status.value(ApiKey::MESSAGE).toString();
-
-    user ->setStatus(sta);
+    user ->setStatus(QString(removeEmojiTags(status.value(ApiKey::EMOJI_HTML).toString())
+                             + " " + status.value(ApiKey::MESSAGE).toString()).simplified());
 
     return user;
 }

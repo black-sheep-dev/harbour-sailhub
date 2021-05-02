@@ -1147,27 +1147,9 @@
         <source>Star</source>
         <translation>Przyznaj gwiazdkę</translation>
     </message>
-    <message numerus="yes">
-        <source>%n Star(s)</source>
-        <comment>0</comment>
-        <translation>
-            <numerusform>%n Gwiazdka</numerusform>
-            <numerusform>%n Gwiazdki</numerusform>
-            <numerusform>%n Gwiazdek</numerusform>
-        </translation>
-    </message>
     <message>
         <source>Stargazer</source>
         <translation>Stargazer</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n Fork(s)</source>
-        <comment>0</comment>
-        <translation>
-            <numerusform>%n Fork</numerusform>
-            <numerusform>%n Forki</numerusform>
-            <numerusform>%n Forków</numerusform>
-        </translation>
     </message>
     <message>
         <source>Issues</source>
@@ -1215,6 +1197,18 @@
     </message>
     <message>
         <source>Vulnerability Alerts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forks</source>
+        <translation type="unfinished">Forki</translation>
+    </message>
+    <message>
+        <source>Fork</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stars</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1129,25 +1129,9 @@
         <source>Star</source>
         <translation>Star</translation>
     </message>
-    <message numerus="yes">
-        <source>%n Star(s)</source>
-        <comment>0</comment>
-        <translation>
-            <numerusform>%n Star</numerusform>
-            <numerusform>%n Stars</numerusform>
-        </translation>
-    </message>
     <message>
         <source>Stargazer</source>
         <translation></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n Fork(s)</source>
-        <comment>0</comment>
-        <translation>
-            <numerusform>%n Fork</numerusform>
-            <numerusform>%n Forks</numerusform>
-        </translation>
     </message>
     <message>
         <source>Issues</source>
@@ -1196,6 +1180,18 @@
     <message>
         <source>Vulnerability Alerts</source>
         <translation>Sicherheitslückenwarnungen</translation>
+    </message>
+    <message>
+        <source>Forks</source>
+        <translation>Forks</translation>
+    </message>
+    <message>
+        <source>Fork</source>
+        <translation>Fork</translation>
+    </message>
+    <message>
+        <source>Stars</source>
+        <translation>Stars</translation>
     </message>
 </context>
 <context>
