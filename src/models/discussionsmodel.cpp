@@ -104,6 +104,9 @@ QVariant DiscussionsModel::data(const QModelIndex &index, int role) const
     case EmojiRole:
         return discussion.emoji;
 
+    case LockedRole:
+        return discussion.locked;
+
     case NodeIdRole:
         return discussion.nodeId;
 
@@ -135,6 +138,7 @@ QHash<int, QByteArray> DiscussionsModel::roleNames() const
     roles[CreatedAtRole]            = "createdAt";
     roles[CreatedAtTimeSpanRole]    = "createdAtTimeSpan";
     roles[EmojiRole]                = "emoji";
+    roles[LockedRole]               = "locked";
     roles[NodeIdRole]               = "nodeId";
     roles[TitleRole]                = "title";
     roles[UpdatedAtRole]            = "updatedAt";

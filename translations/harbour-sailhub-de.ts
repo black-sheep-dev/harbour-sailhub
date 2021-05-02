@@ -112,71 +112,6 @@
     </message>
 </context>
 <context>
-    <name>CommentPage</name>
-    <message>
-        <source>Edit</source>
-        <translation>Bearbeiten</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Löschen</translation>
-    </message>
-    <message>
-        <source>Deleting comment</source>
-        <translation>Lösche Kommentar</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation>Kommentar</translation>
-    </message>
-    <message>
-        <source>Reactions</source>
-        <translation>Reaktionen</translation>
-    </message>
-    <message>
-        <source>Quote reply</source>
-        <translation>Zitieren</translation>
-    </message>
-</context>
-<context>
-    <name>CommentsListPage</name>
-    <message>
-        <source>Comments</source>
-        <translation>Kommentare</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
-    <message numerus="yes">
-        <source>Load more (%n to go)</source>
-        <translation>
-            <numerusform>Lade mehr (%n verbleibend)</numerusform>
-            <numerusform>Lade mehr (%n verbleibend)</numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>No comments available</source>
-        <translation>Keine Kommentare vorhanden</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Löschen</translation>
-    </message>
-    <message>
-        <source>Deleting comment</source>
-        <translation>Lösche Kommentar</translation>
-    </message>
-    <message>
-        <source>Quote reply</source>
-        <translation>Zitieren</translation>
-    </message>
-    <message>
-        <source>Write comment</source>
-        <translation>Kommentar schreiben</translation>
-    </message>
-</context>
-<context>
     <name>DiscussionCommentItem</name>
     <message>
         <source>Edited</source>
@@ -213,6 +148,10 @@
     <message>
         <source>Replies</source>
         <translation>Antworten</translation>
+    </message>
+    <message>
+        <source>Answer</source>
+        <translation>Anwort</translation>
     </message>
 </context>
 <context>
@@ -482,6 +421,29 @@
     </message>
 </context>
 <context>
+    <name>IssueCommentItem</name>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation>Lösche Kommentar</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Quote reply</source>
+        <translation>Zitieren</translation>
+    </message>
+    <message>
+        <source>Edited</source>
+        <translation>Bearbeitet</translation>
+    </message>
+</context>
+<context>
     <name>IssuePage</name>
     <message>
         <source>Refresh</source>
@@ -543,6 +505,17 @@
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
+    <message>
+        <source>Write comment</source>
+        <translation>Kommentar schreiben</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
@@ -560,7 +533,7 @@
     </message>
     <message>
         <source>Issues assigned to user</source>
-        <translation>Dem benutzer zugeteilte Probleme</translation>
+        <translation>Dem Benutzer zugeteilte Probleme</translation>
     </message>
     <message>
         <source>Mentioned</source>
@@ -665,6 +638,29 @@
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>LockReasonPill</name>
+    <message>
+        <source>Off Topic</source>
+        <translation>Off Topic</translation>
+    </message>
+    <message>
+        <source>Resolved</source>
+        <translation>Gelöst</translation>
+    </message>
+    <message>
+        <source>Spam</source>
+        <translation>Spam</translation>
+    </message>
+    <message>
+        <source>Too heated</source>
+        <translation>Überhitzt</translation>
+    </message>
+    <message>
+        <source>Locked</source>
+        <translation>Geschlossen</translation>
     </message>
 </context>
 <context>
@@ -820,6 +816,17 @@
         <source>Relations</source>
         <translation>Beziehungen</translation>
     </message>
+    <message>
+        <source>Write comment</source>
+        <translation>Kommentar schreiben</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
@@ -861,6 +868,37 @@
     <message>
         <source>Show open pull requests</source>
         <translation>Zeige offene Pull Requests</translation>
+    </message>
+</context>
+<context>
+    <name>PullRequestsSelectionPage</name>
+    <message>
+        <source>Created</source>
+        <translation>Erstellt</translation>
+    </message>
+    <message>
+        <source>Assigned</source>
+        <translation>Beauftragt</translation>
+    </message>
+    <message>
+        <source>Mentioned</source>
+        <translation>Erwähnt</translation>
+    </message>
+    <message>
+        <source>Pull Requests</source>
+        <translation>Pull Requests</translation>
+    </message>
+    <message>
+        <source>Pull requests created by user</source>
+        <translation>Vom Benutzer erstellte Pull Requests</translation>
+    </message>
+    <message>
+        <source>Pull requests assigned to user</source>
+        <translation>Dem Benutzer zugeteilte Pull Requests</translation>
+    </message>
+    <message>
+        <source>Pull requests where user is mentioned</source>
+        <translation>Pull Request mit Erwähnung des Benutzer</translation>
     </message>
 </context>
 <context>
@@ -1023,6 +1061,53 @@
     </message>
 </context>
 <context>
+    <name>RepoFlagsItem</name>
+    <message>
+        <source>Private</source>
+        <translation>Privat</translation>
+    </message>
+    <message>
+        <source>Billing</source>
+        <translation>Abrechnung</translation>
+    </message>
+    <message>
+        <source>Migrating</source>
+        <translation>Migration</translation>
+    </message>
+    <message>
+        <source>Moving</source>
+        <translation>Umzug</translation>
+    </message>
+    <message>
+        <source>Rename</source>
+        <translation>Umbenannt</translation>
+    </message>
+    <message>
+        <source>Locked</source>
+        <translation>Geschlossen</translation>
+    </message>
+    <message>
+        <source>Archived</source>
+        <translation>Archiviert</translation>
+    </message>
+    <message>
+        <source>Organization</source>
+        <translation>Organisation</translation>
+    </message>
+    <message>
+        <source>Fork</source>
+        <translation>Fork</translation>
+    </message>
+    <message>
+        <source>Mirror</source>
+        <translation>Gespiegelt</translation>
+    </message>
+    <message>
+        <source>Template</source>
+        <translation>Vorlage</translation>
+    </message>
+</context>
+<context>
     <name>RepoPage</name>
     <message>
         <source>Refresh</source>
@@ -1043,10 +1128,6 @@
     <message>
         <source>Star</source>
         <translation>Star</translation>
-    </message>
-    <message>
-        <source>Private</source>
-        <translation>Privat</translation>
     </message>
     <message numerus="yes">
         <source>%n Star(s)</source>
@@ -1113,32 +1194,8 @@
         <translation>Sponsor</translation>
     </message>
     <message>
-        <source>Locked</source>
-        <translation>Gesperrt</translation>
-    </message>
-    <message>
-        <source>Archived</source>
-        <translation>Archiviert</translation>
-    </message>
-    <message>
-        <source>Fork</source>
-        <translation>Fork</translation>
-    </message>
-    <message>
-        <source>Mirror</source>
-        <translation>Gespiegelt</translation>
-    </message>
-    <message>
-        <source>Template</source>
-        <translation>Vorlage</translation>
-    </message>
-    <message>
         <source>Vulnerability Alerts</source>
         <translation>Sicherheitslückenwarnungen</translation>
-    </message>
-    <message>
-        <source>Organization</source>
-        <translation>Organisation</translation>
     </message>
 </context>
 <context>

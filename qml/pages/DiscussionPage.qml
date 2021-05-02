@@ -148,7 +148,7 @@ Page {
                 width: parent.width - 2*x
                 spacing: Theme.paddingMedium
 
-                Icon {
+                Image {
                     id: closedIcon
                     source: discussion.categoryEmoji
                 }
@@ -160,6 +160,17 @@ Page {
                     color: Theme.highlightColor
 
                     text: discussion.category
+                }
+            }
+
+            Row {
+                visible: discussion.locked
+                x: Theme.horizontalPageMargin
+                width: parent.width - 2*x
+                spacing: Theme.paddingMedium
+
+                LockReasonPill {
+                    lockReason: discussion.activeLockReason
                 }
             }
 
@@ -218,6 +229,7 @@ Page {
             busy: commentsModel.loading
 
             MenuItem {
+                enabled: !discussion.locked
                 text: qsTr("Write comment")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))

@@ -113,72 +113,6 @@
     </message>
 </context>
 <context>
-    <name>CommentPage</name>
-    <message>
-        <source>Edit</source>
-        <translation>Edytuj</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Usuń</translation>
-    </message>
-    <message>
-        <source>Deleting comment</source>
-        <translation>Usuwanie komentarza</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation>Komentarz</translation>
-    </message>
-    <message>
-        <source>Reactions</source>
-        <translation>Reakcje</translation>
-    </message>
-    <message>
-        <source>Quote reply</source>
-        <translation>Cytuj odpowiedź</translation>
-    </message>
-</context>
-<context>
-    <name>CommentsListPage</name>
-    <message>
-        <source>Comments</source>
-        <translation>Komentarze</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation>Odśwież</translation>
-    </message>
-    <message numerus="yes">
-        <source>Load more (%n to go)</source>
-        <translation>
-            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
-            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
-            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>No comments available</source>
-        <translation>Brak dostępnych komentarzy</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Usuń</translation>
-    </message>
-    <message>
-        <source>Deleting comment</source>
-        <translation>Usuwanie komentarza</translation>
-    </message>
-    <message>
-        <source>Quote reply</source>
-        <translation>Cytuj odpowiedź</translation>
-    </message>
-    <message>
-        <source>Write comment</source>
-        <translation>Napisz komentarz</translation>
-    </message>
-</context>
-<context>
     <name>DiscussionCommentItem</name>
     <message>
         <source>Edited</source>
@@ -215,6 +149,10 @@
     <message>
         <source>Replies</source>
         <translation>Odpowiedzi</translation>
+    </message>
+    <message>
+        <source>Answer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -488,6 +426,29 @@
     </message>
 </context>
 <context>
+    <name>IssueCommentItem</name>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Usuń</translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation type="unfinished">Usuwanie komentarza</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">Edytuj</translation>
+    </message>
+    <message>
+        <source>Quote reply</source>
+        <translation type="unfinished">Cytuj odpowiedź</translation>
+    </message>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished">Edytowany</translation>
+    </message>
+</context>
+<context>
     <name>IssuePage</name>
     <message>
         <source>Refresh</source>
@@ -548,6 +509,18 @@
     <message>
         <source>Edit</source>
         <translation>Edytuj</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished">Napisz komentarz</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -673,6 +646,29 @@
             <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
             <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>LockReasonPill</name>
+    <message>
+        <source>Off Topic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spam</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Too heated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locked</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -829,6 +825,18 @@
         <source>Relations</source>
         <translation>Relacje</translation>
     </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished">Napisz komentarz</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
@@ -871,6 +879,37 @@
     <message>
         <source>Show open pull requests</source>
         <translation>Pokaż otwarte pull requesty</translation>
+    </message>
+</context>
+<context>
+    <name>PullRequestsSelectionPage</name>
+    <message>
+        <source>Created</source>
+        <translation type="unfinished">Utworzono</translation>
+    </message>
+    <message>
+        <source>Assigned</source>
+        <translation type="unfinished">Przypisany</translation>
+    </message>
+    <message>
+        <source>Mentioned</source>
+        <translation type="unfinished">Wspomniany</translation>
+    </message>
+    <message>
+        <source>Pull Requests</source>
+        <translation type="unfinished">Pull Requesty</translation>
+    </message>
+    <message>
+        <source>Pull requests created by user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull requests assigned to user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull requests where user is mentioned</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1040,6 +1079,53 @@
     </message>
 </context>
 <context>
+    <name>RepoFlagsItem</name>
+    <message>
+        <source>Private</source>
+        <translation type="unfinished">Prywatny</translation>
+    </message>
+    <message>
+        <source>Billing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Migrating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Moving</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Archived</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Organization</source>
+        <translation type="unfinished">Organizacja</translation>
+    </message>
+    <message>
+        <source>Fork</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mirror</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RepoPage</name>
     <message>
         <source>Refresh</source>
@@ -1060,10 +1146,6 @@
     <message>
         <source>Star</source>
         <translation>Przyznaj gwiazdkę</translation>
-    </message>
-    <message>
-        <source>Private</source>
-        <translation>Prywatny</translation>
     </message>
     <message numerus="yes">
         <source>%n Star(s)</source>
@@ -1132,32 +1214,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Locked</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Archived</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fork</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Mirror</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Vulnerability Alerts</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Organization</source>
-        <translation type="unfinished">Organizacja</translation>
     </message>
 </context>
 <context>

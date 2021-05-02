@@ -77,15 +77,27 @@ void CommentsModel::deleteComment(const int index)
     endRemoveRows();
 }
 
+int CommentsModel::count()
+{
+    return m_comments.count();
+}
+
 void CommentsModel::addComment(Comment *comment)
 {
     if (comment == nullptr)
         return;
 
+    const int index = m_comments.count() - 1;
+
     comment->setParent(this);
     beginInsertRows(QModelIndex(), m_comments.count(), m_comments.count());
     m_comments.append(comment);
     endInsertRows();
+
+    if (index < 0)
+        return;
+
+    emit commentsAdded(index, 1);
 }
 
 void CommentsModel::addComments(const QList<Comment *> &comments)
@@ -99,9 +111,16 @@ void CommentsModel::addComments(const QList<Comment *> &comments)
         items.append(comment);
     }
 
+    int index = m_comments.count() - 1;
+
     beginInsertRows(QModelIndex(), m_comments.count(), m_comments.count() + items.count() - 1);
     m_comments.append(items);
     endInsertRows();
+
+    if (index < 0)
+        index = 0;
+
+    emit commentsAdded(index, items.count());
 }
 
 void CommentsModel::setComments(const QList<Comment *> &comments)

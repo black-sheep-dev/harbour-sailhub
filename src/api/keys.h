@@ -69,6 +69,7 @@ struct ApiKey {
     static const QString IS_ANSWER;
     static const QString IS_ARCHIVED;
     static const QString IS_BINARY;
+    static const QString IS_BLANK_ISSUES_ENABLED;
     static const QString IS_DISABLED;
     static const QString IS_DRAFT;
     static const QString IS_EMPTY;
@@ -81,9 +82,12 @@ struct ApiKey {
     static const QString IS_PRERELEASE;
     static const QString IS_PRIVATE;
     static const QString IS_PUBLIC;
+    static const QString IS_SECURITY_POLICY_ENABLED;
     static const QString IS_TEMPLATE;
+    static const QString IS_USER_CONFIGURATION_REPOSITORY;
     static const QString IS_VIEWER;
     static const QString ISSUE_ID;
+    static const QString ISSUE;
     static const QString ISSUES;
     static const QString LABELS;
     static const QString LANGUAGES;
@@ -91,6 +95,7 @@ struct ApiKey {
     static const QString LICENSE_INFO;
     static const QString LOCATION;
     static const QString LOCKED;
+    static const QString LOCK_REASON;
     static const QString LOGIN;
     static const QString MEMBERS_WITH_ROLE;
     static const QString MENTIONABLE_USERS;
@@ -111,6 +116,7 @@ struct ApiKey {
     static const QString PRIMARY_LANGUAGE;
     static const QString PROJECTS;
     static const QString PUBLISHED_AT;
+    static const QString PULL_REQUEST;
     static const QString PULL_REQUESTS;
     static const QString PUSHED_AT;
     static const QString RATE_LIMIT;

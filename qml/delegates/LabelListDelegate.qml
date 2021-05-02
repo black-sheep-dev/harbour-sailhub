@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../components/"
+
 import org.nubecula.harbour.sailhub 1.0
 
 ListItem {
@@ -17,7 +19,7 @@ ListItem {
         radius: height / 2
 
         color: "#" + model.color
-        opacity: 0.8
+        opacity: 0.4
     }
 
     Label {
@@ -26,7 +28,7 @@ ListItem {
         anchors.verticalCenter: parent.verticalCenter
         font.bold: true
 
-        color: "#FFFFFF"
+        color: Theme.primaryColor
 
         text: model.name
     }

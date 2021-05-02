@@ -12,7 +12,7 @@ static const QString SAILHUB_QUERY_GET_REPOSITORY_PULL_REQUESTS =
         QStringLiteral("query("
                        "        $nodeId: ID!, "
                        "        $states: [PullRequestState!]!, "
-                       "        $orderField: PullRequestOrderField = UPDATED_AT, "
+                       "        $orderField: IssueOrderField = UPDATED_AT, "
                        "        $orderDirection: OrderDirection = DESC, "
                        "        $itemCount: Int = 20, "
                        "        $itemCursor: String = null) {"
@@ -45,7 +45,7 @@ static const QString SAILHUB_QUERY_GET_USER_PULL_REQUESTS =
         QStringLiteral("query("
                        "        $nodeId: ID!, "
                        "        $states: [PullRequestState!]!, "
-                       "        $orderField: PullRequestOrderField = UPDATED_AT, "
+                       "        $orderField: IssueOrderField = UPDATED_AT, "
                        "        $orderDirection: OrderDirection = DESC, "
                        "        $itemCount: Int = 20, "
                        "        $itemCursor: String = null) {"
@@ -74,6 +74,119 @@ static const QString SAILHUB_QUERY_GET_USER_PULL_REQUESTS =
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
+// GET USER ASSIGNED PULL REQUESTS
+static const QString SAILHUB_QUERY_GET_USER_ASSIGNED_PULL_REQUEST =
+        QStringLiteral("query("
+                       "        $userLogin: String!, "
+                       "        $states: [PullRequestState!]!, "
+                       "        $orderField: IssueOrderField = UPDATED_AT, "
+                       "        $orderDirection: OrderDirection = DESC, "
+                       "        $itemCount: Int = 20, "
+                       "        $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    user(login: $userLogin) {"
+                       "        ... on User {"
+                       "            id"
+                       "            login"
+                       "            pullRequests("
+                       "                    first: $itemCount, "
+                       "                    after: $itemCursor, "
+                       "                    states: $states, "
+                       "                    filterBy: {"
+                       "                        assignee: $userLogin"
+                       "                    }"
+                       "                    orderBy: { "
+                       "                        direction: $orderDirection, "
+                       "                        field: $orderField"
+                       "                    } ) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET USER CREATED PULL REQUESTS
+static const QString SAILHUB_QUERY_GET_USER_CREATED_PULL_REQUEST =
+        QStringLiteral("query("
+                       "        $userLogin: String!, "
+                       "        $states: [PullRequestState!]!, "
+                       "        $orderField: IssueOrderField = UPDATED_AT, "
+                       "        $orderDirection: OrderDirection = DESC, "
+                       "        $itemCount: Int = 20, "
+                       "        $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    user(login: $userLogin) {"
+                       "        ... on User {"
+                       "            id"
+                       "            login"
+                       "            pullRequests("
+                       "                    first: $itemCount, "
+                       "                    after: $itemCursor, "
+                       "                    states: $states, "
+                       "                    filterBy: {"
+                       "                        createdBy: $userLogin"
+                       "                    }"
+                       "                    orderBy: { "
+                       "                        direction: $orderDirection, "
+                       "                        field: $orderField"
+                       "                    } ) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
+// GET USER MENTIONED PULL REQUESTS
+static const QString SAILHUB_QUERY_GET_USER_MENTIONED_PULL_REQUEST =
+        QStringLiteral("query("
+                       "        $userLogin: String!, "
+                       "        $states: [PullRequestState!]!, "
+                       "        $orderField: IssueOrderField = UPDATED_AT, "
+                       "        $orderDirection: OrderDirection = DESC, "
+                       "        $itemCount: Int = 20, "
+                       "        $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    user(login: $userLogin) {"
+                       "        ... on User {"
+                       "            id"
+                       "            login"
+                       "            pullRequests("
+                       "                    first: $itemCount, "
+                       "                    after: $itemCursor, "
+                       "                    states: $states, "
+                       "                    filterBy: {"
+                       "                        mentioned: $userLogin"
+                       "                    }"
+                       "                    orderBy: { "
+                       "                        direction: $orderDirection, "
+                       "                        field: $orderField"
+                       "                    } ) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_PULL_REQUEST_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
 
 PullRequestsModel::PullRequestsModel(QObject *parent) :
@@ -185,18 +298,36 @@ void PullRequestsModel::clear()
 
 void PullRequestsModel::parseQueryResult(const QJsonObject &data)
 {
-    QJsonObject prs = data.value(ApiKey::NODE).toObject()
-                    .value(ApiKey::PULL_REQUESTS).toObject();
-    QJsonValue count = prs.value(ApiKey::TOTAL_COUNT);
+    QJsonObject prs;
+
+    switch (modelType()) {
+    case Issue::Assigned:
+    case Issue::CreatedBy:
+    case Issue::Mentioned:
+        prs = data.value(ApiKey::USER).toObject()
+                     .value(ApiKey::PULL_REQUESTS).toObject();
+        break;
+
+    default:
+        prs = data.value(ApiKey::NODE).toObject()
+                     .value(ApiKey::PULL_REQUESTS).toObject();
+        break;
+    }
+
+    const QJsonValue count = prs.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(prs, count));
     addPullRequests(DataUtils::pullRequestsFromJson(prs));
     setLoading(false);
+
 }
 
 GraphQLQuery PullRequestsModel::query() const
 {
     GraphQLQuery query;
+
+    // variables
+    query.variables = defaultQueryVariables();
 
     // query
     switch (modelType()) {
@@ -208,12 +339,25 @@ GraphQLQuery PullRequestsModel::query() const
         query.query = SAILHUB_QUERY_GET_USER_PULL_REQUESTS;
         break;
 
+    case PullRequest::Assigned:
+        query.query = SAILHUB_QUERY_GET_USER_ASSIGNED_PULL_REQUEST;
+        query.variables.insert(QueryVar::USER_LOGIN, identifier());
+        break;
+
+    case PullRequest::CreatedBy:
+        query.query = SAILHUB_QUERY_GET_USER_CREATED_PULL_REQUEST;
+        query.variables.insert(QueryVar::USER_LOGIN, identifier());
+        break;
+
+    case PullRequest::Mentioned:
+        query.query = SAILHUB_QUERY_GET_USER_MENTIONED_PULL_REQUEST;
+        query.variables.insert(QueryVar::USER_LOGIN, identifier());
+        break;
+
     default:
         break;
     }
 
-    // variables
-    query.variables = defaultQueryVariables();
 
     QJsonArray states;
     if (state() & PullRequest::StateOpen)

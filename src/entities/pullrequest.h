@@ -35,6 +35,9 @@ public:
 
     enum PullRequestType {
         Undefined,
+        Assigned,
+        CreatedBy,
+        Mentioned,
         Repo,
         User
     };

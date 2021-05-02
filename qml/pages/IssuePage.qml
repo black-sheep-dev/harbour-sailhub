@@ -15,6 +15,36 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
+    // model
+    CommentsModel {
+        id: commentsModel
+        identifier: issue.nodeId
+        modelType: Comment.Issue
+    }
+
+    Connections {
+        target: commentsModel
+        onCommentsAdded: {
+            page.busy = false
+            updateComments(lastIndex, count)
+        }
+    }
+
+    function updateComments(index, count) {
+        for (var i=index; i < (index + count); i++) {
+            var comment = commentsModel.commentAt(i)
+
+            if (comment === undefined) continue
+
+            var component = Qt.createComponent("../components/IssueCommentItem.qml")
+
+            if (component.status !== Component.Ready)
+                console.log("NOT READY")
+
+            var obj = component.createObject(commentsColumn, {comment: comment, parentId: issue.nodeId})
+        }
+    }
+
     SilicaFlickable {
         PullDownMenu {
             busy: page.busy
@@ -60,8 +90,9 @@ Page {
             }
         }
 
+        id: flickable
         anchors.fill: parent
-        contentHeight: headerColumn.height
+        contentHeight: headerColumn.height + commentsColumn.height
 
         RemorsePopup { id: remorse }
 
@@ -177,18 +208,6 @@ Page {
             }
 
             RelatedValueItem {
-                label: qsTr("Comments")
-                icon: "image://theme/icon-m-chat"
-                value: issue.commentCount
-
-                onClicked: pageStack.push(Qt.resolvedUrl("CommentsListPage.qml"), {
-                                              description: issue.repository + " #" + issue.number,
-                                              identifier: issue.nodeId,
-                                              type: Comment.Issue
-                                          })
-            }
-
-            RelatedValueItem {
                 label: qsTr("Labels")
                 icon: "image://theme/icon-m-link"
                 value: issue.labelCount
@@ -236,6 +255,41 @@ Page {
                                           })
                 }
             }
+
+            SectionHeader {
+                text: qsTr("Comments")
+            }
+        }
+
+        Column {
+            id: commentsColumn
+            anchors.top: headerColumn.bottom
+            width: parent.width
+            spacing: Theme.paddingSmall
+        }
+
+        VerticalScrollDecorator {}
+
+        PushUpMenu {
+            busy: commentsModel.loading
+
+            MenuItem {
+                enabled: !discussion.locked
+                text: qsTr("Write comment")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
+
+                    dialog.accepted.connect(function() {
+                        SailHub.api().addComment(dialog.body, commentsModel.identifier)
+                    })
+                }
+            }
+
+            MenuItem {
+                visible: commentsModel.hasNextPage
+                text: qsTr("Load more (%n to go)", "", commentsModel.totalCount - commentsColumn.children.length)
+                onClicked: getComments()
+            }
         }
     }
 
@@ -245,10 +299,25 @@ Page {
             if (issue.nodeId !== page.nodeId) return
 
             page.issue = issue;
-            page.busy = false;
+            refresh()
         }
         onIssueClosed: pageStack.navigateBack()
         onIssueDeleted: pageStack.navigateBack()
+        onCommentAdded: refresh()
+        onCommentDeleted: refresh()
+    }
+
+    function getComments() {
+        page.busy = true;
+        SailHub.api().getPaginationModel(commentsModel)
+    }
+
+    function refresh() {
+        commentsModel.reset()
+        for(var i = commentsColumn.children.length; i > 0; i--) {
+            commentsColumn.children[i-1].destroy()
+        }
+        getComments()
     }
 
     Component.onCompleted: SailHub.api().getIssue(page.nodeId)
