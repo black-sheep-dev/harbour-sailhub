@@ -17,10 +17,11 @@ int main(int argc, char *argv[])
 
 
     qmlRegisterUncreatableType<Downloader>("org.nubecula.harbour.sailhub", 1, 0, "Downloader", "");
+    qmlRegisterUncreatableType<FundingLink>("org.nubecula.harbour.sailhub", 1, 0, "FundingLink", "");
 
     // enums
-    qmlRegisterUncreatableType<FundingLink>("org.nubecula.harbour.sailhub", 1, 0, "FundingLink", "");
     qmlRegisterUncreatableType<LockReason>("org.nubecula.harbour.sailhub", 1, 0, "LockReason", "");
+    qmlRegisterUncreatableType<RepositoryLockReason>("org.nubecula.harbour.sailhub", 1, 0, "RepositoryLockReason", "");
     qmlRegisterUncreatableType<SubscriptionState>("org.nubecula.harbour.sailhub", 1, 0, "SubscriptionState", "");
 
     // object

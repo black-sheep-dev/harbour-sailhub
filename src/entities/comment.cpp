@@ -20,3 +20,4 @@ void Comment::setBodyExcerpt(const QString &excerpt)
     emit bodyExcerptChanged(m_bodyExcerpt);
 }
 
+

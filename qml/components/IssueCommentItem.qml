@@ -8,7 +8,8 @@ import "../tools/"
 
 ListItem {
     id: commentItem
-    property DiscussionComment comment
+    property Comment comment
+    property string parentId
 
     width: parent.width
     contentHeight: contentColumn.height + 2*Theme.paddingSmall
@@ -20,7 +21,7 @@ ListItem {
             visible: comment.viewerAbilities & Viewer.CanDelete
             text: qsTr("Delete")
             onClicked: remorse.execute(commentItem, qsTr("Deleting comment"), function() {
-                SailHub.api().deleteDiscussionComment(comment.nodeId)
+                SailHub.api().deleteComment(comment.nodeId)
             })
         }
         MenuItem {
@@ -34,36 +35,7 @@ ListItem {
 
                 dialog.accepted.connect(function() {
                     comment.body = dialog.body
-                    SailHub.api().updateDiscussionComment(comment)
-                })
-            }
-        }
-        MenuItem {
-            visible: !comment.isAnswer && (comment.viewerAbilities & Viewer.CanMarkAsAnswer)
-            text: qsTr("Mark as answer")
-            onClicked: {
-                SailHub.api().markDiscussionCommentAsAnswer(comment.nodeId, true)
-                comment.isAnswer = true
-            }
-        }
-        MenuItem {
-            visible: comment.isAnswer && (comment.viewerAbilities & Viewer.CanUnmarkAsAnswer)
-            text: qsTr("Unmark as answer")
-            onClicked: {
-                SailHub.api().markDiscussionCommentAsAnswer(comment.nodeId, false)
-                comment.isAnswer = false
-            }
-        }
-        MenuItem {
-            visible: comment.replyToId.length === 0
-            text: qsTr("Reply")
-            onClicked: {
-                var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"), {
-                                                reply: true
-                                            })
-
-                dialog.accepted.connect(function() {
-                    SailHub.api().addDiscussionComment(dialog.body, comment.discussionId, comment.nodeId)
+                    SailHub.api().updateComment(comment)
                 })
             }
         }
@@ -77,7 +49,7 @@ ListItem {
                                             })
 
                 dialog.accepted.connect(function() {
-                    SailHub.api().addDiscussionComment(dialog.body, comment.discussionId, comment.replyToId)
+                    SailHub.api().addComment(dialog.body, parentId)
                 })
             }
         }
@@ -110,53 +82,11 @@ ListItem {
                                       })
         }
 
-        Row {
-            x: Theme.horizontalPageMargin
-            width: parent.width - 2*x
-            spacing: Theme.paddingMedium
-
-            Pill {
-                visible: comment.isAnswer
-                backgroundColor: "#64DD17"
-                color: Theme.primaryColor
-                icon: "image://theme/icon-s-checkmark"
-                text: qsTr("Answer")
-            }
-        }
-
         MarkdownLabel {
             id: bodyLabel
             x: Theme.horizontalPageMargin
             width: parent.width - 2*x
             text: markdownParser.parse(comment.body)
-        }
-
-        // replies
-        Row {
-            visible: comment.replyCount > 0
-            x: Theme.horizontalPageMargin
-            width: parent.width - 2*x
-            spacing: Theme.paddingMedium
-
-            Icon {
-                id: replyIcon
-                anchors.verticalCenter: parent.verticalCenter
-                source: "image://theme/icon-s-repost"
-            }
-
-            Label {
-                anchors.verticalCenter: parent.verticalCenter
-                width: parent.width - replyIcon.width - replyCounter.width - 2*parent.spacing
-                font.pixelSize: Theme.fontSizeExtraSmall
-                text: qsTr("Replies")
-            }
-
-            Label {
-                id: replyCounter
-                anchors.verticalCenter: parent.verticalCenter
-                text: comment.replyCount
-                font.pixelSize: Theme.fontSizeExtraSmall
-            }
         }
 
         ReactionsItem {

@@ -5,6 +5,7 @@ import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
 import "../delegates/"
+import "../tools"
 
 Page {
     property bool busy: false
@@ -12,8 +13,37 @@ Page {
     property PullRequest request
 
     id: page
-
     allowedOrientations: Orientation.All
+
+    // model
+    CommentsModel {
+        id: commentsModel
+        identifier: request.nodeId
+        modelType: Comment.PullRequest
+    }
+
+    Connections {
+        target: commentsModel
+        onCommentsAdded: {
+            page.busy = false
+            updateComments(lastIndex, count)
+        }
+    }
+
+    function updateComments(index, count) {
+        for (var i=index; i < (index + count); i++) {
+            var comment = commentsModel.commentAt(i)
+
+            if (comment === undefined) continue
+
+            var component = Qt.createComponent("../components/IssueCommentItem.qml")
+
+            if (component.status !== Component.Ready)
+                console.log("NOT READY")
+
+            var obj = component.createObject(commentsColumn, {comment: comment, parentId: request.nodeId})
+        }
+    }
 
     SilicaFlickable {
         PullDownMenu {
@@ -24,43 +54,19 @@ Page {
                     page.busy = true
                     SailHub.api().getPullRequest(page.nodeId)
                 }
-            }
-//            MenuItem {
-//                visible: issue.viewerCanUpdate
-//                text: qsTr("Edit Pull Request")
-//                onClicked: {
-//                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"), {
-//                                                    edit: true,
-//                                                    title: issue.title,
-//                                                    body: issue.body
-//                                                })
-
-//                    dialog.accepted.connect(function() {
-//                        issue.title = dialog.title
-//                        issue.body = dialog.body
-//                        SailHub.api().updateIssue(issue)
-//                    })
-//                }
-//            }
-//            MenuItem {
-//                visible: request.viewerAbilities & Viewer.CanUpdate
-//                text: qsTr("Close")
-
-//                onClicked: remorse.execute(qsTr("Closing request"), function() {
-//                    SailHub.api().closeIssue(issue.nodeId)
-//                })
-//            }
+            }     
         }
 
+        id: flickable
         anchors.fill: parent
-        contentHeight: headerColumn.height
+        contentHeight: headerColumn.height + commentsColumn.height
 
         RemorsePopup { id: remorse }
 
         Column {
             id: headerColumn
             width: parent.width
-            spacing: Theme.paddingMedium
+            spacing: Theme.paddingSmall
 
             opacity: busyIndicator.running ? 0.1 : 1.0
             Behavior on opacity { FadeAnimator {} }
@@ -117,7 +123,7 @@ Page {
 
                 Icon {
                     id: closedIcon
-                    source: (request.states & request.StateClosed) ? "image://theme/icon-s-installed?00ff00" : "image://theme/icon-s-high-importance?#ff0000"
+                    source: (request.states & PullRequest.StateClosed) ? "image://theme/icon-s-installed?00ff00" : "image://theme/icon-s-high-importance?#ff0000"
                 }
 
                 Label {
@@ -169,18 +175,6 @@ Page {
             }
 
             RelatedValueItem {
-                label: qsTr("Comments")
-                icon: "image://theme/icon-m-chat"
-                value: request.commentCount
-
-                onClicked: pageStack.push(Qt.resolvedUrl("CommentsListPage.qml"), {
-                                              description: request.repository + " #" + request.number,
-                                              identifier: request.nodeId,
-                                              type: Comment.PullRequest
-                                          })
-            }
-
-            RelatedValueItem {
                 label: qsTr("Labels")
                 icon: "image://theme/icon-m-link"
                 value: request.labelCount
@@ -224,9 +218,44 @@ Page {
                                               title: qsTr("Participants"),
                                               description: request.repository + " #" + request.number,
                                               identifier: request.nodeId,
-                                              userType: User.PullRequestParticipant
+                                              userType: User.requestParticipant
                                           })
                 }
+            }
+
+            SectionHeader {
+                text: qsTr("Comments")
+            }
+        }
+
+        Column {
+            id: commentsColumn
+            anchors.top: headerColumn.bottom
+            width: parent.width
+            spacing: Theme.paddingSmall
+        }
+
+        VerticalScrollDecorator {}
+
+        PushUpMenu {
+            busy: commentsModel.loading
+
+            MenuItem {
+                enabled: !discussion.locked
+                text: qsTr("Write comment")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
+
+                    dialog.accepted.connect(function() {
+                        SailHub.api().addComment(dialog.body, commentsModel.identifier)
+                    })
+                }
+            }
+
+            MenuItem {
+                visible: commentsModel.hasNextPage
+                text: qsTr("Load more (%n to go)", "", commentsModel.totalCount - commentsColumn.children.length)
+                onClicked: getComments()
             }
         }
     }
@@ -237,8 +266,25 @@ Page {
             if (request.nodeId !== page.nodeId) return
 
             page.request = request;
-            page.busy = false;
+            refresh()
         }
+        onPullRequestClosed: pageStack.navigateBack()
+        onPullRequestDeleted: pageStack.navigateBack()
+        onCommentAdded: refresh()
+        onCommentDeleted: refresh()
+    }
+
+    function getComments() {
+        page.busy = true;
+        SailHub.api().getPaginationModel(commentsModel)
+    }
+
+    function refresh() {
+        commentsModel.reset()
+        for(var i = commentsColumn.children.length; i > 0; i--) {
+            commentsColumn.children[i-1].destroy()
+        }
+        getComments()
     }
 
     Component.onCompleted: SailHub.api().getPullRequest(page.nodeId)

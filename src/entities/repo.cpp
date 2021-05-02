@@ -36,6 +36,11 @@ quint8 Repo::features() const
     return m_features;
 }
 
+quint16 Repo::flags() const
+{
+    return m_flags;
+}
+
 quint32 Repo::forkCount() const
 {
     return m_forkCount;
@@ -51,59 +56,24 @@ QString Repo::homepageUrl() const
     return m_homepageUrl;
 }
 
-bool Repo::isArchived() const
-{
-    return m_isArchived;
-}
-
-bool Repo::isDisabled() const
-{
-    return m_isDisabled;
-}
-
-bool Repo::isEmpty() const
-{
-    return m_isEmpty;
-}
-
-bool Repo::isFork() const
-{
-    return m_isFork;
-}
-
-bool Repo::isInOrganization() const
-{
-    return m_isInOrganization;
-}
-
-bool Repo::isLocked() const
-{
-    return m_isLocked;
-}
-
-bool Repo::isMirror() const
-{
-    return m_isMirror;
-}
-
-bool Repo::isPrivate() const
-{
-    return m_isPrivate;
-}
-
-bool Repo::isTemplate() const
-{
-    return m_isTemplate;
-}
-
 quint32 Repo::issuesCount() const
 {
     return m_issueCount;
 }
 
+quint32 Repo::labelCount() const
+{
+    return m_labelCount;
+}
+
 License *Repo::license() const
 {
     return m_license;
+}
+
+quint8 Repo::lockReason() const
+{
+    return m_lockReason;
 }
 
 Owner *Repo::owner() const
@@ -215,6 +185,15 @@ void Repo::setFeatures(quint8 features)
     emit featuresChanged(m_features);
 }
 
+void Repo::setFlags(quint16 flags)
+{
+    if (m_flags == flags)
+        return;
+
+    m_flags = flags;
+    emit flagsChanged(m_flags);
+}
+
 void Repo::setForkCount(quint32 count)
 {
     if (m_forkCount == count)
@@ -242,87 +221,6 @@ void Repo::setHomepageUrl(const QString &url)
     emit homepageUrlChanged(m_homepageUrl);
 }
 
-void Repo::setIsArchived(bool isArchived)
-{
-    if (m_isArchived == isArchived)
-        return;
-
-    m_isArchived = isArchived;
-    emit isArchivedChanged(m_isArchived);
-}
-
-void Repo::setIsDisabled(bool isDisabled)
-{
-    if (m_isDisabled == isDisabled)
-        return;
-
-    m_isDisabled = isDisabled;
-    emit isDisabledChanged(m_isDisabled);
-}
-
-void Repo::setIsEmpty(bool isEmpty)
-{
-    if (m_isEmpty == isEmpty)
-        return;
-
-    m_isEmpty = isEmpty;
-    emit isEmptyChanged(m_isEmpty);
-}
-
-void Repo::setIsFork(bool isFork)
-{
-    if (m_isFork == isFork)
-        return;
-
-    m_isFork = isFork;
-    emit isForkChanged(m_isFork);
-}
-
-void Repo::setIsInOrganization(bool isInOrganization)
-{
-    if (m_isInOrganization == isInOrganization)
-        return;
-
-    m_isInOrganization = isInOrganization;
-    emit isInOrganizationChanged(m_isInOrganization);
-}
-
-void Repo::setIsLocked(bool isLocked)
-{
-    if (m_isLocked == isLocked)
-        return;
-
-    m_isLocked = isLocked;
-    emit isLockedChanged(m_isLocked);
-}
-
-void Repo::setIsMirror(bool isMirror)
-{
-    if (m_isMirror == isMirror)
-        return;
-
-    m_isMirror = isMirror;
-    emit isMirrorChanged(m_isMirror);
-}
-
-void Repo::setIsPrivate(bool isPrivate)
-{
-    if (m_isPrivate == isPrivate)
-        return;
-
-    m_isPrivate = isPrivate;
-    emit isPrivateChanged(m_isPrivate);
-}
-
-void Repo::setIsTemplate(bool isTemplate)
-{
-    if (m_isTemplate == isTemplate)
-        return;
-
-    m_isTemplate = isTemplate;
-    emit isTemplateChanged(m_isTemplate);
-}
-
 void Repo::setIssuesCount(quint32 count)
 {
     if (m_issueCount == count)
@@ -332,6 +230,15 @@ void Repo::setIssuesCount(quint32 count)
     emit issuesCountChanged(m_issueCount);
 }
 
+void Repo::setLabelCount(quint32 count)
+{
+    if (m_labelCount == count)
+        return;
+
+    m_labelCount = count;
+    emit labelCountChanged(m_labelCount);
+}
+
 void Repo::setLicense(License *license)
 {
     if (m_license == license)
@@ -339,6 +246,15 @@ void Repo::setLicense(License *license)
 
     m_license = license;
     emit licenseChanged(m_license);
+}
+
+void Repo::setLockReason(quint8 reason)
+{
+    if (m_lockReason == reason)
+        return;
+
+    m_lockReason = reason;
+    emit lockReasonChanged(m_lockReason);
 }
 
 void Repo::setOwner(Owner *owner)

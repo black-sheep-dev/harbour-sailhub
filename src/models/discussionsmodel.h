@@ -18,6 +18,7 @@ public:
         CreatedAtRole,
         CreatedAtTimeSpanRole,
         EmojiRole,
+        LockedRole,
         NodeIdRole,
         TitleRole,
         UpdatedAtRole,

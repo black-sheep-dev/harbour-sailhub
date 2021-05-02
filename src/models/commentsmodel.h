@@ -37,10 +37,14 @@ public:
 
     Q_INVOKABLE Comment *commentAt(const int index);
     Q_INVOKABLE void deleteComment(const int index);
+    Q_INVOKABLE int count();
 
     void addComment(Comment *comment);
     void addComments(const QList<Comment *> &comments);
     void setComments(const QList<Comment *> &comments);
+
+signals:
+   void commentsAdded(int lastIndex, int count);
 
 private:
     QList<Comment *> m_comments;

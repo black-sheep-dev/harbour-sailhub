@@ -5,8 +5,8 @@
 #include "src/api/queryvars.h"
 #include "src/api/query_items.h"
 
-// GET ISSUE LABELS
-static const QString SAILHUB_QUERY_GET_ISSUE_LABELS =
+// GET NODE LABELS
+static const QString SAILHUB_QUERY_GET_NODE_LABELS =
         QStringLiteral("query("
                        "        $nodeId: ID!, "
                        "        $orderField: LabelOrderField = NAME, "
@@ -18,7 +18,7 @@ static const QString SAILHUB_QUERY_GET_ISSUE_LABELS =
                        "        resetAt"
                        "    }"
                        "    node(id: $nodeId) {"
-                       "        ... on Issue {"
+                       "        ... on %3 {"
                        "            id"
                        "            labels("
                        "                    first: $itemCount, "
@@ -36,39 +36,6 @@ static const QString SAILHUB_QUERY_GET_ISSUE_LABELS =
                        "        }"
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_LABEL_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
-
-// GET PULL REQUEST LABELS
-static const QString SAILHUB_QUERY_GET_PULL_REQUEST_LABELS =
-        QStringLiteral("query("
-                       "        $nodeId: ID!, "
-                       "        $orderField: LabelOrderField = NAME, "
-                       "        $orderDirection: OrderDirection = ASC, "
-                       "        $itemCount: Int = 20, "
-                       "        $itemCursor: String = null) {"
-                       "    rateLimit {"
-                       "        remaining"
-                       "        resetAt"
-                       "    }"
-                       "    node(id: $nodeId) {"
-                       "        ... on PullRequest {"
-                       "            id"
-                       "            labels("
-                       "                    first: $itemCount, "
-                       "                    after: $itemCursor, "
-                       "                    orderBy: { "
-                       "                        direction: $orderDirection, "
-                       "                        field: $orderField"
-                       "                    } ) {"
-                       "                nodes {"
-                       "                    %1"
-                       "                }"
-                       "                totalCount"
-                       "                %2"
-                       "            }"
-                       "        }"
-                       "    }"
-                       "}").arg(SAILHUB_QUERY_ITEM_LABEL_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
-
 
 LabelsModel::LabelsModel(QObject *parent) :
     PaginationModel(parent)
@@ -157,11 +124,15 @@ GraphQLQuery LabelsModel::query() const
     // query
     switch (modelType()) {
     case Label::Issue:
-        query.query = SAILHUB_QUERY_GET_ISSUE_LABELS;
+        query.query = SAILHUB_QUERY_GET_NODE_LABELS.arg(QStringLiteral("Issue"));
         break;
 
     case Label::PullRequest:
-        query.query = SAILHUB_QUERY_GET_PULL_REQUEST_LABELS;
+        query.query = SAILHUB_QUERY_GET_NODE_LABELS.arg(QStringLiteral("PullRequest"));
+        break;
+
+    case Label::Repository:
+        query.query = SAILHUB_QUERY_GET_NODE_LABELS.arg(QStringLiteral("Repository"));
         break;
 
     default:

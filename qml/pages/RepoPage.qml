@@ -143,67 +143,12 @@ Page {
                 text: repo.name
             }
 
-            // info pills
-            Flow {
+            // flags
+            RepoFlagsItem {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
-                spacing: Theme.paddingSmall
-
-                Pill {
-                    visible: repo.isPrivate
-                    backgroundColor: Theme.highlightColor
-                    color: Theme.primaryColor
-                    icon: "image://theme/icon-m-home"
-                    text: qsTr("Private")
-                }
-
-                Pill {
-                    visible: repo.isLocked
-                    backgroundColor: Theme.highlightColor
-                    color: Theme.primaryColor
-                    icon: "image://theme/icon-s-secure"
-                    text: qsTr("Locked")
-                }
-
-                Pill {
-                    visible: repo.isArchived
-                    backgroundColor: Theme.highlightColor
-                    color: Theme.primaryColor
-                    icon: "image://theme/icon-m-file-archive-folder"
-                    text: qsTr("Archived")
-                }
-
-                Pill {
-                    visible: repo.isInOrganization
-                    backgroundColor: Theme.highlightColor
-                    color: Theme.primaryColor
-                    icon: "image://theme/icon-m-company"
-                    text: qsTr("Organization")
-                }
-
-                Pill {
-                    visible: repo.isFork
-                    backgroundColor: Theme.highlightColor
-                    color: Theme.primaryColor
-                    icon: "qrc:///icons/icon-m-fork"
-                    text: qsTr("Fork")
-                }
-
-                Pill {
-                    visible: repo.isMirror
-                    backgroundColor: Theme.highlightColor
-                    color: Theme.primaryColor
-                    icon: "image://theme/icon-m-flip"
-                    text: qsTr("Mirror")
-                }
-
-                Pill {
-                    visible: repo.isTemplate
-                    backgroundColor: Theme.highlightColor
-                    color: Theme.primaryColor
-                    icon: "image://theme/icon-m-levels"
-                    text: qsTr("Template")
-                }
+                flags: repo.flags
+                lockReason: repo.lockReason
             }
 
             // description
@@ -365,6 +310,23 @@ Page {
                                           })
                 }
             }
+//            RelatedValueItem {
+//                visible: repo.viewerAbilities & Viewer.CanAdminister
+//                label: qsTr("Labels")
+//                icon: "image://theme/icon-m-link"
+//                value: repo.labelCount
+
+//                onClicked: {
+//                    if (repo.labelCount === 0) return;
+
+//                    pageStack.push(Qt.resolvedUrl("LabelsListPage.qml"), {
+//                                              title: qsTr("Labels"),
+//                                              description: repo.owner.login + "/" + repo.name,
+//                                              identifier: repo.nodeId,
+//                                              type: LabelEntity.Repository
+//                                          })
+//                }
+//            }
             RelatedValueItem {
                 width: parent.width
 

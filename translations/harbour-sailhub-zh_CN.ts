@@ -112,70 +112,6 @@
     </message>
 </context>
 <context>
-    <name>CommentPage</name>
-    <message>
-        <source>Edit</source>
-        <translation>编辑</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>删除</translation>
-    </message>
-    <message>
-        <source>Deleting comment</source>
-        <translation>正在删除评论</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation>评论</translation>
-    </message>
-    <message>
-        <source>Reactions</source>
-        <translation>反应</translation>
-    </message>
-    <message>
-        <source>Quote reply</source>
-        <translation>引用回复</translation>
-    </message>
-</context>
-<context>
-    <name>CommentsListPage</name>
-    <message>
-        <source>Comments</source>
-        <translation>评论</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation>刷新</translation>
-    </message>
-    <message numerus="yes">
-        <source>Load more (%n to go)</source>
-        <translation>
-            <numerusform>加载更多（ %n ）</numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>No comments available</source>
-        <translation>没有可用评论</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>删除</translation>
-    </message>
-    <message>
-        <source>Deleting comment</source>
-        <translation>正在删除评论</translation>
-    </message>
-    <message>
-        <source>Quote reply</source>
-        <translation>引用回复</translation>
-    </message>
-    <message>
-        <source>Write comment</source>
-        <translation>写评论</translation>
-    </message>
-</context>
-<context>
     <name>DiscussionCommentItem</name>
     <message>
         <source>Edited</source>
@@ -212,6 +148,10 @@
     <message>
         <source>Replies</source>
         <translation>回复</translation>
+    </message>
+    <message>
+        <source>Answer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -477,6 +417,29 @@
     </message>
 </context>
 <context>
+    <name>IssueCommentItem</name>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <source>Deleting comment</source>
+        <translation type="unfinished">正在删除评论</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">编辑</translation>
+    </message>
+    <message>
+        <source>Quote reply</source>
+        <translation type="unfinished">引用回复</translation>
+    </message>
+    <message>
+        <source>Edited</source>
+        <translation type="unfinished">已编辑</translation>
+    </message>
+</context>
+<context>
     <name>IssuePage</name>
     <message>
         <source>Refresh</source>
@@ -537,6 +500,16 @@
     <message>
         <source>Edit</source>
         <translation>编辑</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished">写评论</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -658,6 +631,29 @@
         <translation>
             <numerusform>加载更多（ %n ）</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>LockReasonPill</name>
+    <message>
+        <source>Off Topic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resolved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spam</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Too heated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locked</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -812,6 +808,16 @@
         <source>Relations</source>
         <translation>关系</translation>
     </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished">写评论</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
@@ -852,6 +858,37 @@
     <message>
         <source>Show open pull requests</source>
         <translation>显示已开启请求</translation>
+    </message>
+</context>
+<context>
+    <name>PullRequestsSelectionPage</name>
+    <message>
+        <source>Created</source>
+        <translation type="unfinished">已创建</translation>
+    </message>
+    <message>
+        <source>Assigned</source>
+        <translation type="unfinished">已分配</translation>
+    </message>
+    <message>
+        <source>Mentioned</source>
+        <translation type="unfinished">已提及</translation>
+    </message>
+    <message>
+        <source>Pull Requests</source>
+        <translation type="unfinished">发起请求</translation>
+    </message>
+    <message>
+        <source>Pull requests created by user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull requests assigned to user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull requests where user is mentioned</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1007,6 +1044,53 @@
     </message>
 </context>
 <context>
+    <name>RepoFlagsItem</name>
+    <message>
+        <source>Private</source>
+        <translation type="unfinished">隐私</translation>
+    </message>
+    <message>
+        <source>Billing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Migrating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Moving</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Archived</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Organization</source>
+        <translation type="unfinished">组织</translation>
+    </message>
+    <message>
+        <source>Fork</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mirror</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RepoPage</name>
     <message>
         <source>Refresh</source>
@@ -1027,10 +1111,6 @@
     <message>
         <source>Star</source>
         <translation>星标</translation>
-    </message>
-    <message>
-        <source>Private</source>
-        <translation>隐私</translation>
     </message>
     <message numerus="yes">
         <source>%n Star(s)</source>
@@ -1115,13 +1195,16 @@
         <translation>示例</translation>
     </message>
     <message>
+
         <source>Vulnerability Alerts</source>
         <translation>漏洞评估报告</translation>
     </message>
+
     <message>
         <source>Organization</source>
         <translation>组织</translation>
     </message>
+
 </context>
 <context>
     <name>ReposListPage</name>

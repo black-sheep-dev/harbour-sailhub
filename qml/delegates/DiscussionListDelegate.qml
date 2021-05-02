@@ -32,6 +32,7 @@ ListItem {
 
             Column {
                 width: parent.width - delegateIcon.width - parent.spacing
+                spacing: Theme.paddingSmall
 
                 Row {
                     width: parent.width
@@ -61,11 +62,6 @@ ListItem {
                     font.bold: true
 
                     text: model.title
-                }
-
-                Item {
-                    width: 1
-                    height: parent.spacing
                 }
 
                 Row {
@@ -104,6 +100,14 @@ ListItem {
 
                         text: StringHelper.count(model.commentCount)
                     }
+                }
+
+                Row {
+                    visible: model.locked
+                    width: parent.width
+                    spacing: Theme.paddingMedium
+
+                    LockReasonPill { lockReason: model.lockReason }
                 }
             }
         }

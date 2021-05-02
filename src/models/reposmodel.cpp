@@ -195,8 +195,8 @@ QVariant ReposModel::data(const QModelIndex &index, int role) const
     case DescriptionRole:
         return repo.description;
 
-    case IsPrivateRole:
-        return repo.isPrivate;
+    case FlagsRole:
+        return repo.flags;
 
     case LanguageColorRole:
         return repo.language.color;
@@ -204,14 +204,20 @@ QVariant ReposModel::data(const QModelIndex &index, int role) const
     case LanguageNameRole:
         return repo.language.name;
 
+    case LockReasonRole:
+        return repo.lockReason;
+
     case NameRole:
         return repo.name;
 
     case NodeIdRole:
         return repo.nodeId;
 
-    case OwnerRole:
-        return repo.owner;
+    case OwnerAvatarRole:
+        return repo.ownerAvatar;
+
+    case OwnerLoginRole:
+        return repo.ownerLogin;
 
     case PushedAtRole:
         return repo.pushedAt;
@@ -236,13 +242,14 @@ QHash<int, QByteArray> ReposModel::roleNames() const
 
     roles[CreatedAtRole]        = "createdAt";
     roles[DescriptionRole]      = "description";
-    roles[IsPrivateRole]        = "isPrivate";
-    //roles[LanguageRole]         = "language";
+    roles[FlagsRole]            = "flags";
     roles[LanguageColorRole]    = "languageColor";
     roles[LanguageNameRole]     = "languageName";
+    roles[LockReasonRole]       = "lockReason";
     roles[NameRole]             = "name";
     roles[NodeIdRole]           = "nodeId";
-    roles[OwnerRole]            = "owner";
+    roles[OwnerAvatarRole]      = "ownerAvatar";
+    roles[OwnerLoginRole]       = "ownerLogin";
     roles[PushedAtRole]         = "pushedAt";
     roles[SortRole]             = "sortRole";
     roles[StargazerCountRole]   = "stargazerCount";

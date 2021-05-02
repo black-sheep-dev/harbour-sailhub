@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../components/"
 import "../js/stringhelper.js" as StringHelper
 
 //import org.nubecula.harbour.sailhub 1.0
@@ -11,82 +12,98 @@ ListItem {
 
     id: delegate
     width: parent.width
-    contentHeight: delegateColumn.height + 2*Theme.paddingMedium
+    contentHeight: delegateContent.height + 2*Theme.paddingSmall
 
-    Column {
-        id: delegateColumn
+    Row {
+        id: delegateContent
+        anchors.verticalCenter: parent.verticalCenter
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
-        anchors.verticalCenter: parent.verticalCenter
-        spacing: Theme.paddingSmall
+        spacing: Theme.paddingMedium
 
-        Row {
-            width: parent.width
-            spacing: Theme.paddingMedium
+        CircleImage {
+            id: avatarIcon
+            width: Theme.iconSizeSmallPlus
+            height: width
 
-            Icon {
-                visible: model.isPrivate
-                id: privateIcon
-                source: "image://theme/icon-s-outline-secure?" + (pressed ? Theme.highlightColor : Theme.primaryColor)
+            fallbackItemVisible: false
+
+            source: model.ownerAvatar
+
+            BusyIndicator {
+                size: BusyIndicatorSize.Small
+                anchors.centerIn: avatarIcon
+                running: avatarIcon.status !== Image.Ready
             }
+        }
+
+        Column {
+            id: delegateColumn
+            width: parent.width
+            anchors.verticalCenter: parent.verticalCenter
+            spacing: Theme.paddingSmall
 
             Label {
                 id: nameLabel
                 width: parent.width
-                anchors.verticalCenter: privateIcon.verticalCenter
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
                 font.pixelSize: Theme.fontSizeMedium
                 font.bold: true
                 wrapMode: Text.Wrap
             }
-        }
 
-        Label {
-            visible: model.description.length > 0
-            id: descriptionLabel
-            width: parent.width
-            font.pixelSize: Theme.fontSizeExtraSmall
-            wrapMode: Text.Wrap
-            font.bold: true
-            color: pressed ? Theme.highlightColor : Theme.primaryColor
-        }
-
-        Row {
-            id: bottomLine
-            width: parent.width
-            spacing: Theme.paddingMedium
-
-            Icon {
-                id: stargazerCountIcon
-                anchors.verticalCenter: parent.verticalCenter
-                source: "image://theme/icon-s-new?" + (model.stargazerCount > 0 ? "#ffff00" : Theme.primaryColor)
+            RepoFlagsItem {
+                flags: model.flags
+                lockReason: model.lockReason
             }
 
             Label {
-                anchors.verticalCenter: parent.verticalCenter
-                font.pixelSize: Theme.fontSizeSmall
+                visible: model.description.length > 0
+                id: descriptionLabel
+                width: parent.width
+                font.pixelSize: Theme.fontSizeExtraSmall
+                wrapMode: Text.Wrap
+                font.bold: true
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
-
-                text: StringHelper.count(model.stargazerCount)
             }
 
-            Rectangle {
-                visible: model.languageName.length > 0
-                height: stargazerCountIcon.height * 0.5
-                width: height
-                anchors.verticalCenter: parent.verticalCenter
+            Row {
+                id: bottomLine
+                width: parent.width
+                spacing: Theme.paddingMedium
 
-                radius: stargazerCountIcon.height * 0.25
-                color: model.languageColor
-            }
+                Icon {
+                    id: stargazerCountIcon
+                    anchors.verticalCenter: parent.verticalCenter
+                    source: "image://theme/icon-s-new?" + (model.stargazerCount > 0 ? "#ffff00" : Theme.primaryColor)
+                }
 
-            Label {
-                visible: model.languageName.length > 0
-                anchors.verticalCenter: parent.verticalCenter
-                font.pixelSize: Theme.fontSizeSmall
-                color: pressed ? Theme.highlightColor : Theme.primaryColor
+                Label {
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: model.languageName
+                    text: StringHelper.count(model.stargazerCount)
+                }
+
+                Rectangle {
+                    visible: model.languageName.length > 0
+                    height: stargazerCountIcon.height * 0.5
+                    width: height
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    radius: stargazerCountIcon.height * 0.25
+                    color: model.languageColor
+                }
+
+                Label {
+                    visible: model.languageName.length > 0
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: pressed ? Theme.highlightColor : Theme.primaryColor
+
+                    text: model.languageName
+                }
             }
         }
     }

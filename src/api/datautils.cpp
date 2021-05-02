@@ -10,8 +10,7 @@
 
 #include "keys.h"
 
-#include "src/enums/lockreason.h"
-#include "src/enums/subscriptionstate.h"
+#include "src/enums/enums.h"
 
 #include "src/entities/reaction.h"
 
@@ -49,11 +48,11 @@ QList<Comment *> DataUtils::commentsFromJson(const QJsonObject &obj)
     const QJsonArray nodes = getNodes(obj);
 
     for (const auto &node : nodes) {
-        const QJsonObject comment = node.toObject();
-        if (comment.isEmpty())
+        const QJsonObject item = node.toObject();
+        if (item.isEmpty())
             continue;
 
-        comments.append(commentFromJson(comment));
+        comments.append(commentFromJson(item));
     }
 
     return comments;
@@ -107,6 +106,8 @@ DiscussionListItem DataUtils::discussionListItemFromJson(const QJsonObject &obj)
     item.emoji = getEmojiLinkFromString(category.value(ApiKey::EMOJI_HTML).toString());
 
     item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
+    item.locked = obj.value(ApiKey::LOCKED).toBool();
+    item.lockReason = LockReason::fromString(obj.value(ApiKey::ACTIVE_LOCK_REASON).toString());
     item.title = obj.value(ApiKey::TITLE).toString();
 
     item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
@@ -704,19 +705,13 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
                            .value(ApiKey::NAME).toString());
     repo->setDescription(obj.value(ApiKey::DESCRIPTION).toString());
     repo->setDiscussionCount(getTotalCount(obj.value(ApiKey::DISCUSSIONS).toObject()));
+    repo->setFlags(getRepoFlags(obj));
     repo->setForkCount(obj.value(ApiKey::FORK_COUNT).toInt());
     repo->setHasFundingLinks(obj.value(ApiKey::FUNDING_LINKS).toArray().count() > 0);
     repo->setHomepageUrl(obj.value(ApiKey::HOMEPAGE_URL).toString());
-    repo->setIsArchived(obj.value(ApiKey::IS_ARCHIVED).toBool());
-    repo->setIsDisabled(obj.value(ApiKey::IS_DISABLED).toBool());
-    repo->setIsEmpty(obj.value(ApiKey::IS_EMPTY).toBool());
-    repo->setIsFork(obj.value(ApiKey::IS_FORK).toBool());
-    repo->setIsInOrganization(obj.value(ApiKey::IS_IN_ORGANIZATION).toBool());
-    repo->setIsLocked(obj.value(ApiKey::IS_LOCKED).toBool());
-    repo->setIsMirror(obj.value(ApiKey::IS_MIRROR).toBool());
-    repo->setIsPrivate(obj.value(ApiKey::IS_PRIVATE).toBool());
-    repo->setIsTemplate(obj.value(ApiKey::IS_TEMPLATE).toBool());
     repo->setIssuesCount(getTotalCount(obj.value(ApiKey::ISSUES).toObject()));
+    repo->setLabelCount(getTotalCount(obj.value(ApiKey::LABELS).toObject()));
+    repo->setLockReason(RepositoryLockReason::fromString(obj.value(ApiKey::LOCK_REASON).toString()));
     repo->setName(obj.value(ApiKey::NAME).toString());   
     repo->setProjects(getTotalCount(obj.value(ApiKey::PROJECTS).toObject()));
     repo->setReleaseCount(getTotalCount(obj.value(ApiKey::RELEASES).toObject()));
@@ -790,10 +785,13 @@ RepoListItem DataUtils::repoListItemFromJson(const QJsonObject &obj)
 
     item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
     item.description = removeEmojiTags(obj.value(ApiKey::SHORT_DESCRIPTION_HTML).toString());
-    item.isPrivate = obj.value(ApiKey::IS_PRIVATE).toBool();
+    item.flags = getRepoFlags(obj);
+    item.lockReason = RepositoryLockReason::fromString(obj.value(ApiKey::LOCK_REASON).toString());
     item.name = obj.value(ApiKey::NAME).toString();
     item.nodeId = obj.value(ApiKey::ID).toString();
-    item.owner = obj.value(ApiKey::OWNER).toObject()
+    item.ownerAvatar = obj.value(ApiKey::OWNER).toObject()
+                 .value(ApiKey::AVATAR_URL).toString();
+    item.ownerLogin = obj.value(ApiKey::OWNER).toObject()
                  .value(ApiKey::LOGIN).toString();
     item.pushedAt = QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
     item.stargazerCount = quint32(obj.value(ApiKey::STARGAZER_COUNT).toInt());
@@ -994,6 +992,49 @@ QString DataUtils::getLinkFromString(const QString &string)
         return QString();
 
     return match.captured(0);
+}
+
+quint16 DataUtils::getRepoFlags(const QJsonObject &obj)
+{
+    quint16 flags{0};
+
+    if (obj.value(ApiKey::IS_ARCHIVED).toBool())
+        flags |= Repo::IsArchived;
+
+    if (obj.value(ApiKey::IS_BLANK_ISSUES_ENABLED).toBool())
+        flags |= Repo::IsBlankIssuesEnabled;
+
+    if (obj.value(ApiKey::IS_DISABLED).toBool())
+        flags |= Repo::IsDisabled;
+
+    if (obj.value(ApiKey::IS_EMPTY).toBool())
+        flags |= Repo::IsEmpty;
+
+    if (obj.value(ApiKey::IS_FORK).toBool())
+        flags |= Repo::IsFork;
+
+    if (obj.value(ApiKey::IS_IN_ORGANIZATION).toBool())
+        flags |= Repo::IsInOrganization;
+
+    if (obj.value(ApiKey::IS_LOCKED).toBool())
+        flags |= Repo::IsLocked;
+
+    if (obj.value(ApiKey::IS_MIRROR).toBool())
+        flags |= Repo::IsMirror;
+
+    if (obj.value(ApiKey::IS_PRIVATE).toBool())
+        flags |= Repo::IsPrivate;
+
+    if (obj.value(ApiKey::IS_SECURITY_POLICY_ENABLED).toBool())
+        flags |= Repo::IsSecurityPolicyEnabled;
+
+    if (obj.value(ApiKey::IS_TEMPLATE).toBool())
+        flags |= Repo::IsTemplate;
+
+    if (obj.value(ApiKey::IS_USER_CONFIGURATION_REPOSITORY).toBool())
+        flags |= Repo::IsUserConfigurationRepository;
+
+    return flags;
 }
 
 quint8 DataUtils::getViewerPermission(const QString &permission)
