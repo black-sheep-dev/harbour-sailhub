@@ -1,3 +1,11 @@
+* Sun May 02 2021 Black Sheep <blacksheep@nubecula.org> 0.0.24-1
+- New comments layout for issue / pull request
+- New repository functions
+- Mark / Unmark discussion comment as answer
+- UI changes
+- Code cleanup
+- Bugfixes
+
 * Sat May 01 2021 Black Sheep <blacksheep@nubecula.org> 0.0.23-1
 - More repo details (sponsor links / status / vulnurability alerts)
 - Code cleanup and improvements

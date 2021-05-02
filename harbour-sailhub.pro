@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.23
+VERSION = 0.0.24
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -86,12 +86,15 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/IconLabel.qml \
     qml/components/IconRelatedItem.qml \
     qml/components/InfoItem.qml \
+    qml/components/IssueCommentItem.qml \
+    qml/components/LockReasonPill \
     qml/components/MarkdownLabel.qml \
     qml/components/Pill.qml \
     qml/components/ReactionGridItem.qml \
     qml/components/ReactionLabel.qml \
     qml/components/ReactionsItem.qml \
     qml/components/RelatedItem.qml \
+    qml/components/RepoFlagsItem.qml \
     qml/cover/CoverPage.qml \
     qml/delegates/AssetListDelegate.qml \
     qml/delegates/CommentListDelegate.qml \
@@ -118,8 +121,6 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/js/stringhelper.js \
     qml/pages/AssigneesListPage.qml \
     qml/pages/CommentPage \
-    qml/pages/CommentPage.qml \
-    qml/pages/CommentsListPage.qml \
     qml/pages/DiscussionCommentPage.qml \
     qml/pages/DiscussionPage.qml \
     qml/pages/DiscussionsListPage.qml \
@@ -137,6 +138,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/OverviewPage.qml \
     qml/pages/PullRequestPage.qml \
     qml/pages/PullRequestsListPage.qml \
+    qml/pages/PullRequestsSelectionPage.qml \
     qml/pages/ReleaseAssetsListPage.qml \
     qml/pages/ReleasePage.qml \
     qml/pages/ReleasesListPage.qml \
@@ -223,6 +225,7 @@ HEADERS += \
     src/entities/viewer.h \
     src/enums/enums.h \
     src/enums/lockreason.h \
+    src/enums/repositorylockreason.h \
     src/enums/subscriptionstate.h \
     src/models/basemodel.h \
     src/models/commentsmodel.h \

@@ -97,12 +97,17 @@ Page {
                 icon: "qrc:///icons/icon-m-pull-request"
                 title: qsTr("Pull Requests")
 
+                /*onClicked: pageStack.push(Qt.resolvedUrl("PullRequestsSelectionPage.qml"), {
+                                              userId: SailHub.api().profile.nodeId,
+                                              userLogin: SailHub.api().profile.login
+                                         })*/
+
                 onClicked: pageStack.push(Qt.resolvedUrl("PullRequestsListPage.qml"), {
-                                              description: SailHub.api().profile.login,
-                                              identifier: SailHub.api().profile.nodeId,
-                                              type: PullRequest.User,
-                                              states: PullRequest.StateOpen
-                                         })
+                                                              description: SailHub.api().profile.login,
+                                                              identifier: SailHub.api().profile.nodeId,
+                                                              type: PullRequest.User,
+                                                              states: PullRequest.StateOpen
+                                                         })
             }
             IconRelatedItem {
                 icon: "image://theme/icon-m-file-archive-folder"

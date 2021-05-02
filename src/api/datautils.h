@@ -101,6 +101,7 @@ public:
 private:
     static QString getEmojiLinkFromString(const QString &string);
     static QString getLinkFromString(const QString &string);
+    static quint16 getRepoFlags(const QJsonObject &obj);
     static quint8 getViewerPermission(const QString &permission);
     static quint32 getViewerAbilities(const QJsonObject &obj);
     static QJsonArray getNodes(const QJsonObject &obj);

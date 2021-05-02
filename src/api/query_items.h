@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------------------------------------------
 static const QString SAILHUB_QUERY_ITEM_DISCUSSION_LIST_ITEM =
         QStringLiteral("    id"
+                       "    activeLockReason"
                        "    author {"
                        "        avatarUrl"
                        "        login"
@@ -21,6 +22,7 @@ static const QString SAILHUB_QUERY_ITEM_DISCUSSION_LIST_ITEM =
                        "        totalCount"
                        "    }"
                        "    createdAt"
+                       "    locked"
                        "    title"
                        "    updatedAt"
                        "    viewerCanDelete").simplified();
@@ -214,7 +216,12 @@ static const QString SAILHUB_QUERY_ITEM_RELEASE_LIST_ITEM =
 static const QString SAILHUB_QUERY_ITEM_REPO_LIST_ITEM =
         QStringLiteral("    id"
                        "    createdAt"
+                       "    isArchived"
+                       "    isDisabled"
+                       "    isFork"
+                       "    isLocked"
                        "    isPrivate"
+                       "    lockReason"
                        "    shortDescriptionHTML"
                        "    primaryLanguage {"
                        "        color"
@@ -223,6 +230,7 @@ static const QString SAILHUB_QUERY_ITEM_REPO_LIST_ITEM =
                        "    pushedAt"
                        "    name"
                        "    owner {"
+                       "        avatarUrl"
                        "        login"
                        "    }"
                        "    stargazerCount"

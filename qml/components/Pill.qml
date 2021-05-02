@@ -6,6 +6,7 @@ Item {
     property alias color: textLabel.color
     property alias text: textLabel.text
     property alias icon: pillIcon.source
+    property alias showIcon: pillIcon.visible
 
     id: iconLabel
     width: background.width

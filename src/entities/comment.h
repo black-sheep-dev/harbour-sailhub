@@ -8,10 +8,6 @@
 
 #include "interactable.h"
 
-struct CommentListItem {
-    QString body;
-};
-
 class Comment : public Interactable
 {
     Q_OBJECT

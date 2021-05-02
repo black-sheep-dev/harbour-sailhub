@@ -416,6 +416,21 @@ void ApiInterface::getUserByLogin(const QString &login)
     m_graphqlConnector->sendQuery(query, RequestType::GetUserByLogin);
 }
 
+void ApiInterface::markDiscussionCommetAsAnswer(const QString &nodeId, bool answer)
+{
+    GraphQLQuery query;
+
+    if (answer) {
+        query.query = SAILHUB_MUTATION_MARK_DISCUSSION_COMMENT_AS_ANSWER;
+    } else {
+        query.query = SAILHUB_MUTATION_UNMARK_DISCUSSION_COMMENT_AS_ANSWER;
+    }
+
+    query.variables.insert(QueryVar::NODE_ID, nodeId);
+
+    m_graphqlConnector->sendQuery(query, answer ? RequestType::MarkDiscussionCommentAsAnswer : RequestType::UnmarkDiscussionCommentAsAnswer);
+}
+
 void ApiInterface::starRepo(const QString &nodeId, bool star)
 {
     if (m_profile == nullptr)
@@ -776,6 +791,14 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     case RequestType::DeleteDiscussionComment:
         emit discussionCommentDeleted();
+        break;
+
+    case RequestType::MarkDiscussionCommentAsAnswer:
+        emit discussionCommentMarkedAsAnswer();
+        break;
+
+    case RequestType::UnmarkDiscussionCommentAsAnswer:
+        emit discussionCommentUnmarkedAsAnswer();
         break;
 
     case RequestType::DeleteDiscussion:

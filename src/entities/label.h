@@ -19,7 +19,8 @@ public:
     enum LabelType {
         Undefined,
         Issue,
-        PullRequest
+        PullRequest,
+        Repository
     };
     Q_ENUM(LabelType)
 

@@ -13,6 +13,8 @@ struct DiscussionListItem {
     QDateTime createdAt;
     QString createdAtTimeSpan;
     QString emoji;
+    bool locked{false};
+    quint8 lockReason{0};
     QString nodeId;
     QString title;
     QDateTime updatedAt;
