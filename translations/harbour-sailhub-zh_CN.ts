@@ -421,11 +421,11 @@
     <name>FundingLinksListPage</name>
     <message>
         <source>No funding links available</source>
-        <translation type="unfinished"></translation>
+        <translation>没有可用投资链接</translation>
     </message>
     <message>
         <source>Sponsor</source>
-        <translation type="unfinished"></translation>
+        <translation>赞助人</translation>
     </message>
 </context>
 <context>
@@ -1092,35 +1092,35 @@
     </message>
     <message>
         <source>Sponsor</source>
-        <translation type="unfinished"></translation>
+        <translation>赞助人</translation>
     </message>
     <message>
         <source>Locked</source>
-        <translation type="unfinished"></translation>
+        <translation>已加密</translation>
     </message>
     <message>
         <source>Archived</source>
-        <translation type="unfinished"></translation>
+        <translation>已存档</translation>
     </message>
     <message>
         <source>Fork</source>
-        <translation type="unfinished"></translation>
+        <translation>分支</translation>
     </message>
     <message>
         <source>Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>镜像</translation>
     </message>
     <message>
         <source>Template</source>
-        <translation type="unfinished"></translation>
+        <translation>示例</translation>
     </message>
     <message>
         <source>Vulnerability Alerts</source>
-        <translation type="unfinished"></translation>
+        <translation>漏洞评估报告</translation>
     </message>
     <message>
         <source>Organization</source>
-        <translation type="unfinished">组织</translation>
+        <translation>组织</translation>
     </message>
 </context>
 <context>
