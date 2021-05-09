@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<Organization>(uri, 1, 0, "Organization");
     qmlRegisterType<OrganizationsModel>(uri, 1, 0, "OrganizationsModel");
     qmlRegisterType<Owner>(uri, 1, 0, "Owner");
+    qmlRegisterType<ProfileStatus>(uri, 1, 0, "ProfileStatus");
     qmlRegisterType<PullRequest>(uri, 1, 0, "PullRequest");
     qmlRegisterType<PullRequestsModel>(uri, 1, 0, "PullRequestsModel");
     qmlRegisterType<Reaction>(uri, 1, 0, "Reaction");

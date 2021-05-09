@@ -535,6 +535,45 @@ PageInfo DataUtils::pageInfoFromJson(const QJsonObject &obj, const QJsonValue &c
     return info;
 }
 
+ProfileStatus *DataUtils::profileStatusFromJson(const QJsonObject &obj, ProfileStatus *status)
+{
+    if (status == nullptr)
+        status = new ProfileStatus;
+
+    status->setNodeId(obj.value(ApiKey::ID).toString());
+    status->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    status->setEmoji(obj.value(ApiKey::EMOJI).toString());
+    status->setEmojiImage(getEmojiLinkFromString(obj.value(ApiKey::EMOJI_HTML).toString()));
+
+    // expire
+    const QDateTime expireAt = QDateTime::fromString(obj.value(ApiKey::EXPIRES_AT).toString(), Qt::ISODate);
+    status->setExpiresAt(expireAt);
+
+//    const QDateTime current = QDateTime::currentDateTimeUtc();
+
+//    if (!expireAt.isValid())
+//        status->setExpireStatus(ProfileStatus::Never);
+//    else if (current.addSecs(30*60) <= expireAt)
+//        status->setExpireStatus(ProfileStatus::InThirtyMinutes);
+//    else if (current.addSecs(60*60) <= expireAt)
+//        status->setExpireStatus(ProfileStatus::InOneHour);
+//    else if (current.addSecs(4*60*60) <= expireAt)
+//        status->setExpireStatus(ProfileStatus::InFourHours);
+
+    //
+    status->setIndicatesLimitedAvailability(obj.value(ApiKey::INDICATES_LIMITED_AVAILABILITY).toBool());
+    status->setMessage(obj.value(ApiKey::MESSAGE).toString());
+
+    const QJsonObject org = obj.value(ApiKey::ORGANIZATION).toObject();
+
+    status->setOrganization(org.value(ApiKey::LOGIN).toString());
+    status->setOrganizationId(org.value(ApiKey::ID).toString());
+
+    status->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
+
+    return status;
+}
+
 PullRequest *DataUtils::pullRequestFromJson(const QJsonObject &obj)
 {
     auto request = new PullRequest();

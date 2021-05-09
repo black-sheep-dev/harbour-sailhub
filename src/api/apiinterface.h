@@ -12,6 +12,7 @@
 #include "restapiconnector.h"
 
 #include "src/entities/user.h"
+#include "src/entities/profilestatus.h"
 #include "src/models/commentsmodel.h"
 #include "src/models/discussionsmodel.h"
 #include "src/models/discussioncategoriesmodel.h"
@@ -40,6 +41,7 @@ class ApiInterface : public QObject
     Q_PROPERTY(QDateTime rateLimitResetAt READ rateLimitResetAt NOTIFY rateLimitResetAtChanged)
     Q_PROPERTY(bool ready READ ready WRITE setReady NOTIFY readyChanged)
     Q_PROPERTY(User* profile READ profile NOTIFY profileChanged)
+    Q_PROPERTY(ProfileStatus* profileStatus READ profileStatus NOTIFY profileStatusChanged)
 
 public:
     enum ApiError {
@@ -73,6 +75,7 @@ public:
         GetNotifications,
         GetOrganization,
         GetProfile,
+        GetProfileStatus,
         GetPullRequest,
         GetUser,
         GetUserByLogin,
@@ -91,6 +94,7 @@ public:
         UpdateDiscussionComment,
         UpdateDiscussion,
         UpdateIssue,
+        UpdateProfileStatus,
         UpdateRepoSubscription
     };
     Q_ENUM(RequestType)
@@ -124,6 +128,7 @@ public:
     Q_INVOKABLE void getOrganization(const QString &nodeId);
     Q_INVOKABLE void getPaginationModel(PaginationModel *model);
     Q_INVOKABLE void getProfile();
+    Q_INVOKABLE void getProfileStatus();
     Q_INVOKABLE void getPullRequest(const QString &nodeId);
     Q_INVOKABLE void getRelease(const QString &nodeId);
     Q_INVOKABLE void getRepo(const QString &nodeId);
@@ -138,6 +143,7 @@ public:
     Q_INVOKABLE void updateDiscussion(Discussion *discussion);
     Q_INVOKABLE void updateDiscussionComment(DiscussionComment *comment);
     Q_INVOKABLE void updateIssue(Issue *issue);
+    Q_INVOKABLE void updateProfileStatus(ProfileStatus *status = nullptr);
     Q_INVOKABLE void updateReactions(const QString &nodeId, quint8 before, quint8 after);
 
     // properties
@@ -145,7 +151,8 @@ public:
     quint16 rateLimitRemaining() const;
     QDateTime rateLimitResetAt() const;
     bool ready() const;
-    User *profile() const;
+    User *profile();
+    ProfileStatus *profileStatus();
 
 public slots:
     void setPaginationCount(quint8 paginationCount);  
@@ -170,6 +177,7 @@ signals:
     void issueAvailable(Issue *issue);
     void notificationsAvailable(const QList<NotificationListItem> &notifications);
     void organizationAvailable(Organization *organization);
+    void profileStatusAvailable(ProfileStatus *status);
     void pullRequestAvailable(PullRequest *request);
     void releaseAvailable(Release *release);
     void repoAvailable(Repo *repo);
@@ -186,6 +194,8 @@ signals:
     void rateLimitResetAtChanged(const QDateTime &timestamp);
     void readyChanged(bool ready);
     void profileChanged(User *profile);
+    void profileStatusChanged(ProfileStatus *status);
+
 
 private slots:
     void onConnectionError(quint16 error, const QString &msg);
@@ -214,6 +224,7 @@ private:
     QDateTime m_rateLimitResetAt;
     bool m_ready{false};
     User *m_profile{new User(this)};
+    ProfileStatus *m_profileStatus{new ProfileStatus(this)};
 
 };
 

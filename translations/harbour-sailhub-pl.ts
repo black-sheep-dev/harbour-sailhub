@@ -286,28 +286,28 @@
 <context>
     <name>EditCommentDialog</name>
     <message>
-        <source>Edit Comment</source>
-        <translation>Edytuj komentarz</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation>Zapisz</translation>
-    </message>
-    <message>
-        <source>Add Comment</source>
-        <translation>Dodaj komentarz</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation>Dodaj</translation>
-    </message>
-    <message>
         <source>Edit Reply</source>
-        <translation>Edytuj odpowiedź</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add Reply</source>
-        <translation>Dodaj odpowiedź</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Zapisz</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -781,6 +781,61 @@
     <message>
         <source>Activities</source>
         <translation>Aktywności</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileStatusPage</name>
+    <message>
+        <source>Change status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Busy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>in 30 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>in 1 hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>in 4 hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>today</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>this week</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -50,6 +50,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/notificationobject.cpp \
     src/entities/organization.cpp \
     src/entities/owner.cpp \
+    src/entities/profilestatus.cpp \
     src/entities/pullrequest.cpp \
     src/entities/release.cpp \
     src/entities/repo.cpp \
@@ -90,6 +91,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/LockReasonPill \
     qml/components/MarkdownLabel.qml \
     qml/components/Pill.qml \
+    qml/components/ProfileStatusItem.qml \
     qml/components/ReactionGridItem.qml \
     qml/components/ReactionLabel.qml \
     qml/components/ReactionsItem.qml \
@@ -136,6 +138,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/OrganizationPage.qml \
     qml/pages/OrganizationsListPage.qml \
     qml/pages/OverviewPage.qml \
+    qml/pages/ProfileStatusPage.qml \
     qml/pages/PullRequestPage.qml \
     qml/pages/PullRequestsListPage.qml \
     qml/pages/PullRequestsSelectionPage.qml \
@@ -215,6 +218,7 @@ HEADERS += \
     src/entities/notificationobject.h \
     src/entities/organization.h \
     src/entities/owner.h \
+    src/entities/profilestatus.h \
     src/entities/pullrequest.h \
     src/entities/reaction.h \
     src/entities/release.h \

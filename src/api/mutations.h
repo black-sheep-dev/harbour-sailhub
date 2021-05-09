@@ -230,5 +230,13 @@ static const QString SAILHUB_MUTATION_REPO_UPATE_SUBSCRIPTION =
                        "    }"
                        "}").simplified();
 
+// UPDATE REPO SUBSCRIPTION
+static const QString SAILHUB_MUTATION_CHANGE_PROFILE_STATUS =
+        QStringLiteral("mutation($input: ChangeUserStatusInput!) {"
+                       "    changeUserStatus(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
 
 #endif // MUTATIONS_H
