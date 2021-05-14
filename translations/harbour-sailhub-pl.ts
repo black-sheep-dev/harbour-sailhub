@@ -522,6 +522,14 @@
             <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
+    <message>
+        <source>Reopen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reopen issue</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>

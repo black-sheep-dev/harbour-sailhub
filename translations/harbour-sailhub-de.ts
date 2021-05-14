@@ -455,7 +455,7 @@
     </message>
     <message>
         <source>Closed</source>
-        <translation>Geshlossen</translation>
+        <translation>Geschlossen</translation>
     </message>
     <message>
         <source>Open</source>
@@ -515,6 +515,14 @@
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Reopen</source>
+        <translation>Wieder öffnen</translation>
+    </message>
+    <message>
+        <source>Reopen issue</source>
+        <translation>Problem erneut öffnen</translation>
     </message>
 </context>
 <context>

@@ -81,11 +81,19 @@ Page {
                 })
             }
             MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate
+                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.states & Issue.StateOpen
                 text: qsTr("Close")
 
                 onClicked: remorse.execute(qsTr("Closing issue"), function() {
                     SailHub.api().closeIssue(issue.nodeId)
+                })
+            }
+            MenuItem {
+                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.states & Issue.StateClosed
+                text: qsTr("Reopen")
+
+                onClicked: remorse.execute(qsTr("Reopen issue"), function() {
+                    SailHub.api().reopenIssue(issue.nodeId)
                 })
             }
         }
@@ -303,6 +311,7 @@ Page {
         }
         onIssueClosed: pageStack.navigateBack()
         onIssueDeleted: pageStack.navigateBack()
+        onIssueReopened: issue.setStates(Issue.StateOpen)
         onCommentAdded: refresh()
         onCommentDeleted: refresh()
     }

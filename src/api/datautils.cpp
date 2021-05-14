@@ -293,7 +293,12 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
     issue->setRepositoryId(repo.value(ApiKey::ID).toString());
     issue->setRepositoryPermission(getViewerPermission(repo.value(ApiKey::VIEWER_PERMISSION).toString()));
 
-    issue->setStates(obj.value(ApiKey::STATE).toInt());
+    const QString state = obj.value(ApiKey::STATE).toString();
+    if (state == QLatin1Literal("OPEN"))
+        issue->setStates(Issue::StateOpen);
+    else if (state == QLatin1Literal("CLOSED"))
+        issue->setStates(Issue::StateClosed);
+
     issue->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
     issue->setEdited(issue->updatedAt() > issue->createdAt());
     issue->setLabelCount(getTotalCount(obj.value(ApiKey::LABELS).toObject()));

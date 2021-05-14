@@ -137,6 +137,14 @@ static const QString SAILHUB_MUTATION_DELETE_ISSUE =
                        "    }"
                        "}").simplified();
 
+// REOPEN ISSUE
+static const QString SAILHUB_MUTATION_REOPEN_ISSUE =
+        QStringLiteral("mutation($input: ReopenIssueInput!) {"
+                       "    reopenIssue(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
 // REACTION ADD
 static const QString SAILHUB_MUTATION_ADD_REACTION =
         QStringLiteral("mutation($input: AddReactionInput!) {"

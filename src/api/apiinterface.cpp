@@ -483,6 +483,23 @@ void ApiInterface::removeReaction(const QString &nodeId, quint8 reaction)
     m_graphqlConnector->sendQuery(query, RequestType::RemoveReaction);
 }
 
+void ApiInterface::reopenIssue(const QString &nodeId)
+{
+    if (m_profile == nullptr)
+        return;
+
+    GraphQLQuery query;
+    query.query = SAILHUB_MUTATION_REOPEN_ISSUE;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::ISSUE_ID, nodeId);
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_graphqlConnector->sendQuery(query, RequestType::ReopenIssue);
+}
+
 void ApiInterface::subscribeToRepo(const QString &nodeId, quint8 state)
 {
     if (m_profile == nullptr)
@@ -849,6 +866,10 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     case RequestType::CloseIssue:
         emit issueClosed();
+        break;
+
+    case RequestType::ReopenIssue:
+        emit issueReopened();
         break;
 
     case RequestType::DeleteComment:

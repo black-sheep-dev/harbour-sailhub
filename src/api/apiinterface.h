@@ -85,6 +85,7 @@ public:
         GetRepo,
         MarkDiscussionCommentAsAnswer,
         RemoveReaction,
+        ReopenIssue,
         StarRepo,
         UnassignUser,
         UnfollowUser,
@@ -138,6 +139,7 @@ public:
     Q_INVOKABLE void markDiscussionCommetAsAnswer(const QString &nodeId, bool answer = true);
     Q_INVOKABLE void starRepo(const QString &nodeId, bool star = true);
     Q_INVOKABLE void removeReaction(const QString &nodeId, quint8 reaction);
+    Q_INVOKABLE void reopenIssue(const QString &nodeId);
     Q_INVOKABLE void subscribeToRepo(const QString &nodeId, quint8 state);
     Q_INVOKABLE void unassignUser(const QString &nodeId, const QString &userId);
     Q_INVOKABLE void updateComment(Comment *comment);
@@ -172,10 +174,11 @@ signals:
     void discussionCommentUnmarkedAsAnswer(bool unmarked = true);
     void fileContentAvailable(const QString &content);
     void gistAvailable(Gist *gist);
+    void issueAvailable(Issue *issue);
     void issueClosed(bool closed = true);
     void issueCreated(bool created = true);
     void issueDeleted(bool deleted = true);
-    void issueAvailable(Issue *issue);
+    void issueReopened(bool reopend =  true);
     void notificationsAvailable(const QList<NotificationListItem> &notifications);
     void organizationAvailable(Organization *organization);
     void profileStatusAvailable(ProfileStatus *status);
