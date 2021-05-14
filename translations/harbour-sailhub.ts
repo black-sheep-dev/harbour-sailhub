@@ -764,6 +764,17 @@
         <source>Activities</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfileStatusItem</name>
+    <message>
+        <source>Set status</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProfileStatusPage</name>
@@ -817,6 +828,10 @@
     </message>
     <message>
         <source>this week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clearing status</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1424,6 +1439,21 @@
     </message>
     <message>
         <source>No categories available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SelectEmojiDialog</name>
+    <message>
+        <source>Choose Emoji</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No emoji available</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -18,6 +18,7 @@ const QString ApiKey::BODY_HTML                         = QStringLiteral("bodyHT
 const QString ApiKey::BODY_TEXT                         = QStringLiteral("bodyText");
 const QString ApiKey::CATEGORY                          = QStringLiteral("category");
 const QString ApiKey::CATEGORY_ID                       = QStringLiteral("categoryId");
+const QString ApiKey::CHANGE_USER_STATUS                = QStringLiteral("changeUserStatus");
 const QString ApiKey::CLIENT_MUTATION_ID                = QStringLiteral("clientMutationId");
 const QString ApiKey::CLOSED                            = QStringLiteral("closed");
 const QString ApiKey::COLLABORATORS                     = QStringLiteral("collaborators");

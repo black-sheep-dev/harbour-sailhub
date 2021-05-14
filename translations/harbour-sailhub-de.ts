@@ -283,27 +283,27 @@
     <name>EditCommentDialog</name>
     <message>
         <source>Edit Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Antwort bearbeiten</translation>
     </message>
     <message>
         <source>Add Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Antworten</translation>
     </message>
     <message>
         <source>Edit Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar bearbeiten</translation>
     </message>
     <message>
         <source>Add Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar hinzufügen</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Speichern</translation>
+        <translation>Speichern</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -773,60 +773,75 @@
         <source>Activities</source>
         <translation>Aktivitäten</translation>
     </message>
+    <message>
+        <source>Status</source>
+        <translation>Status</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileStatusItem</name>
+    <message>
+        <source>Set status</source>
+        <translation>Status setzen</translation>
+    </message>
 </context>
 <context>
     <name>ProfileStatusPage</name>
     <message>
         <source>Change status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status ändern</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Nachricht</translation>
     </message>
     <message>
         <source>Enter message</source>
-        <translation type="unfinished"></translation>
+        <translation>Nachricht eingeben</translation>
     </message>
     <message>
         <source>Busy</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschäftigt</translation>
     </message>
     <message>
         <source>When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn andere dich erwähnen, dich zuweisen oder deine Bewertung anfordern, teilt GitHub ihnen mit, dass du nur über eine begrenzte Verfügbarkeit verfügst.</translation>
     </message>
     <message>
         <source>Clear status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status löschen</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Niemals</translation>
     </message>
     <message>
         <source>in 30 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>In 30 Minuten</translation>
     </message>
     <message>
         <source>in 1 hour</source>
-        <translation type="unfinished"></translation>
+        <translation>in einer Stunde</translation>
     </message>
     <message>
         <source>in 4 hour</source>
-        <translation type="unfinished"></translation>
+        <translation>in 4 Stunden</translation>
     </message>
     <message>
         <source>today</source>
-        <translation type="unfinished"></translation>
+        <translation>Heute</translation>
     </message>
     <message>
         <source>this week</source>
-        <translation type="unfinished"></translation>
+        <translation>diese Woche</translation>
+    </message>
+    <message>
+        <source>Clearing status</source>
+        <translation>Lösche Status</translation>
     </message>
 </context>
 <context>
@@ -1447,6 +1462,21 @@
     <message>
         <source>No categories available</source>
         <translation>Keine Kategorien vorhanden</translation>
+    </message>
+</context>
+<context>
+    <name>SelectEmojiDialog</name>
+    <message>
+        <source>Choose Emoji</source>
+        <translation>Emoji auswählen</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Auswählen</translation>
+    </message>
+    <message>
+        <source>No emoji available</source>
+        <translation>Keine Emoji verfügbar</translation>
     </message>
 </context>
 <context>

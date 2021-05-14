@@ -111,6 +111,7 @@ public:
     Q_INVOKABLE void addDiscussionComment(const QString &body, const QString &discussionId, const QString &replyToId = QString());
     Q_INVOKABLE void addReaction(const QString &nodeId, quint8 reaction);
     Q_INVOKABLE void assignUsers(const QString &nodeId, const QJsonArray &userIds);
+    Q_INVOKABLE void clearProfileStatus();
     Q_INVOKABLE void closeIssue(const QString &nodeId);
     Q_INVOKABLE void createDiscussion(const QString &title, const QString &body, const QString &categoryId, DiscussionsModel *model);
     Q_INVOKABLE void createIssue(const QString &title, const QString &body, IssuesModel *model);

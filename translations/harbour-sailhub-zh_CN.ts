@@ -765,6 +765,17 @@
         <source>Activities</source>
         <translation>动态</translation>
     </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfileStatusItem</name>
+    <message>
+        <source>Set status</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProfileStatusPage</name>
@@ -818,6 +829,10 @@
     </message>
     <message>
         <source>this week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clearing status</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1426,6 +1441,21 @@
     <message>
         <source>No categories available</source>
         <translation>没有可用分类</translation>
+    </message>
+</context>
+<context>
+    <name>SelectEmojiDialog</name>
+    <message>
+        <source>Choose Emoji</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished">选择</translation>
+    </message>
+    <message>
+        <source>No emoji available</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

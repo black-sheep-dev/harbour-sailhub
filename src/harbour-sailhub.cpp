@@ -6,6 +6,7 @@
 #include "enums/enums.h"
 #include "entities/file.h"
 #include "entities/reaction.h"
+#include "models/emojimodel.h"
 #include "models/treesortfiltermodel.h"
 //#include "entities/language.h"
 
@@ -38,6 +39,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<DiscussionCategoriesModel>(uri, 1, 0, "DiscussionCategoriesModel");
     qmlRegisterType<DiscussionComment>(uri, 1, 0, "DiscussionComment");
     qmlRegisterType<DiscussionCommentsModel>(uri, 1, 0, "DiscussionCommentsModel");
+    qmlRegisterType<EmojiModel>(uri, 1, 0, "EmojiModel");
     qmlRegisterType<File>(uri, 1, 0, "File");
     qmlRegisterType<FundingLinksModel>(uri, 1, 0, "FundingLinksModel");
     qmlRegisterType<Gist>(uri, 1, 0, "Gist");

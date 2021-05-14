@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.24
+VERSION = 0.0.25
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -60,6 +60,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/models/discussioncategoriesmodel.cpp \
     src/models/discussioncommentsmodel.cpp \
     src/models/discussionsmodel.cpp \
+    src/models/emojimodel.cpp \
     src/models/fundinglinksmodel.cpp \
     src/models/gistsmodel.cpp \
     src/models/issuesmodel.cpp \
@@ -118,6 +119,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/dialogs/ReactionDialog.qml \
     qml/dialogs/SelectBranchDialog.qml \
     qml/dialogs/SelectDiscussionCategoryDialog.qml \
+    qml/dialogs/SelectEmojiDialog.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
     qml/dialogs/SortSelectionDialog.qml \
     qml/js/stringhelper.js \
@@ -236,6 +238,7 @@ HEADERS += \
     src/models/discussioncategoriesmodel.h \
     src/models/discussioncommentsmodel.h \
     src/models/discussionsmodel.h \
+    src/models/emojimodel.h \
     src/models/fundinglinksmodel.h \
     src/models/gistsmodel.h \
     src/models/issuesmodel.h \

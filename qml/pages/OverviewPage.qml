@@ -69,6 +69,10 @@ Page {
                                           })
             }
 
+            SectionHeader {
+                text: qsTr("Status")
+            }
+
             ProfileStatusItem {
                 width: parent.width
 

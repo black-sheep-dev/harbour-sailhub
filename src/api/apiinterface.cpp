@@ -125,6 +125,13 @@ void ApiInterface::assignUsers(const QString &nodeId, const QJsonArray &userIds)
     m_graphqlConnector->sendQuery(query, RequestType::AssignUsers);
 }
 
+void ApiInterface::clearProfileStatus()
+{
+    m_profileStatus->setExpiresAt(QDateTime(QDate(2000,1,1)));
+
+    updateProfileStatus(m_profileStatus);
+}
+
 void ApiInterface::closeIssue(const QString &nodeId)
 {
     if (m_profile == nullptr)
@@ -823,6 +830,13 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         emit profileStatusChanged(DataUtils::profileStatusFromJson(data.value(ApiKey::VIEWER).toObject()
                                                                    .value(ApiKey::STATUS).toObject(),
                                                                    m_profileStatus));
+        break;
+
+    case RequestType::UpdateProfileStatus:
+        emit profileStatusChanged(DataUtils::profileStatusFromJson(data.value(ApiKey::CHANGE_USER_STATUS).toObject()
+                                                                   .value(ApiKey::STATUS).toObject(),
+                                                                   m_profileStatus));
+
         break;
 
     case RequestType::AssignUsers:

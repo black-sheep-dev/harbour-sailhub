@@ -21,6 +21,7 @@ struct ApiKey {
     static const QString BODY_TEXT;
     static const QString CATEGORY;
     static const QString CATEGORY_ID;
+    static const QString CHANGE_USER_STATUS;
     static const QString CLIENT_MUTATION_ID;
     static const QString CLOSED;
     static const QString COLLABORATORS;

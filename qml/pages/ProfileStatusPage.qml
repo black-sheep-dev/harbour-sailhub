@@ -16,8 +16,18 @@ Page {
         profileStatus.expireStatus = clearStatusComboBox.currentIndex
     }
 
+    RemorsePopup { id: remorse }
+
     SilicaFlickable {
         PullDownMenu {
+            MenuItem {
+                visible: profileStatus.message.length > 0
+                text: qsTr("Clear status")
+                onClicked: remorse.execute(qsTr("Clearing status"), function() {
+                    SailHub.api().clearProfileStatus(profileStatus)
+                    pageStack.navigateBack()
+                })
+            }
             MenuItem {
                 text: qsTr("Change status")
                 onClicked: {
@@ -37,6 +47,37 @@ Page {
 
             PageHeader {
                 title: qsTr("Status")
+            }
+
+            BackgroundItem {
+                x: Theme.horizontalPageMargin
+                width: emojiImage.height + Theme.paddingSmall
+                height: width
+
+                Image {
+                    id: emojiImage
+                    anchors.centerIn: parent
+                    width: Theme.iconSizeMedium
+                    height: width
+                    sourceSize.width: width
+                    sourceSize.height: width
+
+                    source: {
+                        if (profileStatus.emojiImage.length > 0)
+                            return profileStatus.emojiImage
+                        else
+                            return "qrc:///emoji/default"
+                    }
+                }
+
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectEmojiDialog.qml"))
+
+                    dialog.accepted.connect(function() {
+                        profileStatus.emoji = dialog.emojiUnicode
+                        profileStatus.emojiImage = "/usr/share/harbour-twemoji/72x72/" + dialog.emoji + ".png"
+                    })
+                }
             }
 
             TextField {
