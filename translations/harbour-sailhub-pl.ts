@@ -152,7 +152,7 @@
     </message>
     <message>
         <source>Answer</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpowiedź</translation>
     </message>
 </context>
 <context>
@@ -372,7 +372,7 @@
     </message>
     <message>
         <source>Sponsor</source>
-        <translation type="unfinished"></translation>
+        <translation>Sponsor</translation>
     </message>
 </context>
 <context>
@@ -429,23 +429,23 @@
     <name>IssueCommentItem</name>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Usuń</translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <source>Deleting comment</source>
-        <translation type="unfinished">Usuwanie komentarza</translation>
+        <translation>Usuwanie komentarza</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">Edytuj</translation>
+        <translation>Edytuj</translation>
     </message>
     <message>
         <source>Quote reply</source>
-        <translation type="unfinished">Cytuj odpowiedź</translation>
+        <translation>Cytuj odpowiedź</translation>
     </message>
     <message>
         <source>Edited</source>
-        <translation type="unfinished">Edytowany</translation>
+        <translation>Edytowany</translation>
     </message>
 </context>
 <context>
@@ -512,14 +512,14 @@
     </message>
     <message>
         <source>Write comment</source>
-        <translation type="unfinished">Napisz komentarz</translation>
+        <translation>Napisz komentarz</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -652,15 +652,15 @@
     <name>LockReasonPill</name>
     <message>
         <source>Off Topic</source>
-        <translation type="unfinished"></translation>
+        <translation>Off Topic</translation>
     </message>
     <message>
         <source>Resolved</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozwiązany</translation>
     </message>
     <message>
         <source>Spam</source>
-        <translation type="unfinished"></translation>
+        <translation>Spam</translation>
     </message>
     <message>
         <source>Too heated</source>
@@ -668,7 +668,7 @@
     </message>
     <message>
         <source>Locked</source>
-        <translation type="unfinished"></translation>
+        <translation>Zablokowany</translation>
     </message>
 </context>
 <context>
@@ -827,14 +827,14 @@
     </message>
     <message>
         <source>Write comment</source>
-        <translation type="unfinished">Napisz komentarz</translation>
+        <translation>Napisz komentarz</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
+            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -885,31 +885,31 @@
     <name>PullRequestsSelectionPage</name>
     <message>
         <source>Created</source>
-        <translation type="unfinished">Utworzono</translation>
+        <translation>Utworzono</translation>
     </message>
     <message>
         <source>Assigned</source>
-        <translation type="unfinished">Przypisany</translation>
+        <translation>Przypisany</translation>
     </message>
     <message>
         <source>Mentioned</source>
-        <translation type="unfinished">Wspomniany</translation>
+        <translation>Wspomniany</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation type="unfinished">Pull Requesty</translation>
+        <translation>Pull Requesty</translation>
     </message>
     <message>
         <source>Pull requests created by user</source>
-        <translation type="unfinished"></translation>
+        <translation>Pull requesty utworzone przez użytkownika</translation>
     </message>
     <message>
         <source>Pull requests assigned to user</source>
-        <translation type="unfinished"></translation>
+        <translation>Pull requesty przypisane do użytkownika</translation>
     </message>
     <message>
         <source>Pull requests where user is mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>Pull requesty, w których wspomniano o użytkowniku</translation>
     </message>
 </context>
 <context>
@@ -1082,47 +1082,47 @@
     <name>RepoFlagsItem</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished">Prywatny</translation>
+        <translation>Prywatny</translation>
     </message>
     <message>
         <source>Billing</source>
-        <translation type="unfinished"></translation>
+        <translation>Billing</translation>
     </message>
     <message>
         <source>Migrating</source>
-        <translation type="unfinished"></translation>
+        <translation>Migracja</translation>
     </message>
     <message>
         <source>Moving</source>
-        <translation type="unfinished"></translation>
+        <translation>Przenoszenie</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień nazwę</translation>
     </message>
     <message>
         <source>Locked</source>
-        <translation type="unfinished"></translation>
+        <translation>Zablokowany</translation>
     </message>
     <message>
         <source>Archived</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarchiwizowano</translation>
     </message>
     <message>
         <source>Organization</source>
-        <translation type="unfinished">Organizacja</translation>
+        <translation>Organizacja</translation>
     </message>
     <message>
         <source>Fork</source>
-        <translation type="unfinished"></translation>
+        <translation>Sforkuj</translation>
     </message>
     <message>
         <source>Mirror</source>
-        <translation type="unfinished"></translation>
+        <translation>Mirror</translation>
     </message>
     <message>
         <source>Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Szablon</translation>
     </message>
 </context>
 <context>
@@ -1211,11 +1211,11 @@
     </message>
     <message>
         <source>Sponsor</source>
-        <translation type="unfinished"></translation>
+        <translation>Sponsor</translation>
     </message>
     <message>
         <source>Vulnerability Alerts</source>
-        <translation type="unfinished"></translation>
+        <translation>Alerty podatności</translation>
     </message>
 </context>
 <context>
