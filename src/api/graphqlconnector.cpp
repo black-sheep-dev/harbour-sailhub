@@ -6,12 +6,12 @@
 
 #include <QJsonParseError>
 #include <QJsonDocument>
-
+#include <utility> 
 #include <zlib.h>
 
-GraphQLConnector::GraphQLConnector(const QString &endpoint, QNetworkAccessManager *manager, QObject *parent) :
+GraphQLConnector::GraphQLConnector(QString endpoint, QNetworkAccessManager *manager, QObject *parent) :
     QObject(parent),
-    m_endpoint(endpoint),
+    m_endpoint(std::move(endpoint)),
     m_manager(manager)
 {
     //connect(m_manager, &QNetworkAccessManager::finished, this, &GraphQLConnector::onRequestFinished);

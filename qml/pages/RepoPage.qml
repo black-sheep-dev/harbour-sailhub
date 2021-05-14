@@ -184,7 +184,14 @@ Page {
                 CounterItem {
                     width: parent.width / 3
 
-                    title: qsTr("%n Star(s)", "0", StringHelper.count(repo.stargazerCount))
+                    title: {
+                        var string = StringHelper.count(repo.stargazerCount)
+                        string += " "
+                        string += repo.stargazerCount > 1 ? qsTr("Stars") : qsTr("Star")
+
+                        return string;
+                    }
+
                     icon: "image://theme/icon-m-favorite"
 
                     onClicked: {
@@ -202,7 +209,13 @@ Page {
                 CounterItem {
                     width: parent.width / 3
 
-                    title: qsTr("%n Fork(s)", "0", StringHelper.count(repo.forkCount))
+                    title: {
+                        var string = StringHelper.count(repo.forkCount)
+                        string += " "
+                        string += repo.forkCount > 1 ? qsTr("Forks") : qsTr("Fork")
+
+                        return string;
+                    }
                     icon: "qrc:///icons/icon-m-fork"
 
                     onClicked: {

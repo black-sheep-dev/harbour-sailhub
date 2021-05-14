@@ -110,9 +110,12 @@ Page {
                 }
             }
 
-            Item {
-                height: Theme.paddingSmall
-                width: 1
+            Label {
+                visible: user.status.length > 0
+                x: Theme.horizontalPageMargin
+                width: parent.width - 2*x
+
+                text: markdownParser.parseRaw(user.status)
             }
 
             MarkdownLabel {

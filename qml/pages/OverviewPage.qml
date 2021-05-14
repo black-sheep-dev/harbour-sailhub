@@ -70,6 +70,18 @@ Page {
             }
 
             SectionHeader {
+                text: qsTr("Status")
+            }
+
+            ProfileStatusItem {
+                width: parent.width
+
+                profileStatus: SailHub.api().profileStatus
+
+                onClicked: pageStack.push(Qt.resolvedUrl("ProfileStatusPage.qml"), { profileStatus: SailHub.api().profileStatus })
+            }
+
+            SectionHeader {
                 text: qsTr("Activities")
             }
 
@@ -141,6 +153,8 @@ Page {
         if (status !== PageStatus.Active) return
 
         if (SailHub.accessToken.length === 0) startSetupWizard()
+
+        SailHub.api().getProfileStatus()
     }
 }
 

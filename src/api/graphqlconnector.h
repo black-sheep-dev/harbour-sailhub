@@ -18,7 +18,7 @@ class GraphQLConnector : public QObject
     Q_OBJECT
 
 public:
-    explicit GraphQLConnector(const QString &endpoint, QNetworkAccessManager *manager, QObject *parent = nullptr);
+    explicit GraphQLConnector(QString endpoint, QNetworkAccessManager *manager, QObject *parent = nullptr);
 
     void sendQuery(const GraphQLQuery &query, quint8 requestType, const QByteArray &requestId = QUuid::createUuid().toByteArray());
     void setEndpoint(const QString &endpoint);

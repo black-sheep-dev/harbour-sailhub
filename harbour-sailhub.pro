@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.24
+VERSION = 0.0.25
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -50,6 +50,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/notificationobject.cpp \
     src/entities/organization.cpp \
     src/entities/owner.cpp \
+    src/entities/profilestatus.cpp \
     src/entities/pullrequest.cpp \
     src/entities/release.cpp \
     src/entities/repo.cpp \
@@ -59,6 +60,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/models/discussioncategoriesmodel.cpp \
     src/models/discussioncommentsmodel.cpp \
     src/models/discussionsmodel.cpp \
+    src/models/emojimodel.cpp \
     src/models/fundinglinksmodel.cpp \
     src/models/gistsmodel.cpp \
     src/models/issuesmodel.cpp \
@@ -90,6 +92,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/LockReasonPill \
     qml/components/MarkdownLabel.qml \
     qml/components/Pill.qml \
+    qml/components/ProfileStatusItem.qml \
     qml/components/ReactionGridItem.qml \
     qml/components/ReactionLabel.qml \
     qml/components/ReactionsItem.qml \
@@ -116,6 +119,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/dialogs/ReactionDialog.qml \
     qml/dialogs/SelectBranchDialog.qml \
     qml/dialogs/SelectDiscussionCategoryDialog.qml \
+    qml/dialogs/SelectEmojiDialog.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
     qml/dialogs/SortSelectionDialog.qml \
     qml/js/stringhelper.js \
@@ -136,6 +140,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/OrganizationPage.qml \
     qml/pages/OrganizationsListPage.qml \
     qml/pages/OverviewPage.qml \
+    qml/pages/ProfileStatusPage.qml \
     qml/pages/PullRequestPage.qml \
     qml/pages/PullRequestsListPage.qml \
     qml/pages/PullRequestsSelectionPage.qml \
@@ -215,6 +220,7 @@ HEADERS += \
     src/entities/notificationobject.h \
     src/entities/organization.h \
     src/entities/owner.h \
+    src/entities/profilestatus.h \
     src/entities/pullrequest.h \
     src/entities/reaction.h \
     src/entities/release.h \
@@ -232,6 +238,7 @@ HEADERS += \
     src/models/discussioncategoriesmodel.h \
     src/models/discussioncommentsmodel.h \
     src/models/discussionsmodel.h \
+    src/models/emojimodel.h \
     src/models/fundinglinksmodel.h \
     src/models/gistsmodel.h \
     src/models/issuesmodel.h \

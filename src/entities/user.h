@@ -10,25 +10,6 @@ struct UserListItem {
     QString nodeId;
 };
 
-struct UserStatus {
-    QString emoji;
-    QString message;
-
-    UserStatus() {};
-    UserStatus(const UserStatus &other) {
-        emoji = other.emoji;
-        message = other.message;
-    }
-
-    bool operator==(const UserStatus &other) const {
-        return emoji == other.emoji && message == other.message;
-    }
-
-    bool operator!=(const UserStatus &other) const {
-        return !(emoji == other.emoji && message == other.message);
-    }
-};
-
 class User : public Node
 {
     Q_OBJECT
@@ -36,6 +17,7 @@ class User : public Node
     Q_PROPERTY(QString avatarUrl READ avatarUrl WRITE setAvatarUrl NOTIFY avatarUrlChanged)
     Q_PROPERTY(QString bio READ bio WRITE setBio NOTIFY bioChanged)
     Q_PROPERTY(QString company READ company WRITE setCompany NOTIFY companyChanged)
+    Q_PROPERTY(QString email READ email WRITE setEmail NOTIFY emailChanged)
     Q_PROPERTY(quint32 followers READ followers WRITE setFollowers NOTIFY followersChanged)
     Q_PROPERTY(quint32 following READ following WRITE setFollowing NOTIFY followingChanged)
     Q_PROPERTY(quint32 gistCount READ gistCount WRITE setGistCount NOTIFY gistCountChanged)
@@ -45,7 +27,7 @@ class User : public Node
     Q_PROPERTY(quint32 organizations READ organizations WRITE setOrganizations NOTIFY organizationsChanged)
     Q_PROPERTY(quint32 repositories READ repositories WRITE setRepositories NOTIFY repositoriesChanged)
     Q_PROPERTY(quint32 starredRepositories READ starredRepositories WRITE setStarredRepositories NOTIFY starredRepositoriesChanged)
-    Q_PROPERTY(UserStatus status READ status WRITE setStatus NOTIFY statusChanged)
+    Q_PROPERTY(QString status READ status WRITE setStatus NOTIFY statusChanged)
     Q_PROPERTY(QString twitterUsername READ twitterUsername WRITE setTwitterUsername NOTIFY twitterUsernameChanged)
     Q_PROPERTY(bool viewerIsFollowing READ viewerIsFollowing WRITE setViewerIsFollowing NOTIFY viewerIsFollowingChanged)
     Q_PROPERTY(QString websiteUrl READ websiteUrl WRITE setWebsiteUrl NOTIFY websiteUrlChanged)
@@ -74,6 +56,7 @@ public:
     QString avatarUrl() const;
     QString bio() const;
     QString company() const;
+    QString email() const;
     quint32 followers() const;
     quint32 following() const;
     quint32 gistCount() const;
@@ -83,7 +66,7 @@ public:
     quint32 organizations() const;
     quint32 repositories() const;
     quint32 starredRepositories() const;
-    UserStatus status() const;
+    QString status() const;
     QString twitterUsername() const;
     bool viewerIsFollowing() const;
     QString websiteUrl() const;
@@ -93,6 +76,7 @@ signals:
     void avatarUrlChanged(const QString &avatarUrl);
     void bioChanged(const QString &bio);
     void companyChanged(const QString &company);
+    void emailChanged(const QString &email);
     void followersChanged(quint32 followers);
     void followingChanged(quint32 following);
     void gistCountChanged(quint32 count);
@@ -102,7 +86,7 @@ signals:
     void organizationsChanged(quint32 organizations);
     void repositoriesChanged(quint32 repositories);
     void starredRepositoriesChanged(quint32 starredRepositories);
-    void statusChanged(const UserStatus &status);
+    void statusChanged(const QString &status);
     void twitterUsernameChanged(const QString &twitterUsername);
     void viewerIsFollowingChanged(bool following);
     void websiteUrlChanged(const QString &websiteUrl);
@@ -112,6 +96,7 @@ public slots:
     void setAvatarUrl(const QString &avatarUrl);
     void setBio(const QString &bio);
     void setCompany(const QString &company);
+    void setEmail(const QString &email);
     void setFollowers(quint32 followers);
     void setFollowing(quint32 following);
     void setGistCount(quint32 count);
@@ -121,7 +106,7 @@ public slots:
     void setOrganizations(quint32 organizations);
     void setRepositories(quint32 repositories);
     void setStarredRepositories(quint32 starredRepositories);
-    void setStatus(UserStatus status);
+    void setStatus(const QString &status);
     void setTwitterUsername(const QString &twitterUsername);
     void setViewerIsFollowing(bool following);
     void setWebsiteUrl(const QString &websiteUrl);
@@ -131,6 +116,7 @@ private:
     QString m_avatarUrl;
     QString m_bio;
     QString m_company;
+    QString m_email;
     quint32 m_followers{0};
     quint32 m_following{0};
     quint32 m_gistCount{0};
@@ -140,7 +126,7 @@ private:
     quint32 m_organizations{0};
     quint32 m_repositories{0};
     quint32 m_starredRepositories{0};
-    UserStatus m_status{UserStatus()};
+    QString m_status;
     QString m_twitterUsername;
     bool m_viewerIsFollowing{false};
     QString m_websiteUrl;
