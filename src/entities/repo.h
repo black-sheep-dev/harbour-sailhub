@@ -210,9 +210,9 @@ private:
     QString m_homepageUrl;
     quint32 m_issueCount{0};
     quint32 m_labelCount{0};
-    License *m_license;
+    License *m_license{nullptr};
     quint8 m_lockReason{RepositoryLockReason::Unknown};
-    Owner *m_owner;
+    Owner *m_owner{nullptr};
     quint32 m_projects{0};
     quint32 m_pullRequestCount{0};
     quint32 m_stargazerCount{0};

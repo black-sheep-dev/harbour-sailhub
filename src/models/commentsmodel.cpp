@@ -5,38 +5,14 @@
 #include "src/api/queryvars.h"
 #include "src/api/query_items.h"
 
-static const QString SAILHUB_QUERY_GET_ISSUE_COMMENTS =
+static const QString SAILHUB_QUERY_GET_COMMENTS =
         QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
                        "    rateLimit {"
                        "        remaining"
                        "        resetAt"
                        "    }"
                        "    node(id: $nodeId) {"
-                       "        ... on Issue {"
-                       "            id"
-                       "            comments("
-                       "                    first: $itemCount, "
-                       "                    after: $itemCursor "
-                       "                    ) {"
-                       "                nodes {"
-                       "                    %1"
-                       "                }"
-                       "                totalCount"
-                       "                %2"
-                       "            }"
-                       "        }"
-                       "    }"
-                       "    "
-                       "}").arg(SAILHUB_QUERY_ITEM_COMMENT, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
-
-static const QString SAILHUB_QUERY_GET_PULL_REQUEST_COMMENTS =
-        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
-                       "    rateLimit {"
-                       "        remaining"
-                       "        resetAt"
-                       "    }"
-                       "    node(id: $nodeId) {"
-                       "        ... on PullRequest {"
+                       "        ... on %3 {"
                        "            id"
                        "            comments("
                        "                    first: $itemCount, "
@@ -275,11 +251,11 @@ GraphQLQuery CommentsModel::query() const
 
     switch (modelType()) {
     case Comment::Issue:
-        query.query = SAILHUB_QUERY_GET_ISSUE_COMMENTS;
+        query.query = SAILHUB_QUERY_GET_COMMENTS.arg(QStringLiteral("Issue"));
         break;
 
     case Comment::PullRequest:
-        query.query = SAILHUB_QUERY_GET_PULL_REQUEST_COMMENTS;
+        query.query = SAILHUB_QUERY_GET_COMMENTS.arg(QStringLiteral("PullRequest"));
         break;
 
     default:

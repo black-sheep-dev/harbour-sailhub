@@ -282,28 +282,28 @@
 <context>
     <name>EditCommentDialog</name>
     <message>
-        <source>Edit Comment</source>
-        <translation>Berarbeite Kommentar</translation>
+        <source>Edit Reply</source>
+        <translation>Antwort bearbeiten</translation>
     </message>
     <message>
-        <source>Save</source>
-        <translation>Speichern</translation>
+        <source>Add Reply</source>
+        <translation>Antworten</translation>
+    </message>
+    <message>
+        <source>Edit Comment</source>
+        <translation>Kommentar bearbeiten</translation>
     </message>
     <message>
         <source>Add Comment</source>
         <translation>Kommentar hinzufügen</translation>
     </message>
     <message>
+        <source>Save</source>
+        <translation>Speichern</translation>
+    </message>
+    <message>
         <source>Add</source>
         <translation>Hinzufügen</translation>
-    </message>
-    <message>
-        <source>Edit Reply</source>
-        <translation>Antwort bearbeiten</translation>
-    </message>
-    <message>
-        <source>Add Reply</source>
-        <translation>Antwort hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -773,6 +773,76 @@
         <source>Activities</source>
         <translation>Aktivitäten</translation>
     </message>
+    <message>
+        <source>Status</source>
+        <translation>Status</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileStatusItem</name>
+    <message>
+        <source>Set status</source>
+        <translation>Status setzen</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileStatusPage</name>
+    <message>
+        <source>Change status</source>
+        <translation>Status ändern</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>Status</translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>Nachricht</translation>
+    </message>
+    <message>
+        <source>Enter message</source>
+        <translation>Nachricht eingeben</translation>
+    </message>
+    <message>
+        <source>Busy</source>
+        <translation>Beschäftigt</translation>
+    </message>
+    <message>
+        <source>When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.</source>
+        <translation>Wenn andere dich erwähnen, dich zuweisen oder deine Bewertung anfordern, teilt GitHub ihnen mit, dass du nur über eine begrenzte Verfügbarkeit verfügst.</translation>
+    </message>
+    <message>
+        <source>Clear status</source>
+        <translation>Status löschen</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation>Niemals</translation>
+    </message>
+    <message>
+        <source>in 30 minutes</source>
+        <translation>In 30 Minuten</translation>
+    </message>
+    <message>
+        <source>in 1 hour</source>
+        <translation>in einer Stunde</translation>
+    </message>
+    <message>
+        <source>in 4 hour</source>
+        <translation>in 4 Stunden</translation>
+    </message>
+    <message>
+        <source>today</source>
+        <translation>Heute</translation>
+    </message>
+    <message>
+        <source>this week</source>
+        <translation>diese Woche</translation>
+    </message>
+    <message>
+        <source>Clearing status</source>
+        <translation>Lösche Status</translation>
+    </message>
 </context>
 <context>
     <name>PullRequestPage</name>
@@ -1129,25 +1199,9 @@
         <source>Star</source>
         <translation>Star</translation>
     </message>
-    <message numerus="yes">
-        <source>%n Star(s)</source>
-        <comment>0</comment>
-        <translation>
-            <numerusform>%n Star</numerusform>
-            <numerusform>%n Stars</numerusform>
-        </translation>
-    </message>
     <message>
         <source>Stargazer</source>
         <translation></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n Fork(s)</source>
-        <comment>0</comment>
-        <translation>
-            <numerusform>%n Fork</numerusform>
-            <numerusform>%n Forks</numerusform>
-        </translation>
     </message>
     <message>
         <source>Issues</source>
@@ -1196,6 +1250,18 @@
     <message>
         <source>Vulnerability Alerts</source>
         <translation>Sicherheitslückenwarnungen</translation>
+    </message>
+    <message>
+        <source>Forks</source>
+        <translation>Forks</translation>
+    </message>
+    <message>
+        <source>Fork</source>
+        <translation>Fork</translation>
+    </message>
+    <message>
+        <source>Stars</source>
+        <translation>Stars</translation>
     </message>
 </context>
 <context>
@@ -1396,6 +1462,21 @@
     <message>
         <source>No categories available</source>
         <translation>Keine Kategorien vorhanden</translation>
+    </message>
+</context>
+<context>
+    <name>SelectEmojiDialog</name>
+    <message>
+        <source>Choose Emoji</source>
+        <translation>Emoji auswählen</translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation>Auswählen</translation>
+    </message>
+    <message>
+        <source>No emoji available</source>
+        <translation>Keine Emoji verfügbar</translation>
     </message>
 </context>
 <context>

@@ -268,7 +268,7 @@ void IssuesModel::parseUserReposIssues(const QJsonObject &obj)
     QMultiMap<QDateTime, IssueListItem> sortedIssues;
 
     for (const auto &repo : repos) {
-        QList<IssueListItem> issues = DataUtils::issuesFromJson(repo.toObject().value(ApiKey::ISSUES).toObject());
+        const QList<IssueListItem> issues = DataUtils::issuesFromJson(repo.toObject().value(ApiKey::ISSUES).toObject());
         for (const auto &issue : issues) {
             sortedIssues.insertMulti(issue.createdAt, issue);
         }

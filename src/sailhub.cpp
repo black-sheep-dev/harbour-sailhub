@@ -371,6 +371,7 @@ void SailHub::loadCredentials()
 #ifdef QT_DEBUG
     qDebug() << QStringLiteral("CREDENTIALS LOADED");
     qDebug() << fetchCode->result().code();
+    qDebug() << fetchCode->secret().data();
 
     if (fetchCode->result().errorCode() > 0) {
         qDebug() << fetchCode->result().errorCode();
@@ -393,6 +394,9 @@ void SailHub::loadCredentials()
 void SailHub::storeCredentials()
 {
 #ifndef DISABLE_SAILFISH_SECRETS
+
+    if (m_accessToken.isEmpty())
+        return;
 
     // reset and create
     deleteCollection();

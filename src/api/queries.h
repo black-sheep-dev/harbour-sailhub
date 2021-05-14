@@ -179,7 +179,33 @@ static const QString SAILHUB_QUERY_GET_ORGANIZATION =
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_ORGANIZATION).simplified();
 
-// GET ISSUE
+// GET PROFILE STATUS
+static const QString SAILHUB_QUERY_GET_PROFILE_STATUS =
+        QStringLiteral("query {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    viewer {"
+                       "        status {"
+                       "            createdAt"
+                       "            emoji"
+                       "            emojiHTML"
+                       "            expiresAt"
+                       "            id"
+                       "            indicatesLimitedAvailability"
+                       "            message"
+                       "            organization {"
+                       "                avatarUrl"
+                       "                id"
+                       "                login"
+                       "            }"
+                       "            updatedAt"
+                       "        }"
+                       "    }"
+                       "}").simplified();
+
+// GET PULL REQUEST
 static const QString SAILHUB_QUERY_GET_PULL_REQUEST =
         QStringLiteral("query($nodeId: ID!) {"
                        "    rateLimit {"

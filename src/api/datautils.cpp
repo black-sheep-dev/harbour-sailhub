@@ -16,7 +16,7 @@
 
 Comment *DataUtils::commentFromJson(const QJsonObject &obj)
 {
-    Comment *comment = new Comment;
+    auto comment = new Comment;
 
     comment->setNodeId(obj.value(ApiKey::ID).toString());
 
@@ -172,7 +172,7 @@ QList<DiscussionCategoryListItem> DataUtils::discussionCategoriesFromJson(const 
 
 DiscussionComment *DataUtils::discussionCommentFromJson(const QJsonObject &obj)
 {
-    DiscussionComment *comment = new DiscussionComment;
+    auto comment = new DiscussionComment;
 
     comment->setNodeId(obj.value(ApiKey::ID).toString());
 
@@ -512,7 +512,7 @@ QList<OrganizationListItem> DataUtils::organizationsFromJson(const QJsonObject &
 
 Owner *DataUtils::ownerFromJson(const QJsonObject &obj)
 {
-    Owner *owner = new Owner;
+    auto owner = new Owner;
     owner->setNodeId(obj.value(ApiKey::ID).toString());
     owner->setLogin(obj.value(ApiKey::LOGIN).toString());
     owner->setAvatarUrl(obj.value(ApiKey::AVATAR_URL).toString());
@@ -535,9 +535,48 @@ PageInfo DataUtils::pageInfoFromJson(const QJsonObject &obj, const QJsonValue &c
     return info;
 }
 
+ProfileStatus *DataUtils::profileStatusFromJson(const QJsonObject &obj, ProfileStatus *status)
+{
+    if (status == nullptr)
+        status = new ProfileStatus;
+
+    status->setNodeId(obj.value(ApiKey::ID).toString());
+    status->setCreatedAt(QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    status->setEmoji(obj.value(ApiKey::EMOJI).toString());
+    status->setEmojiImage(getEmojiLinkFromString(obj.value(ApiKey::EMOJI_HTML).toString()));
+
+    // expire
+    const QDateTime expireAt = QDateTime::fromString(obj.value(ApiKey::EXPIRES_AT).toString(), Qt::ISODate);
+    status->setExpiresAt(expireAt);
+
+//    const QDateTime current = QDateTime::currentDateTimeUtc();
+
+//    if (!expireAt.isValid())
+//        status->setExpireStatus(ProfileStatus::Never);
+//    else if (current.addSecs(30*60) <= expireAt)
+//        status->setExpireStatus(ProfileStatus::InThirtyMinutes);
+//    else if (current.addSecs(60*60) <= expireAt)
+//        status->setExpireStatus(ProfileStatus::InOneHour);
+//    else if (current.addSecs(4*60*60) <= expireAt)
+//        status->setExpireStatus(ProfileStatus::InFourHours);
+
+    //
+    status->setIndicatesLimitedAvailability(obj.value(ApiKey::INDICATES_LIMITED_AVAILABILITY).toBool());
+    status->setMessage(obj.value(ApiKey::MESSAGE).toString());
+
+    const QJsonObject org = obj.value(ApiKey::ORGANIZATION).toObject();
+
+    status->setOrganization(org.value(ApiKey::LOGIN).toString());
+    status->setOrganizationId(org.value(ApiKey::ID).toString());
+
+    status->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
+
+    return status;
+}
+
 PullRequest *DataUtils::pullRequestFromJson(const QJsonObject &obj)
 {
-    PullRequest *request = new PullRequest();
+    auto request = new PullRequest();
 
     issueFromJson(obj, request);
 
@@ -594,7 +633,7 @@ Release *DataUtils::releaseFromJson(const QJsonObject &obj)
     if (obj.isEmpty())
         return nullptr;
 
-    Release *release = new Release;
+    auto release = new Release;
 
     // author
     auto author = ownerFromJson(obj.value(ApiKey::AUTHOR).toObject());
@@ -726,7 +765,7 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     repo->setWatcherCount(getTotalCount(obj.value(ApiKey::WATCHERS).toObject()));
 
     const QJsonObject lic = obj.value(ApiKey::LICENSE_INFO).toObject();
-    License *license = new License(repo);
+    auto license = new License(repo);
     license->setName(lic.value(ApiKey::SPDX_ID).toString());
     license->setUrl(lic.value(ApiKey::URL).toString());
     repo->setLicense(license);
@@ -888,6 +927,7 @@ User *DataUtils::userFromJson(const QJsonObject &obj, User *user)
     user->setAvatarUrl(obj.value(ApiKey::AVATAR_URL).toString());
     user->setBio(obj.value(ApiKey::BIO).toString());
     user->setCompany(obj.value(ApiKey::COMPANY).toString());
+    user->setEmail(obj.value(ApiKey::EMAIL).toString());
     user->setFollowers(getTotalCount(obj.value(ApiKey::FOLLOWERS).toObject()));
     user->setFollowing(getTotalCount(obj.value(ApiKey::FOLLOWING).toObject()));
     user->setGistCount(getTotalCount(obj.value(ApiKey::GISTS).toObject()));
@@ -906,11 +946,8 @@ User *DataUtils::userFromJson(const QJsonObject &obj, User *user)
     // user status
     const QJsonObject status = obj.value(ApiKey::STATUS).toObject();
 
-    UserStatus sta;
-    sta.emoji = status.value(ApiKey::EMOJI).toString();
-    sta.message = status.value(ApiKey::MESSAGE).toString();
-
-    user ->setStatus(sta);
+    user ->setStatus(QString(removeEmojiTags(status.value(ApiKey::EMOJI_HTML).toString())
+                             + " " + status.value(ApiKey::MESSAGE).toString()).simplified());
 
     return user;
 }

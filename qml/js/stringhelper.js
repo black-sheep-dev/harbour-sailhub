@@ -19,5 +19,5 @@ function count(count) {
     if (count < 1000)
         return count
     else
-        return (count / 1000) + "K"
+        return Math.round(count / 100) / 10 + "K"
 }

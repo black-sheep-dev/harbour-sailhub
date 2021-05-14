@@ -279,28 +279,28 @@
 <context>
     <name>EditCommentDialog</name>
     <message>
-        <source>Edit Comment</source>
-        <translation>编辑评论</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation>保存</translation>
-    </message>
-    <message>
-        <source>Add Comment</source>
-        <translation>添加评论</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation>添加</translation>
-    </message>
-    <message>
         <source>Edit Reply</source>
-        <translation>编辑回复</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add Reply</source>
-        <translation>添加回复</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -765,6 +765,76 @@
         <source>Activities</source>
         <translation>动态</translation>
     </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfileStatusItem</name>
+    <message>
+        <source>Set status</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfileStatusPage</name>
+    <message>
+        <source>Change status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Busy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>in 30 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>in 1 hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>in 4 hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>today</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>this week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clearing status</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PullRequestPage</name>
@@ -1112,23 +1182,9 @@
         <source>Star</source>
         <translation>星标</translation>
     </message>
-    <message numerus="yes">
-        <source>%n Star(s)</source>
-        <comment>0</comment>
-        <translation>
-            <numerusform>%n 个星标</numerusform>
-        </translation>
-    </message>
     <message>
         <source>Stargazer</source>
         <translation>天文学家</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n Fork(s)</source>
-        <comment>0</comment>
-        <translation>
-            <numerusform>%n 个分支</numerusform>
-        </translation>
     </message>
     <message>
         <source>Issues</source>
@@ -1177,6 +1233,18 @@
     <message>
         <source>Vulnerability Alerts</source>
         <translation>漏洞评估报告</translation>
+    </message>
+    <message>
+        <source>Forks</source>
+        <translation type="unfinished">分支</translation>
+    </message>
+    <message>
+        <source>Fork</source>
+        <translation type="unfinished">分支</translation>
+    </message>
+    <message>
+        <source>Stars</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1373,6 +1441,21 @@
     <message>
         <source>No categories available</source>
         <translation>没有可用分类</translation>
+    </message>
+</context>
+<context>
+    <name>SelectEmojiDialog</name>
+    <message>
+        <source>Choose Emoji</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished">选择</translation>
+    </message>
+    <message>
+        <source>No emoji available</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

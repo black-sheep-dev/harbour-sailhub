@@ -21,6 +21,11 @@ QString User::company() const
     return m_company;
 }
 
+QString User::email() const
+{
+    return m_email;
+}
+
 quint32 User::followers() const
 {
     return m_followers;
@@ -66,7 +71,7 @@ quint32 User::starredRepositories() const
     return m_starredRepositories;
 }
 
-UserStatus User::status() const
+QString User::status() const
 {
     return m_status;
 }
@@ -111,6 +116,15 @@ void User::setCompany(const QString &company)
 
     m_company = company;
     emit companyChanged(m_company);
+}
+
+void User::setEmail(const QString &email)
+{
+    if (m_email == email)
+        return;
+
+    m_email = email;
+    emit emailChanged(m_email);
 }
 
 void User::setFollowers(quint32 followers)
@@ -194,7 +208,7 @@ void User::setStarredRepositories(quint32 starredRepositories)
     emit starredRepositoriesChanged(m_starredRepositories);
 }
 
-void User::setStatus(UserStatus status)
+void User::setStatus(const QString &status)
 {
     if (m_status == status)
         return;

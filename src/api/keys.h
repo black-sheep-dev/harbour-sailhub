@@ -21,6 +21,7 @@ struct ApiKey {
     static const QString BODY_TEXT;
     static const QString CATEGORY;
     static const QString CATEGORY_ID;
+    static const QString CHANGE_USER_STATUS;
     static const QString CLIENT_MUTATION_ID;
     static const QString CLOSED;
     static const QString COLLABORATORS;
@@ -49,6 +50,7 @@ struct ApiKey {
     static const QString EMOJI_HTML;
     static const QString END_CURSOR;
     static const QString ENTRIES;
+    static const QString EXPIRES_AT;
     static const QString EXTENSION;
     static const QString FILE;
     static const QString FILES;
@@ -66,6 +68,7 @@ struct ApiKey {
     static const QString HOMEPAGE_URL;
     static const QString ID;
     static const QString INCLUDES_CREATED_EDIT;
+    static const QString INDICATES_LIMITED_AVAILABILITY;
     static const QString IS_ANSWER;
     static const QString IS_ARCHIVED;
     static const QString IS_BINARY;
@@ -93,6 +96,7 @@ struct ApiKey {
     static const QString LANGUAGES;
     static const QString LAST_EDITED_AT;
     static const QString LICENSE_INFO;
+    static const QString LIMITED_AVAILABILITY;
     static const QString LOCATION;
     static const QString LOCKED;
     static const QString LOCK_REASON;
@@ -107,6 +111,8 @@ struct ApiKey {
     static const QString NODES;
     static const QString NUMBER;
     static const QString OBJECT;
+    static const QString ORGANIZATION;
+    static const QString ORGANIZATION_ID;
     static const QString ORGANIZATIONS;
     static const QString OWNER;    
     static const QString PAGE_INFO;

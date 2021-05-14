@@ -13,6 +13,7 @@
 #include "src/entities/issue.h"
 #include "src/entities/label.h"
 #include "src/entities/organization.h"
+#include "src/entities/profilestatus.h"
 #include "src/entities/pullrequest.h"
 #include "src/entities/release.h"
 #include "src/entities/releaseasset.h"
@@ -69,6 +70,9 @@ public:
 
     // page info
     static PageInfo pageInfoFromJson(const QJsonObject &obj, const QJsonValue &count = QJsonValue());
+
+    // profile status
+    static ProfileStatus *profileStatusFromJson(const QJsonObject &obj, ProfileStatus *status = nullptr);
 
     // pull requests
     static PullRequest *pullRequestFromJson(const QJsonObject &obj);

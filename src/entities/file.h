@@ -36,14 +36,14 @@ signals:
     void nameChanged(const QString &name);
     void sizeChanged(quint64 size);
     void truncatedChanged(bool truncated);
-    void typeChanged(Type type);
+    void typeChanged(File::Type type);
 
 public slots:
     void setContent(const QString &content);
     void setName(const QString &name);
     void setSize(quint64 size);
     void setTruncated(bool truncated);
-    void setType(Type type);
+    void setType(File::Type type);
 
 private:
     QString m_content;

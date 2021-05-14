@@ -17,6 +17,8 @@
 #include "src/enums/enums.h"
 #include "src/entities/reaction.h"
 
+
+
 ApiInterface::ApiInterface(QObject *parent) :
     QObject(parent)
 {
@@ -121,6 +123,13 @@ void ApiInterface::assignUsers(const QString &nodeId, const QJsonArray &userIds)
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
     m_graphqlConnector->sendQuery(query, RequestType::AssignUsers);
+}
+
+void ApiInterface::clearProfileStatus()
+{
+    m_profileStatus->setExpiresAt(QDateTime(QDate(2000,1,1)));
+
+    updateProfileStatus(m_profileStatus);
 }
 
 void ApiInterface::closeIssue(const QString &nodeId)
@@ -371,6 +380,14 @@ void ApiInterface::getProfile()
     m_graphqlConnector->sendQuery(query, RequestType::GetProfile);
 }
 
+void ApiInterface::getProfileStatus()
+{
+    GraphQLQuery query;
+    query.query = SAILHUB_QUERY_GET_PROFILE_STATUS;
+
+    m_graphqlConnector->sendQuery(query, RequestType::GetProfileStatus);
+}
+
 void ApiInterface::getPullRequest(const QString &nodeId)
 {
     GraphQLQuery query;
@@ -573,6 +590,37 @@ void ApiInterface::updateIssue(Issue *issue)
     m_graphqlConnector->sendQuery(query, RequestType::UpdateIssue);
 }
 
+void ApiInterface::updateProfileStatus(ProfileStatus *status)
+{
+    if (status == nullptr)
+        status = m_profileStatus;
+
+    GraphQLQuery query;
+    query.query = SAILHUB_MUTATION_CHANGE_PROFILE_STATUS;
+
+    QJsonObject vars;
+
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+
+    if (!status->emoji().isEmpty())
+        vars.insert(ApiKey::EMOJI, status->emoji());
+
+    if (status->expiresAt().isValid())
+        vars.insert(ApiKey::EXPIRES_AT, status->expiresAt().toString(Qt::ISODate));
+
+    vars.insert(ApiKey::LIMITED_AVAILABILITY, status->indicatesLimitedAvailability());
+
+    if (!status->message().isEmpty())
+        vars.insert(ApiKey::MESSAGE, status->message());
+
+    if (!status->organizationId().isEmpty())
+        vars.insert(ApiKey::ORGANIZATION_ID, status->organizationId());
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_graphqlConnector->sendQuery(query, RequestType::UpdateProfileStatus);
+}
+
 void ApiInterface::updateReactions(const QString &nodeId, quint8 before, quint8 after)
 {
     quint8 flag{1};
@@ -613,9 +661,14 @@ bool ApiInterface::ready() const
     return m_ready;
 }
 
-User *ApiInterface::profile() const
+User *ApiInterface::profile()
 {
     return m_profile;
+}
+
+ProfileStatus *ApiInterface::profileStatus()
+{
+    return m_profileStatus;
 }
 
 void ApiInterface::setPaginationCount(quint8 paginationCount)
@@ -773,6 +826,19 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         setReady(true);
         break;
 
+    case RequestType::GetProfileStatus:
+        emit profileStatusChanged(DataUtils::profileStatusFromJson(data.value(ApiKey::VIEWER).toObject()
+                                                                   .value(ApiKey::STATUS).toObject(),
+                                                                   m_profileStatus));
+        break;
+
+    case RequestType::UpdateProfileStatus:
+        emit profileStatusChanged(DataUtils::profileStatusFromJson(data.value(ApiKey::CHANGE_USER_STATUS).toObject()
+                                                                   .value(ApiKey::STATUS).toObject(),
+                                                                   m_profileStatus));
+
+        break;
+
     case RequestType::AssignUsers:
         emit usersAssigned();
         break;
@@ -834,6 +900,7 @@ void ApiInterface::parseRestData(const QJsonDocument &doc, quint8 requestType, c
 void ApiInterface::initialize()
 {
     getProfile();
+    getProfileStatus();
 }
 
 void ApiInterface::parseFileContent(const QJsonObject &obj)
