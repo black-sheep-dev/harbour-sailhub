@@ -1275,7 +1275,7 @@
     </message>
     <message>
         <source>Fork</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sforkuj</translation>
     </message>
     <message>
         <source>Stars</source>
