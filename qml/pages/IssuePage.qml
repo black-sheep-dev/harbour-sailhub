@@ -49,10 +49,16 @@ Page {
         PullDownMenu {
             busy: page.busy
 
-            SubscriptionMenuItem {
+            MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanSubscribe
-                subscription: issue.viewerSubscription
-                nodeId: issue.nodeId
+                text: issue.viewerSubscription === SubscriptionState.Subscribed ? qsTr("Unsubscribe") : qsTr("Subscribe")
+
+                onClicked: {
+                    if (request.viewerSubscription === SubscriptionState.Subscribed)
+                        SailHub.api().subscribeTo(issue.nodeId, SubscriptionState.Unsubscribed)
+                    else
+                        SailHub.api().subscribeTo(issue.nodeId, SubscriptionState.Subscribed)
+                }
             }
             MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanUpdate
@@ -310,6 +316,7 @@ Page {
         onIssueClosed: pageStack.navigateBack()
         onIssueDeleted: pageStack.navigateBack()
         onIssueReopened: issue.setStates(Issue.StateOpen)
+        onSubscribedTo: if (nodeId === issue.nodeId) issue.viewerSubscription = state
         onCommentAdded: refresh()
         onCommentDeleted: refresh()
     }

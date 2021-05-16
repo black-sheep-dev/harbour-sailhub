@@ -520,6 +520,14 @@
         <source>Reopen issue</source>
         <translation>Problem erneut öffnen</translation>
     </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation>Abonnement aufheben</translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation>Abonnieren</translation>
+    </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
@@ -897,6 +905,14 @@
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
     </message>
+    <message>
+        <source>Subscribe</source>
+        <translation>Abonnieren</translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation>Abonnement aufheben</translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
@@ -1246,6 +1262,14 @@
     <message>
         <source>Stars</source>
         <translation>Stars</translation>
+    </message>
+    <message>
+        <source>Watch</source>
+        <translation>Beobachten</translation>
+    </message>
+    <message>
+        <source>Unwatch</source>
+        <translation>Vergessen</translation>
     </message>
 </context>
 <context>
@@ -1632,17 +1656,6 @@
     <message>
         <source>Star</source>
         <translation>Star</translation>
-    </message>
-</context>
-<context>
-    <name>SubscriptionMenuItem</name>
-    <message>
-        <source>Watch</source>
-        <translation>Beobachten</translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
-        <translation>Vergessen</translation>
     </message>
 </context>
 <context>

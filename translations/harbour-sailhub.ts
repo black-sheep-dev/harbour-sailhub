@@ -514,6 +514,14 @@
         <source>Reopen issue</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
@@ -887,6 +895,14 @@
             <numerusform></numerusform>
         </translation>
     </message>
+    <message>
+        <source>Subscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
@@ -1227,6 +1243,14 @@
     </message>
     <message>
         <source>Stars</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Watch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unwatch</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1607,17 +1631,6 @@
     </message>
     <message>
         <source>Star</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SubscriptionMenuItem</name>
-    <message>
-        <source>Watch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

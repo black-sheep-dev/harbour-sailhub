@@ -48,10 +48,16 @@ Page {
     SilicaFlickable {
         PullDownMenu {
             busy: page.busy
-            SubscriptionMenuItem {
+            MenuItem {
                 visible: request.viewerAbilities & Viewer.CanSubscribe
-                subscription: request.viewerSubscription
-                nodeId: request.nodeId
+                text: request.viewerSubscription === SubscriptionState.Subscribed ? qsTr("Unsubscribe") : qsTr("Subscribe")
+
+                onClicked: {
+                    if (request.viewerSubscription === SubscriptionState.Subscribed)
+                        SailHub.api().subscribeTo(request.nodeId, SubscriptionState.Unsubscribed)
+                    else
+                        SailHub.api().subscribeTo(request.nodeId, SubscriptionState.Subscribed)
+                }
             }
         }
 
@@ -268,6 +274,7 @@ Page {
         }
         onPullRequestClosed: pageStack.navigateBack()
         onPullRequestDeleted: pageStack.navigateBack()
+        onSubscribedTo: if (nodeId === request.nodeId) request.viewerSubscription = state
         onCommentAdded: refresh()
         onCommentDeleted: refresh()
     }

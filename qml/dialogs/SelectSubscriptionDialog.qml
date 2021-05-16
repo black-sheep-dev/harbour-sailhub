@@ -22,10 +22,8 @@ Dialog {
             text: qsTr("Unsubscribe")
             description: qsTr("Disable all notifications")
 
-            onClicked: {
-                unsubscribeSwitch.checked = !checked
-                subscribeSwitch.checked = !checked
-            }
+            checked: subscription === SubscriptionState.Ignored
+            onClicked: subscription = SubscriptionState.Ignored
         }
 
         TextSwitch {
@@ -36,10 +34,8 @@ Dialog {
             text: qsTr("Subscribe")
             description: qsTr("Get notified only when participating or mentioned")
 
-            onClicked: {
-                subscribeSwitch.checked = !checked
-                ignoreSwitch.checked = !checked
-            }
+            checked: subscription === SubscriptionState.Unsubscribed
+            onClicked: subscription = SubscriptionState.Unsubscribed
         }
 
         TextSwitch {
@@ -50,45 +46,8 @@ Dialog {
             text: qsTr("Subscribe (all)");
             description: qsTr("Get notified of all conversation")
 
-            onClicked: {
-                unsubscribeSwitch.checked = !checked
-                ignoreSwitch.checked = !checked
-            }
+            checked: subscription === SubscriptionState.Subscribed
+            onClicked: subscription = SubscriptionState.Subscribed
         }
-    }
-
-    function setSubcriptionState() {
-        switch (subscription) {            
-        case SubscriptionState.Unsubscribed:
-            unsubscribeSwitch.checked = true
-            subscribeSwitch.checked = false
-            ignoreSwitch.checked = false
-            break;
-
-        case SubscriptionState.Subscribed:
-            unsubscribeSwitch.checked = false
-            subscribeSwitch.checked = true
-            ignoreSwitch.checked = false
-            break;
-
-        default:
-            unsubscribeSwitch.checked = false
-            subscribeSwitch.checked = false
-            ignoreSwitch.checked = true
-            break;
-        }
-    }
-
-    Component.onCompleted: setSubcriptionState()
-
-    onDone: {
-        if (result != DialogResult.Accepted) return
-
-        if (unsubscribeSwitch.checked)
-            subscription = SubscriptionState.Unsubscribed
-        else if (subscribeSwitch.checked)
-            subscription = SubscriptionState.Subscribed
-        else
-            subscription = SubscriptionState.Ignored
     }
 }

@@ -260,6 +260,7 @@ static const QString SAILHUB_QUERY_GET_PULL_REQUEST =
                        "            viewerCanSubscribe"
                        "            viewerCanUpdate"
                        "            viewerDidAuthor"
+                       "            viewerSubscription"
                        "        }"
                        "    }"
                        "    "

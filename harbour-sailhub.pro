@@ -100,7 +100,6 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/RelatedItem.qml \
     qml/components/RepoFlagsItem.qml \
     qml/components/StarMenuItem.qml \
-    qml/components/SubscriptionMenuItem.qml \
     qml/cover/CoverPage.qml \
     qml/delegates/AssetListDelegate.qml \
     qml/delegates/CommentListDelegate.qml \

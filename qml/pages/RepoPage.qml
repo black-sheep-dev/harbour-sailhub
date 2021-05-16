@@ -29,10 +29,29 @@ Page {
     SilicaFlickable {
         PullDownMenu {
             busy: page.busy
-            SubscriptionMenuItem {
+            MenuItem {
                 visible: repo.viewerAbilities & Viewer.CanSubscribe
-                subscription: repo.viewerSubscription
-                nodeId: repo.nodeId
+                text: {
+                    switch (repo.viewerSubscription) {
+                    case SubscriptionState.Ignored:
+                    case SubscriptionState.Unsubscribed:
+                        return qsTr("Watch")
+
+                    default:
+                        return qsTr("Unwatch")
+                    }
+                }
+
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectSubscriptionDialog.qml"), {
+                                                    subscription: repo.viewerSubscription
+                                                })
+
+                    dialog.accepted.connect(function() {
+                        console.log(dialog.subscription)
+                        SailHub.api().subscribeTo(repo.nodeId, dialog.subscription)
+                    })
+                }
             }
             StarMenuItem {
                 starred: repo.viewerHasStarred

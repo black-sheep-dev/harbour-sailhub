@@ -515,6 +515,14 @@
         <source>Reopen issue</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation type="unfinished">取消订阅</translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation type="unfinished">订阅</translation>
+    </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
@@ -888,6 +896,14 @@
             <numerusform></numerusform>
         </translation>
     </message>
+    <message>
+        <source>Subscribe</source>
+        <translation type="unfinished">订阅</translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation type="unfinished">取消订阅</translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
@@ -1229,6 +1245,14 @@
     <message>
         <source>Stars</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Watch</source>
+        <translation type="unfinished">查看</translation>
+    </message>
+    <message>
+        <source>Unwatch</source>
+        <translation type="unfinished">取消查看</translation>
     </message>
 </context>
 <context>
@@ -1609,17 +1633,6 @@
     <message>
         <source>Star</source>
         <translation type="unfinished">星标</translation>
-    </message>
-</context>
-<context>
-    <name>SubscriptionMenuItem</name>
-    <message>
-        <source>Watch</source>
-        <translation type="unfinished">查看</translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
-        <translation type="unfinished">取消查看</translation>
     </message>
 </context>
 <context>
