@@ -1,3 +1,12 @@
+* Sun May 16 2021 Black Sheep <blacksheep@nubecula.org> 0.0.26-1
+- Fixed bug with issue states
+- Add possibility to reopen issue
+- Fixed bug with subscription functionality
+- Subscription functionality for issues and pull requests
+- Code cleanup and improvements
+- Bugfixes
+- Translation fixes
+
 * Fri May 14 2021 Black Sheep <blacksheep@nubecula.org> 0.0.25-1
 - Manage user profile status
 - Bugfixes
