@@ -54,7 +54,7 @@ Page {
                 text: issue.viewerSubscription === SubscriptionState.Subscribed ? qsTr("Unsubscribe") : qsTr("Subscribe")
 
                 onClicked: {
-                    if (request.viewerSubscription === SubscriptionState.Subscribed)
+                    if (issue.viewerSubscription === SubscriptionState.Subscribed)
                         SailHub.api().subscribeTo(issue.nodeId, SubscriptionState.Unsubscribed)
                     else
                         SailHub.api().subscribeTo(issue.nodeId, SubscriptionState.Subscribed)

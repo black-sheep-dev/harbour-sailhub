@@ -1,3 +1,7 @@
+* Sun May 16 2021 Black Sheep <blacksheep@nubecula.org> 0.0.27-1
+- Fixed bug with issue subscription
+- Fixed bug with repo subscription
+
 * Sun May 16 2021 Black Sheep <blacksheep@nubecula.org> 0.0.26-1
 - Fixed bug with issue states
 - Add possibility to reopen issue
