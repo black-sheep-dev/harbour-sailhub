@@ -520,19 +520,19 @@
     </message>
     <message>
         <source>Reopen</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz ponownie</translation>
     </message>
     <message>
         <source>Reopen issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz ponownie problem</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished">Wypisz się</translation>
+        <translation>Wypisz się</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation type="unfinished">Subskrybuj</translation>
+        <translation>Subskrybuj</translation>
     </message>
 </context>
 <context>
@@ -917,11 +917,11 @@
     </message>
     <message>
         <source>Subscribe</source>
-        <translation type="unfinished">Subskrybuj</translation>
+        <translation>Subskrybuj</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished">Wypisz się</translation>
+        <translation>Wypisz się</translation>
     </message>
 </context>
 <context>
@@ -1283,11 +1283,11 @@
     </message>
     <message>
         <source>Watch</source>
-        <translation type="unfinished">Obserwuj</translation>
+        <translation>Obserwuj</translation>
     </message>
     <message>
         <source>Unwatch</source>
-        <translation type="unfinished">Przestań obserwować</translation>
+        <translation>Przestań obserwować</translation>
     </message>
 </context>
 <context>
@@ -1675,11 +1675,11 @@
     <name>StarMenuItem</name>
     <message>
         <source>Unstar</source>
-        <translation type="unfinished">Usuń gwiazdkę</translation>
+        <translation>Usuń gwiazdkę</translation>
     </message>
     <message>
         <source>Star</source>
-        <translation type="unfinished">Przyznaj gwiazdkę</translation>
+        <translation>Przyznaj gwiazdkę</translation>
     </message>
 </context>
 <context>
