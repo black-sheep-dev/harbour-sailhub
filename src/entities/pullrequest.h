@@ -5,11 +5,10 @@
 
 #include <QDateTime>
 
-struct PullRequestListItem {
+struct PullRequestListItem : public NodeListItem {
     quint32 commentCount{0};
     QDateTime createdAt;
     QString createdAtTimeSpan;
-    QString nodeId;
     quint32 number{0};
     QString repository;
     quint8 state;
@@ -22,6 +21,8 @@ struct PullRequestListItem {
 class PullRequest : public Issue
 {
     Q_OBJECT
+
+
 
 public:
     enum PullRequestState {

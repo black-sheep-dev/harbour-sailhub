@@ -3,12 +3,10 @@
 
 #include "node.h"
 
-struct OrganizationListItem {
+struct OrganizationListItem : public NodeListItem {
     QString avatarUrl;
     QString description;
     QString login;
-    QString name;
-    QString nodeId;
 };
 
 class Organization : public Node

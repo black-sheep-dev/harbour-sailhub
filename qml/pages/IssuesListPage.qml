@@ -187,6 +187,7 @@ Page {
         onIssueCreated: refresh()
         onIssueDeleted: refresh()
         onIssueClosed: refresh()
+        onIssueReopened: refresh()
     }
 
     Component.onCompleted: refresh()

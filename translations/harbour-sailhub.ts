@@ -441,10 +441,6 @@
 <context>
     <name>IssuePage</name>
     <message>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Issue</source>
         <translation type="unfinished"></translation>
     </message>
@@ -509,6 +505,22 @@
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Reopen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reopen issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -838,10 +850,6 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Pull Request</source>
         <translation type="unfinished"></translation>
     </message>
@@ -886,6 +894,14 @@
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1162,22 +1178,6 @@
 <context>
     <name>RepoPage</name>
     <message>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unstar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1243,6 +1243,14 @@
     </message>
     <message>
         <source>Stars</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Watch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unwatch</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1616,6 +1624,17 @@
     </message>
 </context>
 <context>
+    <name>StarMenuItem</name>
+    <message>
+        <source>Unstar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Star</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
@@ -1628,10 +1647,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Unfollow</source>
         <translation type="unfinished"></translation>

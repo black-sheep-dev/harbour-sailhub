@@ -49,12 +49,16 @@ Page {
         PullDownMenu {
             busy: page.busy
             MenuItem {
-                text: qsTr("Refresh")
+                visible: request.viewerAbilities & Viewer.CanSubscribe
+                text: request.viewerSubscription === SubscriptionState.Subscribed ? qsTr("Unsubscribe") : qsTr("Subscribe")
+
                 onClicked: {
-                    page.busy = true
-                    SailHub.api().getPullRequest(page.nodeId)
+                    if (request.viewerSubscription === SubscriptionState.Subscribed)
+                        SailHub.api().subscribeTo(request.nodeId, SubscriptionState.Unsubscribed)
+                    else
+                        SailHub.api().subscribeTo(request.nodeId, SubscriptionState.Subscribed)
                 }
-            }     
+            }
         }
 
         id: flickable
@@ -270,6 +274,7 @@ Page {
         }
         onPullRequestClosed: pageStack.navigateBack()
         onPullRequestDeleted: pageStack.navigateBack()
+        onSubscribedTo: if (nodeId === request.nodeId) request.viewerSubscription = state
         onCommentAdded: refresh()
         onCommentDeleted: refresh()
     }

@@ -7,14 +7,13 @@
 
 #include "owner.h"
 
-struct GistListItem {
+struct GistListItem : public NodeListItem {
     quint32 commentCount{0};
     QDateTime createdAt;
     QString description;
     quint32 fileCount{0};
     quint32 forkCount{0};
     bool isPublic{false};
-    QString nodeId;
     QString ownerLogin;
     QString ownerAvatar;
     QDateTime pushedAt;

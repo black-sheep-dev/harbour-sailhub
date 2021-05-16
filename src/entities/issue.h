@@ -8,12 +8,11 @@
 
 #include <QDateTime>
 
-struct IssueListItem {
+struct IssueListItem : public NodeListItem {
     bool closed{false};
     quint32 commentCount{0};
     QDateTime createdAt;
     QString createdAtTimeSpan;
-    QString nodeId;
     quint32 number{0};
     QString repository;
     QString title;
@@ -36,6 +35,7 @@ class Issue : public Interactable
     Q_PROPERTY(quint8 repositoryPermission READ repositoryPermission WRITE setRepositoryPermission NOTIFY repositoryPermissionChanged)
     Q_PROPERTY(quint8 states READ states WRITE setStates NOTIFY statesChanged)
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
+    Q_PROPERTY(quint8 viewerSubscription READ viewerSubscription WRITE setViewerSubscription NOTIFY viewerSubscriptionChanged)
 
 public:
     enum IssueState {
@@ -71,6 +71,7 @@ public:
     QString repositoryId() const;
     quint8 states() const;
     QString title() const;
+    quint8 viewerSubscription() const;
 
 signals:
     // properties
@@ -83,7 +84,8 @@ signals:
     void repositoryIdChanged(const QString &id);
     void repositoryPermissionChanged(quint8 permission);
     void statesChanged(quint8 states);
-    void titleChanged(const QString &title);
+    void titleChanged(const QString &title); 
+    void viewerSubscriptionChanged(quint8 subscription);
 
 public slots:
     // properties
@@ -97,6 +99,7 @@ public slots:
     void setRepositoryPermission(quint8 permission);
     void setStates(quint8 states);
     void setTitle(const QString &title);
+    void setViewerSubscription(quint8 subscription);
 
 private:
     // properties
@@ -110,6 +113,7 @@ private:
     quint8 m_repositoryPermission{0};
     quint8 m_states{StateUnknown};
     QString m_title;
+    quint8 m_viewerSubscription{0};
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(Issue::IssueStates)
 

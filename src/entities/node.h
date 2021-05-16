@@ -3,6 +3,12 @@
 
 #include <QObject>
 
+struct NodeListItem {
+    QString name;
+    QString nodeId;
+    quint32 viewerAbilities{0};
+};
+
 class Node : public QObject
 {
     Q_OBJECT

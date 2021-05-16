@@ -56,6 +56,11 @@ QString Issue::title() const
     return m_title;
 }
 
+quint8 Issue::viewerSubscription() const
+{
+    return m_viewerSubscription;
+}
+
 void Issue::setAssigneeCount(quint32 count)
 {
     if (m_assigneeCount == count)
@@ -144,4 +149,13 @@ void Issue::setTitle(const QString &title)
 
     m_title = title;
     emit titleChanged(m_title);
+}
+
+void Issue::setViewerSubscription(quint8 subscription)
+{
+    if (m_viewerSubscription == subscription)
+        return;
+
+    m_viewerSubscription = subscription;
+    emit viewerSubscriptionChanged(m_viewerSubscription);
 }

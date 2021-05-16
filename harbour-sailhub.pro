@@ -34,6 +34,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/downloader.cpp \
     src/api/graphqlconnector.cpp \
     src/api/keys.cpp \
+    src/api/mutations.cpp \
     src/api/queryvars.cpp \
     src/api/restapiconnector.cpp \
     src/entities/comment.cpp \
@@ -98,6 +99,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/components/ReactionsItem.qml \
     qml/components/RelatedItem.qml \
     qml/components/RepoFlagsItem.qml \
+    qml/components/StarMenuItem.qml \
     qml/cover/CoverPage.qml \
     qml/delegates/AssetListDelegate.qml \
     qml/delegates/CommentListDelegate.qml \

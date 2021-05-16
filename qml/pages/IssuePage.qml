@@ -48,13 +48,18 @@ Page {
     SilicaFlickable {
         PullDownMenu {
             busy: page.busy
+
             MenuItem {
-                text: qsTr("Refresh")
+                visible: issue.viewerAbilities & Viewer.CanSubscribe
+                text: issue.viewerSubscription === SubscriptionState.Subscribed ? qsTr("Unsubscribe") : qsTr("Subscribe")
+
                 onClicked: {
-                    page.busy = true
-                    SailHub.api().getIssue(page.nodeId)
+                    if (request.viewerSubscription === SubscriptionState.Subscribed)
+                        SailHub.api().subscribeTo(issue.nodeId, SubscriptionState.Unsubscribed)
+                    else
+                        SailHub.api().subscribeTo(issue.nodeId, SubscriptionState.Subscribed)
                 }
-            }     
+            }
             MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanUpdate
                 text: qsTr("Edit")
@@ -81,11 +86,19 @@ Page {
                 })
             }
             MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate
+                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.states & Issue.StateOpen
                 text: qsTr("Close")
 
                 onClicked: remorse.execute(qsTr("Closing issue"), function() {
                     SailHub.api().closeIssue(issue.nodeId)
+                })
+            }
+            MenuItem {
+                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.states & Issue.StateClosed
+                text: qsTr("Reopen")
+
+                onClicked: remorse.execute(qsTr("Reopen issue"), function() {
+                    SailHub.api().reopenIssue(issue.nodeId)
                 })
             }
         }
@@ -274,7 +287,6 @@ Page {
             busy: commentsModel.loading
 
             MenuItem {
-                enabled: !discussion.locked
                 text: qsTr("Write comment")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
@@ -303,6 +315,8 @@ Page {
         }
         onIssueClosed: pageStack.navigateBack()
         onIssueDeleted: pageStack.navigateBack()
+        onIssueReopened: issue.setStates(Issue.StateOpen)
+        onSubscribedTo: if (nodeId === issue.nodeId) issue.viewerSubscription = state
         onCommentAdded: refresh()
         onCommentDeleted: refresh()
     }

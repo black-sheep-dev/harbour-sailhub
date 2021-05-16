@@ -7,14 +7,12 @@
 
 #include "owner.h"
 
-struct ReleaseListItem {
+struct ReleaseListItem : public NodeListItem {
     QDateTime createdAt;
     QString createdAtTimeSpan;
     bool isDraft{false};
     bool isLatest{false};
     bool isPrerelease{false};
-    QString name;
-    QString nodeId;
 };
 
 class Release : public Node

@@ -446,16 +446,12 @@
 <context>
     <name>IssuePage</name>
     <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
-    <message>
         <source>Issue</source>
         <translation>Problem</translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation>Geshlossen</translation>
+        <translation>Geschlossen</translation>
     </message>
     <message>
         <source>Open</source>
@@ -515,6 +511,22 @@
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Reopen</source>
+        <translation>Wieder öffnen</translation>
+    </message>
+    <message>
+        <source>Reopen issue</source>
+        <translation>Problem erneut öffnen</translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation>Abonnement aufheben</translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation>Abonnieren</translation>
     </message>
 </context>
 <context>
@@ -847,10 +859,6 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
-    <message>
         <source>Pull Request</source>
         <translation>Pull Request</translation>
     </message>
@@ -896,6 +904,14 @@
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
             <numerusform>Lade mehr (%n verbleibend)</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation>Abonnieren</translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation>Abonnement aufheben</translation>
     </message>
 </context>
 <context>
@@ -1180,22 +1196,6 @@
 <context>
     <name>RepoPage</name>
     <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>Beobachten</translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
-        <translation>Vergessen</translation>
-    </message>
-    <message>
-        <source>Unstar</source>
-        <translation>Unstar</translation>
-    </message>
-    <message>
         <source>Star</source>
         <translation>Star</translation>
     </message>
@@ -1262,6 +1262,14 @@
     <message>
         <source>Stars</source>
         <translation>Stars</translation>
+    </message>
+    <message>
+        <source>Watch</source>
+        <translation>Beobachten</translation>
+    </message>
+    <message>
+        <source>Unwatch</source>
+        <translation>Vergessen</translation>
     </message>
 </context>
 <context>
@@ -1640,6 +1648,17 @@
     </message>
 </context>
 <context>
+    <name>StarMenuItem</name>
+    <message>
+        <source>Unstar</source>
+        <translation>Unstar</translation>
+    </message>
+    <message>
+        <source>Star</source>
+        <translation>Star</translation>
+    </message>
+</context>
+<context>
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
@@ -1652,10 +1671,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
     <message>
         <source>Unfollow</source>
         <translation>Folgen aufheben</translation>

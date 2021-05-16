@@ -30,17 +30,11 @@ Page {
         PullDownMenu {
             busy: page.busy
             MenuItem {
-                text: qsTr("Refresh")
-                onClicked: {
-                    page.loading = true
-                    SailHub.api().getRepo(page.nodeId)
-                }
-            }
-            MenuItem {
-                enabled: repo.viewerCanSubscribe
+                visible: repo.viewerAbilities & Viewer.CanSubscribe
                 text: {
                     switch (repo.viewerSubscription) {
                     case SubscriptionState.Ignored:
+                    case SubscriptionState.Unsubscribed:
                         return qsTr("Watch")
 
                     default:
@@ -49,24 +43,19 @@ Page {
                 }
 
                 onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectSubscriptionDialog.qml"),
-                                                { subscription: repo.viewerSubscription })
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectSubscriptionDialog.qml"), {
+                                                    subscription: repo.viewerSubscription
+                                                })
 
                     dialog.accepted.connect(function() {
-                        page.busy = true
                         console.log(dialog.subscription)
-                        SailHub.api().subscribeToRepo(repo.nodeId, dialog.subscription)
+                        SailHub.api().subscribeTo(repo.nodeId, dialog.subscription)
                     })
                 }
             }
-
-            MenuItem {
-                text: repo.viewerHasStarred ? qsTr("Unstar") : qsTr("Star")
-
-                onClicked: {
-                    page.busy = true
-                    SailHub.api().starRepo(repo.nodeId, !repo.viewerHasStarred)
-                }
+            StarMenuItem {
+                starred: repo.viewerHasStarred
+                nodeId: repo.nodeId
             }
         }
 
@@ -486,13 +475,13 @@ Page {
             page.repo = repo
             loading = false
         }
-        onRepoStarred: {
+        onStarred: {
             if (nodeId !== repo.nodeId) return
             page.repo.viewerHasStarred = starred
             page.repo.stargazerCount += starred ? 1 : -1
             page.busy = false
         }
-        onSubscribedToRepo: {
+        onSubscribedTo: {
             if (nodeId !== repo.nodeId) return
             page.repo.viewerSubscription = state
             page.busy = false
