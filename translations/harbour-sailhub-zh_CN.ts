@@ -509,19 +509,19 @@
     </message>
     <message>
         <source>Reopen</source>
-        <translation type="unfinished"></translation>
+        <translation>重新开启</translation>
     </message>
     <message>
         <source>Reopen issue</source>
-        <translation type="unfinished"></translation>
+        <translation>重新开启问题</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished">取消订阅</translation>
+        <translation>取消订阅</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation type="unfinished">订阅</translation>
+        <translation>订阅</translation>
     </message>
 </context>
 <context>
@@ -898,11 +898,11 @@
     </message>
     <message>
         <source>Subscribe</source>
-        <translation type="unfinished">订阅</translation>
+        <translation>订阅</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished">取消订阅</translation>
+        <translation>取消订阅</translation>
     </message>
 </context>
 <context>
@@ -1248,11 +1248,11 @@
     </message>
     <message>
         <source>Watch</source>
-        <translation type="unfinished">查看</translation>
+        <translation>查看</translation>
     </message>
     <message>
         <source>Unwatch</source>
-        <translation type="unfinished">取消查看</translation>
+        <translation>取消查看</translation>
     </message>
 </context>
 <context>
@@ -1628,11 +1628,11 @@
     <name>StarMenuItem</name>
     <message>
         <source>Unstar</source>
-        <translation type="unfinished">取消星标</translation>
+        <translation>取消星标</translation>
     </message>
     <message>
         <source>Star</source>
-        <translation type="unfinished">星标</translation>
+        <translation>星标</translation>
     </message>
 </context>
 <context>
