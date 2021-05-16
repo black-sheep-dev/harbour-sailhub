@@ -151,7 +151,7 @@
     </message>
     <message>
         <source>Answer</source>
-        <translation type="unfinished"></translation>
+        <translation>回答</translation>
     </message>
 </context>
 <context>
@@ -280,27 +280,27 @@
     <name>EditCommentDialog</name>
     <message>
         <source>Edit Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑回复</translation>
     </message>
     <message>
         <source>Add Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>添加回复</translation>
     </message>
     <message>
         <source>Edit Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑评论</translation>
     </message>
     <message>
         <source>Add Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>添加评论</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">保存</translation>
+        <translation>保存</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>保存</translation>
     </message>
 </context>
 <context>
@@ -420,23 +420,23 @@
     <name>IssueCommentItem</name>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">删除</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <source>Deleting comment</source>
-        <translation type="unfinished">正在删除评论</translation>
+        <translation>正在删除评论</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">编辑</translation>
+        <translation>编辑</translation>
     </message>
     <message>
         <source>Quote reply</source>
-        <translation type="unfinished">引用回复</translation>
+        <translation>引用回复</translation>
     </message>
     <message>
         <source>Edited</source>
-        <translation type="unfinished">已编辑</translation>
+        <translation>已编辑</translation>
     </message>
 </context>
 <context>
@@ -499,12 +499,12 @@
     </message>
     <message>
         <source>Write comment</source>
-        <translation type="unfinished">写评论</translation>
+        <translation>写评论</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
     <message>
@@ -649,23 +649,23 @@
     <name>LockReasonPill</name>
     <message>
         <source>Off Topic</source>
-        <translation type="unfinished"></translation>
+        <translation>离题</translation>
     </message>
     <message>
         <source>Resolved</source>
-        <translation type="unfinished"></translation>
+        <translation>已解决</translation>
     </message>
     <message>
         <source>Spam</source>
-        <translation type="unfinished"></translation>
+        <translation>垃圾信息</translation>
     </message>
     <message>
         <source>Too heated</source>
-        <translation type="unfinished"></translation>
+        <translation>过热</translation>
     </message>
     <message>
         <source>Locked</source>
-        <translation type="unfinished">已加密</translation>
+        <translation>已加密</translation>
     </message>
 </context>
 <context>
@@ -779,73 +779,73 @@
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>状态</translation>
     </message>
 </context>
 <context>
     <name>ProfileStatusItem</name>
     <message>
         <source>Set status</source>
-        <translation type="unfinished"></translation>
+        <translation>设置状态</translation>
     </message>
 </context>
 <context>
     <name>ProfileStatusPage</name>
     <message>
         <source>Change status</source>
-        <translation type="unfinished"></translation>
+        <translation>修改状态</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>状态</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>消息</translation>
     </message>
     <message>
         <source>Enter message</source>
-        <translation type="unfinished"></translation>
+        <translation>输入消息</translation>
     </message>
     <message>
         <source>Busy</source>
-        <translation type="unfinished"></translation>
+        <translation>忙碌</translation>
     </message>
     <message>
         <source>When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.</source>
-        <translation type="unfinished"></translation>
+        <translation>当其他人提及你时、分配任务给你时或请求你的审阅时，GitHub 会让他们知道你的可用性有限。</translation>
     </message>
     <message>
         <source>Clear status</source>
-        <translation type="unfinished"></translation>
+        <translation>清空状态</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>绝不</translation>
     </message>
     <message>
         <source>in 30 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>30分钟内</translation>
     </message>
     <message>
         <source>in 1 hour</source>
-        <translation type="unfinished"></translation>
+        <translation>1小事内</translation>
     </message>
     <message>
         <source>in 4 hour</source>
-        <translation type="unfinished"></translation>
+        <translation>4小时内</translation>
     </message>
     <message>
         <source>today</source>
-        <translation type="unfinished"></translation>
+        <translation>今日</translation>
     </message>
     <message>
         <source>this week</source>
-        <translation type="unfinished"></translation>
+        <translation>本周</translation>
     </message>
     <message>
         <source>Clearing status</source>
-        <translation type="unfinished"></translation>
+        <translation>清空状态</translation>
     </message>
 </context>
 <context>
@@ -888,12 +888,12 @@
     </message>
     <message>
         <source>Write comment</source>
-        <translation type="unfinished">写评论</translation>
+        <translation>写评论</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>加载更多（ %n ）</numerusform>
         </translation>
     </message>
     <message>
@@ -950,31 +950,31 @@
     <name>PullRequestsSelectionPage</name>
     <message>
         <source>Created</source>
-        <translation type="unfinished">已创建</translation>
+        <translation>已创建</translation>
     </message>
     <message>
         <source>Assigned</source>
-        <translation type="unfinished">已分配</translation>
+        <translation>已分配</translation>
     </message>
     <message>
         <source>Mentioned</source>
-        <translation type="unfinished">已提及</translation>
+        <translation>已提及</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation type="unfinished">发起请求</translation>
+        <translation>发起请求</translation>
     </message>
     <message>
         <source>Pull requests created by user</source>
-        <translation type="unfinished"></translation>
+        <translation>由用户发起的请求</translation>
     </message>
     <message>
         <source>Pull requests assigned to user</source>
-        <translation type="unfinished"></translation>
+        <translation>已分配给用户的发起请求</translation>
     </message>
     <message>
         <source>Pull requests where user is mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>用户被提及的发起请求</translation>
     </message>
 </context>
 <context>
@@ -1133,47 +1133,47 @@
     <name>RepoFlagsItem</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished">隐私</translation>
+        <translation>私人</translation>
     </message>
     <message>
         <source>Billing</source>
-        <translation type="unfinished"></translation>
+        <translation>账单</translation>
     </message>
     <message>
         <source>Migrating</source>
-        <translation type="unfinished"></translation>
+        <translation>迁移</translation>
     </message>
     <message>
         <source>Moving</source>
-        <translation type="unfinished"></translation>
+        <translation>移动</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名</translation>
     </message>
     <message>
         <source>Locked</source>
-        <translation type="unfinished">已加密</translation>
+        <translation>已加密</translation>
     </message>
     <message>
         <source>Archived</source>
-        <translation type="unfinished">已存档</translation>
+        <translation>已存档</translation>
     </message>
     <message>
         <source>Organization</source>
-        <translation type="unfinished">组织</translation>
+        <translation>组织</translation>
     </message>
     <message>
         <source>Fork</source>
-        <translation type="unfinished">分支</translation>
+        <translation>分支</translation>
     </message>
     <message>
         <source>Mirror</source>
-        <translation type="unfinished">镜像</translation>
+        <translation>镜像</translation>
     </message>
     <message>
         <source>Template</source>
-        <translation type="unfinished">示例</translation>
+        <translation>示例</translation>
     </message>
 </context>
 <context>
@@ -1236,15 +1236,15 @@
     </message>
     <message>
         <source>Forks</source>
-        <translation type="unfinished">分支</translation>
+        <translation>分支</translation>
     </message>
     <message>
         <source>Fork</source>
-        <translation type="unfinished">分支</translation>
+        <translation>分支</translation>
     </message>
     <message>
         <source>Stars</source>
-        <translation type="unfinished"></translation>
+        <translation>星标</translation>
     </message>
     <message>
         <source>Watch</source>
@@ -1455,15 +1455,15 @@
     <name>SelectEmojiDialog</name>
     <message>
         <source>Choose Emoji</source>
-        <translation type="unfinished"></translation>
+        <translation>选择表情</translation>
     </message>
     <message>
         <source>Select</source>
-        <translation type="unfinished">选择</translation>
+        <translation>选择</translation>
     </message>
     <message>
         <source>No emoji available</source>
-        <translation type="unfinished"></translation>
+        <translation>暂无可用表情</translation>
     </message>
 </context>
 <context>
