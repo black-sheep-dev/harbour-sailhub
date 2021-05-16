@@ -5,7 +5,7 @@
 
 #include <QDateTime>
 
-struct DiscussionListItem {
+struct DiscussionListItem : public NodeListItem {
     QString authorAvatar;
     QString authorLogin;
     QString category;
@@ -15,11 +15,9 @@ struct DiscussionListItem {
     QString emoji;
     bool locked{false};
     quint8 lockReason{0};
-    QString nodeId;
     QString title;
     QDateTime updatedAt;
     QString updatedAtTimeSpan;
-    bool viewerCanDelete;
 };
 
 class Discussion : public Interactable

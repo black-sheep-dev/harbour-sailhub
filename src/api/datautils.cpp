@@ -114,7 +114,7 @@ DiscussionListItem DataUtils::discussionListItemFromJson(const QJsonObject &obj)
     item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
     item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
     item.updatedAtTimeSpan = timeSpanText(item.updatedAt, true);
-    item.viewerCanDelete = obj.value(ApiKey::VIEWER_CAN_DELETE).toBool();
+    item.viewerAbilities = getViewerAbilities(obj);
 
     const QJsonObject author = obj.value(ApiKey::AUTHOR).toObject();
 
@@ -293,7 +293,12 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
     issue->setRepositoryId(repo.value(ApiKey::ID).toString());
     issue->setRepositoryPermission(getViewerPermission(repo.value(ApiKey::VIEWER_PERMISSION).toString()));
 
-    issue->setStates(obj.value(ApiKey::STATE).toInt());
+    const QString state = obj.value(ApiKey::STATE).toString();
+    if (state == QLatin1Literal("OPEN"))
+        issue->setStates(Issue::StateOpen);
+    else if (state == QLatin1Literal("CLOSED"))
+        issue->setStates(Issue::StateClosed);
+
     issue->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
     issue->setEdited(issue->updatedAt() > issue->createdAt());
     issue->setLabelCount(getTotalCount(obj.value(ApiKey::LABELS).toObject()));
@@ -302,6 +307,9 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
     issue->setViewerAbilities(getViewerAbilities(obj));
 
     getInteractable(obj, issue);
+
+    // subscription
+    issue->setViewerSubscription(SubscriptionState::fromString(obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
 
     return issue;
 }
@@ -758,7 +766,6 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
 
     repo->setReleaseCount(getTotalCount(obj.value(ApiKey::RELEASES).toObject()));
     repo->setStargazerCount(obj.value(ApiKey::STARGAZER_COUNT).toInt());
-    repo->setViewerCanSubscribe(obj.value(ApiKey::VIEWER_CAN_SUBSCRIBE).toBool());
     repo->setViewerHasStarred(obj.value(ApiKey::VIEWER_HAS_STARRED).toBool());
     repo->setViewerSubscription(obj.value(ApiKey::VIEWER_SUBSCRIPTION).toInt());
     repo->setVulnerabilityAlertCount(getTotalCount(obj.value(ApiKey::VULNERABILITY_ALERTS).toObject()));
@@ -790,6 +797,9 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
         features |= Repo::FeatureWiki;
 
     repo->setFeatures(features);
+
+    // abilities
+    repo->setViewerAbilities(getViewerAbilities(obj));
 
     // permisson
     repo->setViewerPermission(getViewerPermission(obj.value(ApiKey::VIEWER_PERMISSION).toString()));
@@ -945,9 +955,8 @@ User *DataUtils::userFromJson(const QJsonObject &obj, User *user)
 
     // user status
     const QJsonObject status = obj.value(ApiKey::STATUS).toObject();
-
-    user ->setStatus(QString(removeEmojiTags(status.value(ApiKey::EMOJI_HTML).toString())
-                             + " " + status.value(ApiKey::MESSAGE).toString()).simplified());
+    user->setStatusEmoji(getEmojiLinkFromString(status.value(ApiKey::EMOJI_HTML).toString()));
+    user->setStatusMessage(status.value(ApiKey::MESSAGE).toString());
 
     return user;
 }

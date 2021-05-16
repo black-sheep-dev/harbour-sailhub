@@ -28,21 +28,10 @@ Page {
 
     SilicaFlickable {
         PullDownMenu {
+            visible: !user.isViewer
             busy: page.busy
-            MenuItem {
-                text: qsTr("Refresh")
-                onClicked: {
-                    page.busy = true
-                    if (user.isViewer) {
-                        SailHub.api().getProfile()
-                    } else {
-                        SailHub.api().getUser(page.nodeId)
-                    }
-                }
-            }
 
             MenuItem {
-                visible: !user.isViewer
                 text: user.viewerIsFollowing ? qsTr("Unfollow") : qsTr("Follow")
 
                 onClicked: {
@@ -107,6 +96,34 @@ Page {
 
                         text: user.login
                     }
+                }
+            }
+
+            Row {
+                visible: user.statusMessage.length > 0
+                x: Theme.horizontalPageMargin
+                width: parent.width - 2*x
+                spacing: Theme.paddingMedium
+
+                Image {
+                    id: emojiIcon
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: Theme.iconSizeSmall
+                    height: width
+                    sourceSize.width: width
+                    sourceSize.height: width
+
+                    source: user.statusEmoji
+                }
+
+                Label {
+                    id: textLabel
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: parent.width - emojiIcon.width - parent.spacing
+                    wrapMode: Text.Wrap
+                    textFormat: Text.RichText
+
+                    text: markdownParser.parse(user.statusMessage)
                 }
             }
 

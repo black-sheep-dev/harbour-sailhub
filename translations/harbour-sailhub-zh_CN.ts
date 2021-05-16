@@ -442,10 +442,6 @@
 <context>
     <name>IssuePage</name>
     <message>
-        <source>Refresh</source>
-        <translation>刷新</translation>
-    </message>
-    <message>
         <source>Issue</source>
         <translation>问题</translation>
     </message>
@@ -510,6 +506,22 @@
         <translation>
             <numerusform>加载更多（ %n ）</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Reopen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reopen issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation type="unfinished">取消订阅</translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation type="unfinished">订阅</translation>
     </message>
 </context>
 <context>
@@ -839,10 +851,6 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Refresh</source>
-        <translation>刷新</translation>
-    </message>
-    <message>
         <source>Pull Request</source>
         <translation>发起请求</translation>
     </message>
@@ -887,6 +895,14 @@
         <translation>
             <numerusform>加载更多（ %n ）</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation type="unfinished">订阅</translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation type="unfinished">取消订阅</translation>
     </message>
 </context>
 <context>
@@ -1163,22 +1179,6 @@
 <context>
     <name>RepoPage</name>
     <message>
-        <source>Refresh</source>
-        <translation>刷新</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>查看</translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
-        <translation>取消查看</translation>
-    </message>
-    <message>
-        <source>Unstar</source>
-        <translation>取消星标</translation>
-    </message>
-    <message>
         <source>Star</source>
         <translation>星标</translation>
     </message>
@@ -1245,6 +1245,14 @@
     <message>
         <source>Stars</source>
         <translation>星标</translation>
+    </message>
+    <message>
+        <source>Watch</source>
+        <translation type="unfinished">查看</translation>
+    </message>
+    <message>
+        <source>Unwatch</source>
+        <translation type="unfinished">取消查看</translation>
     </message>
 </context>
 <context>
@@ -1617,6 +1625,17 @@
     </message>
 </context>
 <context>
+    <name>StarMenuItem</name>
+    <message>
+        <source>Unstar</source>
+        <translation type="unfinished">取消星标</translation>
+    </message>
+    <message>
+        <source>Star</source>
+        <translation type="unfinished">星标</translation>
+    </message>
+</context>
+<context>
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
@@ -1629,10 +1648,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation>刷新</translation>
-    </message>
     <message>
         <source>Unfollow</source>
         <translation>取消关注</translation>

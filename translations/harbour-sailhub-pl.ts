@@ -451,10 +451,6 @@
 <context>
     <name>IssuePage</name>
     <message>
-        <source>Refresh</source>
-        <translation>Odśwież</translation>
-    </message>
-    <message>
         <source>Issue</source>
         <translation>Problem</translation>
     </message>
@@ -521,6 +517,22 @@
             <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
             <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Reopen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reopen issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation type="unfinished">Wypisz się</translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation type="unfinished">Subskrybuj</translation>
     </message>
 </context>
 <context>
@@ -856,10 +868,6 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Refresh</source>
-        <translation>Odśwież</translation>
-    </message>
-    <message>
         <source>Pull Request</source>
         <translation>Pull Request</translation>
     </message>
@@ -906,6 +914,14 @@
             <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
             <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Subscribe</source>
+        <translation type="unfinished">Subskrybuj</translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation type="unfinished">Wypisz się</translation>
     </message>
 </context>
 <context>
@@ -1198,22 +1214,6 @@
 <context>
     <name>RepoPage</name>
     <message>
-        <source>Refresh</source>
-        <translation>Odśwież</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>Obserwuj</translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
-        <translation>Przestań obserwować</translation>
-    </message>
-    <message>
-        <source>Unstar</source>
-        <translation>Usuń gwiazdkę</translation>
-    </message>
-    <message>
         <source>Star</source>
         <translation>Przyznaj gwiazdkę</translation>
     </message>
@@ -1280,6 +1280,14 @@
     <message>
         <source>Stars</source>
         <translation>Gwiazdki</translation>
+    </message>
+    <message>
+        <source>Watch</source>
+        <translation type="unfinished">Obserwuj</translation>
+    </message>
+    <message>
+        <source>Unwatch</source>
+        <translation type="unfinished">Przestań obserwować</translation>
     </message>
 </context>
 <context>
@@ -1664,6 +1672,17 @@
     </message>
 </context>
 <context>
+    <name>StarMenuItem</name>
+    <message>
+        <source>Unstar</source>
+        <translation type="unfinished">Usuń gwiazdkę</translation>
+    </message>
+    <message>
+        <source>Star</source>
+        <translation type="unfinished">Przyznaj gwiazdkę</translation>
+    </message>
+</context>
+<context>
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
@@ -1676,10 +1695,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation>Odśwież</translation>
-    </message>
     <message>
         <source>Unfollow</source>
         <translation>Wypisz się</translation>
