@@ -23,7 +23,12 @@ Dialog {
             description: qsTr("Disable all notifications")
 
             checked: subscription === SubscriptionState.Ignored
-            onClicked: subscription = SubscriptionState.Ignored
+            onClicked: {
+                checked = true
+                unsubscribeSwitch.checked = false
+                subscribeSwitch.checked = false
+                subscription = SubscriptionState.Ignored
+            }
         }
 
         TextSwitch {
@@ -35,7 +40,12 @@ Dialog {
             description: qsTr("Get notified only when participating or mentioned")
 
             checked: subscription === SubscriptionState.Unsubscribed
-            onClicked: subscription = SubscriptionState.Unsubscribed
+            onClicked: {
+                checked = true
+                ignoreSwitch.checked = false
+                subscribeSwitch.checked = false
+                subscription = SubscriptionState.Unsubscribed
+            }
         }
 
         TextSwitch {
@@ -46,8 +56,13 @@ Dialog {
             text: qsTr("Subscribe (all)");
             description: qsTr("Get notified of all conversation")
 
-            checked: subscription === SubscriptionState.Subscribed
-            onClicked: subscription = SubscriptionState.Subscribed
+            checked: subscription === SubscriptionState.Subscribed    
+            onClicked: {
+                checked = true
+                ignoreSwitch.checked = false
+                unsubscribeSwitch.checked = false
+                subscription = SubscriptionState.Subscribed
+            }
         }
     }
 }
