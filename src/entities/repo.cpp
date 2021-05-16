@@ -101,11 +101,6 @@ quint32 Repo::stargazerCount() const
     return m_stargazerCount;
 }
 
-bool Repo::viewerCanSubscribe() const
-{
-    return m_viewerCanSubscribe;
-}
-
 bool Repo::viewerHasStarred() const
 {
     return m_viewerHasStarred;
@@ -300,15 +295,6 @@ void Repo::setStargazerCount(quint32 count)
 
     m_stargazerCount = count;
     emit stargazerCountChanged(m_stargazerCount);
-}
-
-void Repo::setViewerCanSubscribe(bool subscribable)
-{
-    if (m_viewerCanSubscribe == subscribable)
-        return;
-
-    m_viewerCanSubscribe = subscribable;
-    emit viewerCanSubscribeChanged(m_viewerCanSubscribe);
 }
 
 void Repo::setViewerHasStarred(bool starred)

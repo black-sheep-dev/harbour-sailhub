@@ -23,7 +23,7 @@ public:
         TitleRole,
         UpdatedAtRole,
         UpdatedAtTimeSpanRole,
-        ViewerCanDeleteRole
+        ViewerAbilitiesRole
     };
     Q_ENUM(DiscussionRoles)
 

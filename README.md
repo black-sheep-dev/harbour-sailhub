@@ -55,6 +55,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Discussion (Comment / Reply ) on Repositories (when activated)
 - Sponsoring / Funding
 - Change user profile status
+- Subscription (Repository / Issue / Pull Request)
 
 ## Administrative Features
 

@@ -451,10 +451,6 @@
 <context>
     <name>IssuePage</name>
     <message>
-        <source>Refresh</source>
-        <translation>Odśwież</translation>
-    </message>
-    <message>
         <source>Issue</source>
         <translation>Problem</translation>
     </message>
@@ -864,10 +860,6 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Refresh</source>
-        <translation>Odśwież</translation>
-    </message>
-    <message>
         <source>Pull Request</source>
         <translation>Pull Request</translation>
     </message>
@@ -1205,22 +1197,6 @@
 </context>
 <context>
     <name>RepoPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation>Odśwież</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>Obserwuj</translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
-        <translation>Przestań obserwować</translation>
-    </message>
-    <message>
-        <source>Unstar</source>
-        <translation>Usuń gwiazdkę</translation>
-    </message>
     <message>
         <source>Star</source>
         <translation>Przyznaj gwiazdkę</translation>
@@ -1672,6 +1648,28 @@
     </message>
 </context>
 <context>
+    <name>StarMenuItem</name>
+    <message>
+        <source>Unstar</source>
+        <translation type="unfinished">Usuń gwiazdkę</translation>
+    </message>
+    <message>
+        <source>Star</source>
+        <translation type="unfinished">Przyznaj gwiazdkę</translation>
+    </message>
+</context>
+<context>
+    <name>SubscriptionMenuItem</name>
+    <message>
+        <source>Watch</source>
+        <translation type="unfinished">Obserwuj</translation>
+    </message>
+    <message>
+        <source>Unwatch</source>
+        <translation type="unfinished">Przestań obserwować</translation>
+    </message>
+</context>
+<context>
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
@@ -1684,10 +1682,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation>Odśwież</translation>
-    </message>
     <message>
         <source>Unfollow</source>
         <translation>Wypisz się</translation>

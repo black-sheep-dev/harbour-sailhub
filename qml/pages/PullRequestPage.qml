@@ -48,13 +48,11 @@ Page {
     SilicaFlickable {
         PullDownMenu {
             busy: page.busy
-            MenuItem {
-                text: qsTr("Refresh")
-                onClicked: {
-                    page.busy = true
-                    SailHub.api().getPullRequest(page.nodeId)
-                }
-            }     
+            SubscriptionMenuItem {
+                visible: request.viewerAbilities & Viewer.CanSubscribe
+                subscription: request.viewerSubscription
+                nodeId: request.nodeId
+            }
         }
 
         id: flickable

@@ -3,11 +3,9 @@
 
 #include "node.h"
 
-struct UserListItem {
+struct UserListItem : public NodeListItem {
     QString avatarUrl;
     QString login;
-    QString name;
-    QString nodeId;
 };
 
 class User : public Node
@@ -27,7 +25,8 @@ class User : public Node
     Q_PROPERTY(quint32 organizations READ organizations WRITE setOrganizations NOTIFY organizationsChanged)
     Q_PROPERTY(quint32 repositories READ repositories WRITE setRepositories NOTIFY repositoriesChanged)
     Q_PROPERTY(quint32 starredRepositories READ starredRepositories WRITE setStarredRepositories NOTIFY starredRepositoriesChanged)
-    Q_PROPERTY(QString status READ status WRITE setStatus NOTIFY statusChanged)
+    Q_PROPERTY(QString statusEmoji READ statusEmoji WRITE setStatusEmoji NOTIFY statusEmojiChanged)
+    Q_PROPERTY(QString statusMessage READ statusMessage WRITE setStatusMessage NOTIFY statusMessageChanged)
     Q_PROPERTY(QString twitterUsername READ twitterUsername WRITE setTwitterUsername NOTIFY twitterUsernameChanged)
     Q_PROPERTY(bool viewerIsFollowing READ viewerIsFollowing WRITE setViewerIsFollowing NOTIFY viewerIsFollowingChanged)
     Q_PROPERTY(QString websiteUrl READ websiteUrl WRITE setWebsiteUrl NOTIFY websiteUrlChanged)
@@ -66,7 +65,8 @@ public:
     quint32 organizations() const;
     quint32 repositories() const;
     quint32 starredRepositories() const;
-    QString status() const;
+    QString statusEmoji() const;
+    QString statusMessage() const;
     QString twitterUsername() const;
     bool viewerIsFollowing() const;
     QString websiteUrl() const;
@@ -86,7 +86,8 @@ signals:
     void organizationsChanged(quint32 organizations);
     void repositoriesChanged(quint32 repositories);
     void starredRepositoriesChanged(quint32 starredRepositories);
-    void statusChanged(const QString &status);
+    void statusEmojiChanged(const QString &emoji);
+    void statusMessageChanged(const QString &message);
     void twitterUsernameChanged(const QString &twitterUsername);
     void viewerIsFollowingChanged(bool following);
     void websiteUrlChanged(const QString &websiteUrl);
@@ -106,7 +107,8 @@ public slots:
     void setOrganizations(quint32 organizations);
     void setRepositories(quint32 repositories);
     void setStarredRepositories(quint32 starredRepositories);
-    void setStatus(const QString &status);
+    void setStatusEmoji(const QString &emoji);
+    void setStatusMessage(const QString &message);
     void setTwitterUsername(const QString &twitterUsername);
     void setViewerIsFollowing(bool following);
     void setWebsiteUrl(const QString &websiteUrl);
@@ -126,7 +128,8 @@ private:
     quint32 m_organizations{0};
     quint32 m_repositories{0};
     quint32 m_starredRepositories{0};
-    QString m_status;
+    QString m_statusEmoji;
+    QString m_statusMessage;
     QString m_twitterUsername;
     bool m_viewerIsFollowing{false};
     QString m_websiteUrl;

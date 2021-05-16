@@ -48,13 +48,12 @@ Page {
     SilicaFlickable {
         PullDownMenu {
             busy: page.busy
-            MenuItem {
-                text: qsTr("Refresh")
-                onClicked: {
-                    page.busy = true
-                    SailHub.api().getIssue(page.nodeId)
-                }
-            }     
+
+            SubscriptionMenuItem {
+                visible: issue.viewerAbilities & Viewer.CanSubscribe
+                subscription: issue.viewerSubscription
+                nodeId: issue.nodeId
+            }
             MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanUpdate
                 text: qsTr("Edit")
@@ -282,7 +281,6 @@ Page {
             busy: commentsModel.loading
 
             MenuItem {
-                enabled: !discussion.locked
                 text: qsTr("Write comment")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))

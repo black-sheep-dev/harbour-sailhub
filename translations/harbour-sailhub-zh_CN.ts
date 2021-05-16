@@ -442,10 +442,6 @@
 <context>
     <name>IssuePage</name>
     <message>
-        <source>Refresh</source>
-        <translation>刷新</translation>
-    </message>
-    <message>
         <source>Issue</source>
         <translation>问题</translation>
     </message>
@@ -847,10 +843,6 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Refresh</source>
-        <translation>刷新</translation>
-    </message>
-    <message>
         <source>Pull Request</source>
         <translation>发起请求</translation>
     </message>
@@ -1170,22 +1162,6 @@
 </context>
 <context>
     <name>RepoPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation>刷新</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>查看</translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
-        <translation>取消查看</translation>
-    </message>
-    <message>
-        <source>Unstar</source>
-        <translation>取消星标</translation>
-    </message>
     <message>
         <source>Star</source>
         <translation>星标</translation>
@@ -1625,6 +1601,28 @@
     </message>
 </context>
 <context>
+    <name>StarMenuItem</name>
+    <message>
+        <source>Unstar</source>
+        <translation type="unfinished">取消星标</translation>
+    </message>
+    <message>
+        <source>Star</source>
+        <translation type="unfinished">星标</translation>
+    </message>
+</context>
+<context>
+    <name>SubscriptionMenuItem</name>
+    <message>
+        <source>Watch</source>
+        <translation type="unfinished">查看</translation>
+    </message>
+    <message>
+        <source>Unwatch</source>
+        <translation type="unfinished">取消查看</translation>
+    </message>
+</context>
+<context>
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
@@ -1637,10 +1635,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation>刷新</translation>
-    </message>
     <message>
         <source>Unfollow</source>
         <translation>取消关注</translation>

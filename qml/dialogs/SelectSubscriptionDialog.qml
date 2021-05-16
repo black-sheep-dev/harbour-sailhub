@@ -89,6 +89,6 @@ Dialog {
         else if (subscribeSwitch.checked)
             subscription = SubscriptionState.Subscribed
         else
-            subscription = SubscriptionState.SubscriptionIgnored
+            subscription = SubscriptionState.Ignored
     }
 }

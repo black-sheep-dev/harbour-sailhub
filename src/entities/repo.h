@@ -14,14 +14,12 @@
 #include "src/entities/license.h"
 #include "src/entities/owner.h"
 
-struct RepoListItem {
+struct RepoListItem : public NodeListItem {
     QDateTime createdAt;
     QString description;
     quint16 flags{0};
     Language language;
     quint8 lockReason{RepositoryLockReason::Unknown};
-    QString name;
-    QString nodeId;
     QString ownerAvatar;
     QString ownerLogin;
     QDateTime pushedAt;
@@ -52,7 +50,6 @@ class Repo : public Node
     Q_PROPERTY(quint32 pullRequestCount READ pullRequestsCount WRITE setPullRequestsCount NOTIFY pullRequestsCountChanged)
     Q_PROPERTY(quint32 releaseCount READ releaseCount WRITE setReleaseCount NOTIFY releaseCountChanged)
     Q_PROPERTY(quint32 stargazerCount READ stargazerCount WRITE setStargazerCount NOTIFY stargazerCountChanged)
-    Q_PROPERTY(bool viewerCanSubscribe READ viewerCanSubscribe WRITE setViewerCanSubscribe NOTIFY viewerCanSubscribeChanged)
     Q_PROPERTY(bool viewerHasStarred READ viewerHasStarred WRITE setViewerHasStarred NOTIFY viewerHasStarredChanged)
     Q_PROPERTY(quint8 viewerPermission READ viewerPermission WRITE setViewerPermission NOTIFY viewerPermissionChanged)
     Q_PROPERTY(quint8 viewerSubscription READ viewerSubscription WRITE setViewerSubscription NOTIFY viewerSubscriptionChanged)
@@ -136,7 +133,6 @@ public:
     quint32 pullRequestsCount() const;
     quint32 releaseCount() const;
     quint32 stargazerCount() const;
-    bool viewerCanSubscribe() const;
     bool viewerHasStarred() const;
     quint8 viewerPermission() const;
     quint8 viewerSubscription() const;
@@ -163,7 +159,6 @@ signals:
     void pullRequestsCountChanged(quint32 count);
     void releaseCountChanged(quint32 releaseCount);
     void stargazerCountChanged(quint32 count);
-    void viewerCanSubscribeChanged(bool subscribable);
     void viewerHasStarredChanged(bool starred);
     void viewerPermissionChanged(quint8 permission);
     void viewerSubscriptionChanged(quint8 state);
@@ -190,7 +185,6 @@ public slots:
     void setPullRequestsCount(quint32 count);
     void setReleaseCount(quint32 releaseCount);
     void setStargazerCount(quint32 count);
-    void setViewerCanSubscribe(bool subscribable);
     void setViewerHasStarred(bool starred);
     void setViewerPermission(quint8 permission);
     void setViewerSubscription(quint8 state);
@@ -217,7 +211,6 @@ private:
     quint32 m_pullRequestCount{0};
     quint32 m_stargazerCount{0};
     quint32 m_releaseCount{0};
-    bool m_viewerCanSubscribe{false};
     bool m_viewerHasStarred{false};
     quint8 m_viewerPermission{PermissionNone};
     quint8 m_viewerSubscription{SubscriptionState::Ignored};

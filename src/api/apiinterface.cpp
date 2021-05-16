@@ -56,7 +56,7 @@ void ApiInterface::addComment(const QString &body, const QString &subjectId)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_ADD_COMMENT;
+    query.query = Mutation::ADD_COMMENT;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -74,7 +74,7 @@ void ApiInterface::addDiscussionComment(const QString &body, const QString &disc
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_ADD_DISCUSSION_COMMENT;
+    query.query = Mutation::ADD_DISCUSSION_COMMENT;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -95,7 +95,7 @@ void ApiInterface::addReaction(const QString &nodeId, quint8 reaction)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_ADD_REACTION;
+    query.query = Mutation::ADD_REACTION;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -107,13 +107,30 @@ void ApiInterface::addReaction(const QString &nodeId, quint8 reaction)
     m_graphqlConnector->sendQuery(query, RequestType::AddReaction);
 }
 
+void ApiInterface::addStar(const QString &nodeId)
+{
+    if (m_profile == nullptr)
+        return;
+
+    GraphQLQuery query;
+    query.query = Mutation::ADD_STAR;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::STARRABLE_ID, nodeId);
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_graphqlConnector->sendQuery(query, RequestType::AddStar);
+}
+
 void ApiInterface::assignUsers(const QString &nodeId, const QJsonArray &userIds)
 {
     if (userIds.isEmpty())
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_ASSIGN_USERS_TO_ASSIGNABLE;
+    query.query = Mutation::ASSIGN_USERS_TO_ASSIGNABLE;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -138,7 +155,7 @@ void ApiInterface::closeIssue(const QString &nodeId)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_CLOSE_ISSUE;
+    query.query = Mutation::CLOSE_ISSUE;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -155,7 +172,7 @@ void ApiInterface::createDiscussion(const QString &title, const QString &body, c
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_CREATE_DISCUSSION;
+    query.query = Mutation::CREATE_DISCUSSION;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -177,7 +194,7 @@ void ApiInterface::createIssue(const QString &title, const QString &body, Issues
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_CREATE_ISSUE;
+    query.query = Mutation::CREATE_ISSUE;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -198,7 +215,7 @@ void ApiInterface::deleteComment(const QString &nodeId)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_DELETE_COMMENT;
+    query.query = Mutation::DELETE_COMMENT;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -215,7 +232,7 @@ void ApiInterface::deleteDiscussion(const QString &nodeId)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_DELETE_DISCUSSION;
+    query.query = Mutation::DELETE_DISCUSSION;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -232,7 +249,7 @@ void ApiInterface::deleteDiscussionComment(const QString &nodeId)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_DELETE_DISCUSSION_COMMENT;
+    query.query = Mutation::DELETE_DISCUSSION_COMMENT;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -249,7 +266,7 @@ void ApiInterface::deleteIssue(const QString &nodeId)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_DELETE_ISSUE;
+    query.query = Mutation::DELETE_ISSUE;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -266,7 +283,7 @@ void ApiInterface::followUser(const QString &nodeId, bool follow)
         return;
 
     GraphQLQuery query;
-    query.query = follow ? SAILHUB_MUTATION_FOLLOW_USER : SAILHUB_MUTATION_UNFOLLOW_USER;
+    query.query = follow ? Mutation::FOLLOW_USER : Mutation::UNFOLLOW_USER;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -438,31 +455,14 @@ void ApiInterface::markDiscussionCommetAsAnswer(const QString &nodeId, bool answ
     GraphQLQuery query;
 
     if (answer) {
-        query.query = SAILHUB_MUTATION_MARK_DISCUSSION_COMMENT_AS_ANSWER;
+        query.query = Mutation::MARK_DISCUSSION_COMMENT_AS_ANSWER;
     } else {
-        query.query = SAILHUB_MUTATION_UNMARK_DISCUSSION_COMMENT_AS_ANSWER;
+        query.query = Mutation::UNMARK_DISCUSSION_COMMENT_AS_ANSWER;
     }
 
     query.variables.insert(QueryVar::NODE_ID, nodeId);
 
     m_graphqlConnector->sendQuery(query, answer ? RequestType::MarkDiscussionCommentAsAnswer : RequestType::UnmarkDiscussionCommentAsAnswer);
-}
-
-void ApiInterface::starRepo(const QString &nodeId, bool star)
-{
-    if (m_profile == nullptr)
-        return;
-
-    GraphQLQuery query;
-    query.query = star ? SAILHUB_MUTATION_REPO_ADD_STAR : SAILHUB_MUTATION_REPO_REMOVE_STAR;
-
-    QJsonObject vars;
-    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
-    vars.insert(ApiKey::STARRABLE_ID, nodeId);
-
-    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
-
-    m_graphqlConnector->sendQuery(query, star ? RequestType::StarRepo : RequestType::UnstarRepo);
 }
 
 void ApiInterface::removeReaction(const QString &nodeId, quint8 reaction)
@@ -471,7 +471,7 @@ void ApiInterface::removeReaction(const QString &nodeId, quint8 reaction)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_REMOVE_REACTION;
+    query.query = Mutation::REMOVE_REACTION;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -483,13 +483,30 @@ void ApiInterface::removeReaction(const QString &nodeId, quint8 reaction)
     m_graphqlConnector->sendQuery(query, RequestType::RemoveReaction);
 }
 
+void ApiInterface::removeStar(const QString &nodeId)
+{
+    if (m_profile == nullptr)
+        return;
+
+    GraphQLQuery query;
+    query.query = Mutation::REMOVE_STAR;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::STARRABLE_ID, nodeId);
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_graphqlConnector->sendQuery(query, RequestType::RemoveStar);
+}
+
 void ApiInterface::reopenIssue(const QString &nodeId)
 {
     if (m_profile == nullptr)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_REOPEN_ISSUE;
+    query.query = Mutation::REOPEN_ISSUE;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -500,13 +517,13 @@ void ApiInterface::reopenIssue(const QString &nodeId)
     m_graphqlConnector->sendQuery(query, RequestType::ReopenIssue);
 }
 
-void ApiInterface::subscribeToRepo(const QString &nodeId, quint8 state)
+void ApiInterface::subscribeTo(const QString &nodeId, quint8 state)
 {
     if (m_profile == nullptr)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_REPO_UPATE_SUBSCRIPTION;
+    query.query = Mutation::UPATE_SUBSCRIPTION;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -515,13 +532,13 @@ void ApiInterface::subscribeToRepo(const QString &nodeId, quint8 state)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_graphqlConnector->sendQuery(query, RequestType::UpdateRepoSubscription);
+    m_graphqlConnector->sendQuery(query, RequestType::UpdateSubscription);
 }
 
 void ApiInterface::unassignUser(const QString &nodeId, const QString &userId)
 {
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_UNASSIGN_USERS_FROM_ASSIGNABLE;
+    query.query = Mutation::UNASSIGN_USERS_FROM_ASSIGNABLE;
 
     QJsonObject vars;
     vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
@@ -539,7 +556,7 @@ void ApiInterface::updateComment(Comment *comment)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_UPDATE_COMMENT;
+    query.query = Mutation::UPDATE_COMMENT;
 
     QJsonObject vars;
     vars.insert(ApiKey::ID, comment->nodeId());
@@ -557,7 +574,7 @@ void ApiInterface::updateDiscussion(Discussion *discussion)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_UPDATE_DISCUSSION;
+    query.query = Mutation::UPDATE_DISCUSSION;
 
     QJsonObject vars;
     vars.insert(ApiKey::DISCUSSION_ID, discussion->nodeId());
@@ -576,7 +593,7 @@ void ApiInterface::updateDiscussionComment(DiscussionComment *comment)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_UPDATE_DISCUSSION_COMMENT;
+    query.query = Mutation::UPDATE_DISCUSSION_COMMENT;
 
     QJsonObject vars;
     vars.insert(ApiKey::COMMENT_ID, comment->nodeId());
@@ -594,7 +611,7 @@ void ApiInterface::updateIssue(Issue *issue)
         return;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_UPDATE_ISSUE;
+    query.query = Mutation::UPDATE_ISSUE;
 
     QJsonObject vars;
     vars.insert(ApiKey::ID, issue->nodeId());
@@ -613,7 +630,7 @@ void ApiInterface::updateProfileStatus(ProfileStatus *status)
         status = m_profileStatus;
 
     GraphQLQuery query;
-    query.query = SAILHUB_MUTATION_CHANGE_PROFILE_STATUS;
+    query.query = Mutation::CHANGE_PROFILE_STATUS;
 
     QJsonObject vars;
 
@@ -806,14 +823,14 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         emit issueCreated();
         break; 
 
-    case RequestType::StarRepo:
-        emit repoStarred(data.value(ApiKey::ADD_STAR).toObject()
+    case RequestType::AddStar:
+        emit starred(data.value(ApiKey::ADD_STAR).toObject()
                              .value(ApiKey::STARRABLE).toObject()
                              .value(ApiKey::ID).toString(), true);
         break;
 
-    case RequestType::UnstarRepo:
-        emit repoStarred(data.value(ApiKey::REMOVE_STAR).toObject()
+    case RequestType::RemoveStar:
+        emit starred(data.value(ApiKey::REMOVE_STAR).toObject()
                              .value(ApiKey::STARRABLE).toObject()
                              .value(ApiKey::ID).toString(), false);
         break;
@@ -830,8 +847,8 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
                               .value(ApiKey::ID).toString(), false);
         break;
 
-    case RequestType::UpdateRepoSubscription:
-        parseRepoSubscription(data);
+    case RequestType::UpdateSubscription:
+        parseSubscription(data);
         break;
 
     case RequestType::GetFileContent:
@@ -980,14 +997,12 @@ void ApiInterface::parseModel(const QJsonObject &obj, const QByteArray &requestI
     m_modelRequests.remove(requestId);
 }
 
-void ApiInterface::parseRepoSubscription(const QJsonObject &obj)
+void ApiInterface::parseSubscription(const QJsonObject &obj)
 {
     const QJsonObject subscription = obj.value(ApiKey::UPDATE_SUBSCRIPTION).toObject()
                                         .value(ApiKey::SUBSCRIBABLE).toObject();
 
     const QString state = subscription.value(ApiKey::VIEWER_SUBSCRIPTION).toString();
 
-    quint8 value = SubscriptionState::fromString(state);
-
-    emit subscribedToRepo(subscription.value(ApiKey::ID).toString(), value);
+    emit subscribedTo(subscription.value(ApiKey::ID).toString(), SubscriptionState::fromString(state));
 }

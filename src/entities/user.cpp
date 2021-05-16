@@ -71,9 +71,14 @@ quint32 User::starredRepositories() const
     return m_starredRepositories;
 }
 
-QString User::status() const
+QString User::statusEmoji() const
 {
-    return m_status;
+    return m_statusEmoji;
+}
+
+QString User::statusMessage() const
+{
+    return m_statusMessage;
 }
 
 QString User::twitterUsername() const
@@ -208,13 +213,22 @@ void User::setStarredRepositories(quint32 starredRepositories)
     emit starredRepositoriesChanged(m_starredRepositories);
 }
 
-void User::setStatus(const QString &status)
+void User::setStatusEmoji(const QString &emoji)
 {
-    if (m_status == status)
+    if (m_statusEmoji == emoji)
         return;
 
-    m_status = status;
-    emit statusChanged(m_status);
+    m_statusEmoji = emoji;
+    emit statusEmojiChanged(m_statusEmoji);
+}
+
+void User::setStatusMessage(const QString &message)
+{
+    if (m_statusMessage == message)
+        return;
+
+    m_statusMessage = message;
+    emit statusMessageChanged(m_statusMessage);
 }
 
 void User::setTwitterUsername(const QString &twitterUsername)

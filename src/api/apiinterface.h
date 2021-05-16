@@ -57,6 +57,7 @@ public:
         AddComment,
         AddDiscussionComment,
         AddReaction,
+        AddStar,
         AssignUsers,
         CloseIssue,
         CreateDiscussion,
@@ -85,18 +86,17 @@ public:
         GetRepo,
         MarkDiscussionCommentAsAnswer,
         RemoveReaction,
+        RemoveStar,
         ReopenIssue,
-        StarRepo,
         UnassignUser,
         UnfollowUser,
         UnmarkDiscussionCommentAsAnswer,
-        UnstarRepo,
         UpdateComment,
         UpdateDiscussionComment,
         UpdateDiscussion,
         UpdateIssue,
         UpdateProfileStatus,
-        UpdateRepoSubscription
+        UpdateSubscription
     };
     Q_ENUM(RequestType)
 
@@ -111,6 +111,7 @@ public:
     Q_INVOKABLE void addComment(const QString &body, const QString &subjectId);
     Q_INVOKABLE void addDiscussionComment(const QString &body, const QString &discussionId, const QString &replyToId = QString());
     Q_INVOKABLE void addReaction(const QString &nodeId, quint8 reaction);
+    Q_INVOKABLE void addStar(const QString &nodeId);
     Q_INVOKABLE void assignUsers(const QString &nodeId, const QJsonArray &userIds);
     Q_INVOKABLE void clearProfileStatus();
     Q_INVOKABLE void closeIssue(const QString &nodeId);
@@ -137,10 +138,10 @@ public:
     Q_INVOKABLE void getUser(const QString &nodeId);
     Q_INVOKABLE void getUserByLogin(const QString &login);
     Q_INVOKABLE void markDiscussionCommetAsAnswer(const QString &nodeId, bool answer = true);
-    Q_INVOKABLE void starRepo(const QString &nodeId, bool star = true);
     Q_INVOKABLE void removeReaction(const QString &nodeId, quint8 reaction);
+    Q_INVOKABLE void removeStar(const QString &nodeId);
     Q_INVOKABLE void reopenIssue(const QString &nodeId);
-    Q_INVOKABLE void subscribeToRepo(const QString &nodeId, quint8 state);
+    Q_INVOKABLE void subscribeTo(const QString &nodeId, quint8 state);
     Q_INVOKABLE void unassignUser(const QString &nodeId, const QString &userId);
     Q_INVOKABLE void updateComment(Comment *comment);
     Q_INVOKABLE void updateDiscussion(Discussion *discussion);
@@ -185,8 +186,8 @@ signals:
     void pullRequestAvailable(PullRequest *request);
     void releaseAvailable(Release *release);
     void repoAvailable(Repo *repo);
-    void repoStarred(const QString &nodeId, bool starred);
-    void subscribedToRepo(const QString &nodeId, quint8 state);
+    void starred(const QString &nodeId, bool starred);
+    void subscribedTo(const QString &nodeId, quint8 state);
     void userAvailable(User *user);
     void userFollowed(const QString &nodeId, bool following);
     void userUnassigned(bool unassigned = true);
@@ -211,7 +212,7 @@ private:
     void parseFileContent(const QJsonObject &obj);
     void parseNotificationsModel(const QJsonArray &array, const QByteArray &requestId);
     void parseModel(const QJsonObject &obj, const QByteArray &requestId);
-    void parseRepoSubscription(const QJsonObject &obj);
+    void parseSubscription(const QJsonObject &obj);
 
     //Downloader *m_downloader{nullptr};
     GraphQLConnector *m_graphqlConnector{nullptr};

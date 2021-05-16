@@ -446,10 +446,6 @@
 <context>
     <name>IssuePage</name>
     <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
-    <message>
         <source>Issue</source>
         <translation>Problem</translation>
     </message>
@@ -855,10 +851,6 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
-    <message>
         <source>Pull Request</source>
         <translation>Pull Request</translation>
     </message>
@@ -1187,22 +1179,6 @@
 </context>
 <context>
     <name>RepoPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>Beobachten</translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
-        <translation>Vergessen</translation>
-    </message>
-    <message>
-        <source>Unstar</source>
-        <translation>Unstar</translation>
-    </message>
     <message>
         <source>Star</source>
         <translation>Star</translation>
@@ -1648,6 +1624,28 @@
     </message>
 </context>
 <context>
+    <name>StarMenuItem</name>
+    <message>
+        <source>Unstar</source>
+        <translation>Unstar</translation>
+    </message>
+    <message>
+        <source>Star</source>
+        <translation>Star</translation>
+    </message>
+</context>
+<context>
+    <name>SubscriptionMenuItem</name>
+    <message>
+        <source>Watch</source>
+        <translation>Beobachten</translation>
+    </message>
+    <message>
+        <source>Unwatch</source>
+        <translation>Vergessen</translation>
+    </message>
+</context>
+<context>
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
@@ -1660,10 +1658,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation>Aktualisieren</translation>
-    </message>
     <message>
         <source>Unfollow</source>
         <translation>Folgen aufheben</translation>

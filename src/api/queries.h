@@ -159,6 +159,7 @@ static const QString SAILHUB_QUERY_GET_ISSUE =
                        "            viewerCanSubscribe"
                        "            viewerCanUpdate"
                        "            viewerDidAuthor"
+                       "            viewerSubscription"
                        "        }"
                        "    }"
                        "    "

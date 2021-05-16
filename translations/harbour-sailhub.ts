@@ -441,10 +441,6 @@
 <context>
     <name>IssuePage</name>
     <message>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Issue</source>
         <translation type="unfinished"></translation>
     </message>
@@ -846,10 +842,6 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Pull Request</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1169,22 +1161,6 @@
 </context>
 <context>
     <name>RepoPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unstar</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Star</source>
         <translation type="unfinished"></translation>
@@ -1624,6 +1600,28 @@
     </message>
 </context>
 <context>
+    <name>StarMenuItem</name>
+    <message>
+        <source>Unstar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Star</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SubscriptionMenuItem</name>
+    <message>
+        <source>Watch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
@@ -1636,10 +1634,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Unfollow</source>
         <translation type="unfinished"></translation>
