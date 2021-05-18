@@ -925,23 +925,23 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">Edytuj</translation>
+        <translation>Edytuj</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished">Zamknij</translation>
+        <translation>Zamknij</translation>
     </message>
     <message>
         <source>Closing pull request</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamykanie pull requestu</translation>
     </message>
     <message>
         <source>Reopen</source>
-        <translation type="unfinished">Otwórz ponownie</translation>
+        <translation>Otwórz ponownie</translation>
     </message>
     <message>
         <source>Reopen pull request</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz ponownie pull request</translation>
     </message>
 </context>
 <context>
