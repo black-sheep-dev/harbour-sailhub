@@ -32,11 +32,11 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Comment (Issue / Pull Request) [*CRUD*]
 - File content [*R*]
 - Gists [*R*]
-- Issue [*CRUD*] + close
+- Issue [*CRUD*] + close / reopen
 - Labels (Issue / Pull Request) [*R*]
 - Notification (Unreaded) [*R*]
 - Organization [*RS*]
-- Pull request [*R*]
+- Pull request [*RU*] + close / reopen
 - Reaction (Comment / Issue / Pull Request) [*RU*]
 - Releases [*R*]
 - Release Assets [*R*]

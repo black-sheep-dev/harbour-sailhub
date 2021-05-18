@@ -155,6 +155,38 @@ const QString Mutation::UPDATE_ISSUE =
                        "}").arg(SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM).simplified();
 
 // ----------------------------------------------------------------------------------------------------------------------
+// pull request
+// ----------------------------------------------------------------------------------------------------------------------
+
+const QString Mutation::CLOSE_PULL_REQUEST =
+        QStringLiteral("mutation($input: ClosePullRequestInput!) {"
+                       "    closePullRequest(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
+const QString Mutation::MERGE_PULL_REQUEST =
+        QStringLiteral("mutation($input: MergePullRequestInput!) {"
+                       "    mergePullRequest(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
+const QString Mutation::REOPEN_PULL_REQUEST =
+        QStringLiteral("mutation($input: ReopenPullRequestInput!) {"
+                       "    reopenPullRequest(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
+const QString Mutation::UPDATE_PULL_REQUEST =
+        QStringLiteral("mutation($input: UpdatePullRequestInput!) {"
+                       "    updatePullRequest(input: $input) {"
+                       "        clientMutationId"
+                       "    }"
+                       "}").simplified();
+
+// ----------------------------------------------------------------------------------------------------------------------
 // status
 // ----------------------------------------------------------------------------------------------------------------------
 

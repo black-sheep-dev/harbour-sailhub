@@ -60,6 +60,7 @@ public:
         AddStar,
         AssignUsers,
         CloseIssue,
+        ClosePullRequest,
         CreateDiscussion,
         CreateIssue,
         DeleteComment,
@@ -85,9 +86,11 @@ public:
         GetReleaseAssets,
         GetRepo,
         MarkDiscussionCommentAsAnswer,
+        MergePullRequest,
         RemoveReaction,
         RemoveStar,
         ReopenIssue,
+        ReopenPullRequest,
         UnassignUser,
         UnfollowUser,
         UnmarkDiscussionCommentAsAnswer,
@@ -96,6 +99,7 @@ public:
         UpdateDiscussion,
         UpdateIssue,
         UpdateProfileStatus,
+        UpdatePullRequest,
         UpdateSubscription
     };
     Q_ENUM(RequestType)
@@ -115,6 +119,7 @@ public:
     Q_INVOKABLE void assignUsers(const QString &nodeId, const QJsonArray &userIds);
     Q_INVOKABLE void clearProfileStatus();
     Q_INVOKABLE void closeIssue(const QString &nodeId);
+    Q_INVOKABLE void closePullRequest(const QString &nodeId);
     Q_INVOKABLE void createDiscussion(const QString &title, const QString &body, const QString &categoryId, DiscussionsModel *model);
     Q_INVOKABLE void createIssue(const QString &title, const QString &body, IssuesModel *model);
     Q_INVOKABLE void deleteComment(const QString &nodeId);
@@ -141,12 +146,14 @@ public:
     Q_INVOKABLE void removeReaction(const QString &nodeId, quint8 reaction);
     Q_INVOKABLE void removeStar(const QString &nodeId);
     Q_INVOKABLE void reopenIssue(const QString &nodeId);
+    Q_INVOKABLE void reopenPullRequest(const QString &nodeId);
     Q_INVOKABLE void subscribeTo(const QString &nodeId, quint8 state);
     Q_INVOKABLE void unassignUser(const QString &nodeId, const QString &userId);
     Q_INVOKABLE void updateComment(Comment *comment);
     Q_INVOKABLE void updateDiscussion(Discussion *discussion);
     Q_INVOKABLE void updateDiscussionComment(DiscussionComment *comment);
     Q_INVOKABLE void updateIssue(Issue *issue);
+    Q_INVOKABLE void updatePullRequest(PullRequest *request);
     Q_INVOKABLE void updateProfileStatus(ProfileStatus *status = nullptr);
     Q_INVOKABLE void updateReactions(const QString &nodeId, quint8 before, quint8 after);
 
@@ -179,11 +186,13 @@ signals:
     void issueClosed(bool closed = true);
     void issueCreated(bool created = true);
     void issueDeleted(bool deleted = true);
-    void issueReopened(bool reopend =  true);
+    void issueReopened(bool reopend = true);
     void notificationsAvailable(const QList<NotificationListItem> &notifications);
     void organizationAvailable(Organization *organization);
     void profileStatusAvailable(ProfileStatus *status);
     void pullRequestAvailable(PullRequest *request);
+    void pullRequestClosed(bool reopend = true);
+    void pullRequestReopened(bool reopend = true);
     void releaseAvailable(Release *release);
     void repoAvailable(Repo *repo);
     void starred(const QString &nodeId, bool starred);

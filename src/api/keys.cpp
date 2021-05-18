@@ -120,6 +120,7 @@ const QString ApiKey::PRIMARY_LANGUAGE                  = QStringLiteral("primar
 const QString ApiKey::PROJECTS                          = QStringLiteral("projects");
 const QString ApiKey::PUBLISHED_AT                      = QStringLiteral("publishedAt");
 const QString ApiKey::PULL_REQUEST                      = QStringLiteral("pullRequest");
+const QString ApiKey::PULL_REQUEST_ID                   = QStringLiteral("pullRequestId");
 const QString ApiKey::PULL_REQUESTS                     = QStringLiteral("pullRequests");
 const QString ApiKey::PUSHED_AT                         = QStringLiteral("pushedAt");
 const QString ApiKey::RATE_LIMIT                        = QStringLiteral("rateLimit");
