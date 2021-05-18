@@ -918,7 +918,7 @@
     </message>
     <message>
         <source>Reopen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重新开启</translation>
     </message>
     <message>
         <source>Reopen pull request</source>
