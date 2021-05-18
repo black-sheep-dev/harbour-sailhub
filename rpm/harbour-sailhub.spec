@@ -9,7 +9,7 @@ Name:       harbour-sailhub
 # << macros
 
 Summary:    SailHub
-Version:    0.0.27
+Version:    0.0.28
 Release:    1
 Group:      Qt/Qt
 License:    MIT

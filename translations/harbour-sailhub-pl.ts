@@ -923,6 +923,26 @@
         <source>Unsubscribe</source>
         <translation>Wypisz się</translation>
     </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">Edytuj</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Zamknij</translation>
+    </message>
+    <message>
+        <source>Closing pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reopen</source>
+        <translation type="unfinished">Otwórz ponownie</translation>
+    </message>
+    <message>
+        <source>Reopen pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>

@@ -166,6 +166,23 @@ void ApiInterface::closeIssue(const QString &nodeId)
     m_graphqlConnector->sendQuery(query, RequestType::CloseIssue);
 }
 
+void ApiInterface::closePullRequest(const QString &nodeId)
+{
+    if (m_profile == nullptr)
+        return;
+
+    GraphQLQuery query;
+    query.query = Mutation::CLOSE_PULL_REQUEST;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::PULL_REQUEST_ID, nodeId);
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_graphqlConnector->sendQuery(query, RequestType::ClosePullRequest);
+}
+
 void ApiInterface::createDiscussion(const QString &title, const QString &body, const QString &categoryId, DiscussionsModel *model)
 {
     if (m_profile == nullptr || model == nullptr)
@@ -517,6 +534,23 @@ void ApiInterface::reopenIssue(const QString &nodeId)
     m_graphqlConnector->sendQuery(query, RequestType::ReopenIssue);
 }
 
+void ApiInterface::reopenPullRequest(const QString &nodeId)
+{
+    if (m_profile == nullptr)
+        return;
+
+    GraphQLQuery query;
+    query.query = Mutation::REOPEN_PULL_REQUEST;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::PULL_REQUEST_ID, nodeId);
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_graphqlConnector->sendQuery(query, RequestType::ReopenPullRequest);
+}
+
 void ApiInterface::subscribeTo(const QString &nodeId, quint8 state)
 {
     if (m_profile == nullptr)
@@ -622,6 +656,25 @@ void ApiInterface::updateIssue(Issue *issue)
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
     m_graphqlConnector->sendQuery(query, RequestType::UpdateIssue);
+}
+
+void ApiInterface::updatePullRequest(PullRequest *request)
+{
+    if (request == nullptr)
+        return;
+
+    GraphQLQuery query;
+    query.query = Mutation::UPDATE_PULL_REQUEST;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::PULL_REQUEST_ID, request->nodeId());
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::TITLE, request->title());
+    vars.insert(ApiKey::BODY, request->body());
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_graphqlConnector->sendQuery(query, RequestType::UpdatePullRequest);
 }
 
 void ApiInterface::updateProfileStatus(ProfileStatus *status)
@@ -885,8 +938,16 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         emit issueClosed();
         break;
 
+    case RequestType::ClosePullRequest:
+        emit pullRequestClosed();
+        break;
+
     case RequestType::ReopenIssue:
         emit issueReopened();
+        break;
+
+    case RequestType::ReopenPullRequest:
+        emit pullRequestReopened();
         break;
 
     case RequestType::DeleteComment:

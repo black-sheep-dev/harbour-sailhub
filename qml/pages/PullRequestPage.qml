@@ -47,7 +47,7 @@ Page {
 
     SilicaFlickable {
         PullDownMenu {
-            busy: page.busy
+            busy: page.busy 
             MenuItem {
                 visible: request.viewerAbilities & Viewer.CanSubscribe
                 text: request.viewerSubscription === SubscriptionState.Subscribed ? qsTr("Unsubscribe") : qsTr("Subscribe")
@@ -58,6 +58,39 @@ Page {
                     else
                         SailHub.api().subscribeTo(request.nodeId, SubscriptionState.Subscribed)
                 }
+            }
+            MenuItem {
+                visible: request.viewerAbilities & Viewer.CanUpdate
+                text: qsTr("Edit")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"), {
+                                                    edit: true,
+                                                    title: request.title,
+                                                    body: request.body
+                                                })
+
+                    dialog.accepted.connect(function() {
+                        request.title = dialog.title
+                        request.body = dialog.body
+                        SailHub.api().updatePullRequest(request)
+                    })
+                }
+            }
+            MenuItem {
+                visible: request.viewerAbilities & Viewer.CanUpdate && request.states & PullRequest.StateOpen
+                text: qsTr("Close")
+
+                onClicked: remorse.execute(qsTr("Closing pull request"), function() {
+                    SailHub.api().closePullRequest(request.nodeId)
+                })
+            }
+            MenuItem {
+                visible: request.viewerAbilities & Viewer.CanUpdate && request.states & PullRequest.StateClosed
+                text: qsTr("Reopen")
+
+                onClicked: remorse.execute(qsTr("Reopen pull request"), function() {
+                    SailHub.api().reopenPullRequest(request.nodeId)
+                })
             }
         }
 
@@ -222,7 +255,7 @@ Page {
                                               title: qsTr("Participants"),
                                               description: request.repository + " #" + request.number,
                                               identifier: request.nodeId,
-                                              userType: User.requestParticipant
+                                              userType: User.PullRequestParticipant
                                           })
                 }
             }
@@ -273,7 +306,7 @@ Page {
             refresh()
         }
         onPullRequestClosed: pageStack.navigateBack()
-        onPullRequestDeleted: pageStack.navigateBack()
+        onPullRequestReopened: request.setStates(PullRequest.StateOpen)
         onSubscribedTo: if (nodeId === request.nodeId) request.viewerSubscription = state
         onCommentAdded: refresh()
         onCommentDeleted: refresh()

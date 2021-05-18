@@ -1,6 +1,11 @@
+* Tue May 18 2021 Black Sheep <blacksheep@nubecula.org> 0.0.28-1
+- Add functionality to close / reopen and update pull requests
+- Fixed bug with pull request participants not showing
+- Translation updates (chinese)
+
 * Sun May 16 2021 Black Sheep <blacksheep@nubecula.org> 0.0.27-1
-- Fixed bug with issue subscription
-- Fixed bug with repo subscription
+- Fixed bug with issue / repo subscription
+- Translation updates
 
 * Sun May 16 2021 Black Sheep <blacksheep@nubecula.org> 0.0.26-1
 - Fixed bug with issue states

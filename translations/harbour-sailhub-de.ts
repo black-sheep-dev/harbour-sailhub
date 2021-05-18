@@ -913,6 +913,26 @@
         <source>Unsubscribe</source>
         <translation>Abonnement aufheben</translation>
     </message>
+    <message>
+        <source>Edit</source>
+        <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Schließen</translation>
+    </message>
+    <message>
+        <source>Closing pull request</source>
+        <translation>Schließe Pull Request</translation>
+    </message>
+    <message>
+        <source>Reopen</source>
+        <translation>Wieder öffnen</translation>
+    </message>
+    <message>
+        <source>Reopen pull request</source>
+        <translation>Pull Request erneut öffnen</translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>

@@ -123,6 +123,7 @@ struct ApiKey {
     static const QString PROJECTS;
     static const QString PUBLISHED_AT;
     static const QString PULL_REQUEST;
+    static const QString PULL_REQUEST_ID;
     static const QString PULL_REQUESTS;
     static const QString PUSHED_AT;
     static const QString RATE_LIMIT;

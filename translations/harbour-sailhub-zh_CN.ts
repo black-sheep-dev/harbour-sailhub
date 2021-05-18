@@ -904,6 +904,26 @@
         <source>Unsubscribe</source>
         <translation type="unfinished">取消订阅</translation>
     </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">编辑</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">关闭</translation>
+    </message>
+    <message>
+        <source>Closing pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reopen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reopen pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
