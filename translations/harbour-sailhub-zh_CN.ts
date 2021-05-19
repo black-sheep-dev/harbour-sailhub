@@ -906,23 +906,23 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">编辑</translation>
+        <translation>编辑</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished">关闭</translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <source>Closing pull request</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭发起请求</translation>
     </message>
     <message>
         <source>Reopen</source>
-        <translation type="unfinished">重新开启</translation>
+        <translation>重新开启</translation>
     </message>
     <message>
         <source>Reopen pull request</source>
-        <translation type="unfinished"></translation>
+        <translation>重新开启请求</translation>
     </message>
 </context>
 <context>
