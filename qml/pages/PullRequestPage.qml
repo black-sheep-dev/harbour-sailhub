@@ -178,7 +178,7 @@ Page {
 
                 Pill {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: request.headRefName
+                    text: request.baseRefName
                 }
 
                 Icon {
@@ -191,7 +191,7 @@ Page {
 
                 Pill {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: request.baseRefName
+                    text: request.headRefName
                 }
             }
 

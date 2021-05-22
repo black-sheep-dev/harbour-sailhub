@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import '..'
+
 BackgroundItem {
     property int additions: 0
     property int deletions: 0
@@ -34,7 +36,7 @@ BackgroundItem {
             visible: additions > 0
             anchors.verticalCenter: parent.verticalCenter
             //font.pixelSize: Theme.fontSizeExtraSmall
-            color: "#64DD17"
+            color: SailHubStyles.colorSuccess
             text: "+" + additions
         }
         Label {
@@ -42,7 +44,7 @@ BackgroundItem {
             visible: deletions > 0
             anchors.verticalCenter: parent.verticalCenter
             //font.pixelSize: Theme.fontSizeExtraSmall
-            color: "#D50000"
+            color: SailHubStyles.colorError
             text: "-" + deletions
         }
     }

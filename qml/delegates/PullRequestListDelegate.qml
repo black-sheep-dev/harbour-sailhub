@@ -5,6 +5,7 @@ import QtGraphicalEffects 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import '..'
 
 ListItem {
 
@@ -33,15 +34,15 @@ ListItem {
                     source: parent
                     color: {
                         if (model.state === PullRequest.StateOpen)
-                            return "#64DD17"
+                            return SailHubStyles.colorStatusOpen
 
                         if (model.state === PullRequest.StateClosed)
-                            return "#D50000"
+                            return SailHubStyles.colorStatusClosed
 
                         if (model.state === PullRequest.StateMerged)
-                            return "#D500F9"
+                            return SailHubStyles.colorStatusMerged
 
-                        return "#FFFFFF"
+                        return Theme.primaryColor
                     }
                 }
             }

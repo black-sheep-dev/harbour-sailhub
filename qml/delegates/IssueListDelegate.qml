@@ -4,6 +4,7 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import ".."
 import "../js/stringhelper.js" as StringHelper
 
 ListItem {
@@ -25,7 +26,9 @@ ListItem {
             Icon {
                 id: delegateIcon
                 anchors.top: parent.top
-                source: model.closed ? "image://theme/icon-s-installed?00ff00" : "image://theme/icon-s-high-importance?#ff0000"
+                source: model.closed ?
+                            "image://theme/icon-s-installed?" +  SailHubStyles.colorStatusClosed :
+                            "image://theme/icon-s-high-importance?" + SailHubStyles.colorStatusOpen
             }
 
             Column {
