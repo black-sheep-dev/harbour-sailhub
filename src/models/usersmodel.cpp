@@ -89,6 +89,7 @@ static const QString SAILHUB_QUERY_GET_PULL_REQUEST_ASSIGNEES =
                        "    }"
                        "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
 
+
 // GET PULL REQEUST PARTICIPANTS
 static const QString SAILHUB_QUERY_GET_PULL_REQUEST_PARTICIPANTS =
         QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"

@@ -112,6 +112,28 @@
     </message>
 </context>
 <context>
+    <name>CommitsListPage</name>
+    <message>
+        <source>Commits</source>
+        <translation>Commits</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>No commits available</source>
+        <translation>Keine Commits verfügbar</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>DiscussionCommentItem</name>
     <message>
         <source>Edited</source>
@@ -361,6 +383,16 @@
     </message>
 </context>
 <context>
+    <name>FilesChangedItem</name>
+    <message numerus="yes">
+        <source>%n file(s) changed</source>
+        <translation>
+            <numerusform>%n Datei geändert</numerusform>
+            <numerusform>%n Dateien geändert</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>FundingLinksListPage</name>
     <message>
         <source>No funding links available</source>
@@ -527,6 +559,22 @@
     <message>
         <source>Subscribe</source>
         <translation>Abonnieren</translation>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation>Öffne</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>Sperren</translation>
+    </message>
+    <message>
+        <source>Unlocking</source>
+        <translation>Öffne</translation>
+    </message>
+    <message>
+        <source>Locking</source>
+        <translation>Sperre</translation>
     </message>
 </context>
 <context>
@@ -859,59 +907,12 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Pull Request</source>
-        <translation>Pull Request</translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation>Geshlossen</translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation>Offen</translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation>Kommentare</translation>
-    </message>
-    <message>
-        <source>Labels</source>
-        <translation>Labels</translation>
-    </message>
-    <message>
-        <source>Assignees</source>
-        <translation>Beauftragte</translation>
-    </message>
-    <message>
-        <source>Participants</source>
-        <translation>Beteiligte</translation>
-    </message>
-    <message>
-        <source>Reactions</source>
-        <translation>Reaktionen</translation>
-    </message>
-    <message>
-        <source>Relations</source>
-        <translation>Beziehungen</translation>
-    </message>
-    <message>
-        <source>Write comment</source>
-        <translation>Kommentar schreiben</translation>
-    </message>
-    <message numerus="yes">
-        <source>Load more (%n to go)</source>
-        <translation>
-            <numerusform>Lade mehr (%n verbleibend)</numerusform>
-            <numerusform>Lade mehr (%n verbleibend)</numerusform>
-        </translation>
+        <source>Unsubscribe</source>
+        <translation>Abonnement aufheben</translation>
     </message>
     <message>
         <source>Subscribe</source>
         <translation>Abonnieren</translation>
-    </message>
-    <message>
-        <source>Unsubscribe</source>
-        <translation>Abonnement aufheben</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -931,7 +932,82 @@
     </message>
     <message>
         <source>Reopen pull request</source>
-        <translation>Pull Request erneut öffnen</translation>
+        <translation>Öffne Pull Request</translation>
+    </message>
+    <message>
+        <source>Pull Request</source>
+        <translation>Pull Request</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Offen</translation>
+    </message>
+    <message>
+        <source>Merged</source>
+        <translation>Merged</translation>
+    </message>
+    <message>
+        <source>Closed</source>
+        <translation>Geschlossen</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation>Reaktionen</translation>
+    </message>
+    <message>
+        <source>Changes</source>
+        <translation>Änderungen</translation>
+    </message>
+    <message>
+        <source>Commits</source>
+        <translation>Commits</translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation>Beziehungen</translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation>Labels</translation>
+    </message>
+    <message>
+        <source>Assignees</source>
+        <translation>Beauftragte</translation>
+    </message>
+    <message>
+        <source>Participants</source>
+        <translation>Beteiligte</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Kommentare</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation>Kommentar schreiben</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+            <numerusform>Lade mehr (%n verbleibend)</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation>Öffne</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation>Sperren</translation>
+    </message>
+    <message>
+        <source>Unlocking</source>
+        <translation>Öffne</translation>
+    </message>
+    <message>
+        <source>Locking</source>
+        <translation>Sperre</translation>
     </message>
 </context>
 <context>

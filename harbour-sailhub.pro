@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.28
+VERSION = 0.0.29
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -38,6 +38,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/queryvars.cpp \
     src/api/restapiconnector.cpp \
     src/entities/comment.cpp \
+    src/entities/commit.cpp \
     src/entities/discussion.cpp \
     src/entities/discussioncategory.cpp \
     src/entities/discussioncomment.cpp \
@@ -58,6 +59,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/user.cpp \
     src/models/basemodel.cpp \
     src/models/commentsmodel.cpp \
+    src/models/commitsmodel.cpp \
     src/models/discussioncategoriesmodel.cpp \
     src/models/discussioncommentsmodel.cpp \
     src/models/discussionsmodel.cpp \
@@ -81,11 +83,13 @@ SOURCES += src/harbour-sailhub.cpp \
     src/tools/compress.cpp
 
 DISTFILES += qml/harbour-sailhub.qml \
+    qml/SailHubStyles.qml \
     qml/components/AuthorItem.qml \
     qml/components/CommentItem \
     qml/components/CommentItem.qml \
     qml/components/CounterItem.qml \
     qml/components/DiscussionCommentItem.qml \
+    qml/components/FilesChangedItem.qml \
     qml/components/IconLabel.qml \
     qml/components/IconRelatedItem.qml \
     qml/components/InfoItem.qml \
@@ -103,6 +107,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/cover/CoverPage.qml \
     qml/delegates/AssetListDelegate.qml \
     qml/delegates/CommentListDelegate.qml \
+    qml/delegates/CommitListDelegate.qml \
     qml/delegates/DiscussionCategoryListDelegate.qml \
     qml/delegates/DiscussionListDelegate.qml \
     qml/delegates/GistListDelegate.qml \
@@ -127,6 +132,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/js/stringhelper.js \
     qml/pages/AssigneesListPage.qml \
     qml/pages/CommentPage \
+    qml/pages/CommitsListPage.qml \
     qml/pages/DiscussionCommentPage.qml \
     qml/pages/DiscussionPage.qml \
     qml/pages/DiscussionsListPage.qml \
@@ -167,6 +173,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/wizard/WizardFinalPage.qml \
     qml/pages/wizard/WizardIntroPage.qml \
     qml/pages/wizard/WizardTokenPage.qml \
+    qml/qmldir \
     qml/tools/MarkdownParser.qml \
     rpm/harbour-sailhub.changes \
     rpm/harbour-sailhub.changes.run.in \
@@ -207,6 +214,7 @@ HEADERS += \
     src/api/ratelimit.h \
     src/api/restapiconnector.h \
     src/entities/comment.h \
+    src/entities/commit.h \
     src/entities/discussion.h \
     src/entities/discussioncategory.h \
     src/entities/discussioncomment.h \
@@ -233,10 +241,12 @@ HEADERS += \
     src/entities/viewer.h \
     src/enums/enums.h \
     src/enums/lockreason.h \
+    src/enums/mergestatestatus.h \
     src/enums/repositorylockreason.h \
     src/enums/subscriptionstate.h \
     src/models/basemodel.h \
     src/models/commentsmodel.h \
+    src/models/commitsmodel.h \
     src/models/discussioncategoriesmodel.h \
     src/models/discussioncommentsmodel.h \
     src/models/discussionsmodel.h \

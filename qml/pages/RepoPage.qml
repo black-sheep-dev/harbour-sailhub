@@ -457,8 +457,17 @@ Page {
                                           })
             }
 
-//            RelatedItem {
-//                title: qsTr("Commits")
+//            RelatedValueItem {
+//                label: qsTr("Commits")
+//                icon: "qrc:/icons/icon-m-commit"
+//                value: StringHelper.count(request.commitCount)
+
+//                onClicked: {
+//                    pageStack.push(Qt.resolvedUrl("CommitsListPage.qml"), {
+//                                              identifier: repo.nodeId,
+//                                              type: Commit.Repository
+//                                          })
+//                }
 //            }
 
             Separator {

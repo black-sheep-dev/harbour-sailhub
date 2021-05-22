@@ -21,6 +21,11 @@ quint32 Issue::labelCount() const
     return m_labelCount;
 }
 
+bool Issue::locked() const
+{
+    return m_locked;
+}
+
 quint32 Issue::number() const
 {
     return m_number;
@@ -86,6 +91,15 @@ void Issue::setLabelCount(quint32 count)
 
     m_labelCount = count;
     emit labelCountChanged(m_labelCount);
+}
+
+void Issue::setLocked(bool locked)
+{
+    if (m_locked == locked)
+        return;
+
+    m_locked = locked;
+    emit lockedChanged(m_locked);
 }
 
 void Issue::setNumber(quint32 number)

@@ -43,6 +43,10 @@ struct Mutation {
     static const QString REOPEN_ISSUE;
     static const QString UPDATE_ISSUE;
 
+    // lockable
+    static const QString LOCK_LOCKABLE;
+    static const QString UNLOCK_LOCKABLE;
+
     // pull request
     static const QString CLOSE_PULL_REQUEST;
     static const QString MERGE_PULL_REQUEST;

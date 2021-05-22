@@ -58,6 +58,41 @@ QList<Comment *> DataUtils::commentsFromJson(const QJsonObject &obj)
     return comments;
 }
 
+CommitListItem DataUtils::commitListItemFromJson(const QJsonObject &obj)
+{
+    const QJsonObject commit = obj.value(ApiKey::COMMIT).toObject();
+
+    CommitListItem item;
+
+    item.nodeId = commit.value(ApiKey::ID).toString();
+
+    const QJsonObject author = commit.value(ApiKey::COMMITTER).toObject().value(ApiKey::USER).toObject();
+
+    item.authorAvatar = author.value(ApiKey::AVATAR_URL).toString();
+    item.authorLogin = author.value(ApiKey::LOGIN).toString();
+    item.messageHeadline = commit.value(ApiKey::MESSAGE_HEADLINE).toString();
+    item.pushedAtTimeSpan = timeSpanText(QDateTime::fromString(commit.value(ApiKey::COMMITTER).toObject().value(ApiKey::DATE).toString(), Qt::ISODate), true);
+
+    return item;
+}
+
+QList<CommitListItem> DataUtils::commitsFromJson(const QJsonObject &obj)
+{
+    QList<CommitListItem> commits;
+
+    const QJsonArray nodes = getNodes(obj);
+
+    for (const auto &node : nodes) {
+        const QJsonObject commit = node.toObject();
+        if (commit.isEmpty())
+            continue;
+
+        commits.append(commitListItemFromJson(commit));
+    }
+
+    return commits;
+}
+
 Discussion *DataUtils::discussionFromJson(const QJsonObject &obj, Discussion *discussion)
 {
     if (discussion == nullptr)
@@ -302,6 +337,7 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
     issue->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
     issue->setEdited(issue->updatedAt() > issue->createdAt());
     issue->setLabelCount(getTotalCount(obj.value(ApiKey::LABELS).toObject()));
+    issue->setLocked(obj.value(ApiKey::LOCKED).toBool());
     issue->setParticipantCount(getTotalCount(obj.value(ApiKey::PARTICIPANTS).toObject()));
 
     issue->setViewerAbilities(getViewerAbilities(obj));
@@ -587,6 +623,28 @@ PullRequest *DataUtils::pullRequestFromJson(const QJsonObject &obj)
     auto request = new PullRequest();
 
     issueFromJson(obj, request);
+
+    request->setAdditions(obj.value(ApiKey::ADDITIONS).toInt());
+    request->setBaseRefName(obj.value(ApiKey::BASE_REF_NAME).toString());
+    request->setCanBeRebased(obj.value(ApiKey::CAN_BE_REBASED).toBool());
+    request->setChangedFiles(obj.value(ApiKey::CHANGED_FILES).toInt());
+    request->setCommitCount(getTotalCount(obj.value(ApiKey::COMMITS).toObject()));
+    request->setDeletions(obj.value(ApiKey::DELETIONS).toInt());
+    request->setHeadRefName(obj.value(ApiKey::HEAD_REF_NAME).toString());
+    request->setIsCrossRepository(obj.value(ApiKey::IS_CROSS_REPOSITORY).toBool());
+    request->setMaintainerCanModify(obj.value(ApiKey::MAINTAINER_CAN_MODIFY).toBool());
+    request->setMergeStateStatus(MergeStateStatus::fromString(obj.value(ApiKey::MERGE_STATE_STATUS).toString()));
+    request->setMergeable(obj.value(ApiKey::MERGEABLE).toBool());
+    request->setMergedAt(QDateTime::fromString(obj.value(ApiKey::MERGED_AT).toString(), Qt::ISODate));
+    request->setMergedBy(ownerFromJson(obj.value(ApiKey::MERGEG_BY).toObject()));
+
+    const QString state = obj.value(ApiKey::STATE).toString();
+    if (state == QLatin1Literal("OPEN"))
+        request->setStates(PullRequest::StateOpen);
+    else if (state == QLatin1Literal("CLOSED"))
+        request->setStates(PullRequest::StateClosed);
+    else if (state == QLatin1Literal("MERGED"))
+        request->setStates(PullRequest::StateMerged);
 
     return request;
 }

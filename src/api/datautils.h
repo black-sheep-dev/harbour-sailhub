@@ -4,6 +4,7 @@
 #include <QList>
 
 #include "src/entities/comment.h"
+#include "src/entities/commit.h"
 #include "src/entities/discussion.h"
 #include "src/entities/discussioncategory.h"
 #include "src/entities/discussioncomment.h"
@@ -29,6 +30,10 @@ public:
     // comments
     static Comment *commentFromJson(const QJsonObject &obj);
     static QList<Comment *> commentsFromJson(const QJsonObject &obj);
+
+    // commits
+    static CommitListItem commitListItemFromJson(const QJsonObject &obj);
+    static QList<CommitListItem> commitsFromJson(const QJsonObject &obj);
 
     // discussions
     static Discussion *discussionFromJson(const QJsonObject &obj, Discussion *discussion = nullptr);

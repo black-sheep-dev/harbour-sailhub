@@ -1,3 +1,12 @@
+* Sat May 22 2021 Black Sheep <blacksheep@nubecula.org> 0.0.29-1
+- Add lock / unlock feature for pull requests and issues
+- Show commit list of pull requests
+- Show number of changed files and additions / deletions
+- Show additional infos of pull requests
+- UI fixes / improvements
+- Code cleanup / improvements
+- Bugfixes
+
 * Tue May 18 2021 Black Sheep <blacksheep@nubecula.org> 0.0.28-1
 - Add functionality to close / reopen and update pull requests
 - Fixed bug with pull request participants not showing

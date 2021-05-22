@@ -163,7 +163,7 @@ void ApiInterface::closeIssue(const QString &nodeId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_graphqlConnector->sendQuery(query, RequestType::CloseIssue);
+    m_graphqlConnector->sendQuery(query, RequestType::CloseIssue, getNodeRequestId(nodeId));
 }
 
 void ApiInterface::closePullRequest(const QString &nodeId)
@@ -180,7 +180,7 @@ void ApiInterface::closePullRequest(const QString &nodeId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_graphqlConnector->sendQuery(query, RequestType::ClosePullRequest);
+    m_graphqlConnector->sendQuery(query, RequestType::ClosePullRequest, getNodeRequestId(nodeId));
 }
 
 void ApiInterface::createDiscussion(const QString &title, const QString &body, const QString &categoryId, DiscussionsModel *model)
@@ -467,6 +467,25 @@ void ApiInterface::getUserByLogin(const QString &login)
     m_graphqlConnector->sendQuery(query, RequestType::GetUserByLogin);
 }
 
+void ApiInterface::lock(const QString &nodeId, quint8 reason)
+{
+    if (m_profile == nullptr)
+        return;
+
+    GraphQLQuery query;
+    query.query = Mutation::LOCK_LOCKABLE;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    if (reason != LockReason::Unknown)
+        vars.insert(ApiKey::LOCK_REASON, LockReason::toString(reason));
+    vars.insert(ApiKey::LOCKABLE_ID, nodeId);
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_graphqlConnector->sendQuery(query, RequestType::Lock, getNodeRequestId(nodeId));
+}
+
 void ApiInterface::markDiscussionCommetAsAnswer(const QString &nodeId, bool answer)
 {
     GraphQLQuery query;
@@ -531,7 +550,7 @@ void ApiInterface::reopenIssue(const QString &nodeId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_graphqlConnector->sendQuery(query, RequestType::ReopenIssue);
+    m_graphqlConnector->sendQuery(query, RequestType::ReopenIssue, getNodeRequestId(nodeId));
 }
 
 void ApiInterface::reopenPullRequest(const QString &nodeId)
@@ -548,7 +567,7 @@ void ApiInterface::reopenPullRequest(const QString &nodeId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_graphqlConnector->sendQuery(query, RequestType::ReopenPullRequest);
+    m_graphqlConnector->sendQuery(query, RequestType::ReopenPullRequest, getNodeRequestId(nodeId));
 }
 
 void ApiInterface::subscribeTo(const QString &nodeId, quint8 state)
@@ -582,6 +601,23 @@ void ApiInterface::unassignUser(const QString &nodeId, const QString &userId)
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
     m_graphqlConnector->sendQuery(query, RequestType::UnassignUser);
+}
+
+void ApiInterface::unlock(const QString &nodeId)
+{
+    if (m_profile == nullptr)
+        return;
+
+    GraphQLQuery query;
+    query.query = Mutation::UNLOCK_LOCKABLE;
+
+    QJsonObject vars;
+    vars.insert(ApiKey::CLIENT_MUTATION_ID, m_profile->nodeId());
+    vars.insert(ApiKey::LOCKABLE_ID, nodeId);
+
+    query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
+
+    m_graphqlConnector->sendQuery(query, RequestType::Unlock, getNodeRequestId(nodeId));
 }
 
 void ApiInterface::updateComment(Comment *comment)
@@ -935,19 +971,19 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         break;
 
     case RequestType::CloseIssue:
-        emit issueClosed();
+        emit issueClosed(m_nodeRequests.take(requestId));
         break;
 
     case RequestType::ClosePullRequest:
-        emit pullRequestClosed();
+        emit pullRequestClosed(m_nodeRequests.take(requestId));
         break;
 
     case RequestType::ReopenIssue:
-        emit issueReopened();
+        emit issueReopened(m_nodeRequests.take(requestId));
         break;
 
     case RequestType::ReopenPullRequest:
-        emit pullRequestReopened();
+        emit pullRequestReopened(m_nodeRequests.take(requestId));
         break;
 
     case RequestType::DeleteComment:
@@ -974,6 +1010,20 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         emit issueDeleted();
         break;
 
+    case RequestType::Lock:
+        emit locked(m_nodeRequests.take(requestId),
+                    data.value(ApiKey::LOCK_LOCKABLE).toObject()
+                    .value(ApiKey::LOCKED_RECORD).toObject()
+                    .value(ApiKey::LOCKED).toBool());
+        break;
+
+    case RequestType::Unlock:
+        emit locked(m_nodeRequests.take(requestId),
+                    data.value(ApiKey::UNLOCK_LOCKABLE).toObject()
+                    .value(ApiKey::LOCKED_RECORD).toObject()
+                    .value(ApiKey::LOCKED).toBool());
+        break;
+
     default:
         break;
     }
@@ -994,6 +1044,14 @@ void ApiInterface::parseRestData(const QJsonDocument &doc, quint8 requestType, c
     default:
         break;
     }
+}
+
+QByteArray ApiInterface::getNodeRequestId(const QString &nodeId)
+{
+    const QByteArray uuid = QUuid::createUuid().toByteArray();
+    m_nodeRequests.insert(uuid, nodeId);
+
+    return uuid;
 }
 
 void ApiInterface::initialize()

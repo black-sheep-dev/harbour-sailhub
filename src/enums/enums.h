@@ -2,6 +2,7 @@
 #define ENUMS_H
 
 #include "lockreason.h"
+#include "mergestatestatus.h"
 #include "repositorylockreason.h"
 #include "subscriptionstate.h"
 

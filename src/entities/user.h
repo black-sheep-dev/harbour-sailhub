@@ -43,6 +43,7 @@ public:
         OrganizationMember,
         PullRequestAssignee,
         PullRequestParticipant,
+        PullRequestReviewer,
         Search,
         Stargazer,
         Watcher
