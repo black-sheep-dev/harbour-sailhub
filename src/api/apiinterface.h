@@ -219,7 +219,7 @@ signals:
 
 
 private slots:
-    void onConnectionError(quint16 error, const QString &msg);
+    void onConnectionError(quint16 error, const QString &msg, const QByteArray &requestId);
     void parseData(const QJsonObject &obj, quint8 requestType, const QByteArray &requestId);
     void parseRestData(const QJsonDocument &doc, quint8 requestType, const QByteArray &requestId);
 

@@ -812,7 +812,7 @@ void ApiInterface::setReady(bool ready)
     emit readyChanged(m_ready);
 }
 
-void ApiInterface::onConnectionError(quint16 error, const QString &msg)
+void ApiInterface::onConnectionError(quint16 error, const QString &msg, const QByteArray &requestId)
 {
 #ifdef QT_DEBUG
     qDebug() << error;
@@ -835,6 +835,10 @@ void ApiInterface::onConnectionError(quint16 error, const QString &msg)
     default:
         break;
     }
+
+    // cleanup
+    m_nodeRequests.take(requestId);
+    m_modelRequests.take(requestId);
 }
 
 void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const QByteArray &requestId)

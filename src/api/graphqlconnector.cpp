@@ -14,7 +14,6 @@ GraphQLConnector::GraphQLConnector(QString endpoint, QNetworkAccessManager *mana
     m_endpoint(std::move(endpoint)),
     m_manager(manager)
 {
-    //connect(m_manager, &QNetworkAccessManager::finished, this, &GraphQLConnector::onRequestFinished);
 }
 
 void GraphQLConnector::sendQuery(const GraphQLQuery &query, quint8 requestType, const QByteArray &requestId)
@@ -77,7 +76,9 @@ void GraphQLConnector::onRequestFinished()
 #ifdef QT_DEBUG
         qDebug() << reply->errorString();
 #endif
-        emit connectionError(reply->error(), reply->errorString());
+        emit connectionError(reply->error(),
+                             reply->errorString(),
+                             reply->property("request_uuid").toByteArray());
 
         reply->deleteLater();
         return;
