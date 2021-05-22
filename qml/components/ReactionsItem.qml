@@ -6,6 +6,7 @@ import org.nubecula.harbour.sailhub 1.0
 BackgroundItem {
     property int iconSize: Theme.iconSizeSmall
     property Interactable node
+    property bool locked: false
 
     id: reactionsItem
     width: parent.width
@@ -19,6 +20,7 @@ BackgroundItem {
         spacing: Theme.paddingMedium
 
         Image {
+            visible: !locked
             id: defaultIcon
             anchors.verticalCenter: parent.verticalCenter
             x: Theme.horizontalPageMargin

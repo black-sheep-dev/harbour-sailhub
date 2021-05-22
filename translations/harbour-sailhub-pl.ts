@@ -113,6 +113,29 @@
     </message>
 </context>
 <context>
+    <name>CommitsListPage</name>
+    <message>
+        <source>Commits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">Odśwież</translation>
+    </message>
+    <message>
+        <source>No commits available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>DiscussionCommentItem</name>
     <message>
         <source>Edited</source>
@@ -365,6 +388,17 @@
     </message>
 </context>
 <context>
+    <name>FilesChangedItem</name>
+    <message numerus="yes">
+        <source>%n file(s) changed</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>FundingLinksListPage</name>
     <message>
         <source>No funding links available</source>
@@ -533,6 +567,22 @@
     <message>
         <source>Subscribe</source>
         <translation>Subskrybuj</translation>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlocking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locking</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -868,80 +918,108 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Pull Request</source>
-        <translation>Pull Request</translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation>Zamknięty</translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation>Otwarty</translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation>Komentarze</translation>
-    </message>
-    <message>
-        <source>Labels</source>
-        <translation>Etykiety</translation>
-    </message>
-    <message>
-        <source>Assignees</source>
-        <translation>Cesjonariusze</translation>
-    </message>
-    <message>
-        <source>Participants</source>
-        <translation>Uczestnicy</translation>
-    </message>
-    <message>
-        <source>Reactions</source>
-        <translation>Reakcje</translation>
-    </message>
-    <message>
-        <source>Relations</source>
-        <translation>Relacje</translation>
-    </message>
-    <message>
-        <source>Write comment</source>
-        <translation>Napisz komentarz</translation>
-    </message>
-    <message numerus="yes">
-        <source>Load more (%n to go)</source>
-        <translation>
-            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
-            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
-            <numerusform>Załaduj więcej(jeszcze %n)</numerusform>
-        </translation>
+        <source>Unsubscribe</source>
+        <translation type="unfinished">Wypisz się</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation>Subskrybuj</translation>
-    </message>
-    <message>
-        <source>Unsubscribe</source>
-        <translation>Wypisz się</translation>
+        <translation type="unfinished">Subskrybuj</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Edytuj</translation>
+        <translation type="unfinished">Edytuj</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation>Zamknij</translation>
+        <translation type="unfinished">Zamknij</translation>
     </message>
     <message>
         <source>Closing pull request</source>
-        <translation>Zamykanie pull requestu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reopen</source>
-        <translation>Otwórz ponownie</translation>
+        <translation type="unfinished">Otwórz ponownie</translation>
     </message>
     <message>
         <source>Reopen pull request</source>
-        <translation>Otwórz ponownie pull request</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull Request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Otwarty</translation>
+    </message>
+    <message>
+        <source>Merged</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closed</source>
+        <translation type="unfinished">Zamknięty</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished">Reakcje</translation>
+    </message>
+    <message>
+        <source>Changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished">Relacje</translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished">Etykiety</translation>
+    </message>
+    <message>
+        <source>Assignees</source>
+        <translation type="unfinished">Cesjonariusze</translation>
+    </message>
+    <message>
+        <source>Participants</source>
+        <translation type="unfinished">Uczestnicy</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">Komentarze</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished">Napisz komentarz</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlocking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locking</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

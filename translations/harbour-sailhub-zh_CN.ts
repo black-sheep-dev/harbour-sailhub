@@ -112,6 +112,27 @@
     </message>
 </context>
 <context>
+    <name>CommitsListPage</name>
+    <message>
+        <source>Commits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>No commits available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>DiscussionCommentItem</name>
     <message>
         <source>Edited</source>
@@ -358,6 +379,15 @@
     </message>
 </context>
 <context>
+    <name>FilesChangedItem</name>
+    <message numerus="yes">
+        <source>%n file(s) changed</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>FundingLinksListPage</name>
     <message>
         <source>No funding links available</source>
@@ -522,6 +552,22 @@
     <message>
         <source>Subscribe</source>
         <translation>订阅</translation>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlocking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locking</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -851,78 +897,106 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Pull Request</source>
-        <translation>发起请求</translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation>已关闭</translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation>打开</translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation>评论</translation>
-    </message>
-    <message>
-        <source>Labels</source>
-        <translation>标签</translation>
-    </message>
-    <message>
-        <source>Assignees</source>
-        <translation>受让人</translation>
-    </message>
-    <message>
-        <source>Participants</source>
-        <translation>参与者</translation>
-    </message>
-    <message>
-        <source>Reactions</source>
-        <translation>反应</translation>
-    </message>
-    <message>
-        <source>Relations</source>
-        <translation>关系</translation>
-    </message>
-    <message>
-        <source>Write comment</source>
-        <translation>写评论</translation>
-    </message>
-    <message numerus="yes">
-        <source>Load more (%n to go)</source>
-        <translation>
-            <numerusform>加载更多（ %n ）</numerusform>
-        </translation>
+        <source>Unsubscribe</source>
+        <translation type="unfinished">取消订阅</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation>订阅</translation>
-    </message>
-    <message>
-        <source>Unsubscribe</source>
-        <translation>取消订阅</translation>
+        <translation type="unfinished">订阅</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>编辑</translation>
+        <translation type="unfinished">编辑</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation type="unfinished">关闭</translation>
     </message>
     <message>
         <source>Closing pull request</source>
-        <translation>关闭发起请求</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reopen</source>
-        <translation>重新开启</translation>
+        <translation type="unfinished">重新开启</translation>
     </message>
     <message>
         <source>Reopen pull request</source>
-        <translation>重新开启请求</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull Request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">打开</translation>
+    </message>
+    <message>
+        <source>Merged</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closed</source>
+        <translation type="unfinished">已关闭</translation>
+    </message>
+    <message>
+        <source>Reactions</source>
+        <translation type="unfinished">反应</translation>
+    </message>
+    <message>
+        <source>Changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished">关系</translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished">标签</translation>
+    </message>
+    <message>
+        <source>Assignees</source>
+        <translation type="unfinished">受让人</translation>
+    </message>
+    <message>
+        <source>Participants</source>
+        <translation type="unfinished">参与者</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished">评论</translation>
+    </message>
+    <message>
+        <source>Write comment</source>
+        <translation type="unfinished">写评论</translation>
+    </message>
+    <message numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlocking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locking</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

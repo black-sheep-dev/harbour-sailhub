@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
 
     // enums
     qmlRegisterUncreatableType<LockReason>(uri, 1, 0, "LockReason", "");
+    qmlRegisterUncreatableType<MergeStateStatus>(uri, 1, 0, "MergeStateStatus", "");
     qmlRegisterUncreatableType<RepositoryLockReason>(uri, 1, 0, "RepositoryLockReason", "");
     qmlRegisterUncreatableType<SubscriptionState>(uri, 1, 0, "SubscriptionState", "");
 
@@ -34,6 +35,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<ApiInterface>(uri, 1, 0, "Api");
     qmlRegisterType<Comment>(uri, 1, 0, "Comment");
     qmlRegisterType<CommentsModel>(uri, 1, 0, "CommentsModel");
+    qmlRegisterType<Commit>(uri, 1, 0, "Commit");
+    qmlRegisterType<CommitsModel>(uri, 1, 0, "CommitsModel");
     qmlRegisterType<Discussion>(uri, 1, 0, "Discussion");
     qmlRegisterType<DiscussionsModel>(uri, 1, 0, "DiscussionsModel");
     qmlRegisterType<DiscussionCategoriesModel>(uri, 1, 0, "DiscussionCategoriesModel");

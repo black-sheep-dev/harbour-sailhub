@@ -6,6 +6,7 @@ import org.nubecula.harbour.sailhub 1.0
 import "../components/"
 import "../delegates/"
 import "../tools"
+import '..'
 
 Page {
     property bool busy: false
@@ -167,18 +168,19 @@ Page {
                 width: parent.width - 2*x
                 spacing: Theme.paddingMedium
 
-                Icon {
-                    id: closedIcon
-                    source: (issue.states & Issue.StateClosed) ? "image://theme/icon-s-installed?00ff00" : "image://theme/icon-s-high-importance?#ff0000"
-                }
+                Pill {
+                    anchors.verticalCenter: parent.verticalCenter
+                    icon: issue.states === Issue.StateOpen ? "qrc:/icons/icon-m-issue" : "image://theme/icon-s-installed"
+                    text: {
+                        if (issue.states === Issue.StateOpen) return qsTr("Open")
+                        if (issue.states === Issue.StateClosed) return qsTr("Closed")
+                    }
 
-                Label {
-                    width: parent.width - closedIcon.width - parent.spacing
-                    anchors.verticalCenter: closedIcon.verticalCenter
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: Theme.highlightColor
+                    backgroundColor: {
+                        if (issue.states === Issue.StateOpen) return SailHubStyles.colorStatusOpen
+                        if (issue.states === Issue.StateClosed) return SailHubStyles.colorStatusClosed
+                    }
 
-                    text: (issue.states & Issue.StateClosed) ? qsTr("Closed") : qsTr("Open")
                 }
             }
 
@@ -196,8 +198,10 @@ Page {
 
             ReactionsItem {
                 node: issue
+                locked: issue.locked
 
                 onClicked: {
+                    if (issue.locked) return
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ReactionDialog.qml"), {
                                                     reactions: issue.viewerReactions
                                                 })
@@ -298,6 +302,18 @@ Page {
             }
 
             MenuItem {
+                visible: issue.viewerAbilities & Viewer.CanUpdate
+                text: issue.locked ? qsTr("Unlock") : qsTr("Lock")
+                onClicked: remorse.execute(issue.locked ? qsTr("Unlocking") : qsTr("Locking"), function() {
+                    if (issue.locked) {
+                        SailHub.api().unlock(issue.nodeId)
+                    } else {
+                        SailHub.api().lock(issue.nodeId)
+                    }
+                })
+            }
+
+            MenuItem {
                 visible: commentsModel.hasNextPage
                 text: qsTr("Load more (%n to go)", "", commentsModel.totalCount - commentsColumn.children.length)
                 onClicked: getComments()
@@ -313,12 +329,13 @@ Page {
             page.issue = issue;
             refresh()
         }
-        onIssueClosed: pageStack.navigateBack()
+        onIssueClosed: if (nodeId === issue.nodeId) issue.states = closed ? Issue.StateClosed : Issue.StateOpen
         onIssueDeleted: pageStack.navigateBack()
-        onIssueReopened: issue.setStates(Issue.StateOpen)
+        onIssueReopened: if (nodeId === issue.nodeId) issue.states = reopened ? Issue.StateOpen : Issue.StateClosed
         onSubscribedTo: if (nodeId === issue.nodeId) issue.viewerSubscription = state
         onCommentAdded: refresh()
         onCommentDeleted: refresh()
+        onLocked: if (nodeId === issue.nodeId) issue.locked = locked
     }
 
     function getComments() {

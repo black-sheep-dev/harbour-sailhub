@@ -11,9 +11,11 @@
 #include "graphqlconnector.h"
 #include "restapiconnector.h"
 
+#include "src/enums/enums.h"
 #include "src/entities/user.h"
 #include "src/entities/profilestatus.h"
 #include "src/models/commentsmodel.h"
+#include "src/models/commitsmodel.h"
 #include "src/models/discussionsmodel.h"
 #include "src/models/discussioncategoriesmodel.h"
 #include "src/models/discussioncommentsmodel.h"
@@ -85,6 +87,7 @@ public:
         GetReleases,
         GetReleaseAssets,
         GetRepo,
+        Lock,
         MarkDiscussionCommentAsAnswer,
         MergePullRequest,
         RemoveReaction,
@@ -93,6 +96,7 @@ public:
         ReopenPullRequest,
         UnassignUser,
         UnfollowUser,
+        Unlock,
         UnmarkDiscussionCommentAsAnswer,
         UpdateComment,
         UpdateDiscussionComment,
@@ -142,6 +146,7 @@ public:
     Q_INVOKABLE void getRepo(const QString &nodeId);
     Q_INVOKABLE void getUser(const QString &nodeId);
     Q_INVOKABLE void getUserByLogin(const QString &login);
+    Q_INVOKABLE void lock(const QString &nodeId, quint8 reason = LockReason::Unknown);
     Q_INVOKABLE void markDiscussionCommetAsAnswer(const QString &nodeId, bool answer = true);
     Q_INVOKABLE void removeReaction(const QString &nodeId, quint8 reaction);
     Q_INVOKABLE void removeStar(const QString &nodeId);
@@ -149,6 +154,7 @@ public:
     Q_INVOKABLE void reopenPullRequest(const QString &nodeId);
     Q_INVOKABLE void subscribeTo(const QString &nodeId, quint8 state);
     Q_INVOKABLE void unassignUser(const QString &nodeId, const QString &userId);
+    Q_INVOKABLE void unlock(const QString &nodeId);
     Q_INVOKABLE void updateComment(Comment *comment);
     Q_INVOKABLE void updateDiscussion(Discussion *discussion);
     Q_INVOKABLE void updateDiscussionComment(DiscussionComment *comment);
@@ -183,16 +189,17 @@ signals:
     void fileContentAvailable(const QString &content);
     void gistAvailable(Gist *gist);
     void issueAvailable(Issue *issue);
-    void issueClosed(bool closed = true);
+    void issueClosed(const QString &nodeId, bool closed = true);
     void issueCreated(bool created = true);
     void issueDeleted(bool deleted = true);
-    void issueReopened(bool reopend = true);
+    void issueReopened(const QString &nodeId, bool reopened = true);
+    void locked(const QString &nodeId, bool locked = true);
     void notificationsAvailable(const QList<NotificationListItem> &notifications);
     void organizationAvailable(Organization *organization);
     void profileStatusAvailable(ProfileStatus *status);
     void pullRequestAvailable(PullRequest *request);
-    void pullRequestClosed(bool reopend = true);
-    void pullRequestReopened(bool reopend = true);
+    void pullRequestClosed(const QString &nodeId, bool closed = true);
+    void pullRequestReopened(const QString &nodeId, bool reopened = true);
     void releaseAvailable(Release *release);
     void repoAvailable(Repo *repo);
     void starred(const QString &nodeId, bool starred);
@@ -217,6 +224,7 @@ private slots:
     void parseRestData(const QJsonDocument &doc, quint8 requestType, const QByteArray &requestId);
 
 private:
+    QByteArray getNodeRequestId(const QString &nodeId);
     void initialize();
     void parseFileContent(const QJsonObject &obj);
     void parseNotificationsModel(const QJsonArray &array, const QByteArray &requestId);
@@ -229,8 +237,8 @@ private:
 
     QNetworkAccessManager *m_manager{new QNetworkAccessManager(this)};
     QHash<QByteArray, BaseModel *> m_modelRequests;
+    QHash<QByteArray, QString> m_nodeRequests;
     QHash<QByteArray, NotificationsModel *> m_notificationsModelRequests;
-
 
     // properties
     quint8 m_paginationCount{20};

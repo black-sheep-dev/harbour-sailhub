@@ -28,6 +28,7 @@ class Issue : public Interactable
     Q_PROPERTY(quint32 assigneeCount READ assigneeCount WRITE setAssigneeCount NOTIFY assigneeCountChanged)
     Q_PROPERTY(quint32 commentCount READ commentCount WRITE setCommentCount NOTIFY commentCountChanged)
     Q_PROPERTY(quint32 labelCount READ labelCount WRITE setLabelCount NOTIFY labelCountChanged)
+    Q_PROPERTY(bool locked READ locked WRITE setLocked NOTIFY lockedChanged)
     Q_PROPERTY(quint32 number READ number WRITE setNumber NOTIFY numberChanged)
     Q_PROPERTY(quint32 participantCount READ participantCount WRITE setParticipantCount NOTIFY participantCountChanged)
     Q_PROPERTY(QString repository READ repository WRITE setRepository NOTIFY repositoryChanged)
@@ -64,6 +65,7 @@ public:
     quint32 commentCount() const;
     bool edited() const;
     quint32 labelCount() const;
+    bool locked() const;
     quint32 number() const;
     quint32 participantCount() const;
     QString repository() const;
@@ -87,11 +89,14 @@ signals:
     void titleChanged(const QString &title); 
     void viewerSubscriptionChanged(quint8 subscription);
 
+    void lockedChanged(bool locked);
+
 public slots:
     // properties
     void setAssigneeCount(quint32 count);
     void setCommentCount(quint32 count);
     void setLabelCount(quint32 count);
+    void setLocked(bool locked);
     void setNumber(quint32 number);
     void setParticipantCount(quint32 count);
     void setRepository(const QString &repository);
@@ -106,6 +111,7 @@ private:
     quint32 m_assigneeCount{0};
     quint32 m_commentCount{0};
     quint32 m_labelCount{0};
+    bool m_locked{false};
     quint32 m_number{0};
     quint32 m_participantCount{0};
     QString m_repository;
@@ -114,6 +120,7 @@ private:
     quint8 m_states{StateUnknown};
     QString m_title;
     quint8 m_viewerSubscription{0};
+
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(Issue::IssueStates)
 

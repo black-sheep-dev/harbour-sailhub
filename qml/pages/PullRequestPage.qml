@@ -5,7 +5,8 @@ import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
 import "../delegates/"
-import "../tools"
+import "../tools/"
+import '..'
 
 Page {
     property bool busy: false
@@ -158,18 +159,39 @@ Page {
                 width: parent.width - 2*x
                 spacing: Theme.paddingMedium
 
-                Icon {
-                    id: closedIcon
-                    source: (request.states & PullRequest.StateClosed) ? "image://theme/icon-s-installed?00ff00" : "image://theme/icon-s-high-importance?#ff0000"
+                Pill {
+                    anchors.verticalCenter: parent.verticalCenter
+                    icon: request.states === PullRequest.StateMerged ? "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
+                    text: {
+                        if (request.states === PullRequest.StateOpen) return qsTr("Open")
+                        if (request.states === PullRequest.StateMerged) return qsTr("Merged")
+                        if (request.states === PullRequest.StateClosed) return qsTr("Closed")
+                    }
+
+                    backgroundColor: {
+                        if (request.states === PullRequest.StateOpen) return SailHubStyles.colorStatusOpen
+                        if (request.states === PullRequest.StateMerged) return SailHubStyles.colorStatusMerged
+                        if (request.states === PullRequest.StateClosed) return SailHubStyles.colorStatusClosed
+                    }
+
                 }
 
-                Label {
-                    width: parent.width - closedIcon.width - parent.spacing
-                    anchors.verticalCenter: closedIcon.verticalCenter
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: Theme.highlightColor
+                Pill {
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: request.headRefName
+                }
 
-                    text: (request.states & PullRequest.StateClosed) ? qsTr("Closed") : qsTr("Open")
+                Icon {
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: Theme.iconSizeSmall
+                    height: width
+                    source: "image://theme/icon-m-forward"
+
+                }
+
+                Pill {
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: request.baseRefName
                 }
             }
 
@@ -187,8 +209,10 @@ Page {
 
             ReactionsItem {
                 node: request
+                locked: request.locked
 
                 onClicked: {
+                    if (request.locked) return
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ReactionDialog.qml"), {
                                                     reactions: request.viewerReactions
                                                 })
@@ -204,6 +228,33 @@ Page {
                         request.updateReactionCount(dialog.reactions)
                         request.viewerReactions = dialog.reactions
                     })
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("Changes")
+            }
+
+            FilesChangedItem {
+                width: parent.width
+
+                additions: request.additions
+                deletions: request.deletions
+                files:  request.changedFiles
+            }
+
+            RelatedValueItem {
+                label: qsTr("Commits")
+                icon: "qrc:/icons/icon-m-commit"
+                value: request.commitCount
+
+                onClicked: {
+                    if (request.commitCount === 0) return;
+
+                    pageStack.push(Qt.resolvedUrl("CommitsListPage.qml"), {
+                                              identifier: request.nodeId,
+                                              type: Commit.PullRequest
+                                          })
                 }
             }
 
@@ -242,6 +293,23 @@ Page {
                                               permission: request.repositoryPermission
                                           })
             }
+
+//            RelatedValueItem {
+//                label: qsTr("Reviewers")
+//                icon: "image://theme/icon-m-media-artists"
+//                value: request.participantCount
+
+//                onClicked: {
+//                    if (request.participantCount === 0) return;
+
+//                    pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
+//                                              title: qsTr("Reviewers"),
+//                                              description: request.repository + " #" + request.number,
+//                                              identifier: request.nodeId,
+//                                              userType: User.PullRequestReviewers
+//                                          })
+//                }
+//            }
 
             RelatedValueItem {
                 label: qsTr("Participants")
@@ -290,6 +358,18 @@ Page {
             }
 
             MenuItem {
+                visible: request.viewerAbilities & Viewer.CanUpdate
+                text: request.locked ? qsTr("Unlock") : qsTr("Lock")
+                onClicked: remorse.execute(request.locked ? qsTr("Unlocking") : qsTr("Locking"), function() {
+                    if (request.locked) {
+                        SailHub.api().unlock(request.nodeId)
+                    } else {
+                        SailHub.api().lock(request.nodeId)
+                    }
+                })
+            }
+
+            MenuItem {
                 visible: commentsModel.hasNextPage
                 text: qsTr("Load more (%n to go)", "", commentsModel.totalCount - commentsColumn.children.length)
                 onClicked: getComments()
@@ -305,11 +385,12 @@ Page {
             page.request = request;
             refresh()
         }
-        onPullRequestClosed: pageStack.navigateBack()
-        onPullRequestReopened: request.setStates(PullRequest.StateOpen)
+        onPullRequestClosed: if (nodeId === request.nodeId) request.states = closed ? PullRequest.StateClosed : PullRequest.StateOpen
+        onPullRequestReopened: if (nodeId === request.nodeId) request.states = reopened ? PullRequest.StateOpen : PullRequest.StateClosed
         onSubscribedTo: if (nodeId === request.nodeId) request.viewerSubscription = state
         onCommentAdded: refresh()
         onCommentDeleted: refresh()
+        onLocked: if (nodeId === request.nodeId) request.locked = locked
     }
 
     function getComments() {

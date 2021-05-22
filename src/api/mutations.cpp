@@ -155,6 +155,30 @@ const QString Mutation::UPDATE_ISSUE =
                        "}").arg(SAILHUB_QUERY_ITEM_ISSUE_LIST_ITEM).simplified();
 
 // ----------------------------------------------------------------------------------------------------------------------
+// lockable
+// ----------------------------------------------------------------------------------------------------------------------
+
+const QString Mutation::LOCK_LOCKABLE =
+        QStringLiteral("mutation($input: LockLockableInput!) {"
+                       "    lockLockable(input: $input) {"
+                       "        clientMutationId"
+                       "        lockedRecord {"
+                       "            locked"
+                       "        }"
+                       "    }"
+                       "}").simplified();
+
+const QString Mutation::UNLOCK_LOCKABLE =
+        QStringLiteral("mutation($input: UnlockLockableInput!) {"
+                       "    unlockLockable(input: $input) {"
+                       "        clientMutationId"
+                       "        unlockedRecord {"
+                       "            locked"
+                       "        }"
+                       "    }"
+                       "}").simplified();
+
+// ----------------------------------------------------------------------------------------------------------------------
 // pull request
 // ----------------------------------------------------------------------------------------------------------------------
 
