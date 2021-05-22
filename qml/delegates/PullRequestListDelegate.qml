@@ -71,36 +71,16 @@ ListItem {
                     }
                 }
 
-                Label {
-                    width: parent.width
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    font.bold: true
-
-                    text: model.title
-                }
-
-                Item {
-                    width: 1
-                    height: parent.spacing
-                }
-
                 Row {
                     width: parent.width
                     spacing: Theme.paddingSmall
 
-                    Icon {
-                        id: dateIcon
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "image://theme/icon-s-date"
-                    }
-
                     Label {
-                        width: parent.width - dateIcon.width - commentIcon.width - commentsLabel.width - 3 * parent.spacing
-                        anchors.verticalCenter: commentIcon.verticalCenter
-                        font.pixelSize: Theme.fontSizeTiny
-                        color: pressed ? Theme.highlightColor : Theme.primaryColor
+                        width: parent.width - commentIcon.width - commentsLabel.width - 2*parent.spacing
+                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                        font.bold: true
 
-                        text: model.createdAt.toLocaleDateString(Qt.locale())
+                        text: model.title
                     }
 
                     Icon {

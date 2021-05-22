@@ -298,7 +298,7 @@ QVariant IssuesModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    const auto issue = m_issues.at(index.row());
+    const auto &issue = m_issues[index.row()];
 
     switch (role) {
     case ClosedRole:

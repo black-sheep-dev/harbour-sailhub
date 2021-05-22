@@ -6,6 +6,24 @@
 // ------------------------------------------------------------------------------------------------------------------
 // QUERY ITEMS
 // ------------------------------------------------------------------------------------------------------------------
+static const QString SAILHUB_QUERY_ITEM_COMMIT_LIST_ITEM =
+        QStringLiteral("    id"
+                       "    author {"
+                       "        date"
+                       "        user {"
+                       "            avatarUrl"
+                       "            login"
+                       "        }"
+                       "    }"
+                       "    committer {"
+                       "        date"
+                       "        user {"
+                       "            avatarUrl"
+                       "            login"
+                       "        }"
+                       "    }"
+                       "    messageHeadline").simplified();
+
 static const QString SAILHUB_QUERY_ITEM_DISCUSSION_LIST_ITEM =
         QStringLiteral("    id"
                        "    activeLockReason"

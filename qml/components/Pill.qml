@@ -5,7 +5,7 @@ Item {
     property alias backgroundColor: background.color
     property alias color: textLabel.color
     property alias text: textLabel.text
-    property alias icon: pillIcon.source
+    property string icon
     property alias showIcon: pillIcon.visible
 
     id: iconLabel
@@ -27,9 +27,11 @@ Item {
 
         Image {
             id: pillIcon
+            visible: icon.length > 0
             anchors.verticalCenter: parent.verticalCenter
             width: Theme.iconSizeExtraSmall
             height: Theme.iconSizeExtraSmall
+            source: icon
         }
 
         Label {

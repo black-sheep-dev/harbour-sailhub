@@ -30,6 +30,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 
 - Assignee (Issue / Pull Request) [*CRUD*]
 - Comment (Issue / Pull Request) [*CRUD*]
+- Commits (Pull Requests) [*R*]
 - File content [*R*]
 - Gists [*R*]
 - Issue [*CRUD*] + close / reopen

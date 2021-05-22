@@ -12,6 +12,8 @@
         <file alias="icon-m-tag">icons/scalable/icon-m-tag.svg</file>
         <file alias="icon-m-issue">icons/scalable/icon-m-issue.svg</file>
         <file alias="icon-m-heart">icons/scalable/icon-m-heart.svg</file>
+        <file alias="icon-m-commit">icons/scalable/icon-m-commit.svg</file>
+        <file alias="icon-m-files-changed">icons/scalable/icon-m-files-changed.svg</file>
     </qresource>
     <qresource prefix="/cover">
         <file alias="cover-background">icons/cover-background.svg</file>
