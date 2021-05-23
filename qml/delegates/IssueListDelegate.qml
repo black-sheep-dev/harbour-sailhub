@@ -4,8 +4,7 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
-import ".."
-import "../js/stringhelper.js" as StringHelper
+import '..'
 
 ListItem {
     id: delegate

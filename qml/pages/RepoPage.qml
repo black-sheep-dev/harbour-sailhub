@@ -5,7 +5,7 @@ import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
 import "../tools"
-import "../js/stringhelper.js" as StringHelper
+import '..'
 
 Page {
     property bool busy: false
