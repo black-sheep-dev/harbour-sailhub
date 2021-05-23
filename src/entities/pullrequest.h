@@ -83,7 +83,6 @@ signals:
     void deletionsChanged(quint32 deletions);
     void headRefNameChanged(const QString &name);
     void isCrossRepositoryChanged(bool isCrossRepository);
-    void lockedChanged(bool locked);
     void maintainerCanModifyChanged(bool maintainerCanModify);
     void mergeStateStatusChanged(quint8 mergeStateStatus);
     void mergeableChanged(bool mergeable);
