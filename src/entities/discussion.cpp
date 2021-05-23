@@ -1,5 +1,33 @@
 #include "discussion.h"
 
+#include "src/api/datautils.h"
+#include "src/api/keys.h"
+#include "src/enums/lockreason.h"
+
+// List Item
+DiscussionListItem::DiscussionListItem(const QJsonObject &obj) :
+    NodeListItem(obj)
+{
+    const QJsonObject cat = obj.value(ApiKey::CATEGORY).toObject();
+    category = cat.value(ApiKey::NAME).toString();
+    emoji = DataUtils::getEmojiLinkFromString(cat.value(ApiKey::EMOJI_HTML).toString());
+
+    commentCount = DataUtils::getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
+    locked = obj.value(ApiKey::LOCKED).toBool();
+    lockReason = LockReason::fromString(obj.value(ApiKey::ACTIVE_LOCK_REASON).toString());
+    title = obj.value(ApiKey::TITLE).toString();
+
+    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    createdAtTimeSpan = DataUtils::timeSpanText(createdAt, true);
+    updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    updatedAtTimeSpan = DataUtils::timeSpanText(updatedAt, true);
+
+    const QJsonObject author = obj.value(ApiKey::AUTHOR).toObject();
+    authorLogin = author.value(ApiKey::LOGIN).toString();
+    authorAvatar = author.value(ApiKey::AVATAR_URL).toString();
+}
+
+// Object
 Discussion::Discussion(QObject *parent) :
     Interactable(parent)
 {

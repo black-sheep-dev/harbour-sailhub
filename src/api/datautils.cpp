@@ -58,41 +58,6 @@ QList<Comment *> DataUtils::commentsFromJson(const QJsonObject &obj)
     return comments;
 }
 
-CommitListItem DataUtils::commitListItemFromJson(const QJsonObject &obj)
-{
-    const QJsonObject commit = obj.value(ApiKey::COMMIT).toObject();
-
-    CommitListItem item;
-
-    item.nodeId = commit.value(ApiKey::ID).toString();
-
-    const QJsonObject author = commit.value(ApiKey::COMMITTER).toObject().value(ApiKey::USER).toObject();
-
-    item.authorAvatar = author.value(ApiKey::AVATAR_URL).toString();
-    item.authorLogin = author.value(ApiKey::LOGIN).toString();
-    item.messageHeadline = commit.value(ApiKey::MESSAGE_HEADLINE).toString();
-    item.pushedAtTimeSpan = timeSpanText(QDateTime::fromString(commit.value(ApiKey::COMMITTER).toObject().value(ApiKey::DATE).toString(), Qt::ISODate), true);
-
-    return item;
-}
-
-QList<CommitListItem> DataUtils::commitsFromJson(const QJsonObject &obj)
-{
-    QList<CommitListItem> commits;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject commit = node.toObject();
-        if (commit.isEmpty())
-            continue;
-
-        commits.append(commitListItemFromJson(commit));
-    }
-
-    return commits;
-}
-
 Discussion *DataUtils::discussionFromJson(const QJsonObject &obj, Discussion *discussion)
 {
     if (discussion == nullptr)
@@ -128,81 +93,6 @@ Discussion *DataUtils::discussionFromJson(const QJsonObject &obj, Discussion *di
     getInteractable(obj, discussion);
 
     return discussion;
-}
-
-DiscussionListItem DataUtils::discussionListItemFromJson(const QJsonObject &obj)
-{
-    DiscussionListItem item;
-
-    item.nodeId = obj.value(ApiKey::ID).toString();
-
-    const QJsonObject category = obj.value(ApiKey::CATEGORY).toObject();
-    item.category = category.value(ApiKey::NAME).toString();
-    item.emoji = getEmojiLinkFromString(category.value(ApiKey::EMOJI_HTML).toString());
-
-    item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
-    item.locked = obj.value(ApiKey::LOCKED).toBool();
-    item.lockReason = LockReason::fromString(obj.value(ApiKey::ACTIVE_LOCK_REASON).toString());
-    item.title = obj.value(ApiKey::TITLE).toString();
-
-    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-    item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
-    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
-    item.updatedAtTimeSpan = timeSpanText(item.updatedAt, true);
-    item.viewerAbilities = getViewerAbilities(obj);
-
-    const QJsonObject author = obj.value(ApiKey::AUTHOR).toObject();
-
-    item.authorLogin = author.value(ApiKey::LOGIN).toString();
-    item.authorAvatar = author.value(ApiKey::AVATAR_URL).toString();
-
-    return item;
-}
-
-QList<DiscussionListItem> DataUtils::discussionsFromJson(const QJsonObject &obj)
-{
-    QList<DiscussionListItem> discussions;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject discussion = node.toObject();
-        if (discussion.isEmpty())
-            continue;
-
-        discussions.append(discussionListItemFromJson(discussion));
-    }
-
-    return discussions;
-}
-
-DiscussionCategoryListItem DataUtils::discussionCategoryListItemFromJson(const QJsonObject &obj)
-{
-    DiscussionCategoryListItem item;
-
-    item.nodeId = obj.value(ApiKey::ID).toString();
-    item.emoji = getEmojiLinkFromString(obj.value(ApiKey::EMOJI_HTML).toString());
-    item.description = obj.value(ApiKey::DESCRIPTION).toString();
-    item.name = obj.value(ApiKey::NAME).toString();
-
-    return item;
-}
-
-QList<DiscussionCategoryListItem> DataUtils::discussionCategoriesFromJson(const QJsonObject &obj)
-{
-    QList<DiscussionCategoryListItem> categories;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject category = node.toObject();
-        if (category.isEmpty())
-            continue;
-
-        categories.append(discussionCategoryListItemFromJson(category));
-    }
-
-    return categories;
 }
 
 DiscussionComment *DataUtils::discussionCommentFromJson(const QJsonObject &obj)
@@ -271,47 +161,6 @@ Gist *DataUtils::gistFromJson(const QJsonObject &obj, Gist *gist)
     return gist;
 }
 
-GistListItem DataUtils::gistListItemFromJson(const QJsonObject &obj)
-{
-    GistListItem item;
-
-    item.nodeId = obj.value(ApiKey::ID).toString();
-
-    item.description = obj.value(ApiKey::DESCRIPTION).toString();
-    item.isPublic = obj.value(ApiKey::IS_PUBLIC).toBool();
-    item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
-    item.fileCount = getTotalCount(obj.value(ApiKey::FILES).toObject());
-    item.forkCount = getTotalCount(obj.value(ApiKey::FORKS).toObject());
-    item.stargazerCount = obj.value(ApiKey::STARGAZER_COUNT).toInt();
-    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-    item.pushedAt = QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
-    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
-
-    const QJsonObject owner = obj.value(ApiKey::OWNER).toObject();
-
-    item.ownerLogin = owner.value(ApiKey::LOGIN).toString();
-    item.ownerAvatar = owner.value(ApiKey::AVATAR_URL).toString();
-
-    return item;
-}
-
-QList<GistListItem> DataUtils::gistsFromJson(const QJsonObject &obj)
-{
-    QList<GistListItem> gists;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject gist = node.toObject();
-        if (gist.isEmpty())
-            continue;
-
-        gists.append(gistListItemFromJson(gist));
-    }
-
-    return gists;
-}
-
 Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
 {
     if (issue == nullptr)
@@ -326,14 +175,8 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
     const QJsonObject repo = obj.value(ApiKey::REPOSITORY).toObject();
     issue->setRepository(repo.value(ApiKey::NAME_WITH_OWNER).toString());
     issue->setRepositoryId(repo.value(ApiKey::ID).toString());
-    issue->setRepositoryPermission(getViewerPermission(repo.value(ApiKey::VIEWER_PERMISSION).toString()));
-
-    const QString state = obj.value(ApiKey::STATE).toString();
-    if (state == QLatin1Literal("OPEN"))
-        issue->setStates(Issue::StateOpen);
-    else if (state == QLatin1Literal("CLOSED"))
-        issue->setStates(Issue::StateClosed);
-
+    issue->setRepositoryPermission(RepositoryPermission::fromString(repo.value(ApiKey::VIEWER_PERMISSION).toString()));
+    issue->setState(IssueState::fromString(obj.value(ApiKey::STATE).toString()));
     issue->setCommentCount(getTotalCount(obj.value(ApiKey::COMMENTS).toObject()));
     issue->setEdited(issue->updatedAt() > issue->createdAt());
     issue->setLabelCount(getTotalCount(obj.value(ApiKey::LABELS).toObject()));
@@ -348,77 +191,6 @@ Issue *DataUtils::issueFromJson(const QJsonObject &obj, Issue *issue)
     issue->setViewerSubscription(SubscriptionState::fromString(obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
 
     return issue;
-}
-
-IssueListItem DataUtils::issueListItemFromJson(const QJsonObject &obj)
-{
-    IssueListItem item;
-
-    item.nodeId = obj.value(ApiKey::ID).toString();
-    item.closed = obj.value(ApiKey::CLOSED).toBool();
-    item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
-    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-    item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
-    item.number = obj.value(ApiKey::NUMBER).toInt();
-    item.repository = obj.value(ApiKey::REPOSITORY).toObject()
-                         .value(ApiKey::NAME_WITH_OWNER).toString();
-
-    const QString state = obj.value(ApiKey::STATE).toString();
-    if (state == QLatin1Literal("OPEN"))
-        item.state = Issue::StateOpen;
-    else if (state == QLatin1Literal("CLOSED"))
-        item.state = Issue::StateClosed;
-
-    item.title = obj.value(ApiKey::TITLE).toString();
-    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
-    item.updatedAtTimeSpan = timeSpanText(item.updatedAt, true);
-
-    return item;
-}
-
-QList<IssueListItem> DataUtils::issuesFromJson(const QJsonObject &obj)
-{
-    QList<IssueListItem> issues;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject issue = node.toObject();
-        if (issue.isEmpty())
-            continue;
-
-        issues.append(issueListItemFromJson(issue));
-    }
-
-    return issues;
-}
-
-LabelListItem DataUtils::labelListItemFromJson(const QJsonObject &obj)
-{
-    LabelListItem item;
-
-    item.color = obj.value(ApiKey::COLOR).toString();
-    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-    item.name = obj.value(ApiKey::NAME).toString();
-
-    return item;
-}
-
-QList<LabelListItem> DataUtils::labelsFromJson(const QJsonObject &obj)
-{
-    QList<LabelListItem> items;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject label = node.toObject();
-        if (label.isEmpty())
-            continue;
-
-        items.append(labelListItemFromJson(label));
-    }
-
-    return items;
 }
 
 QList<NotificationListItem> DataUtils::notificationsFromJson(const QJsonArray &array)
@@ -524,36 +296,6 @@ Organization *DataUtils::organizationFromJson(const QJsonObject &obj, Organizati
     return organization;
 }
 
-OrganizationListItem DataUtils::organizationListItemFromJson(const QJsonObject &obj)
-{
-    OrganizationListItem item;
-
-    item.avatarUrl = obj.value(ApiKey::AVATAR_URL).toString();
-    item.description = obj.value(ApiKey::DESCRIPTION).toString();
-    item.login = obj.value(ApiKey::LOGIN).toString();
-    item.name = obj.value(ApiKey::NAME).toString();
-    item.nodeId = obj.value(ApiKey::ID).toString();
-
-    return item;
-}
-
-QList<OrganizationListItem> DataUtils::organizationsFromJson(const QJsonObject &obj)
-{
-    QList<OrganizationListItem>  organizations;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject organization = node.toObject();
-        if (organization.isEmpty())
-            continue;
-
-        organizations.append(organizationListItemFromJson(organization));
-    }
-
-    return organizations;
-}
-
 Owner *DataUtils::ownerFromJson(const QJsonObject &obj)
 {
     auto owner = new Owner;
@@ -637,61 +379,9 @@ PullRequest *DataUtils::pullRequestFromJson(const QJsonObject &obj)
     request->setMergeable(obj.value(ApiKey::MERGEABLE).toBool());
     request->setMergedAt(QDateTime::fromString(obj.value(ApiKey::MERGED_AT).toString(), Qt::ISODate));
     request->setMergedBy(ownerFromJson(obj.value(ApiKey::MERGEG_BY).toObject()));
-
-    const QString state = obj.value(ApiKey::STATE).toString();
-    if (state == QLatin1Literal("OPEN"))
-        request->setStates(PullRequest::StateOpen);
-    else if (state == QLatin1Literal("CLOSED"))
-        request->setStates(PullRequest::StateClosed);
-    else if (state == QLatin1Literal("MERGED"))
-        request->setStates(PullRequest::StateMerged);
+    request->setState(PullRequestState::fromString(obj.value(ApiKey::STATE).toString()));
 
     return request;
-}
-
-QList<PullRequestListItem> DataUtils::pullRequestsFromJson(const QJsonObject &obj)
-{
-    QList<PullRequestListItem>  prs;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject pr = node.toObject();
-        if (pr.isEmpty())
-            continue;
-
-        prs.append(pullRequestListItemFromJson(pr));
-    }
-
-    return prs;
-}
-
-PullRequestListItem DataUtils::pullRequestListItemFromJson(const QJsonObject &obj)
-{
-    PullRequestListItem item;
-
-    item.nodeId = obj.value(ApiKey::ID).toString();
-    item.commentCount = getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
-    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-    item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
-    item.number = quint32(obj.value(ApiKey::NUMBER).toInt());
-    item.repository = obj.value(ApiKey::REPOSITORY).toObject()
-            .value(ApiKey::NAME_WITH_OWNER).toString();
-
-    const QString state = obj.value(ApiKey::STATE).toString();
-    if (state == QLatin1Literal("OPEN"))
-        item.state = PullRequest::StateOpen;
-    else if (state == QLatin1Literal("CLOSED"))
-        item.state = PullRequest::StateClosed;
-    else if (state == QLatin1Literal("MERGED"))
-        item.state = PullRequest::StateMerged;
-
-    item.timeSpan = timeSpanText(item.createdAt, true);
-    item.title = obj.value(ApiKey::TITLE).toString();
-    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
-    item.updatedAtTimeSpan = timeSpanText(item.updatedAt, true);
-
-    return item;
 }
 
 Release *DataUtils::releaseFromJson(const QJsonObject &obj)
@@ -726,65 +416,6 @@ Release *DataUtils::releaseFromJson(const QJsonObject &obj)
 
 
     return release;
-}
-
-ReleaseListItem DataUtils::releaseListItemFromJson(const QJsonObject &obj)
-{
-    ReleaseListItem item;
-
-    item.nodeId = obj.value(ApiKey::ID).toString();
-    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-    item.createdAtTimeSpan = timeSpanText(item.createdAt, true);
-    item.name = obj.value(ApiKey::NAME).toString();
-    item.isDraft = obj.value(ApiKey::IS_DRAFT).toBool();
-    item.isLatest = obj.value(ApiKey::IS_LATEST).toBool();
-    item.isPrerelease = obj.value(ApiKey::IS_PRERELEASE).toBool();
-
-    return item;
-}
-
-QList<ReleaseListItem> DataUtils::releasesFromJson(const QJsonObject &obj)
-{
-    QList<ReleaseListItem>  releases;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject release = node.toObject();
-        if (release.isEmpty())
-            continue;
-
-        releases.append(releaseListItemFromJson(release));
-    }
-
-    return releases;
-}
-
-QList<ReleaseAssetListItem> DataUtils::releaseAssetsFromJson(const QJsonObject &obj)
-{
-    QList<ReleaseAssetListItem>  assets;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject asset = node.toObject();
-        if (asset.isEmpty())
-            continue;
-
-        ReleaseAssetListItem item;
-
-        item.contentType = asset.value(ApiKey::CONTENT_TYPE).toString();
-        item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-        item.downloadCount = asset.value(ApiKey::DOWNLOAD_COUNT).toInt();
-        item.downloadUrl = asset.value(ApiKey::DOWNLOAD_URL).toString();
-        item.name = asset.value(ApiKey::NAME).toString();
-        item.size = asset.value(ApiKey::SIZE).toInt();
-        item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
-
-        assets.append(item);
-    }
-
-    return assets;
 }
 
 Repo *DataUtils::repoFromJson(const QJsonObject &obj)
@@ -860,55 +491,12 @@ Repo *DataUtils::repoFromJson(const QJsonObject &obj)
     repo->setViewerAbilities(getViewerAbilities(obj));
 
     // permisson
-    repo->setViewerPermission(getViewerPermission(obj.value(ApiKey::VIEWER_PERMISSION).toString()));
+    repo->setViewerPermission(RepositoryPermission::fromString(obj.value(ApiKey::VIEWER_PERMISSION).toString()));
 
     // subscription
     repo->setViewerSubscription(SubscriptionState::fromString(obj.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
 
     return repo;
-}
-
-QList<RepoListItem> DataUtils::reposFromJson(const QJsonObject &obj)
-{
-    QList<RepoListItem>  repos;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject repo = node.toObject();
-        if (repo.isEmpty())
-            continue;
-
-        repos.append(repoListItemFromJson(repo));
-    }
-
-    return repos;
-}
-
-
-RepoListItem DataUtils::repoListItemFromJson(const QJsonObject &obj)
-{
-    RepoListItem item;
-
-    item.createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-    item.description = removeEmojiTags(obj.value(ApiKey::SHORT_DESCRIPTION_HTML).toString());
-    item.flags = getRepoFlags(obj);
-    item.lockReason = RepositoryLockReason::fromString(obj.value(ApiKey::LOCK_REASON).toString());
-    item.name = obj.value(ApiKey::NAME).toString();
-    item.nodeId = obj.value(ApiKey::ID).toString();
-    item.ownerAvatar = obj.value(ApiKey::OWNER).toObject()
-                 .value(ApiKey::AVATAR_URL).toString();
-    item.ownerLogin = obj.value(ApiKey::OWNER).toObject()
-                 .value(ApiKey::LOGIN).toString();
-    item.pushedAt = QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
-    item.stargazerCount = quint32(obj.value(ApiKey::STARGAZER_COUNT).toInt());
-
-    const QJsonObject lang = obj.value(ApiKey::PRIMARY_LANGUAGE).toObject();
-    item.language.name = lang.value(ApiKey::NAME).toString();
-    item.language.color = lang.value(ApiKey::COLOR).toString();
-    item.updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
-
-    return item;
 }
 
 QList<TreeItemListItem> DataUtils::treeListItemsFromJson(const QJsonObject &obj)
@@ -1019,63 +607,6 @@ User *DataUtils::userFromJson(const QJsonObject &obj, User *user)
     return user;
 }
 
-UserListItem DataUtils::userListItemFromJson(const QJsonObject &obj)
-{
-    UserListItem item;
-
-    item.avatarUrl = obj.value(ApiKey::AVATAR_URL).toString();
-    item.login = obj.value(ApiKey::LOGIN).toString();
-    item.name = obj.value(ApiKey::NAME).toString();
-    item.nodeId = obj.value(ApiKey::ID).toString();
-
-    return item;
-}
-
-QList<UserListItem> DataUtils::usersFromJson(const QJsonObject &obj)
-{
-    QList<UserListItem>  users;
-
-    const QJsonArray nodes = getNodes(obj);
-
-    for (const auto &node : nodes) {
-        const QJsonObject user = node.toObject();
-        if (user.isEmpty())
-            continue;
-
-        users.append(userListItemFromJson(user));
-    }
-
-    return users;
-}
-
-QString DataUtils::timeSpanText(const QDateTime &start, bool shortText)
-{
-    const QDateTime now = QDateTime::currentDateTimeUtc();
-
-    if (start.addSecs(3600) > now) {
-        const quint64 minutes = start.secsTo(now) / 60;
-        return shortText ? QStringLiteral("%1m").arg(minutes) : QObject::tr("%n minute(s) ago", "", minutes);
-    }
-
-    if (start.addSecs(86400) > now) {
-        const quint64 hours = start.secsTo(now) / 3600;
-        return shortText ? QStringLiteral("%1h").arg(hours) : QObject::tr("%n hour(s) ago", "", hours);
-    }
-
-    if (start.addMonths(1) > now) {
-        const quint64 days = start.daysTo(now);
-        return shortText ? QStringLiteral("%1d").arg(days) : QObject::tr("%n day(s) ago", "", days);
-    }
-
-    if (start.addMonths(12) > now ) {
-        const quint64 months = start.daysTo(now) / 30;
-        return shortText ? QStringLiteral("%1mo").arg(months) : QObject::tr("%n month(s) ago", "", months);
-    }
-
-    const quint64 years = start.daysTo(now) / 365;
-    return shortText ? QStringLiteral("%1y").arg(years) : QObject::tr("%n year(s) ago", "", years);
-}
-
 QString DataUtils::getEmojiLinkFromString(const QString &string)
 {
     QRegularExpression re(QStringLiteral("(?<=unicode\\/)(.*)(?=\">)"));
@@ -1085,17 +616,6 @@ QString DataUtils::getEmojiLinkFromString(const QString &string)
         return QString();
 
     return QStringLiteral("/usr/share/harbour-twemoji/72x72/") + match.captured(0);
-}
-
-QString DataUtils::getLinkFromString(const QString &string)
-{
-    QRegularExpression re(QStringLiteral("(https):\\/\\/([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])?"));
-    QRegularExpressionMatch match = re.match(string);
-
-    if (!match.hasMatch())
-        return QString();
-
-    return match.captured(0);
 }
 
 quint16 DataUtils::getRepoFlags(const QJsonObject &obj)
@@ -1141,25 +661,9 @@ quint16 DataUtils::getRepoFlags(const QJsonObject &obj)
     return flags;
 }
 
-quint8 DataUtils::getViewerPermission(const QString &permission)
+quint32 DataUtils::getTotalCount(const QJsonObject &obj)
 {
-    if (permission == QLatin1String("ADMIN"))
-        return Repo::PermissionAdmin;
-
-    if (permission == QLatin1String("MAINTAIN"))
-        return Repo::PermissionMaintain;
-
-    if (permission == QLatin1String("READ"))
-        return Repo::PermissionRead;
-
-    if (permission == QLatin1String("TRIAGE"))
-        return Repo::PermissionTriage;
-
-    if (permission == QLatin1String("WRITE"))
-        return Repo::PermissionWrite;
-
-
-    return Repo::PermissionNone;
+    return quint32(obj.value(ApiKey::TOTAL_COUNT).toInt());
 }
 
 quint32 DataUtils::getViewerAbilities(const QJsonObject &obj)
@@ -1209,6 +713,57 @@ quint32 DataUtils::getViewerAbilities(const QJsonObject &obj)
         abilities |= Viewer::CanUnmarkAsAnswer;
 
     return abilities;
+}
+
+QString DataUtils::removeEmojiTags(const QString &text)
+{
+    QString out = text;
+
+    QRegularExpression re(QStringLiteral("<g-emoji(.*)\">"));
+
+    out.remove(re);
+    out.remove(QStringLiteral("</g-emoji>"));
+
+    return out;
+}
+
+QString DataUtils::timeSpanText(const QDateTime &start, bool shortText)
+{
+    const QDateTime now = QDateTime::currentDateTimeUtc();
+
+    if (start.addSecs(3600) > now) {
+        const quint64 minutes = start.secsTo(now) / 60;
+        return shortText ? QStringLiteral("%1m").arg(minutes) : QObject::tr("%n minute(s) ago", "", minutes);
+    }
+
+    if (start.addSecs(86400) > now) {
+        const quint64 hours = start.secsTo(now) / 3600;
+        return shortText ? QStringLiteral("%1h").arg(hours) : QObject::tr("%n hour(s) ago", "", hours);
+    }
+
+    if (start.addMonths(1) > now) {
+        const quint64 days = start.daysTo(now);
+        return shortText ? QStringLiteral("%1d").arg(days) : QObject::tr("%n day(s) ago", "", days);
+    }
+
+    if (start.addMonths(12) > now ) {
+        const quint64 months = start.daysTo(now) / 30;
+        return shortText ? QStringLiteral("%1mo").arg(months) : QObject::tr("%n month(s) ago", "", months);
+    }
+
+    const quint64 years = start.daysTo(now) / 365;
+    return shortText ? QStringLiteral("%1y").arg(years) : QObject::tr("%n year(s) ago", "", years);
+}
+
+QString DataUtils::getLinkFromString(const QString &string)
+{
+    QRegularExpression re(QStringLiteral("(https):\\/\\/([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])?"));
+    QRegularExpressionMatch match = re.match(string);
+
+    if (!match.hasMatch())
+        return QString();
+
+    return match.captured(0);
 }
 
 QJsonArray DataUtils::getNodes(const QJsonObject &obj)
@@ -1298,21 +853,4 @@ void DataUtils::getInteractable(const QJsonObject &obj, Interactable *node)
     node->setUpdatedAt(QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
     node->setUpdatedAtTimeSpan(timeSpanText(node->updatedAt()));
     node->setEdited(node->createdAt() < node->lastEditedAt());
-}
-
-quint32 DataUtils::getTotalCount(const QJsonObject &obj)
-{
-    return quint32(obj.value(ApiKey::TOTAL_COUNT).toInt());
-}
-
-QString DataUtils::removeEmojiTags(const QString &text)
-{
-    QString out = text;
-
-    QRegularExpression re(QStringLiteral("<g-emoji(.*)\">"));
-
-    out.remove(re);
-    out.remove(QStringLiteral("</g-emoji>"));
-
-    return out;
 }

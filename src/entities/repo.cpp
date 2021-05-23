@@ -1,5 +1,30 @@
 #include "repo.h"
 
+#include "src/api/datautils.h"
+#include "src/api/keys.h"
+
+// List Item
+RepoListItem::RepoListItem(const QJsonObject &obj) :
+    NodeListItem(obj)
+{
+    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    description = DataUtils::removeEmojiTags(obj.value(ApiKey::SHORT_DESCRIPTION_HTML).toString());
+    flags = DataUtils::getRepoFlags(obj);
+    lockReason = RepositoryLockReason::fromString(obj.value(ApiKey::LOCK_REASON).toString());
+    ownerAvatar = obj.value(ApiKey::OWNER).toObject()
+                 .value(ApiKey::AVATAR_URL).toString();
+    ownerLogin = obj.value(ApiKey::OWNER).toObject()
+                 .value(ApiKey::LOGIN).toString();
+    pushedAt = QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
+    stargazerCount = quint32(obj.value(ApiKey::STARGAZER_COUNT).toInt());
+
+    const QJsonObject lang = obj.value(ApiKey::PRIMARY_LANGUAGE).toObject();
+    language.name = lang.value(ApiKey::NAME).toString();
+    language.color = lang.value(ApiKey::COLOR).toString();
+    updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+}
+
+// Object
 Repo::Repo(QObject *parent) :
     Node(parent)
 {

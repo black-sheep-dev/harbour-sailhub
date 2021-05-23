@@ -1,5 +1,17 @@
 #include "user.h"
 
+#include "src/api/datautils.h"
+#include "src/api/keys.h"
+
+// List Item
+UserListItem::UserListItem(const QJsonObject &obj) :
+    NodeListItem(obj)
+{
+    avatarUrl = obj.value(ApiKey::AVATAR_URL).toString();
+    login = obj.value(ApiKey::LOGIN).toString();
+}
+
+// Object
 User::User(QObject *parent) :
     Node(parent)
 {

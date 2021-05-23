@@ -1,13 +1,14 @@
 #ifndef DISCUSSIONCATEGORY_H
 #define DISCUSSIONCATEGORY_H
 
-#include <QObject>
+#include "node.h"
 
-struct DiscussionCategoryListItem {
+struct DiscussionCategoryListItem : public NodeListItem {
+    DiscussionCategoryListItem() = default;
+    DiscussionCategoryListItem(const QJsonObject &obj);
+
     QString description;
     QString emoji;
-    QString name;
-    QString nodeId;
 };
 
 class DiscussionCategory : public QObject

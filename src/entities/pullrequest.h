@@ -4,8 +4,12 @@
 #include "issue.h"
 
 #include <QDateTime>
+#include "src/enums/pullrequeststate.h"
 
 struct PullRequestListItem : public NodeListItem {
+    PullRequestListItem() = default;
+    PullRequestListItem(const QJsonObject &obj);
+
     quint32 commentCount{0};
     QDateTime createdAt;
     QString createdAtTimeSpan;
@@ -38,15 +42,6 @@ class PullRequest : public Issue
     Q_PROPERTY(Owner* mergedBy READ mergedBy WRITE setMergedBy NOTIFY mergedByChanged)
 
 public:
-    enum PullRequestState {
-        StateUnknown    = 0x0,
-        StateOpen       = 0x1,
-        StateClosed     = 0x2,
-        StateMerged     = 0x4
-    };
-    Q_ENUM(PullRequestState)
-    Q_DECLARE_FLAGS(PullRequestStates, PullRequestState)
-
     enum PullRequestType {
         Undefined,
         Assigned,
@@ -123,6 +118,5 @@ private:
     QDateTime m_mergedAt;
     Owner *m_mergedBy{nullptr}; 
 };
-Q_DECLARE_OPERATORS_FOR_FLAGS(PullRequest::PullRequestStates)
 
 #endif // PULLREQUEST_H

@@ -15,6 +15,9 @@
 #include "src/entities/owner.h"
 
 struct RepoListItem : public NodeListItem {
+    RepoListItem() = default;
+    RepoListItem(const QJsonObject &obj);
+
     QDateTime createdAt;
     QString description;
     quint16 flags{0};

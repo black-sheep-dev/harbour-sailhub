@@ -160,7 +160,22 @@ void GistsModel::parseQueryResult(const QJsonObject &data)
     const QJsonValue count = gists.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(gists, count));
-    addGists(DataUtils::gistsFromJson(gists));
+
+    // read gist items
+    QList<GistListItem> items;
+
+    const QJsonArray nodes = gists.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject gist = node.toObject();
+        if (gist.isEmpty())
+            continue;
+
+        items.append(GistListItem(gist));
+    }
+
+    addGists(items);
+
     setLoading(false);
 }
 

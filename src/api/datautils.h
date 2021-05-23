@@ -31,18 +31,8 @@ public:
     static Comment *commentFromJson(const QJsonObject &obj);
     static QList<Comment *> commentsFromJson(const QJsonObject &obj);
 
-    // commits
-    static CommitListItem commitListItemFromJson(const QJsonObject &obj);
-    static QList<CommitListItem> commitsFromJson(const QJsonObject &obj);
-
     // discussions
     static Discussion *discussionFromJson(const QJsonObject &obj, Discussion *discussion = nullptr);
-    static DiscussionListItem discussionListItemFromJson(const QJsonObject &obj);
-    static QList<DiscussionListItem> discussionsFromJson(const QJsonObject &obj);
-
-    // discussion categories
-    static DiscussionCategoryListItem discussionCategoryListItemFromJson(const QJsonObject &obj);
-    static QList<DiscussionCategoryListItem> discussionCategoriesFromJson(const QJsonObject &obj);
 
     // discussion comments
     static DiscussionComment *discussionCommentFromJson(const QJsonObject &obj);
@@ -50,25 +40,15 @@ public:
 
     // gists
     static Gist *gistFromJson(const QJsonObject &obj, Gist *gist = nullptr);
-    static GistListItem gistListItemFromJson(const QJsonObject &obj);
-    static QList<GistListItem> gistsFromJson(const QJsonObject &obj);
 
     // issues
     static Issue *issueFromJson(const QJsonObject &obj, Issue *issue = nullptr);
-    static IssueListItem issueListItemFromJson(const QJsonObject &obj);
-    static QList<IssueListItem> issuesFromJson(const QJsonObject &obj);
-
-    // labels
-    static LabelListItem labelListItemFromJson(const QJsonObject &obj);
-    static QList<LabelListItem> labelsFromJson(const QJsonObject &obj);
 
     // notifications
     static QList<NotificationListItem> notificationsFromJson(const QJsonArray &array);
 
     // organizations
     static Organization *organizationFromJson(const QJsonObject &obj, Organization *organization = nullptr);
-    static OrganizationListItem organizationListItemFromJson(const QJsonObject &obj);
-    static QList<OrganizationListItem> organizationsFromJson(const QJsonObject &obj);
 
     // owner
     static Owner *ownerFromJson(const QJsonObject &obj);
@@ -81,19 +61,12 @@ public:
 
     // pull requests
     static PullRequest *pullRequestFromJson(const QJsonObject &obj);
-    static QList<PullRequestListItem> pullRequestsFromJson(const QJsonObject &obj);
-    static PullRequestListItem pullRequestListItemFromJson(const QJsonObject &obj);
 
     // releases
     static Release *releaseFromJson(const QJsonObject &obj);
-    static ReleaseListItem releaseListItemFromJson(const QJsonObject &obj);
-    static QList<ReleaseListItem> releasesFromJson(const QJsonObject &obj);
-    static QList<ReleaseAssetListItem> releaseAssetsFromJson(const QJsonObject &obj);
 
     // repository
     static Repo *repoFromJson(const QJsonObject &obj);
-    static QList<RepoListItem> reposFromJson(const QJsonObject &obj);
-    static RepoListItem repoListItemFromJson(const QJsonObject &obj);
 
     // file tree
     static QList<TreeItemListItem> treeListItemsFromJson(const QJsonObject &obj);
@@ -101,22 +74,22 @@ public:
 
     // user
     static User *userFromJson(const QJsonObject &obj, User *user = nullptr);
-    static UserListItem userListItemFromJson(const QJsonObject &obj);
-    static QList<UserListItem> usersFromJson(const QJsonObject &obj);
 
     // helper
+    static QString getEmojiLinkFromString(const QString &string);
+    static quint16 getRepoFlags(const QJsonObject &obj);
+    static quint32 getTotalCount(const QJsonObject &obj);
+    static quint32 getViewerAbilities(const QJsonObject &obj);
+    static QString removeEmojiTags(const QString &text);
     static QString timeSpanText(const QDateTime &start, bool shortText = false);
 
+
 private:
-    static QString getEmojiLinkFromString(const QString &string);
+
     static QString getLinkFromString(const QString &string);
-    static quint16 getRepoFlags(const QJsonObject &obj);
-    static quint8 getViewerPermission(const QString &permission);
-    static quint32 getViewerAbilities(const QJsonObject &obj);
     static QJsonArray getNodes(const QJsonObject &obj);
     static void getInteractable(const QJsonObject &obj, Interactable *node);
-    static quint32 getTotalCount(const QJsonObject &obj);
-    static QString removeEmojiTags(const QString &text);
+
 };
 
 #endif // DATAUTILS_H

@@ -1,5 +1,7 @@
 #include "organizationsmodel.h"
 
+#include <QJsonArray>
+
 #include "src/api/datautils.h"
 #include "src/api/keys.h"
 #include "src/api/queryvars.h"
@@ -151,7 +153,22 @@ void OrganizationsModel::parseQueryResult(const QJsonObject &data)
     }
 
     setPageInfo(DataUtils::pageInfoFromJson(organizations, count));
-    addOrganizations(DataUtils::organizationsFromJson(organizations));
+
+    // read organization items
+    QList<OrganizationListItem> items;
+
+    const QJsonArray nodes = organizations.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject organization = node.toObject();
+        if (organization.isEmpty())
+            continue;
+
+        items.append(OrganizationListItem(organization));
+    }
+
+    addOrganizations(items);
+
     setLoading(false);
 }
 

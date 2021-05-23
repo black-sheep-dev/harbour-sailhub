@@ -6,6 +6,9 @@
 #include <QDateTime>
 
 struct DiscussionListItem : public NodeListItem {
+    DiscussionListItem() = default;
+    DiscussionListItem(const QJsonObject &obj);
+
     QString authorAvatar;
     QString authorLogin;
     QString category;

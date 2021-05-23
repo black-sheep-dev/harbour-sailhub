@@ -4,6 +4,9 @@
 #include "node.h"
 
 struct OrganizationListItem : public NodeListItem {
+    OrganizationListItem() = default;
+    OrganizationListItem(const QJsonObject &obj);
+
     QString avatarUrl;
     QString description;
     QString login;

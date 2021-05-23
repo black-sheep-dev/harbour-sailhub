@@ -268,7 +268,18 @@ void IssuesModel::parseUserReposIssues(const QJsonObject &obj)
     QMultiMap<QDateTime, IssueListItem> sortedIssues;
 
     for (const auto &repo : repos) {
-        const QList<IssueListItem> issues = DataUtils::issuesFromJson(repo.toObject().value(ApiKey::ISSUES).toObject());
+        QList<IssueListItem> issues;
+
+        const QJsonArray nodes = repo.toObject().value(ApiKey::ISSUES).toObject().value(ApiKey::NODES).toArray();
+
+        for (const auto &node : nodes) {
+            const QJsonObject issue = node.toObject();
+            if (issue.isEmpty())
+                continue;
+
+            issues.append(IssueListItem(issue));
+        }
+
         for (const auto &issue : issues) {
             sortedIssues.insertMulti(issue.createdAt, issue);
         }
@@ -395,7 +406,21 @@ void IssuesModel::parseQueryResult(const QJsonObject &data)
     const QJsonValue count = issues.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(issues, count));
-    addIssues(DataUtils::issuesFromJson(issues));
+
+    // read issues
+    QList<IssueListItem> items;
+
+    const QJsonArray nodes = issues.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject issue = node.toObject();
+        if (issue.isEmpty())
+            continue;
+
+        items.append(IssueListItem(issue));
+    }
+    addIssues(items);
+
     setLoading(false);
 }
 
@@ -439,10 +464,11 @@ GraphQLQuery IssuesModel::query() const
     }
 
     QJsonArray states;
-    if (state() & Issue::StateOpen)
-        states.append(QStringLiteral("OPEN"));
-    if (state() & Issue::StateClosed)
-        states.append(QStringLiteral("CLOSED"));
+    if (state() & IssueState::Open)
+        states.append(IssueState::toString(IssueState::Open));
+    if (state() & IssueState::Closed)
+        states.append(IssueState::toString(IssueState::Closed));
+
     query.variables.insert(QueryVar::STATES, states);
 
     return query;

@@ -87,7 +87,7 @@ Page {
                                           description: userLogin,
                                           identifier: userLogin,
                                           type: pullRequestType,
-                                          states: PullRequest.StateOpen,
+                                          states: PullRequestState.Open,
                                           sorting: sorting,
                                           editState: editState
                                       })

@@ -1,5 +1,7 @@
 #include "labelsmodel.h"
 
+#include <QJsonArray>
+
 #include "src/api/datautils.h"
 #include "src/api/keys.h"
 #include "src/api/queryvars.h"
@@ -113,7 +115,22 @@ void LabelsModel::parseQueryResult(const QJsonObject &data)
     const QJsonValue count = labels.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(labels, count));
-    addLabels(DataUtils::labelsFromJson(labels));
+
+    // read label items
+    QList<LabelListItem> items;
+
+    const QJsonArray nodes = labels.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject label = node.toObject();
+        if (label.isEmpty())
+            continue;
+
+        items.append(LabelListItem(label));
+    }
+
+    addLabels(items);
+
     setLoading(false);
 }
 

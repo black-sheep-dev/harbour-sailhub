@@ -41,17 +41,17 @@ Page {
             busy: pullRequestsModel.loading
             MenuItem {
                 text: {
-                    if (page.states & PullRequest.StateOpen)
+                    if (page.states & PullRequestState.Open)
                         return qsTr("Show closed pull requests")
-                    else if (page.states & PullRequest.StateClosed)
+                    else if (page.states & PullRequestState.Closed)
                         return qsTr("Show open pull requests")
                 }
 
                 onClicked: {
-                    if (page.states & PullRequest.StateOpen)
-                        page.states = PullRequest.StateClosed | PullRequest.StateMerged
-                    else if (page.states & PullRequest.StateClosed)
-                        page.states = PullRequest.StateOpen
+                    if (page.states & PullRequestState.Open)
+                        page.states = PullRequestState.Closed | PullRequestState.Merged
+                    else if (page.states & PullRequestState.Closed)
+                        page.states = PullRequestState.Open
 
                     refresh()
                 }
