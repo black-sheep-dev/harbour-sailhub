@@ -1,5 +1,18 @@
 #include "organization.h"
 
+#include "src/api/datautils.h"
+#include "src/api/keys.h"
+
+// List Item
+OrganizationListItem::OrganizationListItem(const QJsonObject &obj) :
+    NodeListItem(obj)
+{
+    avatarUrl = obj.value(ApiKey::AVATAR_URL).toString();
+    description = obj.value(ApiKey::DESCRIPTION).toString();
+    login = obj.value(ApiKey::LOGIN).toString();
+}
+
+// Object
 Organization::Organization(QObject *parent) :
     Node(parent)
 {

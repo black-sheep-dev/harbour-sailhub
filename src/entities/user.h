@@ -4,6 +4,9 @@
 #include "node.h"
 
 struct UserListItem : public NodeListItem {
+    UserListItem() = default;
+    UserListItem(const QJsonObject &obj);
+
     QString avatarUrl;
     QString login;
 };

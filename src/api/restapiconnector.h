@@ -19,7 +19,7 @@ public:
     void get(const QString &endpoint, quint8 requestType, const QByteArray &requestId = QUuid::createUuid().toByteArray());
 
 signals:
-    void connectionError(quint16 error, const QString &msg);
+    void connectionError(quint16 error, const QString &msg, const QByteArray &requestId);
     void requestFinished(const QJsonDocument &data, quint8 requestType, const QByteArray &requestId);
 
 private slots:

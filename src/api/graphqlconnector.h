@@ -26,7 +26,7 @@ public:
     QString token() const;
 
 signals:
-    void connectionError(quint16 error, const QString &msg);
+    void connectionError(quint16 error, const QString &msg, const QByteArray &requestId);
     void requestFinished(const QJsonObject &data, quint8 type, const QByteArray &requestId);
 
 private slots:

@@ -55,6 +55,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/profilestatus.cpp \
     src/entities/pullrequest.cpp \
     src/entities/release.cpp \
+    src/entities/releaseasset.cpp \
     src/entities/repo.cpp \
     src/entities/user.cpp \
     src/models/basemodel.cpp \
@@ -240,9 +241,13 @@ HEADERS += \
     src/entities/user.h \
     src/entities/viewer.h \
     src/enums/enums.h \
+    src/enums/issuestate.h \
     src/enums/lockreason.h \
     src/enums/mergestatestatus.h \
+    src/enums/pullrequestmergemethod.h \
+    src/enums/pullrequeststate.h \
     src/enums/repositorylockreason.h \
+    src/enums/repositorypermission.h \
     src/enums/subscriptionstate.h \
     src/models/basemodel.h \
     src/models/commentsmodel.h \

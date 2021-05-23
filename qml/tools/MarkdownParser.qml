@@ -1,9 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import "../js/showdown.js" as ShowDown
-import "/usr/share/harbour-twemoji/twemoji.min.js" as Twemoji
-//import "../js/twemoji.min.js" as Twemoji
+import '..'
 
 Item {
     property var showdown: ShowDown.showdown

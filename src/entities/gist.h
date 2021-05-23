@@ -8,6 +8,9 @@
 #include "owner.h"
 
 struct GistListItem : public NodeListItem {
+    GistListItem() = default;
+    GistListItem(const QJsonObject &obj);
+
     quint32 commentCount{0};
     QDateTime createdAt;
     QString description;

@@ -19,16 +19,20 @@ int main(int argc, char *argv[])
 #ifdef QT_DEBUG
     #define uri "org.nubecula.harbour.sailhub"
 #else
-    auto uri = "org.nubecula.harbour.sailhub";
+    const auto uri = "org.nubecula.harbour.sailhub";
 #endif
 
     qmlRegisterUncreatableType<Downloader>(uri, 1, 0, "Downloader", "");
     qmlRegisterUncreatableType<FundingLink>(uri, 1, 0, "FundingLink", "");
 
     // enums
+    qmlRegisterUncreatableType<IssueState>(uri, 1, 0, "IssueState", "");
     qmlRegisterUncreatableType<LockReason>(uri, 1, 0, "LockReason", "");
     qmlRegisterUncreatableType<MergeStateStatus>(uri, 1, 0, "MergeStateStatus", "");
+    qmlRegisterUncreatableType<PullRequestMergeMethod>(uri, 1, 0, "PullRequestMergeMethod", "");
+    qmlRegisterUncreatableType<PullRequestState>(uri, 1, 0, "PullRequestState", "");
     qmlRegisterUncreatableType<RepositoryLockReason>(uri, 1, 0, "RepositoryLockReason", "");
+    qmlRegisterUncreatableType<RepositoryPermission>(uri, 1, 0, "RepositoryPermission", "");
     qmlRegisterUncreatableType<SubscriptionState>(uri, 1, 0, "SubscriptionState", "");
 
     // object

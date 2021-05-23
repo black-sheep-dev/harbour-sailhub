@@ -6,6 +6,9 @@
 #include "owner.h"
 
 struct CommitListItem : public NodeListItem {
+    CommitListItem() = default;
+    CommitListItem(const QJsonObject &obj);
+
     QString authorAvatar;
     QString authorLogin;
     QString messageHeadline;

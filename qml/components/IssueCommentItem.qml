@@ -113,8 +113,6 @@ ListItem {
             }
         }
     }
-
-    onClicked: pageStack.push(Qt.resolvedUrl("../pages/DiscussionCommentPage.qml"), { comment: comment })
 }
 
 

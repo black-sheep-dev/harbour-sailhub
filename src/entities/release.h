@@ -8,6 +8,9 @@
 #include "owner.h"
 
 struct ReleaseListItem : public NodeListItem {
+    ReleaseListItem() = default;
+    ReleaseListItem(const QJsonObject &obj);
+
     QDateTime createdAt;
     QString createdAtTimeSpan;
     bool isDraft{false};

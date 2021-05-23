@@ -58,7 +58,9 @@ void RestApiConnector::onRequestFinished()
 #ifdef QT_DEBUG
         qDebug() << reply->errorString();
 #endif
-        emit connectionError(reply->error(), reply->errorString());
+        emit connectionError(reply->error(),
+                             reply->errorString(),
+                             reply->property("request_uuid").toByteArray());
 
         reply->deleteLater();
         return;

@@ -4,6 +4,9 @@
 #include <QObject>
 
 struct NodeListItem {
+    NodeListItem() = default;
+    NodeListItem(const QJsonObject &obj);
+
     QString name;
     QString nodeId;
     quint32 viewerAbilities{0};

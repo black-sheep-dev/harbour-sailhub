@@ -1,5 +1,7 @@
 #include "usersmodel.h"
 
+#include <QJsonArray>
+
 #include "src/api/datautils.h"
 #include "src/api/keys.h"
 #include "src/api/queryvars.h"
@@ -409,7 +411,22 @@ void UsersModel::parseQueryResult(const QJsonObject &data)
     }
 
     setPageInfo(DataUtils::pageInfoFromJson(users, count));
-    addUsers(DataUtils::usersFromJson(users));
+
+    // read user items
+    QList<UserListItem> items;
+
+    const QJsonArray nodes = users.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject user = node.toObject();
+        if (user.isEmpty())
+            continue;
+
+        items.append(UserListItem(user));
+    }
+
+    addUsers(items);
+
     setLoading(false);
 }
 

@@ -121,7 +121,7 @@ void ApiInterface::addStar(const QString &nodeId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_graphqlConnector->sendQuery(query, RequestType::AddStar);
+    m_graphqlConnector->sendQuery(query, RequestType::AddStar, getNodeRequestId(nodeId));
 }
 
 void ApiInterface::assignUsers(const QString &nodeId, const QJsonArray &userIds)
@@ -533,7 +533,7 @@ void ApiInterface::removeStar(const QString &nodeId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_graphqlConnector->sendQuery(query, RequestType::RemoveStar);
+    m_graphqlConnector->sendQuery(query, RequestType::RemoveStar, getNodeRequestId(nodeId));
 }
 
 void ApiInterface::reopenIssue(const QString &nodeId)
@@ -812,7 +812,7 @@ void ApiInterface::setReady(bool ready)
     emit readyChanged(m_ready);
 }
 
-void ApiInterface::onConnectionError(quint16 error, const QString &msg)
+void ApiInterface::onConnectionError(quint16 error, const QString &msg, const QByteArray &requestId)
 {
 #ifdef QT_DEBUG
     qDebug() << error;
@@ -835,6 +835,10 @@ void ApiInterface::onConnectionError(quint16 error, const QString &msg)
     default:
         break;
     }
+
+    // cleanup
+    m_nodeRequests.take(requestId);
+    m_modelRequests.take(requestId);
 }
 
 void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const QByteArray &requestId)
@@ -913,15 +917,11 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         break; 
 
     case RequestType::AddStar:
-        emit starred(data.value(ApiKey::ADD_STAR).toObject()
-                             .value(ApiKey::STARRABLE).toObject()
-                             .value(ApiKey::ID).toString(), true);
+        emit starred(m_nodeRequests.take(requestId), true);
         break;
 
     case RequestType::RemoveStar:
-        emit starred(data.value(ApiKey::REMOVE_STAR).toObject()
-                             .value(ApiKey::STARRABLE).toObject()
-                             .value(ApiKey::ID).toString(), false);
+        emit starred(m_nodeRequests.take(requestId), false);
         break;
 
     case RequestType::FollowUser:

@@ -84,17 +84,17 @@ Page {
             MenuItem {
                 visible: editState
                 text: {
-                    if (page.states & Issue.StateOpen)
+                    if (page.states & IssueState.Open)
                         return qsTr("Show closed issues")
-                    else if (page.states & Issue.StateClosed)
+                    else if (page.states & IssueState.Closed)
                         return qsTr("Show open issues")
                 }
 
                 onClicked: {
-                    if (page.states & Issue.StateOpen)
-                        page.states = Issue.StateClosed
-                    else if (page.states & Issue.StateClosed)
-                        page.states = Issue.StateOpen
+                    if (page.states & IssueState.Open)
+                        page.states = IssueState.Closed
+                    else if (page.states & IssueState.Closed)
+                        page.states = IssueState.Open
 
                     refresh()
                 }

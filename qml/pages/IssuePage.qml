@@ -87,7 +87,7 @@ Page {
                 })
             }
             MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.states & Issue.StateOpen
+                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.state === Issue.StateOpen
                 text: qsTr("Close")
 
                 onClicked: remorse.execute(qsTr("Closing issue"), function() {
@@ -95,7 +95,7 @@ Page {
                 })
             }
             MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.states & Issue.StateClosed
+                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.state === Issue.StateClosed
                 text: qsTr("Reopen")
 
                 onClicked: remorse.execute(qsTr("Reopen issue"), function() {
@@ -170,15 +170,15 @@ Page {
 
                 Pill {
                     anchors.verticalCenter: parent.verticalCenter
-                    icon: issue.states === Issue.StateOpen ? "qrc:/icons/icon-m-issue" : "image://theme/icon-s-installed"
+                    icon: issue.state === Issue.StateOpen ? "qrc:/icons/icon-m-issue" : "image://theme/icon-s-installed"
                     text: {
-                        if (issue.states === Issue.StateOpen) return qsTr("Open")
-                        if (issue.states === Issue.StateClosed) return qsTr("Closed")
+                        if (issue.state === Issue.StateOpen) return qsTr("Open")
+                        if (issue.state === Issue.StateClosed) return qsTr("Closed")
                     }
 
                     backgroundColor: {
-                        if (issue.states === Issue.StateOpen) return SailHubStyles.colorStatusOpen
-                        if (issue.states === Issue.StateClosed) return SailHubStyles.colorStatusClosed
+                        if (issue.state === Issue.StateOpen) return SailHubStyles.colorStatusOpen
+                        if (issue.state === Issue.StateClosed) return SailHubStyles.colorStatusClosed
                     }
 
                 }
@@ -329,9 +329,9 @@ Page {
             page.issue = issue;
             refresh()
         }
-        onIssueClosed: if (nodeId === issue.nodeId) issue.states = closed ? Issue.StateClosed : Issue.StateOpen
+        onIssueClosed: if (nodeId === issue.nodeId) issue.state = closed ? Issue.StateClosed : Issue.StateOpen
         onIssueDeleted: pageStack.navigateBack()
-        onIssueReopened: if (nodeId === issue.nodeId) issue.states = reopened ? Issue.StateOpen : Issue.StateClosed
+        onIssueReopened: if (nodeId === issue.nodeId) issue.state = reopened ? Issue.StateOpen : Issue.StateClosed
         onSubscribedTo: if (nodeId === issue.nodeId) issue.viewerSubscription = state
         onCommentAdded: refresh()
         onCommentDeleted: refresh()

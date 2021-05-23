@@ -138,7 +138,21 @@ void ReleasesModel::parseQueryResult(const QJsonObject &data)
     QJsonValue count = releases.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(releases, count));
-    addReleases(DataUtils::releasesFromJson(releases));
+
+    QList<ReleaseListItem> items;
+
+    const QJsonArray nodes = releases.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject release = node.toObject();
+        if (release.isEmpty())
+            continue;
+
+        items.append(ReleaseListItem(release));
+    }
+    // read release items
+    addReleases(items);
+
     setLoading(false);
 }
 
