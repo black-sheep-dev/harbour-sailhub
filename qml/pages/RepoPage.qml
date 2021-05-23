@@ -278,7 +278,7 @@ Page {
                                               description: repo.owner.login + "/" + repo.name,
                                               identifier: repo.nodeId,
                                               type: PullRequest.Repo,
-                                              states: PullRequest.StateOpen
+                                              states: PullRequestState.Open
                                           })
                 }
             }

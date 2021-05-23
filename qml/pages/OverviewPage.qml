@@ -118,7 +118,7 @@ Page {
                                                               description: SailHub.api().profile.login,
                                                               identifier: SailHub.api().profile.nodeId,
                                                               type: PullRequest.User,
-                                                              states: PullRequest.StateOpen
+                                                              states: PullRequestState.Open
                                                          })
             }
             IconRelatedItem {
