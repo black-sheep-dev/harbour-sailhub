@@ -27,19 +27,19 @@ ListItem {
             Icon {
                 id: delegateIcon
                 anchors.top: parent.top
-                source: model.state === PullRequest.StateMerged ?  "qrc:///icons/icon-m-merged" : "qrc:///icons/icon-m-pull-request"
+                source: model.state & PullRequestState.Merged ?  "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
 
                 ColorOverlay {
                     anchors.fill: parent
                     source: parent
                     color: {
-                        if (model.state === PullRequest.StateOpen)
+                        if (model.state === PullRequestState.Open)
                             return SailHubStyles.colorStatusOpen
 
-                        if (model.state === PullRequest.StateClosed)
+                        if (model.state === PullRequestState.Closed)
                             return SailHubStyles.colorStatusClosed
 
-                        if (model.state === PullRequest.StateMerged)
+                        if (model.state === PullRequestState.Merged)
                             return SailHubStyles.colorStatusMerged
 
                         return Theme.primaryColor

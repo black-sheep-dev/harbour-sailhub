@@ -131,6 +131,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
     qml/dialogs/SortSelectionDialog.qml \
     qml/js/stringhelper.js \
+    qml/pages/AddStarPage.qml \
     qml/pages/AssigneesListPage.qml \
     qml/pages/CommentPage \
     qml/pages/CommitsListPage.qml \

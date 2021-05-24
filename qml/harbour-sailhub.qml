@@ -20,18 +20,42 @@ ApplicationWindow
         path: "/harbour/sailhub/service"
         xml: '\
               <interface name="harbour.sailhub.service">
+                <method name="addStar">
+                    <arg name="username" type="s" direction="in">
+                        <doc:doc>
+                            <doc:summary>
+                                GitHub username
+                            </doc:summary>
+                        </doc:doc>
+                    </arg>
+                    <arg name="reponame" type="s" direction="in">
+                        <doc:doc>
+                            <doc:summary>
+                                GitHub repository name
+                            </doc:summary>
+                        </doc:doc>
+                    </arg>
+                </method>
+                <method name="open">
+                </method>
                 <method name="token">
                 </method>
               </interface>'
 
-        function token() {
-            __silica_applicationwindow_instance.activate()
-            pageStack.push(Qt.resolvedUrl("pages/settings/SettingsAuthenticationPage.qml"))
+        function addStar(username, reponame) {
+            pageStack.push(Qt.resolvedUrl("pages/AddStarPage.qml"), { reponame: reponame, username: username })
         }
 
         function open() {
             __silica_applicationwindow_instance.activate()
             pageStack.push(Qt.resolvedUrl("pages/NotificationsListPage.qml"))
         }
+
+        function token() {
+            __silica_applicationwindow_instance.activate()
+            pageStack.push(Qt.resolvedUrl("pages/settings/SettingsAuthenticationPage.qml"))
+        }
+
+
     }
 }

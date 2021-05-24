@@ -75,7 +75,7 @@ ListItem {
                 Icon {
                     id: stargazerCountIcon
                     anchors.verticalCenter: parent.verticalCenter
-                    source: "image://theme/icon-s-new?" + (model.stargazerCount > 0 ? "#ffff00" : Theme.primaryColor)
+                    source: "image://theme/icon-s-new?" + (model.stargazerCount > 0 ? SailHubStyles.colorStarred : Theme.primaryColor)
                 }
 
                 Label {

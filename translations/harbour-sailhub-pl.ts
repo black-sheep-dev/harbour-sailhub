@@ -51,6 +51,33 @@
         <source>All emojis designed by %1. License: %2</source>
         <translation>Wszystkie emotikony zaprojektowane przez %1. Licencja: %2</translation>
     </message>
+    <message>
+        <source>Add star</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddStarPage</name>
+    <message>
+        <source>Add Star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 says thank you for your star!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stargazer</source>
+        <translation type="unfinished">Stargazer</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sponsoring</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AssignUserDialog</name>

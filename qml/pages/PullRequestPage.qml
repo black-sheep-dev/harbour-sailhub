@@ -161,17 +161,17 @@ Page {
 
                 Pill {
                     anchors.verticalCenter: parent.verticalCenter
-                    icon: request.state === PullRequest.StateMerged ? "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
+                    icon: request.state === PullRequestState.Merged ? "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
                     text: {
-                        if (request.state === PullRequest.StateOpen) return qsTr("Open")
-                        if (request.state === PullRequest.StateMerged) return qsTr("Merged")
-                        if (request.state === PullRequest.StateClosed) return qsTr("Closed")
+                        if (request.state === PullRequestState.Open) return qsTr("Open")
+                        if (request.state === PullRequestState.Merged) return qsTr("Merged")
+                        if (request.state === PullRequestState.Closed) return qsTr("Closed")
                     }
 
                     backgroundColor: {
-                        if (request.state === PullRequest.StateOpen) return SailHubStyles.colorStatusOpen
-                        if (request.state === PullRequest.StateMerged) return SailHubStyles.colorStatusMerged
-                        if (request.state === PullRequest.StateClosed) return SailHubStyles.colorStatusClosed
+                        if (request.state === PullRequestState.Open) return SailHubStyles.colorStatusOpen
+                        if (request.state === PullRequestState.Merged) return SailHubStyles.colorStatusMerged
+                        if (request.state === PullRequestState.Closed) return SailHubStyles.colorStatusClosed
                     }
 
                 }
