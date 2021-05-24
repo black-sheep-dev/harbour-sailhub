@@ -443,10 +443,20 @@ void ApiInterface::getRelease(const QString &nodeId)
 void ApiInterface::getRepo(const QString &nodeId)
 {
     GraphQLQuery query;
-    query.query = SAILHUB_QUERY_GET_REPOSITORY;
+    query.query = SAILHUB_QUERY_GET_REPOSITORY.arg(SAILHUB_QUERY_ITEM_REPO);
     query.variables.insert(QueryVar::NODE_ID, nodeId);
 
     m_graphqlConnector->sendQuery(query, RequestType::GetRepo);
+}
+
+void ApiInterface::getRepo(const QString &username, const QString &reponame)
+{
+    GraphQLQuery query;
+    query.query = SAILHUB_QUERY_GET_REPOSITORY_BY_NAME.arg(SAILHUB_QUERY_ITEM_REPO);
+    query.variables.insert(QueryVar::OWNER, username);
+    query.variables.insert(QueryVar::NAME, reponame);
+
+    m_graphqlConnector->sendQuery(query, RequestType::GetRepoByName);
 }
 
 void ApiInterface::getUser(const QString &nodeId)
@@ -870,6 +880,10 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     case RequestType::GetRepo:
         emit repoAvailable(DataUtils::repoFromJson(data.value(ApiKey::NODE).toObject()));
+        break;
+
+    case RequestType::GetRepoByName:
+        emit repoAvailable(DataUtils::repoFromJson(data.value(ApiKey::REPOSITORY).toObject()));
         break;
 
     case RequestType::GetRelease:

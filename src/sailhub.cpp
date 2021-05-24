@@ -177,14 +177,14 @@ void SailHub::onApiError(quint8 error, const QString &msg)
         notification.setSummary(tr("Error"));
         notification.setPreviewBody(tr("An error occured when connecting to GitHub!"));
         notification.setBody(tr("An error occured when connecting to GitHub!") + " " + msg);
-//        notification.setRemoteAction(Notification::remoteAction(
-//                                        QStringLiteral("default"),
-//                                        tr("Default"),
-//                                        QStringLiteral("harbour.sailhub.service"),
-//                                        QStringLiteral("/harbour/sailhub/service"),
-//                                        QStringLiteral("harbour.sailhub.service"),
-//                                        QStringLiteral("open")
-//                                     ));
+        notification.setRemoteAction(Notification::remoteAction(
+                                        QStringLiteral("default"),
+                                        tr("Default"),
+                                        QStringLiteral("harbour.sailhub.service"),
+                                        QStringLiteral("/harbour/sailhub/service"),
+                                        QStringLiteral("harbour.sailhub.service"),
+                                        QStringLiteral("open")
+                                     ));
     }
 
     notification.publish();

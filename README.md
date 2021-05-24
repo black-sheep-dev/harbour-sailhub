@@ -21,6 +21,33 @@ I decided to split the emoji assets from the main app to reduce app size.
 Shipping these assets with every app release makes no sence.
 The installation should happen automatically.
 
+## DBus Interface
+### Add Star
+You can implement an option to add a star to a GitHub repository via a DBus interface inside your own app. SailHub must be installed on the user device for this to work. You need to provide username of the owner and the repository name.
+
+```
+...
+
+import Nemo.DBus 2.0
+
+DBusInterface {
+    id: sailHubInterface
+
+    service: "harbour.sailhub.service"
+    iface: "harbour.sailhub.service"
+    path: "/harbour/sailhub/service"
+}
+
+Button {
+    text: "Add Star"
+    onClicked: sailHubInterface.call("addStar", ["black-sheep-dev", "harbour-sailhub"])
+}
+
+...
+
+```
+For an example you can take a look to the code of the SailHub [AboutPage.qml](https://github.com/black-sheep-dev/harbour-sailhub/blob/main/qml/pages/AboutPage.qml)
+
 ## Implemented Features
 - Basic Markdown rendering using ShowdownJS
 - Very basic notifications (using GitHub APIv3 but I am not happy with it at the moment)
@@ -57,6 +84,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Sponsoring / Funding
 - Change user profile status
 - Subscription (Repository / Issue / Pull Request)
+- Add star via DBus call to use in own apps
 
 ## Administrative Features
 

@@ -52,6 +52,33 @@
         <translation>所有表情都由 %1 设计。
 许可证: %2</translation>
     </message>
+    <message>
+        <source>Add star</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddStarPage</name>
+    <message>
+        <source>Add Star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 says thank you for your star!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stargazer</source>
+        <translation type="unfinished">天文学家</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sponsoring</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AssignUserDialog</name>
