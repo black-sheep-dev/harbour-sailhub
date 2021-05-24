@@ -462,7 +462,7 @@ void ApiInterface::getRepo(const QString &username, const QString &reponame)
 void ApiInterface::getUser(const QString &nodeId)
 {
     GraphQLQuery query;
-    query.query = SAILHUB_QUERY_GET_USER;
+    query.query = SAILHUB_QUERY_GET_USER.arg(SAILHUB_QUERY_ITEM_USER);
     query.variables.insert(QueryVar::NODE_ID, nodeId);
 
     m_graphqlConnector->sendQuery(query, RequestType::GetUser);
@@ -471,7 +471,7 @@ void ApiInterface::getUser(const QString &nodeId)
 void ApiInterface::getUserByLogin(const QString &login)
 {
     GraphQLQuery query;
-    query.query = SAILHUB_QUERY_GET_USER_BY_LOGIN;
+    query.query = SAILHUB_QUERY_GET_USER_BY_LOGIN.arg(SAILHUB_QUERY_ITEM_USER);
     query.variables.insert(QueryVar::USER_LOGIN, login);
 
     m_graphqlConnector->sendQuery(query, RequestType::GetUserByLogin);
