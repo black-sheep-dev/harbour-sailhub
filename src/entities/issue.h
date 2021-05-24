@@ -4,11 +4,15 @@
 #include "interactable.h"
 
 #include "src/entities/owner.h"
+#include "src/enums/issuestate.h"
 #include "viewer.h"
 
 #include <QDateTime>
 
 struct IssueListItem : public NodeListItem {
+    IssueListItem() = default;
+    IssueListItem(const QJsonObject &obj);
+
     bool closed{false};
     quint32 commentCount{0};
     QDateTime createdAt;
@@ -34,19 +38,11 @@ class Issue : public Interactable
     Q_PROPERTY(QString repository READ repository WRITE setRepository NOTIFY repositoryChanged)
     Q_PROPERTY(QString repositoryId READ repositoryId WRITE setRepositoryId NOTIFY repositoryIdChanged)
     Q_PROPERTY(quint8 repositoryPermission READ repositoryPermission WRITE setRepositoryPermission NOTIFY repositoryPermissionChanged)
-    Q_PROPERTY(quint8 states READ states WRITE setStates NOTIFY statesChanged)
+    Q_PROPERTY(quint8 state READ state WRITE setState NOTIFY stateChanged)
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
     Q_PROPERTY(quint8 viewerSubscription READ viewerSubscription WRITE setViewerSubscription NOTIFY viewerSubscriptionChanged)
 
 public:
-    enum IssueState {
-        StateUnknown    = 0x0,
-        StateOpen       = 0x1,
-        StateClosed     = 0x2
-    };
-    Q_ENUM(IssueState)
-    Q_DECLARE_FLAGS(IssueStates, IssueState)
-
     enum IssueType {
         Undefined,
         Assigned,
@@ -71,7 +67,7 @@ public:
     QString repository() const;
     quint8 repositoryPermission() const;
     QString repositoryId() const;
-    quint8 states() const;
+    quint8 state() const;
     QString title() const;
     quint8 viewerSubscription() const;
 
@@ -85,7 +81,7 @@ signals:
     void repositoryChanged(const QString &repository);
     void repositoryIdChanged(const QString &id);
     void repositoryPermissionChanged(quint8 permission);
-    void statesChanged(quint8 states);
+    void stateChanged(quint8 state);
     void titleChanged(const QString &title); 
     void viewerSubscriptionChanged(quint8 subscription);
 
@@ -102,7 +98,7 @@ public slots:
     void setRepository(const QString &repository);
     void setRepositoryId(const QString &id);
     void setRepositoryPermission(quint8 permission);
-    void setStates(quint8 states);
+    void setState(quint8 state);
     void setTitle(const QString &title);
     void setViewerSubscription(quint8 subscription);
 
@@ -117,11 +113,10 @@ private:
     QString m_repository;
     QString m_repositoryId;
     quint8 m_repositoryPermission{0};
-    quint8 m_states{StateUnknown};
+    quint8 m_state{IssueState::Unknown};
     QString m_title;
     quint8 m_viewerSubscription{0};
 
 };
-Q_DECLARE_OPERATORS_FOR_FLAGS(Issue::IssueStates)
 
 #endif // ISSUE_H

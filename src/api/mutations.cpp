@@ -279,9 +279,6 @@ const QString Mutation::ADD_STAR =
         QStringLiteral("mutation($input: AddStarInput!) {"
                        "    addStar(input: $input) {"
                        "        clientMutationId"
-                       "        starrable {"
-                       "            id"
-                       "        }"
                        "    }"
                        "}").simplified();
 
@@ -290,9 +287,6 @@ const QString Mutation::REMOVE_STAR =
         QStringLiteral("mutation($input: RemoveStarInput!) {"
                        "    removeStar(input: $input) {"
                        "        clientMutationId"
-                       "        starrable {"
-                       "            id"
-                       "        }"
                        "    }"
                        "}").simplified();
 

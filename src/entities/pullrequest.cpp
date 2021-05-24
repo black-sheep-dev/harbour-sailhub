@@ -1,5 +1,27 @@
 #include "pullrequest.h"
 
+#include "src/api/keys.h"
+#include "src/api/datautils.h"
+
+// List Item
+PullRequestListItem::PullRequestListItem(const QJsonObject &obj) :
+    NodeListItem(obj)
+{
+    commentCount = DataUtils::getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
+    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    createdAtTimeSpan = DataUtils::timeSpanText(createdAt, true);
+    number = quint32(obj.value(ApiKey::NUMBER).toInt());
+    repository = obj.value(ApiKey::REPOSITORY).toObject()
+            .value(ApiKey::NAME_WITH_OWNER).toString();
+    state = PullRequestState::fromString(obj.value(ApiKey::STATE).toString());
+
+    timeSpan = DataUtils::timeSpanText(createdAt, true);
+    title = obj.value(ApiKey::TITLE).toString();
+    updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    updatedAtTimeSpan = DataUtils::timeSpanText(updatedAt, true);
+}
+
+// Object
 PullRequest::PullRequest(QObject *parent) :
     Issue(parent)
 {

@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
-import "/usr/share/harbour-twemoji/twemoji.min.js" as Twemoji
+import '..'
 
 Dialog {
     property string emoji

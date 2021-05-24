@@ -1,5 +1,19 @@
 #include "node.h"
 
+#include <QJsonObject>
+
+#include "src/api/keys.h"
+#include "src/api/datautils.h"
+
+// List Item
+NodeListItem::NodeListItem(const QJsonObject &obj)
+{
+    nodeId = obj.value(ApiKey::ID).toString();
+    name = obj.value(ApiKey::NAME).toString();
+    viewerAbilities = DataUtils::getViewerAbilities(obj);
+}
+
+// Object
 Node::Node(QObject *parent) :
     QObject(parent)
 {

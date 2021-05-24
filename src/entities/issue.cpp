@@ -1,5 +1,28 @@
 #include "issue.h"
 
+#include "QJsonObject"
+
+#include "src/api/datautils.h"
+#include "src/api/keys.h"
+
+// List Item
+IssueListItem::IssueListItem(const QJsonObject &obj) :
+    NodeListItem(obj)
+{
+    closed = obj.value(ApiKey::CLOSED).toBool();
+    commentCount = DataUtils::getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
+    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    createdAtTimeSpan = DataUtils::timeSpanText(createdAt, true);
+    number = obj.value(ApiKey::NUMBER).toInt();
+    repository = obj.value(ApiKey::REPOSITORY).toObject()
+                         .value(ApiKey::NAME_WITH_OWNER).toString();
+    state = IssueState::fromString(obj.value(ApiKey::STATE).toString());
+    title = obj.value(ApiKey::TITLE).toString();
+    updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    updatedAtTimeSpan = DataUtils::timeSpanText(updatedAt, true);
+}
+
+// Object
 Issue::Issue(QObject *parent) :
     Interactable(parent)
 {
@@ -51,9 +74,9 @@ QString Issue::repositoryId() const
     return m_repositoryId;
 }
 
-quint8 Issue::states() const
+quint8 Issue::state() const
 {
-    return m_states;
+    return m_state;
 }
 
 QString Issue::title() const
@@ -147,13 +170,13 @@ void Issue::setRepositoryPermission(quint8 permission)
     emit repositoryPermissionChanged(m_repositoryPermission);
 }
 
-void Issue::setStates(quint8 states)
+void Issue::setState(quint8 states)
 {
-    if (m_states == states)
+    if (m_state == states)
         return;
 
-    m_states = states;
-    emit statesChanged(m_states);
+    m_state = states;
+    emit stateChanged(m_state);
 }
 
 void Issue::setTitle(const QString &title)

@@ -78,7 +78,7 @@ Page {
                 }
             }
             MenuItem {
-                visible: request.viewerAbilities & Viewer.CanUpdate && request.states & PullRequest.StateOpen
+                visible: request.viewerAbilities & Viewer.CanUpdate && request.state === PullRequest.StateOpen
                 text: qsTr("Close")
 
                 onClicked: remorse.execute(qsTr("Closing pull request"), function() {
@@ -86,7 +86,7 @@ Page {
                 })
             }
             MenuItem {
-                visible: request.viewerAbilities & Viewer.CanUpdate && request.states & PullRequest.StateClosed
+                visible: request.viewerAbilities & Viewer.CanUpdate && request.state === PullRequest.StateClosed
                 text: qsTr("Reopen")
 
                 onClicked: remorse.execute(qsTr("Reopen pull request"), function() {
@@ -161,24 +161,24 @@ Page {
 
                 Pill {
                     anchors.verticalCenter: parent.verticalCenter
-                    icon: request.states === PullRequest.StateMerged ? "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
+                    icon: request.state === PullRequestState.Merged ? "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
                     text: {
-                        if (request.states === PullRequest.StateOpen) return qsTr("Open")
-                        if (request.states === PullRequest.StateMerged) return qsTr("Merged")
-                        if (request.states === PullRequest.StateClosed) return qsTr("Closed")
+                        if (request.state === PullRequestState.Open) return qsTr("Open")
+                        if (request.state === PullRequestState.Merged) return qsTr("Merged")
+                        if (request.state === PullRequestState.Closed) return qsTr("Closed")
                     }
 
                     backgroundColor: {
-                        if (request.states === PullRequest.StateOpen) return SailHubStyles.colorStatusOpen
-                        if (request.states === PullRequest.StateMerged) return SailHubStyles.colorStatusMerged
-                        if (request.states === PullRequest.StateClosed) return SailHubStyles.colorStatusClosed
+                        if (request.state === PullRequestState.Open) return SailHubStyles.colorStatusOpen
+                        if (request.state === PullRequestState.Merged) return SailHubStyles.colorStatusMerged
+                        if (request.state === PullRequestState.Closed) return SailHubStyles.colorStatusClosed
                     }
 
                 }
 
                 Pill {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: request.headRefName
+                    text: request.baseRefName
                 }
 
                 Icon {
@@ -191,7 +191,7 @@ Page {
 
                 Pill {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: request.baseRefName
+                    text: request.headRefName
                 }
             }
 
@@ -385,8 +385,8 @@ Page {
             page.request = request;
             refresh()
         }
-        onPullRequestClosed: if (nodeId === request.nodeId) request.states = closed ? PullRequest.StateClosed : PullRequest.StateOpen
-        onPullRequestReopened: if (nodeId === request.nodeId) request.states = reopened ? PullRequest.StateOpen : PullRequest.StateClosed
+        onPullRequestClosed: if (nodeId === request.nodeId) request.state = closed ? PullRequest.StateClosed : PullRequest.StateOpen
+        onPullRequestReopened: if (nodeId === request.nodeId) request.state = reopened ? PullRequest.StateOpen : PullRequest.StateClosed
         onSubscribedTo: if (nodeId === request.nodeId) request.viewerSubscription = state
         onCommentAdded: refresh()
         onCommentDeleted: refresh()

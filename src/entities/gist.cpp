@@ -1,5 +1,29 @@
 #include "gist.h"
 
+#include "src/api/datautils.h"
+#include "src/api/keys.h"
+
+// List Item
+GistListItem::GistListItem(const QJsonObject &obj) :
+    NodeListItem(obj)
+{
+    description = obj.value(ApiKey::DESCRIPTION).toString();
+    isPublic = obj.value(ApiKey::IS_PUBLIC).toBool();
+    commentCount = DataUtils::getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
+    fileCount = DataUtils::getTotalCount(obj.value(ApiKey::FILES).toObject());
+    forkCount = DataUtils::getTotalCount(obj.value(ApiKey::FORKS).toObject());
+    stargazerCount = obj.value(ApiKey::STARGAZER_COUNT).toInt();
+    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    pushedAt = QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
+    updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+
+    const QJsonObject owner = obj.value(ApiKey::OWNER).toObject();
+
+    ownerLogin = owner.value(ApiKey::LOGIN).toString();
+    ownerAvatar = owner.value(ApiKey::AVATAR_URL).toString();
+}
+
+// Object
 Gist::Gist(QObject *parent) :
     Node(parent)
 {

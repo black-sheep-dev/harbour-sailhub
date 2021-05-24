@@ -7,9 +7,11 @@ struct QueryVar {
     static const QString BRANCH;
     static const QString ITEM_COUNT;
     static const QString ITEM_CURSOR;
+    static const QString NAME;
     static const QString NODE_ID;
     static const QString ORDER_DIRECTION;
     static const QString ORDER_FIELD;
+    static const QString OWNER;
     static const QString PATH;
     static const QString QUERY_STRING;
     static const QString REPO_NAME;

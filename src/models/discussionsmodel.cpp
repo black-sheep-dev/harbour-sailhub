@@ -162,7 +162,22 @@ void DiscussionsModel::parseQueryResult(const QJsonObject &data)
     QJsonValue count = discussion.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(discussion, count));
-    addDiscussions(DataUtils::discussionsFromJson(discussion));
+
+    // read discussion items
+    QList<DiscussionListItem> items;
+
+    const QJsonArray nodes = discussion.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject discussion = node.toObject();
+        if (discussion.isEmpty())
+            continue;
+
+        items.append(DiscussionListItem(discussion));
+    }
+
+    addDiscussions(items);
+
     setLoading(false);
 }
 

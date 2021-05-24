@@ -317,7 +317,21 @@ void PullRequestsModel::parseQueryResult(const QJsonObject &data)
     const QJsonValue count = prs.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(prs, count));
-    addPullRequests(DataUtils::pullRequestsFromJson(prs));
+
+    // read pull request items
+    QList<PullRequestListItem> items;
+
+    const QJsonArray nodes = prs.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject pr = node.toObject();
+        if (pr.isEmpty())
+            continue;
+
+        items.append(PullRequestListItem(pr));
+    }
+    addPullRequests(items);
+
     setLoading(false);
 
 }
@@ -360,12 +374,12 @@ GraphQLQuery PullRequestsModel::query() const
 
 
     QJsonArray states;
-    if (state() & PullRequest::StateOpen)
-        states.append(QStringLiteral("OPEN"));
-    if (state() & PullRequest::StateClosed)
-        states.append(QStringLiteral("CLOSED"));
-    if (state() & PullRequest::StateMerged)
-        states.append(QStringLiteral("MERGED"));
+    if (state() & PullRequestState::Open)
+        states.append(PullRequestState::toString(PullRequestState::Open));
+    if (state() & PullRequestState::Closed)
+        states.append(PullRequestState::toString(PullRequestState::Closed));
+    if (state() & PullRequestState::Merged)
+        states.append(PullRequestState::toString(PullRequestState::Merged));
     query.variables.insert(QueryVar::STATES, states);
 
     return query;

@@ -2,7 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "../components/"
-import "../js/stringhelper.js" as StringHelper
+import '..'
 
 //import org.nubecula.harbour.sailhub 1.0
 
@@ -75,7 +75,7 @@ ListItem {
                 Icon {
                     id: stargazerCountIcon
                     anchors.verticalCenter: parent.verticalCenter
-                    source: "image://theme/icon-s-new?" + (model.stargazerCount > 0 ? "#ffff00" : Theme.primaryColor)
+                    source: "image://theme/icon-s-new?" + (model.stargazerCount > 0 ? SailHubStyles.colorStarred : Theme.primaryColor)
                 }
 
                 Label {

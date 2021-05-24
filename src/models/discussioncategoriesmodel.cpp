@@ -120,7 +120,21 @@ void DiscussionCategoriesModel::parseQueryResult(const QJsonObject &data)
     QJsonValue count = categories.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(categories, count));
-    addCategories(DataUtils::discussionCategoriesFromJson(categories));
+
+    // read category items
+    QList<DiscussionCategoryListItem> items;
+
+    const QJsonArray nodes = categories.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject category = node.toObject();
+        if (category.isEmpty())
+            continue;
+
+        items.append(DiscussionCategoryListItem(category));
+    }
+    addCategories(items);
+
     setLoading(false);
 }
 

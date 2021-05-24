@@ -308,7 +308,22 @@ void ReposModel::parseQueryResult(const QJsonObject &data)
     }
 
     setPageInfo(DataUtils::pageInfoFromJson(repos, count));
-    addRepos(DataUtils::reposFromJson(repos));
+
+    // read repo items
+    QList<RepoListItem> items;
+
+    const QJsonArray nodes = repos.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject repo = node.toObject();
+        if (repo.isEmpty())
+            continue;
+
+        items.append(RepoListItem(repo));
+    }
+
+    addRepos(items);
+
     setLoading(false);
 }
 

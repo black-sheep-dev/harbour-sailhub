@@ -87,6 +87,7 @@ public:
         GetReleases,
         GetReleaseAssets,
         GetRepo,
+        GetRepoByName,
         Lock,
         MarkDiscussionCommentAsAnswer,
         MergePullRequest,
@@ -144,6 +145,7 @@ public:
     Q_INVOKABLE void getPullRequest(const QString &nodeId);
     Q_INVOKABLE void getRelease(const QString &nodeId);
     Q_INVOKABLE void getRepo(const QString &nodeId);
+    Q_INVOKABLE void getRepo(const QString &username, const QString &reponame);
     Q_INVOKABLE void getUser(const QString &nodeId);
     Q_INVOKABLE void getUserByLogin(const QString &login);
     Q_INVOKABLE void lock(const QString &nodeId, quint8 reason = LockReason::Unknown);
@@ -219,7 +221,7 @@ signals:
 
 
 private slots:
-    void onConnectionError(quint16 error, const QString &msg);
+    void onConnectionError(quint16 error, const QString &msg, const QByteArray &requestId);
     void parseData(const QJsonObject &obj, quint8 requestType, const QByteArray &requestId);
     void parseRestData(const QJsonDocument &doc, quint8 requestType, const QByteArray &requestId);
 

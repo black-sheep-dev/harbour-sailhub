@@ -121,7 +121,7 @@ void ApiInterface::addStar(const QString &nodeId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_graphqlConnector->sendQuery(query, RequestType::AddStar);
+    m_graphqlConnector->sendQuery(query, RequestType::AddStar, getNodeRequestId(nodeId));
 }
 
 void ApiInterface::assignUsers(const QString &nodeId, const QJsonArray &userIds)
@@ -443,10 +443,20 @@ void ApiInterface::getRelease(const QString &nodeId)
 void ApiInterface::getRepo(const QString &nodeId)
 {
     GraphQLQuery query;
-    query.query = SAILHUB_QUERY_GET_REPOSITORY;
+    query.query = SAILHUB_QUERY_GET_REPOSITORY.arg(SAILHUB_QUERY_ITEM_REPO);
     query.variables.insert(QueryVar::NODE_ID, nodeId);
 
     m_graphqlConnector->sendQuery(query, RequestType::GetRepo);
+}
+
+void ApiInterface::getRepo(const QString &username, const QString &reponame)
+{
+    GraphQLQuery query;
+    query.query = SAILHUB_QUERY_GET_REPOSITORY_BY_NAME.arg(SAILHUB_QUERY_ITEM_REPO);
+    query.variables.insert(QueryVar::OWNER, username);
+    query.variables.insert(QueryVar::NAME, reponame);
+
+    m_graphqlConnector->sendQuery(query, RequestType::GetRepoByName);
 }
 
 void ApiInterface::getUser(const QString &nodeId)
@@ -533,7 +543,7 @@ void ApiInterface::removeStar(const QString &nodeId)
 
     query.variables.insert(SAILHUB_MUTATION_VAR_INPUT, vars);
 
-    m_graphqlConnector->sendQuery(query, RequestType::RemoveStar);
+    m_graphqlConnector->sendQuery(query, RequestType::RemoveStar, getNodeRequestId(nodeId));
 }
 
 void ApiInterface::reopenIssue(const QString &nodeId)
@@ -812,7 +822,7 @@ void ApiInterface::setReady(bool ready)
     emit readyChanged(m_ready);
 }
 
-void ApiInterface::onConnectionError(quint16 error, const QString &msg)
+void ApiInterface::onConnectionError(quint16 error, const QString &msg, const QByteArray &requestId)
 {
 #ifdef QT_DEBUG
     qDebug() << error;
@@ -835,6 +845,10 @@ void ApiInterface::onConnectionError(quint16 error, const QString &msg)
     default:
         break;
     }
+
+    // cleanup
+    m_nodeRequests.take(requestId);
+    m_modelRequests.take(requestId);
 }
 
 void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const QByteArray &requestId)
@@ -866,6 +880,10 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     case RequestType::GetRepo:
         emit repoAvailable(DataUtils::repoFromJson(data.value(ApiKey::NODE).toObject()));
+        break;
+
+    case RequestType::GetRepoByName:
+        emit repoAvailable(DataUtils::repoFromJson(data.value(ApiKey::REPOSITORY).toObject()));
         break;
 
     case RequestType::GetRelease:
@@ -913,15 +931,11 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         break; 
 
     case RequestType::AddStar:
-        emit starred(data.value(ApiKey::ADD_STAR).toObject()
-                             .value(ApiKey::STARRABLE).toObject()
-                             .value(ApiKey::ID).toString(), true);
+        emit starred(m_nodeRequests.take(requestId), true);
         break;
 
     case RequestType::RemoveStar:
-        emit starred(data.value(ApiKey::REMOVE_STAR).toObject()
-                             .value(ApiKey::STARRABLE).toObject()
-                             .value(ApiKey::ID).toString(), false);
+        emit starred(m_nodeRequests.take(requestId), false);
         break;
 
     case RequestType::FollowUser:

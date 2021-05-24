@@ -95,7 +95,7 @@ Page {
                                           description: userLogin,
                                           identifier: userLogin,
                                           type: issueType,
-                                          states: Issue.StateOpen,
+                                          states: IssueState.Open,
                                           sorting: sorting,
                                           editState: editState
                                       })

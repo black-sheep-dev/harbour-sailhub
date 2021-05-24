@@ -5,6 +5,7 @@ import QtGraphicalEffects 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import '..'
 
 ListItem {
 
@@ -26,22 +27,22 @@ ListItem {
             Icon {
                 id: delegateIcon
                 anchors.top: parent.top
-                source: model.state === PullRequest.StateMerged ?  "qrc:///icons/icon-m-merged" : "qrc:///icons/icon-m-pull-request"
+                source: model.state & PullRequestState.Merged ?  "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
 
                 ColorOverlay {
                     anchors.fill: parent
                     source: parent
                     color: {
-                        if (model.state === PullRequest.StateOpen)
-                            return "#64DD17"
+                        if (model.state === PullRequestState.Open)
+                            return SailHubStyles.colorStatusOpen
 
-                        if (model.state === PullRequest.StateClosed)
-                            return "#D50000"
+                        if (model.state === PullRequestState.Closed)
+                            return SailHubStyles.colorStatusClosed
 
-                        if (model.state === PullRequest.StateMerged)
-                            return "#D500F9"
+                        if (model.state === PullRequestState.Merged)
+                            return SailHubStyles.colorStatusMerged
 
-                        return "#FFFFFF"
+                        return Theme.primaryColor
                     }
                 }
             }

@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.29
+VERSION = 0.0.31
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -55,6 +55,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/profilestatus.cpp \
     src/entities/pullrequest.cpp \
     src/entities/release.cpp \
+    src/entities/releaseasset.cpp \
     src/entities/repo.cpp \
     src/entities/user.cpp \
     src/models/basemodel.cpp \
@@ -130,6 +131,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
     qml/dialogs/SortSelectionDialog.qml \
     qml/js/stringhelper.js \
+    qml/pages/AddStarPage.qml \
     qml/pages/AssigneesListPage.qml \
     qml/pages/CommentPage \
     qml/pages/CommitsListPage.qml \
@@ -240,9 +242,13 @@ HEADERS += \
     src/entities/user.h \
     src/entities/viewer.h \
     src/enums/enums.h \
+    src/enums/issuestate.h \
     src/enums/lockreason.h \
     src/enums/mergestatestatus.h \
+    src/enums/pullrequestmergemethod.h \
+    src/enums/pullrequeststate.h \
     src/enums/repositorylockreason.h \
+    src/enums/repositorypermission.h \
     src/enums/subscriptionstate.h \
     src/models/basemodel.h \
     src/models/commentsmodel.h \

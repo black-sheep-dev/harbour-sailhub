@@ -4,7 +4,7 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
-import "../js/stringhelper.js" as StringHelper
+import '..'
 
 ListItem {
     property int downloadProgress: 0

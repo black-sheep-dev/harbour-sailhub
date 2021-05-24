@@ -6,6 +6,9 @@
 #include <QDateTime>
 
 struct LabelListItem {
+    LabelListItem() = default;
+    LabelListItem(const QJsonObject &obj);
+
     QString color;
     QDateTime createdAt;
     QString name;

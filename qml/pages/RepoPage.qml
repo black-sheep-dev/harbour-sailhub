@@ -5,7 +5,7 @@ import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
 import "../tools"
-import "../js/stringhelper.js" as StringHelper
+import '..'
 
 Page {
     property bool busy: false
@@ -278,7 +278,7 @@ Page {
                                               description: repo.owner.login + "/" + repo.name,
                                               identifier: repo.nodeId,
                                               type: PullRequest.Repo,
-                                              states: PullRequest.StateOpen
+                                              states: PullRequestState.Open
                                           })
                 }
             }

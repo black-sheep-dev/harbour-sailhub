@@ -135,7 +135,22 @@ void CommitsModel::parseQueryResult(const QJsonObject &data)
     const QJsonValue count = commits.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(commits, count));
-    addCommits(DataUtils::commitsFromJson(commits));
+
+    // read commit items
+    QList<CommitListItem> items;
+
+    const QJsonArray nodes = commits.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject commit = node.toObject();
+        if (commit.isEmpty())
+            continue;
+
+        items.append(CommitListItem(commit));
+    }
+
+    addCommits(items);
+
     setLoading(false);
 }
 
