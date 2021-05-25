@@ -52,7 +52,7 @@
         <translation>Wszystkie emotikony zaprojektowane przez %1. Licencja: %2</translation>
     </message>
     <message>
-        <source>Add star</source>
+        <source>Give star</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
