@@ -1,5 +1,6 @@
 #include "discussioncommentsmodel.h"
 
+#include <QJsonArray>
 
 #include "src/api/datautils.h"
 #include "src/api/keys.h"
@@ -206,7 +207,21 @@ void DiscussionCommentsModel::parseQueryResult(const QJsonObject &data)
     const QJsonValue count = comments.value(ApiKey::TOTAL_COUNT);
 
     setPageInfo(DataUtils::pageInfoFromJson(comments, count));
-    addComments(DataUtils::discussionCommentsFromJson(comments));
+
+    // read comment items
+    QList<DiscussionComment *> items;
+
+    const QJsonArray nodes = comments.value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        const QJsonObject comment = node.toObject();
+        if (comment.isEmpty())
+            continue;
+
+        items.append(new DiscussionComment(comment));
+    }
+
+    addComments(items);
     setLoading(false);
 }
 

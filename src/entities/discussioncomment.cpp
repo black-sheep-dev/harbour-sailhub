@@ -1,9 +1,34 @@
 #include "discussioncomment.h"
 
+#include "src/api/datautils.h"
+#include "src/api/keys.h"
+
 DiscussionComment::DiscussionComment(QObject *parent) :
     Interactable(parent)
 {
 
+}
+
+DiscussionComment::DiscussionComment(const QJsonObject &data, QObject *parent) :
+    Interactable(parent)
+{
+    setData(data);
+}
+
+void DiscussionComment::setData(const QJsonObject &data)
+{
+    Interactable::setData(data);
+
+    setCreatedViaEmail(data.value(ApiKey::CREATED_VIA_EMAIL).toBool());
+    setDeletedAt(QDateTime::fromString(data.value(ApiKey::DELETED_AT).toString(), Qt::ISODate));
+    setDiscussionId(data.value(ApiKey::DISCUSSION).toObject().value(ApiKey::ID).toString());
+    setEditor(DataUtils::ownerFromJson(data.value(ApiKey::EDITOR).toObject()));
+    setIncludesCreatedEdit(data.value(ApiKey::INCLUDES_CREATED_EDIT).toBool());
+    setIsAnswer(data.value(ApiKey::IS_ANSWER).toBool());
+    setIsMinimized(data.value(ApiKey::IS_MINIMIZED).toBool());
+    setMinimizedReason(data.value(ApiKey::MINIMIZED_REASON).toString());
+    setReplyCount(DataUtils::getTotalCount(data.value(ApiKey::REPLIES).toObject()));
+    setReplyToId(data.value(ApiKey::REPLY_TO).toObject().value(ApiKey::ID).toString());
 }
 
 bool DiscussionComment::createdViaEmail() const

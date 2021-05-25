@@ -6,7 +6,7 @@
 
 struct ReleaseAssetListItem {
     ReleaseAssetListItem() = default;
-    ReleaseAssetListItem(const QJsonObject &obj);
+    ReleaseAssetListItem(const QJsonObject &data);
 
     QString contentType;
     QDateTime createdAt;

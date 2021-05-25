@@ -7,7 +7,7 @@
 
 struct DiscussionListItem : public NodeListItem {
     DiscussionListItem() = default;
-    DiscussionListItem(const QJsonObject &obj);
+    DiscussionListItem(const QJsonObject &data);
 
     QString authorAvatar;
     QString authorLogin;
@@ -47,7 +47,11 @@ class Discussion : public Interactable
 
 public:
     explicit Discussion(QObject *parent = nullptr);
+    Discussion(const QJsonObject &data, QObject *parent = nullptr);
 
+    void setData(const QJsonObject &data);
+
+    // properties
     quint8 activeLockReason() const;
     QDateTime answerChosenAt() const;
     Owner *answerChosenBy() const;
@@ -66,6 +70,7 @@ public:
     quint8 viewerSubscription() const;
 
 signals:
+    // properties
     void activeLockReasonChanged(quint8 activeLockReason);
     void answerChosenAtChanged(const QDateTime &answerChosenAt);
     void answerChosenByChanged(Owner *answerChosenBy);
@@ -84,6 +89,7 @@ signals:
     void viewerSubscriptionChanged(quint8 subscription);
 
 public slots:
+    // properties
     void setActiveLockReason(quint8 reason);
     void setAnswerChosenAt(const QDateTime &answerChosenAt);
     void setAnswerChosenBy(Owner *answerChosenBy);
@@ -102,6 +108,7 @@ public slots:
     void setViewerSubscription(quint8 subscription);
 
 private:
+    // properties
     quint8 m_activeLockReason{0};
     QDateTime m_answerChosenAt;
     Owner *m_answerChosenBy{nullptr};

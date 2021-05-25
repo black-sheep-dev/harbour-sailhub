@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-struct ReactionListItem {
+struct ReactionListItem {    
     quint32 count{0};
     quint8 type{0};
     bool viewerReacted{false};

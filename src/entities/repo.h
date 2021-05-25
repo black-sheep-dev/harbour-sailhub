@@ -16,7 +16,7 @@
 
 struct RepoListItem : public NodeListItem {
     RepoListItem() = default;
-    RepoListItem(const QJsonObject &obj);
+    RepoListItem(const QJsonObject &data);
 
     QDateTime createdAt;
     QString description;
@@ -116,7 +116,11 @@ public:
     Q_ENUM(RepoType)
 
     explicit Repo(QObject *parent = nullptr);
+    Repo(const QJsonObject &data, QObject *parent = nullptr);
 
+    void setData(const QJsonObject &data);
+
+    // properties
     QStringList branches() const;
     quint32 contributorCount() const;
     QString defaultBranch() const;
@@ -143,6 +147,7 @@ public:
     quint32 watcherCount() const;
 
 signals:
+    // properties
     void branchesChanged(const QStringList &branches);
     void contributorCountChanged(quint32 count);
     void defaultBranchChanged(const QString &branch);
@@ -169,6 +174,7 @@ signals:
     void watcherCountChanged(quint32 count);
 
 public slots:
+    // properties
     void setBranches(const QStringList &branches);
     void setContributorCount(quint32 count);
     void setDefaultBranch(const QString &branch);
@@ -195,6 +201,7 @@ public slots:
     void setWatcherCount(quint32 count);
 
 private:
+    // properties
     QStringList m_branches;
     quint32 m_contributorCount{0};
     QString m_defaultBranch;

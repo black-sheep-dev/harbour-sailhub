@@ -7,7 +7,7 @@
 
 struct CommitListItem : public NodeListItem {
     CommitListItem() = default;
-    CommitListItem(const QJsonObject &obj);
+    CommitListItem(const QJsonObject &data);
 
     QString authorAvatar;
     QString authorLogin;

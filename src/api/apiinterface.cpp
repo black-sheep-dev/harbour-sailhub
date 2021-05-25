@@ -871,23 +871,23 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     switch (requestType) {
     case RequestType::GetUser:
-        emit userAvailable(DataUtils::userFromJson(data.value(ApiKey::NODE).toObject()));
+        emit userAvailable(new User(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetUserByLogin:
-        emit userAvailable(DataUtils::userFromJson(data.value(ApiKey::USER).toObject()));
+        emit userAvailable(new User(data.value(ApiKey::USER).toObject()));
         break;
 
     case RequestType::GetRepo:
-        emit repoAvailable(DataUtils::repoFromJson(data.value(ApiKey::NODE).toObject()));
+        emit repoAvailable(new Repo(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetRepoByName:
-        emit repoAvailable(DataUtils::repoFromJson(data.value(ApiKey::REPOSITORY).toObject()));
+        emit repoAvailable(new Repo(data.value(ApiKey::REPOSITORY).toObject()));
         break;
 
     case RequestType::GetRelease:
-        emit releaseAvailable(DataUtils::releaseFromJson(data.value(ApiKey::NODE).toObject()));
+        emit releaseAvailable(new Release(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetModel:
@@ -895,23 +895,23 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         break;
 
     case RequestType::GetOrganization:
-        emit organizationAvailable(DataUtils::organizationFromJson(data.value(ApiKey::NODE).toObject()));
+        emit organizationAvailable(new Organization(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetIssue:
-        emit issueAvailable(DataUtils::issueFromJson(data.value(ApiKey::NODE).toObject()));
+        emit issueAvailable(new Issue(data.value(ApiKey::NODE).toObject()));
         break;     
 
     case RequestType::GetPullRequest:
-        emit pullRequestAvailable(DataUtils::pullRequestFromJson(data.value(ApiKey::NODE).toObject()));
+        emit pullRequestAvailable(new PullRequest(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetDiscussion:
-        emit discussionAvailable(DataUtils::discussionFromJson(data.value(ApiKey::NODE).toObject()));
+        emit discussionAvailable(new Discussion(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetGist:
-        emit gistAvailable(DataUtils::gistFromJson(data.value(ApiKey::NODE).toObject()));
+        emit gistAvailable(new Gist(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::AddComment:
@@ -959,21 +959,21 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
         break;
 
     case RequestType::GetProfile:
-        emit profileChanged(DataUtils::userFromJson(data.value(ApiKey::VIEWER).toObject(), m_profile));
+        m_profile->setData(data.value(ApiKey::VIEWER).toObject());
+        emit profileChanged(m_profile);
         setReady(true);
         break;
 
     case RequestType::GetProfileStatus:
-        emit profileStatusChanged(DataUtils::profileStatusFromJson(data.value(ApiKey::VIEWER).toObject()
-                                                                   .value(ApiKey::STATUS).toObject(),
-                                                                   m_profileStatus));
+        m_profileStatus->setData(data.value(ApiKey::VIEWER).toObject()
+                                 .value(ApiKey::STATUS).toObject());
+        emit profileStatusChanged(m_profileStatus);
         break;
 
     case RequestType::UpdateProfileStatus:
-        emit profileStatusChanged(DataUtils::profileStatusFromJson(data.value(ApiKey::CHANGE_USER_STATUS).toObject()
-                                                                   .value(ApiKey::STATUS).toObject(),
-                                                                   m_profileStatus));
-
+        m_profileStatus->setData(data.value(ApiKey::CHANGE_USER_STATUS).toObject()
+                                 .value(ApiKey::STATUS).toObject());
+        emit profileStatusChanged(m_profileStatus);
         break;
 
     case RequestType::AssignUsers:

@@ -7,7 +7,7 @@
 
 struct LabelListItem {
     LabelListItem() = default;
-    LabelListItem(const QJsonObject &obj);
+    LabelListItem(const QJsonObject &data);
 
     QString color;
     QDateTime createdAt;

@@ -5,7 +5,7 @@
 
 struct OrganizationListItem : public NodeListItem {
     OrganizationListItem() = default;
-    OrganizationListItem(const QJsonObject &obj);
+    OrganizationListItem(const QJsonObject &data);
 
     QString avatarUrl;
     QString description;
@@ -39,7 +39,11 @@ public:
     Q_ENUM(OrganizationType)
 
     explicit Organization(QObject *parent = nullptr);
+    Organization(const QJsonObject &data, QObject *parent = nullptr);
 
+    void setData(const QJsonObject &data);
+
+    // properties
     QString avatarUrl() const;
     QString description() const;
     QString email() const;
@@ -55,6 +59,7 @@ public:
     QString websiteUrl() const;
 
 signals:
+    // properties
     void avatarUrlChanged(const QString &avatarUrl);
     void descriptionChanged(const QString &description);
     void emailChanged(const QString &email);
@@ -70,6 +75,7 @@ signals:
     void websiteUrlChanged(const QString &websiteUrl);
 
 public slots:
+    // properties
     void setAvatarUrl(const QString &avatarUrl);
     void setDescription(const QString &description);
     void setEmail(const QString &email);
@@ -85,6 +91,7 @@ public slots:
     void setWebsiteUrl(const QString &websiteUrl);
 
 private:
+    // properties
     QString m_avatarUrl;
     QString m_description;
     QString m_email;

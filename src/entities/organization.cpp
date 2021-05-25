@@ -4,12 +4,12 @@
 #include "src/api/keys.h"
 
 // List Item
-OrganizationListItem::OrganizationListItem(const QJsonObject &obj) :
-    NodeListItem(obj)
+OrganizationListItem::OrganizationListItem(const QJsonObject &data) :
+    NodeListItem(data)
 {
-    avatarUrl = obj.value(ApiKey::AVATAR_URL).toString();
-    description = obj.value(ApiKey::DESCRIPTION).toString();
-    login = obj.value(ApiKey::LOGIN).toString();
+    avatarUrl = data.value(ApiKey::AVATAR_URL).toString();
+    description = data.value(ApiKey::DESCRIPTION).toString();
+    login = data.value(ApiKey::LOGIN).toString();
 }
 
 // Object
@@ -17,6 +17,31 @@ Organization::Organization(QObject *parent) :
     Node(parent)
 {
 
+}
+
+Organization::Organization(const QJsonObject &data, QObject *parent) :
+    Node(parent)
+{
+    setData(data);
+}
+
+void Organization::setData(const QJsonObject &data)
+{
+    Node::setData(data);
+
+    setAvatarUrl(data.value(ApiKey::AVATAR_URL).toString());
+    setDescription(data.value(ApiKey::DESCRIPTION).toString());
+    setEmail(data.value(ApiKey::EMAIL).toString());
+    setLocation(data.value(ApiKey::LOCATION).toString());
+    setLogin(data.value(ApiKey::LOGIN).toString());
+    setMembers(DataUtils::DataUtils::getTotalCount(data.value(ApiKey::MEMBERS_WITH_ROLE).toObject()));
+    setProjects(DataUtils::getTotalCount(data.value(ApiKey::PROJECTS).toObject()));
+    setRepositories(DataUtils::getTotalCount(data.value(ApiKey::REPOSITORIES).toObject()));
+    setTeams(DataUtils::getTotalCount(data.value(ApiKey::TEAMS).toObject()));
+    setTwitterUsername(data.value(ApiKey::TWITTER_USERNAME).toString());
+    setViewerIsMember(data.value(ApiKey::VIEWER_IS_MEMBER).toBool());
+    setViewerIsSponsoring(data.value(ApiKey::VIEWER_IS_SPONSORING).toBool());
+    setWebsiteUrl(data.value(ApiKey::WEBSITE_URL).toString());
 }
 
 QString Organization::avatarUrl() const

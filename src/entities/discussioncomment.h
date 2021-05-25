@@ -27,7 +27,11 @@ public:
     Q_ENUM(DiscussionCommentType)
 
     explicit DiscussionComment(QObject *parent = nullptr);
+    DiscussionComment(const QJsonObject &data, QObject *parent = nullptr);
 
+    void setData(const QJsonObject &data);
+
+    // properties
     bool createdViaEmail() const;
     QDateTime deletedAt() const;
     QString discussionId() const;
@@ -40,6 +44,7 @@ public:
     QString replyToId() const;
 
 signals:
+    // properties
     void createdViaEmailChanged(bool createdViaEmail);
     void deletedAtChanged(const QDateTime &deletedAt);
     void discussionIdChanged(const QString &discussionId);
@@ -52,6 +57,7 @@ signals:
     void replyToIdChanged(const QString &replyToId);
 
 public slots:
+    // properties
     void setCreatedViaEmail(bool createdViaEmail);
     void setDeletedAt(const QDateTime &deletedAt);
     void setDiscussionId(const QString &discussionId);
@@ -64,6 +70,7 @@ public slots:
     void setReplyToId(const QString &replyToId);
 
 private:
+    // properties
     bool m_createdViaEmail{false};
     QDateTime m_deletedAt;
     QString m_discussionId;

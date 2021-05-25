@@ -9,7 +9,7 @@
 
 struct ReleaseListItem : public NodeListItem {
     ReleaseListItem() = default;
-    ReleaseListItem(const QJsonObject &obj);
+    ReleaseListItem(const QJsonObject &data);
 
     QDateTime createdAt;
     QString createdAtTimeSpan;
@@ -36,7 +36,11 @@ class Release : public Node
 
 public:
     explicit Release(QObject *parent = nullptr);
+    Release(const QJsonObject &data, QObject *parent = nullptr);
 
+    void setData(const QJsonObject &data);
+
+    // properties
     quint32 assetCount() const;
     Owner *author() const;
     QDateTime createdAt() const;
@@ -50,6 +54,7 @@ public:
     QString tagName() const;
 
 signals:
+    // properties
     void assetCountChanged(quint32 count);
     void authorChanged(Owner *author);
     void createdAtChanged(const QDateTime &createdAt);
@@ -63,6 +68,7 @@ signals:
     void tagNameChanged(const QString &tagName);
 
 public slots:
+    // properties
     void setAssetCount(quint32 count);
     void setAuthor(Owner *author);
     void setCreatedAt(const QDateTime &createdAt);
@@ -76,6 +82,7 @@ public slots:
     void setTagName(const QString &tagName);
 
 private:
+    // properties
     quint32 m_assetCount{0};
     Owner *m_author{nullptr};
     QDateTime m_createdAt;

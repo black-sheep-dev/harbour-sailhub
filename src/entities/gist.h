@@ -9,7 +9,7 @@
 
 struct GistListItem : public NodeListItem {
     GistListItem() = default;
-    GistListItem(const QJsonObject &obj);
+    GistListItem(const QJsonObject &data);
 
     quint32 commentCount{0};
     QDateTime createdAt;
@@ -43,7 +43,11 @@ class Gist : public Node
 
 public:
     explicit Gist(QObject *parent = nullptr);
+    Gist(const QJsonObject &data, QObject *parent = nullptr);
 
+    void setData(const QJsonObject &data);
+
+    // properties
     quint32 commetCount() const;
     QDateTime createdAt() const;
     QString description() const;
@@ -58,6 +62,7 @@ public:
     bool viewerHasStarred() const;
 
 signals:
+    // properties
     void commetCountChanged(quint32 count);
     void createdAtChanged(const QDateTime &createdAt);
     void descriptionChanged(const QString &description);
@@ -72,6 +77,7 @@ signals:
     void viewerHasStarredChanged(bool starred);
 
 public slots:
+    // properties
     void setCommetCount(quint32 count);
     void setCreatedAt(const QDateTime &createdAt);
     void setDescription(const QString &description);
@@ -86,6 +92,7 @@ public slots:
     void setViewerHasStarred(bool starred);
 
 private:
+    // properties
     quint32 m_commetCount{0};
     QDateTime m_createdAt;
     QString m_description;

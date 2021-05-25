@@ -142,7 +142,7 @@ void CommitsModel::parseQueryResult(const QJsonObject &data)
     const QJsonArray nodes = commits.value(ApiKey::NODES).toArray();
 
     for (const auto &node : nodes) {
-        const QJsonObject commit = node.toObject();
+        const QJsonObject commit = node.toObject().value(ApiKey::COMMIT).toObject();
         if (commit.isEmpty())
             continue;
 

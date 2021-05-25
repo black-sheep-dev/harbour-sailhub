@@ -5,24 +5,24 @@
 #include "src/enums/lockreason.h"
 
 // List Item
-DiscussionListItem::DiscussionListItem(const QJsonObject &obj) :
-    NodeListItem(obj)
+DiscussionListItem::DiscussionListItem(const QJsonObject &data) :
+    NodeListItem(data)
 {
-    const QJsonObject cat = obj.value(ApiKey::CATEGORY).toObject();
+    const QJsonObject cat = data.value(ApiKey::CATEGORY).toObject();
     category = cat.value(ApiKey::NAME).toString();
     emoji = DataUtils::getEmojiLinkFromString(cat.value(ApiKey::EMOJI_HTML).toString());
 
-    commentCount = DataUtils::getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
-    locked = obj.value(ApiKey::LOCKED).toBool();
-    lockReason = LockReason::fromString(obj.value(ApiKey::ACTIVE_LOCK_REASON).toString());
-    title = obj.value(ApiKey::TITLE).toString();
+    commentCount = DataUtils::getTotalCount(data.value(ApiKey::COMMENTS).toObject());
+    locked = data.value(ApiKey::LOCKED).toBool();
+    lockReason = LockReason::fromString(data.value(ApiKey::ACTIVE_LOCK_REASON).toString());
+    title = data.value(ApiKey::TITLE).toString();
 
-    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    createdAt = QDateTime::fromString(data.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
     createdAtTimeSpan = DataUtils::timeSpanText(createdAt, true);
-    updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    updatedAt = QDateTime::fromString(data.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
     updatedAtTimeSpan = DataUtils::timeSpanText(updatedAt, true);
 
-    const QJsonObject author = obj.value(ApiKey::AUTHOR).toObject();
+    const QJsonObject author = data.value(ApiKey::AUTHOR).toObject();
     authorLogin = author.value(ApiKey::LOGIN).toString();
     authorAvatar = author.value(ApiKey::AVATAR_URL).toString();
 }
@@ -32,6 +32,39 @@ Discussion::Discussion(QObject *parent) :
     Interactable(parent)
 {
 
+}
+
+Discussion::Discussion(const QJsonObject &data, QObject *parent) :
+    Interactable(parent)
+{
+    setData(data);
+}
+
+void Discussion::setData(const QJsonObject &data)
+{
+    Interactable::setData(data);
+
+    setActiveLockReason(LockReason::fromString(data.value(ApiKey::ACTIVE_LOCK_REASON).toString()));
+    setAnswerChosenAt(QDateTime::fromString(data.value(ApiKey::ANSWER_CHOSEN_AT).toString(), Qt::ISODate));
+    setAnswerChosenBy(DataUtils::ownerFromJson(data.value(ApiKey::ANSWER_CHOSEN_BY).toObject()));
+
+    const QJsonObject category = data.value(ApiKey::CATEGORY).toObject();
+    setCategory(category.value(ApiKey::NAME).toString());
+    setCategoryId(category.value(ApiKey::ID).toString());
+    setCategoryEmoji(DataUtils::getEmojiLinkFromString(category.value(ApiKey::EMOJI_HTML).toString()));
+
+    setCommentCount(DataUtils::getTotalCount(data.value(ApiKey::COMMENTS).toObject()));
+    setCreatedViaEmail(data.value(ApiKey::CREATED_VIA_EMAIL).toBool());
+    setEditor(DataUtils::ownerFromJson(data.value(ApiKey::EDITOR).toObject()));
+    setLocked(data.value(ApiKey::LOCKED).toBool());
+    setNumber(data.value(ApiKey::NUMBER).toInt());
+    setPublishedAt(QDateTime::fromString(data.value(ApiKey::PUBLISHED_AT).toString(), Qt::ISODate));
+
+    const QJsonObject repo = data.value(ApiKey::REPOSITORY).toObject();
+    setRepository(repo.value(ApiKey::NAME_WITH_OWNER).toString());
+    setRepositoryId(repo.value(ApiKey::ID).toString());
+    setTitle(data.value(ApiKey::TITLE).toString());
+    setViewerSubscription(SubscriptionState::fromString(data.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
 }
 
 quint8 Discussion::activeLockReason() const
