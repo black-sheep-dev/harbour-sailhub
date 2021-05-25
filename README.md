@@ -40,7 +40,7 @@ DBusInterface {
 
 Button {
 	visible: sailHubInterface.Available
-    text: "Add Star"
+    text: "Give Star"
     onClicked: sailHubInterface.call("addStar", ["black-sheep-dev", "harbour-sailhub"])
 }
 
