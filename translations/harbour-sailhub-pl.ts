@@ -53,30 +53,30 @@
     </message>
     <message>
         <source>Add star</source>
-        <translation type="unfinished"></translation>
+        <translation>Daj gwiazdkę</translation>
     </message>
 </context>
 <context>
     <name>AddStarPage</name>
     <message>
         <source>Add Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Daj gwiazdkę</translation>
     </message>
     <message>
         <source>%1 says thank you for your star!</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 dziękuje za gwiazdkę!</translation>
     </message>
     <message>
         <source>Stargazer</source>
-        <translation type="unfinished">Stargazer</translation>
+        <translation>Stargazer</translation>
     </message>
     <message>
         <source>Support</source>
-        <translation type="unfinished"></translation>
+        <translation>Wsparcie</translation>
     </message>
     <message>
         <source>Sponsoring</source>
-        <translation type="unfinished"></translation>
+        <translation>Sponsoring</translation>
     </message>
 </context>
 <context>
