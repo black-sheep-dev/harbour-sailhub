@@ -4,14 +4,14 @@
 #include "src/api/keys.h"
 
 // List Item
-ReleaseListItem::ReleaseListItem(const QJsonObject &obj) :
-    NodeListItem(obj)
+ReleaseListItem::ReleaseListItem(const QJsonObject &data) :
+    NodeListItem(data)
 {
-    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    createdAt = QDateTime::fromString(data.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
     createdAtTimeSpan = DataUtils::timeSpanText(createdAt, true);
-    isDraft = obj.value(ApiKey::IS_DRAFT).toBool();
-    isLatest = obj.value(ApiKey::IS_LATEST).toBool();
-    isPrerelease = obj.value(ApiKey::IS_PRERELEASE).toBool();
+    isDraft = data.value(ApiKey::IS_DRAFT).toBool();
+    isLatest = data.value(ApiKey::IS_LATEST).toBool();
+    isPrerelease = data.value(ApiKey::IS_PRERELEASE).toBool();
 }
 
 // Object
@@ -19,6 +19,37 @@ Release::Release(QObject *parent) :
     Node(parent)
 {
 
+}
+
+Release::Release(const QJsonObject &data, QObject *parent) :
+    Node(parent)
+{
+    setData(data);
+}
+
+void Release::setData(const QJsonObject &data)
+{
+    Node::setData(data);
+
+    // author
+    auto author = DataUtils::ownerFromJson(data.value(ApiKey::AUTHOR).toObject());
+    if (author != nullptr) {
+        author->setParent(this);
+        setAuthor(author);
+    }
+
+    setAssetCount(DataUtils::getTotalCount(data.value(ApiKey::RELEASE_ASSETS).toObject()));
+    setCreatedAt(QDateTime::fromString(data.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    setDescription(data.value(ApiKey::DESCRIPTION).toString());
+    setIsDraft(data.value(ApiKey::IS_DRAFT).toBool());
+    setIsLatest(data.value(ApiKey::IS_LATEST).toBool());
+    setIsPrerelease(data.value(ApiKey::IS_PRERELEASE).toBool());
+    setPublishedAt(QDateTime::fromString(data.value(ApiKey::PUBLISHED_AT).toString(), Qt::ISODate));
+    setRepository(data.value(ApiKey::REPOSITORY).toObject()
+                           .value(ApiKey::NAME_WITH_OWNER).toString());
+    setTagCommit(data.value(ApiKey::TAG_COMMIT).toObject()
+                          .value(ApiKey::ABBREVIATED_OID).toString());
+    setTagName(data.value(ApiKey::TAG_NAME).toString());
 }
 
 quint32 Release::assetCount() const

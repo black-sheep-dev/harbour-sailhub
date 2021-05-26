@@ -395,7 +395,7 @@ static const QString SAILHUB_QUERY_GET_USER =
                        "            %1"
                        "        }"
                        "    }"
-                       "}").arg(SAILHUB_QUERY_ITEM_USER).simplified();
+                       "}").simplified();
 
 // GET USER PROFILE BY LOGIN
 static const QString SAILHUB_QUERY_GET_USER_BY_LOGIN =
@@ -409,7 +409,7 @@ static const QString SAILHUB_QUERY_GET_USER_BY_LOGIN =
                        "            %1"
                        "        }"
                        "    }"
-                       "}").arg(SAILHUB_QUERY_ITEM_USER).simplified();
+                       "}").simplified();
 
 
 #endif // QUERIES_H

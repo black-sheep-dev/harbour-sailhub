@@ -2,22 +2,23 @@
 
 #include "src/api/keys.h"
 #include "src/api/datautils.h"
+#include "src/enums/mergestatestatus.h"
 
 // List Item
-PullRequestListItem::PullRequestListItem(const QJsonObject &obj) :
-    NodeListItem(obj)
+PullRequestListItem::PullRequestListItem(const QJsonObject &data) :
+    NodeListItem(data)
 {
-    commentCount = DataUtils::getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
-    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    commentCount = DataUtils::getTotalCount(data.value(ApiKey::COMMENTS).toObject());
+    createdAt = QDateTime::fromString(data.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
     createdAtTimeSpan = DataUtils::timeSpanText(createdAt, true);
-    number = quint32(obj.value(ApiKey::NUMBER).toInt());
-    repository = obj.value(ApiKey::REPOSITORY).toObject()
+    number = quint32(data.value(ApiKey::NUMBER).toInt());
+    repository = data.value(ApiKey::REPOSITORY).toObject()
             .value(ApiKey::NAME_WITH_OWNER).toString();
-    state = PullRequestState::fromString(obj.value(ApiKey::STATE).toString());
+    state = PullRequestState::fromString(data.value(ApiKey::STATE).toString());
 
     timeSpan = DataUtils::timeSpanText(createdAt, true);
-    title = obj.value(ApiKey::TITLE).toString();
-    updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    title = data.value(ApiKey::TITLE).toString();
+    updatedAt = QDateTime::fromString(data.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
     updatedAtTimeSpan = DataUtils::timeSpanText(updatedAt, true);
 }
 
@@ -26,6 +27,32 @@ PullRequest::PullRequest(QObject *parent) :
     Issue(parent)
 {
 
+}
+
+PullRequest::PullRequest(const QJsonObject &data, QObject *parent) :
+    Issue(parent)
+{
+    setData(data);
+}
+
+void PullRequest::setData(const QJsonObject &data)
+{
+    Issue::setData(data);
+
+    setAdditions(data.value(ApiKey::ADDITIONS).toInt());
+    setBaseRefName(data.value(ApiKey::BASE_REF_NAME).toString());
+    setCanBeRebased(data.value(ApiKey::CAN_BE_REBASED).toBool());
+    setChangedFiles(data.value(ApiKey::CHANGED_FILES).toInt());
+    setCommitCount(DataUtils::getTotalCount(data.value(ApiKey::COMMITS).toObject()));
+    setDeletions(data.value(ApiKey::DELETIONS).toInt());
+    setHeadRefName(data.value(ApiKey::HEAD_REF_NAME).toString());
+    setIsCrossRepository(data.value(ApiKey::IS_CROSS_REPOSITORY).toBool());
+    setMaintainerCanModify(data.value(ApiKey::MAINTAINER_CAN_MODIFY).toBool());
+    setMergeStateStatus(MergeStateStatus::fromString(data.value(ApiKey::MERGE_STATE_STATUS).toString()));
+    setMergeable(data.value(ApiKey::MERGEABLE).toBool());
+    setMergedAt(QDateTime::fromString(data.value(ApiKey::MERGED_AT).toString(), Qt::ISODate));
+    setMergedBy(DataUtils::ownerFromJson(data.value(ApiKey::MERGEG_BY).toObject()));
+    setState(PullRequestState::fromString(data.value(ApiKey::STATE).toString()));
 }
 
 quint32 PullRequest::additions() const

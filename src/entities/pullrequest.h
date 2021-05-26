@@ -8,7 +8,7 @@
 
 struct PullRequestListItem : public NodeListItem {
     PullRequestListItem() = default;
-    PullRequestListItem(const QJsonObject &obj);
+    PullRequestListItem(const QJsonObject &data);
 
     quint32 commentCount{0};
     QDateTime createdAt;
@@ -53,7 +53,11 @@ public:
     Q_ENUM(PullRequestType)
 
     explicit PullRequest(QObject *parent = nullptr);
+    PullRequest(const QJsonObject &data, QObject *parent = nullptr);
 
+    void setData(const QJsonObject &data);
+
+    // properties
     quint32 additions() const;
     QString baseRefName() const;
     bool canBeRebased() const;
@@ -70,6 +74,7 @@ public:
     Owner *mergedBy() const;
 
 signals:
+    // properties
     void additionsChanged(quint32 additions);
     void baseRefNameChanged(const QString &name);
     void canBeRebasedChanged(bool canBeRebased);
@@ -87,6 +92,7 @@ signals:
 
 
 public slots:
+    // properties
     void setAdditions(quint32 additions);
     void setBaseRefName(const QString &name);
     void setCanBeRebased(bool canBeRebased);
@@ -103,6 +109,7 @@ public slots:
     void setMergedBy(Owner *mergedBy);
 
 private:
+    // properties
     quint32 m_additions{0};
     QString m_baseRefName;
     bool m_canBeRebased{false};

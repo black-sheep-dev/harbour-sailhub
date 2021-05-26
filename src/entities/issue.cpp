@@ -4,21 +4,22 @@
 
 #include "src/api/datautils.h"
 #include "src/api/keys.h"
+#include "src/enums/repositorypermission.h"
 
 // List Item
-IssueListItem::IssueListItem(const QJsonObject &obj) :
-    NodeListItem(obj)
+IssueListItem::IssueListItem(const QJsonObject &data) :
+    NodeListItem(data)
 {
-    closed = obj.value(ApiKey::CLOSED).toBool();
-    commentCount = DataUtils::getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
-    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    closed = data.value(ApiKey::CLOSED).toBool();
+    commentCount = DataUtils::DataUtils::getTotalCount(data.value(ApiKey::COMMENTS).toObject());
+    createdAt = QDateTime::fromString(data.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
     createdAtTimeSpan = DataUtils::timeSpanText(createdAt, true);
-    number = obj.value(ApiKey::NUMBER).toInt();
-    repository = obj.value(ApiKey::REPOSITORY).toObject()
+    number = data.value(ApiKey::NUMBER).toInt();
+    repository = data.value(ApiKey::REPOSITORY).toObject()
                          .value(ApiKey::NAME_WITH_OWNER).toString();
-    state = IssueState::fromString(obj.value(ApiKey::STATE).toString());
-    title = obj.value(ApiKey::TITLE).toString();
-    updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    state = IssueState::fromString(data.value(ApiKey::STATE).toString());
+    title = data.value(ApiKey::TITLE).toString();
+    updatedAt = QDateTime::fromString(data.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
     updatedAtTimeSpan = DataUtils::timeSpanText(updatedAt, true);
 }
 
@@ -27,6 +28,35 @@ Issue::Issue(QObject *parent) :
     Interactable(parent)
 {
 
+}
+
+Issue::Issue(const QJsonObject &data, QObject *parent) :
+    Interactable(parent)
+{
+    setData(data);
+}
+
+void Issue::setData(const QJsonObject &data)
+{
+    Interactable::setData(data);
+
+    setAssigneeCount(DataUtils::DataUtils::getTotalCount(data.value(ApiKey::ASSIGNEES).toObject()));
+    setTitle(data.value(ApiKey::TITLE).toString());
+    setNumber(data.value(ApiKey::NUMBER).toInt());
+
+    const QJsonObject repo = data.value(ApiKey::REPOSITORY).toObject();
+    setRepository(repo.value(ApiKey::NAME_WITH_OWNER).toString());
+    setRepositoryId(repo.value(ApiKey::ID).toString());
+    setRepositoryPermission(RepositoryPermission::fromString(repo.value(ApiKey::VIEWER_PERMISSION).toString()));
+    setState(IssueState::fromString(data.value(ApiKey::STATE).toString()));
+    setCommentCount(DataUtils::getTotalCount(data.value(ApiKey::COMMENTS).toObject()));
+    setEdited(updatedAt() > createdAt());
+    setLabelCount(DataUtils::getTotalCount(data.value(ApiKey::LABELS).toObject()));
+    setLocked(data.value(ApiKey::LOCKED).toBool());
+    setParticipantCount(DataUtils::getTotalCount(data.value(ApiKey::PARTICIPANTS).toObject()));
+
+    // subscription
+    setViewerSubscription(SubscriptionState::fromString(data.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
 }
 
 quint32 Issue::assigneeCount() const

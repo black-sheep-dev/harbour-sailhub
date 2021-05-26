@@ -23,6 +23,9 @@ public:
     Q_ENUM(CommentType)
 
     explicit Comment(QObject *parent = nullptr);
+    Comment(const QJsonObject &data, QObject *parent = nullptr);
+
+    void setData(const QJsonObject &data);
 
     QString bodyExcerpt() const;
 

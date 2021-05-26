@@ -5,7 +5,7 @@
 
 struct DiscussionCategoryListItem : public NodeListItem {
     DiscussionCategoryListItem() = default;
-    DiscussionCategoryListItem(const QJsonObject &obj);
+    DiscussionCategoryListItem(const QJsonObject &data);
 
     QString description;
     QString emoji;

@@ -5,7 +5,7 @@
 
 struct NodeListItem {
     NodeListItem() = default;
-    NodeListItem(const QJsonObject &obj);
+    NodeListItem(const QJsonObject &data);
 
     QString name;
     QString nodeId;
@@ -22,6 +22,9 @@ class Node : public QObject
 
 public:
     explicit Node(QObject *parent = nullptr);
+    Node(const QJsonObject &data, QObject *parent = nullptr);
+
+    void setData(const QJsonObject &data);
 
     QString name() const;
     QString nodeId() const;

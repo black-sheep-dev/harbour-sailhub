@@ -11,7 +11,7 @@
 
 struct IssueListItem : public NodeListItem {
     IssueListItem() = default;
-    IssueListItem(const QJsonObject &obj);
+    IssueListItem(const QJsonObject &data);
 
     bool closed{false};
     quint32 commentCount{0};
@@ -55,6 +55,9 @@ public:
     Q_ENUM(IssueType)
 
     explicit Issue(QObject *parent = nullptr);
+    Issue(const QJsonObject &data, QObject *parent = nullptr);
+
+    void setData(const QJsonObject &data);
 
     // properties
     quint32 assigneeCount() const;

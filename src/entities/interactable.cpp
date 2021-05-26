@@ -1,11 +1,108 @@
 #include "interactable.h"
 
+#include <QJsonArray>
+
+#include "src/api/datautils.h"
+#include "src/api/keys.h"
+
 #include "reaction.h"
 
 Interactable::Interactable(QObject *parent) :
     Node(parent)
 {
 
+}
+
+Interactable::Interactable(const QJsonObject &data, QObject *parent) :
+    Node(parent)
+{
+    setData(data);
+}
+
+void Interactable::setData(const QJsonObject &data)
+{
+    Node::setData(data);
+
+    // author
+    auto author = DataUtils::ownerFromJson(data.value(ApiKey::AUTHOR).toObject());
+    if (author != nullptr) {
+        author->setParent(this);
+        setAuthor(author);
+    }
+
+    setViewerDidAuthor(data.value(ApiKey::VIEWER_DID_AUTHOR).toBool());
+
+    // body
+    //setBody(data.value(ApiKey::BODY_HTML).toString());
+    setBody(data.value(ApiKey::BODY).toString());
+    //qDebug() << "BODY: " << body();
+
+    // reactions
+    const QJsonArray reactionGroups = data.value(ApiKey::REACTION_GROUPS).toArray();
+
+    if (reactionGroups.isEmpty())
+        return;
+
+    quint8 viewerReactions{Reaction::None};
+
+    for (const auto &item : reactionGroups) {
+        const QJsonObject group = item.toObject();
+        const QString content = group.value(ApiKey::CONTENT).toString();
+        const bool viewerReacted = group.value(ApiKey::VIEWER_HAS_REACTED).toBool();
+        const quint32 count = DataUtils::getTotalCount(group.value(ApiKey::USERS).toObject());
+
+        if (content == QLatin1String("CONFUSED")) {
+            setReactionConfusedCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Confused;
+
+        } else if (content == QLatin1String("EYES")) {
+            setReactionEyesCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Eyes;
+
+        } else if (content == QLatin1String("HEART")) {
+            setReactionHeartCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Heart;
+
+        } else if (content == QLatin1String("HOORAY")) {
+            setReactionHoorayCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Hooray;
+
+        } else if (content == QLatin1String("LAUGH")) {
+            setReactionLaughCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Laugh;
+
+        } else if (content == QLatin1String("ROCKET")) {
+            setReactionRocketCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::Rocket;
+
+        } else if (content == QLatin1String("THUMBS_DOWN")) {
+            setReactionThumbsDownCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::ThumbsDown;
+
+        } else if (content == QLatin1String("THUMBS_UP")) {
+            setReactionThumbsUpCount(count);
+            if (viewerReacted)
+                viewerReactions |= Reaction::ThumbsUp;
+
+        }
+    }
+
+    setViewerReactions(viewerReactions);
+
+    // timespamps
+    setCreatedAt(QDateTime::fromString(data.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    setCreatedAtTimeSpan(DataUtils::timeSpanText(createdAt(), true));
+    setLastEditedAt(QDateTime::fromString(data.value(ApiKey::LAST_EDITED_AT).toString(), Qt::ISODate));
+    setUpdatedAt(QDateTime::fromString(data.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
+    setUpdatedAtTimeSpan(DataUtils::timeSpanText(updatedAt()));
+    setEdited(createdAt() < lastEditedAt());
 }
 
 void Interactable::updateReactionCount(quint8 reactions)

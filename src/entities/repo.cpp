@@ -1,27 +1,30 @@
 #include "repo.h"
 
+#include <QJsonArray>
+
 #include "src/api/datautils.h"
 #include "src/api/keys.h"
+#include "src/enums/repositorypermission.h"
 
 // List Item
-RepoListItem::RepoListItem(const QJsonObject &obj) :
-    NodeListItem(obj)
+RepoListItem::RepoListItem(const QJsonObject &data) :
+    NodeListItem(data)
 {
-    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-    description = DataUtils::removeEmojiTags(obj.value(ApiKey::SHORT_DESCRIPTION_HTML).toString());
-    flags = DataUtils::getRepoFlags(obj);
-    lockReason = RepositoryLockReason::fromString(obj.value(ApiKey::LOCK_REASON).toString());
-    ownerAvatar = obj.value(ApiKey::OWNER).toObject()
+    createdAt = QDateTime::fromString(data.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    description = DataUtils::removeEmojiTags(data.value(ApiKey::SHORT_DESCRIPTION_HTML).toString());
+    flags = DataUtils::getRepoFlags(data);
+    lockReason = RepositoryLockReason::fromString(data.value(ApiKey::LOCK_REASON).toString());
+    ownerAvatar = data.value(ApiKey::OWNER).toObject()
                  .value(ApiKey::AVATAR_URL).toString();
-    ownerLogin = obj.value(ApiKey::OWNER).toObject()
+    ownerLogin = data.value(ApiKey::OWNER).toObject()
                  .value(ApiKey::LOGIN).toString();
-    pushedAt = QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
-    stargazerCount = quint32(obj.value(ApiKey::STARGAZER_COUNT).toInt());
+    pushedAt = QDateTime::fromString(data.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
+    stargazerCount = quint32(data.value(ApiKey::STARGAZER_COUNT).toInt());
 
-    const QJsonObject lang = obj.value(ApiKey::PRIMARY_LANGUAGE).toObject();
+    const QJsonObject lang = data.value(ApiKey::PRIMARY_LANGUAGE).toObject();
     language.name = lang.value(ApiKey::NAME).toString();
     language.color = lang.value(ApiKey::COLOR).toString();
-    updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    updatedAt = QDateTime::fromString(data.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
 }
 
 // Object
@@ -29,6 +32,82 @@ Repo::Repo(QObject *parent) :
     Node(parent)
 {
 
+}
+
+Repo::Repo(const QJsonObject &data, QObject *parent) :
+    Node(parent)
+{
+    setData(data);
+}
+
+void Repo::setData(const QJsonObject &data)
+{
+    Node::setData(data);
+
+    QStringList branches;
+
+    const QJsonArray nodes = data.value(ApiKey::REFS).toObject().value(ApiKey::NODES).toArray();
+
+    for (const auto &node : nodes) {
+        branches.append(node.toObject().value(ApiKey::NAME).toString());
+    }
+    setBranches(branches);
+
+    setContributorCount(DataUtils::getTotalCount(data.value(ApiKey::MENTIONABLE_USERS).toObject()));
+    setDefaultBranch(data.value(ApiKey::DEFAULT_BRANCH_REF).toObject()
+                           .value(ApiKey::NAME).toString());
+    setDescription(data.value(ApiKey::DESCRIPTION).toString());
+    setDiscussionCount(DataUtils::getTotalCount(data.value(ApiKey::DISCUSSIONS).toObject()));
+    setFlags(DataUtils::getRepoFlags(data));
+    setForkCount(data.value(ApiKey::FORK_COUNT).toInt());
+    setHasFundingLinks(data.value(ApiKey::FUNDING_LINKS).toArray().count() > 0);
+    setHomepageUrl(data.value(ApiKey::HOMEPAGE_URL).toString());
+    setIssuesCount(DataUtils::getTotalCount(data.value(ApiKey::ISSUES).toObject()));
+    setLabelCount(DataUtils::getTotalCount(data.value(ApiKey::LABELS).toObject()));
+    setLockReason(RepositoryLockReason::fromString(data.value(ApiKey::LOCK_REASON).toString()));
+    setProjects(DataUtils::getTotalCount(data.value(ApiKey::PROJECTS).toObject()));
+    setReleaseCount(DataUtils::getTotalCount(data.value(ApiKey::RELEASES).toObject()));
+    setPullRequestsCount(DataUtils::getTotalCount(data.value(ApiKey::PULL_REQUESTS).toObject()));
+
+    setReleaseCount(DataUtils::getTotalCount(data.value(ApiKey::RELEASES).toObject()));
+    setStargazerCount(data.value(ApiKey::STARGAZER_COUNT).toInt());
+    setViewerHasStarred(data.value(ApiKey::VIEWER_HAS_STARRED).toBool());
+    setViewerSubscription(data.value(ApiKey::VIEWER_SUBSCRIPTION).toInt());
+    setVulnerabilityAlertCount(DataUtils::getTotalCount(data.value(ApiKey::VULNERABILITY_ALERTS).toObject()));
+    setWatcherCount(DataUtils::getTotalCount(data.value(ApiKey::WATCHERS).toObject()));
+
+    const QJsonObject lic = data.value(ApiKey::LICENSE_INFO).toObject();
+    auto license = new License(this);
+    license->setName(lic.value(ApiKey::SPDX_ID).toString());
+    license->setUrl(lic.value(ApiKey::URL).toString());
+    setLicense(license);
+
+
+    Owner *owner = DataUtils::ownerFromJson(data.value(ApiKey::OWNER).toObject());
+    if (owner != nullptr) {
+        owner->setParent(this);
+        setOwner(owner);
+    }
+
+    // features
+    quint8 features{Repo::FeatureNone};
+
+    if (data.value(ApiKey::HAS_ISSUES_ENABLED).toBool())
+        features |= Repo::FeatureIssues;
+
+    if (data.value(ApiKey::HAS_PROJECTS_ENABLED).toBool())
+        features |= Repo::FeatureProjects;
+
+    if (data.value(ApiKey::HAS_WIKI_ENABLED).toBool())
+        features |= Repo::FeatureWiki;
+
+    setFeatures(features);
+
+    // permisson
+    setViewerPermission(RepositoryPermission::fromString(data.value(ApiKey::VIEWER_PERMISSION).toString()));
+
+    // subscription
+    setViewerSubscription(SubscriptionState::fromString(data.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
 }
 
 QStringList Repo::branches() const

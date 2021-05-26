@@ -5,7 +5,7 @@
 
 struct UserListItem : public NodeListItem {
     UserListItem() = default;
-    UserListItem(const QJsonObject &obj);
+    UserListItem(const QJsonObject &data);
 
     QString avatarUrl;
     QString login;
@@ -54,6 +54,9 @@ public:
     Q_ENUM(UserType)
 
     explicit User(QObject *parent = nullptr);
+    User(const QJsonObject &data, QObject *parent = nullptr);
+
+    void setData(const QJsonObject &data);
 
     // properties
     QString avatarUrl() const;

@@ -4,11 +4,11 @@
 #include "src/api/keys.h"
 
 // List Item
-DiscussionCategoryListItem::DiscussionCategoryListItem(const QJsonObject &obj) :
-    NodeListItem(obj)
+DiscussionCategoryListItem::DiscussionCategoryListItem(const QJsonObject &data) :
+    NodeListItem(data)
 {
-    emoji = DataUtils::getEmojiLinkFromString(obj.value(ApiKey::EMOJI_HTML).toString());
-    description = obj.value(ApiKey::DESCRIPTION).toString();
+    emoji = DataUtils::getEmojiLinkFromString(data.value(ApiKey::EMOJI_HTML).toString());
+    description = data.value(ApiKey::DESCRIPTION).toString();
 }
 
 // Object

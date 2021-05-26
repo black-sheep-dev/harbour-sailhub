@@ -52,8 +52,8 @@
         <translation>Alle Emoji wurden von %1 entworfen. Lizenz: %2</translation>
     </message>
     <message>
-        <source>Add star</source>
-        <translation>Stern hinzufügen</translation>
+        <source>Give star</source>
+        <translation type="unfinished">Stern vergeben</translation>
     </message>
 </context>
 <context>

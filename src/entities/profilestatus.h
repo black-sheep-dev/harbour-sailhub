@@ -32,6 +32,9 @@ public:
     Q_ENUM(ExpireStatus)
 
     explicit ProfileStatus(QObject *parent = nullptr);
+    ProfileStatus(const QJsonObject &data, QObject *parent = nullptr);
+
+    void setData(const QJsonObject &data);
 
     QDateTime createdAt() const;
     QString emoji() const;

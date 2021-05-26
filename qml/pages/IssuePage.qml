@@ -87,7 +87,7 @@ Page {
                 })
             }
             MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.state === Issue.StateOpen
+                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.state === IssueState.Open
                 text: qsTr("Close")
 
                 onClicked: remorse.execute(qsTr("Closing issue"), function() {
@@ -170,14 +170,14 @@ Page {
 
                 Pill {
                     anchors.verticalCenter: parent.verticalCenter
-                    icon: issue.state === Issue.StateOpen ? "qrc:/icons/icon-m-issue" : "image://theme/icon-s-installed"
+                    icon: issue.state === IssueState.Open ? "qrc:/icons/icon-m-issue" : "image://theme/icon-s-installed"
                     text: {
-                        if (issue.state === Issue.StateOpen) return qsTr("Open")
+                        if (issue.state === IssueState.Open) return qsTr("Open")
                         if (issue.state === Issue.StateClosed) return qsTr("Closed")
                     }
 
                     backgroundColor: {
-                        if (issue.state === Issue.StateOpen) return SailHubStyles.colorStatusOpen
+                        if (issue.state === IssueState.Open) return SailHubStyles.colorStatusOpen
                         if (issue.state === Issue.StateClosed) return SailHubStyles.colorStatusClosed
                     }
 
@@ -329,9 +329,9 @@ Page {
             page.issue = issue;
             refresh()
         }
-        onIssueClosed: if (nodeId === issue.nodeId) issue.state = closed ? Issue.StateClosed : Issue.StateOpen
+        onIssueClosed: if (nodeId === issue.nodeId) issue.state = closed ? Issue.StateClosed : IssueState.Open
         onIssueDeleted: pageStack.navigateBack()
-        onIssueReopened: if (nodeId === issue.nodeId) issue.state = reopened ? Issue.StateOpen : Issue.StateClosed
+        onIssueReopened: if (nodeId === issue.nodeId) issue.state = reopened ? IssueState.Open : Issue.StateClosed
         onSubscribedTo: if (nodeId === issue.nodeId) issue.viewerSubscription = state
         onCommentAdded: refresh()
         onCommentDeleted: refresh()

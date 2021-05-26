@@ -1,6 +1,10 @@
 #include "notificationsmodel.h"
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QUuid>
+
+#include "src/api/keys.h"
 
 NotificationsModel::NotificationsModel(QObject *parent) :
     QAbstractListModel(parent),

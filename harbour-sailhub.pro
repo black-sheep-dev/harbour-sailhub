@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.31
+VERSION = 0.0.32
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -43,6 +43,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/discussioncategory.cpp \
     src/entities/discussioncomment.cpp \
     src/entities/file.cpp \
+    src/entities/fundinglink.cpp \
     src/entities/gist.cpp \
     src/entities/interactable.cpp \
     src/entities/issue.cpp \

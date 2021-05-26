@@ -95,46 +95,7 @@ void FundingLinksModel::parseQueryResult(const QJsonObject &data)
     for (const auto &value : links) {
         const QJsonObject obj = value.toObject();
 
-        FundingLinkListItem item;
-
-        const QString platform = obj.value(ApiKey::PLATFORM).toString();
-
-        if (platform == QLatin1String("COMMUNITY_BRIDGE")) {
-            item.platform = FundingLink::CommunityBridge;
-            item.name = QStringLiteral("CommunityBridge");
-        } else if (platform == QLatin1String("GITHUB")) {
-            item.platform = FundingLink::GitHub;
-            item.name = QStringLiteral("GitHub");
-        } else if (platform == QLatin1String("ISSUEHUNT")) {
-            item.platform = FundingLink::IssueHunt;
-            item.name = QStringLiteral("IssueHunt");
-        } else if (platform == QLatin1String("KO_FI")) {
-            item.platform = FundingLink::KoFi;
-            item.name = QStringLiteral("Ko-fi");
-        } else if (platform == QLatin1String("LIBERAPAY")){
-            item.platform = FundingLink::Liberpay;
-            item.name = QStringLiteral("Liberpay");
-        } else if (platform == QLatin1String("OPEN_COLLECTIVE")) {
-            item.platform = FundingLink::OpenCollective;
-            item.name = QStringLiteral("OpenCollective");
-        } else if (platform == QLatin1String("OTECHIE")) {
-            item.platform = FundingLink::Otechie;
-            item.name = QStringLiteral("Otechi");
-        } else if (platform == QLatin1String("PATREON")) {
-            item.platform = FundingLink::Patreon;
-            item.name = QStringLiteral("Patreon");
-        } else if (platform == QLatin1String("TIDELIFT")) {
-            item.platform = FundingLink::Tidelift;
-            item.name = QStringLiteral("Tidelift");
-        } else {
-            item.platform = FundingLink::Custom;
-            item.name = QStringLiteral("Custom");
-        }
-
-
-        item.url = obj.value(ApiKey::URL).toString();
-
-        items.append(item);
+        items.append(FundingLinkListItem(obj));
     }
 
     setFundingLinks(items);
