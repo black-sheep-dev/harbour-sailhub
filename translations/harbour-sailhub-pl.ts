@@ -53,7 +53,7 @@
     </message>
     <message>
         <source>Give star</source>
-        <translation type="unfinished"></translation>
+        <translation>Daj gwiazdkę</translation>
     </message>
 </context>
 <context>
@@ -982,7 +982,7 @@
     </message>
     <message>
         <source>Merged</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmerdżowane</translation>
     </message>
     <message>
         <source>Closed</source>
