@@ -61,23 +61,23 @@
     <name>AddStarPage</name>
     <message>
         <source>Add Star</source>
-        <translation type="unfinished"></translation>
+        <translation>添加星标</translation>
     </message>
     <message>
         <source>%1 says thank you for your star!</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 说感谢你的星标！</translation>
     </message>
     <message>
         <source>Stargazer</source>
-        <translation type="unfinished">天文学家</translation>
+        <translation>天文学家</translation>
     </message>
     <message>
         <source>Support</source>
-        <translation type="unfinished"></translation>
+        <translation>支持</translation>
     </message>
     <message>
         <source>Sponsoring</source>
-        <translation type="unfinished"></translation>
+        <translation>赞助</translation>
     </message>
 </context>
 <context>
