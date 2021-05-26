@@ -52,7 +52,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add star</source>
+        <source>Give star</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -4,20 +4,20 @@
 #include "src/api/keys.h"
 
 // List Item
-GistListItem::GistListItem(const QJsonObject &obj) :
-    NodeListItem(obj)
+GistListItem::GistListItem(const QJsonObject &data) :
+    NodeListItem(data)
 {
-    description = obj.value(ApiKey::DESCRIPTION).toString();
-    isPublic = obj.value(ApiKey::IS_PUBLIC).toBool();
-    commentCount = DataUtils::getTotalCount(obj.value(ApiKey::COMMENTS).toObject());
-    fileCount = DataUtils::getTotalCount(obj.value(ApiKey::FILES).toObject());
-    forkCount = DataUtils::getTotalCount(obj.value(ApiKey::FORKS).toObject());
-    stargazerCount = obj.value(ApiKey::STARGAZER_COUNT).toInt();
-    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-    pushedAt = QDateTime::fromString(obj.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
-    updatedAt = QDateTime::fromString(obj.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
+    description = data.value(ApiKey::DESCRIPTION).toString();
+    isPublic = data.value(ApiKey::IS_PUBLIC).toBool();
+    commentCount = DataUtils::getTotalCount(data.value(ApiKey::COMMENTS).toObject());
+    fileCount = DataUtils::getTotalCount(data.value(ApiKey::FILES).toObject());
+    forkCount = DataUtils::getTotalCount(data.value(ApiKey::FORKS).toObject());
+    stargazerCount = data.value(ApiKey::STARGAZER_COUNT).toInt();
+    createdAt = QDateTime::fromString(data.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    pushedAt = QDateTime::fromString(data.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
+    updatedAt = QDateTime::fromString(data.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate);
 
-    const QJsonObject owner = obj.value(ApiKey::OWNER).toObject();
+    const QJsonObject owner = data.value(ApiKey::OWNER).toObject();
 
     ownerLogin = owner.value(ApiKey::LOGIN).toString();
     ownerAvatar = owner.value(ApiKey::AVATAR_URL).toString();
@@ -28,6 +28,29 @@ Gist::Gist(QObject *parent) :
     Node(parent)
 {
 
+}
+
+Gist::Gist(const QJsonObject &data, QObject *parent) :
+    Node(parent)
+{
+    setData(data);
+}
+
+void Gist::setData(const QJsonObject &data)
+{
+    Node::setData(data);
+
+    setCommetCount(DataUtils::getTotalCount(data.value(ApiKey::COMMENTS).toObject()));
+    setCreatedAt(QDateTime::fromString(data.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    setDescription(data.value(ApiKey::DESCRIPTION).toString());
+    setForkCount(DataUtils::getTotalCount(data.value(ApiKey::FORKS).toObject()));
+    setIsFork(data.value(ApiKey::IS_FORK).toBool());
+    setIsPublic(data.value(ApiKey::IS_PUBLIC).toBool());
+    setOwner(DataUtils::ownerFromJson(data.value(ApiKey::OWNER).toObject()));
+    setPushedAt(QDateTime::fromString(data.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate));
+    setStargazerCount(data.value(ApiKey::STARGAZER_COUNT).toInt());
+    setUpdatedAt(QDateTime::fromString(data.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
+    setViewerHasStarred(data.value(ApiKey::VIEWER_HAS_STARRED).toBool());
 }
 
 quint32 Gist::commetCount() const

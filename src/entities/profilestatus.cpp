@@ -1,9 +1,53 @@
 #include "profilestatus.h"
 
+#include "src/api/datautils.h"
+#include "src/api/keys.h"
+
 ProfileStatus::ProfileStatus(QObject *parent) :
     Node(parent)
 {
 
+}
+
+ProfileStatus::ProfileStatus(const QJsonObject &data, QObject *parent) :
+    Node(parent)
+{
+    setData(data);
+}
+
+void ProfileStatus::setData(const QJsonObject &data)
+{
+    Node::setData(data);
+
+    setCreatedAt(QDateTime::fromString(data.value(ApiKey::CREATED_AT).toString(), Qt::ISODate));
+    setEmoji(data.value(ApiKey::EMOJI).toString());
+    setEmojiImage(DataUtils::getEmojiLinkFromString(data.value(ApiKey::EMOJI_HTML).toString()));
+
+    // expire
+    const QDateTime expireAt = QDateTime::fromString(data.value(ApiKey::EXPIRES_AT).toString(), Qt::ISODate);
+    setExpiresAt(expireAt);
+
+//    const QDateTime current = QDateTime::currentDateTimeUtc();
+
+//    if (!expireAt.isValid())
+//        setExpireStatus(ProfileStatus::Never);
+//    else if (current.addSecs(30*60) <= expireAt)
+//        setExpireStatus(ProfileStatus::InThirtyMinutes);
+//    else if (current.addSecs(60*60) <= expireAt)
+//        setExpireStatus(ProfileStatus::InOneHour);
+//    else if (current.addSecs(4*60*60) <= expireAt)
+//        setExpireStatus(ProfileStatus::InFourHours);
+
+    //
+    setIndicatesLimitedAvailability(data.value(ApiKey::INDICATES_LIMITED_AVAILABILITY).toBool());
+    setMessage(data.value(ApiKey::MESSAGE).toString());
+
+    const QJsonObject org = data.value(ApiKey::ORGANIZATION).toObject();
+
+    setOrganization(org.value(ApiKey::LOGIN).toString());
+    setOrganizationId(org.value(ApiKey::ID).toString());
+
+    setUpdatedAt(QDateTime::fromString(data.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
 }
 
 QDateTime ProfileStatus::createdAt() const

@@ -5,6 +5,9 @@
 #include <QDateTime>
 
 struct NotificationListItem {
+    NotificationListItem() = default;
+    NotificationListItem(const QJsonObject &data);
+
     QString id;
     QDateTime lastReadAt;
     quint32 number{0};

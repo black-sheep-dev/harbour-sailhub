@@ -7,7 +7,6 @@ QtObject {
     readonly property color colorSuccess: "#64dd17"
     readonly property color colorStarred: "#FFFF00"
 
-
     // color status
     readonly property color colorStatusClosed: colorError
     readonly property color colorStatusMerged: "#aa00ff"

@@ -24,7 +24,7 @@ BackgroundItem {
         Image {
             id: emojiIcon
             anchors.verticalCenter: parent.verticalCenter
-            width: Theme.iconSizeSmall
+            width: Theme.iconSizeMedium
             height: width
             sourceSize.width: width
             sourceSize.height: width

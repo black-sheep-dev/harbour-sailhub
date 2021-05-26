@@ -6,11 +6,11 @@
 #include "src/api/datautils.h"
 
 // List Item
-NodeListItem::NodeListItem(const QJsonObject &obj)
+NodeListItem::NodeListItem(const QJsonObject &data)
 {
-    nodeId = obj.value(ApiKey::ID).toString();
-    name = obj.value(ApiKey::NAME).toString();
-    viewerAbilities = DataUtils::getViewerAbilities(obj);
+    nodeId = data.value(ApiKey::ID).toString();
+    name = data.value(ApiKey::NAME).toString();
+    viewerAbilities = DataUtils::getViewerAbilities(data);
 }
 
 // Object
@@ -18,6 +18,19 @@ Node::Node(QObject *parent) :
     QObject(parent)
 {
 
+}
+
+Node::Node(const QJsonObject &data, QObject *parent) :
+    QObject(parent)
+{
+    setData(data);
+}
+
+void Node::setData(const QJsonObject &data)
+{
+    setNodeId(data.value(ApiKey::ID).toString());
+    setName(data.value(ApiKey::NAME).toString());
+    setViewerAbilities(DataUtils::getViewerAbilities(data));
 }
 
 QString Node::name() const

@@ -43,6 +43,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/entities/discussioncategory.cpp \
     src/entities/discussioncomment.cpp \
     src/entities/file.cpp \
+    src/entities/fundinglink.cpp \
     src/entities/gist.cpp \
     src/entities/interactable.cpp \
     src/entities/issue.cpp \

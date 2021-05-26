@@ -5,11 +5,11 @@
 #include "src/api/keys.h"
 
 // List Item
-LabelListItem::LabelListItem(const QJsonObject &obj)
+LabelListItem::LabelListItem(const QJsonObject &data)
 {
-    color = obj.value(ApiKey::COLOR).toString();
-    createdAt = QDateTime::fromString(obj.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
-    name = obj.value(ApiKey::NAME).toString();
+    color = data.value(ApiKey::COLOR).toString();
+    createdAt = QDateTime::fromString(data.value(ApiKey::CREATED_AT).toString(), Qt::ISODate);
+    name = data.value(ApiKey::NAME).toString();
 }
 
 // Object

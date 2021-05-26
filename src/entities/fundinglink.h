@@ -4,6 +4,9 @@
 #include <QObject>
 
 struct FundingLinkListItem {
+    FundingLinkListItem() = default;
+    FundingLinkListItem(const QJsonObject &data);
+
     QString name;
     quint8 platform{0};
     QString url;

@@ -31,6 +31,9 @@ class Interactable : public Node
 
 public:
     explicit Interactable(QObject *parent = nullptr);
+    Interactable(const QJsonObject &data, QObject *parent = nullptr);
+
+    void setData(const QJsonObject &data);
 
     Q_INVOKABLE void updateReactionCount(quint8 reactions);
 

@@ -260,7 +260,7 @@ Page {
                                               description: repo.owner.login + "/" + repo.name,
                                               identifier: repo.nodeId,
                                               type: Issue.Repo,
-                                              states: Issue.StateOpen
+                                              states: IssueState.Open
                                           })
                 }
             }
@@ -272,8 +272,6 @@ Page {
                 icon: "qrc:///icons/icon-m-pull-request"
 
                 onClicked: {
-                    if (repo.pullRequestCount === 0) return;
-
                     pageStack.push(Qt.resolvedUrl("PullRequestsListPage.qml"), {
                                               description: repo.owner.login + "/" + repo.name,
                                               identifier: repo.nodeId,

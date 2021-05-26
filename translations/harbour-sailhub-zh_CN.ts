@@ -53,8 +53,8 @@
 许可证: %2</translation>
     </message>
     <message>
-        <source>Add star</source>
-        <translation>添加星标</translation>
+        <source>Give star</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

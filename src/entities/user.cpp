@@ -4,11 +4,11 @@
 #include "src/api/keys.h"
 
 // List Item
-UserListItem::UserListItem(const QJsonObject &obj) :
-    NodeListItem(obj)
+UserListItem::UserListItem(const QJsonObject &data) :
+    NodeListItem(data)
 {
-    avatarUrl = obj.value(ApiKey::AVATAR_URL).toString();
-    login = obj.value(ApiKey::LOGIN).toString();
+    avatarUrl = data.value(ApiKey::AVATAR_URL).toString();
+    login = data.value(ApiKey::LOGIN).toString();
 }
 
 // Object
@@ -16,6 +16,39 @@ User::User(QObject *parent) :
     Node(parent)
 {
 
+}
+
+User::User(const QJsonObject &data, QObject *parent) :
+    Node(parent)
+{
+    setData(data);
+}
+
+void User::setData(const QJsonObject &data)
+{
+    Node::setData(data);
+
+    setAvatarUrl(data.value(ApiKey::AVATAR_URL).toString());
+    setBio(data.value(ApiKey::BIO).toString());
+    setCompany(data.value(ApiKey::COMPANY).toString());
+    setEmail(data.value(ApiKey::EMAIL).toString());
+    setFollowers(DataUtils::getTotalCount(data.value(ApiKey::FOLLOWERS).toObject()));
+    setFollowing(DataUtils::getTotalCount(data.value(ApiKey::FOLLOWING).toObject()));
+    setGistCount(DataUtils::getTotalCount(data.value(ApiKey::GISTS).toObject()));
+    setLocation(data.value(ApiKey::LOCATION).toString());
+    setLogin(data.value(ApiKey::LOGIN).toString());
+    setIsViewer(data.value(ApiKey::IS_VIEWER).toBool());
+    setOrganizations(DataUtils::getTotalCount(data.value(ApiKey::ORGANIZATIONS).toObject()));
+    setRepositories(DataUtils::getTotalCount(data.value(ApiKey::REPOSITORIES).toObject()));
+    setStarredRepositories(DataUtils::getTotalCount(data.value(ApiKey::STARRED_REPOSITORIES).toObject()));
+    setTwitterUsername(data.value(ApiKey::TWITTER_USERNAME).toString());
+    setViewerIsFollowing(data.value(ApiKey::VIEWER_IS_FOLLOWING).toBool());
+    setWebsiteUrl(data.value(ApiKey::WEBSITE_URL).toString());
+
+    // user status
+    const QJsonObject status = data.value(ApiKey::STATUS).toObject();
+    setStatusEmoji(DataUtils::getEmojiLinkFromString(status.value(ApiKey::EMOJI_HTML).toString()));
+    setStatusMessage(status.value(ApiKey::MESSAGE).toString());
 }
 
 QString User::avatarUrl() const
