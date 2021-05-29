@@ -138,6 +138,7 @@ struct ApiKey {
     static const QString ORGANIZATIONS;
     static const QString OWNER;    
     static const QString PAGE_INFO;
+    static const QString PARENT;
     static const QString PARTICIPANTS;
     static const QString PATH;
     static const QString PLATFORM;

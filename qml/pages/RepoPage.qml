@@ -132,6 +132,26 @@ Page {
                 text: repo.name
             }
 
+            // forked
+            BackgroundItem {
+                visible: repo.flags & Repo.IsFork
+                width: parent.width
+
+                Label {
+                    x: Theme.horizontalPageMargin
+                    width: parent.width - 2*x
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: Theme.fontSizeSmall
+                    wrapMode: Text.Wrap
+
+                    text: qsTr("Forked from %1").arg(repo.parentName)
+                }
+
+                onClicked: pageStack.push(Qt.resolvedUrl("RepoPage.qml"), {
+                                              nodeId: repo.parentId
+                                          })
+            }
+
             // flags
             RepoFlagsItem {
                 x: Theme.horizontalPageMargin

@@ -1414,6 +1414,10 @@
         <source>Unwatch</source>
         <translation>Przestań obserwować</translation>
     </message>
+    <message>
+        <source>Forked from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ReposListPage</name>

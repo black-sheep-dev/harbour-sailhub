@@ -1394,6 +1394,10 @@
         <source>Unwatch</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Forked from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ReposListPage</name>

@@ -53,7 +53,7 @@
     </message>
     <message>
         <source>Give star</source>
-        <translation type="unfinished">Stern vergeben</translation>
+        <translation>Stern vergeben</translation>
     </message>
 </context>
 <context>
@@ -1393,6 +1393,10 @@
     <message>
         <source>Unwatch</source>
         <translation>Vergessen</translation>
+    </message>
+    <message>
+        <source>Forked from %1</source>
+        <translation>Forked von %1</translation>
     </message>
 </context>
 <context>

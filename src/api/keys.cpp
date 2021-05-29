@@ -135,6 +135,7 @@ const QString ApiKey::ORGANIZATION_ID                   = QStringLiteral("organi
 const QString ApiKey::ORGANIZATIONS                     = QStringLiteral("organizations");
 const QString ApiKey::OWNER                             = QStringLiteral("owner");
 const QString ApiKey::PAGE_INFO                         = QStringLiteral("pageInfo");
+const QString ApiKey::PARENT                            = QStringLiteral("parent");
 const QString ApiKey::PARTICIPANTS                      = QStringLiteral("participants");
 const QString ApiKey::PATH                              = QStringLiteral("path");
 const QString ApiKey::PLATFORM                          = QStringLiteral("platform");

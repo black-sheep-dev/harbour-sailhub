@@ -1375,6 +1375,10 @@
         <source>Unwatch</source>
         <translation>取消查看</translation>
     </message>
+    <message>
+        <source>Forked from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ReposListPage</name>
