@@ -54,7 +54,7 @@
     </message>
     <message>
         <source>Give star</source>
-        <translation type="unfinished"></translation>
+        <translation>基于星标</translation>
     </message>
 </context>
 <context>
