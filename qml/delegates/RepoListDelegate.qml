@@ -39,7 +39,7 @@ ListItem {
 
         Column {
             id: delegateColumn
-            width: parent.width
+            width: parent.width - avatarIcon.width - parent.spacing
             anchors.verticalCenter: parent.verticalCenter
             spacing: Theme.paddingSmall
 

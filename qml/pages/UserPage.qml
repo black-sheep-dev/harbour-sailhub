@@ -128,7 +128,7 @@ Page {
             }
 
             Label {
-                visible: user.status.length > 0
+                visible: user.statusMessage.length > 0
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
 

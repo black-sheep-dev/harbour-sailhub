@@ -15,7 +15,7 @@ class TreeItem : public QObject
 {
     Q_GADGET
 
-public:
+public:    
     enum Type {
         Undefined,
         Blob,

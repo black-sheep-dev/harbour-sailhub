@@ -13,6 +13,13 @@ class TreeModel : public BaseModel
     Q_PROPERTY(QString path READ path WRITE setPath NOTIFY pathChanged)
 
 public:
+    enum ModelType {
+        Undefined,
+        Commit,
+        Repository
+    };
+    Q_ENUM(ModelType)
+
     enum TreeItemRoles {
         ExtensionRole   = Qt::UserRole + 1,
         FileTypeRole,

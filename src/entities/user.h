@@ -38,6 +38,7 @@ public:
     enum UserType {
         Undefined,
         Assignable,
+        CommitAuthor,
         Contributor,
         Follower,
         Following,

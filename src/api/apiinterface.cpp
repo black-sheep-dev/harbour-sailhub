@@ -311,6 +311,15 @@ void ApiInterface::followUser(const QString &nodeId, bool follow)
     m_graphqlConnector->sendQuery(query, follow ? RequestType::FollowUser : RequestType::UnfollowUser);
 }
 
+void ApiInterface::getCommit(const QString &nodeId)
+{
+    GraphQLQuery query;
+    query.query = SAILHUB_QUERY_GET_COMMIT;
+    query.variables.insert(QueryVar::NODE_ID, nodeId);
+
+    m_graphqlConnector->sendQuery(query, RequestType::GetCommit);
+}
+
 void ApiInterface::getDiscussion(const QString &nodeId)
 {
     GraphQLQuery query;
@@ -908,6 +917,10 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     case RequestType::GetDiscussion:
         emit discussionAvailable(new Discussion(data.value(ApiKey::NODE).toObject()));
+        break;
+
+    case RequestType::GetCommit:
+        emit commitAvailable(new Commit(data.value(ApiKey::NODE).toObject()));
         break;
 
     case RequestType::GetGist:
