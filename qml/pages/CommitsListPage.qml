@@ -59,9 +59,9 @@ Page {
         delegate: CommitListDelegate {
             id: delegate
 
-//            onClicked: pageStack.push(Qt.resolvedUrl("CommitPage.qml"), {
-//                                          nodeId: model.nodeId
-//                                      })
+            onClicked: pageStack.push(Qt.resolvedUrl("CommitPage.qml"), {
+                                          nodeId: model.nodeId
+                                      })
 
         }
 

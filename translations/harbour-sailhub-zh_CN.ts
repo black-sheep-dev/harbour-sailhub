@@ -139,6 +139,136 @@
     </message>
 </context>
 <context>
+    <name>CommitPage</name>
+    <message>
+        <source>Commit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Changes</source>
+        <translation type="unfinished">修改</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n addition(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n deletion(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Changed files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation type="unfinished">关系</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation type="unfinished">贡献者</translation>
+    </message>
+    <message>
+        <source>Parents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Verified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unverified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The signing certificate or its chain could not be verified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid email used for signing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Signing key expired</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal error - the GPG verification service misbehaved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal error - the GPG verification service is unavailable at the moment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid signature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Malformed signature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The usage flags for the key that signed this don&apos;t allow signing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email used for signing not known to GitHub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid signature, though certificate revocation check failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid signature, pending certificate revocation checking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One or more certificates in chain has been revoked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown signature type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unsigned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email used for signing unverified on GitHub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unkown reason</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Key used for signing not known to GitHub</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CommitTreeListPage</name>
+    <message>
+        <source>Changed Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <source>No files available</source>
+        <translation type="unfinished">没有可用文件</translation>
+    </message>
+</context>
+<context>
     <name>CommitsListPage</name>
     <message>
         <source>Commits</source>

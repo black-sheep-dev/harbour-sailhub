@@ -9,6 +9,21 @@
 // QUERIES
 // ------------------------------------------------------------------------------------------------------------------
 
+// GET COMMIT
+static const QString SAILHUB_QUERY_GET_COMMIT =
+        QStringLiteral("query($nodeId: ID!) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on Commit {"
+                       "            %1"
+                       "        }"
+                       "    }"
+                       "    "
+                       "}").arg(SAILHUB_QUERY_ITEM_COMMIT).simplified();
+
 // GET GIST
 static const QString SAILHUB_QUERY_GET_DISCUSSION =
         QStringLiteral("query($nodeId: ID!) {"

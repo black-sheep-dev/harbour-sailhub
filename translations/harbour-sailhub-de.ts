@@ -139,6 +139,138 @@
     </message>
 </context>
 <context>
+    <name>CommitPage</name>
+    <message>
+        <source>Commit</source>
+        <translation>Commit</translation>
+    </message>
+    <message>
+        <source>Changes</source>
+        <translation>Änderungen</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n addition(s)</source>
+        <translation>
+            <numerusform>%n Ergänzung</numerusform>
+            <numerusform>%n Ergänzungen</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n deletion(s)</source>
+        <translation>
+            <numerusform>%n Löschung</numerusform>
+            <numerusform>%n Löschungen</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Changed files</source>
+        <translation>Geänderte Dateien</translation>
+    </message>
+    <message>
+        <source>Relations</source>
+        <translation>Beziehungen</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>Mitwirkende</translation>
+    </message>
+    <message>
+        <source>Parents</source>
+        <translation>Parents</translation>
+    </message>
+    <message>
+        <source>Verified</source>
+        <translation>Verifiziert</translation>
+    </message>
+    <message>
+        <source>Unverified</source>
+        <translation>Unverifiziert</translation>
+    </message>
+    <message>
+        <source>The signing certificate or its chain could not be verified</source>
+        <translation>Das Signaturzertifikat oder seine Chain konnte nicht verifiziert werden</translation>
+    </message>
+    <message>
+        <source>Invalid email used for signing</source>
+        <translation>Ungültige E-Mail zum Signieren verwendet</translation>
+    </message>
+    <message>
+        <source>Signing key expired</source>
+        <translation>Signaturschlüssel abgelaufen</translation>
+    </message>
+    <message>
+        <source>Internal error - the GPG verification service misbehaved</source>
+        <translation>Interner Fehler – der GPG-Verifizierungsdienst hat sich falsch verhalten</translation>
+    </message>
+    <message>
+        <source>Internal error - the GPG verification service is unavailable at the moment</source>
+        <translation>Interner Fehler - Der GPG-Überprüfungsdienst ist derzeit nicht verfügbar</translation>
+    </message>
+    <message>
+        <source>Invalid signature</source>
+        <translation>Ungültige Signatur</translation>
+    </message>
+    <message>
+        <source>Malformed signature</source>
+        <translation>Falsche Signatur</translation>
+    </message>
+    <message>
+        <source>The usage flags for the key that signed this don&apos;t allow signing</source>
+        <translation>Die Nutzungsflags für den Schlüssel, der dies signiert hat, erlauben keine Signierung</translation>
+    </message>
+    <message>
+        <source>Email used for signing not known to GitHub</source>
+        <translation>E-Mail, die zum Signieren verwendet wird, ist GitHub nicht bekannt</translation>
+    </message>
+    <message>
+        <source>Valid signature, though certificate revocation check failed</source>
+        <translation>Gültige Signatur, obwohl die Zertifikatssperrprüfung fehlgeschlagen ist</translation>
+    </message>
+    <message>
+        <source>Valid signature, pending certificate revocation checking</source>
+        <translation>Gültige Signatur, Prüfung auf Sperrung des Zertifikats ausstehend</translation>
+    </message>
+    <message>
+        <source>One or more certificates in chain has been revoked</source>
+        <translation>Ein oder mehrere Zertifikate in der Chain wurden gesperrt</translation>
+    </message>
+    <message>
+        <source>Unknown signature type</source>
+        <translation>Unbekannter Signaturtyp</translation>
+    </message>
+    <message>
+        <source>Unsigned</source>
+        <translation>Unsigniert</translation>
+    </message>
+    <message>
+        <source>Email used for signing unverified on GitHub</source>
+        <translation>E-Mail, die zum Signieren verwendet wird, nicht bestätigt auf GitHub</translation>
+    </message>
+    <message>
+        <source>Unkown reason</source>
+        <translation>Unbekannter Grund</translation>
+    </message>
+    <message>
+        <source>Key used for signing not known to GitHub</source>
+        <translation>Der zum Signieren verwendete Schlüssel ist GitHub nicht bekannt</translation>
+    </message>
+</context>
+<context>
+    <name>CommitTreeListPage</name>
+    <message>
+        <source>Changed Files</source>
+        <translation>Geänderte Dateien</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>No files available</source>
+        <translation>Keine Dateien vorhanden</translation>
+    </message>
+</context>
+<context>
     <name>CommitsListPage</name>
     <message>
         <source>Commits</source>

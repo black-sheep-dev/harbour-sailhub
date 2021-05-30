@@ -266,6 +266,10 @@ GraphQLQuery CommentsModel::query() const
     query.variables = defaultQueryVariables();
 
     switch (modelType()) {
+    case Comment::Commit:
+        query.query = SAILHUB_QUERY_GET_COMMENTS.arg(QStringLiteral("Commit"));
+        break;
+
     case Comment::Issue:
         query.query = SAILHUB_QUERY_GET_COMMENTS.arg(QStringLiteral("Issue"));
         break;

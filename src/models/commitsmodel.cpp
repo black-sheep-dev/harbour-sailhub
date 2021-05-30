@@ -7,6 +7,33 @@
 #include "src/api/queryvars.h"
 #include "src/api/query_items.h"
 
+
+// GET PULL REQEUEST COMMITS
+static const QString SAILHUB_QUERY_GET_PARENT_COMMITS =
+        QStringLiteral("query("
+                       "        $nodeId: ID!, "
+                       "        $itemCount: Int = 20, "
+                       "        $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on Commit {"
+                       "            id"
+                       "            parents("
+                       "                    first: $itemCount, "
+                       "                    after: $itemCursor "
+                       "                    ) {"
+                       "                nodes {"
+                       "                    %1"
+                       "                }"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_COMMIT_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
 // GET PULL REQEUEST COMMITS
 static const QString SAILHUB_QUERY_GET_PULL_REQUEST_COMMITS =
         QStringLiteral("query("
@@ -123,6 +150,11 @@ void CommitsModel::parseQueryResult(const QJsonObject &data)
     QJsonObject commits;
 
     switch (modelType()) {
+    case Commit::Parent:
+        commits = data.value(ApiKey::NODE).toObject()
+                      .value(ApiKey::PARENTS).toObject();
+        break;
+
     case Commit::PullRequest:
         commits = data.value(ApiKey::NODE).toObject()
                       .value(ApiKey::COMMITS).toObject();
@@ -142,7 +174,13 @@ void CommitsModel::parseQueryResult(const QJsonObject &data)
     const QJsonArray nodes = commits.value(ApiKey::NODES).toArray();
 
     for (const auto &node : nodes) {
-        const QJsonObject commit = node.toObject().value(ApiKey::COMMIT).toObject();
+        QJsonObject commit;
+
+        if (modelType() == Commit::Parent)
+            commit = node.toObject();
+        else
+            commit = node.toObject().value(ApiKey::COMMIT).toObject();
+
         if (commit.isEmpty())
             continue;
 
@@ -161,14 +199,19 @@ GraphQLQuery CommitsModel::query() const
 
     // query
     switch (modelType()) {
+    case Commit::Parent:
+        query.query = SAILHUB_QUERY_GET_PARENT_COMMITS;
+        break;
+
     case Commit::PullRequest:
-        query.query = SAILHUB_QUERY_GET_PULL_REQUEST_COMMITS;
-        query.variables.insert(QueryVar::NODE_ID, identifier());
+        query.query = SAILHUB_QUERY_GET_PULL_REQUEST_COMMITS;        
         break;
 
     default:
         break;
     }
+
+    query.variables.insert(QueryVar::NODE_ID, identifier());
 
     return query;
 }

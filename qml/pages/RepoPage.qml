@@ -471,7 +471,8 @@ Page {
                                               branch: selectedBranch,
                                               owner: repo.owner.login,
                                               repoName: repo.name,
-                                              repoId: repo.nodeId
+                                              repoId: repo.nodeId,
+                                              modelType: TreeModel.Repository
                                           })
             }
 

@@ -7,6 +7,29 @@
 #include "src/api/queryvars.h"
 #include "src/api/query_items.h"
 
+// GET COMMIT AUTHORS
+static const QString SAILHUB_QUERY_GET_COMMIT_AUTHORS =
+        QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId,) {"
+                       "        ... on Commit {"
+                       "            id"
+                       "            authors(first: $itemCount, after: $itemCursor) {"
+                       "                nodes {"
+                       "                    user {"
+                       "                        %1"
+                       "                    }"
+                       "                }"
+                       "                totalCount"
+                       "                %2"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").arg(SAILHUB_QUERY_ITEM_USER_LIST_ITEM, SAILHUB_QUERY_ITEM_PAGE_INFO).simplified();
+
 // GET ISSUE ASSIGNEES
 static const QString SAILHUB_QUERY_GET_ISSUE_ASSIGNEES =
         QStringLiteral("query($nodeId: ID!, $itemCount: Int = 20, $itemCursor: String = null) {"
@@ -351,6 +374,12 @@ void UsersModel::parseQueryResult(const QJsonObject &data)
         count = data.value(ApiKey::TOTAL_COUNT);
         break;
 
+    case User::CommitAuthor:
+        users = data.value(ApiKey::NODE).toObject()
+                    .value(ApiKey::AUTHORS).toObject();
+        count = data.value(ApiKey::TOTAL_COUNT);
+        break;
+
     case User::Contributor:
         users = data.value(ApiKey::NODE).toObject()
                     .value(ApiKey::MENTIONABLE_USERS).toObject();
@@ -422,7 +451,10 @@ void UsersModel::parseQueryResult(const QJsonObject &data)
         if (user.isEmpty())
             continue;
 
-        items.append(UserListItem(user));
+        if (modelType() == User::CommitAuthor)
+            items.append(UserListItem(user.value(ApiKey::USER).toObject()));
+        else
+            items.append(UserListItem(user));
     }
 
     addUsers(items);
@@ -436,6 +468,10 @@ GraphQLQuery UsersModel::query() const
     query.variables = defaultQueryVariables();
 
     switch (modelType()) {
+    case User::CommitAuthor:
+        query.query = SAILHUB_QUERY_GET_COMMIT_AUTHORS;
+        break;
+
     case User::Follower:
         query.query = SAILHUB_QUERY_GET_USER_FOLLOWERS;
         break;

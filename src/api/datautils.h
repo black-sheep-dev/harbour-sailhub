@@ -32,6 +32,7 @@ public:
 
     // owner
     static Owner *ownerFromJson(const QJsonObject &obj);
+    static Owner *ownerFromGitActorJson(const QJsonObject &obj);
 
     // page info
     static PageInfo pageInfoFromJson(const QJsonObject &obj, const QJsonValue &count = QJsonValue());
