@@ -146,7 +146,7 @@
     </message>
     <message>
         <source>Changes</source>
-        <translation type="unfinished">修改</translation>
+        <translation>修改</translation>
     </message>
     <message numerus="yes">
         <source>%n addition(s)</source>
@@ -166,11 +166,11 @@
     </message>
     <message>
         <source>Relations</source>
-        <translation type="unfinished">关系</translation>
+        <translation>关系</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished">贡献者</translation>
+        <translation>贡献者</translation>
     </message>
     <message>
         <source>Parents</source>
@@ -261,11 +261,11 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>No files available</source>
-        <translation type="unfinished">没有可用文件</translation>
+        <translation>没有可用文件</translation>
     </message>
 </context>
 <context>
@@ -1087,7 +1087,7 @@
     </message>
     <message>
         <source>Open</source>
-        <translation>开启</translation>
+        <translation>打开</translation>
     </message>
     <message>
         <source>Merged</source>
