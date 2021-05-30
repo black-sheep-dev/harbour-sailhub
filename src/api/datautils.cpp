@@ -99,6 +99,19 @@ Owner *DataUtils::ownerFromJson(const QJsonObject &obj)
     return owner;
 }
 
+Owner *DataUtils::ownerFromGitActorJson(const QJsonObject &obj)
+{
+    auto owner = new Owner;
+
+    const QJsonObject user = obj.value(ApiKey::USER).toObject();
+
+    owner->setNodeId(user.value(ApiKey::ID).toString());
+    owner->setLogin(user.value(ApiKey::LOGIN).toString());
+    owner->setAvatarUrl(obj.value(ApiKey::AVATAR_URL).toString());
+
+    return owner;
+}
+
 PageInfo DataUtils::pageInfoFromJson(const QJsonObject &obj, const QJsonValue &count)
 {
     PageInfo info;

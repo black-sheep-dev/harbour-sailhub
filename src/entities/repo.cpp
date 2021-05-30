@@ -68,7 +68,6 @@ void Repo::setData(const QJsonObject &data)
     setProjects(DataUtils::getTotalCount(data.value(ApiKey::PROJECTS).toObject()));
     setReleaseCount(DataUtils::getTotalCount(data.value(ApiKey::RELEASES).toObject()));
     setPullRequestsCount(DataUtils::getTotalCount(data.value(ApiKey::PULL_REQUESTS).toObject()));
-
     setReleaseCount(DataUtils::getTotalCount(data.value(ApiKey::RELEASES).toObject()));
     setStargazerCount(data.value(ApiKey::STARGAZER_COUNT).toInt());
     setViewerHasStarred(data.value(ApiKey::VIEWER_HAS_STARRED).toBool());
@@ -88,6 +87,11 @@ void Repo::setData(const QJsonObject &data)
         owner->setParent(this);
         setOwner(owner);
     }
+
+    const QJsonObject parentRepo = data.value(ApiKey::PARENT).toObject();
+    setParentId(parentRepo.value(ApiKey::ID).toString());
+    setParentName(parentRepo.value(ApiKey::NAME_WITH_OWNER).toString());
+
 
     // features
     quint8 features{Repo::FeatureNone};
@@ -183,6 +187,16 @@ quint8 Repo::lockReason() const
 Owner *Repo::owner() const
 {
     return m_owner;
+}
+
+QString Repo::parentId() const
+{
+    return m_parentId;
+}
+
+QString Repo::parentName() const
+{
+    return m_parentName;
 }
 
 quint32 Repo::projects() const
@@ -363,6 +377,24 @@ void Repo::setOwner(Owner *owner)
 
     m_owner = owner;
     emit ownerChanged(m_owner);
+}
+
+void Repo::setParentId(const QString &id)
+{
+    if (m_parentId == id)
+        return;
+
+    m_parentId = id;
+    emit parentIdChanged(m_parentId);
+}
+
+void Repo::setParentName(const QString &name)
+{
+    if (m_parentName == name)
+        return;
+
+    m_parentName = name;
+    emit parentNameChanged(m_parentName);
 }
 
 void Repo::setProjects(quint32 projects)

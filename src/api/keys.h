@@ -15,6 +15,7 @@ struct ApiKey {
     static const QString ASSIGNEE_IDS;
     static const QString ASSIGNEES;
     static const QString AUTHOR;
+    static const QString AUTHORS;
     static const QString AUTHORED_BY_COMMITTER;
     static const QString AVATAR_URL;
     static const QString BASE_REF_NAME;
@@ -35,6 +36,7 @@ struct ApiKey {
     static const QString COMMENTS;
     static const QString COMMIT;
     static const QString COMMITS;
+    static const QString COMMITTED_DATE;
     static const QString COMMITTER;
     static const QString COMPANY;
     static const QString CONTENT;
@@ -100,6 +102,7 @@ struct ApiKey {
     static const QString IS_SECURITY_POLICY_ENABLED;
     static const QString IS_TEMPLATE;
     static const QString IS_USER_CONFIGURATION_REPOSITORY;
+    static const QString IS_VALID;
     static const QString IS_VIEWER;
     static const QString ISSUE_ID;
     static const QString ISSUE;
@@ -138,6 +141,8 @@ struct ApiKey {
     static const QString ORGANIZATIONS;
     static const QString OWNER;    
     static const QString PAGE_INFO;
+    static const QString PARENT;
+    static const QString PARENTS;
     static const QString PARTICIPANTS;
     static const QString PATH;
     static const QString PLATFORM;
@@ -167,6 +172,7 @@ struct ApiKey {
     static const QString RESET_AT;
     static const QString SEARCH;
     static const QString SHORT_DESCRIPTION_HTML;
+    static const QString SIGNATURE;
     static const QString SIZE;
     static const QString SPDX_ID;
     static const QString STARGAZER_COUNT;
@@ -186,6 +192,7 @@ struct ApiKey {
     static const QString TEXT;
     static const QString TITLE;
     static const QString TOTAL_COUNT;
+    static const QString TREE;
     static const QString TWITTER_USERNAME;
     static const QString TYPE;
     static const QString UNFOLLOW_USER;

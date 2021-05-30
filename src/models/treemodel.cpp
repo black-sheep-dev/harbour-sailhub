@@ -1,7 +1,37 @@
 #include "treemodel.h"
 
-#include "src/api/datautils.h"
+#include <QJsonArray>
+
+#include "src/api/keys.h"
 #include "src/api/queryvars.h"
+#include "src/entities/file.h"
+
+// GET COMMIT FILES
+static const QString SAILHUB_QUERY_GET_COMMIT_FILES =
+        QStringLiteral("query($nodeId: ID!) {"
+                       "    rateLimit {"
+                       "        remaining"
+                       "        resetAt"
+                       "    }"
+                       "    node(id: $nodeId) {"
+                       "        ... on Commit {"
+                       "            id"
+                       "            tree {"
+                       "                entries {"
+                       "                    extension"
+                       "                    name"
+                       "                    path"
+                       "                    type"
+                       "                    object {"
+                       "                        ... on Blob {"
+                       "                            isBinary"
+                       "                        }"
+                       "                    }"
+                       "                }"
+                       "            }"
+                       "        }"
+                       "    }"
+                       "}").simplified();
 
 // GET REPOSITORY FILES
 static const QString SAILHUB_QUERY_GET_REPOSITORY_FILES =
@@ -140,17 +170,110 @@ void TreeModel::clear()
 
 void TreeModel::parseQueryResult(const QJsonObject &data)
 {
-    setItems(DataUtils::treeListItemsFromJson(data));
+    QJsonArray entries;
+
+    switch (modelType()) {
+    case Commit:
+        entries = data.value(ApiKey::NODE).toObject()
+                .value(ApiKey::TREE).toObject()
+                .value(ApiKey::ENTRIES).toArray();
+        break;
+
+    default:
+        entries = data.value(ApiKey::NODE).toObject()
+                .value(ApiKey::REF).toObject()
+                .value(ApiKey::TARGET).toObject()
+                .value(ApiKey::FILE).toObject()
+                .value(ApiKey::OBJECT).toObject()
+                .value(ApiKey::ENTRIES).toArray();
+        break;
+    }
+
+    QList<TreeItemListItem> items;
+
+    for (const auto &entry : entries) {
+        const QJsonObject obj = entry.toObject();
+
+        TreeItemListItem item;
+
+        item.name = obj.value(ApiKey::NAME).toString();
+        item.path = obj.value(ApiKey::PATH).toString();
+        item.extension = obj.value(ApiKey::EXTENSION).toString();
+
+        const QString type = obj.value(ApiKey::TYPE).toString();
+
+        if (type == QLatin1String("tree")) {
+            item.type = TreeItem::Tree;
+            items.append(item);
+            continue;
+        }
+
+        if (type == QLatin1String("blob")) {
+            item.type = TreeItem::Blob;
+
+            if (obj.value(ApiKey::OBJECT).toObject().value(ApiKey::IS_BINARY).toBool()) {
+
+                // image files
+                QRegExp regex;
+                regex.setPattern(".(jpg|png|gif|jpeg|ico|bmp)");
+
+                if (regex.exactMatch(item.extension)) {
+                    item.fileType = File::Image;
+                    items.append(item);
+                    continue;
+                }
+
+                // else binary
+                item.fileType = File::Binary;
+                items.append(item);
+                continue;
+            }
+
+            // SVG file
+            QRegExp regex;
+            regex.setPattern(".(svg)");
+
+            if (regex.exactMatch(item.extension)) {
+                item.fileType = File::Image;
+                items.append(item);
+                continue;
+            }
+
+            // Markdown
+            regex.setPattern(".(md)");
+
+            if (regex.exactMatch(item.extension)) {
+                item.fileType = File::Markdown;
+                items.append(item);
+                continue;
+            }
+
+            item.fileType = File::Text;
+        }
+
+        items.append(item);
+    }
+
+    setItems(items);
 }
 
 GraphQLQuery TreeModel::query() const
 {
     GraphQLQuery query;
-    query.variables.insert(QueryVar::NODE_ID, identifier());
-    query.variables.insert(QueryVar::BRANCH, m_branch);
-    query.variables.insert(QueryVar::PATH, m_path);
 
-    query.query = SAILHUB_QUERY_GET_REPOSITORY_FILES;
+    switch (modelType()) {
+    case Commit:
+        query.query = SAILHUB_QUERY_GET_COMMIT_FILES;
+        break;
+
+    default:
+        query.query = SAILHUB_QUERY_GET_REPOSITORY_FILES;
+        query.variables.insert(QueryVar::BRANCH, m_branch);
+        query.variables.insert(QueryVar::PATH, m_path);
+        break;
+    }
+
+    query.variables.insert(QueryVar::NODE_ID, identifier());
 
     return query;
 }

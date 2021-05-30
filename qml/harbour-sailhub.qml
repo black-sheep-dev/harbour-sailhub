@@ -43,6 +43,7 @@ ApplicationWindow
               </interface>'
 
         function addStar(username, reponame) {
+            __silica_applicationwindow_instance.activate()
             pageStack.push(Qt.resolvedUrl("pages/AddStarPage.qml"), { reponame: reponame, username: username })
         }
 

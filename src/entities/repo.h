@@ -49,6 +49,8 @@ class Repo : public Node
     Q_PROPERTY(License* license READ license WRITE setLicense NOTIFY licenseChanged)
     Q_PROPERTY(quint8 lockReason READ lockReason WRITE setLockReason NOTIFY lockReasonChanged)
     Q_PROPERTY(Owner* owner READ owner WRITE setOwner NOTIFY ownerChanged)
+    Q_PROPERTY(QString parentId READ parentId WRITE setParentId NOTIFY parentIdChanged)
+    Q_PROPERTY(QString parentName READ parentName WRITE setParentName NOTIFY parentNameChanged)
     Q_PROPERTY(quint32 projects READ projects WRITE setProjects NOTIFY projectsChanged)
     Q_PROPERTY(quint32 pullRequestCount READ pullRequestsCount WRITE setPullRequestsCount NOTIFY pullRequestsCountChanged)
     Q_PROPERTY(quint32 releaseCount READ releaseCount WRITE setReleaseCount NOTIFY releaseCountChanged)
@@ -136,6 +138,8 @@ public:
     License *license() const;
     quint8 lockReason() const;
     Owner *owner() const;
+    QString parentId() const;
+    QString parentName() const;
     quint32 projects() const;
     quint32 pullRequestsCount() const;
     quint32 releaseCount() const;
@@ -163,6 +167,8 @@ signals:
     void licenseChanged(License *license);
     void lockReasonChanged(quint8 reason);
     void ownerChanged(Owner *owner);
+    void parentIdChanged(const QString &id);
+    void parentNameChanged(const QString &name);
     void projectsChanged(quint32 projects);
     void pullRequestsCountChanged(quint32 count);
     void releaseCountChanged(quint32 releaseCount);
@@ -190,6 +196,8 @@ public slots:
     void setLicense(License *license);
     void setLockReason(quint8 reason);
     void setOwner(Owner *owner);
+    void setParentId(const QString &id);
+    void setParentName(const QString &name);
     void setProjects(quint32 projects);
     void setPullRequestsCount(quint32 count);
     void setReleaseCount(quint32 releaseCount);
@@ -217,6 +225,8 @@ private:
     License *m_license{nullptr};
     quint8 m_lockReason{RepositoryLockReason::Unknown};
     Owner *m_owner{nullptr};
+    QString m_parentId;
+    QString m_parentName;
     quint32 m_projects{0};
     quint32 m_pullRequestCount{0};
     quint32 m_stargazerCount{0};

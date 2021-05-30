@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<FundingLink>(uri, 1, 0, "FundingLink", "");
 
     // enums
+    qmlRegisterUncreatableType<GitSignatureState>(uri, 1, 0, "GitSignatureState", "");
     qmlRegisterUncreatableType<IssueState>(uri, 1, 0, "IssueState", "");
     qmlRegisterUncreatableType<LockReason>(uri, 1, 0, "LockReason", "");
     qmlRegisterUncreatableType<MergeStateStatus>(uri, 1, 0, "MergeStateStatus", "");

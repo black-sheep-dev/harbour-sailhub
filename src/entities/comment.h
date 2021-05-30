@@ -17,6 +17,7 @@ class Comment : public Interactable
 public:
     enum CommentType {
         Undefined,
+        Commit,
         Issue,
         PullRequest
     };

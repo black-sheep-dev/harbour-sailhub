@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.0.32
+VERSION = 0.0.33
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -120,6 +120,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/delegates/PullRequestListDelegate.qml \
     qml/delegates/ReleaseListDelegate.qml \
     qml/delegates/RepoListDelegate.qml \
+    qml/delegates/TreeListDelegate.qml \
     qml/delegates/UserListDelegate.qml \
     qml/dialogs/AssignUserDialog.qml \
     qml/dialogs/EditCommentDialog.qml \
@@ -135,6 +136,8 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/AddStarPage.qml \
     qml/pages/AssigneesListPage.qml \
     qml/pages/CommentPage \
+    qml/pages/CommitPage.qml \
+    qml/pages/CommitTreeListPage.qml \
     qml/pages/CommitsListPage.qml \
     qml/pages/DiscussionCommentPage.qml \
     qml/pages/DiscussionPage.qml \
@@ -243,6 +246,7 @@ HEADERS += \
     src/entities/user.h \
     src/entities/viewer.h \
     src/enums/enums.h \
+    src/enums/gitsignaturestate \
     src/enums/issuestate.h \
     src/enums/lockreason.h \
     src/enums/mergestatestatus.h \
