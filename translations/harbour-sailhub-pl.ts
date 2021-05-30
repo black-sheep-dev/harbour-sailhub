@@ -143,7 +143,7 @@
     <name>CommitPage</name>
     <message>
         <source>Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>Commit</translation>
     </message>
     <message>
         <source>Changes</source>
@@ -183,7 +183,7 @@
     </message>
     <message>
         <source>Verified</source>
-        <translation type="unfinished"></translation>
+        <translation>Zweryfikowane</translation>
     </message>
     <message>
         <source>Unverified</source>
