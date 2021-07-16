@@ -1,5 +1,8 @@
+* Fri Jul 16 2021 Black Sheep <blacksheep@nubecula.org> 0.0.34-1
+- Code improvements
+
 * Sun May 30 2021 Black Sheep <blacksheep@nubecula.org> 0.0.33-1
-- Show refrence to parent repository if is fork
+- Show refrrence to parent repository if is fork
 - Commit details added
 - Fixed bug SailHub doens't get active when repository is starred via DBus
 - Translation updates (polish / chinese)
