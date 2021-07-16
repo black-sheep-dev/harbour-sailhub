@@ -46,6 +46,11 @@ DiscussionsModel::DiscussionsModel(QObject *parent) :
     setSortOrder(Qt::DescendingOrder);
 }
 
+DiscussionsModel::~DiscussionsModel()
+{
+    m_discussions.clear();
+}
+
 void DiscussionsModel::addDiscussion(const DiscussionListItem &discussion)
 {
     beginInsertRows(QModelIndex(), m_discussions.count(),  m_discussions.count());

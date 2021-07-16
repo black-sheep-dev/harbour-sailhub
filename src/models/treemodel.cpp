@@ -76,6 +76,11 @@ TreeModel::TreeModel(QObject *parent) :
 
 }
 
+TreeModel::~TreeModel()
+{
+    m_items.clear();
+}
+
 void TreeModel::setItems(const QList<TreeItemListItem> &items)
 {
     beginResetModel();

@@ -40,6 +40,11 @@ ReleaseAssetsModel::ReleaseAssetsModel(QObject *parent) :
 
 }
 
+ReleaseAssetsModel::~ReleaseAssetsModel()
+{
+    m_assets.clear();
+}
+
 void ReleaseAssetsModel::addReleaseAsset(const ReleaseAssetListItem &asset)
 {
     beginInsertRows(QModelIndex(), m_assets.count(),  m_assets.count());

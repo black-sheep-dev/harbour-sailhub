@@ -22,6 +22,7 @@ public:
     Q_ENUM(ReleaseAssetRoles)
 
     explicit ReleaseAssetsModel(QObject *parent = nullptr);
+    ~ReleaseAssetsModel() override;
 
     void addReleaseAsset(const ReleaseAssetListItem &asset);
     void addReleaseAssets(const QList<ReleaseAssetListItem> &assets);

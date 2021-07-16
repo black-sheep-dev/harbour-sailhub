@@ -22,6 +22,7 @@ public:
     Q_ENUM(ReleaseRoles)
 
     explicit ReleasesModel(QObject *parent = nullptr);
+    ~ReleasesModel() override;
 
     void addRelease(const ReleaseListItem &release);
     void addReleases(const QList<ReleaseListItem> &releases);

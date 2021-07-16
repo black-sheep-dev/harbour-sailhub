@@ -236,6 +236,11 @@ IssuesModel::IssuesModel(QObject *parent) :
     setSortOrder(Qt::DescendingOrder);
 }
 
+IssuesModel::~IssuesModel()
+{
+    m_issues.clear();
+}
+
 void IssuesModel::addIssue(const IssueListItem &issue)
 {
     beginInsertRows(QModelIndex(), m_issues.count(),  m_issues.count());

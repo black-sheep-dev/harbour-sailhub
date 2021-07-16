@@ -6,6 +6,11 @@ ReactionsModel::ReactionsModel(QObject *parent) :
 
 }
 
+ReactionsModel::~ReactionsModel()
+{
+    m_reactions.clear();
+}
+
 void ReactionsModel::setReactions(const QList<ReactionListItem> &reactions)
 {
     beginResetModel();

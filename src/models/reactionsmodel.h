@@ -20,6 +20,7 @@ public:
     Q_ENUM(ReactionRoles)
 
     explicit ReactionsModel(QObject *parent = nullptr);
+    ~ReactionsModel() override;
 
     void setReactions(const QList<ReactionListItem> &reactions);
 

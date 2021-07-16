@@ -110,5 +110,6 @@ Page {
     }
 
     Component.onCompleted: SailHub.api().getModel(fundingLinksModel)
+    Component.onDestruction: delete fundingLinksModel
 }
 

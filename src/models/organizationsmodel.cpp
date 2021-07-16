@@ -54,6 +54,11 @@ OrganizationsModel::OrganizationsModel(QObject *parent) :
     setSortOrder(Qt::AscendingOrder);
 }
 
+OrganizationsModel::~OrganizationsModel()
+{
+    m_organizations.clear();
+}
+
 void OrganizationsModel::addOrganization(const OrganizationListItem &organization)
 {
     beginInsertRows(QModelIndex(), m_organizations.count(), m_organizations.count());

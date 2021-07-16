@@ -27,6 +27,7 @@ public:
     Q_ENUM(IssueRoles)
 
     explicit IssuesModel(QObject *parent = nullptr);
+    ~IssuesModel() override;
 
     void addIssue(const IssueListItem &issue);
     void addIssues(const QList<IssueListItem> &issues);

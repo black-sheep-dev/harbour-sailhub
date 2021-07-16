@@ -29,6 +29,7 @@ public:
     Q_ENUM(RepoRoles)
 
     explicit ReposModel(QObject *parent = nullptr);
+    ~ReposModel() override;
 
     void addRepo(const RepoListItem &repo);
     void addRepos(const QList<RepoListItem> &repos);

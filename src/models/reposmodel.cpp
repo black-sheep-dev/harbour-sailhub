@@ -159,6 +159,11 @@ ReposModel::ReposModel(QObject *parent) :
 
 }
 
+ReposModel::~ReposModel()
+{
+    m_repos.clear();
+}
+
 void ReposModel::addRepo(const RepoListItem &repo)
 {
     beginInsertRows(QModelIndex(), m_repos.count(), m_repos.count());

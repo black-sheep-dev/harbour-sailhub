@@ -46,6 +46,11 @@ LabelsModel::LabelsModel(QObject *parent) :
     setSortOrder(Qt::AscendingOrder);
 }
 
+LabelsModel::~LabelsModel()
+{
+    m_labels.clear();
+}
+
 void LabelsModel::addLabels(const QList<LabelListItem> &labels)
 {
     beginInsertRows(QModelIndex(), m_labels.count(), m_labels.count() + labels.count() - 1);

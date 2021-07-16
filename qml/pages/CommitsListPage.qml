@@ -86,5 +86,6 @@ Page {
     }
 
     Component.onCompleted: refresh()
+    Component.onDestruction: delete commitsModel
 }
 

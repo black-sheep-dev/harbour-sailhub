@@ -26,6 +26,7 @@ public:
     Q_ENUM(PullRequestRoles)
 
     explicit PullRequestsModel(QObject *parent = nullptr);
+    ~PullRequestsModel() override;
 
     void addPullRequest(const PullRequestListItem &repo);
     void addPullRequests(const QList<PullRequestListItem> &repos);

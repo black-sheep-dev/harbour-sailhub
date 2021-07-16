@@ -17,6 +17,7 @@ public:
     Q_ENUM(LabelRoles)
 
     explicit LabelsModel(QObject *parent = nullptr);
+    ~LabelsModel() override;
 
     void addLabels(const QList<LabelListItem> &labels);
     void setLabels(const QList<LabelListItem> &labels);

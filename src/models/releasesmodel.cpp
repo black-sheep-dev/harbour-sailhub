@@ -46,6 +46,11 @@ ReleasesModel::ReleasesModel(QObject *parent) :
     setSortOrder(Qt::DescendingOrder);
 }
 
+ReleasesModel::~ReleasesModel()
+{
+    m_releases.clear();
+}
+
 void ReleasesModel::addRelease(const ReleaseListItem &release)
 {
     beginInsertRows(QModelIndex(), m_releases.count(),  m_releases.count());

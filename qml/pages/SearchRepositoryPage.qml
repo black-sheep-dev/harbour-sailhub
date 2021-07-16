@@ -98,5 +98,7 @@ Page {
             VerticalScrollDecorator {}
         }
     }
+
+    Component.onDestruction: delete searchModel
 }
 

@@ -28,6 +28,7 @@ public:
     Q_ENUM(DiscussionRoles)
 
     explicit DiscussionsModel(QObject *parent = nullptr);
+    ~DiscussionsModel() override;
 
     void addDiscussion(const DiscussionListItem &discussion);
     void addDiscussions(const QList<DiscussionListItem> &discussions);

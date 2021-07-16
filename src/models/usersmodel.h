@@ -19,6 +19,7 @@ public:
     Q_ENUM(UserRoles)
 
     explicit UsersModel(QObject *parent = nullptr);
+    ~UsersModel() override;
 
     void addUser(const UserListItem &user);
     void addUsers(const QList<UserListItem> &users);

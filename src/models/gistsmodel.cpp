@@ -47,6 +47,11 @@ GistsModel::GistsModel(QObject *parent) :
     setSortOrder(Qt::DescendingOrder);
 }
 
+GistsModel::~GistsModel()
+{
+    m_gists.clear();
+}
+
 void GistsModel::addGist(const GistListItem &gist)
 {
     beginInsertRows(QModelIndex(), m_gists.count(),  m_gists.count());

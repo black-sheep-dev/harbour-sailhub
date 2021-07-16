@@ -30,6 +30,11 @@ FundingLinksModel::FundingLinksModel(QObject *parent) :
 
 }
 
+FundingLinksModel::~FundingLinksModel()
+{
+    m_links.clear();
+}
+
 void FundingLinksModel::setFundingLinks(const QList<FundingLinkListItem> &links)
 {
     beginResetModel();

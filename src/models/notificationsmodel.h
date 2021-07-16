@@ -29,6 +29,7 @@ public:
     Q_ENUM(NotificationRoles)
 
     explicit NotificationsModel(QObject *parent = nullptr);
+    ~NotificationsModel() override;
 
     void addNotifications(const QList<NotificationListItem> &items);
     void setNotifications(const QList<NotificationListItem> &items);

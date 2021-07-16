@@ -196,6 +196,11 @@ PullRequestsModel::PullRequestsModel(QObject *parent) :
     setSortOrder(Qt::DescendingOrder);
 }
 
+PullRequestsModel::~PullRequestsModel()
+{
+    m_pullRequests.clear();
+}
+
 void PullRequestsModel::addPullRequest(const PullRequestListItem &repo)
 {
     beginInsertRows(QModelIndex(), m_pullRequests.count(), m_pullRequests.count());

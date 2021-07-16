@@ -289,6 +289,11 @@ UsersModel::UsersModel(QObject *parent) :
     setSortOrder(Qt::AscendingOrder);
 }
 
+UsersModel::~UsersModel()
+{
+    m_users.clear();
+}
+
 void UsersModel::addUser(const UserListItem &user)
 {
     beginInsertRows(QModelIndex(), m_users.count(), m_users.count());

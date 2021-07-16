@@ -30,6 +30,7 @@ public:
     Q_ENUM(TreeItemRoles)
 
     explicit TreeModel(QObject *parent = nullptr);
+    ~TreeModel() override;
 
     void setItems(const QList<TreeItemListItem> &items);
 

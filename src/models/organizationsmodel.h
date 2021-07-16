@@ -20,6 +20,7 @@ public:
     Q_ENUM(OrganizationRoles)
 
     explicit OrganizationsModel(QObject *parent = nullptr);
+    ~OrganizationsModel() override;
 
     void addOrganization(const OrganizationListItem &organization);
     void addOrganizations(const QList<OrganizationListItem> &organizations);

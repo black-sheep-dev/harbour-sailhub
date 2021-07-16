@@ -13,6 +13,11 @@ NotificationsModel::NotificationsModel(QObject *parent) :
 
 }
 
+NotificationsModel::~NotificationsModel()
+{
+    m_notifications.clear();
+}
+
 void NotificationsModel::addNotifications(const QList<NotificationListItem> &items)
 {
     beginInsertRows(QModelIndex(), m_notifications.count(), m_notifications.count() + items.count() - 1);

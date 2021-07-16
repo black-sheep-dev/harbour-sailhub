@@ -26,6 +26,7 @@ public:
     Q_ENUM(GistRoles)
 
     explicit GistsModel(QObject *parent = nullptr);
+    ~GistsModel() override;
 
     void addGist(const GistListItem &gist);
     void addGists(const QList<GistListItem> &gists);

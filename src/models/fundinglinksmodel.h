@@ -18,6 +18,7 @@ public:
     Q_ENUM(FundingLinkRoles)
 
     explicit FundingLinksModel(QObject *parent = nullptr);
+    ~FundingLinksModel() override;
 
     void setFundingLinks(const QList<FundingLinkListItem> &links);
 private:

@@ -114,4 +114,5 @@ Page {
     }
 
     Component.onCompleted: SailHub.api().getModel(treeModel)
+    Component.onDestruction: delete treeModel
 }
