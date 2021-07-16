@@ -142,130 +142,130 @@
     <name>CommitPage</name>
     <message>
         <source>Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>递交</translation>
     </message>
     <message>
         <source>Changes</source>
-        <translation type="unfinished">修改</translation>
+        <translation>修改</translation>
     </message>
     <message numerus="yes">
         <source>%n addition(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 个附件</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n deletion(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 个删除</numerusform>
         </translation>
     </message>
     <message>
         <source>Changed files</source>
-        <translation type="unfinished"></translation>
+        <translation>已修改文件</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation type="unfinished">关系</translation>
+        <translation>关系</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished">贡献者</translation>
+        <translation>贡献者</translation>
     </message>
     <message>
         <source>Parents</source>
-        <translation type="unfinished"></translation>
+        <translation>父母</translation>
     </message>
     <message>
         <source>Verified</source>
-        <translation type="unfinished"></translation>
+        <translation>已检验</translation>
     </message>
     <message>
         <source>Unverified</source>
-        <translation type="unfinished"></translation>
+        <translation>未检验</translation>
     </message>
     <message>
         <source>The signing certificate or its chain could not be verified</source>
-        <translation type="unfinished"></translation>
+        <translation>签名证书或关连文件无法检验</translation>
     </message>
     <message>
         <source>Invalid email used for signing</source>
-        <translation type="unfinished"></translation>
+        <translation>用于签名的电子邮件无效</translation>
     </message>
     <message>
         <source>Signing key expired</source>
-        <translation type="unfinished"></translation>
+        <translation>签名密钥已过期</translation>
     </message>
     <message>
         <source>Internal error - the GPG verification service misbehaved</source>
-        <translation type="unfinished"></translation>
+        <translation>内部错误- GPG 检验服务工作异常</translation>
     </message>
     <message>
         <source>Internal error - the GPG verification service is unavailable at the moment</source>
-        <translation type="unfinished"></translation>
+        <translation>内部错误-GPG 检验服务当前不可用</translation>
     </message>
     <message>
         <source>Invalid signature</source>
-        <translation type="unfinished"></translation>
+        <translation>签名无效</translation>
     </message>
     <message>
         <source>Malformed signature</source>
-        <translation type="unfinished"></translation>
+        <translation>签名格式不正确</translation>
     </message>
     <message>
         <source>The usage flags for the key that signed this don&apos;t allow signing</source>
-        <translation type="unfinished"></translation>
+        <translation>签名这个的密钥的使用标志不允许签名</translation>
     </message>
     <message>
         <source>Email used for signing not known to GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>GitHub 不知道用于签名的电子邮件</translation>
     </message>
     <message>
         <source>Valid signature, though certificate revocation check failed</source>
-        <translation type="unfinished"></translation>
+        <translation>签名有效，但证书撤销检查失败</translation>
     </message>
     <message>
         <source>Valid signature, pending certificate revocation checking</source>
-        <translation type="unfinished"></translation>
+        <translation>签名有效，等待证书撤销检查</translation>
     </message>
     <message>
         <source>One or more certificates in chain has been revoked</source>
-        <translation type="unfinished"></translation>
+        <translation>关连文件的一个或多个证书已被废止</translation>
     </message>
     <message>
         <source>Unknown signature type</source>
-        <translation type="unfinished"></translation>
+        <translation>签名类型未知</translation>
     </message>
     <message>
         <source>Unsigned</source>
-        <translation type="unfinished"></translation>
+        <translation>未签名</translation>
     </message>
     <message>
         <source>Email used for signing unverified on GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>用于签名的电子邮件在 GitHub 上没有得到验证</translation>
     </message>
     <message>
         <source>Unkown reason</source>
-        <translation type="unfinished"></translation>
+        <translation>未知原因</translation>
     </message>
     <message>
         <source>Key used for signing not known to GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>GitHub 不知道用于签名的密钥</translation>
     </message>
 </context>
 <context>
     <name>CommitTreeListPage</name>
     <message>
         <source>Changed Files</source>
-        <translation type="unfinished"></translation>
+        <translation>已修改文件</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <source>No files available</source>
-        <translation type="unfinished">没有可用文件</translation>
+        <translation>没有可用文件</translation>
     </message>
 </context>
 <context>
@@ -1087,7 +1087,7 @@
     </message>
     <message>
         <source>Open</source>
-        <translation>开启</translation>
+        <translation>打开</translation>
     </message>
     <message>
         <source>Merged</source>
@@ -1507,7 +1507,7 @@
     </message>
     <message>
         <source>Forked from %1</source>
-        <translation type="unfinished"></translation>
+        <translation>从 %1 建立分支</translation>
     </message>
 </context>
 <context>

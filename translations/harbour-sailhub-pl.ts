@@ -143,11 +143,11 @@
     <name>CommitPage</name>
     <message>
         <source>Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>Commit</translation>
     </message>
     <message>
         <source>Changes</source>
-        <translation type="unfinished">Zmiany</translation>
+        <translation>Zmiany</translation>
     </message>
     <message numerus="yes">
         <source>%n addition(s)</source>
@@ -171,11 +171,11 @@
     </message>
     <message>
         <source>Relations</source>
-        <translation type="unfinished">Relacje</translation>
+        <translation>Relacje</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished">Współtwórcy</translation>
+        <translation>Współtwórcy</translation>
     </message>
     <message>
         <source>Parents</source>
@@ -183,7 +183,7 @@
     </message>
     <message>
         <source>Verified</source>
-        <translation type="unfinished"></translation>
+        <translation>Zweryfikowane</translation>
     </message>
     <message>
         <source>Unverified</source>
@@ -266,11 +266,11 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished">Odśwież</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <source>No files available</source>
-        <translation type="unfinished">Brak dostępnych plików</translation>
+        <translation>Brak dostępnych plików</translation>
     </message>
 </context>
 <context>
