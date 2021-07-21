@@ -106,6 +106,7 @@ Available translations:
 - German
 - Polish (by [atlochowski](https://github.com/atlochowski))
 - Chinese (by [dashinfantry](https://github.com/dashinfantry))
+- French (by [baxyz](https://github.com/baxyz)
   
 If you missing your native language you are welcome to support this project with your translation.
 
