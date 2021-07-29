@@ -167,7 +167,7 @@
     </message>
     <message>
         <source>Changed files</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmienione pliki</translation>
     </message>
     <message>
         <source>Relations</source>
@@ -187,7 +187,7 @@
     </message>
     <message>
         <source>Unverified</source>
-        <translation type="unfinished"></translation>
+        <translation>Niezweryfikowany</translation>
     </message>
     <message>
         <source>The signing certificate or its chain could not be verified</source>
