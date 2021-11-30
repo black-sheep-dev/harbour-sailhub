@@ -262,7 +262,7 @@
     <name>CommitTreeListPage</name>
     <message>
         <source>Changed Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmienione pliki</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -606,7 +606,7 @@
     </message>
     <message>
         <source>No gists available</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak dostępnych zasobów</translation>
     </message>
 </context>
 <context>
