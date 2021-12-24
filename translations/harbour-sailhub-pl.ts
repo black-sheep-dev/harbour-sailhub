@@ -2093,7 +2093,7 @@
     </message>
     <message>
         <source>An error occured when connecting to GitHub!</source>
-        <translation type="unfinished">Wystąpił błąd podczas łączenia się z GitHub!</translation>
+        <translation>Wystąpił błąd podczas łączenia się z GitHub!</translation>
     </message>
 </context>
 </TS>
