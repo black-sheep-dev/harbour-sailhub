@@ -2032,7 +2032,7 @@
     </message>
     <message>
         <source>An error occured when connecting to GitHub!</source>
-        <translation type="unfinished">连接到 Github 错误！</translation>
+        <translation>连接到 Github 错误！</translation>
     </message>
 </context>
 </TS>
