@@ -1,0 +1,3 @@
+[submodule "extern/sailfishos-utils"]
+	path = extern/sailfishos-utils
+	url = https://github.com/black-sheep-dev/sailfishos-utils.git
