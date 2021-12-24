@@ -11,8 +11,6 @@
 
 #include "graphqlquery.h"
 
-#include "src/tools/compress.h"
-
 class GraphQLConnector : public QObject
 {
     Q_OBJECT

@@ -7,13 +7,13 @@ Page {
 
     allowedOrientations: Orientation.All
 
-    DBusInterface {
-        id: sailHubInterface
+//    DBusInterface {
+//        id: sailHubInterface
 
-        service: "harbour.sailhub.service"
-        iface: "harbour.sailhub.service"
-        path: "/harbour/sailhub/service"
-    }
+//        service: "harbour.sailhub.service"
+//        iface: "harbour.sailhub.service"
+//        path: "/harbour/sailhub/service"
+//    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -30,7 +30,7 @@ Page {
 
             Image {
                 id: logo
-                source: "/usr/share/icons/hicolor/512x512/apps/" + Qt.application.name + ".png"
+                source: "/usr/share/icons/hicolor/512x512/apps/harbour-sailhub.png"
                 smooth: true
                 height: width
                 width: parent.width / 2
@@ -123,12 +123,12 @@ Page {
                         wrapMode: Text.WrapAnywhere
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: "https://weblate.nubecula.org/projects/" + Qt.application.name
+                        text: "https://weblate.nubecula.org/projects/harbour-sailhub"
                         color: parent.parent.pressed ? Theme.highlightColor : Theme.primaryColor
 
                     }
                 }
-                onClicked: Qt.openUrlExternally("https://weblate.nubecula.org/engage/" + Qt.application.name)
+                onClicked: Qt.openUrlExternally("https://weblate.nubecula.org/engage/harbour-sailhub")
             }
 
             Image {
@@ -137,7 +137,7 @@ Page {
                 height: sourceSize.height * width / sourceSize.width
                 smooth: true
                 fillMode: Image.PreserveAspectFit
-                source: "http://weblate.nubecula.org/widgets/" + Qt.application.name + "/-/" + Qt.application.name + "/multi-auto.svg"
+                source: "http://weblate.nubecula.org/widgets/harbour-sailhub/-/harbour-sailhub/multi-auto.svg"
             }
 
             SectionHeader{
@@ -167,22 +167,22 @@ Page {
                         wrapMode: Text.WrapAnywhere
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: "https://github.com/black-sheep-dev/" + Qt.application.name
+                        text: "https://github.com/black-sheep-dev/harbour-sailhub"
                         color: parent.parent.pressed ? Theme.highlightColor : Theme.primaryColor
 
                     }
                 }
-                onClicked: Qt.openUrlExternally("https://github.com/black-sheep-dev/" + Qt.application.name)
+                onClicked: Qt.openUrlExternally("https://github.com/black-sheep-dev/harbour-sailhub")
             }
 
-            ButtonLayout {
-                width: parent.width
+//            ButtonLayout {
+//                width: parent.width
 
-                Button {
-                    text: qsTr("Give star")
-                    onClicked: sailHubInterface.call("addStar", ["black-sheep-dev", Qt.application.name])
-                }
-            }
+//                Button {
+//                    text: qsTr("Give star")
+//                    onClicked: sailHubInterface.call("addStar", ["black-sheep-dev", Qt.application.name])
+//                }
+//            }
 
             SectionHeader{
                 text: qsTr("Donations")

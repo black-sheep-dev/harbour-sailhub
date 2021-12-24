@@ -211,7 +211,7 @@ QString DataUtils::getEmojiLinkFromString(const QString &string)
     if (!match.hasMatch())
         return QString();
 
-    return QStringLiteral("/usr/share/harbour-twemoji/72x72/") + match.captured(0);
+    return QStringLiteral("/usr/share/harbour-sailhub/twemoji/svg/") + match.captured(0).remove(".png").append(".svg");
 }
 
 

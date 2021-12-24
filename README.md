@@ -16,10 +16,7 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 ![](doc/images/github_personal_access_token.png)
 
 ## Dependencies (EMOJI)
-This package depends on an emoji pack I released on OpenRepos using the emojis from [Twitter Emoji](https://twemoji.twitter.com/) project.  
-I decided to split the emoji assets from the main app to reduce app size.
-Shipping these assets with every app release makes no sence.
-The installation should happen automatically.
+This package depends on an emoji pack I released on OpenRepos using the emojis from [Twitter Emoji](https://twemoji.twitter.com/) project.
 
 ## DBus Interface
 ### Add Star

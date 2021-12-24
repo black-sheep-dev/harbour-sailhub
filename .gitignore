@@ -1,3 +1,5 @@
+secret.pri
+
 # C++ objects and libs
 *.slo
 *.lo

@@ -3,8 +3,6 @@
 
 #include <QObject>
 
-#include <Sailfish/Secrets/secretmanager.h>
-
 #include "api/apiinterface.h"
 
 #include <keepalive/backgroundactivity.h>
@@ -14,6 +12,7 @@ class SailHub : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QString accessToken READ accessToken WRITE setAccessToken NOTIFY accessTokenChanged)
+    Q_PROPERTY(quint32 newNotificationsAvailable READ newNotificationsAvailable NOTIFY newNotificationsAvailableChanged)
     Q_PROPERTY(bool notify READ notify WRITE setNotify NOTIFY notifyChanged)
     Q_PROPERTY(quint8 notificationUpdateInterval READ notificationUpdateInterval WRITE setNotificationUpdateInterval NOTIFY notificationUpdateIntervalChanged)
 
@@ -28,15 +27,17 @@ public:
     Q_INVOKABLE void saveSettings();
 
     // properties
-    QString accessToken() const;
+    const QString &accessToken() const;
     bool notify() const;
     quint8 notificationUpdateInterval() const;
+    quint32 newNotificationsAvailable() const;
 
 signals:
     // properties
     void accessTokenChanged(const QString &token);
     void notifyChanged(bool notify);
     void notificationUpdateIntervalChanged(quint8 notificationUpdateInterval);
+    void newNotificationsAvailableChanged();
 
 public slots:
     // properties
@@ -45,7 +46,6 @@ public slots:
     void setNotificationUpdateInterval(quint8 notificationUpdateInterval);
 
 private slots:
-    void onApiError(quint8 error, const QString &msg);
     void onBackgroundActivityRunning();
     void onNotificationsAvailable(const QList<NotificationListItem> &items);
 
@@ -58,11 +58,11 @@ private:
         OneHour
     };
 
-    // sailfish secrets
-    void createCollection();
-    void deleteCollection();
+    // wallet
     void loadCredentials();
+    void resetCredentials();
     void storeCredentials();
+
 
     // settings
     void readSettings();
@@ -71,14 +71,13 @@ private:
     ApiInterface *m_api{new ApiInterface(this)};
     BackgroundActivity *m_backgroundActivity{nullptr};
     QStringList m_notifications;
-    Sailfish::Secrets::SecretManager m_secretManager;
-    Sailfish::Secrets::Secret::Identifier m_secretsIdentifier;
     BackgroundActivity::Frequency m_frequency{BackgroundActivity::FifteenMinutes};
 
     // properties
     QString m_accessToken;
     bool m_notify{false};
     quint16 m_notificationUpdateInterval{UpdateInterval::FifteenMinutes};
+    quint32 m_newNotificationsAvailable{0};
 };
 
 #endif // SAILHUB_H

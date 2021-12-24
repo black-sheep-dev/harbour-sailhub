@@ -14,7 +14,7 @@ void EmojiModel::loadEmoji()
 {
     beginResetModel();
 
-    QDir dir(QStringLiteral("/usr/share/harbour-twemoji/svg"));
+    QDir dir(QStringLiteral("/usr/share/harbour-sailhub/twemoji/svg"));
 
     for (const auto &file : dir.entryList(QDir::Files, QDir::Name) ) {
         QFileInfo info(file);

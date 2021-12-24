@@ -4,34 +4,21 @@
 #include <QDebug>
 #endif
 
+#include <QFile>
 #include <QSettings>
-
-#include <Sailfish/Secrets/createcollectionrequest.h>
-#include <Sailfish/Secrets/deletecollectionrequest.h>
-#include <Sailfish/Secrets/deletesecretrequest.h>
-#include <Sailfish/Secrets/storesecretrequest.h>
-#include <Sailfish/Secrets/storedsecretrequest.h>
+#include <QStandardPaths>
 
 #include <notification.h>
 
-const QString SAILHUB_COLLECTION_NAME            = QStringLiteral("sailhub");
-const QString SAILHUB_COLLECTION_NAME_DEBUG      = QStringLiteral("sailhubdebug");
+#include "wallet.h"
 
 SailHub::SailHub(QObject *parent) :
-    QObject(parent),
-    m_secretsIdentifier(Sailfish::Secrets::Secret::Identifier(
-                                QStringLiteral("secrets"),
-                                #ifdef QT_DEBUG
-                                    SAILHUB_COLLECTION_NAME_DEBUG,
-                                #else
-                                    SAILHUB_COLLECTION_NAME,
-                                #endif
-                                Sailfish::Secrets::SecretManager::DefaultEncryptedStoragePluginName))
+    QObject(parent)
 {
     readSettings();
+
     loadCredentials();
 
-    connect(m_api, &ApiInterface::apiError, this, &SailHub::onApiError);
     connect(m_api, &ApiInterface::notificationsAvailable, this, &SailHub::onNotificationsAvailable);
 }
 
@@ -47,6 +34,7 @@ ApiInterface *SailHub::api()
 
 void SailHub::initialize()
 {
+    // init api if key is available
     if (m_api->token().isEmpty())
         return;
 
@@ -55,15 +43,16 @@ void SailHub::initialize()
 
 void SailHub::reset()
 {
-    deleteCollection();
+    resetCredentials();
 }
 
 void SailHub::saveSettings()
 {
     writeSettings();
+    storeCredentials();
 }
 
-QString SailHub::accessToken() const
+const QString &SailHub::accessToken() const
 {
     return m_accessToken;
 }
@@ -88,7 +77,6 @@ void SailHub::setAccessToken(const QString &token)
 
     // functionality
     m_api->setToken(token);
-    storeCredentials();
 }
 
 void SailHub::setNotify(bool notify)
@@ -151,46 +139,6 @@ void SailHub::setNotificationUpdateInterval(quint8 notificationUpdateInterval)
     }
 }
 
-void SailHub::onApiError(quint8 error, const QString &msg)
-{
-    Notification notification;
-    notification.setAppName(tr("SailHub"));
-
-
-    if (error == ApiInterface::ErrorUnauthorized) {
-        notification.setIcon(QStringLiteral("image://theme/icon-lock-locked"));
-        notification.setCategory(QStringLiteral("x-sailhub.unauthorized"));
-        notification.setSummary(tr("Unauthorized"));
-        notification.setBody(tr("Did you provide a valid access token?"));
-        notification.setRemoteAction(Notification::remoteAction(
-                                        QStringLiteral("default"),
-                                        tr("Default"),
-                                        QStringLiteral("harbour.sailhub.service"),
-                                        QStringLiteral("/harbour/sailhub/service"),
-                                        QStringLiteral("harbour.sailhub.service"),
-                                        QStringLiteral("token")
-                                     ));
-
-    } else {
-        notification.setIcon(QStringLiteral("image://theme/icon-lock-warning"));
-        notification.setCategory(QStringLiteral("x-sailhub.error"));
-        notification.setSummary(tr("Error"));
-        notification.setPreviewBody(tr("An error occured when connecting to GitHub!"));
-        notification.setBody(tr("An error occured when connecting to GitHub!") + " " + msg);
-        notification.setRemoteAction(Notification::remoteAction(
-                                        QStringLiteral("default"),
-                                        tr("Default"),
-                                        QStringLiteral("harbour.sailhub.service"),
-                                        QStringLiteral("/harbour/sailhub/service"),
-                                        QStringLiteral("harbour.sailhub.service"),
-                                        QStringLiteral("open")
-                                     ));
-    }
-
-    notification.publish();
-    connect(&notification, &Notification::clicked, &notification, &Notification::close);
-}
-
 void SailHub::onBackgroundActivityRunning()
 {
 #ifdef QT_DEBUG
@@ -208,12 +156,27 @@ void SailHub::onBackgroundActivityRunning()
 
 void SailHub::onNotificationsAvailable(const QList<NotificationListItem> &items)
 {
+    m_newNotificationsAvailable = 0;
+
+    for (const auto &item : items) {
+        if (item.unread) {
+            m_newNotificationsAvailable++;
+        }
+    }
+
+    emit newNotificationsAvailableChanged();
+
     if (!m_notify)
         return;
 
     for (const auto &item : items) {
-        if (m_notifications.contains(item.id))
+        if (!item.unread) {
             continue;
+        }
+
+        if (m_notifications.contains(item.id)) {
+            continue;
+        }
 
         Notification notification;
         notification.setAppName(tr("SailHub"));
@@ -298,160 +261,71 @@ void SailHub::onNotificationsAvailable(const QList<NotificationListItem> &items)
         // save notified item id
         m_notifications.append(item.id);
     }
-}
 
-void SailHub::createCollection()
-{
-#ifndef DISABLE_SAILFISH_SECRETS
-
-    Sailfish::Secrets::CreateCollectionRequest createCollection;
-    createCollection.setManager(&m_secretManager);
-    createCollection.setCollectionLockType(Sailfish::Secrets::CreateCollectionRequest::DeviceLock);
-    createCollection.setDeviceLockUnlockSemantic(Sailfish::Secrets::SecretManager::DeviceLockKeepUnlocked);
-    createCollection.setUserInteractionMode(Sailfish::Secrets::SecretManager::SystemInteraction);
-    createCollection.setCollectionName(
-                                   #ifdef QT_DEBUG
-                                       SAILHUB_COLLECTION_NAME_DEBUG
-                                   #else
-                                       SAILHUB_COLLECTION_NAME
-                                   #endif
-                                       );
-    createCollection.setStoragePluginName(Sailfish::Secrets::SecretManager::DefaultEncryptedStoragePluginName);
-    createCollection.setEncryptionPluginName(Sailfish::Secrets::SecretManager::DefaultEncryptedStoragePluginName);
-    createCollection.startRequest();
-    createCollection.waitForFinished();
-
-#ifdef QT_DEBUG
-    qDebug() << createCollection.result().code();
-    qDebug() << createCollection.result().errorMessage();
-#endif
-
-#endif
-}
-
-void SailHub::deleteCollection()
-{
-#ifndef DISABLE_SAILFISH_SECRETS
-
-    Sailfish::Secrets::DeleteCollectionRequest deleteCollection;
-    deleteCollection.setManager(&m_secretManager);
-    deleteCollection.setCollectionName(
-                    #ifdef QT_DEBUG
-                        SAILHUB_COLLECTION_NAME_DEBUG
-                    #else
-                        SAILHUB_COLLECTION_NAME
-                    #endif
-                );
-    deleteCollection.setStoragePluginName(Sailfish::Secrets::SecretManager::DefaultEncryptedStoragePluginName);
-    deleteCollection.setUserInteractionMode(Sailfish::Secrets::SecretManager::SystemInteraction);
-    deleteCollection.startRequest();
-    deleteCollection.waitForFinished();
-
-
-#ifdef QT_DEBUG
-    qDebug() << deleteCollection.result().code();
-    qDebug() << deleteCollection.result().errorMessage();
-#endif
-
-#endif
+    emit newNotificationsAvailable();
 }
 
 void SailHub::loadCredentials()
 {
-#ifndef DISABLE_SAILFISH_SECRETS
-    auto fetchCode = new Sailfish::Secrets::StoredSecretRequest;
+    Wallet wallet(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/SailHub/secret.wal",
+                  (unsigned char *)(APP_SECRET_KEY),
+                  (unsigned char *)(APP_SECRET_IV),
+                  this);
 
-    fetchCode->setManager(&m_secretManager);
-    fetchCode->setUserInteractionMode(Sailfish::Secrets::SecretManager::SystemInteraction);
-    fetchCode->setIdentifier(m_secretsIdentifier);
+    setAccessToken(QString::fromUtf8(wallet.requestEntry("token")));
+}
 
-    fetchCode->startRequest();
-    fetchCode->waitForFinished();
+void SailHub::resetCredentials()
+{
+    Wallet wallet(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/SailHub/secret.wal",
+                  (unsigned char *)(APP_SECRET_KEY),
+                  (unsigned char *)(APP_SECRET_IV),
+                  this);
 
-#ifdef QT_DEBUG
-    qDebug() << QStringLiteral("CREDENTIALS LOADED");
-    qDebug() << fetchCode->result().code();
-    qDebug() << fetchCode->secret().data();
-
-    if (fetchCode->result().errorCode() > 0) {
-        qDebug() << fetchCode->result().errorCode();
-        qDebug() << fetchCode->result().errorMessage();
-    }
-#endif
-
-    if (fetchCode->result().code() != Sailfish::Secrets::Result::Succeeded) {
-        fetchCode->deleteLater();
-        return;
-    }
-
-    setAccessToken(fetchCode->secret().data());
-
-    fetchCode->deleteLater();
-
-#endif
+    wallet.reset();
+    setAccessToken(QString());
 }
 
 void SailHub::storeCredentials()
 {
-#ifndef DISABLE_SAILFISH_SECRETS
+    Wallet wallet(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/SailHub/secret.wal",
+                  (unsigned char *)(APP_SECRET_KEY),
+                  (unsigned char *)(APP_SECRET_IV),
+                  this);
 
-    if (m_accessToken.isEmpty())
-        return;
-
-    // reset and create
-    deleteCollection();
-    createCollection();
-
-    // store data in wallet
-    Sailfish::Secrets::Secret secret(m_secretsIdentifier);
-    secret.setData(m_accessToken.toUtf8());
-
-    Sailfish::Secrets::StoreSecretRequest storeCode;
-    storeCode.setManager(&m_secretManager);
-    storeCode.setSecretStorageType(Sailfish::Secrets::StoreSecretRequest::CollectionSecret);
-    storeCode.setUserInteractionMode(Sailfish::Secrets::SecretManager::SystemInteraction);
-    storeCode.setSecret(secret);
-    storeCode.startRequest();
-    storeCode.waitForFinished();
-
-    if (storeCode.result().errorCode())
-        return;
-
-    #ifdef QT_DEBUG
-        qDebug() << storeCode.result().code();
-        qDebug() << storeCode.result().errorMessage();
-    #endif
-
-#endif
+    wallet.setEntry("token", m_accessToken.toUtf8());
 }
 
 void SailHub::readSettings()
 {
-    QSettings settings;
+    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/SailHub/sailhub.conf";
+
+    if (!QFile(path).exists()) {
+           path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/harbour-sailhub/harbour-sailhub.conf";
+    }
+
+    QSettings settings(path, QSettings::NativeFormat);
+
 
     settings.beginGroup(QStringLiteral("APP"));
     m_api->setPaginationCount(quint8(settings.value(QStringLiteral("pagination"), 20).toInt()));
     setNotificationUpdateInterval(settings.value(QStringLiteral("notification_update_interval"), UpdateInterval::FifteenMinutes).toUInt());
     setNotify(settings.value(QStringLiteral("notify"), false).toBool());
-
-
-#ifdef DISABLE_SAILFISH_SECRETS
-    setAccessToken(settings.value(QStringLiteral("token")).toString());
-#endif
     settings.endGroup();
 }
 
 void SailHub::writeSettings()
 {
-    QSettings settings;
+    QSettings settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/SailHub/sailhub.conf", QSettings::NativeFormat);
 
     settings.beginGroup(QStringLiteral("APP"));
     settings.setValue(QStringLiteral("pagination"), m_api->paginationCount());
     settings.setValue(QStringLiteral("notify"), m_notify);
     settings.setValue(QStringLiteral("notification_update_interval"), m_notificationUpdateInterval);
-
-#ifdef DISABLE_SAILFISH_SECRETS
-    settings.setValue(QStringLiteral("token"), m_accessToken);
-#endif
     settings.endGroup();
+}
+
+quint32 SailHub::newNotificationsAvailable() const
+{
+    return m_newNotificationsAvailable;
 }

@@ -1,4 +1,4 @@
 singleton SailHubStyles 1.0 SailHubStyles.qml
 ShowDown 1.0 js/showdown.js
-Twemoji 1.0 /usr/share/harbour-twemoji/twemoji.min.js
+Twemoji 1.0 js/twemoji.min.js
 StringHelper 1.0 js/stringhelper.js

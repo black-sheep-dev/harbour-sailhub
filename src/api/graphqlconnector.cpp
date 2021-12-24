@@ -7,7 +7,8 @@
 #include <QJsonParseError>
 #include <QJsonDocument>
 #include <utility> 
-#include <zlib.h>
+
+#include "compressor.h"
 
 GraphQLConnector::GraphQLConnector(QString endpoint, QNetworkAccessManager *manager, QObject *parent) :
     QObject(parent),
@@ -87,11 +88,7 @@ void GraphQLConnector::onRequestFinished()
     // read data
     const quint8 request = quint8(reply->property("request_type").toUInt());
     const QByteArray uuid = reply->property("request_uuid").toByteArray();
-    const QByteArray raw = reply->readAll();
-    QByteArray data = Compress::gunzip(raw);
-
-    if (data.isEmpty())
-        data = raw;
+    const QByteArray data = Compressor::gunzip(reply->readAll());
 
     reply->deleteLater();
 

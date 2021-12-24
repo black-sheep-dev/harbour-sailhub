@@ -1102,18 +1102,7 @@ void ApiInterface::parseNotificationsModel(const QJsonArray &array, const QByteA
 {
     // check notifications for unread ones
     const QList<NotificationListItem> items = DataUtils::notificationsFromJson(array);
-
-    QList<NotificationListItem> unreaded;
-    for (const auto &item : items) {
-        if (!item.unread)
-            continue;
-
-        unreaded.append(item);
-    }
-
-    if (!unreaded.isEmpty())
-        emit notificationsAvailable(unreaded);
-
+    emit notificationsAvailable(items);
 
     // update model
     auto model = m_notificationsModelRequests.value(requestId, nullptr);

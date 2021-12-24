@@ -62,12 +62,12 @@ Page {
         }
     }
 
-    function getRepos() {
+    function getNotifications() {
         SailHub.api().getNotifications(notificationsModel)
     }
 
     function refresh() {
-        getRepos()
+        getNotifications()
     }
 
     Component.onCompleted: refresh()

@@ -6,7 +6,7 @@ Release: 1
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
 Group: Qt/Qt
 URL: https://github.com/black-sheep-dev/harbour-sailhub
-License: MIT
+License: GPLv3
 # This must be generated before uploading a package to a remote build service.
 # Usually this line does not need to be modified.
 Sources:
@@ -23,6 +23,7 @@ PkgConfigBR:
   - Qt5Qml
   - Qt5Quick
   - nemonotifications-qt5
+  - openssl
 
 # Build dependencies without a pkgconfig setup can be listed here
 # PkgBR:
@@ -33,7 +34,6 @@ Requires:
   - sailfishsilica-qt5 >= 0.10.9
   - nemo-qml-plugin-notifications-qt5
   - nemo-qml-plugin-dbus-qt5
-  - harbour-twemoji
 
 # All installed files
 Files:
@@ -41,7 +41,7 @@ Files:
   - '%{_datadir}/%{name}'
   - '%{_datadir}/applications/%{name}.desktop'
   - '%{_datadir}/icons/hicolor/*/apps/%{name}.png'
-  - '%{_datadir}/dbus-1/services/harbour.sailhub.service'
+#  - '%{_datadir}/dbus-1/services/harbour.sailhub.service'
 #  - '%{_datadir}/icons/hicolor/scalable/apps/%{name}/*.svg'
 
 # For more information about yaml and what's supported in Sailfish OS

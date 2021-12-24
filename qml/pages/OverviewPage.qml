@@ -90,6 +90,30 @@ Page {
                 title: qsTr("Notifications")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("NotificationsListPage.qml"))
+
+                Rectangle {
+                    visible: SailHub.newNotificationsAvailable > 0
+                    id: notificationBubble
+                    anchors.left: parent.left
+                    anchors.leftMargin: Theme.horizontalPageMargin + Theme.iconSizeSmall
+                    anchors.top: parent.top
+
+                    width: Theme.iconSizeSmall
+                    height: Theme.iconSizeSmall
+
+                    color: Theme.highlightColor
+                    opacity: 0.8
+                    radius: width / 2
+                }
+
+                Label {
+                    visible: SailHub.newNotificationsAvailable > 0
+                    anchors.centerIn: notificationBubble
+                    font.pixelSize: Theme.fontSizeTiny
+                    color: Theme.primaryColor
+
+                    text: SailHub.newNotificationsAvailable
+                }
             }
 
             SectionHeader {

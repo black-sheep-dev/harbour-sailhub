@@ -66,6 +66,7 @@ Dialog {
 
     onAccepted: {
         SailHub.accessToken = tokenField.text
+        SailHub.saveSettings()
         SailHub.initialize()
     }
 

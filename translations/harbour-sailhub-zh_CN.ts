@@ -52,10 +52,6 @@
         <translation>所有表情都由 %1 设计。
 许可证: %2</translation>
     </message>
-    <message>
-        <source>Give star</source>
-        <translation>基于星标</translation>
-    </message>
 </context>
 <context>
     <name>AddStarPage</name>
@@ -1570,24 +1566,8 @@
         <translation>SailHub</translation>
     </message>
     <message>
-        <source>Unauthorized</source>
-        <translation>未授权</translation>
-    </message>
-    <message>
-        <source>Did you provide a valid access token?</source>
-        <translation>你是否提供了可用的访问凭证？</translation>
-    </message>
-    <message>
         <source>Default</source>
         <translation>默认</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>错误</translation>
-    </message>
-    <message>
-        <source>An error occured when connecting to GitHub!</source>
-        <translation>连接到 Github 错误！</translation>
     </message>
 </context>
 <context>
@@ -2042,6 +2022,17 @@
     <message>
         <source>Enter access token</source>
         <translation>输入访问凭证</translation>
+    </message>
+</context>
+<context>
+    <name>harbour-sailhub</name>
+    <message>
+        <source>Unauthorized: Did you provide a valid access token?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occured when connecting to GitHub!</source>
+        <translation type="unfinished">连接到 Github 错误！</translation>
     </message>
 </context>
 </TS>

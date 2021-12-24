@@ -17,16 +17,16 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 TARGET = harbour-sailhub
 DEFINES += APP_TARGET=\\\"$$TARGET\\\"
 
-# custom defines
-#DEFINES += DISABLE_SAILFISH_SECRETS
-
 QT += dbus
 
 CONFIG += link_pkgconfig sailfishapp
-PKGCONFIG += sailfishsecrets nemonotifications-qt5
+PKGCONFIG += nemonotifications-qt5
+
+include(secret.pri)
+include(extern/sailfishos-utils/compressor/compressor.pri)
+include(extern/sailfishos-utils/wallet/wallet.pri)
 
 LIBS += -L../../lib -lkeepalive
-LIBS += -lz
 
 SOURCES += src/harbour-sailhub.cpp \
     src/api/apiinterface.cpp \
@@ -81,8 +81,8 @@ SOURCES += src/harbour-sailhub.cpp \
     src/models/treemodel.cpp \
     src/models/treesortfiltermodel.cpp \
     src/models/usersmodel.cpp \
-    src/sailhub.cpp \
-    src/tools/compress.cpp
+    src/qml/networkaccessmanagerfactory.cpp \
+    src/sailhub.cpp
 
 DISTFILES += qml/harbour-sailhub.qml \
     qml/SailHubStyles.qml \
@@ -278,13 +278,18 @@ HEADERS += \
     src/models/treemodel.h \
     src/models/treesortfiltermodel.h \
     src/models/usersmodel.h \
-    src/sailhub.h \
-    src/tools/compress.h
+    src/qml/networkaccessmanagerfactory.h \
+    src/sailhub.h
 
-dbus.files = data/harbour.sailhub.service
-dbus.path = $$INSTALL_ROOT/usr/share/dbus-1/services
+twemoji.files = data/twemoji/*
+twemoji.path = $$INSTALL_ROOT/usr/share/harbour-sailhub/twemoji
 
-INSTALLS += dbus
+INSTALLS += twemoji
+
+#dbus.files = data/harbour.sailhub.service
+#dbus.path = $$INSTALL_ROOT/usr/share/dbus-1/services
+
+#INSTALLS += dbus
 
 #icons.files = icons/scalable/*
 #icons.path = $$INSTALL_ROOT/usr/share/icons/hicolor/scalable/apps/harbour-sailhub/

@@ -51,10 +51,6 @@
         <source>All emojis designed by %1. License: %2</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Give star</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AddStarPage</name>
@@ -1592,23 +1588,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unauthorized</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Did you provide a valid access token?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occured when connecting to GitHub!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2071,6 +2051,17 @@
     </message>
     <message>
         <source>Enter access token</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>harbour-sailhub</name>
+    <message>
+        <source>Unauthorized: Did you provide a valid access token?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occured when connecting to GitHub!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

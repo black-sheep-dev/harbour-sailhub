@@ -8,13 +8,21 @@
 #include "entities/reaction.h"
 #include "models/emojimodel.h"
 #include "models/treesortfiltermodel.h"
+#include "qml/networkaccessmanagerfactory.h"
 //#include "entities/language.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setApplicationVersion(APP_VERSION);
-    QCoreApplication::setOrganizationName(QStringLiteral("nubecula.org"));
-    QCoreApplication::setOrganizationDomain(QStringLiteral("nubecula.org"));
+    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+    app->setApplicationVersion(APP_VERSION);
+    app->setApplicationName("SailHub");
+    app->setOrganizationDomain("org.nubecula");
+    app->setOrganizationName("org.nubecula");
+
+    QScopedPointer<QQuickView> v(SailfishApp::createView());
+
+    NetworkAccessManagerFactory factory;
+    v->engine()->setNetworkAccessManagerFactory(&factory);
 
 #ifdef QT_DEBUG
     #define uri "org.nubecula.harbour.sailhub"
@@ -58,7 +66,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<Label>(uri, 1, 0, "LabelEntity");
     qmlRegisterType<LabelsModel>(uri, 1, 0, "LabelsModel");
     qmlRegisterType<License>(uri, 1, 0, "License");
-    qmlRegisterType<NotificationObject>(uri, 1, 0, "Notification");
+    qmlRegisterType<NotificationObject>(uri, 1, 0, "NotificationObject");
     qmlRegisterType<NotificationsModel>(uri, 1, 0, "NotificationsModel");
     qmlRegisterType<Organization>(uri, 1, 0, "Organization");
     qmlRegisterType<OrganizationsModel>(uri, 1, 0, "OrganizationsModel");
@@ -79,20 +87,13 @@ int main(int argc, char *argv[])
     qmlRegisterType<UsersModel>(uri, 1, 0, "UsersModel");
     qmlRegisterType<Viewer>(uri, 1, 0, "Viewer");
 
-    qmlRegisterSingletonType<SailHub>(uri,
-                                              1,
-                                              0,
-                                              "SailHub",
-                                              [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+    auto context = v.data()->rootContext();
 
-        Q_UNUSED(engine)
-        Q_UNUSED(scriptEngine)
+    auto instance = new SailHub;
+    context->setContextProperty("SailHub", instance);
 
-        auto app = new SailHub();
+    v->setSource(SailfishApp::pathTo("qml/harbour-sailhub.qml"));
+    v->show();
 
-        return app;
-    });
-
-
-    return SailfishApp::main(argc, argv);
+    return app->exec();
 }

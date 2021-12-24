@@ -30,13 +30,14 @@ Dialog {
             Image {
                 id: emojiIcon
                 anchors.centerIn: parent
+                anchors.margins: Theme.paddingSmall
                 width: Theme.iconSizeMedium
                 height: width
 
                 sourceSize.width: width
                 sourceSize.height: width
 
-                source: "/usr/share/harbour-twemoji/svg/" + model.name + ".svg"
+                source: "/usr/share/harbour-sailhub/twemoji/svg/" + model.name + ".svg"
             }
 
             onClicked: {
