@@ -10,6 +10,10 @@ I made this app to familiarize myself with GraphQL API concepts. GitHub API is w
 The development is in an early state at the moment.  
 Lot of functionality is missing.
 
+## Version compatibility
+Starting with Version 0.1.0 the application needs at least SailfishOS 4.2.
+If you use an older version of SailfishOS use app version 0.0.35 instead.
+
 ## Authentication with Personal Access Token
 To authenticate with GitHub API a personal access token is necessary. You can create one in developer settings on GitHub profile settings page.
 
