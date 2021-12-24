@@ -2058,11 +2058,11 @@
     <name>harbour-sailhub</name>
     <message>
         <source>Unauthorized: Did you provide a valid access token?</source>
-        <translation type="unfinished"></translation>
+        <translation>Unautorisiert: Hast du ein gültigen Zugangstoken angegeben?</translation>
     </message>
     <message>
         <source>An error occured when connecting to GitHub!</source>
-        <translation type="unfinished">Ein Fehler ist beim Verbinden zu GitHub aufgetreten!</translation>
+        <translation>Ein Fehler ist beim Verbinden zu GitHub aufgetreten!</translation>
     </message>
 </context>
 </TS>
