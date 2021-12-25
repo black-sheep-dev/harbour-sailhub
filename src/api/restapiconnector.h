@@ -14,7 +14,7 @@ public:
     explicit RestApiConnector(QNetworkAccessManager *manager, QObject *parent = nullptr);
 
     void setToken(const QString &token);
-    QString token() const;
+    const QString &token() const;
 
     void get(const QString &endpoint, quint8 requestType, const QByteArray &requestId = QUuid::createUuid().toByteArray());
 

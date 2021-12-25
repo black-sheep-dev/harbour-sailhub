@@ -17,8 +17,6 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
-    MarkdownParser { id: markdownParser }
-
     PageBusyIndicator {
         id: busyIndicator
         size: BusyIndicatorSize.Large
@@ -165,7 +163,7 @@ Page {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
 
-                text: markdownParser.parse(repo.description)
+                text: MarkdownParser.parse(repo.description)
             }
 
             Item {
@@ -516,7 +514,14 @@ Page {
         }
     }
 
-    Component.onCompleted: SailHub.api().getRepo(page.nodeId)
+    Component.onCompleted: {
+        if (!page.repo) {
+            SailHub.api().getRepo(page.nodeId)
+        } else {
+            page.nodeId = repo.nodeId
+            loading = false
+        }
+    }
 }
 
 

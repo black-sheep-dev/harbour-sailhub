@@ -25,7 +25,7 @@ void RestApiConnector::setToken(const QString &token)
     m_token = token;
 }
 
-QString RestApiConnector::token() const
+const QString &RestApiConnector::token() const
 {
     return m_token;
 }

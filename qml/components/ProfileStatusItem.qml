@@ -3,17 +3,13 @@ import Sailfish.Silica 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
-import "../tools"
+import ".."
 
 BackgroundItem {
     property ProfileStatus profileStatus
 
     id: profileStatusItem
     width: parent.width
-
-    MarkdownParser {
-        id: markdownParser
-    }
 
     Row {
         x: Theme.horizontalPageMargin
@@ -48,7 +44,7 @@ BackgroundItem {
 
             text: {
                 if (profileStatus.message.length > 0)
-                    return markdownParser.parse(profileStatus.message)
+                    return MarkdownParser.parse(profileStatus.message)
                 else
                     return qsTr("Set status")
             }

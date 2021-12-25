@@ -26,14 +26,14 @@ public:
 
     void setData(const QJsonObject &data);
 
-    QString name() const;
-    QString nodeId() const;
+    const QString &name() const;
+    const QString &nodeId() const;
     quint32 viewerAbilities() const;
 
 signals:
-    void nameChanged(const QString &name);
-    void nodeIdChanged(const QString &id);
-    void viewerAbilitiesChanged(quint32 abilities);
+    void nameChanged();
+    void nodeIdChanged();
+    void viewerAbilitiesChanged();
 
 public slots:
     void setName(const QString &name);

@@ -34,7 +34,7 @@ void Comment::setData(const QJsonObject &data)
     }
 }
 
-QString Comment::bodyExcerpt() const
+const QString &Comment::bodyExcerpt() const
 {
     return m_bodyExcerpt;
 }
@@ -45,7 +45,7 @@ void Comment::setBodyExcerpt(const QString &excerpt)
         return;
 
     m_bodyExcerpt = excerpt;
-    emit bodyExcerptChanged(m_bodyExcerpt);
+    emit bodyExcerptChanged();
 }
 
 

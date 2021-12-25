@@ -6,12 +6,12 @@ File::File(QObject *parent) :
 
 }
 
-QString File::content() const
+const QString &File::content() const
 {
     return m_content;
 }
 
-QString File::name() const
+const QString &File::name() const
 {
     return m_name;
 }
@@ -37,7 +37,7 @@ void File::setContent(const QString &content)
         return;
 
     m_content = content;
-    emit contentChanged(m_content);
+    emit contentChanged();
 }
 
 void File::setName(const QString &name)
@@ -46,7 +46,7 @@ void File::setName(const QString &name)
         return;
 
     m_name = name;
-    emit nameChanged(m_name);
+    emit nameChanged();
 }
 
 void File::setSize(quint64 size)
@@ -55,7 +55,7 @@ void File::setSize(quint64 size)
         return;
 
     m_size = size;
-    emit sizeChanged(m_size);
+    emit sizeChanged();
 }
 
 void File::setTruncated(bool truncated)
@@ -64,7 +64,7 @@ void File::setTruncated(bool truncated)
         return;
 
     m_truncated = truncated;
-    emit truncatedChanged(m_truncated);
+    emit truncatedChanged();
 }
 
 void File::setType(File::Type type)
@@ -73,5 +73,5 @@ void File::setType(File::Type type)
         return;
 
     m_type = type;
-    emit typeChanged(m_type);
+    emit typeChanged();
 }

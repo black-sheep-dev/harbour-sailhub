@@ -62,12 +62,12 @@ Owner *Release::author() const
     return m_author;
 }
 
-QDateTime Release::createdAt() const
+const QDateTime &Release::createdAt() const
 {
     return m_createdAt;
 }
 
-QString Release::description() const
+const QString &Release::description() const
 {
     return m_description;
 }
@@ -87,22 +87,22 @@ bool Release::isPrerelease() const
     return m_isPrerelease;
 }
 
-QDateTime Release::publishedAt() const
+const QDateTime &Release::publishedAt() const
 {
     return m_publishedAt;
 }
 
-QString Release::repository() const
+const QString &Release::repository() const
 {
     return m_repository;
 }
 
-QString Release::tagCommit() const
+const QString &Release::tagCommit() const
 {
     return m_tagCommit;
 }
 
-QString Release::tagName() const
+const QString &Release::tagName() const
 {
     return m_tagName;
 }
@@ -113,7 +113,7 @@ void Release::setAssetCount(quint32 assetCount)
         return;
 
     m_assetCount = assetCount;
-    emit assetCountChanged(m_assetCount);
+    emit assetCountChanged();
 }
 
 void Release::setAuthor(Owner *author)
@@ -122,7 +122,7 @@ void Release::setAuthor(Owner *author)
         return;
 
     m_author = author;
-    emit authorChanged(m_author);
+    emit authorChanged();
 }
 
 void Release::setCreatedAt(const QDateTime &createdAt)
@@ -131,7 +131,7 @@ void Release::setCreatedAt(const QDateTime &createdAt)
         return;
 
     m_createdAt = createdAt;
-    emit createdAtChanged(m_createdAt);
+    emit createdAtChanged();
 }
 
 void Release::setDescription(const QString &description)
@@ -140,7 +140,7 @@ void Release::setDescription(const QString &description)
         return;
 
     m_description = description;
-    emit descriptionChanged(m_description);
+    emit descriptionChanged();
 }
 
 void Release::setIsDraft(bool isDraft)
@@ -149,7 +149,7 @@ void Release::setIsDraft(bool isDraft)
         return;
 
     m_isDraft = isDraft;
-    emit isDraftChanged(m_isDraft);
+    emit isDraftChanged();
 }
 
 void Release::setIsLatest(bool isLatest)
@@ -158,7 +158,7 @@ void Release::setIsLatest(bool isLatest)
         return;
 
     m_isLatest = isLatest;
-    emit isLatestChanged(m_isLatest);
+    emit isLatestChanged();
 }
 
 void Release::setIsPrerelease(bool isPrerelease)
@@ -167,7 +167,7 @@ void Release::setIsPrerelease(bool isPrerelease)
         return;
 
     m_isPrerelease = isPrerelease;
-    emit isPrereleaseChanged(m_isPrerelease);
+    emit isPrereleaseChanged();
 }
 
 void Release::setPublishedAt(const QDateTime &publishedAt)
@@ -176,7 +176,7 @@ void Release::setPublishedAt(const QDateTime &publishedAt)
         return;
 
     m_publishedAt = publishedAt;
-    emit publishedAtChanged(m_publishedAt);
+    emit publishedAtChanged();
 }
 
 void Release::setRepository(const QString &repository)
@@ -185,7 +185,7 @@ void Release::setRepository(const QString &repository)
         return;
 
     m_repository = repository;
-    emit repositoryChanged(m_repository);
+    emit repositoryChanged();
 }
 
 void Release::setTagCommit(const QString &tagCommit)
@@ -194,7 +194,7 @@ void Release::setTagCommit(const QString &tagCommit)
         return;
 
     m_tagCommit = tagCommit;
-    emit tagCommitChanged(m_tagCommit);
+    emit tagCommitChanged();
 }
 
 void Release::setTagName(const QString &tagName)
@@ -203,5 +203,5 @@ void Release::setTagName(const QString &tagName)
         return;
 
     m_tagName = tagName;
-    emit tagNameChanged(m_tagName);
+    emit tagNameChanged();
 }

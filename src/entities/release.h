@@ -43,29 +43,29 @@ public:
     // properties
     quint32 assetCount() const;
     Owner *author() const;
-    QDateTime createdAt() const;
-    QString description() const;
+    const QDateTime &createdAt() const;
+    const QString &description() const;
     bool isDraft() const;
     bool isLatest() const;
     bool isPrerelease() const;
-    QDateTime publishedAt() const;
-    QString repository() const;
-    QString tagCommit() const;
-    QString tagName() const;
+    const QDateTime &publishedAt() const;
+    const QString &repository() const;
+    const QString &tagCommit() const;
+    const QString &tagName() const;
 
 signals:
     // properties
-    void assetCountChanged(quint32 count);
-    void authorChanged(Owner *author);
-    void createdAtChanged(const QDateTime &createdAt);
-    void descriptionChanged(const QString &description);
-    void isDraftChanged(bool isDraft);
-    void isLatestChanged(bool isLatest);
-    void isPrereleaseChanged(bool isPrerelease);
-    void publishedAtChanged(const QDateTime &publishedAt);
-    void repositoryChanged(const QString &repository);
-    void tagCommitChanged(const QString &tagCommit);
-    void tagNameChanged(const QString &tagName);
+    void assetCountChanged();
+    void authorChanged();
+    void createdAtChanged();
+    void descriptionChanged();
+    void isDraftChanged();
+    void isLatestChanged();
+    void isPrereleaseChanged();
+    void publishedAtChanged();
+    void repositoryChanged();
+    void tagCommitChanged();
+    void tagNameChanged();
 
 public slots:
     // properties

@@ -72,7 +72,7 @@ quint8 Discussion::activeLockReason() const
     return m_activeLockReason;
 }
 
-QDateTime Discussion::answerChosenAt() const
+const QDateTime &Discussion::answerChosenAt() const
 {
     return m_answerChosenAt;
 }
@@ -82,17 +82,17 @@ Owner *Discussion::answerChosenBy() const
     return m_answerChosenBy;
 }
 
-QString Discussion::category() const
+const QString &Discussion::category() const
 {
     return m_category;
 }
 
-QString Discussion::categoryEmoji() const
+const QString &Discussion::categoryEmoji() const
 {
     return m_categoryEmoji;
 }
 
-QString Discussion::categoryId() const
+const QString &Discussion::categoryId() const
 {
     return m_categoryId;
 }
@@ -122,22 +122,22 @@ quint32 Discussion::number() const
     return m_number;
 }
 
-QDateTime Discussion::publishedAt() const
+const QDateTime &Discussion::publishedAt() const
 {
     return m_publishedAt;
 }
 
-QString Discussion::repository() const
+const QString &Discussion::repository() const
 {
     return m_repository;
 }
 
-QString Discussion::repositoryId() const
+const QString &Discussion::repositoryId() const
 {
     return m_repositoryId;
 }
 
-QString Discussion::title() const
+const QString &Discussion::title() const
 {
     return m_title;
 }
@@ -153,7 +153,7 @@ void Discussion::setActiveLockReason(quint8 reason)
         return;
 
     m_activeLockReason = reason;
-    emit activeLockReasonChanged(m_activeLockReason);
+    emit activeLockReasonChanged();
 }
 
 void Discussion::setAnswerChosenAt(const QDateTime &answerChosenAt)
@@ -162,7 +162,7 @@ void Discussion::setAnswerChosenAt(const QDateTime &answerChosenAt)
         return;
 
     m_answerChosenAt = answerChosenAt;
-    emit answerChosenAtChanged(m_answerChosenAt);
+    emit answerChosenAtChanged();
 }
 
 void Discussion::setAnswerChosenBy(Owner *answerChosenBy)
@@ -171,7 +171,7 @@ void Discussion::setAnswerChosenBy(Owner *answerChosenBy)
         return;
 
     m_answerChosenBy = answerChosenBy;
-    emit answerChosenByChanged(m_answerChosenBy);
+    emit answerChosenByChanged();
 }
 
 void Discussion::setCategory(const QString &category)
@@ -180,7 +180,7 @@ void Discussion::setCategory(const QString &category)
         return;
 
     m_category = category;
-    emit categoryChanged(m_category);
+    emit categoryChanged();
 }
 
 void Discussion::setCategoryEmoji(const QString &emoji)
@@ -189,7 +189,7 @@ void Discussion::setCategoryEmoji(const QString &emoji)
         return;
 
     m_categoryEmoji = emoji;
-    emit categoryEmojiChanged(m_categoryEmoji);
+    emit categoryEmojiChanged();
 }
 
 void Discussion::setCategoryId(const QString &id)
@@ -198,7 +198,7 @@ void Discussion::setCategoryId(const QString &id)
         return;
 
     m_categoryId = id;
-    emit categoryIdChanged(m_categoryId);
+    emit categoryIdChanged();
 }
 
 void Discussion::setCommentCount(quint32 count)
@@ -207,7 +207,7 @@ void Discussion::setCommentCount(quint32 count)
         return;
 
     m_commentCount = count;
-    emit commentCountChanged(m_commentCount);
+    emit commentCountChanged();
 }
 
 void Discussion::setCreatedViaEmail(bool createdViaEmail)
@@ -216,7 +216,7 @@ void Discussion::setCreatedViaEmail(bool createdViaEmail)
         return;
 
     m_createdViaEmail = createdViaEmail;
-    emit createdViaEmailChanged(m_createdViaEmail);
+    emit createdViaEmailChanged();
 }
 
 void Discussion::setEditor(Owner *editor)
@@ -225,7 +225,7 @@ void Discussion::setEditor(Owner *editor)
         return;
 
     m_editor = editor;
-    emit editorChanged(m_editor);
+    emit editorChanged();
 }
 
 void Discussion::setLocked(bool locked)
@@ -234,7 +234,7 @@ void Discussion::setLocked(bool locked)
         return;
 
     m_locked = locked;
-    emit lockedChanged(m_locked);
+    emit lockedChanged();
 }
 
 void Discussion::setNumber(quint32 number)
@@ -243,7 +243,7 @@ void Discussion::setNumber(quint32 number)
         return;
 
     m_number = number;
-    emit numberChanged(m_number);
+    emit numberChanged();
 }
 
 void Discussion::setPublishedAt(const QDateTime &publishedAt)
@@ -252,7 +252,7 @@ void Discussion::setPublishedAt(const QDateTime &publishedAt)
         return;
 
     m_publishedAt = publishedAt;
-    emit publishedAtChanged(m_publishedAt);
+    emit publishedAtChanged();
 }
 
 void Discussion::setRepository(const QString &repository)
@@ -261,7 +261,7 @@ void Discussion::setRepository(const QString &repository)
         return;
 
     m_repository = repository;
-    emit repositoryChanged(m_repository);
+    emit repositoryChanged();
 }
 
 void Discussion::setRepositoryId(const QString &id)
@@ -270,7 +270,7 @@ void Discussion::setRepositoryId(const QString &id)
         return;
 
     m_repositoryId = id;
-    emit repositoryIdChanged(m_repositoryId);
+    emit repositoryIdChanged();
 }
 
 void Discussion::setTitle(const QString &title)
@@ -279,7 +279,7 @@ void Discussion::setTitle(const QString &title)
         return;
 
     m_title = title;
-    emit titleChanged(m_title);
+    emit titleChanged();
 }
 
 void Discussion::setViewerSubscription(quint8 subscription)
@@ -288,5 +288,5 @@ void Discussion::setViewerSubscription(quint8 subscription)
         return;
 
     m_viewerSubscription = subscription;
-    emit viewerSubscriptionChanged(m_viewerSubscription);
+    emit viewerSubscriptionChanged();
 }

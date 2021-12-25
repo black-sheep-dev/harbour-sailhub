@@ -1,3 +1,9 @@
+* Sat Dec 25 2021 Black Sheep <blacksheep@nubecula.org> 0.1.1-1
+- Fixed TWEMOJI doesn't show in markdown text
+- Update showdown.js to 1.9.1
+- New internal link handler to open github.com links inside app (Repositories only atm)
+- Code improvements / cleanup
+
 * Fri Dec 24 2021 Black Sheep <blacksheep@nubecula.org> 0.1.0-1
 - Sailjail support
 - Add TWEMOJI content into package (need for Sailjail)

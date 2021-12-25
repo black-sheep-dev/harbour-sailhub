@@ -42,6 +42,7 @@ public:
     static TreeItemListItem treeListItemFromJson(const QJsonObject &obj);
 
     // helper
+    static QString getEmoji(const QString &string);
     static QString getEmojiLinkFromString(const QString &string);
     static QString getLinkFromString(const QString &string);
     static quint16 getRepoFlags(const QJsonObject &obj);

@@ -4,9 +4,11 @@
 #include <QDebug>
 #endif
 
+#include <QFile>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QRegularExpression>
+#include <QTextStream>
 
 #include "keys.h"
 
@@ -203,6 +205,21 @@ TreeItemListItem DataUtils::treeListItemFromJson(const QJsonObject &obj)
     return item;
 }
 
+QString DataUtils::getEmoji(const QString &string)
+{
+    QRegularExpression re(QStringLiteral("(?<=unicode\\/)(.*)(?=\">)"));
+    QRegularExpressionMatch match = re.match(string);
+
+    if (!match.hasMatch())
+        return QString();
+
+
+
+    QFile file(QStringLiteral("/usr/share/harbour-sailhub/twemoji/svg/") + match.captured(0));
+
+    return QString();
+}
+
 QString DataUtils::getEmojiLinkFromString(const QString &string)
 {
     QRegularExpression re(QStringLiteral("(?<=unicode\\/)(.*)(?=\">)"));
@@ -210,6 +227,9 @@ QString DataUtils::getEmojiLinkFromString(const QString &string)
 
     if (!match.hasMatch())
         return QString();
+
+    auto result = match.captured(0);
+    auto test = result.remove(".png").append(".svg");
 
     return QStringLiteral("/usr/share/harbour-sailhub/twemoji/svg/") + match.captured(0).remove(".png").append(".svg");
 }

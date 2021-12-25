@@ -36,12 +36,12 @@ bool DiscussionComment::createdViaEmail() const
     return m_createdViaEmail;
 }
 
-QDateTime DiscussionComment::deletedAt() const
+const QDateTime &DiscussionComment::deletedAt() const
 {
     return m_deletedAt;
 }
 
-QString DiscussionComment::discussionId() const
+const QString &DiscussionComment::discussionId() const
 {
     return m_discussionId;
 }
@@ -66,7 +66,7 @@ bool DiscussionComment::isMinimized() const
     return m_isMinimized;
 }
 
-QString DiscussionComment::minimizedReason() const
+const QString &DiscussionComment::minimizedReason() const
 {
     return m_minimizedReason;
 }
@@ -76,7 +76,7 @@ quint32 DiscussionComment::replyCount() const
     return m_replyCount;
 }
 
-QString DiscussionComment::replyToId() const
+const QString &DiscussionComment::replyToId() const
 {
     return m_replyToId;
 }
@@ -87,7 +87,7 @@ void DiscussionComment::setCreatedViaEmail(bool createdViaEmail)
         return;
 
     m_createdViaEmail = createdViaEmail;
-    emit createdViaEmailChanged(m_createdViaEmail);
+    emit createdViaEmailChanged();
 }
 
 void DiscussionComment::setDeletedAt(const QDateTime &deletedAt)
@@ -96,7 +96,7 @@ void DiscussionComment::setDeletedAt(const QDateTime &deletedAt)
         return;
 
     m_deletedAt = deletedAt;
-    emit deletedAtChanged(m_deletedAt);
+    emit deletedAtChanged();
 }
 
 void DiscussionComment::setDiscussionId(const QString &discussionId)
@@ -105,7 +105,7 @@ void DiscussionComment::setDiscussionId(const QString &discussionId)
         return;
 
     m_discussionId = discussionId;
-    emit discussionIdChanged(m_discussionId);
+    emit discussionIdChanged();
 }
 
 void DiscussionComment::setEditor(Owner *editor)
@@ -114,7 +114,7 @@ void DiscussionComment::setEditor(Owner *editor)
         return;
 
     m_editor = editor;
-    emit editorChanged(m_editor);
+    emit editorChanged();
 }
 
 void DiscussionComment::setIncludesCreatedEdit(bool includesCreatedEdit)
@@ -123,7 +123,7 @@ void DiscussionComment::setIncludesCreatedEdit(bool includesCreatedEdit)
         return;
 
     m_includesCreatedEdit = includesCreatedEdit;
-    emit includesCreatedEditChanged(m_includesCreatedEdit);
+    emit includesCreatedEditChanged();
 }
 
 void DiscussionComment::setIsAnswer(bool isAnswer)
@@ -132,7 +132,7 @@ void DiscussionComment::setIsAnswer(bool isAnswer)
         return;
 
     m_isAnswer = isAnswer;
-    emit isAnswerChanged(m_isAnswer);
+    emit isAnswerChanged();
 }
 
 void DiscussionComment::setIsMinimized(bool isMinimized)
@@ -141,7 +141,7 @@ void DiscussionComment::setIsMinimized(bool isMinimized)
         return;
 
     m_isMinimized = isMinimized;
-    emit isMinimizedChanged(m_isMinimized);
+    emit isMinimizedChanged();
 }
 
 void DiscussionComment::setMinimizedReason(const QString &minimizedReason)
@@ -150,7 +150,7 @@ void DiscussionComment::setMinimizedReason(const QString &minimizedReason)
         return;
 
     m_minimizedReason = minimizedReason;
-    emit minimizedReasonChanged(m_minimizedReason);
+    emit minimizedReasonChanged();
 }
 
 void DiscussionComment::setReplyCount(quint32 replyCount)
@@ -159,7 +159,7 @@ void DiscussionComment::setReplyCount(quint32 replyCount)
         return;
 
     m_replyCount = replyCount;
-    emit replyCountChanged(m_replyCount);
+    emit replyCountChanged();
 }
 
 void DiscussionComment::setReplyToId(const QString &replyToId)
@@ -168,5 +168,5 @@ void DiscussionComment::setReplyToId(const QString &replyToId)
         return;
 
     m_replyToId = replyToId;
-    emit replyToIdChanged(m_replyToId);
+    emit replyToIdChanged();
 }

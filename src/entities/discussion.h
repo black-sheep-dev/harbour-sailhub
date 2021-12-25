@@ -53,40 +53,40 @@ public:
 
     // properties
     quint8 activeLockReason() const;
-    QDateTime answerChosenAt() const;
+    const QDateTime &answerChosenAt() const;
     Owner *answerChosenBy() const;
-    QString category() const;
-    QString categoryEmoji() const;
-    QString categoryId() const;
+    const QString &category() const;
+    const QString &categoryEmoji() const;
+    const QString &categoryId() const;
     quint32 commentCount() const;
     bool createdViaEmail() const;
     Owner *editor() const;
     bool locked() const;
     quint32 number() const;
-    QDateTime publishedAt() const;
-    QString repository() const;
-    QString repositoryId() const;
-    QString title() const;
+    const QDateTime &publishedAt() const;
+    const QString &repository() const;
+    const QString &repositoryId() const;
+    const QString &title() const;
     quint8 viewerSubscription() const;
 
 signals:
     // properties
-    void activeLockReasonChanged(quint8 activeLockReason);
-    void answerChosenAtChanged(const QDateTime &answerChosenAt);
-    void answerChosenByChanged(Owner *answerChosenBy);
-    void categoryChanged(const QString &category);
-    void categoryEmojiChanged(const QString &categoryEmoji);
-    void categoryIdChanged(const QString &categoryId);
-    void commentCountChanged(quint32 commentCount);
-    void createdViaEmailChanged(bool createdViaEmail);
-    void editorChanged(Owner *editor);
-    void lockedChanged(bool locked);
-    void numberChanged(quint32 number);
-    void publishedAtChanged(const QDateTime &publishedAt);
-    void repositoryChanged(const QString &repository);
-    void repositoryIdChanged(const QString &repositoryId);
-    void titleChanged(const QString &title);
-    void viewerSubscriptionChanged(quint8 subscription);
+    void activeLockReasonChanged();
+    void answerChosenAtChanged();
+    void answerChosenByChanged();
+    void categoryChanged();
+    void categoryEmojiChanged();
+    void categoryIdChanged();
+    void commentCountChanged();
+    void createdViaEmailChanged();
+    void editorChanged();
+    void lockedChanged();
+    void numberChanged();
+    void publishedAtChanged();
+    void repositoryChanged();
+    void repositoryIdChanged();
+    void titleChanged();
+    void viewerSubscriptionChanged();
 
 public slots:
     // properties

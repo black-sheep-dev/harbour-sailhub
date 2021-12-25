@@ -9,7 +9,7 @@ BaseModel::BaseModel(QObject *parent) :
 
 }
 
-QString BaseModel::identifier() const
+const QString &BaseModel::identifier() const
 {
     return m_identifier;
 }
@@ -24,7 +24,7 @@ quint8 BaseModel::modelType() const
     return m_modelType;
 }
 
-QByteArray BaseModel::uuid() const
+const QByteArray &BaseModel::uuid() const
 {
     return m_uuid;
 }

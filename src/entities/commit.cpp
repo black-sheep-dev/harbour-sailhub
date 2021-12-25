@@ -55,7 +55,7 @@ void Commit::setData(const QJsonObject &data)
     setSignatureState(GitSignatureState::fromString(signature.value(ApiKey::STATE).toString()));
 }
 
-QString Commit::abbreviatedOid() const
+const QString &Commit::abbreviatedOid() const
 {
     return m_abbreviatedOid;
 }
@@ -90,7 +90,7 @@ quint32 Commit::commentCount() const
     return m_commentCount;
 }
 
-QDateTime Commit::committedDate() const
+const QDateTime &Commit::committedDate() const
 {
     return m_committedDate;
 }
@@ -105,12 +105,12 @@ quint32 Commit::deletions() const
     return m_deletions;
 }
 
-QString Commit::message() const
+const QString &Commit::message() const
 {
     return m_message;
 }
 
-QString Commit::messageHeadline() const
+const QString &Commit::messageHeadline() const
 {
     return m_messageHeadline;
 }
@@ -120,7 +120,7 @@ quint32 Commit::parentCount() const
     return m_parentCount;
 }
 
-QDateTime Commit::pushedDate() const
+const QDateTime &Commit::pushedDate() const
 {
     return m_pushedDate;
 }
@@ -141,7 +141,7 @@ void Commit::setAbbreviatedOid(const QString &id)
         return;
 
     m_abbreviatedOid = id;
-    emit abbreviatedOidChanged(m_abbreviatedOid);
+    emit abbreviatedOidChanged();
 }
 
 void Commit::setAdditions(quint32 count)
@@ -150,7 +150,7 @@ void Commit::setAdditions(quint32 count)
         return;
 
     m_additions = count;
-    emit additionsChanged(m_additions);
+    emit additionsChanged();
 }
 
 void Commit::setAuthor(Owner *author)
@@ -159,7 +159,7 @@ void Commit::setAuthor(Owner *author)
         return;
 
     m_author = author;
-    emit authorChanged(m_author);
+    emit authorChanged();
 }
 
 void Commit::setAuthorCount(quint32 count)
@@ -168,7 +168,7 @@ void Commit::setAuthorCount(quint32 count)
         return;
 
     m_authorCount = count;
-    emit authorCountChanged(m_authorCount);
+    emit authorCountChanged();
 }
 
 void Commit::setAuthoredByCommitter(bool authoredByCommitter)
@@ -177,7 +177,7 @@ void Commit::setAuthoredByCommitter(bool authoredByCommitter)
         return;
 
     m_authoredByCommitter = authoredByCommitter;
-    emit authoredByCommitterChanged(m_authoredByCommitter);
+    emit authoredByCommitterChanged();
 }
 
 void Commit::setChangedFiles(quint32 count)
@@ -186,7 +186,7 @@ void Commit::setChangedFiles(quint32 count)
         return;
 
     m_changedFiles = count;
-    emit changedFilesChanged(m_changedFiles);
+    emit changedFilesChanged();
 }
 
 void Commit::setCommentCount(quint32 count)
@@ -195,7 +195,7 @@ void Commit::setCommentCount(quint32 count)
         return;
 
     m_commentCount = count;
-    emit commentCountChanged(m_commentCount);
+    emit commentCountChanged();
 }
 
 void Commit::setCommittedDate(const QDateTime &date)
@@ -204,7 +204,7 @@ void Commit::setCommittedDate(const QDateTime &date)
         return;
 
     m_committedDate = date;
-    emit committedDateChanged(m_committedDate);
+    emit committedDateChanged();
 }
 
 void Commit::setCommitter(Owner *committer)
@@ -213,7 +213,7 @@ void Commit::setCommitter(Owner *committer)
         return;
 
     m_committer = committer;
-    emit committerChanged(m_committer);
+    emit committerChanged();
 }
 
 void Commit::setDeletions(quint32 count)
@@ -222,7 +222,7 @@ void Commit::setDeletions(quint32 count)
         return;
 
     m_deletions = count;
-    emit deletionsChanged(m_deletions);
+    emit deletionsChanged();
 }
 
 void Commit::setMessage(const QString &message)
@@ -231,7 +231,7 @@ void Commit::setMessage(const QString &message)
         return;
 
     m_message = message;
-    emit messageChanged(m_message);
+    emit messageChanged();
 }
 
 void Commit::setMessageHeadline(const QString &headline)
@@ -240,7 +240,7 @@ void Commit::setMessageHeadline(const QString &headline)
         return;
 
     m_messageHeadline = headline;
-    emit messageHeadlineChanged(m_messageHeadline);
+    emit messageHeadlineChanged();
 }
 
 void Commit::setParentCount(quint32 count)
@@ -249,7 +249,7 @@ void Commit::setParentCount(quint32 count)
         return;
 
     m_parentCount = count;
-    emit parentCountChanged(m_parentCount);
+    emit parentCountChanged();
 }
 
 void Commit::setPushedDate(const QDateTime &date)
@@ -258,7 +258,7 @@ void Commit::setPushedDate(const QDateTime &date)
         return;
 
     m_pushedDate = date;
-    emit pushedDateChanged(m_pushedDate);
+    emit pushedDateChanged();
 }
 
 void Commit::setSignatureIsValid(bool isValid)
@@ -267,7 +267,7 @@ void Commit::setSignatureIsValid(bool isValid)
         return;
 
     m_signatureIsValid = isValid;
-    emit signatureIsValidChanged(m_signatureIsValid);
+    emit signatureIsValidChanged();
 }
 
 void Commit::setSignatureState(quint8 state)
@@ -276,6 +276,6 @@ void Commit::setSignatureState(quint8 state)
         return;
 
     m_signatureState = state;
-    emit signatureStateChanged(m_signatureState);
+    emit signatureStateChanged();
 }
 

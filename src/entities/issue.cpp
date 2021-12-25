@@ -89,7 +89,7 @@ quint32 Issue::participantCount() const
     return m_participantCount;
 }
 
-QString Issue::repository() const
+const QString &Issue::repository() const
 {
     return m_repository;
 }
@@ -99,7 +99,7 @@ quint8 Issue::repositoryPermission() const
     return m_repositoryPermission;
 }
 
-QString Issue::repositoryId() const
+const QString &Issue::repositoryId() const
 {
     return m_repositoryId;
 }
@@ -109,7 +109,7 @@ quint8 Issue::state() const
     return m_state;
 }
 
-QString Issue::title() const
+const QString &Issue::title() const
 {
     return m_title;
 }
@@ -125,7 +125,7 @@ void Issue::setAssigneeCount(quint32 count)
         return;
 
     m_assigneeCount = count;
-    emit assigneeCountChanged(m_assigneeCount);
+    emit assigneeCountChanged();
 }
 
 void Issue::setCommentCount(quint32 count)
@@ -134,7 +134,7 @@ void Issue::setCommentCount(quint32 count)
         return;
 
     m_commentCount = count;
-    emit commentCountChanged(m_commentCount);
+    emit commentCountChanged();
 }
 
 void Issue::setLabelCount(quint32 count)
@@ -143,7 +143,7 @@ void Issue::setLabelCount(quint32 count)
         return;
 
     m_labelCount = count;
-    emit labelCountChanged(m_labelCount);
+    emit labelCountChanged();
 }
 
 void Issue::setLocked(bool locked)
@@ -152,7 +152,7 @@ void Issue::setLocked(bool locked)
         return;
 
     m_locked = locked;
-    emit lockedChanged(m_locked);
+    emit lockedChanged();
 }
 
 void Issue::setNumber(quint32 number)
@@ -161,7 +161,7 @@ void Issue::setNumber(quint32 number)
         return;
 
     m_number = number;
-    emit numberChanged(m_number);
+    emit numberChanged();
 }
 
 void Issue::setParticipantCount(quint32 count)
@@ -170,7 +170,7 @@ void Issue::setParticipantCount(quint32 count)
         return;
 
     m_participantCount = count;
-    emit participantCountChanged(m_participantCount);
+    emit participantCountChanged();
 }
 
 void Issue::setRepository(const QString &repository)
@@ -179,7 +179,7 @@ void Issue::setRepository(const QString &repository)
         return;
 
     m_repository = repository;
-    emit repositoryChanged(m_repository);
+    emit repositoryChanged();
 }
 
 void Issue::setRepositoryId(const QString &id)
@@ -188,7 +188,7 @@ void Issue::setRepositoryId(const QString &id)
         return;
 
     m_repositoryId = id;
-    emit repositoryIdChanged(m_repositoryId);
+    emit repositoryIdChanged();
 }
 
 void Issue::setRepositoryPermission(quint8 permission)
@@ -197,7 +197,7 @@ void Issue::setRepositoryPermission(quint8 permission)
         return;
 
     m_repositoryPermission = permission;
-    emit repositoryPermissionChanged(m_repositoryPermission);
+    emit repositoryPermissionChanged();
 }
 
 void Issue::setState(quint8 states)
@@ -206,7 +206,7 @@ void Issue::setState(quint8 states)
         return;
 
     m_state = states;
-    emit stateChanged(m_state);
+    emit stateChanged();
 }
 
 void Issue::setTitle(const QString &title)
@@ -215,7 +215,7 @@ void Issue::setTitle(const QString &title)
         return;
 
     m_title = title;
-    emit titleChanged(m_title);
+    emit titleChanged();
 }
 
 void Issue::setViewerSubscription(quint8 subscription)
@@ -224,5 +224,5 @@ void Issue::setViewerSubscription(quint8 subscription)
         return;
 
     m_viewerSubscription = subscription;
-    emit viewerSubscriptionChanged(m_viewerSubscription);
+    emit viewerSubscriptionChanged();
 }

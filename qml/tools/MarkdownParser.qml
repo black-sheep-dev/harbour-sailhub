@@ -1,3 +1,5 @@
+pragma Singleton
+
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
@@ -18,7 +20,7 @@ Item {
     function parse(content) {
         var convertedText = converter.makeHtml(content)
         convertedText = Twemoji.twemoji.parse(convertedText, {
-                                                  foder: "svg",
+                                                  size: "svg",
                                                   ext: ".svg"
                                               })
 

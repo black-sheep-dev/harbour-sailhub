@@ -44,27 +44,27 @@ void Organization::setData(const QJsonObject &data)
     setWebsiteUrl(data.value(ApiKey::WEBSITE_URL).toString());
 }
 
-QString Organization::avatarUrl() const
+const QString &Organization::avatarUrl() const
 {
     return m_avatarUrl;
 }
 
-QString Organization::description() const
+const QString &Organization::description() const
 {
     return m_description;
 }
 
-QString Organization::email() const
+const QString &Organization::email() const
 {
     return m_email;
 }
 
-QString Organization::location() const
+const QString &Organization::location() const
 {
     return m_location;
 }
 
-QString Organization::login() const
+const QString &Organization::login() const
 {
     return m_login;
 }
@@ -89,7 +89,7 @@ quint32 Organization::teams() const
     return m_teams;
 }
 
-QString Organization::twitterUsername() const
+const QString &Organization::twitterUsername() const
 {
     return m_twitterUsername;
 }
@@ -104,7 +104,7 @@ bool Organization::viewerIsSponsoring() const
     return m_viewerIsSponsoring;
 }
 
-QString Organization::websiteUrl() const
+const QString &Organization::websiteUrl() const
 {
     return m_websiteUrl;
 }
@@ -115,7 +115,7 @@ void Organization::setAvatarUrl(const QString &avatarUrl)
         return;
 
     m_avatarUrl = avatarUrl;
-    emit avatarUrlChanged(m_avatarUrl);
+    emit avatarUrlChanged();
 }
 
 void Organization::setDescription(const QString &description)
@@ -124,7 +124,7 @@ void Organization::setDescription(const QString &description)
         return;
 
     m_description = description;
-    emit descriptionChanged(m_description);
+    emit descriptionChanged();
 }
 
 void Organization::setEmail(const QString &email)
@@ -133,7 +133,7 @@ void Organization::setEmail(const QString &email)
         return;
 
     m_email = email;
-    emit emailChanged(m_email);
+    emit emailChanged();
 }
 
 void Organization::setLocation(const QString &location)
@@ -142,7 +142,7 @@ void Organization::setLocation(const QString &location)
         return;
 
     m_location = location;
-    emit locationChanged(m_location);
+    emit locationChanged();
 }
 
 void Organization::setLogin(const QString &login)
@@ -151,7 +151,7 @@ void Organization::setLogin(const QString &login)
         return;
 
     m_login = login;
-    emit loginChanged(m_login);
+    emit loginChanged();
 }
 
 void Organization::setMembers(quint32 members)
@@ -160,7 +160,7 @@ void Organization::setMembers(quint32 members)
         return;
 
     m_members = members;
-    emit membersChanged(m_members);
+    emit membersChanged();
 }
 
 void Organization::setProjects(quint32 projects)
@@ -169,7 +169,7 @@ void Organization::setProjects(quint32 projects)
         return;
 
     m_projects = projects;
-    emit projectsChanged(m_projects);
+    emit projectsChanged();
 }
 
 void Organization::setRepositories(quint32 repositories)
@@ -178,7 +178,7 @@ void Organization::setRepositories(quint32 repositories)
         return;
 
     m_repositories = repositories;
-    emit repositoriesChanged(m_repositories);
+    emit repositoriesChanged();
 }
 
 void Organization::setTeams(quint32 teams)
@@ -187,7 +187,7 @@ void Organization::setTeams(quint32 teams)
         return;
 
     m_teams = teams;
-    emit teamsChanged(m_teams);
+    emit teamsChanged();
 }
 
 void Organization::setTwitterUsername(const QString &twitterUsername)
@@ -196,7 +196,7 @@ void Organization::setTwitterUsername(const QString &twitterUsername)
         return;
 
     m_twitterUsername = twitterUsername;
-    emit twitterUsernameChanged(m_twitterUsername);
+    emit twitterUsernameChanged();
 }
 
 void Organization::setViewerIsMember(bool viewerIsMember)
@@ -205,7 +205,7 @@ void Organization::setViewerIsMember(bool viewerIsMember)
         return;
 
     m_viewerIsMember = viewerIsMember;
-    emit viewerIsMemberChanged(m_viewerIsMember);
+    emit viewerIsMemberChanged();
 }
 
 void Organization::setViewerIsSponsoring(bool viewerIsSponsoring)
@@ -214,7 +214,7 @@ void Organization::setViewerIsSponsoring(bool viewerIsSponsoring)
         return;
 
     m_viewerIsSponsoring = viewerIsSponsoring;
-    emit viewerIsSponsoringChanged(m_viewerIsSponsoring);
+    emit viewerIsSponsoringChanged();
 }
 
 void Organization::setWebsiteUrl(const QString &websiteUrl)
@@ -223,5 +223,5 @@ void Organization::setWebsiteUrl(const QString &websiteUrl)
         return;
 
     m_websiteUrl = websiteUrl;
-    emit websiteUrlChanged(m_websiteUrl);
+    emit websiteUrlChanged();
 }

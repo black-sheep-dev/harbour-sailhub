@@ -39,11 +39,11 @@ public:
 
     // properties
     Owner *author() const;
-    QString body() const;
-    QDateTime createdAt() const;
-    QString createdAtTimeSpan() const;
+    const QString &body() const;
+    const QDateTime &createdAt() const;
+    const QString &createdAtTimeSpan() const;
     bool edited() const;
-    QDateTime lastEditedAt() const;
+    const QDateTime &lastEditedAt() const;
     quint32 reactionConfusedCount() const;
     quint32 reactionEyesCount() const;
     quint32 reactionHeartCount() const;
@@ -52,31 +52,31 @@ public:
     quint32 reactionRocketCount() const;
     quint32 reactionThumbsDownCount() const;
     quint32 reactionThumbsUpCount() const;
-    QDateTime updatedAt() const;
-    QString updatedAtTimeSpan() const;
+    const QDateTime &updatedAt() const;
+    const QString &updatedAtTimeSpan() const;
     bool viewerDidAuthor() const;
     quint8 viewerReactions() const;
 
 signals:
     // properties
-    void authorChanged(Owner* author);
-    void bodyChanged(QString body);
-    void createdAtChanged(const QDateTime &createdAt);
-    void createdAtTimeSpanChanged(const QString &createdAtTimeSpan);
-    void editedChanged(bool edited);
-    void lastEditedAtChanged(const QDateTime &lastEditedAt);
-    void reactionConfusedCountChanged(quint32 reactionConfusedCount);
-    void reactionEyesCountChanged(quint32 reactionEyesCount);
-    void reactionHeartCountChanged(quint32 reactionHeartCount);
-    void reactionHoorayCountChanged(quint32 reactionHoorayCount);
-    void reactionLaughCountChanged(quint32 reactionLaughCount);
-    void reactionRocketCountChanged(quint32 reactionRocketCount);
-    void reactionThumbsDownCountChanged(quint32 reactionThumbsDownCount);
-    void reactionThumbsUpCountChanged(quint32 reactionThumbsUpCount);
-    void updatedAtChanged(const QDateTime &updatedAt);
-    void updatedAtTimeSpanChanged(const QString &updatedAtTimeSpan);
-    void viewerDidAuthorChanged(bool viewerDidAuthor);
-    void viewerReactionsChanged(quint8 viewerReactions);
+    void authorChanged();
+    void bodyChanged();
+    void createdAtChanged();
+    void createdAtTimeSpanChanged();
+    void editedChanged();
+    void lastEditedAtChanged();
+    void reactionConfusedCountChanged();
+    void reactionEyesCountChanged();
+    void reactionHeartCountChanged();
+    void reactionHoorayCountChanged();
+    void reactionLaughCountChanged();
+    void reactionRocketCountChanged();
+    void reactionThumbsDownCountChanged();
+    void reactionThumbsUpCountChanged();
+    void updatedAtChanged();
+    void updatedAtTimeSpanChanged();
+    void viewerDidAuthorChanged();
+    void viewerReactionsChanged();
 
 public slots:
     // properties

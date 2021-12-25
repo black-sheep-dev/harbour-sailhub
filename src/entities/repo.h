@@ -123,23 +123,23 @@ public:
     void setData(const QJsonObject &data);
 
     // properties
-    QStringList branches() const;
+    const QStringList &branches() const;
     quint32 contributorCount() const;
-    QString defaultBranch() const;
-    QString description() const;
+    const QString &defaultBranch() const;
+    const QString &description() const;
     quint32 discussionCount() const;
     quint8 features() const;
     quint16 flags() const;
     quint32 forkCount() const;
     bool hasFundingLinks() const;
-    QString homepageUrl() const;
+    const QString &homepageUrl() const;
     quint32 issuesCount() const;
     quint32 labelCount() const;
     License *license() const;
     quint8 lockReason() const;
     Owner *owner() const;
-    QString parentId() const;
-    QString parentName() const;
+    const QString &parentId() const;
+    const QString &parentName() const;
     quint32 projects() const;
     quint32 pullRequestsCount() const;
     quint32 releaseCount() const;
@@ -152,32 +152,32 @@ public:
 
 signals:
     // properties
-    void branchesChanged(const QStringList &branches);
-    void contributorCountChanged(quint32 count);
-    void defaultBranchChanged(const QString &branch);
-    void descriptionChanged(const QString &description);
-    void discussionCountChanged(quint32 count);
-    void featuresChanged(quint8 features);
-    void flagsChanged(quint16 flags);
-    void forkCountChanged(quint32 count);
-    void hasFundingLinksChanged(bool hasFundingLinks);
-    void homepageUrlChanged(const QString &url);
-    void issuesCountChanged(quint32 count);
-    void labelCountChanged(quint32 count);
-    void licenseChanged(License *license);
-    void lockReasonChanged(quint8 reason);
-    void ownerChanged(Owner *owner);
-    void parentIdChanged(const QString &id);
-    void parentNameChanged(const QString &name);
-    void projectsChanged(quint32 projects);
-    void pullRequestsCountChanged(quint32 count);
-    void releaseCountChanged(quint32 releaseCount);
-    void stargazerCountChanged(quint32 count);
-    void viewerHasStarredChanged(bool starred);
-    void viewerPermissionChanged(quint8 permission);
-    void viewerSubscriptionChanged(quint8 state);
-    void vulnerabilityAlertCountChanged(quint32 count);
-    void watcherCountChanged(quint32 count);
+    void branchesChanged();
+    void contributorCountChanged();
+    void defaultBranchChanged();
+    void descriptionChanged();
+    void discussionCountChanged();
+    void featuresChanged();
+    void flagsChanged();
+    void forkCountChanged();
+    void hasFundingLinksChanged();
+    void homepageUrlChanged();
+    void issuesCountChanged();
+    void labelCountChanged();
+    void licenseChanged();
+    void lockReasonChanged();
+    void ownerChanged();
+    void parentIdChanged();
+    void parentNameChanged();
+    void projectsChanged();
+    void pullRequestsCountChanged();
+    void releaseCountChanged();
+    void stargazerCountChanged();
+    void viewerHasStarredChanged();
+    void viewerPermissionChanged();
+    void viewerSubscriptionChanged();
+    void vulnerabilityAlertCountChanged();
+    void watcherCountChanged();
 
 public slots:
     // properties

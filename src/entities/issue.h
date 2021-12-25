@@ -67,28 +67,27 @@ public:
     bool locked() const;
     quint32 number() const;
     quint32 participantCount() const;
-    QString repository() const;
+    const QString &repository() const;
     quint8 repositoryPermission() const;
-    QString repositoryId() const;
+    const QString &repositoryId() const;
     quint8 state() const;
-    QString title() const;
+    const QString &title() const;
     quint8 viewerSubscription() const;
 
 signals:
     // properties
-    void assigneeCountChanged(quint32 count);
-    void commentCountChanged(quint32 count);
-    void labelCountChanged(quint32 count);
-    void numberChanged(quint32 number);
-    void participantCountChanged(quint32 count);
-    void repositoryChanged(const QString &repository);
-    void repositoryIdChanged(const QString &id);
-    void repositoryPermissionChanged(quint8 permission);
-    void stateChanged(quint8 state);
-    void titleChanged(const QString &title); 
-    void viewerSubscriptionChanged(quint8 subscription);
-
-    void lockedChanged(bool locked);
+    void assigneeCountChanged();
+    void commentCountChanged();
+    void labelCountChanged();
+    void lockedChanged();
+    void numberChanged();
+    void participantCountChanged();
+    void repositoryChanged();
+    void repositoryIdChanged();
+    void repositoryPermissionChanged();
+    void stateChanged();
+    void titleChanged();
+    void viewerSubscriptionChanged();
 
 public slots:
     // properties

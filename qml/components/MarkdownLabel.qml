@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import '..'
+
 LinkedLabel {
     id: bodyLabel
     width: parent.width
@@ -9,5 +11,5 @@ LinkedLabel {
     color: Theme.primaryColor
     textFormat: Text.RichText
 
-    onLinkActivated: Qt.openUrlExternally(link)
+    onLinkActivated: linkHelper.openLink(link)
 }

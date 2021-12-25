@@ -59,36 +59,36 @@ public:
 
     // properties
     quint32 additions() const;
-    QString baseRefName() const;
+    const QString &baseRefName() const;
     bool canBeRebased() const;
     quint32 changedFiles() const;
     quint32 commitCount() const;
     quint32 deletions() const;
-    QString headRefName() const;
+    const QString &headRefName() const;
     bool isCrossRepository() const;
     bool maintainerCanModify() const;
     quint8 mergeStateStatus() const;
     bool mergeable() const;
     bool merged() const;
-    QDateTime mergedAt() const;
+    const QDateTime &mergedAt() const;
     Owner *mergedBy() const;
 
 signals:
     // properties
-    void additionsChanged(quint32 additions);
-    void baseRefNameChanged(const QString &name);
-    void canBeRebasedChanged(bool canBeRebased);
-    void changedFilesChanged(quint32 changedFiles);
-    void commitCountChanged(quint32 commitCount);
-    void deletionsChanged(quint32 deletions);
-    void headRefNameChanged(const QString &name);
-    void isCrossRepositoryChanged(bool isCrossRepository);
-    void maintainerCanModifyChanged(bool maintainerCanModify);
-    void mergeStateStatusChanged(quint8 mergeStateStatus);
-    void mergeableChanged(bool mergeable);
-    void mergedChanged(bool merged);
-    void mergedAtChanged(const QDateTime &mergedAt);
-    void mergedByChanged(Owner* mergedBy);
+    void additionsChanged();
+    void baseRefNameChanged();
+    void canBeRebasedChanged();
+    void changedFilesChanged();
+    void commitCountChanged();
+    void deletionsChanged();
+    void headRefNameChanged();
+    void isCrossRepositoryChanged();
+    void maintainerCanModifyChanged();
+    void mergeStateStatusChanged();
+    void mergeableChanged();
+    void mergedChanged();
+    void mergedAtChanged();
+    void mergedByChanged();
 
 
 public slots:

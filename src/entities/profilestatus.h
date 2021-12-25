@@ -36,28 +36,28 @@ public:
 
     void setData(const QJsonObject &data);
 
-    QDateTime createdAt() const;
-    QString emoji() const;
-    QString emojiImage() const;
-    QDateTime expiresAt() const;
+    const QDateTime &createdAt() const;
+    const QString &emoji() const;
+    const QString &emojiImage() const;
+    const QDateTime &expiresAt() const;
     quint8 expireStatus() const;
     bool indicatesLimitedAvailability() const;
-    QString message() const;
-    QString organization() const;
-    QString organizationId() const;
-    QDateTime updatedAt() const;
+    const QString &message() const;
+    const QString &organization() const;
+    const QString &organizationId() const;
+    const QDateTime &updatedAt() const;
 
 signals:
-    void createdAtChanged(const QDateTime &createdAt);
-    void emojiChanged(const QString &emoji);
-    void emojiImageChanged(const QString &image);
-    void expiresAtChanged(const QDateTime &expiresAt);
-    void expireStatusChanged(quint8 expireStatus);
-    void indicatesLimitedAvailabilityChanged(bool indicatesLimitedAvailability);
-    void messageChanged(const QString &message);
-    void organizationChanged(const QString &organization);
-    void organizationIdChanged(const QString &id);
-    void updatedAtChanged(const QDateTime &updatedAt);
+    void createdAtChanged();
+    void emojiChanged();
+    void emojiImageChanged();
+    void expiresAtChanged();
+    void expireStatusChanged();
+    void indicatesLimitedAvailabilityChanged();
+    void messageChanged();
+    void organizationChanged();
+    void organizationIdChanged();
+    void updatedAtChanged();
 
 public slots:
     void setCreatedAt(const QDateTime &createdAt);

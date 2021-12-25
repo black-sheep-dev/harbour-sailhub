@@ -170,7 +170,7 @@ public:
     // properties
     quint8 paginationCount() const;
     quint16 rateLimitRemaining() const;
-    QDateTime rateLimitResetAt() const;
+    const QDateTime &rateLimitResetAt() const;
     bool ready() const;
     User *profile();
     ProfileStatus *profileStatus();
@@ -207,6 +207,7 @@ signals:
     void pullRequestReopened(const QString &nodeId, bool reopened = true);
     void releaseAvailable(Release *release);
     void repoAvailable(Repo *repo);
+    void repoByNameAvailable(Repo *repo);
     void starred(const QString &nodeId, bool starred);
     void subscribedTo(const QString &nodeId, quint8 state);
     void userAvailable(User *user);

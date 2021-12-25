@@ -2,6 +2,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Nemo.DBus 2.0
 
+import ".."
+
 Page {
     id: page
 
@@ -172,7 +174,7 @@ Page {
 
                     }
                 }
-                onClicked: Qt.openUrlExternally("https://github.com/black-sheep-dev/harbour-sailhub")
+                onClicked: linkHelper.openLink("https://github.com/black-sheep-dev/harbour-sailhub")
             }
 
 //            ButtonLayout {

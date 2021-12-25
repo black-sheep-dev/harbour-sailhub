@@ -33,28 +33,28 @@ public:
 
     // properties
     bool createdViaEmail() const;
-    QDateTime deletedAt() const;
-    QString discussionId() const;
+    const QDateTime &deletedAt() const;
+    const QString &discussionId() const;
     Owner *editor() const;
     bool includesCreatedEdit() const;
     bool isAnswer() const;
     bool isMinimized() const;
-    QString minimizedReason() const;
+    const QString &minimizedReason() const;
     quint32 replyCount() const;
-    QString replyToId() const;
+    const QString &replyToId() const;
 
 signals:
     // properties
-    void createdViaEmailChanged(bool createdViaEmail);
-    void deletedAtChanged(const QDateTime &deletedAt);
-    void discussionIdChanged(const QString &discussionId);
-    void editorChanged(Owner *editor);
-    void includesCreatedEditChanged(bool includesCreatedEdit);
-    void isAnswerChanged(bool isAnswer);
-    void isMinimizedChanged(bool isMinimized);
-    void minimizedReasonChanged(const QString &minimizedReason);
-    void replyCountChanged(quint32 replyCount);
-    void replyToIdChanged(const QString &replyToId);
+    void createdViaEmailChanged();
+    void deletedAtChanged();
+    void discussionIdChanged();
+    void editorChanged();
+    void includesCreatedEditChanged();
+    void isAnswerChanged();
+    void isMinimizedChanged();
+    void minimizedReasonChanged();
+    void replyCountChanged();
+    void replyToIdChanged();
 
 public slots:
     // properties

@@ -6,12 +6,12 @@ License::License(QObject *parent) :
 
 }
 
-QString License::name() const
+const QString &License::name() const
 {
     return m_name;
 }
 
-QString License::url() const
+const QString &License::url() const
 {
     return m_url;
 }
@@ -22,7 +22,7 @@ void License::setName(const QString &name)
         return;
 
     m_name = name;
-    emit nameChanged(m_name);
+    emit nameChanged();
 }
 
 void License::setUrl(const QString &url)
@@ -31,5 +31,5 @@ void License::setUrl(const QString &url)
         return;
 
     m_url = url;
-    emit urlChanged(m_url);
+    emit urlChanged();
 }

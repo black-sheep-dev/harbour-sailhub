@@ -44,35 +44,35 @@ public:
     void setData(const QJsonObject &data);
 
     // properties
-    QString avatarUrl() const;
-    QString description() const;
-    QString email() const;
-    QString location() const;
-    QString login() const;
+    const QString &avatarUrl() const;
+    const QString &description() const;
+    const QString &email() const;
+    const QString &location() const;
+    const QString &login() const;
     quint32 members() const;
     quint32 projects() const;
     quint32 repositories() const;
     quint32 teams() const;
-    QString twitterUsername() const;
+    const QString &twitterUsername() const;
     bool viewerIsMember() const;
     bool viewerIsSponsoring() const;
-    QString websiteUrl() const;
+    const QString &websiteUrl() const;
 
 signals:
     // properties
-    void avatarUrlChanged(const QString &avatarUrl);
-    void descriptionChanged(const QString &description);
-    void emailChanged(const QString &email);
-    void locationChanged(const QString &location);
-    void loginChanged(const QString &login);
-    void membersChanged(quint32 members);
-    void projectsChanged(quint32 projects);
-    void repositoriesChanged(quint32 repositories);
-    void teamsChanged(quint32 teams);
-    void twitterUsernameChanged(const QString &twitterUsername);
-    void viewerIsMemberChanged(bool viewerIsMember);
-    void viewerIsSponsoringChanged(bool viewerIsSponsoring);
-    void websiteUrlChanged(const QString &websiteUrl);
+    void avatarUrlChanged();
+    void descriptionChanged();
+    void emailChanged();
+    void locationChanged();
+    void loginChanged();
+    void membersChanged();
+    void projectsChanged();
+    void repositoriesChanged();
+    void teamsChanged();
+    void twitterUsernameChanged();
+    void viewerIsMemberChanged();
+    void viewerIsSponsoringChanged();
+    void websiteUrlChanged();
 
 public slots:
     // properties

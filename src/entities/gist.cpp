@@ -58,12 +58,12 @@ quint32 Gist::commetCount() const
     return m_commetCount;
 }
 
-QDateTime Gist::createdAt() const
+const QDateTime &Gist::createdAt() const
 {
     return m_createdAt;
 }
 
-QString Gist::description() const
+const QString &Gist::description() const
 {
     return m_description;
 }
@@ -93,7 +93,7 @@ Owner *Gist::owner() const
     return m_owner;
 }
 
-QDateTime Gist::pushedAt() const
+const QDateTime &Gist::pushedAt() const
 {
     return m_pushedAt;
 }
@@ -103,7 +103,7 @@ quint32 Gist::stargazerCount() const
     return m_stargazerCount;
 }
 
-QDateTime Gist::updatedAt() const
+const QDateTime &Gist::updatedAt() const
 {
     return m_updatedAt;
 }
@@ -119,7 +119,7 @@ void Gist::setCommetCount(quint32 count)
         return;
 
     m_commetCount = count;
-    emit commetCountChanged(m_commetCount);
+    emit commetCountChanged();
 }
 
 void Gist::setCreatedAt(const QDateTime &createdAt)
@@ -128,7 +128,7 @@ void Gist::setCreatedAt(const QDateTime &createdAt)
         return;
 
     m_createdAt = createdAt;
-    emit createdAtChanged(m_createdAt);
+    emit createdAtChanged();
 }
 
 void Gist::setDescription(const QString &description)
@@ -137,7 +137,7 @@ void Gist::setDescription(const QString &description)
         return;
 
     m_description = description;
-    emit descriptionChanged(m_description);
+    emit descriptionChanged();
 }
 
 void Gist::setFileCount(quint32 count)
@@ -146,7 +146,7 @@ void Gist::setFileCount(quint32 count)
         return;
 
     m_fileCount = count;
-    emit fileCountChanged(m_fileCount);
+    emit fileCountChanged();
 }
 
 void Gist::setForkCount(quint32 count)
@@ -155,7 +155,7 @@ void Gist::setForkCount(quint32 count)
         return;
 
     m_forkCount = count;
-    emit forkCountChanged(m_forkCount);
+    emit forkCountChanged();
 }
 
 void Gist::setIsFork(bool isFork)
@@ -164,7 +164,7 @@ void Gist::setIsFork(bool isFork)
         return;
 
     m_isFork = isFork;
-    emit isForkChanged(m_isFork);
+    emit isForkChanged();
 }
 
 void Gist::setIsPublic(bool isPublic)
@@ -173,7 +173,7 @@ void Gist::setIsPublic(bool isPublic)
         return;
 
     m_isPublic = isPublic;
-    emit isPublicChanged(m_isPublic);
+    emit isPublicChanged();
 }
 
 void Gist::setOwner(Owner *owner)
@@ -182,7 +182,7 @@ void Gist::setOwner(Owner *owner)
         return;
 
     m_owner = owner;
-    emit ownerChanged(m_owner);
+    emit ownerChanged();
 }
 
 void Gist::setPushedAt(const QDateTime &pushedAt)
@@ -191,7 +191,7 @@ void Gist::setPushedAt(const QDateTime &pushedAt)
         return;
 
     m_pushedAt = pushedAt;
-    emit pushedAtChanged(m_pushedAt);
+    emit pushedAtChanged();
 }
 
 void Gist::setStargazerCount(quint32 count)
@@ -200,7 +200,7 @@ void Gist::setStargazerCount(quint32 count)
         return;
 
     m_stargazerCount = count;
-    emit stargazerCountChanged(m_stargazerCount);
+    emit stargazerCountChanged();
 }
 
 void Gist::setUpdatedAt(const QDateTime &updatedAt)
@@ -209,7 +209,7 @@ void Gist::setUpdatedAt(const QDateTime &updatedAt)
         return;
 
     m_updatedAt = updatedAt;
-    emit updatedAtChanged(m_updatedAt);
+    emit updatedAtChanged();
 }
 
 void Gist::setViewerHasStarred(bool starred)
@@ -218,5 +218,5 @@ void Gist::setViewerHasStarred(bool starred)
         return;
 
     m_viewerHasStarred = starred;
-    emit viewerHasStarredChanged(m_viewerHasStarred);
+    emit viewerHasStarredChanged();
 }

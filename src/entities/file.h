@@ -25,18 +25,18 @@ public:
 
     explicit File(QObject *parent = nullptr);
 
-    QString content() const;
-    QString name() const;
+    const QString &content() const;
+    const QString &name() const;
     quint64 size() const;
     bool truncated() const;
     Type type() const;
 
 signals:
-    void contentChanged(const QString &content);
-    void nameChanged(const QString &name);
-    void sizeChanged(quint64 size);
-    void truncatedChanged(bool truncated);
-    void typeChanged(File::Type type);
+    void contentChanged();
+    void nameChanged();
+    void sizeChanged();
+    void truncatedChanged();
+    void typeChanged();
 
 public slots:
     void setContent(const QString &content);

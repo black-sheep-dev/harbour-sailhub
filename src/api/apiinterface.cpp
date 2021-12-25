@@ -793,7 +793,7 @@ quint16 ApiInterface::rateLimitRemaining() const
     return m_rateLimitRemaining;
 }
 
-QDateTime ApiInterface::rateLimitResetAt() const
+const QDateTime &ApiInterface::rateLimitResetAt() const
 {
     return m_rateLimitResetAt;
 }
@@ -893,6 +893,7 @@ void ApiInterface::parseData(const QJsonObject &obj, quint8 requestType, const Q
 
     case RequestType::GetRepoByName:
         emit repoAvailable(new Repo(data.value(ApiKey::REPOSITORY).toObject()));
+        emit repoByNameAvailable(new Repo(data.value(ApiKey::REPOSITORY).toObject()));
         break;
 
     case RequestType::GetRelease:

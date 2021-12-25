@@ -19,10 +19,10 @@ class BaseModel : public QAbstractListModel
 public:
     explicit BaseModel(QObject *parent = nullptr);
 
-    QString identifier() const;
+    const QString &identifier() const;
     bool loading() const;
     quint8 modelType() const;
-    QByteArray uuid() const;
+    const QByteArray &uuid() const;
 
 signals:
     void identifierChanged(const QString &identifier);

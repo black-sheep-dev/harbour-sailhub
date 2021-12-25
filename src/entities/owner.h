@@ -13,12 +13,12 @@ class Owner : public Node
 public:
     explicit Owner(QObject *parent = nullptr);
 
-    QString avatarUrl() const;
-    QString login() const;
+    const QString &avatarUrl() const;
+    const QString &login() const;
 
 signals:
-    void avatarUrlChanged(const QString &url);
-    void loginChanged(const QString &login);
+    void avatarUrlChanged();
+    void loginChanged();
 
 public slots:
     void setAvatarUrl(const QString &url);

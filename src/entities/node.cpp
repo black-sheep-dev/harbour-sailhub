@@ -33,12 +33,12 @@ void Node::setData(const QJsonObject &data)
     setViewerAbilities(DataUtils::getViewerAbilities(data));
 }
 
-QString Node::name() const
+const QString &Node::name() const
 {
     return m_name;
 }
 
-QString Node::nodeId() const
+const QString &Node::nodeId() const
 {
     return m_nodeId;
 }
@@ -54,7 +54,7 @@ void Node::setName(const QString &name)
         return;
 
     m_name = name;
-    emit nameChanged(m_name);
+    emit nameChanged();
 }
 
 void Node::setNodeId(const QString &id)
@@ -63,7 +63,7 @@ void Node::setNodeId(const QString &id)
         return;
 
     m_nodeId = id;
-    emit nodeIdChanged(m_nodeId);
+    emit nodeIdChanged();
 }
 
 void Node::setViewerAbilities(quint32 viewerAbilities)
@@ -72,5 +72,5 @@ void Node::setViewerAbilities(quint32 viewerAbilities)
         return;
 
     m_viewerAbilities = viewerAbilities;
-    emit viewerAbilitiesChanged(m_viewerAbilities);
+    emit viewerAbilitiesChanged();
 }

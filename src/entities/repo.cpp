@@ -114,7 +114,7 @@ void Repo::setData(const QJsonObject &data)
     setViewerSubscription(SubscriptionState::fromString(data.value(ApiKey::VIEWER_SUBSCRIPTION).toString()));
 }
 
-QStringList Repo::branches() const
+const QStringList &Repo::branches() const
 {
     return m_branches;
 }
@@ -124,12 +124,12 @@ quint32 Repo::contributorCount() const
     return m_contributorCount;
 }
 
-QString Repo::defaultBranch() const
+const QString &Repo::defaultBranch() const
 {
     return m_defaultBranch;
 }
 
-QString Repo::description() const
+const QString &Repo::description() const
 {
     return m_description;
 }
@@ -159,7 +159,7 @@ bool Repo::hasFundingLinks() const
     return m_hasFundingLinks;
 }
 
-QString Repo::homepageUrl() const
+const QString &Repo::homepageUrl() const
 {
     return m_homepageUrl;
 }
@@ -189,12 +189,12 @@ Owner *Repo::owner() const
     return m_owner;
 }
 
-QString Repo::parentId() const
+const QString &Repo::parentId() const
 {
     return m_parentId;
 }
 
-QString Repo::parentName() const
+const QString &Repo::parentName() const
 {
     return m_parentName;
 }
@@ -250,7 +250,7 @@ void Repo::setBranches(const QStringList &branches)
         return;
 
     m_branches = branches;
-    emit branchesChanged(m_branches);
+    emit branchesChanged();
 }
 
 void Repo::setContributorCount(quint32 count)
@@ -259,7 +259,7 @@ void Repo::setContributorCount(quint32 count)
         return;
 
     m_contributorCount = count;
-    emit contributorCountChanged(m_contributorCount);
+    emit contributorCountChanged();
 }
 
 void Repo::setDefaultBranch(const QString &branch)
@@ -268,7 +268,7 @@ void Repo::setDefaultBranch(const QString &branch)
         return;
 
     m_defaultBranch = branch;
-    emit defaultBranchChanged(m_defaultBranch);
+    emit defaultBranchChanged();
 }
 
 void Repo::setDescription(const QString &description)
@@ -277,7 +277,7 @@ void Repo::setDescription(const QString &description)
         return;
 
     m_description = description;
-    emit descriptionChanged(m_description);
+    emit descriptionChanged();
 }
 
 void Repo::setDiscussionCount(quint32 count)
@@ -286,7 +286,7 @@ void Repo::setDiscussionCount(quint32 count)
         return;
 
     m_discussionCount = count;
-    emit discussionCountChanged(m_discussionCount);
+    emit discussionCountChanged();
 }
 
 void Repo::setFeatures(quint8 features)
@@ -295,7 +295,7 @@ void Repo::setFeatures(quint8 features)
         return;
 
     m_features = features;
-    emit featuresChanged(m_features);
+    emit featuresChanged();
 }
 
 void Repo::setFlags(quint16 flags)
@@ -304,7 +304,7 @@ void Repo::setFlags(quint16 flags)
         return;
 
     m_flags = flags;
-    emit flagsChanged(m_flags);
+    emit flagsChanged();
 }
 
 void Repo::setForkCount(quint32 count)
@@ -313,7 +313,7 @@ void Repo::setForkCount(quint32 count)
         return;
 
     m_forkCount = count;
-    emit forkCountChanged(m_forkCount);
+    emit forkCountChanged();
 }
 
 void Repo::setHasFundingLinks(bool hasFundingLinks)
@@ -322,7 +322,7 @@ void Repo::setHasFundingLinks(bool hasFundingLinks)
         return;
 
     m_hasFundingLinks = hasFundingLinks;
-    emit hasFundingLinksChanged(m_hasFundingLinks);
+    emit hasFundingLinksChanged();
 }
 
 void Repo::setHomepageUrl(const QString &url)
@@ -331,7 +331,7 @@ void Repo::setHomepageUrl(const QString &url)
         return;
 
     m_homepageUrl = url;
-    emit homepageUrlChanged(m_homepageUrl);
+    emit homepageUrlChanged();
 }
 
 void Repo::setIssuesCount(quint32 count)
@@ -340,7 +340,7 @@ void Repo::setIssuesCount(quint32 count)
         return;
 
     m_issueCount = count;
-    emit issuesCountChanged(m_issueCount);
+    emit issuesCountChanged();
 }
 
 void Repo::setLabelCount(quint32 count)
@@ -349,7 +349,7 @@ void Repo::setLabelCount(quint32 count)
         return;
 
     m_labelCount = count;
-    emit labelCountChanged(m_labelCount);
+    emit labelCountChanged();
 }
 
 void Repo::setLicense(License *license)
@@ -358,7 +358,7 @@ void Repo::setLicense(License *license)
         return;
 
     m_license = license;
-    emit licenseChanged(m_license);
+    emit licenseChanged();
 }
 
 void Repo::setLockReason(quint8 reason)
@@ -367,7 +367,7 @@ void Repo::setLockReason(quint8 reason)
         return;
 
     m_lockReason = reason;
-    emit lockReasonChanged(m_lockReason);
+    emit lockReasonChanged();
 }
 
 void Repo::setOwner(Owner *owner)
@@ -376,7 +376,7 @@ void Repo::setOwner(Owner *owner)
         return;
 
     m_owner = owner;
-    emit ownerChanged(m_owner);
+    emit ownerChanged();
 }
 
 void Repo::setParentId(const QString &id)
@@ -385,7 +385,7 @@ void Repo::setParentId(const QString &id)
         return;
 
     m_parentId = id;
-    emit parentIdChanged(m_parentId);
+    emit parentIdChanged();
 }
 
 void Repo::setParentName(const QString &name)
@@ -394,7 +394,7 @@ void Repo::setParentName(const QString &name)
         return;
 
     m_parentName = name;
-    emit parentNameChanged(m_parentName);
+    emit parentNameChanged();
 }
 
 void Repo::setProjects(quint32 projects)
@@ -403,7 +403,7 @@ void Repo::setProjects(quint32 projects)
         return;
 
     m_projects = projects;
-    emit projectsChanged(m_projects);
+    emit projectsChanged();
 }
 
 void Repo::setPullRequestsCount(quint32 count)
@@ -412,7 +412,7 @@ void Repo::setPullRequestsCount(quint32 count)
         return;
 
     m_pullRequestCount = count;
-    emit pullRequestsCountChanged(m_pullRequestCount);
+    emit pullRequestsCountChanged();
 }
 
 void Repo::setReleaseCount(quint32 releases)
@@ -421,7 +421,7 @@ void Repo::setReleaseCount(quint32 releases)
         return;
 
     m_releaseCount = releases;
-    emit releaseCountChanged(m_releaseCount);
+    emit releaseCountChanged();
 }
 
 void Repo::setStargazerCount(quint32 count)
@@ -430,7 +430,7 @@ void Repo::setStargazerCount(quint32 count)
         return;
 
     m_stargazerCount = count;
-    emit stargazerCountChanged(m_stargazerCount);
+    emit stargazerCountChanged();
 }
 
 void Repo::setViewerHasStarred(bool starred)
@@ -439,7 +439,7 @@ void Repo::setViewerHasStarred(bool starred)
         return;
 
     m_viewerHasStarred = starred;
-    emit viewerHasStarredChanged(m_viewerHasStarred);
+    emit viewerHasStarredChanged();
 }
 
 void Repo::setViewerPermission(quint8 permission)
@@ -448,7 +448,7 @@ void Repo::setViewerPermission(quint8 permission)
         return;
 
     m_viewerPermission = permission;
-    emit viewerPermissionChanged(m_viewerPermission);
+    emit viewerPermissionChanged();
 }
 
 void Repo::setViewerSubscription(quint8 viewerSubscription)
@@ -457,7 +457,7 @@ void Repo::setViewerSubscription(quint8 viewerSubscription)
         return;
 
     m_viewerSubscription = viewerSubscription;
-    emit viewerSubscriptionChanged(m_viewerSubscription);
+    emit viewerSubscriptionChanged();
 }
 
 void Repo::setVulnerabilityAlertCount(quint32 count)
@@ -466,7 +466,7 @@ void Repo::setVulnerabilityAlertCount(quint32 count)
         return;
 
     m_vulnerabilityAlertCount = count;
-    emit vulnerabilityAlertCountChanged(m_vulnerabilityAlertCount);
+    emit vulnerabilityAlertCountChanged();
 }
 
 void Repo::setWatcherCount(quint32 count)
@@ -475,5 +475,5 @@ void Repo::setWatcherCount(quint32 count)
         return;
 
     m_watcherCount = count;
-    emit watcherCountChanged(m_watcherCount);
+    emit watcherCountChanged();
 }

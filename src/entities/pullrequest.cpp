@@ -60,7 +60,7 @@ quint32 PullRequest::additions() const
     return m_additions;
 }
 
-QString PullRequest::baseRefName() const
+const QString &PullRequest::baseRefName() const
 {
     return m_baseRefName;
 }
@@ -85,7 +85,7 @@ quint32 PullRequest::deletions() const
     return m_deletions;
 }
 
-QString PullRequest::headRefName() const
+const QString &PullRequest::headRefName() const
 {
     return m_headRefName;
 }
@@ -115,7 +115,7 @@ bool PullRequest::merged() const
     return m_merged;
 }
 
-QDateTime PullRequest::mergedAt() const
+const QDateTime &PullRequest::mergedAt() const
 {
     return m_mergedAt;
 }
@@ -131,7 +131,7 @@ void PullRequest::setAdditions(quint32 additions)
         return;
 
     m_additions = additions;
-    emit additionsChanged(m_additions);
+    emit additionsChanged();
 }
 
 void PullRequest::setBaseRefName(const QString &name)
@@ -140,7 +140,7 @@ void PullRequest::setBaseRefName(const QString &name)
         return;
 
     m_baseRefName = name;
-    emit baseRefNameChanged(m_baseRefName);
+    emit baseRefNameChanged();
 }
 
 void PullRequest::setCanBeRebased(bool canBeRebased)
@@ -149,7 +149,7 @@ void PullRequest::setCanBeRebased(bool canBeRebased)
         return;
 
     m_canBeRebased = canBeRebased;
-    emit canBeRebasedChanged(m_canBeRebased);
+    emit canBeRebasedChanged();
 }
 
 void PullRequest::setChangedFiles(quint32 changedFiles)
@@ -158,7 +158,7 @@ void PullRequest::setChangedFiles(quint32 changedFiles)
         return;
 
     m_changedFiles = changedFiles;
-    emit changedFilesChanged(m_changedFiles);
+    emit changedFilesChanged();
 }
 
 void PullRequest::setCommitCount(quint32 commitCount)
@@ -167,7 +167,7 @@ void PullRequest::setCommitCount(quint32 commitCount)
         return;
 
     m_commitCount = commitCount;
-    emit commitCountChanged(m_commitCount);
+    emit commitCountChanged();
 }
 
 void PullRequest::setDeletions(quint32 deletions)
@@ -176,7 +176,7 @@ void PullRequest::setDeletions(quint32 deletions)
         return;
 
     m_deletions = deletions;
-    emit deletionsChanged(m_deletions);
+    emit deletionsChanged();
 }
 
 void PullRequest::setHeadRefName(const QString &name)
@@ -185,7 +185,7 @@ void PullRequest::setHeadRefName(const QString &name)
         return;
 
     m_headRefName = name;
-    emit headRefNameChanged(m_headRefName);
+    emit headRefNameChanged();
 }
 
 void PullRequest::setIsCrossRepository(bool isCrossRepository)
@@ -194,7 +194,7 @@ void PullRequest::setIsCrossRepository(bool isCrossRepository)
         return;
 
     m_isCrossRepository = isCrossRepository;
-    emit isCrossRepositoryChanged(m_isCrossRepository);
+    emit isCrossRepositoryChanged();
 }
 
 void PullRequest::setMaintainerCanModify(bool maintainerCanModify)
@@ -203,7 +203,7 @@ void PullRequest::setMaintainerCanModify(bool maintainerCanModify)
         return;
 
     m_maintainerCanModify = maintainerCanModify;
-    emit maintainerCanModifyChanged(m_maintainerCanModify);
+    emit maintainerCanModifyChanged();
 }
 
 void PullRequest::setMergeStateStatus(quint8 mergeStateStatus)
@@ -212,7 +212,7 @@ void PullRequest::setMergeStateStatus(quint8 mergeStateStatus)
         return;
 
     m_mergeStateStatus = mergeStateStatus;
-    emit mergeStateStatusChanged(m_mergeStateStatus);
+    emit mergeStateStatusChanged();
 }
 
 void PullRequest::setMergeable(bool mergeable)
@@ -221,7 +221,7 @@ void PullRequest::setMergeable(bool mergeable)
         return;
 
     m_mergeable = mergeable;
-    emit mergeableChanged(m_mergeable);
+    emit mergeableChanged();
 }
 
 void PullRequest::setMerged(bool merged)
@@ -230,7 +230,7 @@ void PullRequest::setMerged(bool merged)
         return;
 
     m_merged = merged;
-    emit mergedChanged(m_merged);
+    emit mergedChanged();
 }
 
 void PullRequest::setMergedAt(const QDateTime &mergedAt)
@@ -239,7 +239,7 @@ void PullRequest::setMergedAt(const QDateTime &mergedAt)
         return;
 
     m_mergedAt = mergedAt;
-    emit mergedAtChanged(m_mergedAt);
+    emit mergedAtChanged();
 }
 
 void PullRequest::setMergedBy(Owner *mergedBy)
@@ -248,5 +248,5 @@ void PullRequest::setMergedBy(Owner *mergedBy)
         return;
 
     m_mergedBy = mergedBy;
-    emit mergedByChanged(m_mergedBy);
+    emit mergedByChanged();
 }

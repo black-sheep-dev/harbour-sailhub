@@ -53,41 +53,41 @@ public:
     void setData(const QJsonObject &data);
 
     // properties
-    QString abbreviatedOid() const;
+    const QString &abbreviatedOid() const;
     quint32 additions() const;
     Owner *author() const;
     quint32 authorCount() const;
     bool authoredByCommitter() const;
     quint32 changedFiles() const;
     quint32 commentCount() const;
-    QDateTime committedDate() const;
+    const QDateTime &committedDate() const;
     Owner *committer() const;
     quint32 deletions() const;
-    QString message() const;
-    QString messageHeadline() const;
+    const QString &message() const;
+    const QString &messageHeadline() const;
     quint32 parentCount() const;
-    QDateTime pushedDate() const;   
+    const QDateTime &pushedDate() const;
     bool signatureIsValid() const;
     quint8 signatureState() const;
 
 signals:
     // properties
-    void abbreviatedOidChanged(const QString &id);
-    void additionsChanged(quint32 count);
-    void authorChanged(Owner *author);
-    void authorCountChanged(quint32 count);
-    void authoredByCommitterChanged(bool authoredByCommitter);
-    void changedFilesChanged(quint32 count);
-    void commentCountChanged(quint32 count);
-    void committedDateChanged(const QDateTime &date);
-    void committerChanged(Owner *committer);
-    void deletionsChanged(quint32 count);
-    void messageChanged(const QString &message);
-    void messageHeadlineChanged(const QString &headline);
-    void parentCountChanged(quint32 count);
-    void pushedDateChanged(const QDateTime &date);
-    void signatureIsValidChanged(bool isValid);
-    void signatureStateChanged(quint8 state);
+    void abbreviatedOidChanged();
+    void additionsChanged();
+    void authorChanged();
+    void authorCountChanged();
+    void authoredByCommitterChanged();
+    void changedFilesChanged();
+    void commentCountChanged();
+    void committedDateChanged();
+    void committerChanged();
+    void deletionsChanged();
+    void messageChanged();
+    void messageHeadlineChanged();
+    void parentCountChanged();
+    void pushedDateChanged();
+    void signatureIsValidChanged();
+    void signatureStateChanged();
 
 public slots:
     // properties

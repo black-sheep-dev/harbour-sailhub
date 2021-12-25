@@ -2,7 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "../components/"
-import "../tools/"
+import ".."
 
 Item {
     property alias authorLogin: authorItem.title
@@ -13,10 +13,6 @@ Item {
 
     width: parent.width
     height: contentColumn.height
-
-    MarkdownParser {
-        id: markdownParser
-    }
 
     Column {
         id: contentColumn
@@ -43,7 +39,7 @@ Item {
             id: bodyLabel
             x: Theme.horizontalPageMargin
             width: parent.width - 2*x
-            text: markdownParser.parse(body)
+            text: MarkdownParser.parse(body)
         }
     }
 }

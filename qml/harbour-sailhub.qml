@@ -4,6 +4,7 @@ import Nemo.DBus 2.0
 import Nemo.Notifications 1.0
 
 import "pages"
+import "tools"
 
 import org.nubecula.harbour.sailhub 1.0
 
@@ -82,6 +83,28 @@ ApplicationWindow
         function token() {
             __silica_applicationwindow_instance.activate()
             pageStack.push(Qt.resolvedUrl("pages/settings/SettingsAuthenticationPage.qml"))
+        }
+    }
+
+    LinkHelper {
+        property string username
+        property string repo
+
+        id: linkHelper
+
+        onOpenRepo: {
+            linkHelper.username = username
+            linkHelper.repo = repo
+            SailHub.api().getRepo(username, repo)
+        }
+
+        Connections {
+            target: SailHub.api()
+            onRepoByNameAvailable: {
+                pageStack.push(Qt.resolvedUrl("pages/RepoPage.qml"), {
+                                   repo: repo
+                               })
+            }
         }
     }
 

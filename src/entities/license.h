@@ -13,12 +13,12 @@ class License : public QObject
 public:
     explicit License(QObject *parent = nullptr);
 
-    QString name() const;
-    QString url() const;
+    const QString &name() const;
+    const QString &url() const;
 
 signals:
-    void nameChanged(const QString &name);
-    void urlChanged(const QString &url);
+    void nameChanged();
+    void urlChanged();
 
 public slots:
     void setName(const QString &name);

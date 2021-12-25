@@ -50,22 +50,22 @@ void ProfileStatus::setData(const QJsonObject &data)
     setUpdatedAt(QDateTime::fromString(data.value(ApiKey::UPDATED_AT).toString(), Qt::ISODate));
 }
 
-QDateTime ProfileStatus::createdAt() const
+const QDateTime &ProfileStatus::createdAt() const
 {
     return m_createdAt;
 }
 
-QString ProfileStatus::emoji() const
+const QString &ProfileStatus::emoji() const
 {
     return m_emoji;
 }
 
-QString ProfileStatus::emojiImage() const
+const QString &ProfileStatus::emojiImage() const
 {
     return m_emojiImage;
 }
 
-QDateTime ProfileStatus::expiresAt() const
+const QDateTime &ProfileStatus::expiresAt() const
 {
     return m_expiresAt;
 }
@@ -80,22 +80,22 @@ bool ProfileStatus::indicatesLimitedAvailability() const
     return m_indicatesLimitedAvailability;
 }
 
-QString ProfileStatus::message() const
+const QString &ProfileStatus::message() const
 {
     return m_message;
 }
 
-QString ProfileStatus::organization() const
+const QString &ProfileStatus::organization() const
 {
     return m_organization;
 }
 
-QString ProfileStatus::organizationId() const
+const QString &ProfileStatus::organizationId() const
 {
     return m_organizationId;
 }
 
-QDateTime ProfileStatus::updatedAt() const
+const QDateTime &ProfileStatus::updatedAt() const
 {
     return m_updatedAt;
 }
@@ -106,7 +106,7 @@ void ProfileStatus::setCreatedAt(const QDateTime &createdAt)
         return;
 
     m_createdAt = createdAt;
-    emit createdAtChanged(m_createdAt);
+    emit createdAtChanged();
 }
 
 void ProfileStatus::setEmoji(const QString &emoji)
@@ -115,7 +115,7 @@ void ProfileStatus::setEmoji(const QString &emoji)
         return;
 
     m_emoji = emoji;
-    emit emojiChanged(m_emoji);
+    emit emojiChanged();
 }
 
 void ProfileStatus::setEmojiImage(const QString &image)
@@ -124,7 +124,7 @@ void ProfileStatus::setEmojiImage(const QString &image)
         return;
 
     m_emojiImage = image;
-    emit emojiImageChanged(m_emojiImage);
+    emit emojiImageChanged();
 }
 
 void ProfileStatus::setExpiresAt(const QDateTime &expiresAt)
@@ -133,7 +133,7 @@ void ProfileStatus::setExpiresAt(const QDateTime &expiresAt)
         return;
 
     m_expiresAt = expiresAt;
-    emit expiresAtChanged(m_expiresAt);
+    emit expiresAtChanged();
 }
 
 void ProfileStatus::setExpireStatus(quint8 expireStatus)
@@ -142,7 +142,7 @@ void ProfileStatus::setExpireStatus(quint8 expireStatus)
         return;
 
     m_expireStatus = expireStatus;
-    emit expireStatusChanged(m_expireStatus);
+    emit expireStatusChanged();
 
     // functionality
     const QDate today = QDateTime::currentDateTimeUtc().date();
@@ -184,7 +184,7 @@ void ProfileStatus::setIndicatesLimitedAvailability(bool indicatesLimitedAvailab
         return;
 
     m_indicatesLimitedAvailability = indicatesLimitedAvailability;
-    emit indicatesLimitedAvailabilityChanged(m_indicatesLimitedAvailability);
+    emit indicatesLimitedAvailabilityChanged();
 }
 
 void ProfileStatus::setMessage(const QString &message)
@@ -193,7 +193,7 @@ void ProfileStatus::setMessage(const QString &message)
         return;
 
     m_message = message;
-    emit messageChanged(m_message);
+    emit messageChanged();
 }
 
 void ProfileStatus::setOrganization(const QString &organization)
@@ -202,7 +202,7 @@ void ProfileStatus::setOrganization(const QString &organization)
         return;
 
     m_organization = organization;
-    emit organizationChanged(m_organization);
+    emit organizationChanged();
 }
 
 void ProfileStatus::setOrganizationId(const QString &id)
@@ -211,7 +211,7 @@ void ProfileStatus::setOrganizationId(const QString &id)
         return;
 
     m_organizationId = id;
-    emit organizationIdChanged(m_organizationId);
+    emit organizationIdChanged();
 }
 
 void ProfileStatus::setUpdatedAt(const QDateTime &updatedAt)
@@ -220,5 +220,5 @@ void ProfileStatus::setUpdatedAt(const QDateTime &updatedAt)
         return;
 
     m_updatedAt = updatedAt;
-    emit updatedAtChanged(m_updatedAt);
+    emit updatedAtChanged();
 }

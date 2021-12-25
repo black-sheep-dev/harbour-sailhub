@@ -4,7 +4,7 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
-import "../tools/"
+import ".."
 
 ListItem {
     id: commentItem
@@ -13,13 +13,11 @@ ListItem {
     width: parent.width
     contentHeight: contentColumn.height + 2*Theme.paddingSmall
 
-    RemorseItem { id: remorse }
-
     menu: ContextMenu {
         MenuItem {
             visible: comment.viewerAbilities & Viewer.CanDelete
             text: qsTr("Delete")
-            onClicked: remorse.execute(commentItem, qsTr("Deleting comment"), function() {
+            onClicked: commentItem.remorseAction(qsTr("Deleting comment"), function() {
                 SailHub.api().deleteDiscussionComment(comment.nodeId)
             })
         }
@@ -83,9 +81,6 @@ ListItem {
         }
     }
 
-    MarkdownParser {
-        id: markdownParser
-    }
     Column {
         id: contentColumn
         anchors.verticalCenter: parent.verticalCenter
@@ -128,7 +123,7 @@ ListItem {
             id: bodyLabel
             x: Theme.horizontalPageMargin
             width: parent.width - 2*x
-            text: markdownParser.parse(comment.body)
+            text: MarkdownParser.parse(comment.body)
         }
 
         // replies

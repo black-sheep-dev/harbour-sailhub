@@ -60,45 +60,45 @@ public:
     void setData(const QJsonObject &data);
 
     // properties
-    QString avatarUrl() const;
-    QString bio() const;
-    QString company() const;
-    QString email() const;
+    const QString &avatarUrl() const;
+    const QString &bio() const;
+    const QString &company() const;
+    const QString &email() const;
     quint32 followers() const;
     quint32 following() const;
     quint32 gistCount() const;
-    QString location() const;
-    QString login() const;
+    const QString &location() const;
+    const QString &login() const;
     bool isViewer() const;
     quint32 organizations() const;
     quint32 repositories() const;
     quint32 starredRepositories() const;
-    QString statusEmoji() const;
-    QString statusMessage() const;
-    QString twitterUsername() const;
+    const QString &statusEmoji() const;
+    const QString &statusMessage() const;
+    const QString &twitterUsername() const;
     bool viewerIsFollowing() const;
-    QString websiteUrl() const;
+    const QString &websiteUrl() const;
 
 signals:
     // properties
-    void avatarUrlChanged(const QString &avatarUrl);
-    void bioChanged(const QString &bio);
-    void companyChanged(const QString &company);
-    void emailChanged(const QString &email);
-    void followersChanged(quint32 followers);
-    void followingChanged(quint32 following);
-    void gistCountChanged(quint32 count);
-    void locationChanged(const QString &location);
-    void loginChanged(const QString &login);
-    void isViewerChanged(bool isViewer);
-    void organizationsChanged(quint32 organizations);
-    void repositoriesChanged(quint32 repositories);
-    void starredRepositoriesChanged(quint32 starredRepositories);
-    void statusEmojiChanged(const QString &emoji);
-    void statusMessageChanged(const QString &message);
-    void twitterUsernameChanged(const QString &twitterUsername);
-    void viewerIsFollowingChanged(bool following);
-    void websiteUrlChanged(const QString &websiteUrl);
+    void avatarUrlChanged();
+    void bioChanged();
+    void companyChanged();
+    void emailChanged();
+    void followersChanged();
+    void followingChanged();
+    void gistCountChanged();
+    void locationChanged();
+    void loginChanged();
+    void isViewerChanged();
+    void organizationsChanged();
+    void repositoriesChanged();
+    void starredRepositoriesChanged();
+    void statusEmojiChanged();
+    void statusMessageChanged();
+    void twitterUsernameChanged();
+    void viewerIsFollowingChanged();
+    void websiteUrlChanged();
 
 public slots:
     // properties

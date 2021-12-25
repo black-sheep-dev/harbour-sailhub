@@ -6,12 +6,12 @@ Owner::Owner(QObject *parent) :
 
 }
 
-QString Owner::avatarUrl() const
+const QString &Owner::avatarUrl() const
 {
     return m_avatarUrl;
 }
 
-QString Owner::login() const
+const QString &Owner::login() const
 {
     return m_login;
 }
@@ -22,7 +22,7 @@ void Owner::setAvatarUrl(const QString &url)
         return;
 
     m_avatarUrl = url;
-    emit avatarUrlChanged(m_avatarUrl);
+    emit avatarUrlChanged();
 }
 
 void Owner::setLogin(const QString &login)
@@ -31,5 +31,5 @@ void Owner::setLogin(const QString &login)
         return;
 
     m_login = login;
-    emit loginChanged(m_login);
+    emit loginChanged();
 }

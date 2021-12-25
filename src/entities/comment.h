@@ -28,10 +28,10 @@ public:
 
     void setData(const QJsonObject &data);
 
-    QString bodyExcerpt() const;
+    const QString &bodyExcerpt() const;
 
 signals:
-    void bodyExcerptChanged(const QString &excerpt);
+    void bodyExcerptChanged();
 
 public slots:
     void setBodyExcerpt(const QString &excerpt);

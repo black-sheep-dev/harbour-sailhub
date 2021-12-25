@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # VERSION
-VERSION = 0.1.0
+VERSION = 0.1.1
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -180,6 +180,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/wizard/WizardIntroPage.qml \
     qml/pages/wizard/WizardTokenPage.qml \
     qml/qmldir \
+    qml/tools/LinkHelper.qml \
     qml/tools/MarkdownParser.qml \
     rpm/harbour-sailhub.changes \
     rpm/harbour-sailhub.changes.run.in \

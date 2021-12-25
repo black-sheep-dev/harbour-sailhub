@@ -5,6 +5,7 @@ import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
 import "../tools/"
+import ".."
 
 Page {
     property bool busy: false
@@ -16,8 +17,6 @@ Page {
     id: page
 
     allowedOrientations: Orientation.All
-
-    MarkdownParser { id: markdownParser }
 
     PageBusyIndicator {
         id: busyIndicator
@@ -123,7 +122,7 @@ Page {
                     wrapMode: Text.Wrap
                     textFormat: Text.RichText
 
-                    text: markdownParser.parse(user.statusMessage)
+                    text: MarkdownParser.parse(user.statusMessage)
                 }
             }
 
@@ -132,7 +131,7 @@ Page {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
 
-                text: markdownParser.parseRaw(user.status)
+                text: MarkdownParser.parseRaw(user.status)
             }
 
             MarkdownLabel {
@@ -141,7 +140,7 @@ Page {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
 
-                text: markdownParser.parse(user.bio)
+                text: MarkdownParser.parse(user.bio)
             }
 
             // Info

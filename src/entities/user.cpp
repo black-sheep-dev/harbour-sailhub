@@ -51,22 +51,22 @@ void User::setData(const QJsonObject &data)
     setStatusMessage(status.value(ApiKey::MESSAGE).toString());
 }
 
-QString User::avatarUrl() const
+const QString &User::avatarUrl() const
 {
     return m_avatarUrl;
 }
 
-QString User::bio() const
+const QString &User::bio() const
 {
     return m_bio;
 }
 
-QString User::company() const
+const QString &User::company() const
 {
     return m_company;
 }
 
-QString User::email() const
+const QString &User::email() const
 {
     return m_email;
 }
@@ -86,12 +86,12 @@ quint32 User::gistCount() const
     return m_gistCount;
 }
 
-QString User::location() const
+const QString &User::location() const
 {
     return m_location;
 }
 
-QString User::login() const
+const QString &User::login() const
 {
     return m_login;
 }
@@ -116,17 +116,17 @@ quint32 User::starredRepositories() const
     return m_starredRepositories;
 }
 
-QString User::statusEmoji() const
+const QString &User::statusEmoji() const
 {
     return m_statusEmoji;
 }
 
-QString User::statusMessage() const
+const QString &User::statusMessage() const
 {
     return m_statusMessage;
 }
 
-QString User::twitterUsername() const
+const QString &User::twitterUsername() const
 {
     return m_twitterUsername;
 }
@@ -136,7 +136,7 @@ bool User::viewerIsFollowing() const
     return m_viewerIsFollowing;
 }
 
-QString User::websiteUrl() const
+const QString &User::websiteUrl() const
 {
     return m_websiteUrl;
 }
@@ -147,7 +147,7 @@ void User::setAvatarUrl(const QString &avatarUrl)
         return;
 
     m_avatarUrl = avatarUrl;
-    emit avatarUrlChanged(m_avatarUrl);
+    emit avatarUrlChanged();
 }
 
 void User::setBio(const QString &bio)
@@ -156,7 +156,7 @@ void User::setBio(const QString &bio)
         return;
 
     m_bio = bio;
-    emit bioChanged(m_bio);
+    emit bioChanged();
 }
 
 void User::setCompany(const QString &company)
@@ -165,7 +165,7 @@ void User::setCompany(const QString &company)
         return;
 
     m_company = company;
-    emit companyChanged(m_company);
+    emit companyChanged();
 }
 
 void User::setEmail(const QString &email)
@@ -174,7 +174,7 @@ void User::setEmail(const QString &email)
         return;
 
     m_email = email;
-    emit emailChanged(m_email);
+    emit emailChanged();
 }
 
 void User::setFollowers(quint32 followers)
@@ -183,7 +183,7 @@ void User::setFollowers(quint32 followers)
         return;
 
     m_followers = followers;
-    emit followersChanged(m_followers);
+    emit followersChanged();
 }
 
 void User::setFollowing(quint32 following)
@@ -192,7 +192,7 @@ void User::setFollowing(quint32 following)
         return;
 
     m_following = following;
-    emit followingChanged(m_following);
+    emit followingChanged();
 }
 
 void User::setGistCount(quint32 count)
@@ -201,7 +201,7 @@ void User::setGistCount(quint32 count)
         return;
 
     m_gistCount = count;
-    emit gistCountChanged(m_gistCount);
+    emit gistCountChanged();
 }
 
 void User::setLocation(const QString &location)
@@ -210,7 +210,7 @@ void User::setLocation(const QString &location)
         return;
 
     m_location = location;
-    emit locationChanged(m_location);
+    emit locationChanged();
 }
 
 void User::setLogin(const QString &login)
@@ -219,7 +219,7 @@ void User::setLogin(const QString &login)
         return;
 
     m_login = login;
-    emit loginChanged(m_login);
+    emit loginChanged();
 }
 
 void User::setIsViewer(bool isViewer)
@@ -228,7 +228,7 @@ void User::setIsViewer(bool isViewer)
         return;
 
     m_isViewer = isViewer;
-    emit isViewerChanged(m_isViewer);
+    emit isViewerChanged();
 }
 
 void User::setOrganizations(quint32 organizations)
@@ -237,7 +237,7 @@ void User::setOrganizations(quint32 organizations)
         return;
 
     m_organizations = organizations;
-    emit organizationsChanged(m_organizations);
+    emit organizationsChanged();
 }
 
 void User::setRepositories(quint32 repositories)
@@ -246,7 +246,7 @@ void User::setRepositories(quint32 repositories)
         return;
 
     m_repositories = repositories;
-    emit repositoriesChanged(m_repositories);
+    emit repositoriesChanged();
 }
 
 void User::setStarredRepositories(quint32 starredRepositories)
@@ -255,7 +255,7 @@ void User::setStarredRepositories(quint32 starredRepositories)
         return;
 
     m_starredRepositories = starredRepositories;
-    emit starredRepositoriesChanged(m_starredRepositories);
+    emit starredRepositoriesChanged();
 }
 
 void User::setStatusEmoji(const QString &emoji)
@@ -264,7 +264,7 @@ void User::setStatusEmoji(const QString &emoji)
         return;
 
     m_statusEmoji = emoji;
-    emit statusEmojiChanged(m_statusEmoji);
+    emit statusEmojiChanged();
 }
 
 void User::setStatusMessage(const QString &message)
@@ -273,7 +273,7 @@ void User::setStatusMessage(const QString &message)
         return;
 
     m_statusMessage = message;
-    emit statusMessageChanged(m_statusMessage);
+    emit statusMessageChanged();
 }
 
 void User::setTwitterUsername(const QString &twitterUsername)
@@ -282,7 +282,7 @@ void User::setTwitterUsername(const QString &twitterUsername)
         return;
 
     m_twitterUsername = twitterUsername;
-    emit twitterUsernameChanged(m_twitterUsername);
+    emit twitterUsernameChanged();
 }
 
 void User::setViewerIsFollowing(bool following)
@@ -291,7 +291,7 @@ void User::setViewerIsFollowing(bool following)
         return;
 
     m_viewerIsFollowing = following;
-    emit viewerIsFollowingChanged(m_viewerIsFollowing);
+    emit viewerIsFollowingChanged();
 }
 
 void User::setWebsiteUrl(const QString &websiteUrl)
@@ -300,5 +300,5 @@ void User::setWebsiteUrl(const QString &websiteUrl)
         return;
 
     m_websiteUrl = websiteUrl;
-    emit websiteUrlChanged(m_websiteUrl);
+    emit websiteUrlChanged();
 }

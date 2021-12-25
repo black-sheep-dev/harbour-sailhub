@@ -16,10 +16,6 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
-    MarkdownParser {
-        id: markdownParser
-    }
-
     SilicaFlickable {
         id: flickable
         anchors.fill: parent
@@ -150,7 +146,7 @@ Page {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
 
-                text: markdownParser.parse(commit.message)
+                text: MarkdownParser.parse(commit.message)
             }
 
 

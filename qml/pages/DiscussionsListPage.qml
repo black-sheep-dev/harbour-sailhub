@@ -110,8 +110,6 @@ Page {
         opacity: busyIndicator.running ? 0.3 : 1.0
         Behavior on opacity { FadeAnimator {} }
 
-        RemorseItem { id: remorse }
-
         delegate: DiscussionListDelegate {
             id: delegate
 
@@ -119,7 +117,7 @@ Page {
                 visible: model.viewerAbilities & Viewer.CanDelete
                 MenuItem {
                     text: qsTr("Delete")
-                    onClicked: remorse.execute(delegate, qsTr("Deleting discussion"), function() {
+                    onClicked: delegate.remorseAction(qsTr("Deleting discussion"), function() {
                         SailHub.api().deleteDiscussion(model.nodeId)
                     })
                 }

@@ -49,32 +49,32 @@ public:
 
     // properties
     quint32 commetCount() const;
-    QDateTime createdAt() const;
-    QString description() const;
+    const QDateTime &createdAt() const;
+    const QString &description() const;
     quint32 fileCount() const;
     quint32 forkCount() const;
     bool isFork() const;
     bool isPublic() const;
     Owner *owner() const;
-    QDateTime pushedAt() const;
+    const QDateTime &pushedAt() const;
     quint32 stargazerCount() const;
-    QDateTime updatedAt() const;
+    const QDateTime &updatedAt() const;
     bool viewerHasStarred() const;
 
 signals:
     // properties
-    void commetCountChanged(quint32 count);
-    void createdAtChanged(const QDateTime &createdAt);
-    void descriptionChanged(const QString &description);
-    void fileCountChanged(quint32 count);
-    void forkCountChanged(quint32 count);
-    void isForkChanged(bool isFork);
-    void isPublicChanged(bool isPublic);
-    void ownerChanged(Owner* owner);
-    void pushedAtChanged(const QDateTime &pushedAt);
-    void stargazerCountChanged(quint32 count);
-    void updatedAtChanged(const QDateTime &updatedAt);
-    void viewerHasStarredChanged(bool starred);
+    void commetCountChanged();
+    void createdAtChanged();
+    void descriptionChanged();
+    void fileCountChanged();
+    void forkCountChanged();
+    void isForkChanged();
+    void isPublicChanged();
+    void ownerChanged();
+    void pushedAtChanged();
+    void stargazerCountChanged();
+    void updatedAtChanged();
+    void viewerHasStarredChanged();
 
 public slots:
     // properties

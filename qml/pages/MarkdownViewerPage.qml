@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
-import "../tools/"
+import ".."
 
 Page {
     property string branch
@@ -17,12 +17,8 @@ Page {
     property string body
 
 
-    MarkdownParser {
-        id: markdownParser
-    }
-
     function parseContent() {
-        var convertedText = markdownParser.parse(body)
+        var convertedText = MarkdownParser.parse(body)
 
         const url = "https://github.com/" + owner + "/" + repo + "/raw/" + branch + "/"
 

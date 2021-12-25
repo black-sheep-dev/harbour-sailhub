@@ -71,8 +71,6 @@ Page {
         opacity: busyIndicator.running ? 0.3 : 1.0
         Behavior on opacity { FadeAnimator {} }
 
-        RemorseItem { id: remorse }
-
         delegate: UserListDelegate {
             id: delegate
 
@@ -80,7 +78,7 @@ Page {
                 visible: permission === Repo.PermissionAdmin || permission === Repo.PermissionMaintain
                 MenuItem {
                     text: qsTr("Remove")
-                    onClicked: remorse.execute(delegate, qsTr("Remove user from assignees"), function () {
+                    onClicked: delegate.remorseAction(qsTr("Remove user from assignees"), function () {
                         SailHub.api().unassignUser(usersModel.identifier, model.nodeId)
                     })
                 }

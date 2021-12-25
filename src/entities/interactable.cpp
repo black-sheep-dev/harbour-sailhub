@@ -161,17 +161,17 @@ Owner *Interactable::author() const
     return m_author;
 }
 
-QString Interactable::body() const
+const QString &Interactable::body() const
 {
     return m_body;
 }
 
-QDateTime Interactable::createdAt() const
+const QDateTime &Interactable::createdAt() const
 {
     return m_createdAt;
 }
 
-QString Interactable::createdAtTimeSpan() const
+const QString &Interactable::createdAtTimeSpan() const
 {
     return m_createdAtTimeSpan;
 }
@@ -181,7 +181,7 @@ bool Interactable::edited() const
     return m_edited;
 }
 
-QDateTime Interactable::lastEditedAt() const
+const QDateTime &Interactable::lastEditedAt() const
 {
     return m_lastEditedAt;
 }
@@ -226,12 +226,12 @@ quint32 Interactable::reactionThumbsUpCount() const
     return m_reactionThumbsUpCount;
 }
 
-QDateTime Interactable::updatedAt() const
+const QDateTime &Interactable::updatedAt() const
 {
     return m_updatedAt;
 }
 
-QString Interactable::updatedAtTimeSpan() const
+const QString &Interactable::updatedAtTimeSpan() const
 {
     return m_updatedAtTimeSpan;
 }
@@ -252,7 +252,7 @@ void Interactable::setAuthor(Owner *author)
         return;
 
     m_author = author;
-    emit authorChanged(m_author);
+    emit authorChanged();
 }
 
 void Interactable::setBody(const QString &body)
@@ -261,7 +261,7 @@ void Interactable::setBody(const QString &body)
         return;
 
     m_body = body;
-    emit bodyChanged(m_body);
+    emit bodyChanged();
 }
 
 void Interactable::setCreatedAt(const QDateTime &createdAt)
@@ -270,7 +270,7 @@ void Interactable::setCreatedAt(const QDateTime &createdAt)
         return;
 
     m_createdAt = createdAt;
-    emit createdAtChanged(m_createdAt);
+    emit createdAtChanged();
 }
 
 void Interactable::setCreatedAtTimeSpan(const QString &createdAtTimeSpan)
@@ -279,7 +279,7 @@ void Interactable::setCreatedAtTimeSpan(const QString &createdAtTimeSpan)
         return;
 
     m_createdAtTimeSpan = createdAtTimeSpan;
-    emit createdAtTimeSpanChanged(m_createdAtTimeSpan);
+    emit createdAtTimeSpanChanged();
 }
 
 void Interactable::setEdited(bool edited)
@@ -288,7 +288,7 @@ void Interactable::setEdited(bool edited)
         return;
 
     m_edited = edited;
-    emit editedChanged(m_edited);
+    emit editedChanged();
 }
 
 void Interactable::setLastEditedAt(const QDateTime &lastEditAt)
@@ -297,7 +297,7 @@ void Interactable::setLastEditedAt(const QDateTime &lastEditAt)
         return;
 
     m_lastEditedAt = lastEditAt;
-    emit lastEditedAtChanged(m_lastEditedAt);
+    emit lastEditedAtChanged();
 }
 
 void Interactable::setReactionConfusedCount(quint32 count)
@@ -306,7 +306,7 @@ void Interactable::setReactionConfusedCount(quint32 count)
         return;
 
     m_reactionConfusedCount = count;
-    emit reactionConfusedCountChanged(m_reactionConfusedCount);
+    emit reactionConfusedCountChanged();
 }
 
 void Interactable::setReactionEyesCount(quint32 count)
@@ -315,7 +315,7 @@ void Interactable::setReactionEyesCount(quint32 count)
         return;
 
     m_reactionEyesCount = count;
-    emit reactionEyesCountChanged(m_reactionEyesCount);
+    emit reactionEyesCountChanged();
 }
 
 void Interactable::setReactionHeartCount(quint32 count)
@@ -324,7 +324,7 @@ void Interactable::setReactionHeartCount(quint32 count)
         return;
 
     m_reactionHeartCount = count;
-    emit reactionHeartCountChanged(m_reactionHeartCount);
+    emit reactionHeartCountChanged();
 }
 
 void Interactable::setReactionHoorayCount(quint32 count)
@@ -333,7 +333,7 @@ void Interactable::setReactionHoorayCount(quint32 count)
         return;
 
     m_reactionHoorayCount = count;
-    emit reactionHoorayCountChanged(m_reactionHoorayCount);
+    emit reactionHoorayCountChanged();
 }
 
 void Interactable::setReactionLaughCount(quint32 count)
@@ -342,7 +342,7 @@ void Interactable::setReactionLaughCount(quint32 count)
         return;
 
     m_reactionLaughCount = count;
-    emit reactionLaughCountChanged(m_reactionLaughCount);
+    emit reactionLaughCountChanged();
 }
 
 void Interactable::setReactionRocketCount(quint32 count)
@@ -351,7 +351,7 @@ void Interactable::setReactionRocketCount(quint32 count)
         return;
 
     m_reactionRocketCount = count;
-    emit reactionRocketCountChanged(m_reactionRocketCount);
+    emit reactionRocketCountChanged();
 }
 
 void Interactable::setReactionThumbsDownCount(quint32 count)
@@ -360,7 +360,7 @@ void Interactable::setReactionThumbsDownCount(quint32 count)
         return;
 
     m_reactionThumbsDownCount = count;
-    emit reactionThumbsDownCountChanged(m_reactionThumbsDownCount);
+    emit reactionThumbsDownCountChanged();
 }
 
 void Interactable::setReactionThumbsUpCount(quint32 count)
@@ -369,7 +369,7 @@ void Interactable::setReactionThumbsUpCount(quint32 count)
         return;
 
     m_reactionThumbsUpCount = count;
-    emit reactionThumbsUpCountChanged(m_reactionThumbsUpCount);
+    emit reactionThumbsUpCountChanged();
 }
 
 void Interactable::setUpdatedAt(const QDateTime &updatedAt)
@@ -378,7 +378,7 @@ void Interactable::setUpdatedAt(const QDateTime &updatedAt)
         return;
 
     m_updatedAt = updatedAt;
-    emit updatedAtChanged(m_updatedAt);
+    emit updatedAtChanged();
 }
 
 void Interactable::setUpdatedAtTimeSpan(const QString &updatedAtTimeSpan)
@@ -387,7 +387,7 @@ void Interactable::setUpdatedAtTimeSpan(const QString &updatedAtTimeSpan)
         return;
 
     m_updatedAtTimeSpan = updatedAtTimeSpan;
-    emit updatedAtTimeSpanChanged(m_updatedAtTimeSpan);
+    emit updatedAtTimeSpanChanged();
 }
 
 void Interactable::setViewerDidAuthor(bool authored)
@@ -396,7 +396,7 @@ void Interactable::setViewerDidAuthor(bool authored)
         return;
 
     m_viewerDidAuthor = authored;
-    emit viewerDidAuthorChanged(m_viewerDidAuthor);
+    emit viewerDidAuthorChanged();
 }
 
 void Interactable::setViewerReactions(quint8 reactions)
@@ -405,5 +405,5 @@ void Interactable::setViewerReactions(quint8 reactions)
         return;
 
     m_viewerReactions = reactions;
-    emit viewerReactionsChanged(m_viewerReactions);
+    emit viewerReactionsChanged();
 }
