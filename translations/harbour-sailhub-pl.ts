@@ -187,27 +187,27 @@
     </message>
     <message>
         <source>The signing certificate or its chain could not be verified</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można zweryfikować certyfikatu podpisującego lub jego łańcucha</translation>
     </message>
     <message>
         <source>Invalid email used for signing</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieprawidłowy adres email użyty do podpisania</translation>
     </message>
     <message>
         <source>Signing key expired</source>
-        <translation type="unfinished"></translation>
+        <translation>Klucz podpisywania wygasł</translation>
     </message>
     <message>
         <source>Internal error - the GPG verification service misbehaved</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd wewnętrzny — usługa weryfikacji GPG działała niewłaściwie</translation>
     </message>
     <message>
         <source>Internal error - the GPG verification service is unavailable at the moment</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd wewnętrzny - usługa weryfikacji GPG jest w tej chwili niedostępna</translation>
     </message>
     <message>
         <source>Invalid signature</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieprawidłowy podpis</translation>
     </message>
     <message>
         <source>Malformed signature</source>
@@ -219,46 +219,46 @@
     </message>
     <message>
         <source>Email used for signing not known to GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>Adres email używany do podpisywania jest nieznany dla GitHub</translation>
     </message>
     <message>
         <source>Valid signature, though certificate revocation check failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Prawidłowy podpis, chociaż sprawdzenie unieważnienia certyfikatu nie powiodło się</translation>
     </message>
     <message>
         <source>Valid signature, pending certificate revocation checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Prawidłowy podpis, oczekuje na sprawdzenie unieważnienia certyfikatu</translation>
     </message>
     <message>
         <source>One or more certificates in chain has been revoked</source>
-        <translation type="unfinished"></translation>
+        <translation>Co najmniej jeden certyfikat w łańcuchu został unieważniony</translation>
     </message>
     <message>
         <source>Unknown signature type</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieznany typ podpisu</translation>
     </message>
     <message>
         <source>Unsigned</source>
-        <translation type="unfinished"></translation>
+        <translation>Niepodpisany</translation>
     </message>
     <message>
         <source>Email used for signing unverified on GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>Niezweryfikowany adres email używany do podpisywania na GitHub</translation>
     </message>
     <message>
         <source>Unkown reason</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieznany powód</translation>
     </message>
     <message>
         <source>Key used for signing not known to GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>Klucz używany do podpisywania nieznany dla GitHub</translation>
     </message>
 </context>
 <context>
     <name>CommitTreeListPage</name>
     <message>
         <source>Changed Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmienione pliki</translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -1546,7 +1546,7 @@
     </message>
     <message>
         <source>Forked from %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sfrokowany z %1</translation>
     </message>
 </context>
 <context>
@@ -2089,7 +2089,7 @@
     <name>harbour-sailhub</name>
     <message>
         <source>Unauthorized: Did you provide a valid access token?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieautoryzowany: czy podałeś prawidłowy token dostępu?</translation>
     </message>
     <message>
         <source>An error occured when connecting to GitHub!</source>
