@@ -602,7 +602,7 @@
     </message>
     <message>
         <source>No gists available</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak dostępnych zasobów</translation>
     </message>
 </context>
 <context>
