@@ -9,13 +9,13 @@ Page {
 
     allowedOrientations: Orientation.All
 
-//    DBusInterface {
-//        id: sailHubInterface
+    DBusInterface {
+        id: sailHubInterface
 
-//        service: "harbour.sailhub.service"
-//        iface: "harbour.sailhub.service"
-//        path: "/harbour/sailhub/service"
-//    }
+        service: "org.nubecula.sailhub"
+        iface: "org.nubecula.sailhub"
+        path: "/org/nubecula/sailhub"
+    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -177,14 +177,15 @@ Page {
                 onClicked: linkHelper.openLink("https://github.com/black-sheep-dev/harbour-sailhub")
             }
 
-//            ButtonLayout {
-//                width: parent.width
+            ButtonLayout {
+                width: parent.width
 
-//                Button {
-//                    text: qsTr("Give star")
-//                    onClicked: sailHubInterface.call("addStar", ["black-sheep-dev", Qt.application.name])
-//                }
-//            }
+                Button {
+                    //visible: sailHubInterface.status === DBusInterface.Available
+                    text: qsTr("Give star")
+                    onClicked: sailHubInterface.call("addStar", ["black-sheep-dev", Qt.application.name])
+                }
+            }
 
             SectionHeader{
                 text: qsTr("Donations")

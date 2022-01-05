@@ -52,6 +52,10 @@
         <translation>所有表情都由 %1 设计。
 许可证: %2</translation>
     </message>
+    <message>
+        <source>Give star</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddStarPage</name>
@@ -2033,6 +2037,14 @@
     <message>
         <source>An error occured when connecting to GitHub!</source>
         <translation>连接到 Github 错误！</translation>
+    </message>
+    <message>
+        <source>Repo doesn&apos;t exist!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Endpoint unsupported!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

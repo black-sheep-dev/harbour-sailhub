@@ -6,6 +6,6 @@ Name=SailHub
 
 [X-Sailjail]
 OrganizationName=org.nubecula
-ApplicationName=SailHub
+ApplicationName=sailhub
 Permissions=Internet
 ExecDBus=/usr/bin/harbour-sailhub -prestart

@@ -1,14 +1,3 @@
-# NOTICE:
-#
-# Application name defined in TARGET has a corresponding QML filename.
-# If name defined in TARGET is changed, the following needs to be done
-# to match new name:
-#   - corresponding QML filename must be changed
-#   - desktop icon filename must be changed
-#   - desktop filename must be changed
-#   - icon definition filename in desktop file must be changed
-#   - translation filenames have to be changed
-
 # VERSION
 VERSION = 0.1.1
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
@@ -22,9 +11,7 @@ QT += dbus
 CONFIG += link_pkgconfig sailfishapp
 PKGCONFIG += nemonotifications-qt5
 
-include(secret.pri)
 include(extern/sailfishos-utils/compressor/compressor.pri)
-include(extern/sailfishos-utils/wallet/wallet.pri)
 
 LIBS += -L../../lib -lkeepalive
 
@@ -37,6 +24,8 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/mutations.cpp \
     src/api/queryvars.cpp \
     src/api/restapiconnector.cpp \
+    src/dbus/dbusadaptor.cpp \
+    src/dbus/dbusinterface.cpp \
     src/entities/comment.cpp \
     src/entities/commit.cpp \
     src/entities/discussion.cpp \
@@ -191,14 +180,8 @@ DISTFILES += qml/harbour-sailhub.qml \
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172 512x512
 
-# to disable building translations every time, comment out the
-# following CONFIG line
 CONFIG += sailfishapp_i18n
 
-# German translation is enabled as an example. If you aren't
-# planning to localize your app, remember to comment out the
-# following TRANSLATIONS line. And also do not forget to
-# modify the localized app name in the the .desktop file.
 TRANSLATIONS += \
     translations/harbour-sailhub-de.ts \
     translations/harbour-sailhub-fr.ts \
@@ -221,6 +204,8 @@ HEADERS += \
     src/api/queryvars.h \
     src/api/ratelimit.h \
     src/api/restapiconnector.h \
+    src/dbus/dbusadaptor.h \
+    src/dbus/dbusinterface.h \
     src/entities/comment.h \
     src/entities/commit.h \
     src/entities/discussion.h \
@@ -287,12 +272,7 @@ twemoji.path = $$INSTALL_ROOT/usr/share/harbour-sailhub/twemoji
 
 INSTALLS += twemoji
 
-#dbus.files = data/harbour.sailhub.service
-#dbus.path = $$INSTALL_ROOT/usr/share/dbus-1/services
+openUrl.files = harbour-sailhub-open-url.desktop
+openUrl.path = $$INSTALL_ROOT/usr/share/applications
 
-#INSTALLS += dbus
-
-#icons.files = icons/scalable/*
-#icons.path = $$INSTALL_ROOT/usr/share/icons/hicolor/scalable/apps/harbour-sailhub/
-
-#INSTALLS += icons
+INSTALLS += openUrl

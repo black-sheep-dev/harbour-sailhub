@@ -4,6 +4,7 @@
 #include <QObject>
 
 #include "api/apiinterface.h"
+#include "dbus/dbusinterface.h"
 
 #include <keepalive/backgroundactivity.h>
 
@@ -19,6 +20,8 @@ class SailHub : public QObject
 public:    
     explicit SailHub(QObject *parent = nullptr);
     ~SailHub() override;
+
+    DBusAdaptor *getDBusAdaptor();
 
     // new
     Q_INVOKABLE ApiInterface *api();
@@ -58,18 +61,13 @@ private:
         OneHour
     };
 
-    // wallet
-    void loadCredentials();
-    void resetCredentials();
-    void storeCredentials();
-
-
     // settings
     void readSettings();
     void writeSettings();
 
     ApiInterface *m_api{new ApiInterface(this)};
     BackgroundActivity *m_backgroundActivity{nullptr};
+    DBusInterface *m_dBusInterface{new DBusInterface(this)};
     QStringList m_notifications;
     BackgroundActivity::Frequency m_frequency{BackgroundActivity::FifteenMinutes};
 

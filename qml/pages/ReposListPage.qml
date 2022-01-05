@@ -115,7 +115,7 @@ Page {
                     return model.name
 
                 default:
-                    return model.owner + "/" + model.name
+                    return model.ownerLogin + "/" + model.name
                 }
             }
             description: MarkdownParser.parseRaw(model.description)

@@ -88,6 +88,7 @@ public:
         GetReleases,
         GetReleaseAssets,
         GetRepo,
+        GetRepoId,
         GetRepoByName,
         Lock,
         MarkDiscussionCommentAsAnswer,
@@ -148,6 +149,7 @@ public:
     Q_INVOKABLE void getRelease(const QString &nodeId);
     Q_INVOKABLE void getRepo(const QString &nodeId);
     Q_INVOKABLE void getRepo(const QString &username, const QString &reponame);
+    Q_INVOKABLE void getRepoId(const QString &username, const QString &reponame);
     Q_INVOKABLE void getUser(const QString &nodeId);
     Q_INVOKABLE void getUserByLogin(const QString &login);
     Q_INVOKABLE void lock(const QString &nodeId, quint8 reason = LockReason::Unknown);
@@ -207,6 +209,7 @@ signals:
     void pullRequestReopened(const QString &nodeId, bool reopened = true);
     void releaseAvailable(Release *release);
     void repoAvailable(Repo *repo);
+    void repoIdAvailable(Repo *repo);
     void repoByNameAvailable(Repo *repo);
     void starred(const QString &nodeId, bool starred);
     void subscribedTo(const QString &nodeId, quint8 state);

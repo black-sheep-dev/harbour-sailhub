@@ -16,8 +16,11 @@ RepoListItem::RepoListItem(const QJsonObject &data) :
     lockReason = RepositoryLockReason::fromString(data.value(ApiKey::LOCK_REASON).toString());
     ownerAvatar = data.value(ApiKey::OWNER).toObject()
                  .value(ApiKey::AVATAR_URL).toString();
+
     ownerLogin = data.value(ApiKey::OWNER).toObject()
                  .value(ApiKey::LOGIN).toString();
+
+
     pushedAt = QDateTime::fromString(data.value(ApiKey::PUSHED_AT).toString(), Qt::ISODate);
     stargazerCount = quint32(data.value(ApiKey::STARGAZER_COUNT).toInt());
 

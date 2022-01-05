@@ -1,4 +1,0 @@
-[D-BUS Service]
-Name=harbour.sailhub.service
-Exec=/usr/bin/invoker --type=silica-qt5 -s /usr/bin/harbour-sailhub
-User=nemo

@@ -34,9 +34,9 @@ import Nemo.DBus 2.0
 DBusInterface {
     id: sailHubInterface
 
-    service: "harbour.sailhub.service"
-    iface: "harbour.sailhub.service"
-    path: "/harbour/sailhub/service"
+    service: "org.nubecula.sailhub"
+    iface: "org.nubecula.sailhub"
+    path: "/"
 }
 
 Button {

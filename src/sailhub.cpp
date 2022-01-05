@@ -5,19 +5,17 @@
 #endif
 
 #include <QFile>
+#include <QProcess>
 #include <QSettings>
 #include <QStandardPaths>
+#include <QTextStream>
 
 #include <notification.h>
-
-#include "wallet.h"
 
 SailHub::SailHub(QObject *parent) :
     QObject(parent)
 {
     readSettings();
-
-    loadCredentials();
 
     connect(m_api, &ApiInterface::notificationsAvailable, this, &SailHub::onNotificationsAvailable);
 }
@@ -25,6 +23,11 @@ SailHub::SailHub(QObject *parent) :
 SailHub::~SailHub()
 {
     writeSettings();
+}
+
+DBusAdaptor *SailHub::getDBusAdaptor()
+{
+    return m_dBusInterface->getDBusAdaptor();
 }
 
 ApiInterface *SailHub::api()
@@ -43,13 +46,13 @@ void SailHub::initialize()
 
 void SailHub::reset()
 {
-    resetCredentials();
+    setAccessToken(QString());
+    writeSettings();
 }
 
 void SailHub::saveSettings()
 {
     writeSettings();
-    storeCredentials();
 }
 
 const QString &SailHub::accessToken() const
@@ -265,40 +268,9 @@ void SailHub::onNotificationsAvailable(const QList<NotificationListItem> &items)
     emit newNotificationsAvailable();
 }
 
-void SailHub::loadCredentials()
-{
-    Wallet wallet(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/SailHub/secret.wal",
-                  (unsigned char *)(APP_SECRET_KEY),
-                  (unsigned char *)(APP_SECRET_IV),
-                  this);
-
-    setAccessToken(QString::fromUtf8(wallet.requestEntry("token")));
-}
-
-void SailHub::resetCredentials()
-{
-    Wallet wallet(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/SailHub/secret.wal",
-                  (unsigned char *)(APP_SECRET_KEY),
-                  (unsigned char *)(APP_SECRET_IV),
-                  this);
-
-    wallet.reset();
-    setAccessToken(QString());
-}
-
-void SailHub::storeCredentials()
-{
-    Wallet wallet(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/SailHub/secret.wal",
-                  (unsigned char *)(APP_SECRET_KEY),
-                  (unsigned char *)(APP_SECRET_IV),
-                  this);
-
-    wallet.setEntry("token", m_accessToken.toUtf8());
-}
-
 void SailHub::readSettings()
 {
-    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/SailHub/sailhub.conf";
+    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/sailhub/sailhub.conf";
 
     if (!QFile(path).exists()) {
            path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/harbour-sailhub/harbour-sailhub.conf";
@@ -306,22 +278,23 @@ void SailHub::readSettings()
 
     QSettings settings(path, QSettings::NativeFormat);
 
-
     settings.beginGroup(QStringLiteral("APP"));
     m_api->setPaginationCount(quint8(settings.value(QStringLiteral("pagination"), 20).toInt()));
     setNotificationUpdateInterval(settings.value(QStringLiteral("notification_update_interval"), UpdateInterval::FifteenMinutes).toUInt());
     setNotify(settings.value(QStringLiteral("notify"), false).toBool());
+    setAccessToken(settings.value(QStringLiteral("token")).toString());
     settings.endGroup();
 }
 
 void SailHub::writeSettings()
 {
-    QSettings settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/SailHub/sailhub.conf", QSettings::NativeFormat);
+    QSettings settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/sailhub/sailhub.conf", QSettings::NativeFormat);
 
     settings.beginGroup(QStringLiteral("APP"));
     settings.setValue(QStringLiteral("pagination"), m_api->paginationCount());
     settings.setValue(QStringLiteral("notify"), m_notify);
     settings.setValue(QStringLiteral("notification_update_interval"), m_notificationUpdateInterval);
+    settings.setValue(QStringLiteral("token"), m_accessToken);
     settings.endGroup();
 }
 

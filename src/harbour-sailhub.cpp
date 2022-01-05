@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     app->setApplicationVersion(APP_VERSION);
-    app->setApplicationName("SailHub");
+    app->setApplicationName("sailhub");
     app->setOrganizationDomain("org.nubecula");
     app->setOrganizationName("org.nubecula");
 
@@ -91,6 +91,9 @@ int main(int argc, char *argv[])
 
     auto instance = new SailHub;
     context->setContextProperty("SailHub", instance);
+
+    auto dbus = instance->getDBusAdaptor();
+    context->setContextProperty("dbus", dbus);
 
     v->setSource(SailfishApp::pathTo("qml/harbour-sailhub.qml"));
     v->show();

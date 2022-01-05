@@ -51,6 +51,10 @@
         <source>All emojis designed by %1. License: %2</source>
         <translation>Les émoticônes sont créés par %1. Licence : %2</translation>
     </message>
+    <message>
+        <source>Give star</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddStarPage</name>
@@ -2063,6 +2067,14 @@
     <message>
         <source>An error occured when connecting to GitHub!</source>
         <translation>Une erreur s&apos;est produite lors de la connexion à GitHub !</translation>
+    </message>
+    <message>
+        <source>Repo doesn&apos;t exist!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Endpoint unsupported!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

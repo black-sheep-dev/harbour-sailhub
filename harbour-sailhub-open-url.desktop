@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=harbour-sailhub
+Name=SailHub
+NotShowIn=X-MeeGo;
+MimeType=x-url-handler/github.com;
+X-Maemo-Service=org.nubecula.sailhub
+X-Maemo-Object-Path=/
+X-Maemo-Method=org.nubecula.sailhub.openUrl
+Hidden=true
+
+[X-Sailjail]
+OrganizationName=org.nubecula
+ApplicationName=sailhub
+Permissions=Internet
+ExecDBus=/usr/bin/harbour-sailhub -prestart

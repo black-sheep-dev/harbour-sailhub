@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Nemo.DBus 2.0
 import Nemo.Notifications 1.0
+import Nemo.DBus 2.0
 
 import "pages"
 import "tools"
@@ -9,7 +9,24 @@ import "tools"
 import org.nubecula.harbour.sailhub 1.0
 
 ApplicationWindow
-{   
+{
+    id: appWindow
+
+    Connections {
+        target: dbus
+
+        onPleaseAddStar: {
+            __silica_applicationwindow_instance.activate()
+            pageStack.push(Qt.resolvedUrl("pages/AddStarPage.qml"), { reponame: reponame, username: username })
+        }
+
+        onPleaseOpenUrl: {
+            console.log(url)
+            __silica_applicationwindow_instance.activate()
+            linkHelper.openLink(url)
+        }
+    }
+
     Notification {
         function show(message, icn) {
             replacesId = 0
@@ -42,68 +59,58 @@ ApplicationWindow
         }
     }
 
-    DBusAdaptor {
-        service: "harbour.sailhub.service"
-        iface: "harbour.sailhub.service"
-        path: "/harbour/sailhub/service"
-        xml: '\
-              <interface name="harbour.sailhub.service">
-                <method name="addStar">
-                    <arg name="username" type="s" direction="in">
-                        <doc:doc>
-                            <doc:summary>
-                                GitHub username
-                            </doc:summary>
-                        </doc:doc>
-                    </arg>
-                    <arg name="reponame" type="s" direction="in">
-                        <doc:doc>
-                            <doc:summary>
-                                GitHub repository name
-                            </doc:summary>
-                        </doc:doc>
-                    </arg>
-                </method>
-                <method name="open">
-                </method>
-                <method name="token">
-                </method>
-              </interface>'
-
-        function addStar(username, reponame) {
-            __silica_applicationwindow_instance.activate()
-            pageStack.push(Qt.resolvedUrl("pages/AddStarPage.qml"), { reponame: reponame, username: username })
-        }
-
-        function open() {
-            __silica_applicationwindow_instance.activate()
-            pageStack.push(Qt.resolvedUrl("pages/NotificationsListPage.qml"))
-        }
-
-        function token() {
-            __silica_applicationwindow_instance.activate()
-            pageStack.push(Qt.resolvedUrl("pages/settings/SettingsAuthenticationPage.qml"))
-        }
-    }
-
     LinkHelper {
         property string username
         property string repo
+        property string destination
 
         id: linkHelper
 
-        onOpenRepo: {
+        onPleaseOpenLink: {
             linkHelper.username = username
             linkHelper.repo = repo
-            SailHub.api().getRepo(username, repo)
+            linkHelper.destination = destination
+            SailHub.api().getRepoId(username, repo)
         }
 
         Connections {
             target: SailHub.api()
-            onRepoByNameAvailable: {
-                pageStack.push(Qt.resolvedUrl("pages/RepoPage.qml"), {
-                                   repo: repo
-                               })
+            onRepoIdAvailable: {
+                if (repo.nodeId.length === 0) {
+                    notification.show(qsTr("Repo doesn't exist!"))
+                    return
+                }
+
+                if (linkHelper.destination === "repo" || linkHelper.destination === "unsupported") {
+                    if (linkHelper.destination === "unsupported") notification.show(qsTr("Endpoint unsupported!"))
+
+                    pageStack.push(Qt.resolvedUrl("pages/RepoPage.qml"), {
+                                       repo: repo
+                                   })
+                } else if (linkHelper.destination === "discussions") {
+                    pageStack.push(Qt.resolvedUrl("pages/DiscussionsListPage.qml"), {
+                                       description: repo.owner.login + "/" + repo.name,
+                                       identifier: repo.nodeId
+                                   })
+                } else if (linkHelper.destination === "issues") {
+                    pageStack.push(Qt.resolvedUrl("pages/IssuesListPage.qml"), {
+                                              description: repo.owner.login + "/" + repo.name,
+                                              identifier: repo.nodeId,
+                                              type: Issue.Repo,
+                                              states: IssueState.Open
+                                          })
+                } else if (linkHelper.destination === "pulls") {
+                    pageStack.push(Qt.resolvedUrl("pages/PullRequestsListPage.qml"), {
+                                              description: repo.owner.login + "/" + repo.name,
+                                              identifier: repo.nodeId,
+                                              type: PullRequest.Repo,
+                                              states: PullRequest.Open
+                                          })
+                }
+
+                linkHelper.username = ""
+                linkHelper.repo = ""
+                linkHelper.destination = ""
             }
         }
     }
