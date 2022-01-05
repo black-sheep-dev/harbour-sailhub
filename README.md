@@ -53,6 +53,7 @@ For an example you can take a look to the code of the SailHub [AboutPage.qml](ht
 ## Implemented Features
 - Basic Markdown rendering using ShowdownJS
 - Very basic notifications (using GitHub APIv3 but I am not happy with it at the moment)
+- Link handler to open links to github.com inside the app
 
 ## Implemented CRUD Features
 Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
