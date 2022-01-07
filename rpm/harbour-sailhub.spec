@@ -32,6 +32,16 @@ BuildRequires:  desktop-file-utils
 %description
 SailHub is an inoffical GitHub app for Sailfish OS
 
+%if "%{?vendor}" == "chum"
+PackageName: SailHub
+Type: desktop-application
+Categories:
+  - Development
+Icon: https://raw.githubusercontent.com/black-sheep-dev/harbour-sailhub/main/icons/harbour-sailhub.svg
+Url:
+  Donation: https://www.paypal.com/paypalme/nubecula/1
+%endif
+
 
 %prep
 %setup -q -n %{name}-%{version}
