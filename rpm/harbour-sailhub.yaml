@@ -24,10 +24,11 @@ PkgConfigBR:
   - Qt5Quick
   - Qt5DBus
   - nemonotifications-qt5
+  - keepalive
 
 # Build dependencies without a pkgconfig setup can be listed here
-# PkgBR:
-#   - package-needed-to-build
+PkgBR:
+  - qt5-qttools-linguist
 
 # Runtime dependencies which are not automatically detected
 Requires:
