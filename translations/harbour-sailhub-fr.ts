@@ -21,7 +21,7 @@
     </message>
     <message>
         <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
-        <translation>Votre langue n&apos;est pas disponible ? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
+        <translation>Votre langue n&apos;est pas disponible&#xa0;? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
     </message>
     <message>
         <source>Sources</source>
@@ -33,7 +33,7 @@
     </message>
     <message>
         <source>If you like my work why not buy me a beer?</source>
-        <translation>Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière ?</translation>
+        <translation>Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière&#xa0;?</translation>
     </message>
     <message>
         <source>Donate with PayPal</source>
@@ -49,11 +49,11 @@
     </message>
     <message>
         <source>All emojis designed by %1. License: %2</source>
-        <translation>Les émoticônes sont créés par %1. Licence : %2</translation>
+        <translation>Les émoticônes sont créés par %1. Licence&#xa0;: %2</translation>
     </message>
     <message>
         <source>Give star</source>
-        <translation type="unfinished"></translation>
+        <translation>Donner étoile</translation>
     </message>
 </context>
 <context>
@@ -64,7 +64,7 @@
     </message>
     <message>
         <source>%1 says thank you for your star!</source>
-        <translation>%1 vous remercie pour votre étoile !</translation>
+        <translation>%1 vous remercie pour votre étoile&#xa0;!</translation>
     </message>
     <message>
         <source>Stargazer</source>
@@ -1275,8 +1275,8 @@
     <message numerus="yes">
         <source>%n year(s) ago</source>
         <translation>
-            <numerusform>il y a %n an</numerusform>
-            <numerusform>il y a %n années</numerusform>
+            <numerusform>il y a %n&#xa0;an</numerusform>
+            <numerusform>il y a %n&#xa0;années</numerusform>
         </translation>
     </message>
 </context>
@@ -2043,11 +2043,11 @@
     </message>
     <message>
         <source>This token can be created in developer settings on GitHub.</source>
-        <translation>Ce jeton peut être créé dans « Developer settings » sur GitHub.</translation>
+        <translation>Ce jeton peut être créé dans «&#xa0;Developer settings&#xa0;» sur GitHub.</translation>
     </message>
     <message>
         <source>For a detailed description please refer the README in project repository!</source>
-        <translation>Pour une description détaillée, référez-vous au README du dépôt du projet !</translation>
+        <translation>Pour une description détaillée, référez-vous au README du dépôt du projet&#xa0;!</translation>
     </message>
     <message>
         <source>Access Token</source>
@@ -2066,15 +2066,15 @@
     </message>
     <message>
         <source>An error occured when connecting to GitHub!</source>
-        <translation>Une erreur s&apos;est produite lors de la connexion à GitHub !</translation>
+        <translation>Une erreur s&apos;est produite lors de la connexion à GitHub&#xa0;!</translation>
     </message>
     <message>
         <source>Repo doesn&apos;t exist!</source>
-        <translation type="unfinished"></translation>
+        <translation>Le répo n&apos;existe pas !</translation>
     </message>
     <message>
         <source>Endpoint unsupported!</source>
-        <translation type="unfinished"></translation>
+        <translation>Endpoint non supporté !</translation>
     </message>
 </context>
 </TS>
