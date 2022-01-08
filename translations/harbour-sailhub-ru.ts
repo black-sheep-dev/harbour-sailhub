@@ -5,122 +5,123 @@
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>О программе</translation>
     </message>
     <message>
         <source>SailHub</source>
-        <translation type="unfinished"></translation>
+        <translation>SailHub</translation>
     </message>
     <message>
         <source>SailHub is a native Sailfish OS GitHub Client using the GraphQL Api 4 from github.com.</source>
-        <translation type="unfinished"></translation>
+        <translation>SailHub — это собственный клиент GitHub для Sailfish OS, использующий GraphQL Api 4 с github.com.</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation type="unfinished"></translation>
+        <translation>Переводы</translation>
     </message>
     <message>
         <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет перевода на ваш язык? Вы можете помочь проекту, переведя интерфейс программы на моем сервере Weblate.</translation>
     </message>
     <message>
         <source>Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Исходный код</translation>
     </message>
     <message>
         <source>Donations</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддержать</translation>
     </message>
     <message>
         <source>If you like my work why not buy me a beer?</source>
-        <translation type="unfinished"></translation>
+        <translation>Почему бы не угостить меня пивком, если вам нравится моя работа?</translation>
     </message>
     <message>
         <source>Donate with PayPal</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддержать через PayPal</translation>
     </message>
     <message>
         <source>Donate with Liberpay</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддержать через Liberpay</translation>
     </message>
     <message>
         <source>Attributions</source>
-        <translation type="unfinished"></translation>
+        <translation>Атрибуты</translation>
     </message>
     <message>
         <source>All emojis designed by %1. License: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Все эмодзи разработаны %1. Лицензия: %2</translation>
     </message>
     <message>
         <source>Give star</source>
-        <translation type="unfinished"></translation>
+        <translation>Дать звезду</translation>
     </message>
 </context>
 <context>
     <name>AddStarPage</name>
     <message>
         <source>Add Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить звезду</translation>
     </message>
     <message>
         <source>%1 says thank you for your star!</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 говорит спасибо за вашу звезду!</translation>
     </message>
     <message>
         <source>Stargazer</source>
-        <translation type="unfinished"></translation>
+        <translation>Звездочёт</translation>
     </message>
     <message>
         <source>Support</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддержка</translation>
     </message>
     <message>
         <source>Sponsoring</source>
-        <translation type="unfinished"></translation>
+        <translation>Спонсорство</translation>
     </message>
 </context>
 <context>
     <name>AssignUserDialog</name>
     <message>
         <source>Assign User</source>
-        <translation type="unfinished"></translation>
+        <translation>Назначить пользователя</translation>
     </message>
     <message>
         <source>Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>Назначить</translation>
     </message>
     <message>
         <source>No users available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных пользователей</translation>
     </message>
 </context>
 <context>
     <name>AssigneesListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>Assign user</source>
-        <translation type="unfinished"></translation>
+        <translation>Назначить пользователя</translation>
     </message>
     <message>
         <source>No users available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных пользователей</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <source>Remove user from assignees</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить пользователя из назначенных</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (остался %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -128,167 +129,170 @@
     <name>CommentItem</name>
     <message>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation>Отредактировано</translation>
     </message>
 </context>
 <context>
     <name>CommentListDelegate</name>
     <message>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation>Одредактировано</translation>
     </message>
 </context>
 <context>
     <name>CommitPage</name>
     <message>
         <source>Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>Коммит</translation>
     </message>
     <message>
         <source>Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения</translation>
     </message>
     <message numerus="yes">
         <source>%n addition(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n добавление</numerusform>
+            <numerusform>%n добавления</numerusform>
+            <numerusform>%n добавлений</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n deletion(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n удаление</numerusform>
+            <numerusform>%n удаления</numerusform>
+            <numerusform>%n удалений</numerusform>
         </translation>
     </message>
     <message>
         <source>Changed files</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменить файлы</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation type="unfinished"></translation>
+        <translation>Связи</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation>Авторы</translation>
     </message>
     <message>
         <source>Parents</source>
-        <translation type="unfinished"></translation>
+        <translation>Родители</translation>
     </message>
     <message>
         <source>Verified</source>
-        <translation type="unfinished"></translation>
+        <translation>Проверено</translation>
     </message>
     <message>
         <source>Unverified</source>
-        <translation type="unfinished"></translation>
+        <translation>Не проверено</translation>
     </message>
     <message>
         <source>The signing certificate or its chain could not be verified</source>
-        <translation type="unfinished"></translation>
+        <translation>Сертификат подписи или его цепочка не может быть проверена</translation>
     </message>
     <message>
         <source>Invalid email used for signing</source>
-        <translation type="unfinished"></translation>
+        <translation>Недействительный адрес электронной почты, используемый для подписи</translation>
     </message>
     <message>
         <source>Signing key expired</source>
-        <translation type="unfinished"></translation>
+        <translation>Срок действия ключа подписи истек</translation>
     </message>
     <message>
         <source>Internal error - the GPG verification service misbehaved</source>
-        <translation type="unfinished"></translation>
+        <translation>Внутренняя ошибка — неправильное поведение службы проверки GPG</translation>
     </message>
     <message>
         <source>Internal error - the GPG verification service is unavailable at the moment</source>
-        <translation type="unfinished"></translation>
+        <translation>Внутренняя ошибка - служба проверки GPG в данный момент недоступна</translation>
     </message>
     <message>
         <source>Invalid signature</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильная подпись</translation>
     </message>
     <message>
         <source>Malformed signature</source>
-        <translation type="unfinished"></translation>
+        <translation>Неверная подпись</translation>
     </message>
     <message>
         <source>The usage flags for the key that signed this don&apos;t allow signing</source>
-        <translation type="unfinished"></translation>
+        <translation>Флаги использования, для ключа подписи, не позволяют подписывать</translation>
     </message>
     <message>
         <source>Email used for signing not known to GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>Электронная почта, используемая для подписи, не известна GitHub</translation>
     </message>
     <message>
         <source>Valid signature, though certificate revocation check failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Действительная подпись, хотя проверка отзыва сертификата не удалась</translation>
     </message>
     <message>
         <source>Valid signature, pending certificate revocation checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Действительная подпись, ожидающая проверки отзыва сертификата</translation>
     </message>
     <message>
         <source>One or more certificates in chain has been revoked</source>
-        <translation type="unfinished"></translation>
+        <translation>Один или несколько сертификатов в цепочке отозваны</translation>
     </message>
     <message>
         <source>Unknown signature type</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестный тип подписи</translation>
     </message>
     <message>
         <source>Unsigned</source>
-        <translation type="unfinished"></translation>
+        <translation>Неподписан</translation>
     </message>
     <message>
         <source>Email used for signing unverified on GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>Электронная почта, используемая для подписи, не проверена на GitHub</translation>
     </message>
     <message>
         <source>Unkown reason</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестная причина</translation>
     </message>
     <message>
         <source>Key used for signing not known to GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>Ключ, используемый для подписи, не известен GitHub</translation>
     </message>
 </context>
 <context>
     <name>CommitTreeListPage</name>
     <message>
         <source>Changed Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменённые файлы</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>No files available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных файлов</translation>
     </message>
 </context>
 <context>
     <name>CommitsListPage</name>
     <message>
         <source>Commits</source>
-        <translation type="unfinished"></translation>
+        <translation>Коммиты</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>No commits available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных коммитов</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (остался %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -296,72 +300,73 @@
     <name>DiscussionCommentItem</name>
     <message>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation>Отредактировано</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалено</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать</translation>
     </message>
     <message>
         <source>Unmark as answer</source>
-        <translation type="unfinished"></translation>
+        <translation>Снять отметку как ответ</translation>
     </message>
     <message>
         <source>Mark as answer</source>
-        <translation type="unfinished"></translation>
+        <translation>Отметить как ответ</translation>
     </message>
     <message>
         <source>Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Ответить</translation>
     </message>
     <message>
         <source>Quote reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Цитировать ответ</translation>
     </message>
     <message>
         <source>Deleting comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить коментарий</translation>
     </message>
     <message>
         <source>Replies</source>
-        <translation type="unfinished"></translation>
+        <translation>Ответы</translation>
     </message>
     <message>
         <source>Answer</source>
-        <translation type="unfinished"></translation>
+        <translation>Отзыв</translation>
     </message>
 </context>
 <context>
     <name>DiscussionCommentPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>Thread</source>
-        <translation type="unfinished"></translation>
+        <translation>Поток</translation>
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>Реакции</translation>
     </message>
     <message>
         <source>Replies</source>
-        <translation type="unfinished"></translation>
+        <translation>Ответы</translation>
     </message>
     <message>
         <source>Write Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Написать ответ</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (остался %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -369,48 +374,49 @@
     <name>DiscussionListDelegate</name>
     <message>
         <source>started the discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>начать обсуждение</translation>
     </message>
 </context>
 <context>
     <name>DiscussionPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>Discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>Обсуждение</translation>
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>Реакции</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <source>Deleting discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить обсуждение</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Коментарии</translation>
     </message>
     <message>
         <source>Write comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Написать коментарий</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (остался %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -418,137 +424,138 @@
     <name>DiscussionsListPage</name>
     <message>
         <source>Discussions</source>
-        <translation type="unfinished"></translation>
+        <translation>Обсуждения</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished"></translation>
+        <translation>Создано в</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновлено в</translation>
     </message>
     <message>
         <source>No discussions available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных обсуждений</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (остался %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <source>Deleting discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить обсуждение</translation>
     </message>
     <message>
         <source>Start new</source>
-        <translation type="unfinished"></translation>
+        <translation>Начать новое</translation>
     </message>
 </context>
 <context>
     <name>EditCommentDialog</name>
     <message>
         <source>Edit Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать ответ</translation>
     </message>
     <message>
         <source>Add Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить ответ</translation>
     </message>
     <message>
         <source>Edit Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать коментарий</translation>
     </message>
     <message>
         <source>Add Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить коментарий</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить</translation>
     </message>
 </context>
 <context>
     <name>EditDiscussionDialog</name>
     <message>
         <source>Edit discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать обсуждение</translation>
     </message>
     <message>
         <source>Create discussion</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать обсуждение</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить</translation>
     </message>
     <message>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Название</translation>
     </message>
     <message>
         <source>Enter title</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите название</translation>
     </message>
 </context>
 <context>
     <name>EditIssueDialog</name>
     <message>
         <source>Edit Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать тему</translation>
     </message>
     <message>
         <source>Create Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать тему</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить</translation>
     </message>
     <message>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Название</translation>
     </message>
     <message>
         <source>Enter title</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите название</translation>
     </message>
 </context>
 <context>
     <name>FilesChangedItem</name>
     <message numerus="yes">
         <source>%n file(s) changed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n файл изменен</numerusform>
+            <numerusform>%n файла изменено</numerusform>
+            <numerusform>%n файлов изменено</numerusform>
         </translation>
     </message>
 </context>
@@ -556,307 +563,311 @@
     <name>FundingLinksListPage</name>
     <message>
         <source>No funding links available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных ссылок для финансирования</translation>
     </message>
     <message>
         <source>Sponsor</source>
-        <translation type="unfinished"></translation>
+        <translation>Спонсор</translation>
     </message>
 </context>
 <context>
     <name>GistsListPage</name>
     <message>
         <source>Gists</source>
-        <translation type="unfinished"></translation>
+        <translation>Списки</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished"></translation>
+        <translation>Создано в</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновлено в</translation>
     </message>
     <message>
         <source>Pushed at</source>
-        <translation type="unfinished"></translation>
+        <translation>Фиксировано в</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (остался %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
     <message>
         <source>No gists available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных списков</translation>
     </message>
 </context>
 <context>
     <name>ImageViewerPage</name>
     <message>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Высота</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Ширина</translation>
     </message>
 </context>
 <context>
     <name>IssueCommentItem</name>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <source>Deleting comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить коментарий</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать</translation>
     </message>
     <message>
         <source>Quote reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Цитировать ответ</translation>
     </message>
     <message>
         <source>Edited</source>
-        <translation type="unfinished"></translation>
+        <translation>Отредактировано</translation>
     </message>
 </context>
 <context>
     <name>IssuePage</name>
     <message>
         <source>Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Тема</translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрытая</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Открытая</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Коментарии</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <source>Deleting issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить тему</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть</translation>
     </message>
     <message>
         <source>Closing issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть тему</translation>
     </message>
     <message>
         <source>Participants</source>
-        <translation type="unfinished"></translation>
+        <translation>Участники</translation>
     </message>
     <message>
         <source>Assignees</source>
-        <translation type="unfinished"></translation>
+        <translation>Правопреемники</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Ярлыки</translation>
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>Реакции</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation type="unfinished"></translation>
+        <translation>Связи</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать</translation>
     </message>
     <message>
         <source>Write comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Написать косентарий</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
     <message>
         <source>Reopen</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть заново</translation>
     </message>
     <message>
         <source>Reopen issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Повтороно открыть тему</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished"></translation>
+        <translation>Отписаться</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation type="unfinished"></translation>
+        <translation>Подписаться</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"></translation>
+        <translation>Разблокировать</translation>
     </message>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Заблокировать</translation>
     </message>
     <message>
         <source>Unlocking</source>
-        <translation type="unfinished"></translation>
+        <translation>Разблокированая</translation>
     </message>
     <message>
         <source>Locking</source>
-        <translation type="unfinished"></translation>
+        <translation>Заблокированая</translation>
     </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
     <message>
         <source>Created</source>
-        <translation type="unfinished"></translation>
+        <translation>Созданная</translation>
     </message>
     <message>
         <source>Issues created by user</source>
-        <translation type="unfinished"></translation>
+        <translation>темы созданные пользователем</translation>
     </message>
     <message>
         <source>Assigned</source>
-        <translation type="unfinished"></translation>
+        <translation>Назначенная</translation>
     </message>
     <message>
         <source>Issues assigned to user</source>
-        <translation type="unfinished"></translation>
+        <translation>тема назначенная пользователем</translation>
     </message>
     <message>
         <source>Mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>Упомянутая</translation>
     </message>
     <message>
         <source>Issues where user is mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>тема о которой упомянул пользователь</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Темы</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть</translation>
     </message>
     <message>
         <source>Open issues in user repos</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть тему в репозитории пользователя</translation>
     </message>
 </context>
 <context>
     <name>IssuesListPage</name>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Темы</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>No issues available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных тем</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished"></translation>
+        <translation>Создана в</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновлена в</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Коментарии</translation>
     </message>
     <message>
         <source>Show closed issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать закрытые темы</translation>
     </message>
     <message>
         <source>Show open issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать открытые темы</translation>
     </message>
     <message>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать новую</translation>
     </message>
 </context>
 <context>
     <name>LabelsListPage</name>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Темы</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished"></translation>
+        <translation>Создан в</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>No labels available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных ярлыков</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (остался %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -864,72 +875,72 @@
     <name>LockReasonPill</name>
     <message>
         <source>Off Topic</source>
-        <translation type="unfinished"></translation>
+        <translation>Не по теме</translation>
     </message>
     <message>
         <source>Resolved</source>
-        <translation type="unfinished"></translation>
+        <translation>Решено</translation>
     </message>
     <message>
         <source>Spam</source>
-        <translation type="unfinished"></translation>
+        <translation>Спам</translation>
     </message>
     <message>
         <source>Too heated</source>
-        <translation type="unfinished"></translation>
+        <translation>Горячие</translation>
     </message>
     <message>
         <source>Locked</source>
-        <translation type="unfinished"></translation>
+        <translation>Заблокирован</translation>
     </message>
 </context>
 <context>
     <name>NotificationsListPage</name>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Уведомления</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>No notifications available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных уведомлений</translation>
     </message>
 </context>
 <context>
     <name>OrganizationPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>Организация</translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Репозитории</translation>
     </message>
     <message>
         <source>Projects</source>
-        <translation type="unfinished"></translation>
+        <translation>Проекты</translation>
     </message>
     <message>
         <source>Teams</source>
-        <translation type="unfinished"></translation>
+        <translation>Команды</translation>
     </message>
     <message>
         <source>Members</source>
-        <translation type="unfinished"></translation>
+        <translation>Участники</translation>
     </message>
 </context>
 <context>
     <name>OrganizationsListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>No organizations available</source>
