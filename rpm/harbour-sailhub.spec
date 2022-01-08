@@ -41,11 +41,11 @@ Custom:
   Repo: https://github.com/black-sheep-dev/harbour-sailhub/
 Icon: https://raw.githubusercontent.com/black-sheep-dev/harbour-sailhub/main/icons/harbour-sailhub.svg
 Screenshots:
-  - https://github.com/black-sheep-dev/harbour-sailhub/raw/metadata/screenshot1.png
-  - https://github.com/black-sheep-dev/harbour-sailhub/raw/metadata/screenshot2.png
-  - https://github.com/black-sheep-dev/harbour-sailhub/raw/metadata/screenshot3.png
-  - https://github.com/black-sheep-dev/harbour-sailhub/raw/metadata/screenshot4.png
-  - https://github.com/black-sheep-dev/harbour-sailhub/raw/metadata/screenshot5.png
+  - https://github.com/black-sheep-dev/harbour-sailhub/raw/main/metadata/screenshot1.png
+  - https://github.com/black-sheep-dev/harbour-sailhub/raw/main/metadata/screenshot2.png
+  - https://github.com/black-sheep-dev/harbour-sailhub/raw/main/metadata/screenshot3.png
+  - https://github.com/black-sheep-dev/harbour-sailhub/raw/main/metadata/screenshot4.png
+  - https://github.com/black-sheep-dev/harbour-sailhub/raw/main/metadata/screenshot5.png
 Url:
   Donation: https://www.paypal.com/paypalme/nubecula/1
 %endif
