@@ -61,6 +61,8 @@ private:
         OneHour
     };
 
+    void initializeOpenWith();
+
     // settings
     void readSettings();
     void writeSettings();

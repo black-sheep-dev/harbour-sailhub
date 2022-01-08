@@ -4,6 +4,7 @@
 #include <QDebug>
 #endif
 
+#include <QDir>
 #include <QFile>
 #include <QProcess>
 #include <QSettings>
@@ -15,6 +16,8 @@
 SailHub::SailHub(QObject *parent) :
     QObject(parent)
 {
+    initializeOpenWith();
+
     readSettings();
 
     connect(m_api, &ApiInterface::notificationsAvailable, this, &SailHub::onNotificationsAvailable);
@@ -266,6 +269,70 @@ void SailHub::onNotificationsAvailable(const QList<NotificationListItem> &items)
     }
 
     emit newNotificationsAvailable();
+}
+
+void SailHub::initializeOpenWith()
+{
+    const QStringList sailfishOSVersion = QSysInfo::productVersion().split(".");
+    int sailfishOSMajorVersion = sailfishOSVersion.value(0).toInt();
+    int sailfishOSMinorVersion = sailfishOSVersion.value(1).toInt();
+
+    if (sailfishOSMajorVersion >= 4 && sailfishOSMinorVersion >= 3) {
+        return;
+    }
+
+    const QString applicationsLocation(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation));
+
+    const QString desktopFilePath = QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "/harbour-sailhub-open-url.desktop";
+    QFile desktopFile(desktopFilePath);
+    if (desktopFile.exists()) {
+        qDebug() << "Piepmatz open-with file existing, removing...";
+        desktopFile.remove();
+        QProcess::startDetached("update-desktop-database " + applicationsLocation);
+    }
+    qDebug() << "Creating Open-With file at " << desktopFile.fileName();
+    if (desktopFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream fileOut(&desktopFile);
+        fileOut.setCodec("UTF-8");
+        fileOut << QStringLiteral("[Desktop Entry]").toUtf8() << "\n";
+        fileOut << QStringLiteral("Type=Application").toUtf8() << "\n";
+        fileOut << QStringLiteral("Name=SailHub").toUtf8() << "\n";
+        fileOut << QStringLiteral("Icon=harbour-sailhub").toUtf8() << "\n";
+        fileOut << QStringLiteral("NotShowIn=X-MeeGo;").toUtf8() << "\n";
+        if (sailfishOSMajorVersion < 4 || ( sailfishOSMajorVersion == 4 && sailfishOSMinorVersion < 1 )) {
+            fileOut << QStringLiteral("MimeType=text/html;x-scheme-handler/http;x-scheme-handler/https;").toUtf8() << "\n";
+        } else {
+            fileOut << QStringLiteral("MimeType=x-url-handler/github.com;").toUtf8() << "\n";
+        }
+        fileOut << QStringLiteral("X-Maemo-Service=org.nubecula.sailhub").toUtf8() << "\n";
+        fileOut << QStringLiteral("X-Maemo-Method=org.nubecula.sailhub.openUrl").toUtf8() << "\n";
+        fileOut << QStringLiteral("Hidden=true;").toUtf8() << "\n";
+        fileOut.flush();
+        desktopFile.close();
+        QProcess::startDetached("update-desktop-database " + QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation));
+    }
+
+    const QString dbusPathName = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/dbus-1/services";
+    QDir dbusPath(dbusPathName);
+    if (!dbusPath.exists()) {
+        qDebug() << "Creating D-Bus directory " << dbusPathName;
+        dbusPath.mkpath(dbusPathName);
+    }
+    const QString dbusServiceFileName = dbusPathName + "/org.nubecula.sailhub.service";
+    QFile dbusServiceFile(dbusServiceFileName);
+    if (!dbusServiceFile.exists()) {
+        qDebug() << "Creating D-Bus service file at " << dbusServiceFile.fileName();
+        if (dbusServiceFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QTextStream fileOut(&dbusServiceFile);
+            fileOut.setCodec("UTF-8");
+            fileOut << QStringLiteral("[D-BUS Service]").toUtf8() << "\n";
+            fileOut << QStringLiteral("Name=org.nubecula.sailhub").toUtf8() << "\n";
+            fileOut << QStringLiteral("Exec=/usr/bin/invoker -s --type=silica-qt5 /usr/bin/harbour-sailhub").toUtf8() << "\n";
+            fileOut << QStringLiteral("Path=/").toUtf8() << "\n";
+            fileOut.flush();
+            dbusServiceFile.close();
+        }
+    }
 }
 
 void SailHub::readSettings()

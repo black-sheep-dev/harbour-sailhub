@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=org.nubecula.sailhub
+Exec=sailjail -p harbour-sailhub.desktop /usr/bin/harbour-sailhub
+Path=/

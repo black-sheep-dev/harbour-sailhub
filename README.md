@@ -10,10 +10,6 @@ I made this app to familiarize myself with GraphQL API concepts. GitHub API is w
 The development is in an early state at the moment.  
 Lot of functionality is missing.
 
-## Version compatibility
-Starting with Version 0.1.0 the application needs at least SailfishOS 4.2.
-If you use an older version of SailfishOS use app version 0.0.35 instead.
-
 ## Authentication with Personal Access Token
 To authenticate with GitHub API a personal access token is necessary. You can create one in developer settings on GitHub profile settings page.
 
@@ -22,7 +18,7 @@ To authenticate with GitHub API a personal access token is necessary. You can cr
 ## Dependencies (EMOJI)
 This package depends on an emoji pack I released on OpenRepos using the emojis from [Twitter Emoji](https://twemoji.twitter.com/) project.
 
-## DBus Interface
+## DBus Interface (not with Sailjail)
 ### Add Star
 You can implement an option to add a star to a GitHub repository via a DBus interface inside your own app. SailHub must be installed on the user device for this to work. You need to provide username of the owner and the repository name.
 
@@ -87,7 +83,7 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Sponsoring / Funding
 - Change user profile status
 - Subscription (Repository / Issue / Pull Request)
-- Add star via DBus call to use in own apps
+- Add star via DBus call to use in own apps (not with Sailjail)
 
 ## Administrative Features
 

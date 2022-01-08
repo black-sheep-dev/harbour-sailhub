@@ -14,7 +14,7 @@ Page {
 
         service: "org.nubecula.sailhub"
         iface: "org.nubecula.sailhub"
-        path: "/org/nubecula/sailhub"
+        path: "/"
     }
 
     SilicaFlickable {
@@ -183,7 +183,7 @@ Page {
                 Button {
                     //visible: sailHubInterface.status === DBusInterface.Available
                     text: qsTr("Give star")
-                    onClicked: sailHubInterface.call("addStar", ["black-sheep-dev", Qt.application.name])
+                    onClicked: sailHubInterface.call("addStar", ["black-sheep-dev", "harbour-sailhub"])
                 }
             }
 

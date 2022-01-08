@@ -1,7 +1,8 @@
 [Desktop Entry]
 Type=Application
+X-Nemo-Application-Type=silica-qt5
 Icon=harbour-sailhub
-Exec=sailjail -p harbour-sailhub.desktop /usr/bin/harbour-sailhub
+Exec=harbour-sailhub
 Name=SailHub
 
 [X-Sailjail]
