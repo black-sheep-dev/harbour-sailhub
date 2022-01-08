@@ -1,4 +1,4 @@
-* Wed Jan 05 2021 Black Sheep <blacksheep@nubecula.org> 0.1.2-1
+* Wed Jan 05 2022 Black Sheep <blacksheep@nubecula.org> 0.1.2-1
 - Removed own implemation for storing secret token (it didn't work reliable, sorry for that :´-)). You need to enter it again.
 - Add link handler to the system. You can open links to github.com inside the app
 - Translation updates
