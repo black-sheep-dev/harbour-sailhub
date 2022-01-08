@@ -1,5 +1,5 @@
 # VERSION
-VERSION = 0.1.2
+VERSION = 0.1.3
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 # The name of your application
@@ -9,11 +9,10 @@ DEFINES += APP_TARGET=\\\"$$TARGET\\\"
 QT += dbus
 
 CONFIG += link_pkgconfig sailfishapp
-PKGCONFIG += nemonotifications-qt5
+PKGCONFIG += nemonotifications-qt5 keepalive
 
 include(extern/sailfishos-utils/compressor/compressor.pri)
 
-LIBS += -L../../lib -lkeepalive
 
 SOURCES += src/harbour-sailhub.cpp \
     src/api/apiinterface.cpp \
@@ -271,6 +270,11 @@ twemoji.files = data/twemoji/*
 twemoji.path = $$INSTALL_ROOT/usr/share/harbour-sailhub/twemoji
 
 INSTALLS += twemoji
+
+dbus.files = data/org.nubecula.sailhub.service
+dbus.path = $$INSTALL_ROOT/usr/share/dbus-1/services
+
+INSTALLS += dbus
 
 openUrl.files = harbour-sailhub-open-url.desktop
 openUrl.path = $$INSTALL_ROOT/usr/share/applications

@@ -9,7 +9,7 @@ Name:       harbour-sailhub
 # << macros
 
 Summary:    SailHub
-Version:    0.1.2
+Version:    0.1.3
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -37,7 +37,15 @@ PackageName: SailHub
 Type: desktop-application
 Categories:
   - Development
+Custom:
+  Repo: https://github.com/black-sheep-dev/harbour-sailhub/
 Icon: https://raw.githubusercontent.com/black-sheep-dev/harbour-sailhub/main/icons/harbour-sailhub.svg
+Screenshots:
+  - https://github.com/black-sheep-dev/harbour-sailhub/raw/metadata/screenshot1.png
+  - https://github.com/black-sheep-dev/harbour-sailhub/raw/metadata/screenshot2.png
+  - https://github.com/black-sheep-dev/harbour-sailhub/raw/metadata/screenshot3.png
+  - https://github.com/black-sheep-dev/harbour-sailhub/raw/metadata/screenshot4.png
+  - https://github.com/black-sheep-dev/harbour-sailhub/raw/metadata/screenshot5.png
 Url:
   Donation: https://www.paypal.com/paypalme/nubecula/1
 %endif
@@ -80,5 +88,6 @@ desktop-file-install --delete-original       \
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/%{name}-open-url.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
+%{_datadir}/dbus-1/services/org.nubecula.sailhub.service
 # >> files
 # << files
