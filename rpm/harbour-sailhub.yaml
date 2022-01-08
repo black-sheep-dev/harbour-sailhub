@@ -13,6 +13,17 @@ Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
   SailHub is an inoffical GitHub app for Sailfish OS
+
+  %if "%{?vendor}" == "chum"
+  PackageName: SailHub
+  Type: desktop-application
+  Categories:
+    - Development
+  Icon: https://raw.githubusercontent.com/black-sheep-dev/harbour-sailhub/main/icons/harbour-sailhub.svg
+  Url:
+    Donation: https://www.paypal.com/paypalme/nubecula/1
+  %endif
+
 Builder: qmake5
 
 # This section specifies build dependencies that are resolved using pkgconfig.
@@ -24,10 +35,11 @@ PkgConfigBR:
   - Qt5Quick
   - Qt5DBus
   - nemonotifications-qt5
+  - keepalive
 
 # Build dependencies without a pkgconfig setup can be listed here
-# PkgBR:
-#   - package-needed-to-build
+PkgBR:
+  - qt5-qttools-linguist
 
 # Runtime dependencies which are not automatically detected
 Requires:

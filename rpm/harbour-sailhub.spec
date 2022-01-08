@@ -25,10 +25,22 @@ BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  pkgconfig(nemonotifications-qt5)
+BuildRequires:  pkgconfig(keepalive)
+BuildRequires:  qt5-qttools-linguist
 BuildRequires:  desktop-file-utils
 
 %description
 SailHub is an inoffical GitHub app for Sailfish OS
+
+%if "%{?vendor}" == "chum"
+PackageName: SailHub
+Type: desktop-application
+Categories:
+  - Development
+Icon: https://raw.githubusercontent.com/black-sheep-dev/harbour-sailhub/main/icons/harbour-sailhub.svg
+Url:
+  Donation: https://www.paypal.com/paypalme/nubecula/1
+%endif
 
 
 %prep
