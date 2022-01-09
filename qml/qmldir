@@ -1,5 +1,5 @@
 singleton SailHubStyles 1.0 SailHubStyles.qml
 singleton MarkdownParser 1.0 tools/MarkdownParser.qml
-ShowDown 1.0 js/showdown.js
+ShowDown 1.0 js/showdown.min.js
 Twemoji 1.0 js/twemoji.min.js
 StringHelper 1.0 js/stringhelper.js
