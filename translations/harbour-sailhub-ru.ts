@@ -944,13 +944,14 @@
     </message>
     <message>
         <source>No organizations available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных оранизаций</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -958,160 +959,160 @@
     <name>OverviewPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>О программе</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск</translation>
     </message>
     <message>
         <source>App initializing ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Инициализация приложения...</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Дом</translation>
     </message>
     <message>
         <source>My Work</source>
-        <translation type="unfinished"></translation>
+        <translation>Моя Работа</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Темы</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Пулл Реквест</translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Репозитории</translation>
     </message>
     <message>
         <source>Organizations</source>
-        <translation type="unfinished"></translation>
+        <translation>Организации</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Уведомления</translation>
     </message>
     <message>
         <source>Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Активности</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Статус</translation>
     </message>
 </context>
 <context>
     <name>ProfileStatusItem</name>
     <message>
         <source>Set status</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить статус</translation>
     </message>
 </context>
 <context>
     <name>ProfileStatusPage</name>
     <message>
         <source>Change status</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменить статус</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Статус</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Сообщение</translation>
     </message>
     <message>
         <source>Enter message</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите сообщение</translation>
     </message>
     <message>
         <source>Busy</source>
-        <translation type="unfinished"></translation>
+        <translation>Занят</translation>
     </message>
     <message>
         <source>When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.</source>
-        <translation type="unfinished"></translation>
+        <translation>Когда другие упоминают вас, назначают вас или запрашивают ваш обзор, GitHub сообщит им, что у вас ограниченная доступность.</translation>
     </message>
     <message>
         <source>Clear status</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить статус</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Никогда</translation>
     </message>
     <message>
         <source>in 30 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>за 30 минут</translation>
     </message>
     <message>
         <source>in 1 hour</source>
-        <translation type="unfinished"></translation>
+        <translation>за 1 час</translation>
     </message>
     <message>
         <source>in 4 hour</source>
-        <translation type="unfinished"></translation>
+        <translation>за 4 часа</translation>
     </message>
     <message>
         <source>today</source>
-        <translation type="unfinished"></translation>
+        <translation>сегодня</translation>
     </message>
     <message>
         <source>this week</source>
-        <translation type="unfinished"></translation>
+        <translation>за неделю</translation>
     </message>
     <message>
         <source>Clearing status</source>
-        <translation type="unfinished"></translation>
+        <translation>Удаление статуса</translation>
     </message>
 </context>
 <context>
     <name>PullRequestPage</name>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished"></translation>
+        <translation>Отписаться</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation type="unfinished"></translation>
+        <translation>Подписаться</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть</translation>
     </message>
     <message>
         <source>Closing pull request</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть пулл реквест</translation>
     </message>
     <message>
         <source>Reopen</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть заново</translation>
     </message>
     <message>
         <source>Reopen pull request</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть заново пулл реквест</translation>
     </message>
     <message>
         <source>Pull Request</source>
-        <translation type="unfinished"></translation>
+        <translation>Pull Request</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Открытая</translation>
     </message>
     <message>
         <source>Merged</source>
@@ -1119,66 +1120,67 @@
     </message>
     <message>
         <source>Closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрытая</translation>
     </message>
     <message>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>Реакции</translation>
     </message>
     <message>
         <source>Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения</translation>
     </message>
     <message>
         <source>Commits</source>
-        <translation type="unfinished"></translation>
+        <translation>Коммиты</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation type="unfinished"></translation>
+        <translation>Связи</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Ярлыки</translation>
     </message>
     <message>
         <source>Assignees</source>
-        <translation type="unfinished"></translation>
+        <translation>Правопреемники</translation>
     </message>
     <message>
         <source>Participants</source>
-        <translation type="unfinished"></translation>
+        <translation>Участники</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Коментарий</translation>
     </message>
     <message>
         <source>Write comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Написать коментарий</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"></translation>
+        <translation>Разблокировать</translation>
     </message>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Заблокировать</translation>
     </message>
     <message>
         <source>Unlocking</source>
-        <translation type="unfinished"></translation>
+        <translation>Разблокированая</translation>
     </message>
     <message>
         <source>Locking</source>
-        <translation type="unfinished"></translation>
+        <translation>Заблокированая</translation>
     </message>
 </context>
 <context>
@@ -1189,7 +1191,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>No pull requests available</source>
@@ -1197,22 +1199,23 @@
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished"></translation>
+        <translation>Создана в</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновлена в</translation>
     </message>
     <message>
         <source>Show closed pull requests</source>
@@ -1227,15 +1230,15 @@
     <name>PullRequestsSelectionPage</name>
     <message>
         <source>Created</source>
-        <translation type="unfinished"></translation>
+        <translation>Созданная</translation>
     </message>
     <message>
         <source>Assigned</source>
-        <translation type="unfinished"></translation>
+        <translation>Назначенная</translation>
     </message>
     <message>
         <source>Mentioned</source>
-        <translation type="unfinished"></translation>
+        <translation>Упомянутая</translation>
     </message>
     <message>
         <source>Pull Requests</source>
@@ -1296,7 +1299,7 @@
     <name>ReactionDialog</name>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить</translation>
     </message>
 </context>
 <context>
@@ -1307,17 +1310,18 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>No assets available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных тем</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
     <message>
@@ -1344,7 +1348,7 @@
     <name>ReleasePage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>Release</source>
@@ -1387,19 +1391,19 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished"></translation>
+        <translation>Создана в</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>No releases available</source>
@@ -1407,9 +1411,10 @@
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -1437,7 +1442,7 @@
     </message>
     <message>
         <source>Locked</source>
-        <translation type="unfinished"></translation>
+        <translation>Заблокирован</translation>
     </message>
     <message>
         <source>Archived</source>
@@ -1445,7 +1450,7 @@
     </message>
     <message>
         <source>Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>Организация</translation>
     </message>
     <message>
         <source>Fork</source>
@@ -1468,11 +1473,11 @@
     </message>
     <message>
         <source>Stargazer</source>
-        <translation type="unfinished"></translation>
+        <translation>Звездочёт</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Темы</translation>
     </message>
     <message>
         <source>Pull Requests</source>
@@ -1484,7 +1489,7 @@
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation>Авторы</translation>
     </message>
     <message>
         <source>License</source>
@@ -1508,11 +1513,11 @@
     </message>
     <message>
         <source>Discussions</source>
-        <translation type="unfinished"></translation>
+        <translation>Обсуждения</translation>
     </message>
     <message>
         <source>Sponsor</source>
-        <translation type="unfinished"></translation>
+        <translation>Спонсор</translation>
     </message>
     <message>
         <source>Vulnerability Alerts</source>
@@ -1547,7 +1552,7 @@
     <name>ReposListPage</name>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Репозитории</translation>
     </message>
     <message>
         <source>Forks</source>
@@ -1559,7 +1564,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>No repositories available</source>
@@ -1567,45 +1572,46 @@
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировка</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation type="unfinished"></translation>
+        <translation>Создана в</translation>
     </message>
     <message>
         <source>Pushed at</source>
-        <translation type="unfinished"></translation>
+        <translation>Фиксировано в</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновлена в</translation>
     </message>
     <message>
         <source>Stargazers</source>
-        <translation type="unfinished"></translation>
+        <translation>Звездочёт</translation>
     </message>
 </context>
 <context>
     <name>SailHub</name>
     <message>
         <source>SailHub</source>
-        <translation type="unfinished"></translation>
+        <translation>SailHub</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>По умолчанию</translation>
     </message>
 </context>
 <context>
@@ -1624,9 +1630,10 @@
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -1646,9 +1653,10 @@
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -1668,7 +1676,7 @@
     </message>
     <message>
         <source>Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>Организация</translation>
     </message>
 </context>
 <context>
@@ -1687,9 +1695,10 @@
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -1705,7 +1714,7 @@
     </message>
     <message>
         <source>default</source>
-        <translation type="unfinished"></translation>
+        <translation>По умолчанию</translation>
     </message>
     <message>
         <source>No branches available</source>
@@ -1754,7 +1763,7 @@
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished"></translation>
+        <translation>Отписаться</translation>
     </message>
     <message>
         <source>Disable all notifications</source>
@@ -1762,7 +1771,7 @@
     </message>
     <message>
         <source>Subscribe</source>
-        <translation type="unfinished"></translation>
+        <translation>Подписаться</translation>
     </message>
     <message>
         <source>Get notified only when participating or mentioned</source>
@@ -1781,7 +1790,7 @@
     <name>SettingsAuthenticationPage</name>
     <message>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Сброс</translation>
     </message>
     <message>
         <source>Resetting credentials and close app</source>
@@ -1808,7 +1817,7 @@
     </message>
     <message>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Уведомления</translation>
     </message>
     <message>
         <source>Get notified of activities on your GitHub account.</source>
@@ -1830,7 +1839,7 @@
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <source>Pagination</source>
@@ -1850,7 +1859,7 @@
     </message>
     <message>
         <source>Notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Уведомления</translation>
     </message>
     <message>
         <source>Manage notification options</source>
@@ -1917,11 +1926,11 @@
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>No files available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных файлов</translation>
     </message>
 </context>
 <context>
@@ -1956,11 +1965,11 @@
     </message>
     <message>
         <source>Repositories</source>
-        <translation type="unfinished"></translation>
+        <translation>Репозитории</translation>
     </message>
     <message>
         <source>Organizations</source>
-        <translation type="unfinished"></translation>
+        <translation>Организации</translation>
     </message>
     <message>
         <source>Starred</source>
@@ -1968,24 +1977,25 @@
     </message>
     <message>
         <source>Gists</source>
-        <translation type="unfinished"></translation>
+        <translation>Списки</translation>
     </message>
 </context>
 <context>
     <name>UsersListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить</translation>
     </message>
     <message>
         <source>No users available</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет доступных пользователей</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Загрузить еще (осталась %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
+            <numerusform>Загрузить еще (осталось %n)</numerusform>
         </translation>
     </message>
 </context>
@@ -2028,7 +2038,7 @@
     </message>
     <message>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Сброс</translation>
     </message>
     <message>
         <source>Resetting application</source>
