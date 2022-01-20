@@ -3,7 +3,7 @@ SailHub is an inoffical native GitHub app for Sailfish OS using GitHub GraphQL A
 
 I made this app to familiarize myself with GraphQL API concepts. GitHub API is well documented and ideal for this purpose.
 
->![](icons/128x128/harbour-sailhub.png)
+>![](https://github.com/black-sheep-dev/harbour-sailhub/raw/main/icons/128x128/harbour-sailhub.png)
 
 ## Current state of development
 
@@ -13,7 +13,7 @@ Lot of functionality is missing.
 ## Authentication with Personal Access Token
 To authenticate with GitHub API a personal access token is necessary. You can create one in developer settings on GitHub profile settings page.
 
-![](doc/images/github_personal_access_token.png)
+![](https://github.com/black-sheep-dev/harbour-sailhub/raw/main/doc/images/github_personal_access_token.png)
 
 ## Dependencies (EMOJI)
 This package depends on an emoji pack I released on OpenRepos using the emojis from [Twitter Emoji](https://twemoji.twitter.com/) project.
