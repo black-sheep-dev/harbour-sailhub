@@ -20,6 +20,7 @@ Description: |
   Categories:
     - Development
   Custom:
+    DescriptionMD: https://github.com/black-sheep-dev/harbour-sailhub/raw/main/README.md
     Repo: https://github.com/black-sheep-dev/harbour-sailhub/
   Icon: https://raw.githubusercontent.com/black-sheep-dev/harbour-sailhub/main/icons/harbour-sailhub.svg
   Screenshots:
