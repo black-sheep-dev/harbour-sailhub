@@ -94,7 +94,7 @@
     <name>AssigneesListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>Assign user</source>
@@ -259,7 +259,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>No files available</source>
@@ -274,7 +274,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>No commits available</source>
@@ -296,7 +296,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -335,7 +335,7 @@
     <name>DiscussionCommentPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>Thread</source>
@@ -372,7 +372,7 @@
     <name>DiscussionPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>Discussion</source>
@@ -388,7 +388,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <source>Deleting discussion</source>
@@ -418,7 +418,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>Sorting</source>
@@ -445,7 +445,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <source>Deleting discussion</source>
@@ -566,7 +566,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>Sorting</source>
@@ -611,7 +611,7 @@
     <name>IssueCommentItem</name>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <source>Deleting comment</source>
@@ -638,7 +638,7 @@
     </message>
     <message>
         <source>Closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezárás</translation>
     </message>
     <message>
         <source>Open</source>
@@ -650,7 +650,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <source>Deleting issue</source>
@@ -658,7 +658,7 @@
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezárás</translation>
     </message>
     <message>
         <source>Closing issue</source>
@@ -779,7 +779,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>No issues available</source>
@@ -829,7 +829,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>Sorting</source>
@@ -845,7 +845,7 @@
     </message>
     <message>
         <source>No labels available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincsenek elérhető csatornák</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -886,7 +886,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>No notifications available</source>
@@ -897,7 +897,7 @@
     <name>OrganizationPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>Organization</source>
@@ -924,7 +924,7 @@
     <name>OrganizationsListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>No organizations available</source>
@@ -946,7 +946,7 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Keresés</translation>
     </message>
     <message>
         <source>App initializing ...</source>
@@ -1075,7 +1075,7 @@
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezárás</translation>
     </message>
     <message>
         <source>Closing pull request</source>
@@ -1103,7 +1103,7 @@
     </message>
     <message>
         <source>Closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezárás</translation>
     </message>
     <message>
         <source>Reactions</source>
@@ -1173,7 +1173,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>No pull requests available</source>
@@ -1291,7 +1291,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>No assets available</source>
@@ -1328,7 +1328,7 @@
     <name>ReleasePage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>Release</source>
@@ -1371,7 +1371,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>Sorting</source>
@@ -1543,7 +1543,7 @@
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>No repositories available</source>
@@ -1589,7 +1589,7 @@
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Alapértelmezett</translation>
     </message>
 </context>
 <context>
@@ -1689,7 +1689,7 @@
     </message>
     <message>
         <source>default</source>
-        <translation type="unfinished"></translation>
+        <translation>Alapértelmezett</translation>
     </message>
     <message>
         <source>No branches available</source>
@@ -1773,7 +1773,7 @@
     </message>
     <message>
         <source>Authentication Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Azonosítási beállítások</translation>
     </message>
     <message>
         <source>Access Token</source>
@@ -1826,7 +1826,7 @@
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Azonosítás</translation>
     </message>
     <message>
         <source>Manage authentication data</source>
@@ -1901,7 +1901,7 @@
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>No files available</source>
@@ -1959,7 +1959,7 @@
     <name>UsersListPage</name>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>No users available</source>
@@ -1981,7 +1981,7 @@
     </message>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Vissza</translation>
     </message>
     <message>
         <source>Setup process completed</source>
@@ -1992,7 +1992,7 @@
     <name>WizardIntroPage</name>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Tovább</translation>
     </message>
     <message>
         <source>Welcome to SailHub</source>
@@ -2023,11 +2023,11 @@
     <name>WizardTokenPage</name>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Tovább</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Vissza</translation>
     </message>
     <message>
         <source>Personal Access Token</source>
