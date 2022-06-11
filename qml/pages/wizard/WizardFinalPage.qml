@@ -9,6 +9,10 @@ Dialog {
     id: dialog
     allowedOrientations: Orientation.Portrait
 
+    acceptDestination: Qt.resolvedUrl("../OverviewPage.qml")
+    acceptDestinationAction: PageStackAction.Replace
+    acceptDestinationReplaceTarget: null
+
     DialogHeader {
         id: header
         acceptText: qsTr("Complete")
@@ -31,10 +35,6 @@ Dialog {
         }
     }
 
-    onAccepted: {
-        SailHub.initialize()
-        pageStack.clear()
-        pageStack.push(Qt.resolvedUrl("../OverviewPage.qml"))
-    }
+    onAccepted: SailHub.initialize()
 }
 
