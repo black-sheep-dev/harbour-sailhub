@@ -1220,10 +1220,6 @@
         <source>Mentioned</source>
         <translation>Упомянутая</translation>
     </message>
-    <message>
-        <source>Pull requests where user is mentioned</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -1291,20 +1287,12 @@
 </context>
 <context>
     <name>ReleaseListDelegate</name>
-    <message>
-        <source>Pre-release</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ReleasePage</name>
     <message>
         <source>Refresh</source>
         <translation>Обновить</translation>
-    </message>
-    <message>
-        <source>Latest release</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Source code</source>
@@ -1341,10 +1329,6 @@
 <context>
     <name>RepoFlagsItem</name>
     <message>
-        <source>Moving</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Locked</source>
         <translation>Заблокирован</translation>
     </message>
@@ -1355,10 +1339,6 @@
 </context>
 <context>
     <name>RepoPage</name>
-    <message>
-        <source>Star</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Stargazer</source>
         <translation>Звездочёт</translation>
@@ -1372,20 +1352,12 @@
         <translation>Авторы</translation>
     </message>
     <message>
-        <source>Releases</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Discussions</source>
         <translation>Обсуждения</translation>
     </message>
     <message>
         <source>Sponsor</source>
         <translation>Спонсор</translation>
-    </message>
-    <message>
-        <source>Stars</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1491,10 +1463,6 @@
 </context>
 <context>
     <name>SelectDiscussionCategoryDialog</name>
-    <message>
-        <source>No categories available</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SelectEmojiDialog</name>
@@ -1520,10 +1488,6 @@
         <source>Reset</source>
         <translation>Сброс</translation>
     </message>
-    <message>
-        <source>Enter access token</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SettingsNotificationPage</name>
@@ -1546,10 +1510,6 @@
         <translation>Настройки</translation>
     </message>
     <message>
-        <source>Manage authentication data</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Notification</source>
         <translation>Уведомления</translation>
     </message>
@@ -1566,10 +1526,6 @@
 </context>
 <context>
     <name>SortSelectionDialog</name>
-    <message>
-        <source>Ascending</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>StarMenuItem</name>
@@ -1645,10 +1601,6 @@
 <context>
     <name>WizardIntroPage</name>
     <message>
-        <source>Continue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>If there are errors during the setup process, you can try to reset the data from a previous installation.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1660,19 +1612,11 @@
 <context>
     <name>WizardTokenPage</name>
     <message>
-        <source>Personal Access Token</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Access Token</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>harbour-sailhub</name>
-    <message>
-        <source>Repo doesn&apos;t exist!</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 </TS>

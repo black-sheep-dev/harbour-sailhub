@@ -38,10 +38,6 @@
 </context>
 <context>
     <name>AddStarPage</name>
-    <message>
-        <source>%1 says thank you for your star!</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AssignUserDialog</name>
@@ -55,10 +51,6 @@
     <message>
         <source>Refresh</source>
         <translation>Actualizar</translation>
-    </message>
-    <message>
-        <source>Remove user from assignees</source>
-        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -76,10 +68,6 @@
 </context>
 <context>
     <name>CommitPage</name>
-    <message>
-        <source>Changes</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>%n addition(s)</source>
         <translation type="unfinished">
@@ -95,23 +83,11 @@
         </translation>
     </message>
     <message>
-        <source>Parents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Invalid email used for signing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Invalid signature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Valid signature, though certificate revocation check failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unsigned</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -143,10 +119,6 @@
 <context>
     <name>DiscussionCommentItem</name>
     <message>
-        <source>Unmark as answer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Deleting comment</source>
         <translation type="unfinished"></translation>
     </message>
@@ -156,10 +128,6 @@
     <message>
         <source>Refresh</source>
         <translation>Actualizar</translation>
-    </message>
-    <message>
-        <source>Write Reply</source>
-        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -178,10 +146,6 @@
         <source>Refresh</source>
         <translation>Actualizar</translation>
     </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
@@ -196,10 +160,6 @@
         <source>Refresh</source>
         <translation>Actualizar</translation>
     </message>
-    <message>
-        <source>No discussions available</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
@@ -211,29 +171,17 @@
 <context>
     <name>EditCommentDialog</name>
     <message>
-        <source>Edit Reply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>EditDiscussionDialog</name>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>EditIssueDialog</name>
     <message>
         <source>Edit Issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -256,10 +204,6 @@
         <source>Refresh</source>
         <translation>Actualizar</translation>
     </message>
-    <message>
-        <source>Pushed at</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
@@ -274,10 +218,6 @@
 <context>
     <name>IssueCommentItem</name>
     <message>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Edited</source>
         <translation type="unfinished"></translation>
     </message>
@@ -285,15 +225,7 @@
 <context>
     <name>IssuePage</name>
     <message>
-        <source>Comments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Closing issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reactions</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
@@ -304,20 +236,12 @@
         </translation>
     </message>
     <message>
-        <source>Subscribe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Locking</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
-    <message>
-        <source>Issues assigned to user</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Open</source>
         <translation type="unfinished"></translation>
@@ -336,10 +260,6 @@
             <numerusform></numerusform>
         </translation>
     </message>
-    <message>
-        <source>Comments</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>LabelsListPage</name>
@@ -351,10 +271,6 @@
         <source>Refresh</source>
         <translation>Actualizar</translation>
     </message>
-    <message>
-        <source>No labels available</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
@@ -365,10 +281,6 @@
 </context>
 <context>
     <name>LockReasonPill</name>
-    <message>
-        <source>Too heated</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>NotificationsListPage</name>
@@ -382,10 +294,6 @@
     <message>
         <source>Refresh</source>
         <translation>Actualizar</translation>
-    </message>
-    <message>
-        <source>Teams</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -409,10 +317,6 @@
         <translation>Acerca de</translation>
     </message>
     <message>
-        <source>My Work</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Organizations</source>
         <translation type="unfinished"></translation>
     </message>
@@ -423,19 +327,11 @@
 </context>
 <context>
     <name>ProfileStatusItem</name>
-    <message>
-        <source>Set status</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ProfileStatusPage</name>
     <message>
         <source>Enter message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -446,23 +342,11 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Subscribe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reopen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Merged</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Commits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Participants</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
@@ -471,10 +355,6 @@
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
-    </message>
-    <message>
-        <source>Locking</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -490,19 +370,11 @@
             <numerusform></numerusform>
         </translation>
     </message>
-    <message>
-        <source>Show closed pull requests</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>PullRequestsSelectionPage</name>
     <message>
         <source>Mentioned</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pull requests where user is mentioned</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -563,20 +435,12 @@
 </context>
 <context>
     <name>ReleaseListDelegate</name>
-    <message>
-        <source>Pre-release</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ReleasePage</name>
     <message>
         <source>Refresh</source>
         <translation>Actualizar</translation>
-    </message>
-    <message>
-        <source>Latest release</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Source code</source>
@@ -589,10 +453,6 @@
         <source>Refresh</source>
         <translation>Actualizar</translation>
     </message>
-    <message>
-        <source>No releases available</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
@@ -604,10 +464,6 @@
 <context>
     <name>RepoFlagsItem</name>
     <message>
-        <source>Moving</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Organization</source>
         <translation type="unfinished"></translation>
     </message>
@@ -615,23 +471,11 @@
 <context>
     <name>RepoPage</name>
     <message>
-        <source>Star</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Watchers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Browse code</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Sponsor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stars</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -651,10 +495,6 @@
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
-    </message>
-    <message>
-        <source>Pushed at</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -686,10 +526,6 @@
 </context>
 <context>
     <name>SearchSelectionPage</name>
-    <message>
-        <source>Organization</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SearchUserPage</name>
@@ -710,10 +546,6 @@
 </context>
 <context>
     <name>SelectDiscussionCategoryDialog</name>
-    <message>
-        <source>No categories available</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SelectEmojiDialog</name>
@@ -724,20 +556,12 @@
         <source>Choose Subscription</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Subscribe</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SettingsAuthenticationPage</name>
     <message>
         <source>Reset</source>
         <translation>Reiniciar</translation>
-    </message>
-    <message>
-        <source>Enter access token</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -760,10 +584,6 @@
         <source>Settings</source>
         <translation>Ajustes</translation>
     </message>
-    <message>
-        <source>Manage authentication data</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SettingsPaginationPage</name>
@@ -781,10 +601,6 @@
 </context>
 <context>
     <name>SortSelectionDialog</name>
-    <message>
-        <source>Ascending</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>StarMenuItem</name>
@@ -802,10 +618,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Profile</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>%n follower(s)</source>
         <comment>0</comment>
@@ -821,10 +633,6 @@
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
-    </message>
-    <message>
-        <source>Gists</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -847,10 +655,6 @@
 <context>
     <name>WizardIntroPage</name>
     <message>
-        <source>Continue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>If there are errors during the setup process, you can try to reset the data from a previous installation.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -861,10 +665,6 @@
 </context>
 <context>
     <name>WizardTokenPage</name>
-    <message>
-        <source>Personal Access Token</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Access Token</source>
         <translation type="unfinished"></translation>

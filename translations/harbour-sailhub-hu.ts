@@ -38,10 +38,6 @@
 </context>
 <context>
     <name>AddStarPage</name>
-    <message>
-        <source>%1 says thank you for your star!</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AssignUserDialog</name>
@@ -55,10 +51,6 @@
     <message>
         <source>Refresh</source>
         <translation>Frissítés</translation>
-    </message>
-    <message>
-        <source>Remove user from assignees</source>
-        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -76,10 +68,6 @@
 </context>
 <context>
     <name>CommitPage</name>
-    <message>
-        <source>Changes</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>%n addition(s)</source>
         <translation type="unfinished">
@@ -95,23 +83,11 @@
         </translation>
     </message>
     <message>
-        <source>Parents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Invalid email used for signing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Invalid signature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Valid signature, though certificate revocation check failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unsigned</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -147,10 +123,6 @@
         <translation>Törlés</translation>
     </message>
     <message>
-        <source>Reply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Answer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -160,10 +132,6 @@
     <message>
         <source>Refresh</source>
         <translation>Frissítés</translation>
-    </message>
-    <message>
-        <source>Write Reply</source>
-        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -200,10 +168,6 @@
         <source>Refresh</source>
         <translation>Frissítés</translation>
     </message>
-    <message>
-        <source>No discussions available</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
@@ -219,29 +183,17 @@
 <context>
     <name>EditCommentDialog</name>
     <message>
-        <source>Add Reply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>EditDiscussionDialog</name>
-    <message>
-        <source>Create</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>EditIssueDialog</name>
     <message>
         <source>Create Issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enter title</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -264,10 +216,6 @@
         <source>Refresh</source>
         <translation>Frissítés</translation>
     </message>
-    <message>
-        <source>Pushed at</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
@@ -285,10 +233,6 @@
         <source>Delete</source>
         <translation>Törlés</translation>
     </message>
-    <message>
-        <source>Edited</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>IssuePage</name>
@@ -305,10 +249,6 @@
         <translation>Bezárás</translation>
     </message>
     <message>
-        <source>Labels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Write comment</source>
         <translation type="unfinished"></translation>
     </message>
@@ -320,20 +260,12 @@
         </translation>
     </message>
     <message>
-        <source>Subscribe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Locking</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
-    <message>
-        <source>Issues assigned to user</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Open</source>
         <translation type="unfinished"></translation>
@@ -351,10 +283,6 @@
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -381,10 +309,6 @@
 </context>
 <context>
     <name>LockReasonPill</name>
-    <message>
-        <source>Too heated</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>NotificationsListPage</name>
@@ -398,10 +322,6 @@
     <message>
         <source>Refresh</source>
         <translation>Frissítés</translation>
-    </message>
-    <message>
-        <source>Teams</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -429,29 +349,17 @@
         <translation>Keresés</translation>
     </message>
     <message>
-        <source>Issues</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Settings</source>
         <translation>Beállítások</translation>
     </message>
 </context>
 <context>
     <name>ProfileStatusItem</name>
-    <message>
-        <source>Set status</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ProfileStatusPage</name>
     <message>
         <source>Enter message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -462,24 +370,12 @@
 <context>
     <name>PullRequestPage</name>
     <message>
-        <source>Subscribe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Close</source>
         <translation>Bezárás</translation>
     </message>
     <message>
-        <source>Pull Request</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Closed</source>
         <translation>Bezárás</translation>
-    </message>
-    <message>
-        <source>Relations</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Comments</source>
@@ -491,10 +387,6 @@
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
-    </message>
-    <message>
-        <source>Locking</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -510,19 +402,11 @@
             <numerusform></numerusform>
         </translation>
     </message>
-    <message>
-        <source>Show closed pull requests</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>PullRequestsSelectionPage</name>
     <message>
         <source>Mentioned</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pull requests where user is mentioned</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -583,20 +467,12 @@
 </context>
 <context>
     <name>ReleaseListDelegate</name>
-    <message>
-        <source>Pre-release</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ReleasePage</name>
     <message>
         <source>Refresh</source>
         <translation>Frissítés</translation>
-    </message>
-    <message>
-        <source>Latest release</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Source code</source>
@@ -609,10 +485,6 @@
         <source>Refresh</source>
         <translation>Frissítés</translation>
     </message>
-    <message>
-        <source>No releases available</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
@@ -624,10 +496,6 @@
 <context>
     <name>RepoFlagsItem</name>
     <message>
-        <source>Moving</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Organization</source>
         <translation type="unfinished"></translation>
     </message>
@@ -635,23 +503,11 @@
 <context>
     <name>RepoPage</name>
     <message>
-        <source>Star</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Watchers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Browse code</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Sponsor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stars</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -671,10 +527,6 @@
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
-    </message>
-    <message>
-        <source>Pushed at</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -706,10 +558,6 @@
 </context>
 <context>
     <name>SearchSelectionPage</name>
-    <message>
-        <source>Organization</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SearchUserPage</name>
@@ -730,10 +578,6 @@
 </context>
 <context>
     <name>SelectDiscussionCategoryDialog</name>
-    <message>
-        <source>No categories available</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SelectEmojiDialog</name>
@@ -742,10 +586,6 @@
     <name>SelectSubscriptionDialog</name>
     <message>
         <source>Choose Subscription</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Subscribe</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -762,10 +602,6 @@
 </context>
 <context>
     <name>SettingsNotificationPage</name>
-    <message>
-        <source>Notifications</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>%n min(s)</source>
         <translation type="unfinished">
@@ -787,10 +623,6 @@
 </context>
 <context>
     <name>SettingsPaginationPage</name>
-    <message>
-        <source>Pagination Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>%n Item(s)</source>
         <translation type="unfinished">
@@ -801,10 +633,6 @@
 </context>
 <context>
     <name>SortSelectionDialog</name>
-    <message>
-        <source>Ascending</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>StarMenuItem</name>
@@ -822,10 +650,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Profile</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>%n follower(s)</source>
         <comment>0</comment>
@@ -841,10 +665,6 @@
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
-    </message>
-    <message>
-        <source>Gists</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -875,10 +695,6 @@
         <translation>Tovább</translation>
     </message>
     <message>
-        <source>If there are errors during the setup process, you can try to reset the data from a previous installation.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reset</source>
         <translation>Visszaállítás</translation>
     </message>
@@ -892,10 +708,6 @@
     <message>
         <source>Back</source>
         <translation>Vissza</translation>
-    </message>
-    <message>
-        <source>For a detailed description please refer the README in project repository!</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

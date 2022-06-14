@@ -251,10 +251,6 @@
         <source>No users available</source>
         <translation type="unfinished">Brak dostępnych użytkowników</translation>
     </message>
-    <message id="id-add-comment">
-        <source>Add comment</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-save">
         <source>Save</source>
         <translation type="unfinished">Zapisz</translation>

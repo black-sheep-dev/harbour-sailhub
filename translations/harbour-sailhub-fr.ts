@@ -254,10 +254,6 @@
         <source>No users available</source>
         <translation type="unfinished">Aucun utilisateur disponible</translation>
     </message>
-    <message id="id-add-comment">
-        <source>Add comment</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-save">
         <source>Save</source>
         <translation type="unfinished">Enregistrer</translation>

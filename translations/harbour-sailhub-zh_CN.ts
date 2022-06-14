@@ -249,10 +249,6 @@
         <source>Assign</source>
         <translation type="unfinished">分配</translation>
     </message>
-    <message id="id-edit-comment">
-        <source>Edit comment</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-save">
         <source>Save</source>
         <translation type="unfinished">保存</translation>
