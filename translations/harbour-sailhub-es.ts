@@ -281,10 +281,6 @@
 </context>
 <context>
     <name>PullRequestPage</name>
-    <message>
-        <source>Commits</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
@@ -397,10 +393,6 @@
 </context>
 <context>
     <name>ReposListPage</name>
-    <message>
-        <source>Repositories</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Refresh</source>
         <translation>Actualizar</translation>

@@ -438,10 +438,6 @@
 <context>
     <name>ReposListPage</name>
     <message>
-        <source>Repositories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Refresh</source>
         <translation>Frissítés</translation>
     </message>
