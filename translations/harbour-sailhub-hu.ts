@@ -41,10 +41,6 @@
 </context>
 <context>
     <name>AssignUserDialog</name>
-    <message>
-        <source>Assign User</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AssigneesListPage</name>
@@ -83,20 +79,12 @@
         </translation>
     </message>
     <message>
-        <source>Invalid email used for signing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Valid signature, though certificate revocation check failed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CommitTreeListPage</name>
-    <message>
-        <source>Changed Files</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Refresh</source>
         <translation>Frissítés</translation>
@@ -121,10 +109,6 @@
     <message>
         <source>Delete</source>
         <translation>Törlés</translation>
-    </message>
-    <message>
-        <source>Answer</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -182,10 +166,6 @@
 </context>
 <context>
     <name>EditCommentDialog</name>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>EditDiscussionDialog</name>
@@ -248,20 +228,12 @@
         <source>Close</source>
         <translation>Bezárás</translation>
     </message>
-    <message>
-        <source>Write comment</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
-    </message>
-    <message>
-        <source>Locking</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -287,10 +259,6 @@
 </context>
 <context>
     <name>LabelsListPage</name>
-    <message>
-        <source>Issues</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Refresh</source>
         <translation>Frissítés</translation>
@@ -359,10 +327,6 @@
 <context>
     <name>ProfileStatusPage</name>
     <message>
-        <source>Enter message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>today</source>
         <translation type="unfinished"></translation>
     </message>
@@ -376,10 +340,6 @@
     <message>
         <source>Closed</source>
         <translation>Bezárás</translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
@@ -405,10 +365,6 @@
 </context>
 <context>
     <name>PullRequestsSelectionPage</name>
-    <message>
-        <source>Mentioned</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -474,10 +430,6 @@
         <source>Refresh</source>
         <translation>Frissítés</translation>
     </message>
-    <message>
-        <source>Source code</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ReleasesListPage</name>
@@ -495,19 +447,11 @@
 </context>
 <context>
     <name>RepoFlagsItem</name>
-    <message>
-        <source>Organization</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>RepoPage</name>
     <message>
         <source>Watchers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sponsor</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -584,10 +528,6 @@
 </context>
 <context>
     <name>SelectSubscriptionDialog</name>
-    <message>
-        <source>Choose Subscription</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SettingsAuthenticationPage</name>
@@ -636,10 +576,6 @@
 </context>
 <context>
     <name>StarMenuItem</name>
-    <message>
-        <source>Star</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>TreeListPage</name>
@@ -712,9 +648,5 @@
 </context>
 <context>
     <name>harbour-sailhub</name>
-    <message>
-        <source>An error occured when connecting to GitHub!</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 </TS>

@@ -41,10 +41,6 @@
 </context>
 <context>
     <name>AssignUserDialog</name>
-    <message>
-        <source>Assign User</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AssigneesListPage</name>
@@ -83,20 +79,12 @@
         </translation>
     </message>
     <message>
-        <source>Invalid email used for signing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Valid signature, though certificate revocation check failed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CommitTreeListPage</name>
-    <message>
-        <source>Changed Files</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Refresh</source>
         <translation>Actualizar</translation>
@@ -118,10 +106,6 @@
 </context>
 <context>
     <name>DiscussionCommentItem</name>
-    <message>
-        <source>Deleting comment</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>DiscussionCommentPage</name>
@@ -170,10 +154,6 @@
 </context>
 <context>
     <name>EditCommentDialog</name>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>EditDiscussionDialog</name>
@@ -217,10 +197,6 @@
 </context>
 <context>
     <name>IssueCommentItem</name>
-    <message>
-        <source>Edited</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>IssuePage</name>
@@ -234,10 +210,6 @@
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
-    </message>
-    <message>
-        <source>Locking</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -263,10 +235,6 @@
 </context>
 <context>
     <name>LabelsListPage</name>
-    <message>
-        <source>Issues</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Refresh</source>
         <translation>Actualizar</translation>
@@ -317,10 +285,6 @@
         <translation>Acerca de</translation>
     </message>
     <message>
-        <source>Organizations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Settings</source>
         <translation>Ajustes</translation>
     </message>
@@ -331,20 +295,12 @@
 <context>
     <name>ProfileStatusPage</name>
     <message>
-        <source>Enter message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>today</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PullRequestPage</name>
-    <message>
-        <source>Reopen</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Commits</source>
         <translation type="unfinished"></translation>
@@ -373,10 +329,6 @@
 </context>
 <context>
     <name>PullRequestsSelectionPage</name>
-    <message>
-        <source>Mentioned</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -442,10 +394,6 @@
         <source>Refresh</source>
         <translation>Actualizar</translation>
     </message>
-    <message>
-        <source>Source code</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ReleasesListPage</name>
@@ -463,19 +411,11 @@
 </context>
 <context>
     <name>RepoFlagsItem</name>
-    <message>
-        <source>Organization</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>RepoPage</name>
     <message>
         <source>Watchers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sponsor</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -552,10 +492,6 @@
 </context>
 <context>
     <name>SelectSubscriptionDialog</name>
-    <message>
-        <source>Choose Subscription</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SettingsAuthenticationPage</name>
@@ -566,10 +502,6 @@
 </context>
 <context>
     <name>SettingsNotificationPage</name>
-    <message>
-        <source>Update Interval</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>%n min(s)</source>
         <translation type="unfinished">
@@ -587,10 +519,6 @@
 </context>
 <context>
     <name>SettingsPaginationPage</name>
-    <message>
-        <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>%n Item(s)</source>
         <translation type="unfinished">
@@ -604,10 +532,6 @@
 </context>
 <context>
     <name>StarMenuItem</name>
-    <message>
-        <source>Star</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>TreeListPage</name>
@@ -655,20 +579,12 @@
 <context>
     <name>WizardIntroPage</name>
     <message>
-        <source>If there are errors during the setup process, you can try to reset the data from a previous installation.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reset</source>
         <translation>Reiniciar</translation>
     </message>
 </context>
 <context>
     <name>WizardTokenPage</name>
-    <message>
-        <source>Access Token</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>harbour-sailhub</name>

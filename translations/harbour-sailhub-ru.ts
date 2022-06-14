@@ -1294,10 +1294,6 @@
         <source>Refresh</source>
         <translation>Обновить</translation>
     </message>
-    <message>
-        <source>Source code</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ReleasesListPage</name>
@@ -1470,10 +1466,6 @@
 <context>
     <name>SelectSubscriptionDialog</name>
     <message>
-        <source>Choose Subscription</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unsubscribe</source>
         <translation>Отписаться</translation>
     </message>
@@ -1529,10 +1521,6 @@
 </context>
 <context>
     <name>StarMenuItem</name>
-    <message>
-        <source>Star</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>TreeListPage</name>
@@ -1601,20 +1589,12 @@
 <context>
     <name>WizardIntroPage</name>
     <message>
-        <source>If there are errors during the setup process, you can try to reset the data from a previous installation.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reset</source>
         <translation>Сброс</translation>
     </message>
 </context>
 <context>
     <name>WizardTokenPage</name>
-    <message>
-        <source>Access Token</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>harbour-sailhub</name>
