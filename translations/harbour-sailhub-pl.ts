@@ -98,10 +98,6 @@
         <source>Browse code</source>
         <translation type="unfinished">Przeglądaj kod</translation>
     </message>
-    <message id="id-loading-data">
-        <source>Loading data...</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-refresh">
         <source>Refresh</source>
         <translation type="unfinished">Odśwież</translation>
@@ -182,10 +178,6 @@
             <numerusform>%n plików zostało zmienionych</numerusform>
         </translation>
     </message>
-    <message id="id-off-topic">
-        <source>Off topic</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-resolved">
         <source>Resolved</source>
         <translation type="unfinished">Rozwiązany</translation>
@@ -193,10 +185,6 @@
     <message id="id-spam">
         <source>Spam</source>
         <translation type="unfinished">Spam</translation>
-    </message>
-    <message id="id-too-heated">
-        <source>Too heated</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-locked">
         <source>Locked</source>
@@ -263,16 +251,8 @@
         <source>No users available</source>
         <translation type="unfinished">Brak dostępnych użytkowników</translation>
     </message>
-    <message id="id-edit-reply">
-        <source>Edit reply</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-add-reply">
         <source>Add reply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-edit-comment">
-        <source>Edit comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="id-add-comment">
@@ -307,16 +287,8 @@
         <source>Enter title</source>
         <translation type="unfinished">Wprowadź tytuł</translation>
     </message>
-    <message id="id-edit-issue">
-        <source>Edit issue</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-create-issue">
         <source>Create issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-select-category">
-        <source>Select category</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="id-no-categories-available">
@@ -330,10 +302,6 @@
     <message id="id-no-emoji-available">
         <source>No emoji available</source>
         <translation type="unfinished">Brak dostępnych emoji</translation>
-    </message>
-    <message id="id-choose-subscription">
-        <source>Choose subscription</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-unsubscribe">
         <source>Unsubscribe</source>
@@ -359,10 +327,6 @@
         <source>Get notified of all conversation</source>
         <translation type="unfinished">Otrzymuj powiadomienia o wszystkich rozmowach</translation>
     </message>
-    <message id="id-select-sorting">
-        <source>Select sorting</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-sort">
         <source>Sort</source>
         <translation type="unfinished">Sortuj</translation>
@@ -383,16 +347,8 @@
         <source>Descending</source>
         <translation type="unfinished">Malejąco</translation>
     </message>
-    <message id="id-repo-doesnt-exist">
-        <source>Repo doesn&apos;t exist!</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-endpoint-unsupported">
         <source>Endpoint unsupported!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-about">
-        <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="id-app-name">
@@ -422,10 +378,6 @@
     <message id="id-sources">
         <source>Sources</source>
         <translation type="unfinished">Źródła</translation>
-    </message>
-    <message id="id-give-star">
-        <source>Give star</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-donations">
         <source>Donations</source>
@@ -511,10 +463,6 @@
         <source>Invalid signature</source>
         <translation type="unfinished">Nieprawidłowy podpis</translation>
     </message>
-    <message id="id-state-malformed-sig">
-        <source>Malformed signature</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-state-not-signing-key">
         <source>The usage flags for the key that signed this don&apos;t allow signing</source>
         <translation type="unfinished"></translation>
@@ -583,10 +531,6 @@
         <source>Relations</source>
         <translation type="unfinished">Relacje</translation>
     </message>
-    <message id="id-parents">
-        <source>Parents</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-files-available">
         <source>No files available</source>
         <translation type="unfinished">Brak dostępnych plików</translation>
@@ -606,10 +550,6 @@
     <message id="id-reactions">
         <source>Reactions</source>
         <translation type="unfinished">Reakcje</translation>
-    </message>
-    <message id="id-write-reply">
-        <source>Write reply</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-deleting-discussion">
         <source>Deleting discussion</source>
@@ -646,10 +586,6 @@
     <message id="id-no-discussions-available">
         <source>No discussions available</source>
         <translation type="unfinished">Brak dostępnych dyskusji</translation>
-    </message>
-    <message id="id-no-funding-links-available">
-        <source>No funding links available</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-gists">
         <source>Gists</source>
@@ -833,10 +769,6 @@
         <source>Activities</source>
         <translation type="unfinished">Aktywności</translation>
     </message>
-    <message id="id-my-work">
-        <source>My work</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-organizations">
         <source>Organizations</source>
         <translation type="unfinished">Organizacje</translation>
@@ -878,10 +810,6 @@
         <source>in 1 hour</source>
         <translation type="unfinished">w ciągu 1 godziny</translation>
     </message>
-    <message id="id-in-four-hours">
-        <source>in 4 hours</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-today">
         <source>today</source>
         <translation type="unfinished">dzisiaj</translation>
@@ -897,10 +825,6 @@
     <message id="id-reopen-pull-request">
         <source>Reopen pull request</source>
         <translation type="unfinished">Otwórz ponownie pull request</translation>
-    </message>
-    <message id="id-pull-request">
-        <source>Pull request</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-merged">
         <source>Merged</source>
@@ -943,10 +867,6 @@
         <source>Pull requests where user is mentioned</source>
         <translation type="unfinished">Pull requesty, w których wspomniano o użytkowniku</translation>
     </message>
-    <message id="id-release-assets">
-        <source>Release assets</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-assets-available">
         <source>No assets available</source>
         <translation type="unfinished">Brak dostępnych zasobów</translation>
@@ -979,10 +899,6 @@
         <source>Type in search pattern to find organizations</source>
         <translation type="unfinished">Wpisz wzorzec wyszukiwania, aby znaleźć organizacje</translation>
     </message>
-    <message id="id-search-repository">
-        <source>Search repository</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-repositories-found">
         <source>No repositories found</source>
         <translation type="unfinished">Nie znaleziono repozytoriów</translation>
@@ -991,10 +907,6 @@
         <source>Type in search pattern to find repositories</source>
         <translation type="unfinished">Wpisz wzorzec wyszukiwania, aby znaleźć repozytoria</translation>
     </message>
-    <message id="id-search-selection">
-        <source>Search selection</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-repository">
         <source>Repository</source>
         <translation type="unfinished">Repozytorium</translation>
@@ -1002,10 +914,6 @@
     <message id="id-user">
         <source>User</source>
         <translation type="unfinished">Użytkownik</translation>
-    </message>
-    <message id="id-search-user">
-        <source>Search user</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-no-users-found">
         <source>No users found</source>
@@ -1055,10 +963,6 @@
         <source>Resetting credentials and close app</source>
         <translation type="unfinished">Resetowanie poświadczeń i zamykanie aplikacji</translation>
     </message>
-    <message id="id-authentication-settings">
-        <source>Authentication settings</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-access-token">
         <source>Access token</source>
         <translation type="unfinished"></translation>
@@ -1066,10 +970,6 @@
     <message id="id-enter-access-token">
         <source>Enter access token</source>
         <translation type="unfinished">Wprowadź token dostępu</translation>
-    </message>
-    <message id="id-notification-settings">
-        <source>Notification settings</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="Notifications">
         <source>Notifications</source>
@@ -1112,10 +1012,6 @@
         <source>Pagination</source>
         <translation type="unfinished">Paginacja</translation>
     </message>
-    <message id="id-manage-pagination-options">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-pagination-settings">
         <source>Pagination settings</source>
         <translation type="unfinished"></translation>
@@ -1147,10 +1043,6 @@
     <message id="id-continue">
         <source>Continue</source>
         <translation type="unfinished">Kontynuuj</translation>
-    </message>
-    <message id="id-quit">
-        <source>Quit</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-wizard-info-unconfigured">
         <source>This app is not configured yet.</source>
@@ -1203,10 +1095,6 @@
     <message id="id-error-connect-to-github">
         <source>An error occured when connecting to GitHub!</source>
         <translation type="unfinished">Wystąpił błąd podczas łączenia się z GitHub!</translation>
-    </message>
-    <message id="id-starred-repositories">
-        <source>Starred repositories</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-minutes-ago-count" numerus="yes">
         <source>%n minute(s) ago</source>

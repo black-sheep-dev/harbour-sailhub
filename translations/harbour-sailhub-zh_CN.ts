@@ -98,10 +98,6 @@
         <source>Browse code</source>
         <translation type="unfinished">浏览代码</translation>
     </message>
-    <message id="id-loading-data">
-        <source>Loading data...</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-refresh">
         <source>Refresh</source>
         <translation type="unfinished">刷新</translation>
@@ -180,10 +176,6 @@
             <numerusform>%n f个文件已修改</numerusform>
         </translation>
     </message>
-    <message id="id-off-topic">
-        <source>Off topic</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-resolved">
         <source>Resolved</source>
         <translation type="unfinished">已解决</translation>
@@ -257,24 +249,12 @@
         <source>Assign</source>
         <translation type="unfinished">分配</translation>
     </message>
-    <message id="id-no-users-available">
-        <source>No users available</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-edit-reply">
         <source>Edit reply</source>
         <translation type="unfinished"></translation>
     </message>
-    <message id="id-add-reply">
-        <source>Add reply</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-edit-comment">
         <source>Edit comment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-add-comment">
-        <source>Add comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="id-save">
@@ -305,16 +285,8 @@
         <source>Enter title</source>
         <translation type="unfinished">编辑标题</translation>
     </message>
-    <message id="id-edit-issue">
-        <source>Edit issue</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-create-issue">
         <source>Create issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-select-category">
-        <source>Select category</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="id-no-categories-available">
@@ -328,10 +300,6 @@
     <message id="id-no-emoji-available">
         <source>No emoji available</source>
         <translation type="unfinished">暂无可用表情</translation>
-    </message>
-    <message id="id-choose-subscription">
-        <source>Choose subscription</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-unsubscribe">
         <source>Unsubscribe</source>
@@ -357,10 +325,6 @@
         <source>Get notified of all conversation</source>
         <translation type="unfinished">获取所有对话通知</translation>
     </message>
-    <message id="id-select-sorting">
-        <source>Select sorting</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-sort">
         <source>Sort</source>
         <translation type="unfinished">分类</translation>
@@ -381,10 +345,6 @@
         <source>Descending</source>
         <translation type="unfinished">降序</translation>
     </message>
-    <message id="id-repo-doesnt-exist">
-        <source>Repo doesn&apos;t exist!</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-endpoint-unsupported">
         <source>Endpoint unsupported!</source>
         <translation type="unfinished"></translation>
@@ -392,10 +352,6 @@
     <message id="id-about">
         <source>About</source>
         <translation type="unfinished">关于</translation>
-    </message>
-    <message id="id-app-name">
-        <source>SailHub</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-about-desc">
         <source>SailHub is a native Sailfish OS GitHub Client using the GraphQL Api 4 from github.com.</source>
@@ -421,10 +377,6 @@
     <message id="id-sources">
         <source>Sources</source>
         <translation type="unfinished">源</translation>
-    </message>
-    <message id="id-give-star">
-        <source>Give star</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-donations">
         <source>Donations</source>
@@ -465,12 +417,6 @@
     <message id="id-remove-user-from-assignees">
         <source>Remove user from assignees</source>
         <translation type="unfinished">从被分配者中移除帐户</translation>
-    </message>
-    <message id="id-load-more" numerus="yes">
-        <source>Load more (%n to go)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
     </message>
     <message id="id-commit">
         <source>Commit</source>
@@ -600,10 +546,6 @@
         <source>Reactions</source>
         <translation type="unfinished">反应</translation>
     </message>
-    <message id="id-write-reply">
-        <source>Write reply</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-deleting-discussion">
         <source>Deleting discussion</source>
         <translation type="unfinished">正在删除讨论</translation>
@@ -717,10 +659,6 @@
         <source>Unlocking</source>
         <translation type="unfinished">解锁</translation>
     </message>
-    <message id="id-locking">
-        <source>Locking</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-open-issues-in-user-repos">
         <source>Open issues in user repos</source>
         <translation type="unfinished">打开用户仓库的问题</translation>
@@ -826,10 +764,6 @@
         <source>Activities</source>
         <translation type="unfinished">动态</translation>
     </message>
-    <message id="id-my-work">
-        <source>My work</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-organizations">
         <source>Organizations</source>
         <translation type="unfinished">组织</translation>
@@ -871,10 +805,6 @@
         <source>in 1 hour</source>
         <translation type="unfinished">1小事内</translation>
     </message>
-    <message id="id-in-four-hours">
-        <source>in 4 hours</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-today">
         <source>today</source>
         <translation type="unfinished">今日</translation>
@@ -890,10 +820,6 @@
     <message id="id-reopen-pull-request">
         <source>Reopen pull request</source>
         <translation type="unfinished">重新开启提出请求</translation>
-    </message>
-    <message id="id-pull-request">
-        <source>Pull request</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-merged">
         <source>Merged</source>
@@ -936,10 +862,6 @@
         <source>Pull requests where user is mentioned</source>
         <translation type="unfinished">用户被提及的发起请求</translation>
     </message>
-    <message id="id-release-assets">
-        <source>Release assets</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-assets-available">
         <source>No assets available</source>
         <translation type="unfinished">没有可用资产</translation>
@@ -972,10 +894,6 @@
         <source>Type in search pattern to find organizations</source>
         <translation type="unfinished">输入搜索内容以查找组织</translation>
     </message>
-    <message id="id-search-repository">
-        <source>Search repository</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-repositories-found">
         <source>No repositories found</source>
         <translation type="unfinished">没有找到仓库</translation>
@@ -984,10 +902,6 @@
         <source>Type in search pattern to find repositories</source>
         <translation type="unfinished">输入搜索内容以查找仓库</translation>
     </message>
-    <message id="id-search-selection">
-        <source>Search selection</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-repository">
         <source>Repository</source>
         <translation type="unfinished">仓库</translation>
@@ -995,10 +909,6 @@
     <message id="id-user">
         <source>User</source>
         <translation type="unfinished">用户</translation>
-    </message>
-    <message id="id-search-user">
-        <source>Search user</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-no-users-found">
         <source>No users found</source>
@@ -1044,10 +954,6 @@
         <source>Resetting credentials and close app</source>
         <translation type="unfinished">正在重置凭证并关闭软件</translation>
     </message>
-    <message id="id-authentication-settings">
-        <source>Authentication settings</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-access-token">
         <source>Access token</source>
         <translation type="unfinished"></translation>
@@ -1055,10 +961,6 @@
     <message id="id-enter-access-token">
         <source>Enter access token</source>
         <translation type="unfinished">输入访问凭证</translation>
-    </message>
-    <message id="id-notification-settings">
-        <source>Notification settings</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="Notifications">
         <source>Notifications</source>
@@ -1099,10 +1001,6 @@
         <source>Pagination</source>
         <translation type="unfinished">页码</translation>
     </message>
-    <message id="id-manage-pagination-options">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-pagination-settings">
         <source>Pagination settings</source>
         <translation type="unfinished"></translation>
@@ -1132,10 +1030,6 @@
     <message id="id-continue">
         <source>Continue</source>
         <translation type="unfinished">继续</translation>
-    </message>
-    <message id="id-quit">
-        <source>Quit</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-wizard-info-unconfigured">
         <source>This app is not configured yet.</source>
@@ -1181,17 +1075,9 @@
         <source>Default</source>
         <translation type="unfinished">默认</translation>
     </message>
-    <message id="id-error-unauthorized">
-        <source>Unauthorized: Did you provide a valid access token?</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-error-connect-to-github">
         <source>An error occured when connecting to GitHub!</source>
         <translation type="unfinished">连接到 Github 错误！</translation>
-    </message>
-    <message id="id-starred-repositories">
-        <source>Starred repositories</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-minutes-ago-count" numerus="yes">
         <source>%n minute(s) ago</source>

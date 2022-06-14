@@ -98,10 +98,6 @@
         <source>Browse code</source>
         <translation type="unfinished">Parcourir le code</translation>
     </message>
-    <message id="id-loading-data">
-        <source>Loading data...</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-refresh">
         <source>Refresh</source>
         <translation type="unfinished">Rafraîchir</translation>
@@ -181,10 +177,6 @@
             <numerusform>%n fichiers modifiés</numerusform>
         </translation>
     </message>
-    <message id="id-off-topic">
-        <source>Off topic</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-resolved">
         <source>Resolved</source>
         <translation type="unfinished">Résolus</translation>
@@ -262,16 +254,8 @@
         <source>No users available</source>
         <translation type="unfinished">Aucun utilisateur disponible</translation>
     </message>
-    <message id="id-edit-reply">
-        <source>Edit reply</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-add-reply">
         <source>Add reply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-edit-comment">
-        <source>Edit comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="id-add-comment">
@@ -306,16 +290,8 @@
         <source>Enter title</source>
         <translation type="unfinished">Entrer le titre</translation>
     </message>
-    <message id="id-edit-issue">
-        <source>Edit issue</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-create-issue">
         <source>Create issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-select-category">
-        <source>Select category</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="id-no-categories-available">
@@ -329,10 +305,6 @@
     <message id="id-no-emoji-available">
         <source>No emoji available</source>
         <translation type="unfinished">Aucun émoticône disponible</translation>
-    </message>
-    <message id="id-choose-subscription">
-        <source>Choose subscription</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-unsubscribe">
         <source>Unsubscribe</source>
@@ -357,10 +329,6 @@
     <message id="id-get-notified-of-all-conversation">
         <source>Get notified of all conversation</source>
         <translation type="unfinished">Soyez averti de toutes les conversations</translation>
-    </message>
-    <message id="id-select-sorting">
-        <source>Select sorting</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-sort">
         <source>Sort</source>
@@ -408,7 +376,7 @@
     </message>
     <message id="id-attributions-desc">
         <source>All emojis designed by %1. License: %2</source>
-        <translation type="unfinished">Les émoticônes sont créés par %1. Licence : %2</translation>
+        <translation type="unfinished">Les émoticônes sont créés par %1. Licence&#xa0;: %2</translation>
     </message>
     <message id="id-translations">
         <source>Translations</source>
@@ -416,7 +384,7 @@
     </message>
     <message id="id-translation-desc">
         <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
-        <translation type="unfinished">Votre langue n&apos;est pas disponible ? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
+        <translation type="unfinished">Votre langue n&apos;est pas disponible&#xa0;? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
     </message>
     <message id="id-sources">
         <source>Sources</source>
@@ -432,7 +400,7 @@
     </message>
     <message id="id-buy-beer">
         <source>If you like my work why not buy me a beer?</source>
-        <translation type="unfinished">Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière ?</translation>
+        <translation type="unfinished">Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière&#xa0;?</translation>
     </message>
     <message id="id-donate-paypal">
         <source>Donate with PayPal</source>
@@ -448,7 +416,7 @@
     </message>
     <message id="id-thx-to-star">
         <source>%1 says thank you for your star!</source>
-        <translation type="unfinished">%1 vous remercie pour votre étoile !</translation>
+        <translation type="unfinished">%1 vous remercie pour votre étoile&#xa0;!</translation>
     </message>
     <message id="id-support">
         <source>Support</source>
@@ -603,10 +571,6 @@
         <source>Reactions</source>
         <translation type="unfinished">Réactions</translation>
     </message>
-    <message id="id-write-reply">
-        <source>Write reply</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-deleting-discussion">
         <source>Deleting discussion</source>
         <translation type="unfinished">Supprimer la discussion</translation>
@@ -627,10 +591,6 @@
         <source>Sorting</source>
         <translation type="unfinished">Tri</translation>
     </message>
-    <message id="id-created-at">
-        <source>Created at</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-updated-at">
         <source>Updated at</source>
         <translation type="unfinished">Modifié le</translation>
@@ -650,10 +610,6 @@
     <message id="id-gists">
         <source>Gists</source>
         <translation type="unfinished">Gists</translation>
-    </message>
-    <message id="id-pushed-at">
-        <source>Pushed at</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-no-gists-available">
         <source>No gists available</source>
@@ -829,10 +785,6 @@
         <source>Activities</source>
         <translation type="unfinished">Activités</translation>
     </message>
-    <message id="id-my-work">
-        <source>My work</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-organizations">
         <source>Organizations</source>
         <translation type="unfinished">Organisations</translation>
@@ -874,10 +826,6 @@
         <source>in 1 hour</source>
         <translation type="unfinished">dans 1 heure</translation>
     </message>
-    <message id="id-in-four-hours">
-        <source>in 4 hours</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-today">
         <source>today</source>
         <translation type="unfinished">aujourd&apos;hui</translation>
@@ -893,10 +841,6 @@
     <message id="id-reopen-pull-request">
         <source>Reopen pull request</source>
         <translation type="unfinished">Réouvrir la pull request</translation>
-    </message>
-    <message id="id-pull-request">
-        <source>Pull request</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-merged">
         <source>Merged</source>
@@ -939,10 +883,6 @@
         <source>Pull requests where user is mentioned</source>
         <translation type="unfinished">Pull requests mentionnant l&apos;utilisateur</translation>
     </message>
-    <message id="id-release-assets">
-        <source>Release assets</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-assets-available">
         <source>No assets available</source>
         <translation type="unfinished">Aucun asset disponible</translation>
@@ -975,10 +915,6 @@
         <source>Type in search pattern to find organizations</source>
         <translation type="unfinished">Saisir dans le champs ci-dessus pour trouver des organisations</translation>
     </message>
-    <message id="id-search-repository">
-        <source>Search repository</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-repositories-found">
         <source>No repositories found</source>
         <translation type="unfinished">Aucun dépôt trouvé</translation>
@@ -987,10 +923,6 @@
         <source>Type in search pattern to find repositories</source>
         <translation type="unfinished">Saisir dans le champs ci-dessus pour trouver des dépôts</translation>
     </message>
-    <message id="id-search-selection">
-        <source>Search selection</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-repository">
         <source>Repository</source>
         <translation type="unfinished">Dépôt</translation>
@@ -998,10 +930,6 @@
     <message id="id-user">
         <source>User</source>
         <translation type="unfinished">Utilisateur</translation>
-    </message>
-    <message id="id-search-user">
-        <source>Search user</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-no-users-found">
         <source>No users found</source>
@@ -1049,10 +977,6 @@
         <source>Resetting credentials and close app</source>
         <translation type="unfinished">Réinitialisation des infos d&apos;identification et fermer de l&apos;app</translation>
     </message>
-    <message id="id-authentication-settings">
-        <source>Authentication settings</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-access-token">
         <source>Access token</source>
         <translation type="unfinished"></translation>
@@ -1060,10 +984,6 @@
     <message id="id-enter-access-token">
         <source>Enter access token</source>
         <translation type="unfinished">Entrer le jeton d&apos;accès</translation>
-    </message>
-    <message id="id-notification-settings">
-        <source>Notification settings</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="Notifications">
         <source>Notifications</source>
@@ -1105,10 +1025,6 @@
         <source>Pagination</source>
         <translation type="unfinished">Pagination</translation>
     </message>
-    <message id="id-manage-pagination-options">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-pagination-settings">
         <source>Pagination settings</source>
         <translation type="unfinished"></translation>
@@ -1140,10 +1056,6 @@
         <source>Continue</source>
         <translation type="unfinished">Continuer</translation>
     </message>
-    <message id="id-quit">
-        <source>Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-wizard-info-unconfigured">
         <source>This app is not configured yet.</source>
         <translation type="unfinished">Cette application n&apos;est pas encore configurée.</translation>
@@ -1170,11 +1082,11 @@
     </message>
     <message id="id-wizard-token-desc-b">
         <source>This token can be created in developer settings on GitHub.</source>
-        <translation type="unfinished">Ce jeton peut être créé dans « Developer settings » sur GitHub.</translation>
+        <translation type="unfinished">Ce jeton peut être créé dans «&#xa0;Developer settings&#xa0;» sur GitHub.</translation>
     </message>
     <message id="id-wizard-token-desc-c">
         <source>For a detailed description please refer the README in project repository!</source>
-        <translation type="unfinished">Pour une description détaillée, référez-vous au README du dépôt du projet !</translation>
+        <translation type="unfinished">Pour une description détaillée, référez-vous au README du dépôt du projet&#xa0;!</translation>
     </message>
     <message id="id-busy-switch-desc">
         <source>When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.</source>
@@ -1194,11 +1106,7 @@
     </message>
     <message id="id-error-connect-to-github">
         <source>An error occured when connecting to GitHub!</source>
-        <translation type="unfinished">Une erreur s&apos;est produite lors de la connexion à GitHub !</translation>
-    </message>
-    <message id="id-starred-repositories">
-        <source>Starred repositories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Une erreur s&apos;est produite lors de la connexion à GitHub&#xa0;!</translation>
     </message>
     <message id="id-minutes-ago-count" numerus="yes">
         <source>%n minute(s) ago</source>
@@ -1231,8 +1139,8 @@
     <message id="id-years-ago-count" numerus="yes">
         <source>%n year(s) ago</source>
         <translation type="unfinished">
-            <numerusform>il y a %n an</numerusform>
-            <numerusform>il y a %n années</numerusform>
+            <numerusform>il y a %n&#xa0;an</numerusform>
+            <numerusform>il y a %n&#xa0;années</numerusform>
         </translation>
     </message>
 </context>
@@ -1256,7 +1164,7 @@
     </message>
     <message>
         <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
-        <translation type="vanished">Votre langue n&apos;est pas disponible ? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
+        <translation type="vanished">Votre langue n&apos;est pas disponible&#xa0;? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
     </message>
     <message>
         <source>Sources</source>
@@ -1268,7 +1176,7 @@
     </message>
     <message>
         <source>If you like my work why not buy me a beer?</source>
-        <translation type="vanished">Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière ?</translation>
+        <translation type="vanished">Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière&#xa0;?</translation>
     </message>
     <message>
         <source>Donate with PayPal</source>
@@ -1284,7 +1192,7 @@
     </message>
     <message>
         <source>All emojis designed by %1. License: %2</source>
-        <translation type="vanished">Les émoticônes sont créés par %1. Licence : %2</translation>
+        <translation type="vanished">Les émoticônes sont créés par %1. Licence&#xa0;: %2</translation>
     </message>
     <message>
         <source>Give star</source>
@@ -1299,7 +1207,7 @@
     </message>
     <message>
         <source>%1 says thank you for your star!</source>
-        <translation type="vanished">%1 vous remercie pour votre étoile !</translation>
+        <translation type="vanished">%1 vous remercie pour votre étoile&#xa0;!</translation>
     </message>
     <message>
         <source>Stargazer</source>
@@ -2510,8 +2418,8 @@
     <message numerus="yes">
         <source>%n year(s) ago</source>
         <translation type="vanished">
-            <numerusform>il y a %n an</numerusform>
-            <numerusform>il y a %n années</numerusform>
+            <numerusform>il y a %n&#xa0;an</numerusform>
+            <numerusform>il y a %n&#xa0;années</numerusform>
         </translation>
     </message>
 </context>
@@ -3266,11 +3174,11 @@
     </message>
     <message>
         <source>This token can be created in developer settings on GitHub.</source>
-        <translation type="vanished">Ce jeton peut être créé dans « Developer settings » sur GitHub.</translation>
+        <translation type="vanished">Ce jeton peut être créé dans «&#xa0;Developer settings&#xa0;» sur GitHub.</translation>
     </message>
     <message>
         <source>For a detailed description please refer the README in project repository!</source>
-        <translation type="vanished">Pour une description détaillée, référez-vous au README du dépôt du projet !</translation>
+        <translation type="vanished">Pour une description détaillée, référez-vous au README du dépôt du projet&#xa0;!</translation>
     </message>
     <message>
         <source>Access Token</source>
@@ -3289,7 +3197,7 @@
     </message>
     <message>
         <source>An error occured when connecting to GitHub!</source>
-        <translation type="vanished">Une erreur s&apos;est produite lors de la connexion à GitHub !</translation>
+        <translation type="vanished">Une erreur s&apos;est produite lors de la connexion à GitHub&#xa0;!</translation>
     </message>
     <message>
         <source>Repo doesn&apos;t exist!</source>
