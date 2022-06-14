@@ -251,10 +251,6 @@
         <source>No users available</source>
         <translation type="unfinished">Brak dostępnych użytkowników</translation>
     </message>
-    <message id="id-add-reply">
-        <source>Add reply</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-add-comment">
         <source>Add comment</source>
         <translation type="unfinished"></translation>
@@ -286,10 +282,6 @@
     <message id="id-enter-title">
         <source>Enter title</source>
         <translation type="unfinished">Wprowadź tytuł</translation>
-    </message>
-    <message id="id-create-issue">
-        <source>Create issue</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-no-categories-available">
         <source>No categories available</source>
@@ -346,10 +338,6 @@
     <message id="id-descending">
         <source>Descending</source>
         <translation type="unfinished">Malejąco</translation>
-    </message>
-    <message id="id-endpoint-unsupported">
-        <source>Endpoint unsupported!</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-app-name">
         <source>SailHub</source>
@@ -462,10 +450,6 @@
     <message id="id-state-invalid-signature">
         <source>Invalid signature</source>
         <translation type="unfinished">Nieprawidłowy podpis</translation>
-    </message>
-    <message id="id-state-not-signing-key">
-        <source>The usage flags for the key that signed this don&apos;t allow signing</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-state-no-user">
         <source>Email used for signing not known to GitHub</source>
@@ -586,10 +570,6 @@
     <message id="id-no-discussions-available">
         <source>No discussions available</source>
         <translation type="unfinished">Brak dostępnych dyskusji</translation>
-    </message>
-    <message id="id-gists">
-        <source>Gists</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-pushed-at">
         <source>Pushed at</source>
@@ -963,10 +943,6 @@
         <source>Resetting credentials and close app</source>
         <translation type="unfinished">Resetowanie poświadczeń i zamykanie aplikacji</translation>
     </message>
-    <message id="id-access-token">
-        <source>Access token</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-enter-access-token">
         <source>Enter access token</source>
         <translation type="unfinished">Wprowadź token dostępu</translation>
@@ -1011,10 +987,6 @@
     <message id="id-pagination">
         <source>Pagination</source>
         <translation type="unfinished">Paginacja</translation>
-    </message>
-    <message id="id-pagination-settings">
-        <source>Pagination settings</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-pagination-settings-desc">
         <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>

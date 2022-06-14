@@ -1205,10 +1205,6 @@
         <source>Updated at</source>
         <translation>Обновлена в</translation>
     </message>
-    <message>
-        <source>Show open pull requests</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>PullRequestsSelectionPage</name>
@@ -1223,10 +1219,6 @@
     <message>
         <source>Mentioned</source>
         <translation>Упомянутая</translation>
-    </message>
-    <message>
-        <source>Pull requests created by user</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Pull requests where user is mentioned</source>
@@ -1300,10 +1292,6 @@
 <context>
     <name>ReleaseListDelegate</name>
     <message>
-        <source>Latest release</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Pre-release</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1315,15 +1303,7 @@
         <translation>Обновить</translation>
     </message>
     <message>
-        <source>Info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Latest release</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Assets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1361,10 +1341,6 @@
 <context>
     <name>RepoFlagsItem</name>
     <message>
-        <source>Billing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Moving</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1375,10 +1351,6 @@
     <message>
         <source>Organization</source>
         <translation>Организация</translation>
-    </message>
-    <message>
-        <source>Mirror</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1396,16 +1368,8 @@
         <translation>Темы</translation>
     </message>
     <message>
-        <source>Watchers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Contributors</source>
         <translation>Авторы</translation>
-    </message>
-    <message>
-        <source>README</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Releases</source>
@@ -1420,15 +1384,7 @@
         <translation>Спонсор</translation>
     </message>
     <message>
-        <source>Forks</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Stars</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unwatch</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1437,10 +1393,6 @@
     <message>
         <source>Repositories</source>
         <translation>Репозитории</translation>
-    </message>
-    <message>
-        <source>Starred Repositories</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Refresh</source>
@@ -1492,10 +1444,6 @@
 </context>
 <context>
     <name>SearchOrganizationPage</name>
-    <message>
-        <source>No organization found</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation>
@@ -1507,10 +1455,6 @@
 </context>
 <context>
     <name>SearchRepositoryPage</name>
-    <message>
-        <source>No repositories found</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation>
@@ -1523,20 +1467,12 @@
 <context>
     <name>SearchSelectionPage</name>
     <message>
-        <source>Repository</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Organization</source>
         <translation>Организация</translation>
     </message>
 </context>
 <context>
     <name>SearchUserPage</name>
-    <message>
-        <source>No users found</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation>
@@ -1549,10 +1485,6 @@
 <context>
     <name>SelectBranchDialog</name>
     <message>
-        <source>Select</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>default</source>
         <translation>По умолчанию</translation>
     </message>
@@ -1560,20 +1492,12 @@
 <context>
     <name>SelectDiscussionCategoryDialog</name>
     <message>
-        <source>Select Category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>No categories available</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SelectEmojiDialog</name>
-    <message>
-        <source>Select</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SelectSubscriptionDialog</name>
@@ -1589,20 +1513,12 @@
         <source>Subscribe</source>
         <translation>Подписаться</translation>
     </message>
-    <message>
-        <source>Subscribe (all)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SettingsAuthenticationPage</name>
     <message>
         <source>Reset</source>
         <translation>Сброс</translation>
-    </message>
-    <message>
-        <source>Authentication Settings</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enter access token</source>
@@ -1614,10 +1530,6 @@
     <message>
         <source>Notifications</source>
         <translation>Уведомления</translation>
-    </message>
-    <message>
-        <source>Update Interval</source>
-        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <source>%n min(s)</source>
@@ -1634,10 +1546,6 @@
         <translation>Настройки</translation>
     </message>
     <message>
-        <source>Manage pagination options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Manage authentication data</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1648,10 +1556,6 @@
 </context>
 <context>
     <name>SettingsPaginationPage</name>
-    <message>
-        <source>Pagination Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>%n Item(s)</source>
         <translation type="unfinished">
@@ -1663,15 +1567,7 @@
 <context>
     <name>SortSelectionDialog</name>
     <message>
-        <source>Field</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ascending</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sort</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1695,10 +1591,6 @@
 </context>
 <context>
     <name>UserPage</name>
-    <message>
-        <source>Follow</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>%n follower(s)</source>
         <comment>0</comment>
@@ -1749,19 +1641,11 @@
 </context>
 <context>
     <name>WizardFinalPage</name>
-    <message>
-        <source>Back</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>WizardIntroPage</name>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This app is not configured yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1776,15 +1660,7 @@
 <context>
     <name>WizardTokenPage</name>
     <message>
-        <source>Continue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Personal Access Token</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This token can be created in developer settings on GitHub.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1794,10 +1670,6 @@
 </context>
 <context>
     <name>harbour-sailhub</name>
-    <message>
-        <source>Unauthorized: Did you provide a valid access token?</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Repo doesn&apos;t exist!</source>
         <translation type="unfinished"></translation>

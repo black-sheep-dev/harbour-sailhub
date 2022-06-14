@@ -254,10 +254,6 @@
         <source>No users available</source>
         <translation type="unfinished">Keine Benutzer vorhanden</translation>
     </message>
-    <message id="id-add-reply">
-        <source>Add reply</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-add-comment">
         <source>Add comment</source>
         <translation type="unfinished"></translation>
@@ -289,10 +285,6 @@
     <message id="id-enter-title">
         <source>Enter title</source>
         <translation type="unfinished">Titel eingeben</translation>
-    </message>
-    <message id="id-create-issue">
-        <source>Create issue</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-no-categories-available">
         <source>No categories available</source>
@@ -985,10 +977,6 @@
         <source>Resetting credentials and close app</source>
         <translation type="unfinished">Setze Authentifizerungsdaten zurück und schließe die Anwendung</translation>
     </message>
-    <message id="id-access-token">
-        <source>Access token</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-enter-access-token">
         <source>Enter access token</source>
         <translation type="unfinished">Access Token eingeben</translation>
@@ -1032,10 +1020,6 @@
     <message id="id-pagination">
         <source>Pagination</source>
         <translation type="unfinished">Pagination</translation>
-    </message>
-    <message id="id-pagination-settings">
-        <source>Pagination settings</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-pagination-settings-desc">
         <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>

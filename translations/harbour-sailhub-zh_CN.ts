@@ -249,10 +249,6 @@
         <source>Assign</source>
         <translation type="unfinished">分配</translation>
     </message>
-    <message id="id-edit-reply">
-        <source>Edit reply</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-edit-comment">
         <source>Edit comment</source>
         <translation type="unfinished"></translation>
@@ -284,10 +280,6 @@
     <message id="id-enter-title">
         <source>Enter title</source>
         <translation type="unfinished">编辑标题</translation>
-    </message>
-    <message id="id-create-issue">
-        <source>Create issue</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-no-categories-available">
         <source>No categories available</source>
@@ -344,10 +336,6 @@
     <message id="id-descending">
         <source>Descending</source>
         <translation type="unfinished">降序</translation>
-    </message>
-    <message id="id-endpoint-unsupported">
-        <source>Endpoint unsupported!</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-about">
         <source>About</source>
@@ -954,10 +942,6 @@
         <source>Resetting credentials and close app</source>
         <translation type="unfinished">正在重置凭证并关闭软件</translation>
     </message>
-    <message id="id-access-token">
-        <source>Access token</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-enter-access-token">
         <source>Enter access token</source>
         <translation type="unfinished">输入访问凭证</translation>
@@ -1000,10 +984,6 @@
     <message id="id-pagination">
         <source>Pagination</source>
         <translation type="unfinished">页码</translation>
-    </message>
-    <message id="id-pagination-settings">
-        <source>Pagination settings</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-pagination-settings-desc">
         <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>
