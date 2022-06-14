@@ -78,10 +78,6 @@
             <numerusform></numerusform>
         </translation>
     </message>
-    <message>
-        <source>Valid signature, though certificate revocation check failed</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CommitTreeListPage</name>
@@ -160,10 +156,6 @@
 </context>
 <context>
     <name>EditIssueDialog</name>
-    <message>
-        <source>Edit Issue</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>FilesChangedItem</name>
@@ -200,10 +192,6 @@
 </context>
 <context>
     <name>IssuePage</name>
-    <message>
-        <source>Closing issue</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
         <translation type="unfinished">
@@ -214,10 +202,6 @@
 </context>
 <context>
     <name>IssueSelectionPage</name>
-    <message>
-        <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>IssuesListPage</name>
@@ -294,10 +278,6 @@
 </context>
 <context>
     <name>ProfileStatusPage</name>
-    <message>
-        <source>today</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>PullRequestPage</name>
@@ -414,10 +394,6 @@
 </context>
 <context>
     <name>RepoPage</name>
-    <message>
-        <source>Watchers</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ReposListPage</name>
