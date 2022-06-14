@@ -14,8 +14,10 @@ Dialog {
 
     DialogHeader {
         id: header
-        title: qsTr("Assign User")
-        acceptText: qsTr("Assign")
+        //% "Assign user"
+        title: qsTrId("id-assign-user")
+        //% "Assign"
+        acceptText: qsTrId("id-assign")
     }
 
     SilicaListView {
@@ -56,7 +58,8 @@ Dialog {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No users available")
+            //% "No users available"
+            text: qsTrId("id-no-users-available")
         }
 
         VerticalScrollDecorator {}

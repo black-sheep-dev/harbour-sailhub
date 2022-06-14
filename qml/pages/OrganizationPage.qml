@@ -27,7 +27,8 @@ Page {
             busy: page.busy
 
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
                     page.busy = true
                     SailHub.api().getOrganization(page.nodeId)
@@ -47,7 +48,8 @@ Page {
             Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
-                title: qsTr("Organization")
+                //% "Organization"
+                title: qsTrId("id-organization")
             }
 
             Row {
@@ -150,7 +152,8 @@ Page {
             }
 
             RelatedValueItem {
-                label: qsTr("Repositories")
+                //% "Repositories"
+                label: qsTrId("id-repositories")
                 value: organization.repositories
 
                 onClicked: {
@@ -166,16 +169,19 @@ Page {
                 }
             }
             RelatedValueItem {
-                label: qsTr("Projects")
+                //% "Projects"
+                label: qsTrId("id-projects")
                 value: organization.projects
 
             }
             RelatedValueItem {
-                label: qsTr("Teams")
+                //% "Teams"
+                label: qsTrId("id-teams")
                 value: organization.teams
             }
             RelatedValueItem {
-                label: qsTr("Members")
+                //% "Members"
+                label: qsTrId("id-members")
                 value: organization.members
 
                 onClicked: {

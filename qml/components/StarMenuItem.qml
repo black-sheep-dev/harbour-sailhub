@@ -9,7 +9,11 @@ MenuItem {
 
     id: starMenuItem
 
-    text: starred ? qsTr("Unstar") : qsTr("Star")
+    text: starred ?
+              //% "Unstar"
+              qsTrId("id-unstar") :
+              //% "Star"
+              qsTrId("id-star")
 
     onClicked: {
         if (starred)

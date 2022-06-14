@@ -22,14 +22,17 @@ Page {
         PullDownMenu {
             MenuItem {
                 visible: profileStatus.message.length > 0
-                text: qsTr("Clear status")
-                onClicked: remorse.execute(qsTr("Clearing status"), function() {
+                //% "Clear status"
+                text: qsTrId("id-clear-status")
+                //% "Clearing status"
+                onClicked: remorse.execute(qsTrId("id-clearing-status"), function() {
                     SailHub.api().clearProfileStatus(profileStatus)
                     pageStack.navigateBack()
                 })
             }
             MenuItem {
-                text: qsTr("Change status")
+                //% "Change status"
+                text: qsTrId("id-change-status")
                 onClicked: {
                     apply()
                     SailHub.api().updateProfileStatus(profileStatus)
@@ -46,7 +49,8 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: qsTr("Status")
+                //% "Status"
+                title: qsTrId("id-status")
             }
 
             BackgroundItem {
@@ -84,10 +88,12 @@ Page {
                 id: messageField
                 width: parent.width
 
-                label: qsTr("Message")
+                //% "Message"
+                label: qsTrId("id-message")
                 focus: true
 
-                placeholderText: qsTr("Enter message")
+                //% "Enter message"
+                placeholderText: qsTrId("id-enter-message")
 
                 text: profileStatus.message
 
@@ -98,38 +104,48 @@ Page {
                 id: limitedAvailabilitySwitch
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
-                text: qsTr("Busy")
-                description: qsTr("When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.")
+                //% "Busy"
+                text: qsTrId("id-busy")
+                //% "When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability."
+                description: qsTrId("id-busy-switch-desc")
 
                 checked: profileStatus.indicatesLimitedAvailability
             }
 
             SectionHeader {
-                text: qsTr("Clear status")
+                //% "Clear status"
+                text: qsTrId("id-clear-status")
             }
 
 
             ComboBox {
                 id: clearStatusComboBox
-                label: qsTr("Clear status")
+                //% "Clear status"
+                label: qsTrId("id-clear-status")
                 menu: ContextMenu {
                     MenuItem {
-                        text: qsTr("Never")
+                        //% "Never"
+                        text: qsTrId("id-never")
                     }
                     MenuItem {
-                        text: qsTr("in 30 minutes")
+                        //% "in 30 minutes"
+                        text: qsTrId("id-in-thirty-minutes")
                     }
                     MenuItem {
-                        text: qsTr("in 1 hour")
+                        //% "in 1 hour"
+                        text: qsTrId("id-in-one-hour")
                     }
                     MenuItem {
-                        text: qsTr("in 4 hour")
+                        //% "in 4 hours"
+                        text: qsTrId("id-in-four-hours")
                     }
                     MenuItem {
-                        text: qsTr("today")
+                        //% "today"
+                        text: qsTrId("id-today")
                     }
                     MenuItem {
-                        text: qsTr("this week")
+                        //% "this week"
+                        text: qsTrId("id-this-week")
                     }
                 }
 

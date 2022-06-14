@@ -30,7 +30,8 @@ Page {
 
         header: PageHeader {
             id: header
-            title: qsTr("Releases")
+            //% "Releases"
+            title: qsTrId("id-releases")
             description: header.description
         }
 
@@ -42,21 +43,25 @@ Page {
         PullDownMenu {
             busy: releasesModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
                     refresh()
                 }
             }
             MenuItem {
                 visible: sorting
-                text: qsTr("Sorting")
+                //% "Sorting"
+                text: qsTrId("id-sorting")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
                                                     order: config.sortOrder,
                                                     field: getSortFieldIndex(),
                                                     fields: [
-                                                        qsTr("Created at"),
-                                                        qsTr("Name")
+                                                        //% "Created at"
+                                                        qsTrId("id-created-at"),
+                                                        //% "Name"
+                                                        qsTrId("id-name")
                                                     ]
                                                 })
 
@@ -80,7 +85,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No releases available")
+            //% "No releases available"
+            text: qsTrId("id-no-releases-available")
         }
 
         VerticalScrollDecorator {}
@@ -103,7 +109,8 @@ Page {
             visible: releasesModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", releasesModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", releasesModel.totalCount - listView.count)
                 onClicked: getReleases()
             }
         }

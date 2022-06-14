@@ -34,7 +34,8 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: qsTr("Add Star")
+                //% "Add Star"
+                title: qsTrId("id-add-star")
                 description: username + "/" + reponame
             }
 
@@ -66,25 +67,28 @@ Page {
                 wrapMode: Text.Wrap
                 color: Theme.highlightColor
 
-                text: qsTr("%1 says thank you for your star!").arg(username)
+                //% "%1 says thank you for your star!"
+                text: qsTrId("id-thx-to-star").arg(username)
             }
 
             SectionHeader {
-                text: qsTr("Support")
+                //% "Support"
+                text: qsTrId("id-support")
             }
 
             RelatedValueItem {
                 width: parent.width
 
-                label: qsTr("Stargazer")
+                //% "Stargazer"
+                label: qsTrId("id-stargazer")
                 value: repo.stargazerCount
                 icon: "image://theme/icon-m-favorite-selected"
 
                 onClicked: {
                     if (repo.stargazerCount === 0) return;
 
-                    pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                              title: qsTr("Stargazer"),
+                    pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {   
+                                              title: label,
                                               description: repo.owner.login + "/" + repo.name,
                                               identifier: repo.nodeId,
                                               userType: User.Stargazer
@@ -96,7 +100,8 @@ Page {
                 visible: repo.hasFundingLinks
                 width: parent.width
 
-                label: qsTr("Sponsoring")
+                //% "Sponsoring"
+                label: qsTrId("id-sponsoring")
                 icon: "qrc:/icons/icon-m-heart"
 
                 showValue: false

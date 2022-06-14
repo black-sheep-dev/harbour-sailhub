@@ -18,7 +18,8 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Changed Files")
+            //% "Changed files"
+            title: qsTrId("id-changed-files")
             description: desc
         }
 
@@ -30,7 +31,8 @@ Page {
         PullDownMenu {
             busy: treeModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
                     SailHub.api().getModel(treeModel)
                 }
@@ -47,7 +49,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No files available")
+            //% "No files available"
+            text: qsTrId("id-no-files-available")
         }
 
         VerticalScrollDecorator {}

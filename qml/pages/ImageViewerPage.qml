@@ -49,11 +49,13 @@ Page {
             }
 
             DetailItem {
-                label: qsTr("Height")
+                //% "Height"
+                label: qsTrId("id-height")
                 value: image.sourceSize.height + " px"
             }
             DetailItem {
-                label: qsTr("Width")
+                //% "Width"
+                label: qsTrId("id-width")
                 value: image.sourceSize.width + " px"
             }
         }

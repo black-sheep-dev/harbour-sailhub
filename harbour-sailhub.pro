@@ -21,6 +21,7 @@ SOURCES += src/harbour-sailhub.cpp \
     src/api/graphqlconnector.cpp \
     src/api/keys.cpp \
     src/api/mutations.cpp \
+    src/api/queryobject.cpp \
     src/api/queryvars.cpp \
     src/api/restapiconnector.cpp \
     src/dbus/dbusadaptor.cpp \
@@ -150,6 +151,7 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/ReleasePage.qml \
     qml/pages/ReleasesListPage.qml \
     qml/pages/RepoPage.qml \
+    qml/pages/RepoPage_old.qml \
     qml/pages/ReposListPage.qml \
     qml/pages/SearchOrganizationPage.qml \
     qml/pages/SearchRepositoryPage.qml \
@@ -179,13 +181,9 @@ DISTFILES += qml/harbour-sailhub.qml \
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172 512x512
 
-CONFIG += sailfishapp_i18n
+#CONFIG += sailfishapp_i18n
 
-TRANSLATIONS += \
-    translations/harbour-sailhub-de.ts \
-    translations/harbour-sailhub-fr.ts \
-    translations/harbour-sailhub-pl.ts \
-    translations/harbour-sailhub-zh_CN.ts
+include(translations/translations.pri)
 
 RESOURCES += \
     ressources.qrc
@@ -200,6 +198,7 @@ HEADERS += \
     src/api/mutations.h \
     src/api/queries.h \
     src/api/query_items.h \
+    src/api/queryobject.h \
     src/api/queryvars.h \
     src/api/ratelimit.h \
     src/api/restapiconnector.h \
@@ -269,7 +268,7 @@ HEADERS += \
 twemoji.files = data/twemoji/*
 twemoji.path = $$INSTALL_ROOT/usr/share/harbour-sailhub/twemoji
 
-INSTALLS += twemoji
+#INSTALLS += twemoji
 
 dbus.files = data/org.nubecula.sailhub.service
 dbus.path = $$INSTALL_ROOT/usr/share/dbus-1/services

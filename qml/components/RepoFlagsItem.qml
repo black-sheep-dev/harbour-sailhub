@@ -15,7 +15,8 @@ Flow {
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "image://theme/icon-m-home"
-        text: qsTr("Private")
+        //% "Private"
+        text: qsTrId("id-private")
     }
 
     Pill {
@@ -26,19 +27,24 @@ Flow {
         text: {
             switch (lockReason) {
             case RepositoryLockReason.Billing:
-                return qsTr("Billing")
+                //% "Billing"
+                return qsTrId("id-billing")
 
             case RepositoryLockReason.Migrating:
-                return qsTr("Migrating")
+                //% "Migrating"
+                return qsTrId("id-migrating")
 
             case RepositoryLockReason.Moving:
-                return qsTr("Moving")
+                //% "Moving"
+                return qsTrId("id-moving")
 
             case RepositoryLockReason.Rename:
-                return qsTr("Rename")
+                //% "Rename"
+                return qsTrId("id-rename")
 
             default:
-                return qsTr("Locked")
+                //% "Locked"
+                return qsTrId("id-locked")
             }
         }
     }
@@ -48,7 +54,8 @@ Flow {
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "image://theme/icon-m-file-archive-folder"
-        text: qsTr("Archived")
+        //% "Archived"
+        text: qsTrId("id-archived")
     }
 
     Pill {
@@ -56,7 +63,8 @@ Flow {
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "image://theme/icon-m-company"
-        text: qsTr("Organization")
+        //% "Organization"
+        text: qsTrId("id-organization")
     }
 
     Pill {
@@ -64,7 +72,8 @@ Flow {
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "qrc:///icons/icon-m-fork"
-        text: qsTr("Fork")
+        //% "Fork"
+        text: qsTrId("id-fork")
     }
 
     Pill {
@@ -72,7 +81,8 @@ Flow {
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "image://theme/icon-m-flip"
-        text: qsTr("Mirror")
+        //% "Mirror"
+        text: qsTrId("id-mirror")
     }
 
     Pill {
@@ -80,6 +90,7 @@ Flow {
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "image://theme/icon-m-levels"
-        text: qsTr("Template")
+        //% "Template"
+        text: qsTrId("id-template")
     }
 }

@@ -15,18 +15,28 @@ Dialog {
         spacing: Theme.paddingSmall
 
         DialogHeader {
-            title: edit ? qsTr("Edit Issue") : qsTr("Create Issue")
-            acceptText: edit ? qsTr("Save") : qsTr("Create")
+            title: edit ?
+                       //% "Edit issue"
+                       qsTrId("id-edit-issue") :
+                       //% "Create issue"
+                       qsTrId("id-create-issue")
+            acceptText: edit ?
+                            //% "Save"
+                            qsTrId("id-save") :
+                            //% "Create"
+                            qsTrId("id-create")
         }
 
         TextField {
             id: titleField
             width: parent.width
 
-            label: qsTr("Title")
+            //% "Title"
+            label: qsTrId("id-title")
             focus: true
 
-            placeholderText: qsTr("Enter title")
+            //% "Enter title"
+            placeholderText: qsTrId("id-enter-title")
 
             EnterKey.enabled: text.length > 0
             EnterKey.iconSource: edit ? "image://theme/icon-m-enter-close" : "image://theme/icon-m-enter-next"

@@ -12,19 +12,24 @@ Pill {
     text: {
         switch (lockReason) {
         case LockReason.OffTopic:
-            return qsTr("Off Topic")
+            //% "Off topic"
+            return qsTrId("id-off-topic")
 
         case LockReason.Resolved:
-            return qsTr("Resolved")
+            //% "Resolved"
+            return qsTrId("id-resolved")
 
         case LockReason.Spam:
-            return qsTr("Spam")
+            //% "Spam"
+            return qsTrId("id-spam")
 
         case LockReason.TooHeated:
-            return qsTr("Too heated")
+            //% "Too heated"
+            return qsTrId("id-too-heated")
 
         default:
-            return qsTr("Locked")
+            //% "Locked"
+            return qsTrId("id-locked")
         }
     }
 }

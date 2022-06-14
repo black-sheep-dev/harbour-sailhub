@@ -51,7 +51,8 @@ Page {
         PullDownMenu {
             busy: page.busy
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
                     page.busy = true
                     SailHub.api().getDiscussion(page.nodeId)
@@ -59,7 +60,8 @@ Page {
             }
             MenuItem {
                 visible: discussion.viewerAbilities & Viewer.CanUpdate
-                text: qsTr("Edit")
+                //% "Edit"
+                text: qsTrId("id-edit")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditDiscussionDialog.qml"), {
                                                     edit: true,
@@ -77,9 +79,10 @@ Page {
 
             MenuItem {
                 visible: discussion.viewerAbilities & Viewer.CanDelete
-                text: qsTr("Delete")
-
-                onClicked: remorse.execute(qsTr("Deleting discussion"), function() {
+                //% "Delete"
+                text: qsTrId("id-delete")
+                //% "Deleting discussion"
+                onClicked: remorse.execute(qsTrId("id-deleting-discussion"), function() {
                     SailHub.api().deleteDiscussion(discussion.nodeId)
                 })
             }
@@ -99,7 +102,8 @@ Page {
             Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
-                title: qsTr("Discussion")
+                //% "Discussion"
+                title: qsTrId("id-discussion")
             }
 
             Row {
@@ -183,7 +187,8 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Reactions")
+                //% "Reactions"
+                text: qsTrId("id-reactions")
             }
 
             ReactionsItem {
@@ -211,7 +216,8 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Comments")
+                //% "Comments"
+                text: qsTrId("id-comments")
             }
         }
 
@@ -230,7 +236,8 @@ Page {
 
             MenuItem {
                 enabled: !discussion.locked
-                text: qsTr("Write comment")
+                //% "Write comment"
+                text: qsTrId("id-write-comment")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
 
@@ -242,7 +249,8 @@ Page {
 
             MenuItem {
                 visible: commentsModel.hasNextPage
-                text: qsTr("Load more (%n to go)", "", commentsModel.totalCount - commentsColumn.children.length)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", commentsModel.totalCount - commentsColumn.children.length)
                 onClicked: getComments()
             }
         }

@@ -24,7 +24,8 @@ Page {
             width: parent.width
 
             PageHeader {
-                title: qsTr("Search Organization")
+                //% "Search Organization"
+                title: qsTrId("id-search-organization")
             }
 
             SearchField {
@@ -65,8 +66,10 @@ Page {
 
             ViewPlaceholder {
                 enabled: listView.count == 0
-                text: qsTr("No organization found")
-                hintText: qsTr("Type in search pattern to find organizations")
+                //% "No organization found"
+                text: qsTrId("id-no-organization-found")
+                //% "Type in search pattern to find organizations"
+                hintText: qsTrId("id-no-organization-found-hint")
 
             }
 
@@ -88,7 +91,8 @@ Page {
                 visible: searchModel.hasNextPage
 
                 MenuItem {
-                    text: qsTr("Load more (%n to go)", "", searchModel.totalCount - listView.count)
+                    //% "Load more (%n to go)"
+                    text: qsTrId("id-load-more", searchModel.totalCount - listView.count)
                     onClicked: SailHub.api().getPaginationModel(searchModel)
                 }
             }

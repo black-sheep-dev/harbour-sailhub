@@ -17,14 +17,17 @@ ListItem {
     menu: ContextMenu {
         MenuItem {
             visible: comment.viewerAbilities & Viewer.CanDelete
-            text: qsTr("Delete")
-            onClicked: commentItem.remorseAction(qsTr("Deleting comment"), function() {
+            //% "Delete"
+            text: qsTrId("id-delete")
+            //% "Deleting comment"
+            onClicked: commentItem.remorseAction(qsTrId("id-deleting-comment"), function() {
                 SailHub.api().deleteComment(comment.nodeId)
             })
         }
         MenuItem {
             visible: comment.viewerAbilities & Viewer.CanUpdate
-            text: qsTr("Edit")
+            //% "Edit"
+            text: qsTrId("id-edit")
             onClicked: {
                 var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"), {
                                                 edit: true,
@@ -38,7 +41,8 @@ ListItem {
             }
         }
         MenuItem {
-            text: qsTr("Quote reply")
+            //% "Quote reply"
+            text: qsTrId("id-quote-reply")
             onClicked: {
                 const text = ">"+ comment.body + "\n\n";
                 var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"), {
@@ -67,7 +71,8 @@ ListItem {
             title: comment.author.login
             subtitle: {
                 if (comment.edited)
-                    return comment.updatedAtTimeSpan + " - " + qsTr("Edited")
+                    //% "Edited"
+                    return comment.updatedAtTimeSpan + " - " + qsTrId("id-edited")
 
                 return comment.createdAtTimeSpan
             }

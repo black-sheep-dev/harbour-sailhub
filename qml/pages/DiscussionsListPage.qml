@@ -30,7 +30,8 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Discussions")
+            //% "Discussions"
+            title: qsTrId("id-discussions")
             description: page.description
         }
 
@@ -42,21 +43,25 @@ Page {
         PullDownMenu {
             busy: discussionsModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
                     refresh()
                 }
             }
             MenuItem {
                 visible: sorting
-                text: qsTr("Sorting")
+                //% "Sorting"
+                text: qsTrId("id-sorting")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
                                                     order: config.sortOrder,
                                                     field: getSortFieldIndex(),
                                                     fields: [
-                                                        qsTr("Created at"),
-                                                        qsTr("Updated at")
+                                                        //% "Created at"
+                                                        qsTrId("id-created-at"),
+                                                        //% "Updated at"
+                                                        qsTrId("id-updated-at")
                                                     ]
                                                 })
 
@@ -70,7 +75,8 @@ Page {
             }
 
             MenuItem {
-                text: qsTr("Start new")
+                //% "Start new"
+                text: qsTrId("id-start-new-discussion")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectDiscussionCategoryDialog.qml"), {
                                                     repoId: identifier
@@ -100,7 +106,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No discussions available")
+            //% "No discussions available"
+            text: qsTrId("id-no-discussions-available")
         }
 
         VerticalScrollDecorator {}
@@ -116,8 +123,10 @@ Page {
             menu: ContextMenu {
                 visible: model.viewerAbilities & Viewer.CanDelete
                 MenuItem {
-                    text: qsTr("Delete")
-                    onClicked: delegate.remorseAction(qsTr("Deleting discussion"), function() {
+                    //% "Delete"
+                    text: qsTrId("id-delete")
+                    //% "Deleting discussion"
+                    onClicked: delegate.remorseAction(qsTrId("id-deleting-discussion"), function() {
                         SailHub.api().deleteDiscussion(model.nodeId)
                     })
                 }
@@ -133,7 +142,8 @@ Page {
             visible: discussionsModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", discussionsModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", discussionsModel.totalCount - listView.count)
                 onClicked: getDiscussions()
             }
         }

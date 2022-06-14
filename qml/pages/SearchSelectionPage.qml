@@ -20,22 +20,26 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: qsTr("Search Selection")
+                //% "Search selection"
+                title: qsTrId("id-search-selection")
             }
 
             IconRelatedItem {
                 icon: "image://theme/icon-m-file-archive-folder"
-                title: qsTr("Repository")
+                //% "Repository"
+                title: qsTrId("id-repository")
                 onClicked: pageStack.push(Qt.resolvedUrl("SearchRepositoryPage.qml"))
             }
             IconRelatedItem {
                 icon: "image://theme/icon-m-media-artists"
-                title: qsTr("User")
+                //% "User"
+                title: qsTrId("id-user")
                 onClicked: pageStack.push(Qt.resolvedUrl("SearchUserPage.qml"))
             }
             IconRelatedItem {
                 icon: "image://theme/icon-m-company"
-                title: qsTr("Organization")
+                //% "Organization"
+                title: qsTrId("id-organization")
                 onClicked: pageStack.push(Qt.resolvedUrl("SearchOrganizationPage.qml"))
             }
         }

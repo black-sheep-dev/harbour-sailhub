@@ -28,7 +28,8 @@ BackgroundItem {
             anchors.verticalCenter: parent.verticalCenter
             width: parent.width - fileIcon.width - additionsLabel.width - deletionsLabel.width - 3 * parent.spacing
 
-            text: qsTr("%n file(s) changed", "", files)
+            //% "%n file(s) changed"
+            text: qsTrId("id-files-changed", files)
         }
 
         Label {

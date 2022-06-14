@@ -15,32 +15,40 @@ Page {
         id: listView
         model: ListModel {
             ListElement {
-                title: qsTr("Open");
-                description: qsTr("Open issues in user repos")
+                //% "Open"
+                title: qsTrId("id-open");
+                //% "Open issues in user repos"
+                description: qsTrId("id-open-issues-in-user-repos")
                 icon: "image://theme/icon-m-warning"
                 issueType: Issue.Repos
                 sorting: false
                 editState: false
             }
             ListElement {
-                title: qsTr("Created");
-                description: qsTr("Issues created by user")
+                //% "Created"
+                title: qsTrId("id-created");
+                //% "Issues created by user"
+                description: qsTrId("id-issues-created-by-user")
                 icon: "image://theme/icon-m-edit"
                 issueType: Issue.CreatedBy
                 sorting: true
                 editState: true
             }
             ListElement {
-                title: qsTr("Assigned");
-                description: qsTr("Issues assigned to user")
+                //% "Assigned"
+                title: qsTrId("id-assigned");
+                //% "Issues assigned to user"
+                description: qsTrId("id-issues-assigned-to-user")
                 icon: "image://theme/icon-m-attach"
                 issueType: Issue.Assigned
                 sorting: true
                 editState: true
             }
             ListElement {
-                title: qsTr("Mentioned");
-                description: qsTr("Issues where user is mentioned")
+                //% "Mentioned"
+                title: qsTrId("id-mentioned");
+                //% "Issues where user is mentioned"
+                description: qsTrId("id-issues-where-user-is-mentioned")
                 icon: "image://theme/icon-m-annotation"
                 issueType: Issue.Mentioned
                 sorting: true
@@ -50,7 +58,8 @@ Page {
 
         anchors.fill: parent
         header: PageHeader {
-            title: qsTr("Issues")
+            //% "Issues"
+            title: qsTrId("id-issues")
         }
 
         delegate: ListItem {

@@ -8,21 +8,73 @@ import "../delegates/"
 import "../tools"
 
 Page {
-    property bool busy: false
     property string nodeId
     property Release release
 
     id: page
     allowedOrientations: Orientation.All
 
+    QueryObject {
+        id: query
+        query: '
+            query($nodeId: ID!) {
+                node(id: $nodeId) {
+                    ... on Release {
+                        id
+                        author {
+                            avatarUrl
+                            login
+                        }
+                        description
+                        isDraft
+                        isLatest
+                        isPrerelease
+                        name
+                        publishedAt
+                        releaseAssets {
+                            totalCount
+                        }
+                        repository {
+                            nameWithOwner
+                        }
+                        tagCommit {
+                           abbreviatedOid
+                        }
+                        tagName
+                    }
+                }
+            }'
+        variables: {
+            "nodeId": page.nodeId
+        }
+    }
+
+    PageBusyIndicator {
+        id: busyIndicator
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: page
+        running: !query.ready
+
+        Label {
+            anchors {
+                top: parent.bottom
+                topMargin: Theme.paddingLarge
+                horizontalCenter: parent.horizontalCenter
+            }
+            color: Theme.highlightColor
+            //% "Loading data..."
+            text: qsTrId("id-loading-data")
+        }
+    }
+
     SilicaFlickable {
         PullDownMenu {
-            busy: page.busy
+            busy: !query.ready
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
-                    page.busy = true
-                    SailHub.api().getRelease(page.nodeId)
+                    SailHub.api().request(query)
                 }
             }
         }
@@ -37,11 +89,9 @@ Page {
             width: parent.width
             spacing: Theme.paddingSmall
 
-            opacity: busyIndicator.running ? 0.1 : 1.0
-            Behavior on opacity { FadeAnimator {} }
-
             PageHeader {
-                title: qsTr("Release")
+                //% "Release"
+                title: qsTrId("id-release")
             }
 
             Label {
@@ -51,7 +101,7 @@ Page {
                 font.pixelSize: Theme.fontSizeLarge
                 color: Theme.highlightColor
 
-                text: release.name
+                text: query.result.name
             }
 
             Row {
@@ -60,98 +110,95 @@ Page {
                 spacing: Theme.paddingMedium
 
                 Label {
-                    visible: release.isDraft
+                    visible: query.result.isDraft
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#b71c1c"
-                    text: qsTr("Draft")
+                    //% "Draft"
+                    text: qsTrId("id-draft")
                 }
 
                 Label {
-                    visible: release.isLatest
+                    visible: query.result.isLatest
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#64DD17"
-                    text: qsTr("Latest release")
+                    //% "Latest release"
+                    text: qsTrId("id-latest-release")
                 }
 
                 Label {
-                    visible: release.isPrerelease
+                    visible: query.result.isPrerelease
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#f29312"
-                    text: qsTr("Pre-release")
+                    //% "Pre-release"
+                    text: qsTrId("id-pre-release")
                 }
             }
 
             CommentItem {
-                authorAvatar: release.author.avatarUrl
-                authorLogin: release.author.login
-                body: release.description
-                timeSpan: release.publishedAt.toLocaleDateString(Qt.locale())
+                authorAvatar: query.result.author.avatarUrl
+                authorLogin: query.result.author.login
+                body: query.result.description
+                timeSpan: new Date(query.result.publishedAt).toLocaleDateString(Qt.locale())
             }
 
             SectionHeader {
-                text: qsTr("Info")
+                //% "Info"
+                text: qsTrId("id-info")
             }
 
             IconRelatedItem {
-                title: release.tagCommit
+                title: query.result.tagCommit.abbreviatedOid
                 icon: "image://theme/icon-m-swipe"
                 showNextIcon: false
             }
 
             IconRelatedItem {
-                title: release.tagName
+                title: query.result.tagName
                 icon: "image://theme/icon-m-link"
                 showNextIcon: false
             }
 
             SectionHeader {
-                text: qsTr("Content")
+                //% "Content"
+                text: qsTrId("id-content")
             }
 
             RelatedValueItem {
                 width: parent.width
-
-                label: qsTr("Assets")
+                //% "Assets"
+                label: qsTrId("id-assets")
                 icon: "image://theme/icon-m-levels"
-                value: release.assetCount
+                value: query.result.releaseAssets.totalCount
 
                 onClicked: pageStack.push(Qt.resolvedUrl("ReleaseAssetsListPage.qml"), {
-                                              description: release.name,
-                                              identifier: release.nodeId
+                                              description: query.result.name,
+                                              identifier: query.result.id
                                           })
             }
 
             RelatedValueItem {
                 width: parent.width
 
-                label: qsTr("Source code") + " (zip)"
+                //% "Source code"
+                label: qsTrId("id-source-code") + " (zip)"
                 icon: "image://theme/icon-m-file-archive-folder"
                 showValue: false
 
-                onClicked: Qt.openUrlExternally("https://github.com/" + release.repository + "/archive/refs/tags/" + release.tagName + ".zip")
+                onClicked: Qt.openUrlExternally("https://github.com/" + query.result.repository.nameWithOwner + "/archive/refs/tags/" + query.result.tagName + ".zip")
             }
 
             RelatedValueItem {
                 width: parent.width
 
-                label: qsTr("Source code") + " (tar.gz)"
+                //% "Source code"
+                label: qsTrId("id-source-code") + " (tar.gz)"
                 icon: "image://theme/icon-m-file-archive-folder"
                 showValue: false
 
-                onClicked: Qt.openUrlExternally("https://github.com/" + release.repository + "/archive/refs/tags/" + release.tagName + ".tar.gz")
+                onClicked: Qt.openUrlExternally("https://github.com/" + query.result.repository.nameWithOwner + "/archive/refs/tags/" + query.result.tagName + ".tar.gz")
             }
         }
     }
 
-    Connections {
-        target: SailHub.api()
-        onReleaseAvailable: {
-            if (release.nodeId !== page.nodeId) return
-
-            page.release = release;
-            page.busy = false;
-        }
-    }
-
-    Component.onCompleted: SailHub.api().getRelease(page.nodeId)
+    Component.onCompleted: SailHub.api().request(query)
 }

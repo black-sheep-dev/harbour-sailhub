@@ -19,7 +19,8 @@ Page {
 
         header: PageHeader {
             id: header
-            title: qsTr("Release Assets")
+            //% "Release assets"
+            title: qsTrId("id-release-assets")
             description: header.description
         }
 
@@ -31,7 +32,8 @@ Page {
         PullDownMenu {
             busy: assetsModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
                     refresh()
                 }
@@ -48,7 +50,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No assets available")
+            //% "No assets available"
+            text: qsTrId("id-no-assets-available")
         }
 
         VerticalScrollDecorator {}
@@ -63,7 +66,8 @@ Page {
 
             menu: ContextMenu {
                 MenuItem {
-                    text: qsTr("Download")
+                    //% "Download"
+                    text: qsTrId("id-download")
                     //onClicked: SailHub.api().downloader().download(model.downloadUrl, model.name)
                     onClicked: Qt.openUrlExternally(model.downloadUrl)
                 }
@@ -81,7 +85,8 @@ Page {
             visible: assetsModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", assetsModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", assetsModel.totalCount - listView.count)
                 onClicked: getAssets()
             }
         }

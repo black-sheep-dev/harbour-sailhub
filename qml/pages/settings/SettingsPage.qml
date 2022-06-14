@@ -10,20 +10,25 @@ Page {
         id: listView
         model: ListModel {
             ListElement {
-                title: qsTr("Authentication");
-                description: qsTr("Manage authentication data")
+                //% "Authentication"
+                title: qsTrId("id-authentication");
+                //% "Manage authentication data"
+                description: qsTrId("id-manage-authentication-data")
                 icon: "image://theme/icon-m-keys"
                 page: "SettingsAuthenticationPage.qml"
             }
             ListElement {
-                title: qsTr("Notification");
-                description: qsTr("Manage notification options")
+                //% "Notification"
+                title: qsTrId("id-notification");
+                //% "Manage notification options"
+                description: qsTrId("id-manage-notification-options")
                 icon: "image://theme/icon-m-alarm"
                 page: "SettingsNotificationPage.qml"
             }
             ListElement {
-                title: qsTr("Pagination");
-                description: qsTr("Manage pagination options")
+                //% "Pagination"
+                title: qsTrId("id-pagination");
+                description: qsTrId("id-manage-pagination-options")
                 icon: "image://theme/icon-m-levels"
                 page: "SettingsPaginationPage.qml"
             }
@@ -31,7 +36,8 @@ Page {
 
         anchors.fill: parent
         header: PageHeader {
-            title: qsTr("Settings")
+            //% "Settings"
+            title: qsTrId("id-settings")
         }
 
         delegate: ListItem {

@@ -46,7 +46,8 @@ BackgroundItem {
                 if (profileStatus.message.length > 0)
                     return MarkdownParser.parse(profileStatus.message)
                 else
-                    return qsTr("Set status")
+                    //% "Set status"
+                    return qsTrId("id-set-status")
             }
         }
     }

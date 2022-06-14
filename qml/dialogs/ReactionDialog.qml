@@ -13,7 +13,8 @@ Dialog {
 
     DialogHeader {
         id: header
-        acceptText: qsTr("Save")
+        //% "Save"
+        acceptText: qsTrId("id-save")
     }
 
     Grid {

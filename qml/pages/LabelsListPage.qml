@@ -28,7 +28,8 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Issues")
+            //% "Labels"
+            title: qsTrId("id-labels")
             description: page.description
         }
 
@@ -40,20 +41,24 @@ Page {
         PullDownMenu {
             busy: labelsModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
                     refresh()
                 }
             }
             MenuItem {
-                text: qsTr("Sorting")
+                //% "Sorting"
+                text: qsTrId("id-sorting")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
                                                     order: config.sortOrder,
                                                     field: getSortFieldIndex(),
                                                     fields: [
-                                                        qsTr("Created at"),
-                                                        qsTr("Name")
+                                                        //% "Created at"
+                                                        qsTrId("id-created-at"),
+                                                        //% "Name"
+                                                        qsTrId("id-name")
                                                     ]
                                                 })
 
@@ -77,7 +82,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No labels available")
+            //% "No labels available"
+            text: qsTrId("id-no-labels-available")
         }
 
         VerticalScrollDecorator {}
@@ -94,7 +100,8 @@ Page {
             visible: labelsModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", labelsModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", labelsModel.totalCount - listView.count)
                 onClicked: getLabels()
             }
         }

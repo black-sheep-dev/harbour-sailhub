@@ -17,7 +17,8 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Sponsor")
+            //% "Sponsor"
+            title: qsTrId("id-sponsor")
             description: page.description
         }
 
@@ -36,7 +37,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No funding links available")
+            //% "No funding links available"
+            text: qsTrId("id-no-funding-links-available")
         }
 
         VerticalScrollDecorator {}

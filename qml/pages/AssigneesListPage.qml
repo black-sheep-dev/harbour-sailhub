@@ -33,12 +33,14 @@ Page {
         PullDownMenu {
             busy: usersModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: refresh()
             }
             MenuItem {
                 visible: permission === Repo.PermissionAdmin || permission === Repo.PermissionMaintain
-                text: qsTr("Assign user")
+                //% "Assign user"
+                text: qsTrId("id-assign-user")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/AssignUserDialog.qml"), { repoId: page.repoId })
 
@@ -61,7 +63,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No users available")
+            //% "No users available"
+            text: qsTrId("id-no-users-available")
         }
 
         VerticalScrollDecorator {}
@@ -77,8 +80,10 @@ Page {
             menu: ContextMenu {
                 visible: permission === Repo.PermissionAdmin || permission === Repo.PermissionMaintain
                 MenuItem {
-                    text: qsTr("Remove")
-                    onClicked: delegate.remorseAction(qsTr("Remove user from assignees"), function () {
+                    //% "Remove"
+                    text: qsTrId("id-remove")
+                    //% "Remove user from assignees"
+                    onClicked: delegate.remorseAction(qsTrId("id-remove-user-from-assignees"), function () {
                         SailHub.api().unassignUser(usersModel.identifier, model.nodeId)
                     })
                 }
@@ -94,7 +99,8 @@ Page {
             visible: usersModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", usersModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", usersModel.totalCount - listView.count)
                 onClicked: getUsers()
             }
         }

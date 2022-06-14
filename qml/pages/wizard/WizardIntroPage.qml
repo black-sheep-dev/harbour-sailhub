@@ -14,8 +14,10 @@ Dialog {
 
     DialogHeader {
         id: header
-        acceptText: qsTr("Continue")
-        cancelText: ""
+        //% "Continue"
+        acceptText: qsTrId("id-continue")
+        //% "Quit"
+        cancelText: qsTrId("id-quit")
     }
 
     RemorsePopup { id: resetPopup }
@@ -43,7 +45,8 @@ Dialog {
         Label {
             width: parent.width
 
-            text: qsTr("Welcome to SailHub")
+            //% "Welcome to SailHub"
+            text: qsTrId("id-wizard-welcome-title")
 
             color: Theme.secondaryHighlightColor
             font.bold: true
@@ -63,7 +66,8 @@ Dialog {
 
             wrapMode: Text.Wrap
 
-            text: qsTr("This app is not configured yet.")
+            //% "This app is not configured yet."
+            text: qsTrId("id-wizard-info-unconfigured")
         }
 
         Label {
@@ -74,7 +78,8 @@ Dialog {
 
             wrapMode: Text.Wrap
 
-            text: qsTr("The setup wizard will guide you through the configuration process.")
+            //% "The setup wizard will guide you through the configuration process."
+            text: qsTrId("id-wizard-info-guide")
         }
 
         Item {
@@ -100,7 +105,8 @@ Dialog {
 
             wrapMode: Text.Wrap
 
-            text: qsTr("If there are errors during the setup process, you can try to reset the data from a previous installation.")
+            //% "If there are errors during the setup process, you can try to reset the data from a previous installation."
+            text: qsTrId("id-wizard-errors-info")
         }
 
         Item {
@@ -110,8 +116,10 @@ Dialog {
 
         ButtonLayout {
             Button {
-                text: qsTr("Reset")
-                onClicked: resetPopup.execute(qsTr("Resetting application"), function() {
+                //% "Reset"
+                text: qsTrId("id-reset")
+                //% "Resetting application"
+                onClicked: resetPopup.execute(qsTrId("id-resetting-application"), function() {
                     SailHub.reset()
                 })
             }

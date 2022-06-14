@@ -50,7 +50,8 @@ Page {
         PullDownMenu {
             busy: page.busy
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
                     page.busy = true
                     refresh()
@@ -67,7 +68,8 @@ Page {
             spacing: Theme.paddingSmall
 
             PageHeader {
-                title: qsTr("Thread")
+                //% "Thread"
+                title: qsTrId("id-thread")
             }
 
             CommentItem {
@@ -79,7 +81,8 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Reactions")
+                //% "Reactions"
+                text: qsTrId("id-reactions")
             }
 
             ReactionsItem {
@@ -107,7 +110,8 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Replies")
+                //% "Replies"
+                text: qsTrId("id-replies")
             }
         }
 
@@ -125,7 +129,8 @@ Page {
             busy: commentsModel.loading
 
             MenuItem {
-                text: qsTr("Write Reply")
+                //% "Write reply"
+                text: qsTrId("id-write-reply")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
 
@@ -137,7 +142,8 @@ Page {
 
             MenuItem {
                 visible: commentsModel.hasNextPage
-                text: qsTr("Load more (%n to go)", "", commentsModel.totalCount - commentsColumn.children.length)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", commentsModel.totalCount - commentsColumn.children.length)
                 onClicked: getComments()
             }
         }

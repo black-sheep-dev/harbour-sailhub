@@ -24,7 +24,8 @@ Page {
             width: parent.width
 
             PageHeader {
-                title: qsTr("Search Repository")
+                //% "Search repository"
+                title: qsTrId("id-search-repository")
             }
 
             SearchField {
@@ -65,8 +66,10 @@ Page {
 
             ViewPlaceholder {
                 enabled: listView.count == 0
-                text: qsTr("No repositories found")
-                hintText: qsTr("Type in search pattern to find repositories")
+                //% "No repositories found"
+                text: qsTrId("id-no-repositories-found")
+                //% "Type in search pattern to find repositories"
+                hintText: qsTrId("id-no-repositories-found-hint")
 
             }
 
@@ -91,7 +94,8 @@ Page {
                 visible: searchModel.hasNextPage
 
                 MenuItem {
-                    text: qsTr("Load more (%n to go)", "", searchModel.totalCount - listView.count)
+                    //% "Load more (%n to go)"
+                    text: qsTrId("id-load-more", searchModel.totalCount - listView.count)
                     onClicked: SailHub.api().getPaginationModel(searchModel)
                 }
             }

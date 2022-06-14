@@ -12,14 +12,17 @@ Dialog {
         width: parent.width
 
         DialogHeader {
-            title: qsTr("Select Sorting")
-            acceptText: qsTr("Sort")
+            //% "Select sorting"
+            title: qsTrId("id-select-sorting")
+            //% "Sort"
+            acceptText: qsTrId("id-sort")
         }
 
         ComboBox {
             id: fieldComboBox
             width: parent.width
-            label: qsTr("Field")
+            //% "Field"
+            label: qsTrId("id-field")
 
             menu: ContextMenu {
                 Repeater {
@@ -32,11 +35,14 @@ Dialog {
         ComboBox {
             id: orderComboBox
             width: parent.width
-            label: qsTr("Order")
+            //% "Order"
+            label: qsTrId("id-order")
 
             menu: ContextMenu {
-                MenuItem { text: qsTr("Ascending") }
-                MenuItem { text: qsTr("Descending") }
+                //% "Ascending"
+                MenuItem { text: qsTrId("id-ascending") }
+                //% "Descending"
+                MenuItem { text: qsTrId("id-descending") }
             }
         }
     }

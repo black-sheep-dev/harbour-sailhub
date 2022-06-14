@@ -28,7 +28,8 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Pull Requests")
+            //% "Pull requests"
+            title: qsTrId("id-pull-requests")
             description: page.description
         }
 
@@ -42,9 +43,11 @@ Page {
             MenuItem {
                 text: {
                     if (page.states & PullRequestState.Open)
-                        return qsTr("Show closed pull requests")
+                        //% "Show closed pull requests"
+                        return qsTrId("id-show-closed-pull-requests")
                     else if (page.states & PullRequestState.Closed)
-                        return qsTr("Show open pull requests")
+                        //% "Show open pull requests"
+                        return qsTrId("id-show-open-pull-request")
                 }
 
                 onClicked: {
@@ -57,18 +60,22 @@ Page {
                 }
             }
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: refresh()
             }
             MenuItem {
-                text: qsTr("Sorting")
+                //% "Sorting"
+                text: qsTrId("id-sorting")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
                                                     order: config.sortOrder,
                                                     field: getSortFieldIndex(),
                                                     fields: [
-                                                        qsTr("Created at"),
-                                                        qsTr("Updated at")
+                                                        //% "Created at"
+                                                        qsTrId("id-created-at"),
+                                                        //% "Updated at"
+                                                        qsTrId("id-updated-at")
                                                     ]
                                                 })
 
@@ -92,7 +99,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No pull requests available")
+            //% "No pull requests available"
+            text: qsTrId("id-no-pull-requests-available")
         }
 
         VerticalScrollDecorator {}
@@ -116,7 +124,8 @@ Page {
             visible: pullRequestsModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", pullRequestsModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more",  pullRequestsModel.totalCount - listView.count)
                 onClicked: getPullRequests()
             }
         }

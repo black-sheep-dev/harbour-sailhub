@@ -30,7 +30,8 @@ Page {
             Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
-                title: qsTr("Commit")
+                //% "Commit"
+                title: qsTrId("id-commit")
                 description: commit.abbreviatedOid
             }
 
@@ -74,7 +75,11 @@ Page {
                     backgroundColor: commit.signatureIsValid ? SailHubStyles.colorSuccess : SailHubStyles.colorError
                     color: Theme.primaryColor
                     icon: commit.signatureIsValid ? "image://theme/icon-s-checkmark" : "image://theme/icon-s-high-importance"
-                    text: commit.signatureIsValid ? qsTr("Verified") : qsTr("Unverified")
+                    text: commit.signatureIsValid ?
+                              //% "Verified"
+                              qsTrId("id-verified") :
+                              //% "Unverified"
+                              qsTrId("id-unverified")
                 }
             }
 
@@ -89,55 +94,72 @@ Page {
                 text: {
                     switch (commit.signatureState) {
                     case GitSignatureState.BAD_CERT:
-                        return qsTr("The signing certificate or its chain could not be verified")
+                        //% "The signing certificate or its chain could not be verified"
+                        return qsTrId("id-state-bad-cert")
 
                     case GitSignatureState.BAD_EMAIL:
-                        return qsTr("Invalid email used for signing")
+                        //% "Invalid email used for signing"
+                        return qsTrId("id-state-bad-email")
 
                     case GitSignatureState.EXPIRED_KEY:
-                        return qsTr("Signing key expired")
+                        //% "Signing key expired"
+                        return qsTrId("id-state-expired-key")
 
                     case GitSignatureState.GPGVERIFY_ERROR:
-                        return qsTr("Internal error - the GPG verification service misbehaved")
+                        //% "Internal error - the GPG verification service misbehaved"
+                        return qsTrId("id-state-gpgverify-error")
 
                     case GitSignatureState.GPGVERIFY_UNAVAILABLE:
-                        return qsTr("Internal error - the GPG verification service is unavailable at the moment")
+                        //% "Internal error - the GPG verification service is unavailable at the moment"
+                        return qsTrId("id-state-gpgverify-unavailable")
 
                     case GitSignatureState.INVALID:
-                        return qsTr("Invalid signature")
+                        //% "Invalid signature"
+                        return qsTrId("id-state-invalid-signature")
 
                     case GitSignatureState.MALFORMED_SIG:
-                        return qsTr("Malformed signature")
+                        //% "Malformed signature"
+                        return qsTrId("id-state-malformed-sig")
 
                     case GitSignatureState.NOT_SIGNING_KEY:
-                        return qsTr("The usage flags for the key that signed this don't allow signing")
+                        //% "The usage flags for the key that signed this don't allow signing"
+                        return qsTrId("id-state-not-signing-key")
 
                     case GitSignatureState.NO_USER:
-                        return qsTr("Email used for signing not known to GitHub")
+                        //% "Email used for signing not known to GitHub"
+                        return qsTrId("id-state-no-user")
 
                     case GitSignatureState.OCSP_ERROR:
-                        return qsTr("Valid signature, though certificate revocation check failed")
+                        //% "Valid signature, though certificate revocation check failed"
+                        return qsTrId("id-ocsp-error")
 
                     case GitSignatureState.OCSP_PENDING:
-                        return qsTr("Valid signature, pending certificate revocation checking")
+                        //% "Valid signature, pending certificate revocation checking"
+                        return qsTrId("id-state-ocsp-pending")
 
                     case GitSignatureState.OCSP_REVOKED:
-                        return qsTr("One or more certificates in chain has been revoked")
+                        //% "One or more certificates in chain has been revoked"
+                        return qsTrId("id-state-ocsp-revoke")
 
                     case GitSignatureState.UNKNOWN_KEY:
-                        return qsTr("Key used for signing not known to GitHub")
+                        //% "Key used for signing not known to GitHub"
+                        return qsTrId("id-state-unknown-key")
 
                     case GitSignatureState.UNKNOWN_SIG_TYPE:
-                        return qsTr("Unknown signature type")
+                        //% "Unknown signature type"
+                        return qsTrId("id-state-unknown-sig-type")
 
                     case GitSignatureState.UNSIGNED:
-                        return qsTr("Unsigned")
+                        //% "Unsigned"
+                        return qsTrId("id-stat-unsigned")
 
                     case GitSignatureState.UNVERIFIED_EMAIL:
-                        return qsTr("Email used for signing unverified on GitHub")
+                        //% "Email used for signing unverified on GitHub"
+                        return qsTrId("id-state-unverified-email")
 
                     default:
-                        return qsTr("Unkown reason")
+                        //% "Unkown reason"
+                        return qsTrId("id-state-unknown-reason")
                     }
                 }
             }
@@ -151,13 +173,15 @@ Page {
 
 
             SectionHeader {
-                text: qsTr("Changes")
+                //% "Changes"
+                text: qsTrId("id-changes")
             }
 
             RelatedValueItem {
                 width: parent.width
 
-                label: qsTr("Changed files")
+                //% "Changed files"
+                label: qsTrId("id-changed-files")
                 value: commit.changedFiles
                 icon: "qrc:/icons/icon-m-files-changed"
 
@@ -177,7 +201,8 @@ Page {
                     color: SailHubStyles.colorSuccess
                     font.pixelSize: Theme.fontSizeSmall
 
-                    text: qsTr("%n addition(s)", "", commit.additions)
+                    //% "%n addition(s)"
+                    text: qsTrId("id-additions-count", commit.additions)
                 }
 
                 Label {
@@ -185,23 +210,27 @@ Page {
                     color: SailHubStyles.colorError
                     font.pixelSize: Theme.fontSizeSmall
 
-                    text: qsTr("%n deletion(s)", "", commit.deletions)
+                    //% "%n deletion(s)"
+                    text: qsTrId("id-deletions-count", commit.deletions)
                 }
             }
 
             SectionHeader {
-                text: qsTr("Relations")
+                //% "Relations"
+                text: qsTrId("id-relations")
             }
 
             RelatedValueItem {
                 width: parent.width
 
-                label: qsTr("Contributors")
+                //% "Contributors"
+                label: qsTrId("id-contributors")
                 value: commit.authorCount
                 icon: "image://theme/icon-m-media-artists"
 
                 onClicked: pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                          title: qsTr("Contributors"),
+
+                                          title: label,
                                           description: commit.abbreviatedOid,
                                           identifier: commit.nodeId,
                                           userType: User.CommitAuthor
@@ -211,7 +240,8 @@ Page {
             RelatedValueItem {
                 width: parent.width
 
-                label: qsTr("Parents")
+                //% "Parents"
+                label: qsTrId("id-parents")
                 value: commit.parentCount
                 icon: "qrc:/icons/icon-m-commit"
 

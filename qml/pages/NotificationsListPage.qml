@@ -14,14 +14,16 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Notifications")
+            //% "Notifications"
+            title: qsTrId("id-notifications")
             description: SailHub.api().profile().login
         }
 
         PullDownMenu {
             busy: notificationsModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: refresh()
             }
         }
@@ -36,7 +38,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No notifications available")
+            //% "No notifications available"
+            text: qsTrId("id-no-notifications-available")
         }
 
         VerticalScrollDecorator {}

@@ -29,7 +29,8 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Gists")
+            //% "Gists"
+            title: qsTrId("id-gists")
             description: page.description
         }
 
@@ -41,22 +42,27 @@ Page {
         PullDownMenu {
             busy: gistsModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
                     refresh()
                 }
             }
             MenuItem {
                 visible: sorting
-                text: qsTr("Sorting")
+                //% "Sorting"
+                text: qsTrId("id-sorting")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
                                                     order: config.sortOrder,
                                                     field: getSortFieldIndex(),
                                                     fields: [
-                                                        qsTr("Created at"),
-                                                        qsTr("Updated at"),
-                                                        qsTr("Pushed at")
+                                                        //% "Created at"
+                                                        qsTrId("id-created-at"),
+                                                        //% "Updated at"
+                                                        qsTrId("id-updated-at"),
+                                                        //% "Pushed at"
+                                                        qsTrId("id-pushed-at")
                                                     ]
                                                 })
 
@@ -80,7 +86,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No gists available")
+            //% "No gists available"
+            text: qsTrId("id-no-gists-available")
         }
 
         VerticalScrollDecorator {}
@@ -106,7 +113,8 @@ Page {
             visible: gistsModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", gistsModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", gistsModel.totalCount - listView.count)
                 onClicked: getGists()
             }
         }

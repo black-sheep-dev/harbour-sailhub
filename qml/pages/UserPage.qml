@@ -31,7 +31,11 @@ Page {
             busy: page.busy
 
             MenuItem {
-                text: user.viewerIsFollowing ? qsTr("Unfollow") : qsTr("Follow")
+                text: user.viewerIsFollowing ?
+                          //% "Unfollow"
+                          qsTrId("id-unfollow") :
+                          //% "Follow"
+                          qsTrId("id-follow")
 
                 onClicked: {
                     page.busy = true
@@ -52,7 +56,8 @@ Page {
             Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
-                title: qsTr("Profile")
+                //% "Profile"
+                title: qsTrId("id-profile")
             }
 
             Row {
@@ -183,7 +188,8 @@ Page {
                 CounterItem {
                     width: parent.width / 3
 
-                    title: qsTr("%n follower(s)", "0", user.followers)
+                    //% "%n follower(s)"
+                    title: qsTrId("id-followers-count", user.followers)
                     icon: "image://theme/icon-m-users"
 
                     onClicked: {
@@ -199,7 +205,8 @@ Page {
                 CounterItem {
                     width: parent.width / 3
 
-                    title: qsTr("%n following(s)", "0", user.following)
+                    //% "%n following(s)"
+                    title: qsTrId("id-following-count", user.following)
                     icon: "image://theme/icon-m-message-forward"
 
                     onClicked: {
@@ -220,7 +227,8 @@ Page {
             }
 
             RelatedValueItem {
-                label: qsTr("Repositories")
+                //% "Repositories"
+                label: qsTrId("id-repositories")
                 value: user.repositories
 
                 onClicked: {
@@ -233,7 +241,8 @@ Page {
                 }
             }
             RelatedValueItem {
-                label: qsTr("Gists")
+                //% "Gists"
+                label: qsTrId("id-gists")
                 value: user.gistCount
 
                 onClicked: {
@@ -245,7 +254,8 @@ Page {
                 }
             }
             RelatedValueItem {
-                label: qsTr("Organizations")
+                //% "Organizations"
+                label: qsTrId("id-organizations")
                 value: user.organizations
 
                 onClicked: {
@@ -259,7 +269,8 @@ Page {
                 }
             }
             RelatedValueItem {
-                label: qsTr("Starred")
+                //% "Starred"
+                label: qsTrId("id-starred")
                 value: user.starredRepositories
 
                 onClicked: {

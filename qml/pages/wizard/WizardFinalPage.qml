@@ -15,8 +15,10 @@ Dialog {
 
     DialogHeader {
         id: header
-        acceptText: qsTr("Complete")
-        cancelText: qsTr("Back")
+        //% "Complete"
+        acceptText: qsTrId("id-complete")
+        //% "Back"
+        cancelText: qsTrId("id-back")
     }
 
     Column {
@@ -28,7 +30,8 @@ Dialog {
             x: Theme.horizontalPageMargin
             width: parent.width - 2*x
 
-            text: qsTr("Setup process completed")
+            //% "Setup process completed"
+            text: qsTrId("id-wizard-completed")
 
             color: Theme.highlightColor
             font.pixelSize: Theme.fontSizeLarge

@@ -18,13 +18,16 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: qsTr("Notification Settings")
+                //% "Notification settings"
+                title: qsTrId("id-notification-settings")
             }
 
             TextSwitch {
                 id: notifySwitch
-                text: qsTr("Notifications")
-                description: qsTr("Get notified of activities on your GitHub account.")
+                //% "Notifications"
+                text: qsTrId("Notifications")
+                //% "Get notified of activities on your GitHub account."
+                description: qsTrId("id-settings-notifications-desc")
 
                 onCheckedChanged: SailHub.notify = checked
 
@@ -35,22 +38,28 @@ Page {
                 id: updateIntervalComboBox
 
                 enabled: notifySwitch.checked
-                label: qsTr("Update Interval")
+                //% "Update interval"
+                label: qsTrId("id-update-interval")
                 menu: ContextMenu {
                     MenuItem {
-                        text: qsTr("%n min(s)", "", 5)
+                        //% "%n min(s)"
+                        text: qsTrId("id-mins-count",  5)
                     }
                     MenuItem {
-                        text: qsTr("%n min(s)", "", 10)
+                        //% "%n min(s)"
+                        text: qsTrId("id-mins-count", 10)
                     }
                     MenuItem {
-                        text: qsTr("%n min(s)", "", 15)
+                        //% "%n min(s)"
+                        text: qsTrId("id-mins-count", 15)
                     }
                     MenuItem {
-                        text: qsTr("%n min(s)", "", 30)
+                        //% "%n min(s)"
+                        text: qsTrId("id-mins-count", 30)
                     }
                     MenuItem {
-                        text: qsTr("%n min(s)", "", 60)
+                        //% "%n min(s)"
+                        text: qsTrId("id-mins-count", 60)
                     }
                 }
 

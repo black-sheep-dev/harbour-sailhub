@@ -16,14 +16,17 @@ ListItem {
     menu: ContextMenu {
         MenuItem {
             visible: comment.viewerAbilities & Viewer.CanDelete
-            text: qsTr("Delete")
-            onClicked: commentItem.remorseAction(qsTr("Deleting comment"), function() {
+            //% "Delete"
+            text: qsTrId("id-delete")
+            //% "Deleting comment"
+            onClicked: commentItem.remorseAction(qsTrId("id-deleting-comment"), function() {
                 SailHub.api().deleteDiscussionComment(comment.nodeId)
             })
         }
         MenuItem {
             visible: comment.viewerAbilities & Viewer.CanUpdate
-            text: qsTr("Edit")
+            //% "Edit"
+            text: qsTrId("id-edit")
             onClicked: {
                 var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"), {
                                                 edit: true,
@@ -38,7 +41,8 @@ ListItem {
         }
         MenuItem {
             visible: !comment.isAnswer && (comment.viewerAbilities & Viewer.CanMarkAsAnswer)
-            text: qsTr("Mark as answer")
+            //% "Mark as answer"
+            text: qsTrId("id-mark-as-answer")
             onClicked: {
                 SailHub.api().markDiscussionCommentAsAnswer(comment.nodeId, true)
                 comment.isAnswer = true
@@ -46,7 +50,8 @@ ListItem {
         }
         MenuItem {
             visible: comment.isAnswer && (comment.viewerAbilities & Viewer.CanUnmarkAsAnswer)
-            text: qsTr("Unmark as answer")
+            //% "Unmark as answer"
+            text: qsTrId("id-unmark-as-answer")
             onClicked: {
                 SailHub.api().markDiscussionCommentAsAnswer(comment.nodeId, false)
                 comment.isAnswer = false
@@ -54,7 +59,8 @@ ListItem {
         }
         MenuItem {
             visible: comment.replyToId.length === 0
-            text: qsTr("Reply")
+            //% "Reply"
+            text: qsTrId("id-reply")
             onClicked: {
                 var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"), {
                                                 reply: true
@@ -66,7 +72,8 @@ ListItem {
             }
         }
         MenuItem {
-            text: qsTr("Quote reply")
+            //% "Quote reply"
+            text: qsTrId("id-quote-reply")
             onClicked: {
                 const text = ">"+ comment.body + "\n\n";
                 var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"), {
@@ -95,7 +102,8 @@ ListItem {
             title: comment.author.login
             subtitle: {
                 if (comment.edited)
-                    return comment.updatedAtTimeSpan + " - " + qsTr("Edited")
+                    //% "Edited"
+                    return comment.updatedAtTimeSpan + " - " + qsTrId("id-edited")
 
                 return comment.createdAtTimeSpan
             }
@@ -115,7 +123,8 @@ ListItem {
                 backgroundColor: "#64DD17"
                 color: Theme.primaryColor
                 icon: "image://theme/icon-s-checkmark"
-                text: qsTr("Answer")
+                //% "Answer"
+                text: qsTrId("id-answer")
             }
         }
 
@@ -143,7 +152,8 @@ ListItem {
                 anchors.verticalCenter: parent.verticalCenter
                 width: parent.width - replyIcon.width - replyCounter.width - 2*parent.spacing
                 font.pixelSize: Theme.fontSizeExtraSmall
-                text: qsTr("Replies")
+                //% "Replies"
+                text: qsTrId("id-replies")
             }
 
             Label {

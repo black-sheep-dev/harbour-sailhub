@@ -15,24 +15,30 @@ Page {
         id: listView
         model: ListModel {
             ListElement {
-                title: qsTr("Created");
-                description: qsTr("Pull requests created by user")
+                //% "Created"
+                title: qsTrId("id-created");
+                //% "Pull requests created by user"
+                description: qsTrId("id-pull-requests-created-by-user")
                 icon: "image://theme/icon-m-edit"
                 pullRequestType: PullRequest.CreatedBy
                 sorting: true
                 editState: true
             }
             ListElement {
-                title: qsTr("Assigned");
-                description: qsTr("Pull requests assigned to user")
+                //% "Assigned"
+                title: qsTrId("Assigned");
+                //% "Pull requests assigned to user"
+                description: qsTrId("id-pull-requests-assigned-to-user")
                 icon: "image://theme/icon-m-attach"
                 pullRequestType: PullRequest.Assigned
                 sorting: true
                 editState: true
             }
             ListElement {
-                title: qsTr("Mentioned");
-                description: qsTr("Pull requests where user is mentioned")
+                //% "Mentioned"
+                title: qsTrId("id-mentioned");
+                //% "Pull requests where user is mentioned"
+                description: qsTrId("id-pull-requests-where-user-is-mentioned")
                 icon: "image://theme/icon-m-annotation"
                 pullRequestType: Issue.Mentioned
                 sorting: true
@@ -42,7 +48,8 @@ Page {
 
         anchors.fill: parent
         header: PageHeader {
-            title: qsTr("Pull Requests")
+            //% "Pull requests"
+            title: qsTrId("id-pull-requests")
         }
 
         delegate: ListItem {

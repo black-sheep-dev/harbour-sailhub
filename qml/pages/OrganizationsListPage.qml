@@ -27,7 +27,8 @@ Page {
         PullDownMenu {
             busy: organizationsModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: refresh()
             }
         }
@@ -42,7 +43,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No organizations available")
+            //% "No organizations available"
+            text: qsTrId("id-no-organizations-available")
         }
 
         VerticalScrollDecorator {}
@@ -69,7 +71,8 @@ Page {
             visible: organizationsModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", organizationsModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", organizationsModel.totalCount - listView.count)
                 onClicked: getOrganizations()
             }
         }

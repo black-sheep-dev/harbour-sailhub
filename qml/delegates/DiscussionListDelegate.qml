@@ -83,7 +83,8 @@ ListItem {
                         font.pixelSize: Theme.fontSizeExtraSmall
                         color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                        text: model.authorLogin + " " + qsTr("started the discussion")
+                        //% "started the discussion"
+                        text: model.authorLogin + " " + qsTrId("id-started-discussion")
                     }
 
                     Icon {

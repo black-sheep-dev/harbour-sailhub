@@ -11,8 +11,10 @@ Dialog {
 
     DialogHeader {
         id: header
-        title: qsTr("Choose Emoji")
-        acceptText: qsTr("Select")
+        //% "Choose Emoji"
+        title: qsTrId("id-choose-emoji")
+        //% "Select"
+        acceptText: qsTrId("id-select")
     }
 
     SilicaGridView {
@@ -49,7 +51,8 @@ Dialog {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No emoji available")
+            //% "No emoji available"
+            text: qsTrId("id-no-emoji-available")
         }
 
         VerticalScrollDecorator {}

@@ -31,7 +31,8 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Issues")
+            //% "Issues"
+            title: qsTrId("id-issues")
             description: page.description
         }
 
@@ -43,22 +44,27 @@ Page {
         PullDownMenu {
             busy: issuesModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
                     refresh()
                 }
             }
             MenuItem {
                 visible: sorting
-                text: qsTr("Sorting")
+                //% "Sorting"
+                text: qsTrId("id-sorting")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
                                                     order: config.sortOrder,
                                                     field: getSortFieldIndex(),
                                                     fields: [
-                                                        qsTr("Created at"),
-                                                        qsTr("Updated at"),
-                                                        qsTr("Comments")
+                                                        //% "Created at"
+                                                        qsTrId("id-created-at"),
+                                                        //% "Updated at"
+                                                        qsTrId("id-updated-at"),
+                                                        //% "Comments"
+                                                        qsTrId("id-comments")
                                                     ]
                                                 })
 
@@ -72,7 +78,8 @@ Page {
             }
             MenuItem {
                 visible: type !== Issue.User && canCreateNew
-                text: qsTr("Create new")
+                //% "Create new"
+                text: qsTrId("id-create-new")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))
 
@@ -85,9 +92,11 @@ Page {
                 visible: editState
                 text: {
                     if (page.states & IssueState.Open)
-                        return qsTr("Show closed issues")
+                        //% "Show closed issues"
+                        return qsTrId("id-show-closed-issues")
                     else if (page.states & IssueState.Closed)
-                        return qsTr("Show open issues")
+                        //% "Show open issues"
+                        return qsTrId("id-show-open-issues")
                 }
 
                 onClicked: {
@@ -111,7 +120,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No issues available")
+            //% "No issues available"
+            text: qsTrId("id-no-issues-available")
         }
 
         VerticalScrollDecorator {}
@@ -135,7 +145,8 @@ Page {
             visible: issuesModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", issuesModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", issuesModel.totalCount - listView.count)
                 onClicked: getIssues()
             }
         }

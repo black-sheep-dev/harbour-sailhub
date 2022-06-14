@@ -14,15 +14,18 @@ Page {
         PullDownMenu {
             busy: !SailHub.api().ready
             MenuItem {
-                text: qsTr("About")
+                //% "About"
+                text: qsTrId("id-about")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
             MenuItem {
-                text: qsTr("Settings")
+                //% "Settings"
+                text: qsTrId("id-settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("settings/SettingsPage.qml"))
             }
             MenuItem {
-                text: qsTr("Search")
+                //% "Search"
+                text: qsTrId("id-search")
                 onClicked: pageStack.push(Qt.resolvedUrl("SearchSelectionPage.qml"))
             }
 //            MenuItem {
@@ -34,7 +37,8 @@ Page {
         ViewPlaceholder {
             enabled: !SailHub.api().ready
 
-            text: qsTr("App initializing ...")
+            //% "App initializing ..."
+            text: qsTrId("id-app-initializing")
         }
 
         anchors.fill: parent
@@ -53,7 +57,8 @@ Page {
 
 
             PageHeader {
-                title: qsTr("Home")
+                //% "Home"
+                title: qsTrId("id-home")
             }
 
             AuthorItem {
@@ -70,7 +75,8 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Status")
+                //% "Status"
+                text: qsTrId("id-status")
             }
 
             ProfileStatusItem {
@@ -82,12 +88,14 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Activities")
+                //% "Activities"
+                text: qsTrId("id-activities")
             }
 
             IconRelatedItem {
                 icon: "image://theme/icon-m-alarm"
-                title: qsTr("Notifications")
+                //% "Notifications"
+                title: qsTrId("id-notifications")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("NotificationsListPage.qml"))
 
@@ -117,12 +125,14 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("My Work")
+                //% "My work"
+                text: qsTrId("id-my-work")
             }
 
             IconRelatedItem {
                 icon: "qrc:///icons/icon-m-issue"
-                title: qsTr("Issues")
+                //% "Issues"
+                title: qsTrId("id-issues")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("IssueSelectionPage.qml"), {
                                               userId: SailHub.api().profile.nodeId,
@@ -131,7 +141,8 @@ Page {
             }
             IconRelatedItem {
                 icon: "qrc:///icons/icon-m-pull-request"
-                title: qsTr("Pull Requests")
+                //% "Pull requests"
+                title: qsTrId("id-pull-requests")
 
                 /*onClicked: pageStack.push(Qt.resolvedUrl("PullRequestsSelectionPage.qml"), {
                                               userId: SailHub.api().profile.nodeId,
@@ -147,7 +158,8 @@ Page {
             }
             IconRelatedItem {
                 icon: "image://theme/icon-m-file-archive-folder"
-                title: qsTr("Repositories")
+                //% "Repositories"
+                title: qsTrId("id-repositories")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
                                               login: SailHub.api().profile.login,
@@ -157,7 +169,8 @@ Page {
             }
             IconRelatedItem {
                 icon: "image://theme/icon-m-company"
-                title: qsTr("Organizations")
+                //% "Organizations"
+                title: qsTrId("id-organizations")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("OrganizationsListPage.qml"), {
                                               login: SailHub.api().profile.login,

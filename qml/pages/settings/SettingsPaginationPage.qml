@@ -18,7 +18,8 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: qsTr("Pagination Settings")
+                //% "Pagination settings"
+                title: qsTrId("id-pagination-settings")
             }
 
             Label {
@@ -26,7 +27,8 @@ Page {
                 width: parent.width - 2*x
                 wrapMode: Text.Wrap
 
-                text: qsTr("Choose the number of items to fetch in a single query. This value should be between 10-100.")
+                //% "Choose the number of items to fetch in a single query. This value should be between 10-100."
+                text: qsTrId("id-pagination-settings-desc")
                 color: Theme.highlightColor
             }
 
@@ -36,7 +38,8 @@ Page {
                 minimumValue: 10
                 maximumValue: 100
                 value: 20
-                valueText: qsTr("%n Item(s)", "", value)
+                //% "%n Item(s)"
+                valueText: qsTrId("id-pagination-items-count", value)
 
                 Component.onCompleted: value = SailHub.api().paginationCount
 

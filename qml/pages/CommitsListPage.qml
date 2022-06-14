@@ -18,7 +18,8 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Commits")
+            //% "Commits"
+            title: qsTrId("id-commits")
         }
 
         footer: Item {
@@ -29,7 +30,8 @@ Page {
         PullDownMenu {
             busy: commitsModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: {
                     refresh()
                 }
@@ -46,7 +48,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No commits available")
+            //% "No commits available"
+            text: qsTrId("id-no-commits-available")
         }
 
         VerticalScrollDecorator {}
@@ -70,7 +73,8 @@ Page {
             visible: commitsModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", commitsModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", commitsModel.totalCount - listView.count)
                 onClicked: getCommits()
             }
         }

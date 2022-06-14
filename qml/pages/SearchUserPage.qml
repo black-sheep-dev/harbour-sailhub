@@ -24,7 +24,8 @@ Page {
             width: parent.width
 
             PageHeader {
-                title: qsTr("Search User")
+                //% "Search user"
+                title: qsTrId("id-search-user")
             }
 
             SearchField {
@@ -65,8 +66,10 @@ Page {
 
             ViewPlaceholder {
                 enabled: listView.count == 0
-                text: qsTr("No users found")
-                hintText: qsTr("Type in search pattern to find users")
+                //% "No users found"
+                text: qsTrId("id-no-users-found")
+                //% "Type in search pattern to find users"
+                hintText: qsTrId("id-no-users-found-hint")
 
             }
 
@@ -88,7 +91,8 @@ Page {
                 visible: searchModel.hasNextPage
 
                 MenuItem {
-                    text: qsTr("Load more (%n to go)", "", searchModel.totalCount - listView.count)
+                    //% "Load more (%n to go)"
+                    text: qsTrId("id-load-more", searchModel.totalCount - listView.count)
                     onClicked: SailHub.api().getPaginationModel(searchModel)
                 }
             }

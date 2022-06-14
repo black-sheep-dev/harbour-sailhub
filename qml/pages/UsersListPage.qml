@@ -31,7 +31,8 @@ Page {
         PullDownMenu {
             busy: usersModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: refresh()
             }
         }
@@ -46,7 +47,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No users available")
+            //% "No users available"
+            text: qsTrId("id-no-users-available")
         }
 
         VerticalScrollDecorator {}
@@ -69,7 +71,8 @@ Page {
             visible: usersModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", usersModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", usersModel.totalCount - listView.count)
                 onClicked: getUsers()
             }
         }

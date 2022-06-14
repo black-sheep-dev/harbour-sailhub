@@ -12,6 +12,34 @@ ApplicationWindow
 {
     id: appWindow
 
+//    DBusAdaptor {
+//        service: 'org.nubecula.sailhub'
+//        iface: 'org.nubecula.sailhub'
+//        path: '/org/nubecula/sailhub'
+
+//        xml: '<interface name="org.nubecula.sailhub">\n' +
+//             '  <method name="addStar">\n' +
+//             '      <arg name="username" type="s" direction="in">\n' +
+//             '      </arg>\n' +
+//             '      <arg name="reponame" type="s" direction="in">\n' +
+//             '      </arg>\n' +
+//             '  </method>\n' +
+//             '  <method name="openUrl">\n' +
+//             '      <arg name="arguments" type="a{sv}" direction="in">\n' +
+//             '      </arg>\n' +
+//             '  </method>\n' +
+//             '</interface>'
+
+//        function onAddStar(username, reponame) {
+//            console.log(username + "/" +reponame)
+
+//        }
+
+//        function onOpenUrl(arguments) {
+//            console.log(arguments)
+//        }
+//    }
+
     Connections {
         target: dbus
 
@@ -52,9 +80,11 @@ ApplicationWindow
         target: SailHub.api()
         onApiError: {
             if (error === Api.ErrorUnauthorized) {
-                notification.show(qsTr("Unauthorized: Did you provide a valid access token?"))
+                //% "Unauthorized: Did you provide a valid access token?"
+                notification.show(qsTrId("id-error-unauthorized"))
             } else {
-                notification.show(qsTr("An error occured when connecting to GitHub!"))
+                //% "An error occured when connecting to GitHub!"
+                notification.show(qsTrId("id-error-connect-to-github"))
             }
         }
     }
@@ -77,12 +107,14 @@ ApplicationWindow
             target: SailHub.api()
             onRepoIdAvailable: {
                 if (repo.nodeId.length === 0) {
-                    notification.show(qsTr("Repo doesn't exist!"))
+                    //% "Repo doesn't exist!"
+                    notification.show(qsTrId("id-repo-doesnt-exist"))
                     return
                 }
 
                 if (linkHelper.destination === "repo" || linkHelper.destination === "unsupported") {
-                    if (linkHelper.destination === "unsupported") notification.show(qsTr("Endpoint unsupported!"))
+                    //% "Endpoint unsupported!"
+                    if (linkHelper.destination === "unsupported") notification.show(qsTrId("id-endpoint-unsupported"))
 
                     pageStack.push(Qt.resolvedUrl("pages/RepoPage.qml"), {
                                        repo: repo

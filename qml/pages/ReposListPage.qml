@@ -34,16 +34,20 @@ Page {
             title: {
                 switch (repoType) {
                 case Repo.User:
-                    return qsTr("Repositories");
+                    //% "Repositories"
+                    return qsTrId("id-repositories");
 
                 case Repo.Fork:
-                    return qsTr("Forks");
+                    //% "Forks"
+                    return qsTrId("id-forks");
 
                 case Repo.Starred:
-                    return qsTr("Starred Repositories")
+                    //% "Starred repositories"
+                    return qsTrId("id-starred-repositories")
 
                 default:
-                    return qsTr("Repositories");
+                    //% "Repositories"
+                    return qsTrId("id-repositories");
                 }
             }
             description: login
@@ -57,22 +61,29 @@ Page {
         PullDownMenu {
             busy: reposModel.loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: refresh()
             }
 
             MenuItem {
-                text: qsTr("Sorting")
+                //% "Sorting"
+                text: qsTrId("id-sorting")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
                                                     order: config.sortOrder,
                                                     field: getSortFieldIndex(),
                                                     fields: [
-                                                        qsTr("Name"),
-                                                        qsTr("Created at"),
-                                                        qsTr("Pushed at"),
-                                                        qsTr("Updated at"),
-                                                        qsTr("Stargazers")
+                                                        //% "Name"
+                                                        qsTrId("id-name"),
+                                                        //% "Created at"
+                                                        qsTrId("id-created-at"),
+                                                        //% "Pushed at"
+                                                        qsTrId("id-pushed-at"),
+                                                        //% "Updated at"
+                                                        qsTrId("id-updated-at"),
+                                                        //% "Stargazers"
+                                                        qsTrId("id-stargazers")
                                                     ]
                                                 })
 
@@ -96,7 +107,8 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No repositories available")
+            //% "No repositories available"
+            text: qsTrId("id-no-repositories-available")
         }
 
         VerticalScrollDecorator {}
@@ -130,7 +142,8 @@ Page {
             visible: reposModel.hasNextPage
 
             MenuItem {
-                text: qsTr("Load more (%n to go)", "", reposModel.totalCount - listView.count)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more",  reposModel.totalCount - listView.count)
                 onClicked: getRepos()
             }
         }

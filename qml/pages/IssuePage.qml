@@ -52,7 +52,11 @@ Page {
 
             MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanSubscribe
-                text: issue.viewerSubscription === SubscriptionState.Subscribed ? qsTr("Unsubscribe") : qsTr("Subscribe")
+                text: issue.viewerSubscription === SubscriptionState.Subscribed ?
+                          //% "Unsubscribe"
+                          qsTrId("id-unsubscribe") :
+                          //% "Subscribe"
+                          qsTrId("id-subscribe")
 
                 onClicked: {
                     if (issue.viewerSubscription === SubscriptionState.Subscribed)
@@ -63,7 +67,8 @@ Page {
             }
             MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanUpdate
-                text: qsTr("Edit")
+                //% "Edit"
+                text: qsTrId("id-edit")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"), {
                                                     edit: true,
@@ -80,25 +85,31 @@ Page {
             }
             MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanUpdate
-                text: qsTr("Delete")
+                //% "Delete"
+                text: qsTrId("id-delete")
 
-                onClicked: remorse.execute(qsTr("Deleting issue"), function() {
+                //% "Deleting issue"
+                onClicked: remorse.execute(qsTrId("id-deleting issue"), function() {
                     SailHub.api().deleteIssue(issue.nodeId)
                 })
             }
             MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanUpdate && issue.state === IssueState.Open
-                text: qsTr("Close")
+                //% "Close"
+                text: qsTrId("id-close")
 
-                onClicked: remorse.execute(qsTr("Closing issue"), function() {
+                //% "Closing issue"
+                onClicked: remorse.execute(qsTrId("id-closing-issue"), function() {
                     SailHub.api().closeIssue(issue.nodeId)
                 })
             }
             MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanUpdate && issue.state === Issue.StateClosed
-                text: qsTr("Reopen")
+                //% "Reopen"
+                text: qsTrId("id-reopen")
 
-                onClicked: remorse.execute(qsTr("Reopen issue"), function() {
+                //% "Reopen issue"
+                onClicked: remorse.execute(qsTrId("id-reopen-issue"), function() {
                     SailHub.api().reopenIssue(issue.nodeId)
                 })
             }
@@ -119,7 +130,8 @@ Page {
             Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
-                title: qsTr("Issue")
+                //% "Issue"
+                title: qsTrId("id-issue")
             }
 
             Row {
@@ -172,8 +184,10 @@ Page {
                     anchors.verticalCenter: parent.verticalCenter
                     icon: issue.state === IssueState.Open ? "qrc:/icons/icon-m-issue" : "image://theme/icon-s-installed"
                     text: {
-                        if (issue.state === IssueState.Open) return qsTr("Open")
-                        if (issue.state === Issue.StateClosed) return qsTr("Closed")
+                        //% "Open"
+                        if (issue.state === IssueState.Open) return qsTrId("id-open")
+                        //% "Closed"
+                        if (issue.state === Issue.StateClosed) return qsTrId("id-closed")
                     }
 
                     backgroundColor: {
@@ -193,7 +207,8 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Reactions")
+                //% "Reactions"
+                text: qsTrId("id-reactions")
             }
 
             ReactionsItem {
@@ -221,11 +236,13 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Relations")
+                //% "Relations"
+                text: qsTrId("id-relations")
             }
 
             RelatedValueItem {
-                label: qsTr("Labels")
+                //% "Labels"
+                label: qsTrId("id-labels")
                 icon: "image://theme/icon-m-link"
                 value: issue.labelCount
 
@@ -233,7 +250,8 @@ Page {
                     if (issue.labelCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("LabelsListPage.qml"), {
-                                              title: qsTr("Labels"),
+                                              //% "Labels"
+                                              title: qsTrId("id-labels"),
                                               description: issue.repository + " #" + issue.number,
                                               identifier: issue.nodeId,
                                               type: LabelEntity.Issue
@@ -242,12 +260,14 @@ Page {
             }
 
             RelatedValueItem {
-                label: qsTr("Assignees")
+                //% "Assignees"
+                label: qsTrId("id-assignees")
                 icon: "image://theme/icon-m-media-artists"
                 value: issue.assigneeCount
 
                 onClicked: pageStack.push(Qt.resolvedUrl("AssigneesListPage.qml"), {
-                                              title: qsTr("Assignees"),
+                                              //% "Assignees"
+                                              title: qsTrId("id-assignees"),
                                               description: issue.repository + " #" + issue.number,
                                               identifier: issue.nodeId,
                                               userType: User.IssueAssignee,
@@ -257,7 +277,8 @@ Page {
             }
 
             RelatedValueItem {
-                label: qsTr("Participants")
+                //% "Participants"
+                label: qsTrId("id-participants")
                 icon: "image://theme/icon-m-media-artists"
                 value: issue.participantCount
 
@@ -265,7 +286,8 @@ Page {
                     if (issue.participantCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                              title: qsTr("Participants"),
+                                              //% "Participants"
+                                              title: qsTrId("id-participants"),
                                               description: issue.repository + " #" + issue.number,
                                               identifier: issue.nodeId,
                                               userType: User.IssueParticipant
@@ -274,7 +296,8 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Comments")
+                //% "Comments"
+                text: qsTrId("id-comments")
             }
         }
 
@@ -291,7 +314,8 @@ Page {
             busy: commentsModel.loading
 
             MenuItem {
-                text: qsTr("Write comment")
+                //% "Write comment"
+                text: qsTrId("id-write-comment")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
 
@@ -303,8 +327,17 @@ Page {
 
             MenuItem {
                 visible: issue.viewerAbilities & Viewer.CanUpdate
-                text: issue.locked ? qsTr("Unlock") : qsTr("Lock")
-                onClicked: remorse.execute(issue.locked ? qsTr("Unlocking") : qsTr("Locking"), function() {
+                text: issue.locked ?
+                          //% "Unlock"
+                          qsTrId("id-unlock") :
+                          //% "Lock"
+                          qsTrId("id-lock")
+                onClicked: remorse.execute(issue.locked ?
+                                               //% "Unlocking"
+                                               qsTrId("id-unlocking") :
+                                               //% "Locking"
+                                               qsTrId("id-locking"),
+                                           function() {
                     if (issue.locked) {
                         SailHub.api().unlock(issue.nodeId)
                     } else {
@@ -315,7 +348,8 @@ Page {
 
             MenuItem {
                 visible: commentsModel.hasNextPage
-                text: qsTr("Load more (%n to go)", "", commentsModel.totalCount - commentsColumn.children.length)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", commentsModel.totalCount - commentsColumn.children.length)
                 onClicked: getComments()
             }
         }

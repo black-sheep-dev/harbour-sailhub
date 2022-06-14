@@ -48,21 +48,24 @@ ListItem {
                     visible: model.isDraft
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#b71c1c"
-                    text: qsTr("Draft")
+                    //% "Draft"
+                    text: qsTrId("id-draft")
                 }
 
                 Label {
                     visible: model.isLatest
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#64DD17"
-                    text: qsTr("Latest release")
+                    //% "Latest release"
+                    text: qsTrId("id-latest-release")
                 }
 
                 Label {
                     visible: model.isPrerelease
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#f29312"
-                    text: qsTr("Pre-release")
+                    //% "Pre-release"
+                    text: qsTrId("id-pre-release")
                 }
             }
         }

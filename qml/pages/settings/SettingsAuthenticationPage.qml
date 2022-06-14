@@ -13,8 +13,10 @@ Page {
     SilicaFlickable {
         PullDownMenu {
             MenuItem {
-                text: qsTr("Reset")
-                onClicked: remorse.execute(qsTr("Resetting credentials and close app"), function() {
+                //% "Reset"
+                text: qsTrId("id-reset")
+                //% "Resetting credentials and close app"
+                onClicked: remorse.execute(qsTrId("id-resseting-credentials"), function() {
                     SailHub.reset()
                     Qt.quit()
                 })
@@ -30,16 +32,19 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: qsTr("Authentication Settings")
+                //% "Authentication settings"
+                title: qsTrId("id-authentication-settings")
             }
 
             PasswordField {
                 id: tokenField
                 width: parent.width
 
-                label: qsTr("Access Token")
+                //% "Access token"
+                label: qsTrId("id-access-token")
 
-                placeholderText: qsTr("Enter access token")
+                //% "Enter access token"
+                placeholderText: qsTrId("id-enter-access-token")
             }
         }
     }

@@ -25,7 +25,8 @@ Item {
             interactive: true
             subtitle: {
                 if (edited)
-                    return timeSpan + " - " + qsTr("Edited")
+                    //% "Edited"
+                    return timeSpan + " - " + qsTrId("id-edited")
 
                 return timeSpan
             }

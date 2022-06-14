@@ -51,7 +51,11 @@ Page {
             busy: page.busy 
             MenuItem {
                 visible: request.viewerAbilities & Viewer.CanSubscribe
-                text: request.viewerSubscription === SubscriptionState.Subscribed ? qsTr("Unsubscribe") : qsTr("Subscribe")
+                text: request.viewerSubscription === SubscriptionState.Subscribed ?
+                          //% "Unsubscribe"
+                          qsTrId("id-unsubscribe") :
+                          //% "Subscribe"
+                          qsTrId("id-subscribe")
 
                 onClicked: {
                     if (request.viewerSubscription === SubscriptionState.Subscribed)
@@ -62,7 +66,8 @@ Page {
             }
             MenuItem {
                 visible: request.viewerAbilities & Viewer.CanUpdate
-                text: qsTr("Edit")
+                //% "Edit"
+                text: qsTrId("id-edit")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"), {
                                                     edit: true,
@@ -79,17 +84,21 @@ Page {
             }
             MenuItem {
                 visible: request.viewerAbilities & Viewer.CanUpdate && request.state === PullRequest.StateOpen
-                text: qsTr("Close")
+                //% "Close"
+                text: qsTrId("id-close")
 
-                onClicked: remorse.execute(qsTr("Closing pull request"), function() {
+                //% "Closing pull request"
+                onClicked: remorse.execute(qsTrId("id-closing-pull-request"), function() {
                     SailHub.api().closePullRequest(request.nodeId)
                 })
             }
             MenuItem {
                 visible: request.viewerAbilities & Viewer.CanUpdate && request.state === PullRequest.StateClosed
-                text: qsTr("Reopen")
+                //% "Reopen"
+                text: qsTrId("id-reopen")
 
-                onClicked: remorse.execute(qsTr("Reopen pull request"), function() {
+                //% "Reopen pull request"
+                onClicked: remorse.execute(qsTrId("id-reopen-pull-request"), function() {
                     SailHub.api().reopenPullRequest(request.nodeId)
                 })
             }
@@ -110,7 +119,8 @@ Page {
             Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
-                title: qsTr("Pull Request")
+                //% "Pull request"
+                title: qsTrId("id-pull-request")
             }
 
             Row {
@@ -163,9 +173,12 @@ Page {
                     anchors.verticalCenter: parent.verticalCenter
                     icon: request.state === PullRequestState.Merged ? "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
                     text: {
-                        if (request.state === PullRequestState.Open) return qsTr("Open")
-                        if (request.state === PullRequestState.Merged) return qsTr("Merged")
-                        if (request.state === PullRequestState.Closed) return qsTr("Closed")
+                        //% "Open"
+                        if (request.state === PullRequestState.Open) return qsTrId("id-open")
+                        //% "Merged"
+                        if (request.state === PullRequestState.Merged) return qsTrId("id-merged")
+                        //% "Closed"
+                        if (request.state === PullRequestState.Closed) return qsTrId("id-closed")
                     }
 
                     backgroundColor: {
@@ -204,7 +217,8 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Reactions")
+                //% "Reactions"
+                text: qsTrId("id-reactions")
             }
 
             ReactionsItem {
@@ -232,7 +246,8 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Changes")
+                //% "Changes"
+                text: qsTrId("id-changes")
             }
 
             FilesChangedItem {
@@ -244,7 +259,8 @@ Page {
             }
 
             RelatedValueItem {
-                label: qsTr("Commits")
+                //% "Commits"
+                label: qsTrId("id-commits")
                 icon: "qrc:/icons/icon-m-commit"
                 value: request.commitCount
 
@@ -259,11 +275,13 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Relations")
+                //% "Relations"
+                text: qsTrId("id-relations")
             }
 
             RelatedValueItem {
-                label: qsTr("Labels")
+                //% "Labels"
+                label: qsTrId("id-labels")
                 icon: "image://theme/icon-m-link"
                 value: request.labelCount
 
@@ -271,7 +289,8 @@ Page {
                     if (request.labelCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("LabelsListPage.qml"), {
-                                              title: qsTr("Labels"),
+                                              //% "Labels"
+                                              title: qsTrId("id-labels"),
                                               description: request.repository + " #" + request.number,
                                               identifier: request.nodeId,
                                               type: LabelEntity.PullRequest
@@ -280,12 +299,14 @@ Page {
             }
 
             RelatedValueItem {
-                label: qsTr("Assignees")
+                //% "Assignees"
+                label: qsTrId("id-assignees")
                 icon: "image://theme/icon-m-media-artists"
                 value: request.assigneeCount
 
                 onClicked: pageStack.push(Qt.resolvedUrl("AssigneesListPage.qml"), {
-                                              title: qsTr("Assignees"),
+                                              //% "Assignees"
+                                              title: qsTrId("id-assignees"),
                                               description: request.repository + " #" + request.number,
                                               identifier: request.nodeId,
                                               userType: User.PullRequestAssignee,
@@ -312,7 +333,8 @@ Page {
 //            }
 
             RelatedValueItem {
-                label: qsTr("Participants")
+                //% "Participants"
+                label: qsTrId("id-participants")
                 icon: "image://theme/icon-m-media-artists"
                 value: request.participantCount
 
@@ -320,7 +342,8 @@ Page {
                     if (request.participantCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                              title: qsTr("Participants"),
+                                              //% "Participants"
+                                              title: qsTrId("id-participants"),
                                               description: request.repository + " #" + request.number,
                                               identifier: request.nodeId,
                                               userType: User.PullRequestParticipant
@@ -329,7 +352,8 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Comments")
+                //% "Comments"
+                text: qsTrId("Comments")
             }
         }
 
@@ -347,7 +371,8 @@ Page {
 
             MenuItem {
                 enabled: !discussion.locked
-                text: qsTr("Write comment")
+                //% "Write comment"
+                text: qsTrId("id-write-comment")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
 
@@ -359,8 +384,17 @@ Page {
 
             MenuItem {
                 visible: request.viewerAbilities & Viewer.CanUpdate
-                text: request.locked ? qsTr("Unlock") : qsTr("Lock")
-                onClicked: remorse.execute(request.locked ? qsTr("Unlocking") : qsTr("Locking"), function() {
+                text: request.locked ?
+                          //% "Unlock"
+                          qsTrId("id-unlock") :
+                          //% "Lock"
+                          qsTrId("id-lock")
+                onClicked: remorse.execute(request.locked ?
+                                               //% "Unlocking"
+                                               qsTrId("id-unlocking") :
+                                               //% "Locking"
+                                               qsTrId("id-locking"),
+                                           function() {
                     if (request.locked) {
                         SailHub.api().unlock(request.nodeId)
                     } else {
@@ -371,7 +405,8 @@ Page {
 
             MenuItem {
                 visible: commentsModel.hasNextPage
-                text: qsTr("Load more (%n to go)", "", commentsModel.totalCount - commentsColumn.children.length)
+                //% "Load more (%n to go)"
+                text: qsTrId("id-load-more", commentsModel.totalCount - commentsColumn.children.length)
                 onClicked: getComments()
             }
         }

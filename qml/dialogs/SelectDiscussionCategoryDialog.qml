@@ -14,8 +14,10 @@ Dialog {
 
     DialogHeader {
         id: header
-        title: qsTr("Select Category")
-        acceptText: qsTr("Select")
+        //% "Select category"
+        title: qsTrId("id-select-category")
+        //% "Select"
+        acceptText: qsTrId("id-select")
     }
 
     SilicaListView {
@@ -47,7 +49,8 @@ Dialog {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No categories available")
+            //% "No categories available"
+            text: qsTrId("id-no-categories-available")
         }
 
         VerticalScrollDecorator {}

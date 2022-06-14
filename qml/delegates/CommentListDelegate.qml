@@ -46,7 +46,8 @@ ListItem {
 
                     text: {
                         if (model.edited)
-                            return model.createdAtTimeSpan + " - " + qsTr("Edited")
+                            //% "Edited"
+                            return model.createdAtTimeSpan + " - " + qsTrId("id-edited")
 
                         return model.createdAtTimeSpan
                     }
