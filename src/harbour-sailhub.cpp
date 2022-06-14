@@ -74,6 +74,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<ProfileStatus>(uri, 1, 0, "ProfileStatus");
     qmlRegisterType<PullRequest>(uri, 1, 0, "PullRequest");
     qmlRegisterType<PullRequestsModel>(uri, 1, 0, "PullRequestsModel");
+    qmlRegisterType<QueryObject>(uri, 1, 0, "QueryObject");
     qmlRegisterType<Reaction>(uri, 1, 0, "Reaction");
     qmlRegisterType<Release>(uri, 1, 0, "Release");
     qmlRegisterType<ReleasesModel>(uri, 1, 0, "ReleasesModel");

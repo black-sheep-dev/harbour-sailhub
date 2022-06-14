@@ -17,6 +17,34 @@ GraphQLConnector::GraphQLConnector(QString endpoint, QNetworkAccessManager *mana
 {
 }
 
+void GraphQLConnector::request(QueryObject *query)
+{
+    if (query == nullptr) {
+        return;
+    }
+
+    //create request
+    QNetworkRequest request(m_endpoint);
+    request.setSslConfiguration(QSslConfiguration::defaultConfiguration());
+    request.setRawHeader("Content-Type", "application/json");
+    request.setRawHeader("Accept-Encoding", "gzip");
+    request.setRawHeader("Authorization", "token " + m_token.toUtf8());
+    request.setRawHeader("GraphQL-Features", "discussions_api");
+
+    // create payload
+    QJsonObject payload;
+    payload.insert(QStringLiteral("query"), query->query().simplified());
+
+    if (!query->variables().isEmpty()) {
+        payload.insert(QStringLiteral("variables"), query->variables());
+    }
+
+    // send request
+    QNetworkReply *reply = m_manager->post(request,
+                                           QJsonDocument(payload).toJson(QJsonDocument::Compact));
+    connect(reply, &QNetworkReply::finished, query, &QueryObject::onResultAvailable);
+}
+
 void GraphQLConnector::sendQuery(const GraphQLQuery &query, quint8 requestType, const QByteArray &requestId)
 {    
     // create payload

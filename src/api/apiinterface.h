@@ -118,6 +118,8 @@ public:
     Q_INVOKABLE QString token() const;
 
     // api calls
+    Q_INVOKABLE void request(QueryObject *query);
+
     void getLogin();
     Q_INVOKABLE void addComment(const QString &body, const QString &subjectId);
     Q_INVOKABLE void addDiscussionComment(const QString &body, const QString &discussionId, const QString &replyToId = QString());

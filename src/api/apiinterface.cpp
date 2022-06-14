@@ -50,6 +50,11 @@ QString ApiInterface::token() const
     return m_graphqlConnector->token();
 }
 
+void ApiInterface::request(QueryObject *query)
+{
+    m_graphqlConnector->request(query);
+}
+
 void ApiInterface::addComment(const QString &body, const QString &subjectId)
 {
     if (m_profile == nullptr)

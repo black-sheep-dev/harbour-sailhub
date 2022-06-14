@@ -185,7 +185,8 @@ void SailHub::onNotificationsAvailable(const QList<NotificationListItem> &items)
         }
 
         Notification notification;
-        notification.setAppName(tr("SailHub"));
+        //% "SailHub"
+        notification.setAppName(qtTrId("id-app-name"));
 
         switch (item.reason) {
         case NotificationObject::Assign:
@@ -254,7 +255,8 @@ void SailHub::onNotificationsAvailable(const QList<NotificationListItem> &items)
         notification.setBody(item.title);
         notification.setRemoteAction(Notification::remoteAction(
                                         QStringLiteral("default"),
-                                        tr("Default"),
+                                        //% "Default"
+                                        qtTrId("id-default"),
                                         QStringLiteral("harbour.sailhub.service"),
                                         QStringLiteral("/harbour/sailhub/service"),
                                         QStringLiteral("harbour.sailhub.service"),

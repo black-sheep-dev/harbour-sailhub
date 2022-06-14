@@ -151,7 +151,6 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/ReleasePage.qml \
     qml/pages/ReleasesListPage.qml \
     qml/pages/RepoPage.qml \
-    qml/pages/RepoPage_old.qml \
     qml/pages/ReposListPage.qml \
     qml/pages/SearchOrganizationPage.qml \
     qml/pages/SearchRepositoryPage.qml \

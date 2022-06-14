@@ -10,6 +10,7 @@
 #include <QUuid>
 
 #include "graphqlquery.h"
+#include "queryobject.h"
 
 class GraphQLConnector : public QObject
 {
@@ -18,6 +19,7 @@ class GraphQLConnector : public QObject
 public:
     explicit GraphQLConnector(QString endpoint, QNetworkAccessManager *manager, QObject *parent = nullptr);
 
+    void request(QueryObject *query);
     void sendQuery(const GraphQLQuery &query, quint8 requestType, const QByteArray &requestId = QUuid::createUuid().toByteArray());
     void setEndpoint(const QString &endpoint);
     void setToken(const QString &token);
