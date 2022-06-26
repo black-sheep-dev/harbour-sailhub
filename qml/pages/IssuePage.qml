@@ -312,11 +312,11 @@ query($nodeId: ID!) {
                             return qsTrId("id-completed")
 
                         case "NOT_PLANNED":
-                            //% "Not planned
+                            //% "Not planned"
                             return qsTrId("id-not-planned")
 
                         case "REOPENED":
-                            //% "Reopened
+                            //% "Reopened"
                             return qsTrId("id-reopened")
 
                         default:

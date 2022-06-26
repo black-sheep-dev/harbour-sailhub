@@ -14,7 +14,7 @@ Dialog {
         DialogHeader {
             //% "Close issue"
             title: qsTrId("id-close-issue")
-            //% "Close
+            //% "Close"
             acceptText: qsTrId("id-close")
         }
 
@@ -30,7 +30,7 @@ Dialog {
 
         ComboBox {
             id: comboBoxReason
-            //% ""Reason
+            //% "Reason"
             label: qsTrId("id-reason")
             menu: ContextMenu {
                 MenuItem {
