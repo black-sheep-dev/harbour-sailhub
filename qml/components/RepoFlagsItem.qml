@@ -4,14 +4,22 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 Flow {
-    property int flags: 0
-    property int lockReason: 0
+    property bool isArchived: false
+    property bool isDisabled: false
+    property bool isEmpty: false
+    property bool isFork: false
+    property bool isInOrganization: false
+    property bool isLocked: false
+    property bool isMirror: false
+    property bool isPrivate: false
+    property bool isTemplate: false
+    property string lockReason: ""
 
     width: parent.width
     spacing: Theme.paddingSmall
 
     Pill {
-        visible: flags & Repo.IsPrivate
+        visible: isPrivate
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "image://theme/icon-m-home"
@@ -20,25 +28,25 @@ Flow {
     }
 
     Pill {
-        visible: flags & Repo.IsLocked
+        visible: isLocked
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "image://theme/icon-s-secure"
         text: {
             switch (lockReason) {
-            case RepositoryLockReason.Billing:
+            case "BILLING":
                 //% "Billing"
                 return qsTrId("id-billing")
 
-            case RepositoryLockReason.Migrating:
+            case "MIGRATING":
                 //% "Migrating"
                 return qsTrId("id-migrating")
 
-            case RepositoryLockReason.Moving:
+            case "MOVING":
                 //% "Moving"
                 return qsTrId("id-moving")
 
-            case RepositoryLockReason.Rename:
+            case "RENAME":
                 //% "Rename"
                 return qsTrId("id-rename")
 
@@ -50,7 +58,7 @@ Flow {
     }
 
     Pill {
-        visible: flags & Repo.IsArchived
+        visible: isArchived
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "image://theme/icon-m-file-archive-folder"
@@ -59,7 +67,7 @@ Flow {
     }
 
     Pill {
-        visible: flags & Repo.IsInOrganization
+        visible: isInOrganization
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "image://theme/icon-m-company"
@@ -68,7 +76,7 @@ Flow {
     }
 
     Pill {
-        visible: flags & Repo.IsFork
+        visible: isFork
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "qrc:///icons/icon-m-fork"
@@ -77,7 +85,7 @@ Flow {
     }
 
     Pill {
-        visible: flags & Repo.IsMirror
+        visible: isMirror
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "image://theme/icon-m-flip"
@@ -86,11 +94,29 @@ Flow {
     }
 
     Pill {
-        visible: flags & Repo.IsTemplate
+        visible: isTemplate
         backgroundColor: Theme.highlightColor
         color: Theme.primaryColor
         icon: "image://theme/icon-m-levels"
         //% "Template"
         text: qsTrId("id-template")
+    }
+
+    Pill {
+        visible: isDisabled
+        backgroundColor: Theme.highlightColor
+        color: Theme.primaryColor
+        icon: "image://theme/icon-m-levels"
+        //% "Disabled"
+        text: qsTrId("id-disabled")
+    }
+
+    Pill {
+        visible: isEmpty
+        backgroundColor: Theme.highlightColor
+        color: Theme.primaryColor
+        icon: "image://theme/icon-m-levels"
+        //% "Empty"
+        text: qsTrId("id-empty")
     }
 }

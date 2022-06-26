@@ -4,6 +4,7 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import "../objects/"
 
 Page {    
     id: page
@@ -12,7 +13,6 @@ Page {
 
     SilicaFlickable {
         PullDownMenu {
-            busy: !SailHub.api().ready
             MenuItem {
                 //% "About"
                 text: qsTrId("id-about")
@@ -35,7 +35,7 @@ Page {
         }
 
         ViewPlaceholder {
-            enabled: !SailHub.api().ready
+            enabled: !viewerProfile.ready
 
             //% "App initializing ..."
             text: qsTrId("id-app-initializing")
@@ -49,12 +49,9 @@ Page {
             width: parent.width
             spacing: Theme.paddingSmall
 
-            opacity: SailHub.api().ready ? 1.0 : 0.0
+            opacity: viewerProfile.ready ? 1.0 : 0.0
 
-            Behavior on opacity {
-                FadeAnimation {}
-            }
-
+            Behavior on opacity { FadeAnimation {} }
 
             PageHeader {
                 //% "Home"
@@ -65,13 +62,9 @@ Page {
                 id: authorItem
 
                 interactive: true
-                title: SailHub.api().profile.login
-                subtitle: SailHub.api().profile.name
-                avatar: SailHub.api().profile.avatarUrl
-
-                onClicked: pageStack.push(Qt.resolvedUrl("../pages/UserPage.qml"), {
-                                              user: SailHub.api().profile
-                                          })
+                login: viewerProfile.login
+                subtitle: viewerProfile.name
+                avatar: viewerProfile.avatarUrl
             }
 
             SectionHeader {
@@ -79,12 +72,13 @@ Page {
                 text: qsTrId("id-status")
             }
 
-            ProfileStatusItem {
+            ProfileStatusItem {               
                 width: parent.width
 
-                profileStatus: SailHub.api().profileStatus
+                isViewer: true
+                profileStatus: viewerProfile.profileStatus
 
-                onClicked: pageStack.push(Qt.resolvedUrl("ProfileStatusPage.qml"), { profileStatus: SailHub.api().profileStatus })
+                onClicked: pageStack.push(Qt.resolvedUrl("ProfileStatusPage.qml"))
             }
 
             SectionHeader {
@@ -92,37 +86,37 @@ Page {
                 text: qsTrId("id-activities")
             }
 
-            IconRelatedItem {
-                icon: "image://theme/icon-m-alarm"
-                //% "Notifications"
-                title: qsTrId("id-notifications")
+//            IconRelatedItem {
+//                icon: "image://theme/icon-m-alarm"
+//                //% "Notifications"
+//                title: qsTrId("id-notifications")
 
-                onClicked: pageStack.push(Qt.resolvedUrl("NotificationsListPage.qml"))
+//                onClicked: pageStack.push(Qt.resolvedUrl("NotificationsListPage.qml"))
 
-                Rectangle {
-                    visible: SailHub.newNotificationsAvailable > 0
-                    id: notificationBubble
-                    anchors.left: parent.left
-                    anchors.leftMargin: Theme.horizontalPageMargin + Theme.iconSizeSmall
-                    anchors.top: parent.top
+//                Rectangle {
+//                    visible: SailHub.newNotificationsAvailable > 0
+//                    id: notificationBubble
+//                    anchors.left: parent.left
+//                    anchors.leftMargin: Theme.horizontalPageMargin + Theme.iconSizeSmall
+//                    anchors.top: parent.top
 
-                    width: Theme.iconSizeSmall
-                    height: Theme.iconSizeSmall
+//                    width: Theme.iconSizeSmall
+//                    height: Theme.iconSizeSmall
 
-                    color: Theme.highlightColor
-                    opacity: 0.8
-                    radius: width / 2
-                }
+//                    color: Theme.highlightColor
+//                    opacity: 0.8
+//                    radius: width / 2
+//                }
 
-                Label {
-                    visible: SailHub.newNotificationsAvailable > 0
-                    anchors.centerIn: notificationBubble
-                    font.pixelSize: Theme.fontSizeTiny
-                    color: Theme.primaryColor
+//                Label {
+//                    visible: SailHub.newNotificationsAvailable > 0
+//                    anchors.centerIn: notificationBubble
+//                    font.pixelSize: Theme.fontSizeTiny
+//                    color: Theme.primaryColor
 
-                    text: SailHub.newNotificationsAvailable
-                }
-            }
+//                    text: SailHub.newNotificationsAvailable
+//                }
+//            }
 
             SectionHeader {
                 //% "My work"
@@ -135,8 +129,8 @@ Page {
                 title: qsTrId("id-issues")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("IssueSelectionPage.qml"), {
-                                              userId: SailHub.api().profile.nodeId,
-                                              userLogin: SailHub.api().profile.login
+                                              userId: viewerProfile.nodeId,
+                                              userLogin: viewerProfile.login
                                           })
             }
             IconRelatedItem {
@@ -145,15 +139,13 @@ Page {
                 title: qsTrId("id-pull-requests")
 
                 /*onClicked: pageStack.push(Qt.resolvedUrl("PullRequestsSelectionPage.qml"), {
-                                              userId: SailHub.api().profile.nodeId,
-                                              userLogin: SailHub.api().profile.login
+                                              userId: Api.profile.nodeId,
+                                              userLogin: Api.profile.login
                                          })*/
 
-                onClicked: pageStack.push(Qt.resolvedUrl("PullRequestsListPage.qml"), {
-                                                              description: SailHub.api().profile.login,
-                                                              identifier: SailHub.api().profile.nodeId,
-                                                              type: PullRequest.User,
-                                                              states: PullRequestState.Open
+                onClicked: pageStack.push(Qt.resolvedUrl("PullRequestsSelectionPage.qml"), {
+                                                              userId: viewerProfile.nodeId,
+                                                              userLogin: viewerProfile.login
                                                          })
             }
             IconRelatedItem {
@@ -162,9 +154,11 @@ Page {
                 title: qsTrId("id-repositories")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
-                                              login: SailHub.api().profile.login,
-                                              identifier: SailHub.api().profile.nodeId,
-                                              repoType: Repo.User
+                                              nodeId: viewerProfile.nodeId,
+                                              itemsQueryType: "USER_REPOS",
+                                              //% "Repositories"
+                                              title: qsTrId("id-repositories"),
+                                              description: viewerProfile.login
                                           })
             }
             IconRelatedItem {
@@ -173,9 +167,9 @@ Page {
                 title: qsTrId("id-organizations")
 
                 onClicked: pageStack.push(Qt.resolvedUrl("OrganizationsListPage.qml"), {
-                                              login: SailHub.api().profile.login,
-                                              identifier: SailHub.api().profile.nodeId,
-                                              organizationType: Organization.IsMember
+                                              nodeId: viewerProfile.nodeId,
+                                              description: viewerProfile.login,
+                                              itemsQueryType: "USER_ORGANIZATIONS"
                                           })
             }
         }
@@ -189,9 +183,9 @@ Page {
     onStatusChanged: {
         if (status !== PageStatus.Active) return
 
-        if (SailHub.accessToken.length === 0) startSetupWizard()
+        if (Api.token.length === 0) startSetupWizard()
 
-        SailHub.api().getProfileStatus()
+        viewerProfile.refresh()
     }
 }
 

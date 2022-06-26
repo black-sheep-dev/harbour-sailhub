@@ -4,56 +4,172 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import "../queries/"
 import "../tools/"
 import ".."
 
 Page {
-    property bool busy: false
-    property bool loading: false
     property string nodeId
     property string login
-    property User user
+    property bool loading: !(query.ready || followUserMutation.ready || unfollowUserMutation.ready)
+
+    property alias user: query.result
+    property bool viewerIsFollowing: false
 
     id: page
-
     allowedOrientations: Orientation.All
+
+    function refresh() { Api.request(query) }
+
+    QueryObject {
+        id: query
+
+        resultNodePath: login.length > 0  ? "user" : "node"
+
+        query: '
+query(' + (login.length > 0 ? "$userLogin: String!" : "$nodeId: ID!") + ') {
+    ' + (login.length > 0 ? "user(login: $userLogin)" : "node(id: $nodeId)") + ' {
+        ... on User {
+            id
+            avatarUrl
+            bio
+            company
+            contributionsCollection {
+                contributionCalendar {
+                    totalContributions
+                }
+            }
+            followers {
+                totalCount
+            }
+            following {
+                totalCount
+            }
+            gists (privacy: ALL) {
+                totalCount
+            }
+            location
+            login
+            isViewer
+            name
+            organizations {
+                totalCount
+            }
+            repositories {
+                totalCount
+            }
+            starredRepositories {
+                totalCount
+            }
+            status {
+                emoji
+                message
+            }
+            twitterUsername
+            viewerCanFollow
+            viewerIsFollowing
+            websiteUrl
+        }
+    }
+}'
+
+        variables: {
+            var obj = new Object
+            if (login.length > 0) {
+                obj["userLogin"] = page.login
+            } else {
+                obj["nodeId"] = page.nodeId
+            }
+
+            return obj
+        }
+
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+
+            viewerIsFollowing = result.viewerIsFollowing
+            nodeId = result.id
+        }
+
+        onErrorChanged: notification.showErrorMessage(error)
+    }
+
+    FollowUserMutation {
+        id: followUserMutation
+        nodeId: user.id
+
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+
+            viewerIsFollowing = result.followUser.user.viewerIsFollowing
+        }
+    }
+    UnfollowUserMutation {
+        id: unfollowUserMutation
+        nodeId: user.id
+
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+
+            viewerIsFollowing = result.unfollowUser.user.viewerIsFollowing
+        }
+    }
 
     PageBusyIndicator {
         id: busyIndicator
         size: BusyIndicatorSize.Large
         anchors.centerIn: page
-        running: page.loading
+        running: loading
+
+        Label {
+            anchors {
+                top: parent.bottom
+                topMargin: Theme.paddingLarge
+                horizontalCenter: parent.horizontalCenter
+            }
+            color: Theme.highlightColor
+            //% "Loading data..."
+            text: qsTrId("id-loading-data")
+        }
+    }
+
+    ViewPlaceholder {
+        enabled: user === null && query.ready
+        //% "User unavailable"
+        text: qsTrId("id-user-unavailable")
     }
 
     SilicaFlickable {
         PullDownMenu {
-            visible: !user.isViewer
-            busy: page.busy
+            busy: loading
 
             MenuItem {
-                text: user.viewerIsFollowing ?
+                //% "Refresh"
+                text: qsTrId("id-refresh")
+                onClicked: refresh()
+            }
+            MenuItem {
+                visible: user.viewerCanFollow
+                text: viewerIsFollowing ?
                           //% "Unfollow"
                           qsTrId("id-unfollow") :
                           //% "Follow"
                           qsTrId("id-follow")
 
-                onClicked: {
-                    page.busy = true
-                    SailHub.api().followUser(user.nodeId, !user.viewerIsFollowing)
-                }
+                onClicked: Api.request(viewerIsFollowing ? unfollowUserMutation : followUserMutation)
             }
         }
 
         anchors.fill: parent
         contentHeight: column.height
 
+        opacity: !query.ready ? 0.0 : 1.0
+        Behavior on opacity { FadeAnimation {} }
+
         Column {
             id: column
             width: parent.width
-            spacing: Theme.paddingSmall
-
-            opacity: busyIndicator.running ? 0.1 : 1.0
-            Behavior on opacity { FadeAnimator {} }
+            spacing: Theme.paddingMedium
 
             PageHeader {
                 //% "Profile"
@@ -104,7 +220,7 @@ Page {
             }
 
             Row {
-                visible: user.statusMessage.length > 0
+                visible: user.status !== null
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
                 spacing: Theme.paddingMedium
@@ -117,7 +233,7 @@ Page {
                     sourceSize.width: width
                     sourceSize.height: width
 
-                    source: user.statusEmoji
+                    source: DataUtils.getEmojiUrl(user.status.emoji)
                 }
 
                 Label {
@@ -127,16 +243,13 @@ Page {
                     wrapMode: Text.Wrap
                     textFormat: Text.RichText
 
-                    text: MarkdownParser.parse(user.statusMessage)
+                    text: MarkdownParser.parse(user.status.message)
                 }
             }
 
-            Label {
-                visible: user.statusMessage.length > 0
-                x: Theme.horizontalPageMargin
-                width: parent.width - 2*x
-
-                text: MarkdownParser.parseRaw(user.status)
+            Item {
+                height: Theme.paddingSmall
+                width: 1
             }
 
             MarkdownLabel {
@@ -148,9 +261,14 @@ Page {
                 text: MarkdownParser.parse(user.bio)
             }
 
+            Item {
+                height: Theme.paddingSmall
+                width: 1
+            }
+
             // Info
             IconLabel {
-                visible: user.twitterUsername.length > 0
+                visible: user.twitterUsername !== null && user.twitterUsername.length > 0
 
                 icon: "image://theme/icon-m-message"
                 label: user.twitterUsername
@@ -159,14 +277,23 @@ Page {
             }
 
             IconLabel {
-                visible: user.location.length > 0
+                enabled: false
+                visible: user.company !== null && user.company.length > 0
+
+                icon: "image://theme/icon-m-company"
+                label: user.company
+            }
+
+            IconLabel {
+                enabled: false
+                visible: user.location !== null && user.location.length > 0
 
                 icon: "image://theme/icon-m-location"
                 label: user.location
             }
 
             IconLabel {
-                visible: user.websiteUrl.length > 0
+                visible: user.websiteUrl !== null && user.websiteUrl.length > 0
 
                 icon: "image://theme/icon-m-website"
                 label: user.websiteUrl
@@ -175,7 +302,7 @@ Page {
             }
 
             Item {
-                height: Theme.paddingSmall
+                height: Theme.paddingMedium
                 width: 1
             }
 
@@ -186,35 +313,41 @@ Page {
                 spacing: Theme.paddingSmall
 
                 CounterItem {
-                    width: parent.width / 3
+                    width: parent.width / 2
 
                     //% "%n follower(s)"
-                    title: qsTrId("id-followers-count", user.followers)
+                    title: qsTrId("id-followers-count", user.followers.totalCount)
                     icon: "image://theme/icon-m-users"
 
                     onClicked: {
-                        if (user.followers === 0) return;
+                        if (user.followers.totalCount === 0) return;
 
                         pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                                  identifier: user.nodeId,
-                                                  userType: User.Follower
+                                                   nodeId: nodeId,
+                                                   itemsQueryType: "FOLLOWERS",
+                                                   //% "Followers"
+                                                   title: qsTrId("id-followers"),
+                                                   description: user.login
                                               })
                     }
                 }
 
                 CounterItem {
-                    width: parent.width / 3
+                    width: parent.width / 2
 
                     //% "%n following(s)"
-                    title: qsTrId("id-following-count", user.following)
+                    title: qsTrId("id-following-count", user.following.totalCount)
                     icon: "image://theme/icon-m-message-forward"
 
                     onClicked: {
-                        if (user.following === 0) return;
+                        if (user.following.totalCount === 0) return;
 
                         pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                                  identifier: user.nodeId,
-                                                  userType: User.Following
+                                                   nodeId: nodeId,
+                                                   itemsQueryType: "FOLLOWING",
+                                                   //% "Following"
+                                                   title: qsTrId("id-following"),
+                                                   description: user.login
                                               })
                     }
                 }
@@ -229,96 +362,84 @@ Page {
             RelatedValueItem {
                 //% "Repositories"
                 label: qsTrId("id-repositories")
-                value: user.repositories
+                value: user.repositories.totalCount
 
                 onClicked: {
-                    if (user.repositories === 0) return;
+                    if (user.repositories.totalCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
-                                                                  identifier: user.nodeId,
-                                                                  repoType: Repo.User
+                                                                  nodeId: nodeId,
+                                                                  itemsQueryType: "USER_REPOS",
+                                                                  //% "Repositories"
+                                                                  title: qsTrId("id-repositories"),
+                                                                  description: user.login
                                                               })
                 }
             }
             RelatedValueItem {
                 //% "Gists"
                 label: qsTrId("id-gists")
-                value: user.gistCount
+                value: user.gists.totalCount
 
                 onClicked: {
-                    if (user.gistCount === 0) return;
+                    if (user.gists.totalCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("GistsListPage.qml"), {
-                                                                  identifier: user.nodeId
+                                                                  nodeId: nodeId,
+                                                                  description: user.login
                                                               })
                 }
             }
             RelatedValueItem {
                 //% "Organizations"
                 label: qsTrId("id-organizations")
-                value: user.organizations
+                value: user.organizations.totalCount
 
                 onClicked: {
-                    if (user.organizations === 0) return;
+                    if (user.organizations.totalCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("OrganizationsListPage.qml"), {
-                                                                  title: user.login,
-                                                                  identifier: user.nodeId,
-                                                                  organizationType: Organization.IsMember
-                                                              })
+                                               nodeId: nodeId,
+                                               itemsQueryType: "USER_ORGANIZATIONS",
+                                               //% "Organizations"
+                                               title: qsTrId("id-organizations"),
+                                               description: user.login
+                                          })
                 }
             }
             RelatedValueItem {
                 //% "Starred"
                 label: qsTrId("id-starred")
-                value: user.starredRepositories
+                value: user.starredRepositories.totalCount
 
                 onClicked: {
-                    if (user.starredRepositories === 0) return;
+                    if (user.starredRepositories.totalCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
-                                                                  identifier: user.nodeId,
-                                                                  repoType: Repo.Starred
+                                                                  nodeId: nodeId,
+                                                                  itemsQueryType: "STARRED_REPOS",
+                                                                  //% "Starred repositories"
+                                                                  title: qsTrId("id-starred-repositories"),
+                                                                  description: user.login,
+                                                                  itemType: RepositoryType.Starred
                                                               })
                 }
             }
-        }
-    }
 
-    Connections {
-        target: SailHub.api()
-        onUserAvailable: {
-            if (page.login.length > 0) {
-                if (page.login !== user.login) return
-            } else {
-                if ( page.nodeId !== user.nodeId) return
+            SectionHeader {
+                //% "Contributions in the last 12 month"
+                text: qsTrId("id-contributions-last-twelve-month")
             }
 
-            page.user = user
-            page.loading = false
-        }
-
-        onUserFollowed: {
-            if (nodeId !== user.nodeId) return
-            page.user.viewerIsFollowing = following
-            page.user.followers += following ? 1 : -1
-            page.busy = false
-        }
-
-        onProfileChanged: page.busy = false
-    }
-
-    Component.onCompleted: {
-        if (page.nodeId.length > 0) {
-            page.loading = true
-            SailHub.api().getUser(page.nodeId)
-        } else if (page.login.length > 0) {
-            page.loading = true
-            SailHub.api().getUserByLogin(page.login)
-        } else {
-            page.nodeId = user.nodeId
+            RelatedValueItem {
+                //% "Contributions"
+                label: qsTrId("id-contributions")
+                value: user.contributionsCollection.contributionCalendar.totalContributions
+            }
         }
     }
+
+    Component.onCompleted: refresh()
 }
 
 

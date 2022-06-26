@@ -62,6 +62,7 @@ struct ApiKey {
     static const QString EMOJI_HTML;
     static const QString END_CURSOR;
     static const QString ENTRIES;
+    static const QString ERROR;
     static const QString EXPIRES_AT;
     static const QString EXTENSION;
     static const QString FILE;

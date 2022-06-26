@@ -4,22 +4,99 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import "../queries/"
 
 Page {
-    property bool busy: false
-    property bool loading: false
     property string nodeId
-    property Organization organization
+    property alias organization: query.result
 
     id: page
-
     allowedOrientations: Orientation.All
+
+    function refresh() { Api.request(query) }
+
+    QueryObject {
+        id: query
+        resultNodePath: "node"
+        query: '
+            query($nodeId: ID!) {
+                node(id: $nodeId) {
+                    ... on Organization {
+                        id
+                        avatarUrl
+                        description
+                        email
+                        location
+                        login
+                        membersWithRole {
+                            totalCount
+                        }
+                        name
+                        projects {
+                            totalCount
+                        }
+                        repositories {
+                            totalCount
+                        }
+                        teams {
+                            totalCount
+                        }
+                        twitterUsername
+                        viewerIsFollowing
+                        websiteUrl
+                    }
+                }
+            }'
+        variables: {
+            "nodeId": page.nodeId
+        }
+
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+            followMenu.viewerIsFollowing = result.node.viewerIsFollowing
+        }
+
+        onErrorChanged: notification.showErrorMessage(error)
+    }
+
+    FollowOrganizationMutation {
+        id: followOrganizationMutation
+        nodeId: page.nodeId
+
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+
+            followMenu.viewerIsFollowing = result.followOrganization.organization.viewerIsFollowing
+        }
+    }
+
+    FollowOrganizationMutation {
+        id: unfollowOrganizationMutation
+        nodeId: page.nodeId
+
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+
+            followMenu.viewerIsFollowing = result.unfollowOrganization.organization.viewerIsFollowing
+        }
+    }
 
     PageBusyIndicator {
         id: busyIndicator
         size: BusyIndicatorSize.Large
         anchors.centerIn: page
-        running: page.loading
+        running: !query.ready
+
+        Label {
+            anchors {
+                top: parent.bottom
+                topMargin: Theme.paddingLarge
+                horizontalCenter: parent.horizontalCenter
+            }
+            color: Theme.highlightColor
+            //% "Loading data..."
+            text: qsTrId("id-loading-data")
+        }
     }
 
     SilicaFlickable {
@@ -30,9 +107,21 @@ Page {
                 //% "Refresh"
                 text: qsTrId("id-refresh")
                 onClicked: {
-                    page.busy = true
-                    SailHub.api().getOrganization(page.nodeId)
+                    SailHub.api().request(query)
                 }
+            }
+
+            MenuItem {
+                property bool viewerIsFollowing: false
+
+                id: followMenu
+                text: viewerIsFollowing ?
+                          //% "Unfollow"
+                          qsTrId("id-unfollow") :
+                          //% "Follow"
+                          qsTrId("id-follow")
+
+                onClicked: Api.request(viewerIsFollowing ? unfollowOrganizationMutation : followOrganizationMutation)
             }
         }
 
@@ -43,9 +132,6 @@ Page {
             id: column
             width: parent.width
             spacing: Theme.paddingSmall
-
-            opacity: busyIndicator.running ? 0.1 : 1.0
-            Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
                 //% "Organization"
@@ -113,28 +199,28 @@ Page {
 
             // Info
             IconLabel {
-                visible: organization.twitterUsername.length > 0
+                visible: organization.twitterUsername !== null
 
                 icon: "image://theme/icon-m-message"
                 label: organization.twitterUsername
             }
 
             IconLabel {
-                visible: organization.location.length > 0
+                visible: organization.location !== null
 
                 icon: "image://theme/icon-m-location"
                 label: organization.location
             }
 
             IconLabel {
-                visible: organization.websiteUrl.length > 0
+                visible: organization.websiteUrl !== null
 
                 icon: "image://theme/icon-m-website"
                 label: organization.websiteUrl
             }
 
             IconLabel {
-                visible: organization.email.length > 0
+                visible: organization.email !== null
 
                 icon: "image://theme/icon-m-mail"
                 label: organization.email
@@ -154,66 +240,54 @@ Page {
             RelatedValueItem {
                 //% "Repositories"
                 label: qsTrId("id-repositories")
-                value: organization.repositories
+                value: organization.repositories.totalCount
 
                 onClicked: {
-                    if (organization.repositories === 0) return;
+                    if (organization.repositories.totalCount === 0) return;
 
-                    console.log(organization.nodeId)
+                    console.log(organization.id)
 
                     pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
-                                                                  login: organization.login,
-                                                                  identifier: organization.nodeId,
-                                                                  repoType: Repo.Organization
-                                                              })
+                                                  nodeId: nodeId,
+                                                  itemsQueryType: "ORGANIZATION_REPOS",
+                                                  //% "Repositories"
+                                                  title: qsTrId("id-repositories"),
+                                                  description: organization.name
+                                              })
                 }
             }
             RelatedValueItem {
                 //% "Projects"
                 label: qsTrId("id-projects")
-                value: organization.projects
+                value: organization.projects.totalCount
 
             }
             RelatedValueItem {
                 //% "Teams"
                 label: qsTrId("id-teams")
-                value: organization.teams
+                value: organization.teams.totalCount
             }
             RelatedValueItem {
                 //% "Members"
                 label: qsTrId("id-members")
-                value: organization.members
+                value: organization.membersWithRole.totalCount
 
                 onClicked: {
-                    if (organization.members=== 0) return;
+                    if (organization.membersWithRole.totalCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                              identifier: organization.nodeId,
-                                              userType: User.OrganizationMember
+                                               nodeId: nodeId,
+                                               itemsQueryType: "ORGANIZATION_MEMBERS",
+                                               //% "Members"
+                                               title: qsTrId("id-members"),
+                                               description: organization.name
                                           })
                 }
             }
         }
     }
 
-    Connections {
-        target: SailHub.api()
-        onOrganizationAvailable: {
-            if (page.nodeId !== organization.nodeId) return
-
-            page.organization = organization
-            page.loading = false
-        }
-    }
-
-    Component.onCompleted: {
-        if (page.nodeId.length > 0) {
-            page.loading = true
-            SailHub.api().getOrganization(page.nodeId)
-        } else {
-            page.nodeId = organization.nodeId
-        }
-    }
+    Component.onCompleted: refresh()
 }
 
 

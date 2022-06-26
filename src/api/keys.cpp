@@ -59,6 +59,7 @@ const QString ApiKey::EMOJI                             = QStringLiteral("emoji"
 const QString ApiKey::EMOJI_HTML                        = QStringLiteral("emojiHTML");
 const QString ApiKey::END_CURSOR                        = QStringLiteral("endCursor");
 const QString ApiKey::ENTRIES                           = QStringLiteral("entries");
+const QString ApiKey::ERROR                             = QStringLiteral("error");
 const QString ApiKey::EXPIRES_AT                        = QStringLiteral("expiresAt");
 const QString ApiKey::EXTENSION                         = QStringLiteral("extension");
 const QString ApiKey::FILE                              = QStringLiteral("file");

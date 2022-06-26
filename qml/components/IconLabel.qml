@@ -7,31 +7,30 @@ BackgroundItem {
 
     id: iconLabel
     width: parent.width
+    height: textLabel.height + 2*Theme.paddingSmall
 
-    Row {
-        x: Theme.horizontalPageMargin
-        width: parent.width - 2*x
-        height: Theme.iconSizeSmall * 1.5
-        anchors.verticalCenter: parent.verticalCenter
-        spacing: Theme.paddingMedium
-
-        Image {
-            id: iconImage
-            width: Theme.iconSizeSmall
-            height: width
-            anchors.verticalCenter: parent.verticalCenter
+    Image {
+        id: iconImage
+        anchors {
+            left: parent.left
+            leftMargin: Theme.horizontalPageMargin
+            verticalCenter: parent.verticalCenter
         }
+        width: Theme.iconSizeSmall
+        height: width
+    }
 
-        Label {
-            id: textLabel
-            width: parent.width - iconImage.width - parent.spacing
-            anchors.verticalCenter: parent.verticalCenter
-            wrapMode: Text.Wrap
-
-            color: iconLabel.highlighted ? Theme.highlightColor : Theme.primaryColor
+    Label {
+        id: textLabel
+        anchors {
+            left: iconImage.right
+            leftMargin: Theme.paddingMedium
+            right: parent.right
+            rightMargin: Theme.horizontalPageMargin
+            verticalCenter: parent.verticalCenter
         }
+        wrapMode: Text.Wrap
+
+        color: iconLabel.highlighted ? Theme.highlightColor : Theme.primaryColor
     }
 }
-
-
-

@@ -22,7 +22,7 @@ ListItem {
             spacing: Theme.paddingMedium
 
             Icon {
-                visible: !model.isPublic
+                visible: !item.isPublic
                 id: privateIcon
                 source: "image://theme/icon-s-outline-secure?" + (pressed ? Theme.highlightColor : Theme.primaryColor)
             }
@@ -35,7 +35,7 @@ ListItem {
                 font.bold: true
                 wrapMode: Text.Wrap
 
-                text: model.description
+                text: item.description
             }
         }
 
@@ -51,11 +51,11 @@ ListItem {
 
             Label {
                 width: parent.width - dateIcon.width - parent.spacing
-                anchors.verticalCenter: commentIcon.verticalCenter
+                anchors.verticalCenter: dateIcon.verticalCenter
                 font.pixelSize: Theme.fontSizeTiny
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: model.updatedAt.toLocaleDateString(Qt.locale())
+                text: new Date(item.updatedAt).toLocaleDateString()
             }
         }
 
@@ -67,7 +67,7 @@ ListItem {
             Icon {
                 id: stargazerCountIcon
                 anchors.verticalCenter: parent.verticalCenter
-                source: "image://theme/icon-s-new?" + (model.stargazerCount > 0 ? "#ffff00" : Theme.primaryColor)
+                source: "image://theme/icon-s-new?" + (item.stargazerCount > 0 ? "#ffff00" : Theme.primaryColor)
             }
 
             Label {
@@ -75,7 +75,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: model.stargazerCount
+                text: item.stargazerCount
             }
 
 //            Icon {
@@ -89,7 +89,7 @@ ListItem {
 //                font.pixelSize: Theme.fontSizeSmall
 //                color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-//                text: model.fileCount
+//                text: item.fileCount
 //            }
 
             Icon {
@@ -105,7 +105,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: model.forkCount
+                text: item.forks.totalCount
             }
 
             Icon {
@@ -119,7 +119,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: model.commentCount
+                text: item.comments.totalCount
             }
         }
     }

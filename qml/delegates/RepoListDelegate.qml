@@ -4,107 +4,115 @@ import Sailfish.Silica 1.0
 import "../components/"
 import '..'
 
-//import org.nubecula.harbour.sailhub 1.0
-
 ListItem {
-    property alias name: nameLabel.text
-    property alias description: descriptionLabel.text
-
     id: delegate
     width: parent.width
     contentHeight: delegateContent.height + 2*Theme.paddingSmall
 
-    Row {
-        id: delegateContent
-        anchors.verticalCenter: parent.verticalCenter
-        x: Theme.horizontalPageMargin
-        width: parent.width - 2*x
-        spacing: Theme.paddingMedium
-
-        CircleImage {
-            id: avatarIcon
-            width: Theme.iconSizeSmallPlus
-            height: width
-
-            fallbackItemVisible: false
-
-            source: model.ownerAvatar
-
-            BusyIndicator {
-                size: BusyIndicatorSize.Small
-                anchors.centerIn: avatarIcon
-                running: avatarIcon.status !== Image.Ready
-            }
+    CircleImage {
+        id: avatarIcon
+        anchors {
+            left: parent.left
+            leftMargin: Theme.horizontalPageMargin
+            top: parent.top
         }
 
-        Column {
-            id: delegateColumn
-            width: parent.width - avatarIcon.width - parent.spacing
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: Theme.paddingSmall
+        width: Theme.iconSizeSmallPlus
+        height: width
 
-            Label {
-                id: nameLabel
-                width: parent.width
-                color: pressed ? Theme.highlightColor : Theme.primaryColor
-                font.pixelSize: Theme.fontSizeMedium
-                font.bold: true
-                wrapMode: Text.Wrap
+        fallbackItemVisible: false
+
+        source: item.owner.avatarUrl
+
+        BusyIndicator {
+            size: BusyIndicatorSize.Small
+            anchors.centerIn: avatarIcon
+            running: avatarIcon.status !== Image.Ready
+        }
+    }
+
+    Rectangle {
+        anchors {
+           horizontalCenter: avatarIcon.horizontalCenter
+           top: avatarIcon.bottom
+           topMargin: Theme.paddingMedium
+           bottom: parent.bottom
+           bottomMargin: Theme.paddingLarge
+        }
+        width: 5
+        opacity: 0.5
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: item.isPrivate ? Theme.errorColor : Theme.highlightColor; }
+            GradientStop { position: 1.0; color: (item.isPrivate ? Theme.errorColor : Theme.highlightColor) + "00"; }
+        }
+
+    }
+
+    Column {
+        id: delegateContent
+        anchors {
+            left: avatarIcon.right
+            leftMargin: Theme.paddingMedium
+            right: parent.right
+            rightMargin: Theme.horizontalPageMargin
+        }
+
+        spacing: Theme.paddingSmall
+
+        Label {
+            width: parent.width
+            font.pixelSize: Theme.fontSizeTiny
+            text: item.owner.login
+        }
+
+        Label {
+            width: parent.width
+            color: pressed ? Theme.highlightColor : Theme.primaryColor
+            font {
+                pixelSize: Theme.fontSizeMedium
+                bold: true
+            }
+            wrapMode: Text.Wrap
+
+            text: item.name
+        }
+
+        RepoFlagsItem {
+            isArchived: item.isArchived
+            isDisabled: item.isDisabled
+            isEmpty: item.isEmtpy
+            isFork: item.isFork
+            isInOrganization:  item.isInOrganization
+            isLocked: item.isLocked
+            isMirror: item.isMirror
+            isPrivate: item.isPrivate
+            isTemplate: item.isTemplate
+            lockReason: item.lockReason
+        }
+
+        Label {
+            visible: item.shortDescriptionHTML.length > 0
+            width: parent.width
+            font.pixelSize: Theme.fontSizeExtraSmall
+            wrapMode: Text.Wrap
+            font.bold: true
+            color: pressed ? Theme.highlightColor : Theme.primaryColor
+            text: MarkdownParser.parseRaw(item.shortDescriptionHTML)
+        }
+
+        Row {
+            width: parent.width
+            spacing: Theme.paddingLarge
+
+            StargazerItem {
+                count: item.stargazerCount
             }
 
-            RepoFlagsItem {
-                flags: model.flags
-                lockReason: model.lockReason
-            }
-
-            Label {
-                visible: model.description.length > 0
-                id: descriptionLabel
-                width: parent.width
-                font.pixelSize: Theme.fontSizeExtraSmall
-                wrapMode: Text.Wrap
-                font.bold: true
-                color: pressed ? Theme.highlightColor : Theme.primaryColor
-            }
-
-            Row {
-                id: bottomLine
-                width: parent.width
-                spacing: Theme.paddingMedium
-
-                Icon {
-                    id: stargazerCountIcon
-                    anchors.verticalCenter: parent.verticalCenter
-                    source: "image://theme/icon-s-new?" + (model.stargazerCount > 0 ? SailHubStyles.colorStarred : Theme.primaryColor)
-                }
-
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: pressed ? Theme.highlightColor : Theme.primaryColor
-
-                    text: StringHelper.count(model.stargazerCount)
-                }
-
-                Rectangle {
-                    visible: model.languageName.length > 0
-                    height: stargazerCountIcon.height * 0.5
-                    width: height
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    radius: stargazerCountIcon.height * 0.25
-                    color: model.languageColor
-                }
-
-                Label {
-                    visible: model.languageName.length > 0
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: pressed ? Theme.highlightColor : Theme.primaryColor
-
-                    text: model.languageName
-                }
+            LanguageItem {
+                name: item.primaryLanguage.name
+                color: item.primaryLanguage.color
             }
         }
     }
+
 }

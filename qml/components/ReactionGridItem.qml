@@ -6,7 +6,7 @@ BackgroundItem {
     property bool selected: false
 
     width: Theme.itemSizeHuge
-    height: Theme.itemSizeHuge
+    height: width
 
     Image {
         id: iconImage
@@ -17,15 +17,20 @@ BackgroundItem {
         sourceSize.width: width
 
         smooth: true
+    }
 
-        Icon {
-            visible: selected
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            width: Theme.iconSizeMedium
-            height: Theme.iconSizeMedium
-            source: "image://theme/icon-s-installed?#00FF00"
+    Rectangle {
+        visible: selected
+        anchors {
+            left: parent.left
+            leftMargin: Theme.paddingSmall
+            right: parent.right
+            rightMargin: Theme.paddingSmall
+            bottom: parent.bottom
         }
+
+        height: 4
+        color: Theme.highlightColor
     }
 
     onClicked: selected = !selected

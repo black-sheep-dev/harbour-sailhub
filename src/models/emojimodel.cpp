@@ -1,8 +1,8 @@
 #include "emojimodel.h"
 
 //#include <QDebug>
-#include <QDir>
-#include <QFileInfo>
+#include <QFile>
+#include <QTextStream>
 
 EmojiModel::EmojiModel(QObject *parent) :
     QAbstractListModel(parent)
@@ -14,16 +14,20 @@ void EmojiModel::loadEmoji()
 {
     beginResetModel();
 
-    QDir dir(QStringLiteral("/usr/share/harbour-sailhub/twemoji/svg"));
+    QFile file("/usr/share/harbour-sailhub/data/emoji.def");
 
-    for (const auto &file : dir.entryList(QDir::Files, QDir::Name) ) {
-        QFileInfo info(file);
-
-        if (info.baseName().isEmpty())
-            continue;
-
-        m_emoji.append(info.baseName());
+    if (!file.open(QIODevice::ReadOnly)) {
+        return;
     }
+
+    QTextStream in(&file);
+
+    while (!in.atEnd()) {
+        m_emoji << in.readLine().simplified();
+    }
+
+    file.close();
+
 
     endResetModel();
 }

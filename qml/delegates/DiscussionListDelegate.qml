@@ -25,7 +25,7 @@ ListItem {
             Image {
                 id: delegateIcon
                 anchors.top: parent.top
-                source: model.emoji
+                source: DataUtils.getEmojiFromHtml(item.category.emojiHTML)
                 width: Theme.iconSizeSmallPlus
                 height: Theme.iconSizeSmallPlus
             }
@@ -44,7 +44,7 @@ ListItem {
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: model.category
+                        text: item.category.name
                     }
 
                     Label {
@@ -52,7 +52,7 @@ ListItem {
                         anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: model.updatedAtTimeSpan
+                        text: item.updatedAtTimeSpan
                     }
                 }
 
@@ -61,7 +61,7 @@ ListItem {
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     font.bold: true
 
-                    text: model.title
+                    text: item.title
                 }
 
                 Row {
@@ -74,7 +74,7 @@ ListItem {
                         width: Theme.iconSizeSmall
                         fallbackItemVisible: false
 
-                        source: model.authorAvatar
+                        source: item.author.avatarUrl
                     }
 
                     Label {
@@ -84,8 +84,8 @@ ListItem {
                         color: pressed ? Theme.highlightColor : Theme.primaryColor
 
                         //% "started the discussion"
-                        text: model.authorLogin + " " + qsTrId("id-started-discussion")
-                    }
+                        text: item.author.login + " " + qsTrId("id-started-discussion")
+                    }       
 
                     Icon {
                         id: commentIcon
@@ -99,17 +99,17 @@ ListItem {
                         font.pixelSize: Theme.fontSizeSmall
                         color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                        text: StringHelper.count(model.commentCount)
+                        text: StringHelper.count(item.comments.totalCount)
                     }
                 }
 
-                Row {
-                    visible: model.locked
-                    width: parent.width
-                    spacing: Theme.paddingMedium
+//                Row {
+//                    visible: item.locked
+//                    width: parent.width
+//                    spacing: Theme.paddingMedium
 
-                    LockReasonPill { lockReason: model.lockReason }
-                }
+//                    LockReasonPill { lockReason: item.lockReason }
+//                }
             }
         }
     }

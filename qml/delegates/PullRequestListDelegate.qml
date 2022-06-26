@@ -27,22 +27,25 @@ ListItem {
             Icon {
                 id: delegateIcon
                 anchors.top: parent.top
-                source: model.state & PullRequestState.Merged ?  "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
+                source: item.state === "MERGED" ?  "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
 
                 ColorOverlay {
                     anchors.fill: parent
                     source: parent
                     color: {
-                        if (model.state === PullRequestState.Open)
+                        switch (item.state) {
+                        case "OPEN":
                             return SailHubStyles.colorStatusOpen
 
-                        if (model.state === PullRequestState.Closed)
+                        case "CLOSED":
                             return SailHubStyles.colorStatusClosed
 
-                        if (model.state === PullRequestState.Merged)
+                        case "MERGED":
                             return SailHubStyles.colorStatusMerged
 
-                        return Theme.primaryColor
+                        default:
+                            return Theme.primaryColor
+                        }
                     }
                 }
             }
@@ -60,7 +63,7 @@ ListItem {
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         font.pixelSize: Theme.fontSizeTiny
 
-                        text: model.repository + " #" + model.number
+                        text: item.repository.nameWithOwner + " #" + item.number
                     }
 
                     Label {
@@ -68,7 +71,7 @@ ListItem {
                         anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: model.sortRole === PullRequestsModel.UpdatedAtRole ? model.updatedAtTimeSpan : model.createdAtTimeSpan
+                        text: item.sortRole === PullRequestsitem.UpdatedAtRole ? item.updatedAtTimeSpan : item.createdAtTimeSpan
                     }
                 }
 
@@ -81,7 +84,7 @@ ListItem {
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         font.bold: true
 
-                        text: model.title
+                        text: item.title
                     }
 
                     Icon {
@@ -97,7 +100,7 @@ ListItem {
                         font.pixelSize: Theme.fontSizeSmall
                         color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                        text: model.commentCount
+                        text: item.comments.totalCount
                     }
                 }
             }

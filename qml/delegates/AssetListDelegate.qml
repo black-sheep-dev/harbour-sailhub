@@ -13,14 +13,6 @@ ListItem {
     width: parent.width
     contentHeight: delegateContent.height + 2*Theme.paddingSmall
 
-    Rectangle {
-        height: parent.height
-        width: parent.width * (downloadProgress / 100)
-
-        color: Theme.highlightColor
-        opacity: 0.5
-    }
-
     Row {
         id: delegateContent
         anchors.verticalCenter: parent.verticalCenter
@@ -43,7 +35,7 @@ ListItem {
                 width: parent.width
                 font.bold: true
 
-                text: model.name
+                text: item.name
             }
 
             Row {
@@ -58,7 +50,7 @@ ListItem {
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: Theme.fontSizeExtraSmall
-                    text: StringHelper.fileSize(model.size)
+                    text: StringHelper.fileSize(item.size)
                 }
 
                 Icon {
@@ -69,7 +61,7 @@ ListItem {
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: Theme.fontSizeExtraSmall
-                    text: StringHelper.count(model.downloadCount)
+                    text: StringHelper.count(item.downloadCount)
                 }
             }
         }

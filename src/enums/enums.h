@@ -9,6 +9,7 @@
 #include "pullrequeststate.h"
 #include "repositorylockreason.h"
 #include "repositorypermission.h"
+#include "repositorytype.h"
 #include "subscriptionstate.h"
 
 #endif // ENUMS_H

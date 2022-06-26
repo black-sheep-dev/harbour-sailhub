@@ -601,7 +601,7 @@
     </message>
     <message id="id-closing-issue">
         <source>Closing issue</source>
-        <translation type="unfinished">正在克隆问题</translation>
+        <translation type="obsolete">正在克隆问题</translation>
     </message>
     <message id="id-reopen">
         <source>Reopen</source>
@@ -645,7 +645,7 @@
     </message>
     <message id="id-open-issues-in-user-repos">
         <source>Open issues in user repos</source>
-        <translation type="unfinished">打开用户仓库的问题</translation>
+        <translation type="obsolete">打开用户仓库的问题</translation>
     </message>
     <message id="id-created">
         <source>Created</source>
@@ -1053,7 +1053,7 @@
     </message>
     <message id="id-error-connect-to-github">
         <source>An error occured when connecting to GitHub!</source>
-        <translation type="unfinished">连接到 Github 错误！</translation>
+        <translation type="obsolete">连接到 Github 错误！</translation>
     </message>
     <message id="id-minutes-ago-count" numerus="yes">
         <source>%n minute(s) ago</source>
@@ -1062,7 +1062,8 @@
         </translation>
     </message>
     <message id="id-hours-ago-count" numerus="yes">
-        <source>%n hour(s) ago</source>
+        <source>%n hours(s) ago</source>
+        <oldsource>%n hour(s) ago</oldsource>
         <translation type="unfinished">
             <numerusform>%n 小时前</numerusform>
         </translation>
@@ -1074,16 +1075,292 @@
         </translation>
     </message>
     <message id="id-months-ago-count" numerus="yes">
-        <source>%n month(s) ago</source>
+        <source>%n hours(s) ago</source>
+        <oldsource>%n month(s) ago</oldsource>
         <translation type="unfinished">
             <numerusform>%n 月前</numerusform>
         </translation>
     </message>
     <message id="id-years-ago-count" numerus="yes">
-        <source>%n year(s) ago</source>
+        <source>%n years(s) ago</source>
+        <oldsource>%n year(s) ago</oldsource>
         <translation type="unfinished">
             <numerusform>%n 年前</numerusform>
         </translation>
+    </message>
+    <message id="id-loading-data">
+        <source>Loading data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-off-topic">
+        <source>Off topic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-disabled">
+        <source>Disabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-empty">
+        <source>Empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-no-users-available">
+        <source>No users available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-edit-reply">
+        <source>Edit reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-add-reply">
+        <source>Add reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-edit-comment">
+        <source>Edit comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-add-comment">
+        <source>Add comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-edit-issue">
+        <source>Edit issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-create-issue">
+        <source>Create issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-select-category">
+        <source>Select category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-choose-subscription">
+        <source>Choose subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-select-sorting">
+        <source>Select sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-app-name">
+        <source>SailHub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-give-star">
+        <source>Give star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-load-more" numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-write-reply">
+        <source>Write reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-locking">
+        <source>Locking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-my-work">
+        <source>My work</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-expires-at">
+        <source>Expires at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-in-four-hours">
+        <source>in 4 hours</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-pull-request">
+        <source>Pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-release-assets">
+        <source>Release assets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-search-repository">
+        <source>Search repository</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-search-selection">
+        <source>Search selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-search-user">
+        <source>Search user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-authentication-settings">
+        <source>Authentication settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-access-token">
+        <source>Access token</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-settings">
+        <source>Notification settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-manage-pagination-options">
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-pagination-settings">
+        <source>Pagination settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-quit">
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-languages">
+        <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-starred-at">
+        <source>Starred at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-followers">
+        <source>Followers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-following">
+        <source>Following</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-starred-repositories">
+        <source>Starred repositories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-choose-lock-reason">
+        <source>Choose lock reason</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-choose-lock-reason-desc">
+        <source>Choose a reason why you are locking this one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-reason">
+        <source>Reason</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-none">
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-error">
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-api-error-not-found">
+        <source>Not found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-api-error-invalid-data">
+        <source>Received invalid data!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-api-error-query">
+        <source>Query failed with bad parameters!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-api-error-connection-timeout">
+        <source>Connection timeout!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-api-error-unauthorized">
+        <source>User is unauthorized!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-api-error-unknown">
+        <source>An unkown error occured!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-starting-download">
+        <source>Starting download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-last-commit">
+        <source>Last commit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-user-unavailable">
+        <source>User unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-contributions-last-twelve-month">
+        <source>Contributions in the last 12 month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-contributions">
+        <source>Contributions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-now">
+        <source>now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-minutes-ago-count-small" numerus="yes">
+        <source>%1m</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-hours-ago-count-small" numerus="yes">
+        <source>%1h</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-months-ago-count-small" numerus="yes">
+        <source>%1d</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-years-ago-count-small" numerus="yes">
+        <source>%1y</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-lock-conversation">
+        <source>Lock conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-unlock-conversation">
+        <source>Unlock conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-close-issue">
+        <source>Close issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-close-issue-reason-desc">
+        <source>Choose a reason why you close this issue.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-completed">
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-not-planned">
+        <source>Not planned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-reopened">
+        <source>Reopened</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -4,19 +4,25 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import "../components/menu"
+import "../queries/"
 import "../tools"
 import '..'
 
 Page {
-    property bool busy: false
     property string nodeId
-    property string selectedBranch: query.result.defaultBranchRef.name
+    property string selectedBranch: repo.defaultBranchRef.name
+    property bool loading: !(query.ready || updateSubscriptionMutation.ready)
+    property alias repo: query.result
 
     id: page
     allowedOrientations: Orientation.All
 
+    function refresh() { Api.request(query) }
+
     QueryObject {
         id: query
+        resultNodePath: "node"
         query: '
 query($nodeId: ID!) {
     node(id: $nodeId) {
@@ -25,6 +31,40 @@ query($nodeId: ID!) {
             defaultBranchRef {
                 id
                 name
+                target {
+                    ... on Commit {
+                        history(first: 1) {
+                            edges {
+                                node {
+                                    ... on Commit {
+                                        abbreviatedOid
+                                        additions
+                                        author {
+                                            user {
+                                                id
+                                                avatarUrl
+                                                login
+                                                name
+                                            }
+                                        }
+                                        changedFiles
+                                        committedDate
+                                        deletions
+                                        messageHeadline
+                                        pushedDate
+                                        signature {
+                                            signer {
+                                                avatarUrl
+                                                name
+                                            }
+                                            state
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
             description
             discussions {
@@ -36,9 +76,28 @@ query($nodeId: ID!) {
             }
             hasIssuesEnabled
             homepageUrl
+            isArchived
+            isDisabled
+            isEmpty
             isFork
+            isInOrganization
+            isLocked
+            isMirror
+            isPrivate
+            isTemplate
             issues(states: [OPEN]) {
                 totalCount
+            }
+            languages(first: 50) {
+                edges {
+                    size
+                }
+                nodes {
+                    color
+                    name
+                }
+                totalCount
+                totalSize
             }
             licenseInfo {
                 spdxId
@@ -46,6 +105,7 @@ query($nodeId: ID!) {
             }
             lockReason
             name
+            nameWithOwner
             mentionableUsers {
                 totalCount
             }
@@ -87,14 +147,20 @@ query($nodeId: ID!) {
         variables: {
             "nodeId": page.nodeId
         }
-    }
 
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+            subscriptionMenu.subscription = repo.viewerSubscription
+        }
+
+        onErrorChanged: notification.showErrorMessage(error)
+    }
 
     PageBusyIndicator {
         id: busyIndicator
         size: BusyIndicatorSize.Large
         anchors.centerIn: page
-        running: !query.ready
+        running: loading
 
         Label {
             anchors {
@@ -110,102 +176,82 @@ query($nodeId: ID!) {
 
     SilicaFlickable {
         PullDownMenu {
-            busy: page.busy
+            busy: loading
             MenuItem {
                 //% "Refresh"
                 text: qsTrId("id-refresh")
-                onClicked: SailHub.api().request(query)
+                onClicked: refresh()
             }
 
-            MenuItem {
-                visible: query.result.viewerCanSubscribe
-                text: {
-                    switch (query.result.viewerSubscription) {
-                    case SubscriptionState.Ignored:
-                    case SubscriptionState.Unsubscribed:
-                        //% "Watch"
-                        return qsTrId("id-watch")
-
-                    default:
-                        //% "Unwatch"
-                        return qsTrId("id-unwatch")
-                    }
-                }
-
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectSubscriptionDialog.qml"), {
-                                                    subscription: query.result.viewerSubscription
-                                                })
-
-                    dialog.accepted.connect(function() {
-                        console.log(dialog.subscription)
-                        SailHub.api().subscribeTo(query.result.id, dialog.subscription)
-                    })
-                }
+            SubscriptionMenuItem {
+                id: subscriptionMenu
+                nodeId: repo.id
+                viewerCanSubscribe: repo.viewerCanSubscribe
             }
+
             StarMenuItem {
-                starred: query.result.viewerHasStarred
-                nodeId: query.result.id
+                starred: repo.viewerHasStarred
+                nodeId: page.nodeId
+
+                onStargazerCountChanged: stargazerCountItem.count = stargazerCount
             }
         }
 
         anchors.fill: parent
         contentHeight: column.height
 
+        opacity: !query.ready ? 0.0 : 1.0
+        Behavior on opacity { FadeAnimation {} }
+
         Column {
             id: column
             width: parent.width
-            spacing: Theme.paddingSmall
+            spacing: Theme.paddingMedium
 
             opacity: busyIndicator.running ? 0 : 1.0
             Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
-                title: query.result.name
-                description: query.result.owner.login
+                title: repo.name
+                description: repo.owner.login
             }
 
             // owner
             BackgroundItem {
                 width: parent.width
 
-                Row {
-                    x: Theme.horizontalPageMargin
-                    width: parent.width - 2*x
-                    height: Theme.itemSizeSmall
-
-                    anchors.verticalCenter: parent.verticalCenter
-                    spacing: Theme.paddingMedium
-
-                    CircleImage {
-                        id: avatarIcon
-                        width: parent.height / 2
-                        height: width
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        source: query.result.owner.avatarUrl
-                        fallbackItemVisible: false
-
-                        BusyIndicator {
-                            size: BusyIndicatorSize.Medium
-                            anchors.centerIn: avatarIcon
-                            running: avatarIcon.status === Image.Loading
-                        }
+                CircleImage {
+                    id: avatarIcon
+                    anchors {
+                        left: parent.left
+                        leftMargin: Theme.horizontalPageMargin
+                        verticalCenter: parent.verticalCenter
                     }
 
-                    Label {
-                        width: parent.width - avatarIcon.width
-                        anchors.verticalCenter: parent.verticalCenter
+                    width: parent.height * 0.75
+                    height: width
 
-                        font.pixelSize: Theme.fontSizeSmall
+                    source: repo.owner.avatarUrl
+                    fallbackItemVisible: false
 
-                        text: query.result.owner.login
+                    BusyIndicator {
+                        size: BusyIndicatorSize.Medium
+                        anchors.centerIn: avatarIcon
+                        running: avatarIcon.status === Image.Loading
                     }
                 }
 
-                onClicked: pageStack.push(Qt.resolvedUrl("UserPage.qml"), {
-                                              nodeId: query.result.owner.id
-                                          })
+                Label {
+                    anchors {
+                        left: avatarIcon.right
+                        leftMargin: Theme.paddingMedium
+                        verticalCenter: parent.verticalCenter
+                    }
+
+                    text: repo.owner.login
+                }
+
+                onClicked: pageStack.push(Qt.resolvedUrl("UserPage.qml"), { nodeId: repo.owner.id })
             }
 
 
@@ -219,12 +265,12 @@ query($nodeId: ID!) {
                 font.bold: true
                 wrapMode: Text.Wrap
 
-                text: query.result.name
+                text: repo.name
             }
 
             // forked
             BackgroundItem {
-                visible: query.result.isFork
+                visible: repo.isFork
                 width: parent.width
 
                 Label {
@@ -235,28 +281,36 @@ query($nodeId: ID!) {
                     wrapMode: Text.Wrap
 
                     //% "Forked from %1"
-                    text: qsTrId("id-forked-from").arg(query.result.parent.nameWithOwner)
+                    text: qsTrId("id-forked-from").arg(repo.parent.nameWithOwner)
                 }
 
                 onClicked: pageStack.push(Qt.resolvedUrl("RepoPage.qml"), {
-                                              nodeId: query.result.parent.id
+                                              nodeId: repo.parent.id
                                           })
             }
 
             // flags
-//            RepoFlagsItem {
-//                x: Theme.horizontalPageMargin
-//                width: parent.width - 2*x
-//                flags: repo.flags
-//                lockReason: query.result.lockReason
-//            }
+            RepoFlagsItem {
+                x: Theme.horizontalPageMargin
+                width: parent.width - 2*x
+                isArchived: repo.isArchived
+                isDisabled: repo.isDisabled
+                isEmpty: repo.isEmtpy
+                isFork: repo.isFork
+                isInOrganization:  repo.isInOrganization
+                isLocked: repo.isLocked
+                isMirror: repo.isMirror
+                isPrivate: repo.isPrivate
+                isTemplate: repo.isTemplate
+                lockReason: repo.lockReason
+            }
 
             // description
             MarkdownLabel {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
 
-                text: MarkdownParser.parse(query.result.description)
+                text: MarkdownParser.parse(repo.description)
             }
 
             Item {
@@ -266,12 +320,12 @@ query($nodeId: ID!) {
 
             // homepage
             IconLabel {
-                visible: query.result.homepageUrl !== null
+                visible: repo.homepageUrl !== null && repo.homepageUrl.length > 0
 
                 icon: "image://theme/icon-m-website"
-                label: query.result.homepageUrl
+                label: repo.homepageUrl
 
-                onClicked: Qt.openUrlExternally(query.result.homepageUrl)
+                onClicked: Qt.openUrlExternally(repo.homepageUrl)
             }
 
             // counters
@@ -281,12 +335,16 @@ query($nodeId: ID!) {
                 spacing: Theme.paddingMedium
 
                 CounterItem {
+                    property int count: repo.stargazerCount
+
+                    id: stargazerCountItem
+
                     width: parent.width / 3
 
                     title: {
-                        var string = StringHelper.count(query.result.stargazerCount)
+                        var string = StringHelper.count(count)
                         string += " "
-                        string += query.result.stargazerCount > 1 ?
+                        string += count > 1 ?
                                     //% "Stars"
                                     qsTrId("id-stars") :
                                     //% "Star"
@@ -298,14 +356,14 @@ query($nodeId: ID!) {
                     icon: "image://theme/icon-m-favorite"
 
                     onClicked: {
-                        if (query.result.stargazerCount === 0) return;
+                        if (repo.stargazerCount === 0) return;
 
                         pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                                  //% "Stargazer"
-                                                  title: qsTrId("id-stargazer"),
-                                                  description: query.result.owner.login + "/" + query.result.name,
-                                                  identifier: query.result.id,
-                                                  userType: User.Stargazer
+                                                   nodeId: nodeId,
+                                                   itemsQueryType: "STARGAZERS",
+                                                   //% "Stargazer"
+                                                   title: qsTrId("id-stargazer"),
+                                                   description: repo.nameWithOwner
                                               })
                     }
                 }
@@ -314,9 +372,9 @@ query($nodeId: ID!) {
                     width: parent.width / 3
 
                     title: {
-                        var string = StringHelper.count(query.result.forkCount)
+                        var string = StringHelper.count(repo.forkCount)
                         string += " "
-                        string += query.result.forkCount > 1 ?
+                        string += repo.forkCount > 1 ?
                                     //% "Forks"
                                     qsTrId("id-forks") :
                                     //% "Fork"
@@ -327,18 +385,20 @@ query($nodeId: ID!) {
                     icon: "qrc:///icons/icon-m-fork"
 
                     onClicked: {
-                        if (query.result.forkCount === 0) return;
+                        if (repo.forkCount === 0) return;
 
                         pageStack.push(Qt.resolvedUrl("ReposListPage.qml"), {
-                                                                     login: query.result.owner.login + "/" + query.result.name,
-                                                                     identifier: query.result.id,
-                                                                     repoType: Repo.Fork
+                                                                   nodeId: nodeId,
+                                                                   itemsQueryType: "FORKS",
+                                                                   //% "Forks"
+                                                                   title: qsTrId("id-forks"),
+                                                                   description: repo.nameWithOwner
                                                                  })
                     }
                 }
 
                 CounterItem {
-                    visible: query.result.fundingLinks.length > 0
+                    visible: repo.fundingLinks.length > 0
                     width: parent.width / 3
 
                     //% "Sponsor"
@@ -346,7 +406,8 @@ query($nodeId: ID!) {
                     icon: "qrc:///icons/icon-m-heart"
 
                     onClicked: pageStack.push(Qt.resolvedUrl("FundingLinksListPage.qml"), {
-                                                  identifier: query.result.id,
+                                                  nodeId: nodeId,
+                                                  description: repo.nameWithOwner
                                               })
                 }
             }
@@ -354,32 +415,32 @@ query($nodeId: ID!) {
             Separator {
                 width: parent.width
                 color: Theme.highlightBackgroundColor
-            }
+            }     
 
             // Related items
             RelatedValueItem {
-                visible: query.result.vulnerabilityAlerts.totalCount > 0
+                visible: repo.vulnerabilityAlerts.totalCount > 0
                 width: parent.width
                 //% "Vulnerability Alerts"
                 label: qsTrId("id-vulnerability-alerts")
-                value: query.result.vulnerabilityAlerts.totalCount
+                value: repo.vulnerabilityAlerts.totalCount
                 icon: "image://theme/icon-m-warning?" + Theme.errorColor
             }
             RelatedValueItem {
-                visible: query.result.hasIssuesEnabled
+                visible: repo.hasIssuesEnabled
                 width: parent.width
                 //% "Issues"
                 label: qsTrId("id-issues")
-                value: query.result.issues.totalCount
+                value: repo.issues.totalCount
                 icon: "qrc:///icons/icon-m-issue"
 
                 onClicked: {
-                    if (query.result.issues.totalCount === 0) return;
+                    if (repo.issues.totalCount === 0) return;
                     pageStack.push(Qt.resolvedUrl("IssuesListPage.qml"), {
-                                              description: query.result.owner.login + "/" + query.result.name,
-                                              identifier: query.result.id,
-                                              type: Issue.Repo,
-                                              states: IssueState.Open
+                                               nodeId: nodeId,
+                                               itemsQueryType: "REPOSITORY_ISSUES",
+                                               canEditFilter: true,
+                                               description: repo.nameWithOwner
                                           })
                 }
             }
@@ -387,16 +448,15 @@ query($nodeId: ID!) {
                 width: parent.width
                 //% "Pull requests"
                 label: qsTrId("id-pull-requests")
-                value: query.result.pullRequests.totalCount
+                value: repo.pullRequests.totalCount
                 icon: "qrc:///icons/icon-m-pull-request"
 
                 onClicked: {
-                    if (query.result.pullRequests.totalCount === 0) return
+                    if (repo.pullRequests.totalCount === 0) return
                     pageStack.push(Qt.resolvedUrl("PullRequestsListPage.qml"), {
-                                              description: query.result.owner.login + "/" + query.result.name,
-                                              identifier: query.result.id,
-                                              type: PullRequest.Repo,
-                                              states: PullRequestState.Open
+                                              nodeId: nodeId,
+                                              description: repo.nameWithOwner,
+                                              itemsQueryType: "REPOSITORY"
                                           })
                 }
             }
@@ -404,12 +464,12 @@ query($nodeId: ID!) {
                 width: parent.width
                 //% "Discussions"
                 label: qsTrId("id-discussions")
-                value: query.result.discussions.totalCount
+                value: repo.discussions.totalCount
                 icon: "image://theme/icon-m-chat"
 
                 onClicked: pageStack.push(Qt.resolvedUrl("DiscussionsListPage.qml"), {
-                                              description: query.result.owner.login + "/" + query.result.name,
-                                              identifier: query.result.id
+                                              nodeId: nodeId,
+                                              description: repo.owner.nameWithOwner
                                           })
 
 
@@ -418,15 +478,15 @@ query($nodeId: ID!) {
                 width: parent.width
                 //% "Releases"
                 label: qsTrId("id-releases")
-                value: query.result.releases.totalCount
+                value: repo.releases.totalCount
                 icon: "qrc:///icons/icon-m-tag"
 
                 onClicked: {
-                    if (query.result.releases.totalCount === 0) return;
+                    if (repo.releases.totalCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("ReleasesListPage.qml"), {
-                                              description: query.result.owner.login + "/" + query.result.name,
-                                              identifier: query.result.id
+                                               nodeId: nodeId,
+                                               description: repo.nameWithOwner
                                           })
                 }
             }
@@ -434,18 +494,18 @@ query($nodeId: ID!) {
                 width: parent.width
                 //% "Watchers"
                 label: qsTrId("id-watchers")
-                value: query.result.watchers.totalCount
+                value: repo.watchers.totalCount
                 icon: "qrc:///icons/icon-m-eye"
 
                 onClicked: {
-                    if (query.result.watchers.totalCount === 0) return;
+                    if (repo.watchers.totalCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                              //% "Watchers"
-                                              title: qsTrId("id-watchers"),
-                                              description: query.result.owner.login + "/" + query.result.name,
-                                              identifier: query.result.nodeId,
-                                              userType: User.Watcher
+                                               nodeId: nodeId,
+                                               itemsQueryType: "WATCHERS",
+                                               //% "Watchers"
+                                               title: qsTrId("id-watchers"),
+                                               description: repo.nameWithOwner
                                           })
                 }
             }   
@@ -453,18 +513,18 @@ query($nodeId: ID!) {
                 width: parent.width
                 //% "Contributors"
                 label: qsTrId("id-contributors")
-                value: query.result.mentionableUsers.totalCount
+                value: repo.mentionableUsers.totalCount
                 icon: "image://theme/icon-m-media-artists"
 
                 onClicked: {
-                    if (query.result.mentionableUsers.totalCount === 0) return;
+                    if (repo.mentionableUsers.totalCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                              //% "Contributors"
-                                              title: qsTrId("id-contributors"),
-                                              description: query.result.owner.login + "/" + query.result.name,
-                                              identifier: query.result.id,
-                                              userType: User.Contributor
+                                               nodeId: nodeId,
+                                               itemsQueryType: "COLLABORATORS",
+                                               //% "Contributors"
+                                               title: qsTrId("id-contributors"),
+                                               description: repo.nameWithOwner
                                           })
                 }
             }
@@ -473,15 +533,15 @@ query($nodeId: ID!) {
                 width: parent.width
                 //% "License"
                 label: qsTrId("id-license")
-                value: query.result.licenseInfo.spdxId
+                value: repo.licenseInfo.spdxId
                 icon: "image://theme/icon-m-file-document-light"
 
                 onClicked: pageStack.push(Qt.resolvedUrl("TextFileViewerPage.qml"), {
-                                              branch: query.result.defaultBranch,
-                                              owner: query.result.owner.login,
+                                              branch: repo.defaultBranch,
+                                              owner: repo.owner.login,
                                               path: "LICENSE",
-                                              repo: query.result.name,
-                                              repoId: query.result.id
+                                              repo: repo.name,
+                                              repoId: repo.id
                                           })
 
             }
@@ -528,8 +588,8 @@ query($nodeId: ID!) {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectBranchDialog.qml"),
                                                 {
                                                     selected: selectedBranch,
-                                                    branches: query.result.refs.nodes,
-                                                    defaultBranch: query.result.defaultBranchRef.name
+                                                    branches: repo.refs.nodes,
+                                                    defaultBranch: repo.defaultBranchRef.name
                                                 })
 
                     dialog.accepted.connect(function() {
@@ -544,10 +604,10 @@ query($nodeId: ID!) {
 
                 onClicked: pageStack.push(Qt.resolvedUrl("MarkdownViewerPage.qml"), {
                                               branch: selectedBranch,
-                                              owner: query.result.owner.login,
+                                              owner: repo.owner.login,
                                               path: "README.md",
-                                              repo: query.result.name,
-                                              repoId: query.result.id
+                                              repo: repo.name,
+                                              repoId: repo.id
                                           })
             }
 
@@ -557,34 +617,65 @@ query($nodeId: ID!) {
 
                 onClicked: pageStack.push(Qt.resolvedUrl("TreeListPage.qml"), {
                                               branch: selectedBranch,
-                                              owner: query.result.owner.login,
-                                              repoName: query.result.name,
-                                              repoId: query.result.id,
+                                              owner: repo.owner.login,
+                                              repoName: repo.name,
+                                              repoId: repo.id,
                                               modelType: TreeModel.Repository
                                           })
             }
 
-            Separator {
+            // Show used languages
+            SectionHeader {
+                //% "Languages"
+                text: qsTrId("id-languages")
+            }
+
+            Row {
+                x: Theme.horizontalPageMargin
+                width: parent.width - 2*x
+                height: Theme.paddingMedium
+
+                Repeater {
+                    model: repo.languages.nodes
+
+                    Rectangle {
+                        height: parent.height
+                        width: Math.round((repo.languages.edges[index].size / repo.languages.totalSize) * parent.width)
+                        color: modelData.color
+                    }
+                }
+            }
+
+            Flow {
+                x: Theme.horizontalPageMargin
+                width: parent.width - 2*x
+                spacing: Theme.paddingLarge
+
+                Repeater {
+                    model: repo.languages.nodes
+
+                    LanguageItem {
+                        name: modelData.name + " " + Math.round((repo.languages.edges[index].size / repo.languages.totalSize) * 100) + "%"
+                        color: modelData.color
+                    }
+                }
+            }
+
+            // Show last commit details
+
+            SectionHeader {
+                //% "Last commit"
+                text: qsTrId("id-last-commit") + " (" + repo.defaultBranchRef.name + ")"
+            }
+
+            CommitInfoItem { commit: repo.defaultBranchRef.target.history.edges[0].node }
+
+            Item {
                 width: parent.width
-                color: Theme.highlightBackgroundColor
+                height: Theme.paddingSmall
             }
         } 
     }
 
-    Connections {
-        target: SailHub.api()
-        onStarred: {
-            if (nodeId !== repo.nodeId) return
-            page.repo.viewerHasStarred = starred
-            page.repo.stargazerCount += starred ? 1 : -1
-            page.busy = false
-        }
-        onSubscribedTo: {
-            if (nodeId !== repo.nodeId) return
-            page.repo.viewerSubscription = state
-            page.busy = false
-        }
-    }
-
-    Component.onCompleted: { SailHub.api().request(query) }
+    Component.onCompleted: refresh()
 }

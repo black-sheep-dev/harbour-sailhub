@@ -72,11 +72,7 @@ Dialog {
 
     function checkInput() { canAccept = tokenField.text.length > 0 }
 
-    onAccepted: {
-        SailHub.accessToken = tokenField.text
-        SailHub.saveSettings()
-        SailHub.initialize()
-    }
+    onAccepted: Api.token = tokenField.text
 
     Component.onCompleted: checkInput()
 }

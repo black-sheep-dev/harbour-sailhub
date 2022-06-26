@@ -9,13 +9,16 @@ import "../tools"
 
 Page {
     property string nodeId
-    property Release release
+    property alias release: query.result
 
     id: page
     allowedOrientations: Orientation.All
 
+    function refresh() { Api.request(query) }
+
     QueryObject {
         id: query
+        resultNodePath: "node"
         query: '
             query($nodeId: ID!) {
                 node(id: $nodeId) {
@@ -47,6 +50,8 @@ Page {
         variables: {
             "nodeId": page.nodeId
         }
+
+        onErrorChanged: notification.showErrorMessage(error)
     }
 
     PageBusyIndicator {
@@ -73,14 +78,15 @@ Page {
             MenuItem {
                 //% "Refresh"
                 text: qsTrId("id-refresh")
-                onClicked: {
-                    SailHub.api().request(query)
-                }
+                onClicked: refresh()
             }
         }
 
         anchors.fill: parent
         contentHeight: headerColumn.height
+
+        opacity: !query.ready ? 0.0 : 1.0
+        Behavior on opacity { FadeAnimation {} }
 
         RemorsePopup { id: remorse }
 
@@ -101,7 +107,7 @@ Page {
                 font.pixelSize: Theme.fontSizeLarge
                 color: Theme.highlightColor
 
-                text: query.result.name
+                text: release.name
             }
 
             Row {
@@ -110,7 +116,7 @@ Page {
                 spacing: Theme.paddingMedium
 
                 Label {
-                    visible: query.result.isDraft
+                    visible: release.isDraft
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#b71c1c"
                     //% "Draft"
@@ -118,7 +124,7 @@ Page {
                 }
 
                 Label {
-                    visible: query.result.isLatest
+                    visible: release.isLatest
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#64DD17"
                     //% "Latest release"
@@ -126,7 +132,7 @@ Page {
                 }
 
                 Label {
-                    visible: query.result.isPrerelease
+                    visible: release.isPrerelease
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#f29312"
                     //% "Pre-release"
@@ -135,10 +141,10 @@ Page {
             }
 
             CommentItem {
-                authorAvatar: query.result.author.avatarUrl
-                authorLogin: query.result.author.login
-                body: query.result.description
-                timeSpan: new Date(query.result.publishedAt).toLocaleDateString(Qt.locale())
+                authorAvatar: release.author.avatarUrl
+                authorLogin: release.author.login
+                body: release.description
+                timeSpan: new Date(release.publishedAt).toLocaleDateString(Qt.locale())
             }
 
             SectionHeader {
@@ -147,13 +153,13 @@ Page {
             }
 
             IconRelatedItem {
-                title: query.result.tagCommit.abbreviatedOid
+                title: release.tagCommit.abbreviatedOid
                 icon: "image://theme/icon-m-swipe"
                 showNextIcon: false
             }
 
             IconRelatedItem {
-                title: query.result.tagName
+                title: release.tagName
                 icon: "image://theme/icon-m-link"
                 showNextIcon: false
             }
@@ -164,15 +170,16 @@ Page {
             }
 
             RelatedValueItem {
+                enabled: release.releaseAssets.totalCount > 0
                 width: parent.width
                 //% "Assets"
                 label: qsTrId("id-assets")
                 icon: "image://theme/icon-m-levels"
-                value: query.result.releaseAssets.totalCount
+                value: release.releaseAssets.totalCount
 
                 onClicked: pageStack.push(Qt.resolvedUrl("ReleaseAssetsListPage.qml"), {
-                                              description: query.result.name,
-                                              identifier: query.result.id
+                                              nodeId: nodeId,
+                                              description: release.name
                                           })
             }
 
@@ -184,7 +191,7 @@ Page {
                 icon: "image://theme/icon-m-file-archive-folder"
                 showValue: false
 
-                onClicked: Qt.openUrlExternally("https://github.com/" + query.result.repository.nameWithOwner + "/archive/refs/tags/" + query.result.tagName + ".zip")
+                onClicked: Qt.openUrlExternally("https://github.com/" + release.repository.nameWithOwner + "/archive/refs/tags/" + release.tagName + ".zip")
             }
 
             RelatedValueItem {
@@ -195,10 +202,10 @@ Page {
                 icon: "image://theme/icon-m-file-archive-folder"
                 showValue: false
 
-                onClicked: Qt.openUrlExternally("https://github.com/" + query.result.repository.nameWithOwner + "/archive/refs/tags/" + query.result.tagName + ".tar.gz")
+                onClicked: Qt.openUrlExternally("https://github.com/" + release.repository.nameWithOwner + "/archive/refs/tags/" + release.tagName + ".tar.gz")
             }
         }
     }
 
-    Component.onCompleted: SailHub.api().request(query)
+    Component.onCompleted: refresh()
 }

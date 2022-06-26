@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
 
 Page {
     id: page
@@ -17,7 +16,7 @@ Page {
                 text: qsTrId("id-reset")
                 //% "Resetting credentials and close app"
                 onClicked: remorse.execute(qsTrId("id-resseting-credentials"), function() {
-                    SailHub.reset()
+                    Api.token = ""
                     Qt.quit()
                 })
             }
@@ -51,9 +50,7 @@ Page {
 
     onStatusChanged: {
         if (status == PageStatus.Deactivating) {
-            if (tokenField.text.length > 0) SailHub.accessToken = tokenField.text
-
-            SailHub.saveSettings()
+            if (tokenField.text.length > 0) Api.token = tokenField.text
         }
     }
 }

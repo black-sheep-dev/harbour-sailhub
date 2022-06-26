@@ -3,10 +3,11 @@ import Sailfish.Silica 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
-import ".."
+import '..'
 
 BackgroundItem {
-    property ProfileStatus profileStatus
+    property bool isViewer: false
+    property var profileStatus
 
     id: profileStatusItem
     width: parent.width
@@ -15,19 +16,19 @@ BackgroundItem {
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
         anchors.verticalCenter: parent.verticalCenter
-        spacing: Theme.paddingMedium
+        spacing: Theme.paddingLarge
 
         Image {
             id: emojiIcon
             anchors.verticalCenter: parent.verticalCenter
-            width: Theme.iconSizeMedium
+            width: Theme.iconSizeSmall
             height: width
             sourceSize.width: width
             sourceSize.height: width
 
             source: {
-                if (profileStatus.message.length > 0)
-                    return profileStatus.emojiImage
+                if (profileStatus !== null)
+                    return DataUtils.getEmojiUrl(profileStatus.emoji)
                 else
                     return "qrc:///emoji/default"
             }
@@ -43,7 +44,7 @@ BackgroundItem {
             color: profileStatusItem.highlighted ? Theme.highlightColor : Theme.primaryColor
 
             text: {
-                if (profileStatus.message.length > 0)
+                if (profileStatus !== null)
                     return MarkdownParser.parse(profileStatus.message)
                 else
                     //% "Set status"

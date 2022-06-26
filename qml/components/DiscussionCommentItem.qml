@@ -99,7 +99,7 @@ ListItem {
 
             interactive: true
             avatar: comment.author.avatarUrl
-            title: comment.author.login
+            login: comment.author.login
             subtitle: {
                 if (comment.edited)
                     //% "Edited"

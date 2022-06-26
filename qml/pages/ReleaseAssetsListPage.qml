@@ -4,14 +4,45 @@ import Nemo.Configuration 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
+import "../components/"
 import "../delegates/"
+import "../views/"
 
-Page {
-    property string description
-    property alias identifier: assetsModel.identifier
-
+ListPage {
     id: page
     allowedOrientations: Orientation.All
+
+    itemsQuery: '
+    query(
+        $nodeId: ID!,
+        $itemCount: Int = 20,
+        $itemCursor: String = null
+    ) {
+        node(id: $nodeId) {
+            ... on Release {
+                releaseAssets(
+                    first: $itemCount,
+                    after: $itemCursor
+                ) {
+                    nodes {
+                        id
+                        contentType
+                        createdAt
+                        downloadCount
+                        downloadUrl
+                        name
+                        size
+                        updatedAt
+                    }
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                }
+            }
+        }
+    }'
 
     SilicaListView {
         id: listView
@@ -21,7 +52,7 @@ Page {
             id: header
             //% "Release assets"
             title: qsTrId("id-release-assets")
-            description: header.description
+            description: description
         }
 
         footer: Item {
@@ -30,22 +61,12 @@ Page {
         }
 
         PullDownMenu {
-            busy: assetsModel.loading
+            busy: loading
             MenuItem {
                 //% "Refresh"
                 text: qsTrId("id-refresh")
-                onClicked: {
-                    refresh()
-                }
+                onClicked: refresh()
             }
-        }
-
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: assetsModel.loading
         }
 
         ViewPlaceholder {
@@ -56,10 +77,7 @@ Page {
 
         VerticalScrollDecorator {}
 
-        model: ReleaseAssetsModel { id: assetsModel }
-
-        opacity: busyIndicator.running ? 0.3 : 1.0
-        Behavior on opacity { FadeAnimator {} }
+        model: itemsModel
 
         delegate: AssetListDelegate {
             id: delegate
@@ -68,44 +86,25 @@ Page {
                 MenuItem {
                     //% "Download"
                     text: qsTrId("id-download")
-                    //onClicked: SailHub.api().downloader().download(model.downloadUrl, model.name)
-                    onClicked: Qt.openUrlExternally(model.downloadUrl)
+                    //% "Starting download"
+                    onClicked: delegate.remorseAction(qsTrId("id-starting-download"), function() { Qt.openUrlExternally(item.downloadUrl) })
                 }
-            }
-
-            Connections {
-                target: SailHub.api().downloader()
-                onDownloadProgress: if (url === model.downloadUrl) delegate.downloadProgress = percentage
-                onFinished: if (url === model.downloadUrl) delegate.downloadProgress = 100
             }
         }
 
         PushUpMenu {
-            busy: assetsModel.loading
-            visible: assetsModel.hasNextPage
+            busy: loading
+            visible: hasNextPage
 
             MenuItem {
+                enabled: !loading
                 //% "Load more (%n to go)"
-                text: qsTrId("id-load-more", assetsModel.totalCount - listView.count)
-                onClicked: getAssets()
+                text: qsTrId("id-load-more", totalCount - listView.count)
+                onClicked: loadMore()
             }
         }
     }
 
-    function getAssets() {
-        SailHub.api().getPaginationModel(assetsModel)
-    }
-
-    function refresh() {
-        assetsModel.reset()
-        getAssets()
-    }
-
-    Connections {
-        target: SailHub.api()
-    }
-
     Component.onCompleted: refresh()
-    Component.onDestruction: delete assetsModel
 }
 

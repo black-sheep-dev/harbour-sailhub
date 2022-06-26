@@ -4,17 +4,26 @@
 #include <QDebug>
 #endif
 
+#include <QFile>
 #include <QJsonParseError>
 #include <QJsonDocument>
-#include <utility> 
+#include <QSettings>
+#include <QStandardPaths>
 
 #include "compressor.h"
+#include "keys.h"
 
-GraphQLConnector::GraphQLConnector(QString endpoint, QNetworkAccessManager *manager, QObject *parent) :
-    QObject(parent),
-    m_endpoint(std::move(endpoint)),
-    m_manager(manager)
+static const QString GITHUB_API_ENDPOINT    = QStringLiteral("https://api.github.com/graphql");
+
+GraphQLConnector::GraphQLConnector(QObject *parent) :
+    QObject(parent)
 {
+    readSettings();
+}
+
+GraphQLConnector::~GraphQLConnector()
+{
+    writeSettings();
 }
 
 void GraphQLConnector::request(QueryObject *query)
@@ -23,115 +32,169 @@ void GraphQLConnector::request(QueryObject *query)
         return;
     }
 
+    query->setReady(false);
+    query->setError(QueryObject::ErrorNone);
+
     //create request
-    QNetworkRequest request(m_endpoint);
+    QNetworkRequest request(GITHUB_API_ENDPOINT);
     request.setSslConfiguration(QSslConfiguration::defaultConfiguration());
     request.setRawHeader("Content-Type", "application/json");
     request.setRawHeader("Accept-Encoding", "gzip");
     request.setRawHeader("Authorization", "token " + m_token.toUtf8());
-    request.setRawHeader("GraphQL-Features", "discussions_api");
+    //request.setRawHeader("GraphQL-Features", "discussions_api");
 
     // create payload
+    auto q = query->query().simplified();
+
+    if (q.startsWith("query")) {
+        q.insert(q.indexOf('{') + 1, " rateLimit { remaining resetAt } ");
+    }
+
     QJsonObject payload;
-    payload.insert(QStringLiteral("query"), query->query().simplified());
+    payload.insert(QStringLiteral("query"), q);
 
     if (!query->variables().isEmpty()) {
         payload.insert(QStringLiteral("variables"), query->variables());
     }
 
-    // send request
-    QNetworkReply *reply = m_manager->post(request,
-                                           QJsonDocument(payload).toJson(QJsonDocument::Compact));
-    connect(reply, &QNetworkReply::finished, query, &QueryObject::onResultAvailable);
-}
-
-void GraphQLConnector::sendQuery(const GraphQLQuery &query, quint8 requestType, const QByteArray &requestId)
-{    
-    // create payload
-    QJsonObject payload;
-    payload.insert(QStringLiteral("query"), query.query);
-
-    if (!query.variables.isEmpty())
-        payload.insert(QStringLiteral("variables"), query.variables);
-
 #ifdef QT_DEBUG
     qDebug() << payload;
 #endif
 
-    //create request
-    QNetworkRequest request(m_endpoint);
-    request.setSslConfiguration(QSslConfiguration::defaultConfiguration());
-    request.setRawHeader("Content-Type", "application/json");
-    request.setRawHeader("Accept-Encoding", "gzip");
-    request.setRawHeader("Authorization", "token " + m_token.toUtf8());
-    request.setRawHeader("GraphQL-Features", "discussions_api");
-
     // send request
+    const auto uuid = QUuid::createUuid().toByteArray();
+    m_queryObjects.insert(uuid, query);
+
     QNetworkReply *reply = m_manager->post(request,
                                            QJsonDocument(payload).toJson(QJsonDocument::Compact));
-    reply->setProperty("request_type", requestType);
-    reply->setProperty("request_uuid", requestId);
+    reply->setProperty("uuid", uuid);
     connect(reply, &QNetworkReply::finished, this, &GraphQLConnector::onRequestFinished);
 }
 
-void GraphQLConnector::setEndpoint(const QString &endpoint)
+quint16 GraphQLConnector::remaining() const
 {
-    m_endpoint = endpoint;
+    return m_remaining;
 }
 
-void GraphQLConnector::setToken(const QString &token)
+const QDateTime &GraphQLConnector::resetAt() const
 {
-    m_token = token;
+    return m_resetAt;
 }
 
-QString GraphQLConnector::token() const
+const QString &GraphQLConnector::token() const
 {
     return m_token;
 }
 
+void GraphQLConnector::setToken(const QString &token)
+{
+    if (m_token == token) {
+        return;
+    }
+    m_token = token;
+    emit tokenChanged();
+    writeSettings();
+}
+
 void GraphQLConnector::onRequestFinished()
 {
-#ifdef QT_DEBUG
-    qDebug() << "API REPLY";
-#endif
-
     auto reply = qobject_cast<QNetworkReply *>(sender());
-
-    if (reply == nullptr)
-        return;
-
-    // handel errors
-    if (reply->error()) {
-#ifdef QT_DEBUG
-        qDebug() << reply->errorString();
-#endif
-        emit connectionError(reply->error(),
-                             reply->errorString(),
-                             reply->property("request_uuid").toByteArray());
-
-        reply->deleteLater();
+    if (!reply) {
         return;
     }
 
-    // read data
-    const quint8 request = quint8(reply->property("request_type").toUInt());
-    const QByteArray uuid = reply->property("request_uuid").toByteArray();
-    const QByteArray data = Compressor::gunzip(reply->readAll());
+    auto query = m_queryObjects.take(reply->property("uuid").toByteArray());
 
+    if (query == nullptr) {
+        return;
+    }
+
+    if (reply->error()) {
+        switch (reply->error()) {
+
+        case QNetworkReply::AuthenticationRequiredError:
+            query->setError(QueryObject::ErrorUnauthorized);
+            break;
+
+        case QNetworkReply::TimeoutError:
+            query->setError(QueryObject::ErrorTimeout);
+            break;
+
+
+        default:
+            query->setError(QueryObject::ErrorUndefined);
+            break;
+        }
+
+        reply->deleteLater();
+        query->setReady(true);
+        return;
+    }
+
+    const QByteArray data = Compressor::gunzip(reply->readAll());
     reply->deleteLater();
 
     // parse response
     QJsonParseError error{};
 
-    const QJsonObject obj = QJsonDocument::fromJson(data, &error).object();
+    const auto obj = QJsonDocument::fromJson(data, &error).object();
+
+#ifdef QT_DEBUG
+    qDebug() << obj;
+#endif
 
     if (error.error) {
-#ifdef QT_DEBUG
-        qDebug() << "JSON PARSE ERROR";
-        qDebug() << error.errorString();
-#endif
+        query->setError(QueryObject::ErrorInvalidData);
+        query->setReady(true);
         return;
     }
 
-    emit requestFinished(obj, request, uuid);
+    if (obj.keys().contains(ApiKey::ERROR)) {
+        query->setError(QueryObject::ErrorQuery);
+        query->setReady(true);
+        return;
+    }
+
+    auto result = obj.value(ApiKey::DATA).toObject();
+
+    if (result.contains(ApiKey::RATE_LIMIT)) {
+        m_remaining = result.value(ApiKey::RATE_LIMIT).toObject().value(ApiKey::REMAINING).toInt();
+        m_resetAt = QDateTime::fromString(result.value(ApiKey::RATE_LIMIT).toObject().value(ApiKey::RESET_AT).toString(), Qt::ISODate);
+        result.remove(ApiKey::RATE_LIMIT);
+    }
+
+    // pick node from path
+    if (!query->resultNodePath().isEmpty()) {
+        const auto keys = query->resultNodePath().split(".");
+        for (const auto &key : keys) {
+            result = result.value(key).toObject();
+        }
+    }
+
+    query->setResult(result);
+    query->setReady(true);
+}
+
+void GraphQLConnector::readSettings()
+{
+    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/sailhub/sailhub.conf";
+
+    if (!QFile(path).exists()) {
+           path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/harbour-sailhub/harbour-sailhub.conf";
+    }
+
+    QSettings settings(path, QSettings::NativeFormat);
+
+    settings.beginGroup("APP");
+    setToken(settings.value("token").toString());
+    settings.endGroup();
+}
+
+void GraphQLConnector::writeSettings()
+{
+    QSettings settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/org.nubecula/sailhub/sailhub.conf", QSettings::NativeFormat);
+
+    settings.beginGroup("APP");
+    settings.setValue("token", m_token);
+    settings.endGroup();
 }

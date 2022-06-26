@@ -18,7 +18,7 @@ ListItem {
 
         radius: height / 2
 
-        color: "#" + model.color
+        color: "#" + item.color
         opacity: 0.4
     }
 
@@ -30,6 +30,6 @@ ListItem {
 
         color: Theme.primaryColor
 
-        text: model.name
+        text: item.name
     }
 }

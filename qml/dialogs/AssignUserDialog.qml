@@ -4,11 +4,12 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../delegates/"
+import "../queries/"
 
 Dialog {
     id: dialog
     property var selected: []
-    property alias repoId: usersModel.identifier
+    property string nodeId
 
     canAccept: false
 
@@ -26,10 +27,7 @@ Dialog {
         anchors.bottom: parent.bottom
         width: parent.width
 
-        model: UsersModel {
-            id: usersModel
-            modelType: User.Assignable
-        }
+        model: ArrayModel { id: usersModel }
 
         delegate: UserListDelegate {
             Image {

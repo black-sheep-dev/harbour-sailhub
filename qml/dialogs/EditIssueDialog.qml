@@ -61,7 +61,7 @@ Dialog {
         }
     }
 
-    onDone: {
+    onAccepted: {
         if (result != DialogResult.Accepted) return
 
         title = titleField.text

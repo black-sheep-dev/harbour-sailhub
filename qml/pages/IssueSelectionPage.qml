@@ -14,23 +14,23 @@ Page {
     SilicaListView {
         id: listView
         model: ListModel {
-            ListElement {
-                //% "Open"
-                title: qsTrId("id-open");
-                //% "Open issues in user repos"
-                description: qsTrId("id-open-issues-in-user-repos")
-                icon: "image://theme/icon-m-warning"
-                issueType: Issue.Repos
-                sorting: false
-                editState: false
-            }
+//            ListElement {
+//                //% "Open"
+//                title: qsTrId("id-open");
+//                //% "Open issues in user repos"
+//                description: qsTrId("id-open-issues-in-user-repos")
+//                icon: "image://theme/icon-m-warning"
+//                queryType: "USER_REPOSITORY_ISSUES"
+//                sorting: false
+//                editState: false
+//            }
             ListElement {
                 //% "Created"
                 title: qsTrId("id-created");
                 //% "Issues created by user"
                 description: qsTrId("id-issues-created-by-user")
                 icon: "image://theme/icon-m-edit"
-                issueType: Issue.CreatedBy
+                queryType: "USER_CREATED_ISSUES"
                 sorting: true
                 editState: true
             }
@@ -40,7 +40,7 @@ Page {
                 //% "Issues assigned to user"
                 description: qsTrId("id-issues-assigned-to-user")
                 icon: "image://theme/icon-m-attach"
-                issueType: Issue.Assigned
+                queryType: "USER_ASSIGNED_ISSUES"
                 sorting: true
                 editState: true
             }
@@ -50,7 +50,7 @@ Page {
                 //% "Issues where user is mentioned"
                 description: qsTrId("id-issues-where-user-is-mentioned")
                 icon: "image://theme/icon-m-annotation"
-                issueType: Issue.Mentioned
+                queryType: "USER_MENTIONED_ISSUES"
                 sorting: true
                 editState: true
             }
@@ -100,13 +100,10 @@ Page {
             }
 
             onClicked: pageStack.push(Qt.resolvedUrl("IssuesListPage.qml"), {
-                                          canCreateNew: false,
+                                          nodeId: userId,
+                                          login: userLogin,
                                           description: userLogin,
-                                          identifier: userLogin,
-                                          type: issueType,
-                                          states: IssueState.Open,
-                                          sorting: sorting,
-                                          editState: editState
+                                          itemsQueryType: queryType
                                       })
         }
 

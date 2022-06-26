@@ -4,25 +4,62 @@ import Nemo.Configuration 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
+import "../components/"
 import "../delegates/"
+import "../views/"
 
-Page {
-    property string description
-    property alias identifier: releasesModel.identifier
-    property alias type: releasesModel.modelType
-    property bool sorting: true
-    property alias states: releasesModel.state
-
-    ConfigurationGroup {
-        id: config
-        path: "/apps/harbour-sailhub/releases"
-
-        property alias sortRole: releasesModel.sortRole
-        property alias sortOrder: releasesModel.sortOrder
-    }
-
+ListPage {
     id: page
     allowedOrientations: Orientation.All
+
+    configPath: "/app/harbour-sailhub/releases"
+
+    orderField: "CREATED_AT"
+    orderFields: ["CREATED_AT", "NAME"]
+    orderFieldLabels: [
+        //% "Created at"
+        qsTrId("id-created-at"),
+        //% "Name"
+        qsTrId("id-name")
+    ]
+    orderFieldType: "ReleaseOrderField = CREATED_AT"
+
+    itemsPath: ["node", "releases", "nodes"]
+
+    itemsQuery: '
+    query(
+        $nodeId: ID!,
+        $orderField: ' + orderFieldType + ',
+        $orderDirection: OrderDirection = DESC,
+        $itemCount: Int = 20,
+        $itemCursor: String = null
+    ) {
+        node(id: $nodeId) {
+            ... on Repository {
+                releases(
+                    first: $itemCount,
+                    after: $itemCursor,
+                    orderBy: {
+                        direction: $orderDirection
+                        field: $orderField
+                    }) {
+                    nodes {
+                        id
+                        createdAt
+                        isDraft
+                        isLatest
+                        isPrerelease
+                        name
+                    }
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                }
+            }
+        }
+    }'
 
     SilicaListView {
         id: listView
@@ -32,7 +69,7 @@ Page {
             id: header
             //% "Releases"
             title: qsTrId("id-releases")
-            description: header.description
+            description: description
         }
 
         footer: Item {
@@ -41,46 +78,18 @@ Page {
         }
 
         PullDownMenu {
-            busy: releasesModel.loading
+            busy: loading
             MenuItem {
                 //% "Refresh"
                 text: qsTrId("id-refresh")
-                onClicked: {
-                    refresh()
-                }
+                onClicked: refresh()
+
             }
             MenuItem {
-                visible: sorting
                 //% "Sorting"
                 text: qsTrId("id-sorting")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
-                                                    order: config.sortOrder,
-                                                    field: getSortFieldIndex(),
-                                                    fields: [
-                                                        //% "Created at"
-                                                        qsTrId("id-created-at"),
-                                                        //% "Name"
-                                                        qsTrId("id-name")
-                                                    ]
-                                                })
-
-                    dialog.accepted.connect(function() {
-                        config.sortOrder = dialog.order
-                        config.sortRole = getSortRoleFromIndex(dialog.field)
-
-                        refresh()
-                    })
-                }
+                onClicked: setSorting()
             }
-        }
-
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: releasesModel.loading
         }
 
         ViewPlaceholder {
@@ -91,68 +100,29 @@ Page {
 
         VerticalScrollDecorator {}
 
-        model: ReleasesModel { id: releasesModel }
-
-        opacity: busyIndicator.running ? 0.3 : 1.0
-        Behavior on opacity { FadeAnimator {} }
+        model: itemsModel
 
         delegate: ReleaseListDelegate {
             id: delegate
 
             onClicked: pageStack.push(Qt.resolvedUrl("ReleasePage.qml"), {
-                                          nodeId: model.nodeId
+                                          nodeId: item.id
                                       })
         }
 
         PushUpMenu {
-            busy: releasesModel.loading
-            visible: releasesModel.hasNextPage
+            busy: loading
+            visible: hasNextPage
 
             MenuItem {
+                enabled: !loading
                 //% "Load more (%n to go)"
-                text: qsTrId("id-load-more", releasesModel.totalCount - listView.count)
-                onClicked: getReleases()
+                text: qsTrId("id-load-more", totalCount - listView.count)
+                onClicked: loadMore()
             }
         }
     }
 
-    function getReleases() {
-        SailHub.api().getPaginationModel(releasesModel)
-    }
-
-    function getSortRoleFromIndex(index) {
-        switch (index) {
-        case 0:
-            return ReleasesModel.CreatedAtRole
-
-        default:
-            return ReleasesModel.NameRole
-        }
-    }
-
-    function getSortFieldIndex() {
-        switch (config.sortRole) {
-        case ReleasesModel.CreatedAtRole:
-            return 0;
-
-        case ReleasesModel.NameRole:
-            return 1;
-
-        default:
-            return 0
-        }
-    }
-
-    function refresh() {
-        releasesModel.reset()
-        getReleases()
-    }
-
-    Connections {
-        target: SailHub.api()
-    }
-
     Component.onCompleted: refresh()
-    Component.onDestruction: delete releasesModel
 }
 

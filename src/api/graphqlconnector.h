@@ -9,34 +9,51 @@
 #include <QNetworkRequest>
 #include <QUuid>
 
-#include "graphqlquery.h"
 #include "queryobject.h"
 
 class GraphQLConnector : public QObject
 {
     Q_OBJECT
 
-public:
-    explicit GraphQLConnector(QString endpoint, QNetworkAccessManager *manager, QObject *parent = nullptr);
+    Q_PROPERTY(quint16 remaining READ remaining NOTIFY remainingChanged)
+    Q_PROPERTY(QDateTime resetAt READ resetAt NOTIFY resetAtChanged)
+    Q_PROPERTY(QString token READ token WRITE setToken NOTIFY tokenChanged)
 
-    void request(QueryObject *query);
-    void sendQuery(const GraphQLQuery &query, quint8 requestType, const QByteArray &requestId = QUuid::createUuid().toByteArray());
-    void setEndpoint(const QString &endpoint);
+public:
+    explicit GraphQLConnector(QObject *parent = nullptr);
+    ~GraphQLConnector();
+
+    Q_INVOKABLE void init() {};
+    Q_INVOKABLE void request(QueryObject *query);
+
+    // properties
+    quint16 remaining() const;
+    const QDateTime &resetAt() const;
+
+    const QString &token() const;
     void setToken(const QString &token);
-    QString token() const;
 
 signals:
-    void connectionError(quint16 error, const QString &msg, const QByteArray &requestId);
-    void requestFinished(const QJsonObject &data, quint8 type, const QByteArray &requestId);
+    // properties
+    void remainingChanged();
+    void resetAtChanged(); 
+    void tokenChanged();
 
 private slots:
     void onRequestFinished();
 
 private:
-    QString m_endpoint;
-    QNetworkAccessManager *m_manager{nullptr};
-    QString m_token;
+    void readSettings();
+    void writeSettings();
 
+    QNetworkAccessManager *m_manager{new QNetworkAccessManager(this)};
+
+    QHash<QByteArray, QueryObject*> m_queryObjects;
+
+    // properties
+    quint16 m_remaining{0};
+    QDateTime m_resetAt;
+    QString m_token{""};
 };
 
 #endif // GRAPHQLCONNECTOR_H

@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
+import ".."
 
 Page {
     id: page
@@ -41,14 +41,12 @@ Page {
                 //% "%n Item(s)"
                 valueText: qsTrId("id-pagination-items-count", value)
 
-                Component.onCompleted: value = SailHub.api().paginationCount
-
-                onValueChanged: SailHub.api().paginationCount = value
+                Component.onCompleted: value = settings.paginationCount
             }
         }
     }
 
-    onStatusChanged: if (status == PageStatus.Deactivating) SailHub.saveSettings()
+    onStatusChanged: if (status == PageStatus.Deactivating) settings.paginationCount = itemCountSlider.value
 }
 
 

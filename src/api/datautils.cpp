@@ -91,44 +91,6 @@ QList<NotificationListItem> DataUtils::notificationsFromJson(const QJsonArray &a
     return items;
 }
 
-Owner *DataUtils::ownerFromJson(const QJsonObject &obj)
-{
-    auto owner = new Owner;
-    owner->setNodeId(obj.value(ApiKey::ID).toString());
-    owner->setLogin(obj.value(ApiKey::LOGIN).toString());
-    owner->setAvatarUrl(obj.value(ApiKey::AVATAR_URL).toString());
-
-    return owner;
-}
-
-Owner *DataUtils::ownerFromGitActorJson(const QJsonObject &obj)
-{
-    auto owner = new Owner;
-
-    const QJsonObject user = obj.value(ApiKey::USER).toObject();
-
-    owner->setNodeId(user.value(ApiKey::ID).toString());
-    owner->setLogin(user.value(ApiKey::LOGIN).toString());
-    owner->setAvatarUrl(obj.value(ApiKey::AVATAR_URL).toString());
-
-    return owner;
-}
-
-PageInfo DataUtils::pageInfoFromJson(const QJsonObject &obj, const QJsonValue &count)
-{
-    PageInfo info;
-
-    const QJsonObject item = obj.value(ApiKey::PAGE_INFO).toObject();
-    if (item.isEmpty())
-        return info;
-
-    info.hasNextPage = item.value(ApiKey::HAS_NEXT_PAGE).toBool();
-    info.totalCount = count.toInt();
-    info.lastItemCursor = item.value(ApiKey::END_CURSOR).toString();
-
-    return info;
-}
-
 QList<TreeItemListItem> DataUtils::treeListItemsFromJson(const QJsonObject &obj)
 {
     QList<TreeItemListItem> items;
@@ -246,49 +208,6 @@ QString DataUtils::getLinkFromString(const QString &string)
     return match.captured(0);
 }
 
-quint16 DataUtils::getRepoFlags(const QJsonObject &obj)
-{
-    quint16 flags{0};
-
-    if (obj.value(ApiKey::IS_ARCHIVED).toBool())
-        flags |= Repo::IsArchived;
-
-    if (obj.value(ApiKey::IS_BLANK_ISSUES_ENABLED).toBool())
-        flags |= Repo::IsBlankIssuesEnabled;
-
-    if (obj.value(ApiKey::IS_DISABLED).toBool())
-        flags |= Repo::IsDisabled;
-
-    if (obj.value(ApiKey::IS_EMPTY).toBool())
-        flags |= Repo::IsEmpty;
-
-    if (obj.value(ApiKey::IS_FORK).toBool())
-        flags |= Repo::IsFork;
-
-    if (obj.value(ApiKey::IS_IN_ORGANIZATION).toBool())
-        flags |= Repo::IsInOrganization;
-
-    if (obj.value(ApiKey::IS_LOCKED).toBool())
-        flags |= Repo::IsLocked;
-
-    if (obj.value(ApiKey::IS_MIRROR).toBool())
-        flags |= Repo::IsMirror;
-
-    if (obj.value(ApiKey::IS_PRIVATE).toBool())
-        flags |= Repo::IsPrivate;
-
-    if (obj.value(ApiKey::IS_SECURITY_POLICY_ENABLED).toBool())
-        flags |= Repo::IsSecurityPolicyEnabled;
-
-    if (obj.value(ApiKey::IS_TEMPLATE).toBool())
-        flags |= Repo::IsTemplate;
-
-    if (obj.value(ApiKey::IS_USER_CONFIGURATION_REPOSITORY).toBool())
-        flags |= Repo::IsUserConfigurationRepository;
-
-    return flags;
-}
-
 quint32 DataUtils::getTotalCount(const QJsonObject &obj)
 {
     return quint32(obj.value(ApiKey::TOTAL_COUNT).toInt());
@@ -298,47 +217,47 @@ quint32 DataUtils::getViewerAbilities(const QJsonObject &obj)
 {
     quint32 abilities{0};
 
-    if (obj.value(ApiKey::VIEWER_CAN_ADMINISTER).toBool())
-        abilities |= Viewer::CanAdminister;
+//    if (obj.value(ApiKey::VIEWER_CAN_ADMINISTER).toBool())
+//        abilities |= Viewer::CanAdminister;
 
-    if (obj.value(ApiKey::VIEWER_CAN_APPLY_SUGGESTION).toBool())
-        abilities |= Viewer::CanApplySuggestion;
+//    if (obj.value(ApiKey::VIEWER_CAN_APPLY_SUGGESTION).toBool())
+//        abilities |= Viewer::CanApplySuggestion;
 
-    if (obj.value(ApiKey::VIEWER_CAN_CREATE_PROJECTS).toBool())
-        abilities |= Viewer::CanCreateProjects;
+//    if (obj.value(ApiKey::VIEWER_CAN_CREATE_PROJECTS).toBool())
+//        abilities |= Viewer::CanCreateProjects;
 
-    if (obj.value(ApiKey::VIEWER_CAN_DELETE).toBool())
-        abilities |= Viewer::CanDelete;
+//    if (obj.value(ApiKey::VIEWER_CAN_DELETE).toBool())
+//        abilities |= Viewer::CanDelete;
 
-    if (obj.value(ApiKey::VIEWER_CAN_DELETE_HEAD_REF).toBool())
-        abilities |= Viewer::CanDeleteHeadRef;
+//    if (obj.value(ApiKey::VIEWER_CAN_DELETE_HEAD_REF).toBool())
+//        abilities |= Viewer::CanDeleteHeadRef;
 
-    if (obj.value(ApiKey::VIEWER_CAN_DISABLE_AUTO_MERGE).toBool())
-        abilities |= Viewer::CanDisableAutoMerge;
+//    if (obj.value(ApiKey::VIEWER_CAN_DISABLE_AUTO_MERGE).toBool())
+//        abilities |= Viewer::CanDisableAutoMerge;
 
-    if (obj.value(ApiKey::VIEWER_CAN_ENABLE_AUTO_MERGE).toBool())
-        abilities |= Viewer::CanEnableAutoMerge;
+//    if (obj.value(ApiKey::VIEWER_CAN_ENABLE_AUTO_MERGE).toBool())
+//        abilities |= Viewer::CanEnableAutoMerge;
 
-    if (obj.value(ApiKey::VIEWER_CAN_REACT).toBool())
-        abilities |= Viewer::CanReact;
+//    if (obj.value(ApiKey::VIEWER_CAN_REACT).toBool())
+//        abilities |= Viewer::CanReact;
 
-    if (obj.value(ApiKey::VIEWER_CAN_SUBSCRIBE).toBool())
-        abilities |= Viewer::CanSubscribe;
+//    if (obj.value(ApiKey::VIEWER_CAN_SUBSCRIBE).toBool())
+//        abilities |= Viewer::CanSubscribe;
 
-    if (obj.value(ApiKey::VIEWER_CAN_UPDATE).toBool())
-        abilities |= Viewer::CanUpdate;
+//    if (obj.value(ApiKey::VIEWER_CAN_UPDATE).toBool())
+//        abilities |= Viewer::CanUpdate;
 
-    if (obj.value(ApiKey::VIEWER_CAN_UPDATE_TOPICS).toBool())
-        abilities |= Viewer::CanUpdateTopics;
+//    if (obj.value(ApiKey::VIEWER_CAN_UPDATE_TOPICS).toBool())
+//        abilities |= Viewer::CanUpdateTopics;
 
-    if (obj.value(ApiKey::VIEWER_CAN_MARK_AS_ANSWER).toBool())
-        abilities |= Viewer::CanMarkAsAnswer;
+//    if (obj.value(ApiKey::VIEWER_CAN_MARK_AS_ANSWER).toBool())
+//        abilities |= Viewer::CanMarkAsAnswer;
 
-    if (obj.value(ApiKey::VIEWER_CAN_MINIMIZE).toBool())
-        abilities |= Viewer::CanMinimize;
+//    if (obj.value(ApiKey::VIEWER_CAN_MINIMIZE).toBool())
+//        abilities |= Viewer::CanMinimize;
 
-    if (obj.value(ApiKey::VIEWER_CAN_UNMARK_AS_ANSWER).toBool())
-        abilities |= Viewer::CanUnmarkAsAnswer;
+//    if (obj.value(ApiKey::VIEWER_CAN_UNMARK_AS_ANSWER).toBool())
+//        abilities |= Viewer::CanUnmarkAsAnswer;
 
     return abilities;
 }

@@ -3,6 +3,8 @@
 #include "src/api/datautils.h"
 #include "src/api/keys.h"
 
+#include <QJsonObject>
+
 // List Item
 NotificationListItem::NotificationListItem(const QJsonObject &data)
 {

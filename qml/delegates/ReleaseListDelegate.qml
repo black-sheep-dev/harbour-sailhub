@@ -32,7 +32,7 @@ ListItem {
                 width: parent.width
                 font.bold: true
 
-                text: model.name
+                text: item.name
             }
 
             Row {
@@ -41,11 +41,11 @@ ListItem {
 
                 Label {
                     font.pixelSize: Theme.fontSizeSmall
-                    text: model.createdAtTimeSpan
+                    text: item.createdAtTimeSpan
                 }
 
                 Label {
-                    visible: model.isDraft
+                    visible: item.isDraft
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#b71c1c"
                     //% "Draft"
@@ -53,7 +53,7 @@ ListItem {
                 }
 
                 Label {
-                    visible: model.isLatest
+                    visible: item.isLatest
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#64DD17"
                     //% "Latest release"
@@ -61,7 +61,7 @@ ListItem {
                 }
 
                 Label {
-                    visible: model.isPrerelease
+                    visible: item.isPrerelease
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#f29312"
                     //% "Pre-release"

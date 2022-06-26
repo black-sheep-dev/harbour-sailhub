@@ -37,7 +37,5 @@ Dialog {
             font.pixelSize: Theme.fontSizeLarge
         }
     }
-
-    onAccepted: SailHub.initialize()
 }
 

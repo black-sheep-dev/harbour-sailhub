@@ -384,11 +384,11 @@
     </message>
     <message id="id-repo-doesnt-exist">
         <source>Repo doesn&apos;t exist!</source>
-        <translation>Repo doesn&apos;t exist!</translation>
+        <translation type="vanished">Repo doesn&apos;t exist!</translation>
     </message>
     <message id="id-endpoint-unsupported">
         <source>Endpoint unsupported!</source>
-        <translation>Endpoint unsupported!</translation>
+        <translation type="vanished">Endpoint unsupported!</translation>
     </message>
     <message id="id-about">
         <source>About</source>
@@ -678,7 +678,7 @@
     </message>
     <message id="id-closing-issue">
         <source>Closing issue</source>
-        <translation>Closing issue</translation>
+        <translation type="vanished">Closing issue</translation>
     </message>
     <message id="id-reopen">
         <source>Reopen</source>
@@ -726,7 +726,7 @@
     </message>
     <message id="id-open-issues-in-user-repos">
         <source>Open issues in user repos</source>
-        <translation>Open issues in user repos</translation>
+        <translation type="vanished">Open issues in user repos</translation>
     </message>
     <message id="id-created">
         <source>Created</source>
@@ -1190,11 +1190,11 @@
     </message>
     <message id="id-error-unauthorized">
         <source>Unauthorized: Did you provide a valid access token?</source>
-        <translation>Unauthorized: Did you provide a valid access token?</translation>
+        <translation type="vanished">Unauthorized: Did you provide a valid access token?</translation>
     </message>
     <message id="id-error-connect-to-github">
         <source>An error occured when connecting to GitHub!</source>
-        <translation>An error occured when connecting to GitHub!</translation>
+        <translation type="vanished">An error occured when connecting to GitHub!</translation>
     </message>
     <message id="id-starred-repositories">
         <source>Starred repositories</source>
@@ -1208,7 +1208,8 @@
         </translation>
     </message>
     <message id="id-hours-ago-count" numerus="yes">
-        <source>%n hour(s) ago</source>
+        <source>%n hours(s) ago</source>
+        <oldsource>%n hour(s) ago</oldsource>
         <translation>
             <numerusform>%n hour ago</numerusform>
             <numerusform>%n hours ago</numerusform>
@@ -1222,18 +1223,172 @@
         </translation>
     </message>
     <message id="id-months-ago-count" numerus="yes">
-        <source>%n month(s) ago</source>
+        <source>%n hours(s) ago</source>
+        <oldsource>%n month(s) ago</oldsource>
         <translation>
             <numerusform>%n month ago</numerusform>
             <numerusform>%n months ago</numerusform>
         </translation>
     </message>
     <message id="id-years-ago-count" numerus="yes">
-        <source>%n year(s) ago</source>
+        <source>%n years(s) ago</source>
+        <oldsource>%n year(s) ago</oldsource>
         <translation>
             <numerusform>%n year ago</numerusform>
             <numerusform>%n years ago</numerusform>
         </translation>
+    </message>
+    <message id="id-disabled">
+        <source>Disabled</source>
+        <translation>Disabled</translation>
+    </message>
+    <message id="id-empty">
+        <source>Empty</source>
+        <translation>Empty</translation>
+    </message>
+    <message id="id-expires-at">
+        <source>Expires at</source>
+        <translation>Expires at</translation>
+    </message>
+    <message id="id-languages">
+        <source>Languages</source>
+        <translation>Languages</translation>
+    </message>
+    <message id="id-starred-at">
+        <source>Starred at</source>
+        <translation>Starred at</translation>
+    </message>
+    <message id="id-followers">
+        <source>Followers</source>
+        <translation>Followers</translation>
+    </message>
+    <message id="id-following">
+        <source>Following</source>
+        <translation>Following</translation>
+    </message>
+    <message id="id-choose-lock-reason">
+        <source>Choose lock reason</source>
+        <translation>Choose lock reason</translation>
+    </message>
+    <message id="id-choose-lock-reason-desc">
+        <source>Choose a reason why you are locking this one.</source>
+        <translation>Choose a reason why you are locking this one.</translation>
+    </message>
+    <message id="id-reason">
+        <source>Reason</source>
+        <translation>Reason</translation>
+    </message>
+    <message id="id-none">
+        <source>None</source>
+        <translation>None</translation>
+    </message>
+    <message id="id-error">
+        <source>Error</source>
+        <translation>None</translation>
+    </message>
+    <message id="id-api-error-not-found">
+        <source>Not found!</source>
+        <translation>Not found!</translation>
+    </message>
+    <message id="id-api-error-invalid-data">
+        <source>Received invalid data!</source>
+        <translation>Received invalid data!</translation>
+    </message>
+    <message id="id-api-error-query">
+        <source>Query failed with bad parameters!</source>
+        <translation>Query failed with bad parameters!</translation>
+    </message>
+    <message id="id-api-error-connection-timeout">
+        <source>Connection timeout!</source>
+        <translation>Connection timeout!</translation>
+    </message>
+    <message id="id-api-error-unauthorized">
+        <source>User is unauthorized!</source>
+        <translation>User is unauthorized!</translation>
+    </message>
+    <message id="id-api-error-unknown">
+        <source>An unkown error occured!</source>
+        <translation>An unkown error occured!</translation>
+    </message>
+    <message id="id-starting-download">
+        <source>Starting download</source>
+        <translation>Starting download</translation>
+    </message>
+    <message id="id-last-commit">
+        <source>Last commit</source>
+        <translation>Last commit</translation>
+    </message>
+    <message id="id-user-unavailable">
+        <source>User unavailable</source>
+        <translation>User unavailable</translation>
+    </message>
+    <message id="id-contributions-last-twelve-month">
+        <source>Contributions in the last 12 month</source>
+        <translation>Contributions in the last 12 month</translation>
+    </message>
+    <message id="id-contributions">
+        <source>Contributions</source>
+        <translation>Contributions</translation>
+    </message>
+    <message id="id-now">
+        <source>now</source>
+        <translation>now</translation>
+    </message>
+    <message id="id-minutes-ago-count-small" numerus="yes">
+        <source>%1m</source>
+        <translation>
+            <numerusform>%1m</numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-hours-ago-count-small" numerus="yes">
+        <source>%1h</source>
+        <translation>
+            <numerusform>%1h</numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-months-ago-count-small" numerus="yes">
+        <source>%1d</source>
+        <translation>
+            <numerusform>%1d</numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-years-ago-count-small" numerus="yes">
+        <source>%1y</source>
+        <translation>
+            <numerusform>%1y</numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-lock-conversation">
+        <source>Lock conversation</source>
+        <translation>Lock conversation</translation>
+    </message>
+    <message id="id-unlock-conversation">
+        <source>Unlock conversation</source>
+        <translation>Unlock conversation</translation>
+    </message>
+    <message id="id-close-issue">
+        <source>Close issue</source>
+        <translation>Close issue</translation>
+    </message>
+    <message id="id-close-issue-reason-desc">
+        <source>Choose a reason why you close this issue.</source>
+        <translation>Choose a reason why you close this issue.</translation>
+    </message>
+    <message id="id-completed">
+        <source>Completed</source>
+        <translation>Completed</translation>
+    </message>
+    <message id="id-not-planned">
+        <source>Not planned</source>
+        <translation>Not planned</translation>
+    </message>
+    <message id="id-reopened">
+        <source>Reopened</source>
+        <translation>Reopened</translation>
     </message>
 </context>
 <context>

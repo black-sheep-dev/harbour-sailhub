@@ -8,110 +8,63 @@ import ".."
 
 ListItem {
     id: commentItem
-    property Comment comment
+    property var comment
     property string parentId
 
     width: parent.width
-    contentHeight: contentColumn.height + 2*Theme.paddingSmall
+    contentHeight: authorItem.height + bodyLabel.height + reactionsItem.height + Theme.paddingLarge
 
-    menu: ContextMenu {
-        MenuItem {
-            visible: comment.viewerAbilities & Viewer.CanDelete
-            //% "Delete"
-            text: qsTrId("id-delete")
-            //% "Deleting comment"
-            onClicked: commentItem.remorseAction(qsTrId("id-deleting-comment"), function() {
-                SailHub.api().deleteComment(comment.nodeId)
-            })
+    AuthorItem {
+        id: authorItem
+        anchors {
+            top: parent.top
         }
-        MenuItem {
-            visible: comment.viewerAbilities & Viewer.CanUpdate
-            //% "Edit"
-            text: qsTrId("id-edit")
-            onClicked: {
-                var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"), {
-                                                edit: true,
-                                                body: comment.body
-                                            })
 
-                dialog.accepted.connect(function() {
-                    comment.body = dialog.body
-                    SailHub.api().updateComment(comment)
-                })
-            }
+        //height: Theme.itemSizeSmall
+        avatar: comment.author.avatarUrl
+        login: comment.author.login
+        subtitle: StringHelper.timespan(comment.createdAt)
+    }
+
+    Rectangle {
+        id: decoRect
+        anchors {
+           top: authorItem.bottom
+           topMargin: Theme.paddingSmall
+           bottom: reactionsItem.top
+           left: parent.left
+           leftMargin: Theme.paddingLarge + Theme.paddingSmall
         }
-        MenuItem {
-            //% "Quote reply"
-            text: qsTrId("id-quote-reply")
-            onClicked: {
-                const text = ">"+ comment.body + "\n\n";
-                var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"), {
-                                                edit: false,
-                                                body: text
-                                            })
-
-                dialog.accepted.connect(function() {
-                    SailHub.api().addComment(dialog.body, parentId)
-                })
-            }
+        width: 4
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: Theme.highlightColor; }
+            GradientStop { position: 1.0; color: "transparent"; }
         }
     }
 
-    Column {
-        id: contentColumn
-        anchors.verticalCenter: parent.verticalCenter
+    MarkdownLabel {
+        id: bodyLabel
+        anchors {
+            left: decoRect.right
+            leftMargin: Theme.paddingMedium
+            right: parent.right
+            rightMargin: Theme.horizontalPageMargin
+            top: authorItem.bottom
+        }
+        text: MarkdownParser.parse(comment.body)
+    }
+
+    ReactionsItem {
+        id: reactionsItem
+        anchors {
+            top: bodyLabel.bottom
+            topMargin: Theme.paddingLarge
+        }
         width: parent.width
-        spacing: Theme.paddingMedium
 
-        AuthorItem {
-            id: authorItem
-
-            interactive: true
-            avatar: comment.author.avatarUrl
-            title: comment.author.login
-            subtitle: {
-                if (comment.edited)
-                    //% "Edited"
-                    return comment.updatedAtTimeSpan + " - " + qsTrId("id-edited")
-
-                return comment.createdAtTimeSpan
-            }
-
-            onClicked: pageStack.push(Qt.resolvedUrl("../pages/UserPage.qml"), {
-                                          login: comment.author.login
-                                      })
-        }
-
-        MarkdownLabel {
-            id: bodyLabel
-            x: Theme.horizontalPageMargin
-            width: parent.width - 2*x
-            text: MarkdownParser.parse(comment.body)
-        }
-
-        ReactionsItem {
-            node: comment
-
-            onClicked: {
-                if (!(comment.viewerAbilities & Viewer.CanReact)) return;
-
-                var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ReactionDialog.qml"), {
-                                                reactions: comment.viewerReactions
-                                            })
-
-                dialog.accepted.connect(function() {
-                    if (comment.viewerReactions === dialog.reactions) return;
-
-                    SailHub.api().updateReactions(
-                                comment.nodeId,
-                                comment.viewerReactions,
-                                dialog.reactions)
-
-                    comment.updateReactionCount(dialog.reactions)
-                    comment.viewerReactions = dialog.reactions
-                })
-            }
-        }
+        nodeId: comment.id
+        reactionGroups: comment.reactionGroups
+        viewerCanReact: comment.viewerCanReact
     }
 }
 

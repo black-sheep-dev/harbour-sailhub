@@ -25,7 +25,7 @@ ListItem {
             Icon {
                 id: delegateIcon
                 anchors.top: parent.top
-                source: model.closed ?
+                source: item.closed ?
                             "image://theme/icon-s-installed?" +  SailHubStyles.colorStatusClosed :
                             "image://theme/icon-s-high-importance?" + SailHubStyles.colorStatusOpen
             }
@@ -43,7 +43,7 @@ ListItem {
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         font.pixelSize: Theme.fontSizeTiny
 
-                        text: model.repository + " #" + model.number
+                        text: item.repository + " #" + item.number
                     }
 
                     Label {
@@ -51,7 +51,7 @@ ListItem {
                         anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: model.sortRole === IssuesModel.UpdatedAtRole ? model.updatedAtTimeSpan : model.createdAtTimeSpan
+                        text: StringHelper.timespan(item.updatedAt)
                     }
                 }
 
@@ -64,7 +64,7 @@ ListItem {
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         font.bold: true
 
-                        text: model.title
+                        text: item.title
                     }
 
                     Icon {
@@ -80,7 +80,7 @@ ListItem {
                         font.pixelSize: Theme.fontSizeSmall
                         color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                        text: model.commentCount
+                        text: item.comments.totalCount
                     }
                 }
             }

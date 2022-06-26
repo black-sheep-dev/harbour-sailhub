@@ -3,14 +3,27 @@ import Sailfish.Silica 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
+import "../components/"
+import "../views/"
 import "../delegates/"
 
-Page {
-    property string description
-    property alias identifier: fundingLinksModel.identifier
-
+ListPage {
     id: page
     allowedOrientations: Orientation.All
+
+    itemsPath: ["node", "fundingLinks"]
+
+    itemsQuery: '
+    query($nodeId: ID!) {
+        node(id: $nodeId) {
+            ... on Repository {
+                fundingLinks {
+                    platform
+                    url
+                }
+            }
+        }
+    }'
 
     SilicaListView {
         id: listView
@@ -27,14 +40,6 @@ Page {
             height: Theme.horizontalPageMargin
         }
 
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: fundingLinksModel.loading
-        }
-
         ViewPlaceholder {
             enabled: listView.count == 0
             //% "No funding links available"
@@ -43,9 +48,9 @@ Page {
 
         VerticalScrollDecorator {}
 
-        model: FundingLinksModel { id: fundingLinksModel }
+        model: itemsModel
 
-        opacity: busyIndicator.running ? 0.3 : 1.0
+        opacity: loading ? 0.0 : 1.0
         Behavior on opacity { FadeAnimator {} }
 
         delegate: ListItem {
@@ -65,32 +70,32 @@ Page {
                     width: Theme.iconSizeMedium
 
                     source: {
-                        switch (model.platform) {
-                        case FundingLink.CommunityBridge:
+                        switch (item.platform) {
+                        case "COMMUNITY_BRIDGE":
                             return "https://mentorship.lfx.linuxfoundation.org/assets/favicons/mstile-144x144.png"
 
-                        case FundingLink.GitHub:
+                        case "GITHUB":
                             return "qrc:///icons/git"
 
-                        case FundingLink.IssueHunt:
+                        case "ISSUEHUNT":
                             return "https://issuehunt.io/static/logo.png"
 
-                        case FundingLink.KoFi:
+                        case "KO_FI":
                             return "https://ko-fi.com/apple-touch-icon.png"
 
-                        case FundingLink.Liberpay:
+                        case "LIBERAPAY":
                             return "qrc:///icons/liberpay"
 
-                        case FundingLink.OpenCollective:
+                        case "OPEN_COLLECTIVE":
                             return "https://opencollective.com/static/images/opencollective-icon.svg"
 
-                        case FundingLink.Otechie:
+                        case "OTECHIE":
                             return "https://cdn.otechie.com/attachments/Yf6W1eiVZ/image.png"
 
-                        case FundingLink.Patreon:
+                        case "PATREON":
                             return "https://c5.patreon.com/external/favicon/apple-touch-icon.png?v=jw6AR4Rg74"
 
-                        case FundingLink.Tidelift:
+                        case "TIDELIFT":
                             return "https://cdn2.hubspot.net/hubfs/4008838/website/icons/Tidelift_Favicon.png"
 
                         default:
@@ -102,16 +107,15 @@ Page {
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
 
-                    text: model.name
+                    text: item.platform
                 }
             }
 
-            onClicked: Qt.openUrlExternally(model.url)
+            onClicked: Qt.openUrlExternally(item.url)
         }
 
     }
 
-    Component.onCompleted: SailHub.api().getModel(fundingLinksModel)
-    Component.onDestruction: delete fundingLinksModel
+    Component.onCompleted: refresh()
 }
 

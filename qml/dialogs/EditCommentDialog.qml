@@ -40,13 +40,12 @@ Dialog {
             id: bodyTextArea
 
             width: parent.width
-            height: dialog.height / 2
-
+            height: dialog.height / 2         
             focus: true
 
             cursorPosition: length
 
-            EnterKey.iconSource: "image://theme/icon-m-enter-close"
+            EnterKey.iconSource: "image://theme/icon-m-enter-close"     
         }
     }
 

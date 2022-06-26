@@ -1,13 +1,5 @@
 #include "queryobject.h"
 
-#include <QDebug>
-#include <QNetworkReply>
-#include <QJsonDocument>
-#include <QJsonParseError>
-
-#include "compressor.h"
-#include "keys.h"
-
 QueryObject::QueryObject(QObject *parent) :
     QObject(parent)
 {
@@ -21,12 +13,9 @@ quint8 QueryObject::error() const
 
 void QueryObject::setError(quint8 error)
 {
-    if (m_error == error)
-        return;
     m_error = error;
     emit errorChanged();
 }
-
 
 const QString &QueryObject::query() const
 {
@@ -54,64 +43,28 @@ void QueryObject::setReady(bool ready)
     emit readyChanged();
 }
 
-const QJsonObject &QueryObject::result() const
+QJsonObject &QueryObject::result()
 {
     return m_result;
 }
 
 void QueryObject::setResult(const QJsonObject &result)
 {
-    if (m_result == result)
-        return;
     m_result = result;
     emit resultChanged();
 }
 
-void QueryObject::onResultAvailable()
+const QString &QueryObject::resultNodePath() const
 {
-    setReady(true);
+    return m_resultNodePath;
+}
 
-    auto reply = qobject_cast<QNetworkReply *>(sender());
-    if (!reply) {
+void QueryObject::setResultNodePath(const QString &path)
+{
+    if (m_resultNodePath == path)
         return;
-    }
-
-    if (reply->error()) {
-        switch (reply->error()) {
-
-        case QNetworkReply::AuthenticationRequiredError:
-            setError(ErrorUnauthorized);
-            break;
-
-        case QNetworkReply::TimeoutError:
-            setError(ErrorTimeout);
-            break;
-
-
-        default:
-            setError(ErrorUndefined);
-            break;
-        }
-
-        reply->deleteLater();
-        return;
-    }
-
-    const QByteArray data = Compressor::gunzip(reply->readAll());
-    reply->deleteLater();
-
-    // parse response
-    QJsonParseError error{};
-
-    const auto obj = QJsonDocument::fromJson(data, &error).object();
-    qDebug() << obj;
-    m_result = obj.value(ApiKey::DATA).toObject().value(ApiKey::NODE).toObject();
-
-    if (error.error) {
-        setError(ErrorInvalidData);
-    }
-
-    emit resultChanged();
+    m_resultNodePath = path;
+    emit resultNodePathChanged();
 }
 
 const QJsonObject &QueryObject::variables() const
@@ -126,3 +79,5 @@ void QueryObject::setVariables(const QJsonObject &variables)
     m_variables = variables;
     emit variablesChanged();
 }
+
+

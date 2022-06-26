@@ -19,7 +19,7 @@ ListItem {
         CircleImage {
             id: avatarIcon
             width: Theme.itemSizeLarge - 2 * Theme.paddingSmall
-            source: model.avatarUrl
+            source: item.avatarUrl
             anchors.top: parent.top
 
             fallbackItemVisible: false
@@ -37,7 +37,7 @@ ListItem {
                 font.bold: true
                 wrapMode: Text.Wrap
 
-                text: model.name.length > 0 ? model.name : login
+                text: item.name.length > 0 ? item.name : login
             }
             Label {
                 width: parent.width
@@ -45,7 +45,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 wrapMode: Text.Wrap
 
-                text: model.login
+                text: item.login
             }
             Label {
                 width: parent.width
@@ -54,7 +54,7 @@ ListItem {
                 font.italic: true
                 wrapMode: Text.Wrap
 
-                text: model.description
+                text: item.description
             }
         }
     }

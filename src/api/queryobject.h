@@ -12,7 +12,8 @@ class QueryObject : public QObject
     Q_PROPERTY(quint8 error READ error WRITE setError NOTIFY errorChanged)
     Q_PROPERTY(QString query READ query WRITE setQuery NOTIFY queryChanged)
     Q_PROPERTY(bool ready READ ready WRITE setReady NOTIFY readyChanged)
-    Q_PROPERTY(QJsonObject result READ result WRITE setResult NOTIFY resultChanged)
+    Q_PROPERTY(QJsonObject result READ result NOTIFY resultChanged)
+    Q_PROPERTY(QString resultNodePath READ resultNodePath WRITE setResultNodePath NOTIFY resultNodePathChanged)
     Q_PROPERTY(QJsonObject variables READ variables WRITE setVariables NOTIFY variablesChanged)
 
 public:
@@ -20,6 +21,7 @@ public:
         ErrorNone,
         ErrorInvalidData,
         ErrorNotFound,
+        ErrorQuery,
         ErrorTimeout,
         ErrorUnauthorized,
         ErrorUndefined
@@ -36,10 +38,13 @@ public:
     void setQuery(const QString &query);
 
     bool ready() const;
-    void setReady(bool ready = true);
+    void setReady(bool ready);
 
-    const QJsonObject &result() const;
+    QJsonObject &result();
     void setResult(const QJsonObject &result);
+
+    const QString &resultNodePath() const;
+    void setResultNodePath(const QString &path);
 
     const QJsonObject &variables() const;
     void setVariables(const QJsonObject &variables);
@@ -50,10 +55,8 @@ signals:
     void queryChanged();
     void readyChanged();
     void resultChanged();
+    void resultNodePathChanged();
     void variablesChanged();
-
-public slots:
-    void onResultAvailable();
 
 private:
     // properties
@@ -61,7 +64,10 @@ private:
     QString m_query;
     bool m_ready{false};
     QJsonObject m_result;
+    QString m_resultNodePath;
     QJsonObject m_variables;
+
+
 };
 
 #endif // QUERYOBJECT_H

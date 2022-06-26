@@ -3,84 +3,113 @@ import Sailfish.Silica 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
-BackgroundItem {
+import "../queries/"
+
+ListItem {
     property int iconSize: Theme.iconSizeSmall
-    property Interactable node
-    property bool locked: false
+    property string nodeId
+    property var reactionGroups
+    property alias viewerCanReact: reactionsItem.enabled
 
     id: reactionsItem
-    width: parent.width
-    height: contentRow.height + 2 * Theme.paddingSmall
 
-    Row {
-        id: contentRow
-        x: Theme.horizontalPageMargin
-        anchors.verticalCenter: parent.verticalCenter
-        width: parent.width - 2*x
-        spacing: Theme.paddingMedium
+    enabled: viewerCanReact
 
-        Image {
-            visible: !locked
-            id: defaultIcon
-            anchors.verticalCenter: parent.verticalCenter
-            x: Theme.horizontalPageMargin
-            width: iconSize
-            height: width
-            source: "qrc:///emoji/default"
+    contentHeight: Math.max(Theme.itemSizeSmall, reactionsRow.height + 2*Theme.paddingMedium)
+
+    AddReactionMutation {
+        id: addReactionMutation
+        nodeId: reactionsItem.nodeId
+
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+            reactionGroups = result.addReaction.subject.reactionGroups
         }
+    }
 
-        Flow {
-            width: parent.width - defaultIcon.width - parent.spacing
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: Theme.paddingSmall
+    RemoveReactionMutation {
+        id: removeReactionMutation
+        nodeId: reactionsItem.nodeId
 
-            ReactionLabel {
-                id: thumbsUpLabel
-                icon: "qrc:///emoji/thumbs_up"
-                iconSize: reactionsItem.iconSize
-                count: node.reactionThumbsUpCount
-            }
-            ReactionLabel {
-                id: thumbsDownLabel
-                icon: "qrc:///emoji/thumbs_down"
-                iconSize: reactionsItem.iconSize
-                count: node.reactionThumbsDownCount
-            }
-            ReactionLabel {
-                id: laughLabel
-                icon: "qrc:///emoji/laugh"
-                iconSize: reactionsItem.iconSize
-                count: node.reactionLaughCount
-            }
-            ReactionLabel {
-                id: hoorayLabel
-                icon: "qrc:///emoji/hooray"
-                iconSize: reactionsItem.iconSize
-                count: node.reactionHoorayCount
-            }
-            ReactionLabel {
-                id: confusedLabel
-                icon: "qrc:///emoji/confused"
-                iconSize: reactionsItem.iconSize
-                count: node.reactionConfusedCount
-            }
-            ReactionLabel {
-                id: heartLabel
-                icon: "qrc:///emoji/heart"
-                iconSize: reactionsItem.iconSize
-                count: node.reactionHeartCount
-            }
-            ReactionLabel {
-                id: rocketLabel
-                icon: "qrc:///emoji/rocket"
-                iconSize: reactionsItem.iconSize
-                count: node.reactionRocketCount
-            }
-            ReactionLabel {
-                id: eyesLabel
-                icon: "qrc:///emoji/eyes"
-                iconSize: reactionsItem.iconSize
-                count: node.reactionEyesCount
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+            reactionGroups = result.removeReaction.subject.reactionGroups
+        }
+    }
+
+    Item {
+       id: reactionsRow
+       anchors.verticalCenter: parent.verticalCenter
+       x: Theme.horizontalPageMargin
+       width: parent.width - 2*x
+       height: Math.max(defaultIcon.height, flowLayout.height)
+
+       Image {
+           id: defaultIcon
+           anchors {
+               left: parent.left
+               top: parent.top
+           }
+
+           width: iconSize
+           height: width
+           source: "qrc:///emoji/default"
+       }
+
+       Flow {
+           id: flowLayout
+           anchors {
+               left: defaultIcon.right
+               leftMargin: Theme.paddingLarge
+               right: parent.right
+           }
+
+           spacing: Theme.paddingLarge
+
+           Repeater {
+               model: reactionGroups
+
+               ReactionLabel {
+                   readonly property string reaction: modelData.content
+                   icon: "qrc:///emoji/" + modelData.content.toLowerCase()
+                   iconSize: reactionsItem.iconSize
+                   count: modelData.users.totalCount
+               }
+           }
+       }
+    }
+
+    menu: ContextMenu {
+        id: contextMenu
+
+        MenuItem {
+            Row {
+                id: iconsRow
+                width: parent.width
+                height: parent.height
+
+                Repeater {
+                    model: reactionGroups
+
+                    ReactionGridItem {
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: iconsRow.width / reactionGroups.length
+                        icon: "qrc:///emoji/" + modelData.content.toLowerCase()
+                        selected: modelData.viewerHasReacted
+
+                        onClicked: {
+                            contextMenu.close()
+
+                            if (selected) {
+                                addReactionMutation.content = modelData.content
+                                Api.request(addReactionMutation)
+                            } else {
+                                removeReactionMutation.content = modelData.content
+                                Api.request(removeReactionMutation)
+                            }
+                        }
+                    }
+                }
             }
         }
     }

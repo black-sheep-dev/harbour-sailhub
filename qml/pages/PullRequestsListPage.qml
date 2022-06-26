@@ -4,24 +4,85 @@ import Nemo.Configuration 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
+import "../components/"
 import "../delegates/"
+import "../views/"
 
-Page {
-    property string description
-    property alias identifier: pullRequestsModel.identifier
-    property alias type: pullRequestsModel.modelType
-    property alias states: pullRequestsModel.state
+ListPage {
+    property bool canEditFilter: false
+    property var pullRequestStates: ["OPEN"]
 
-    ConfigurationGroup {
-        id: config
-        path: "/apps/harbour-sailhub/pull-requests"
+    property string login: ""
 
-        property alias sortRole: pullRequestsModel.sortRole
-        property alias sortOrder: pullRequestsModel.sortOrder
-    }
+    property string nodeType
+    property string nodes
+    property string args: ""
 
     id: page
     allowedOrientations: Orientation.All
+
+    configPath: "/app/harbour-sailhub/pull-requests"
+
+    orderField: "UPDATED_AT"
+    orderFields: ["CREATED_AT", "UPDATED_AT"]
+    orderFieldLabels: [
+        //% "Created at"
+        qsTrId("id-created-at"),
+        //% "Updated at"
+        qsTrId("id-updated-at")
+    ]
+    orderFieldType: "IssueOrderField = UPDATED_AT"
+
+    itemsQuery: '
+    query(
+        ' + (login.length > 0 ? '$userLogin: String!' : '$nodeId: ID!') + ',
+        $states: [PullRequestState!]!,
+        $orderField: ' + orderFieldType + ',
+        $orderDirection: OrderDirection = DESC,
+        $itemCount: Int = 20,
+        $itemCursor: String = null
+    ) {
+        node(' + (login.length > 0 ? 'login: $userLogin' : 'id: $nodeId') + ') {
+            ... on ' + nodeType + ' {
+                ' + nodes + '(
+                    ' + args + '
+                    first: $itemCount,
+                    after: $itemCursor,
+                    states: $states,
+                    orderBy: {
+                        direction: $orderDirection
+                        field: $orderField
+                    }) {
+                    nodes {
+                        id
+                        closed
+                        comments {
+                            totalCount
+                        }
+                        createdAt
+                        number
+                        repository {
+                            nameWithOwner
+                        }
+                        state
+                        title
+                        updatedAt
+                    }
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                }
+            }
+        }
+    }'
+    itemsQueryVariables: {
+        var vars = getDefaultQueryVariables()
+        vars["states"] = pullRequestStates
+        if (login.length > 0) vars["userLogin"] = login
+        return vars
+    }
 
     SilicaListView {
         id: listView
@@ -39,22 +100,22 @@ Page {
         }
 
         PullDownMenu {
-            busy: pullRequestsModel.loading
+            busy: loading
             MenuItem {
                 text: {
-                    if (page.states & PullRequestState.Open)
+                    if (pullRequestStates.indexOf("OPEN") >= 0)
                         //% "Show closed pull requests"
                         return qsTrId("id-show-closed-pull-requests")
-                    else if (page.states & PullRequestState.Closed)
+                    else if (pullRequestStates.indexOf("CLOSED") >= 0)
                         //% "Show open pull requests"
                         return qsTrId("id-show-open-pull-request")
                 }
 
                 onClicked: {
-                    if (page.states & PullRequestState.Open)
-                        page.states = PullRequestState.Closed | PullRequestState.Merged
-                    else if (page.states & PullRequestState.Closed)
-                        page.states = PullRequestState.Open
+                    if (pullRequestStates.indexOf("OPEN") >= 0)
+                        pullRequestStates = ["CLOSED", "MERGED"]
+                    else if (pullRequestStates.indexOf("CLOSED") >= 0)
+                        pullRequestStates = ["OPEN"]
 
                     refresh()
                 }
@@ -67,34 +128,8 @@ Page {
             MenuItem {
                 //% "Sorting"
                 text: qsTrId("id-sorting")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
-                                                    order: config.sortOrder,
-                                                    field: getSortFieldIndex(),
-                                                    fields: [
-                                                        //% "Created at"
-                                                        qsTrId("id-created-at"),
-                                                        //% "Updated at"
-                                                        qsTrId("id-updated-at")
-                                                    ]
-                                                })
-
-                    dialog.accepted.connect(function() {
-                        config.sortOrder = dialog.order
-                        config.sortRole = getSortRoleFromIndex(dialog.field)
-
-                        refresh()
-                    })
-                }
+                onClicked: setSorting()
             }
-        }
-
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: pullRequestsModel.loading
         }
 
         ViewPlaceholder {
@@ -105,68 +140,66 @@ Page {
 
         VerticalScrollDecorator {}
 
-        model: PullRequestsModel{ id: pullRequestsModel }
-
-        opacity: busyIndicator.running ? 0.3 : 1.0
-        Behavior on opacity { FadeAnimator {} }
+        model: itemsModel
 
         delegate: PullRequestListDelegate {
             id: delegate
 
             onClicked: pageStack.push(Qt.resolvedUrl("PullRequestPage.qml"), {
-                                          nodeId: model.nodeId
+                                          nodeId: nodeId,
+                                          description: item.repository.nameWithOwner
                                       })
 
         }
 
         PushUpMenu {
-            busy: pullRequestsModel.loading
-            visible: pullRequestsModel.hasNextPage
+            busy: loading
+            visible: hasNextPage
 
             MenuItem {
+                enabled: !loading
                 //% "Load more (%n to go)"
-                text: qsTrId("id-load-more",  pullRequestsModel.totalCount - listView.count)
-                onClicked: getPullRequests()
+                text: qsTrId("id-load-more",  totalCount - listView.count)
+                onClicked: loadMore()
             }
         }
     }
 
-    function getPullRequests() {
-        SailHub.api().getPaginationModel(pullRequestsModel)
-    }
+    Component.onCompleted: {
+        switch (itemsQueryType) {
+        case "REPOSITORY":
+            nodeType = "Repository"
+            nodes = "pullRequests"
+            itemsPath = ["node", "pullRequests", "nodes"]
+            break
 
-    function getSortRoleFromIndex(index) {
-        switch (index) {
-        case 0:
-            return PullRequestsModel.CreatedAtRole
+        case "USER_CREATED":
+            nodeType = "User"
+            nodes = "pullRequests"
+            itemsPath = ["node", "pullRequests", "nodes"]
+            "filterBy: { createdBy: $userLogin },"
+            break
 
-        case 1:
-            return PullRequestsModel.UpdatedAtRole
+        case "USER_ASSIGNED":
+            nodeType = "User"
+            nodes = "pullRequests"
+            itemsPath = ["node", "pullRequests", "nodes"]
+            args = "filterBy: { assignee: $userLogin },"
+            break
+
+        case "USER_MENTIONED":
+            nodeType = "User"
+            nodes = "pullRequests"
+            itemsPath = ["node", "pullRequests", "nodes"]
+            args = "filterBy: { mentioned: $userLogin },"
+            pullRequestStates = ["OPEN", "MERGED", "CLOSED"]
+            break
 
         default:
-            return PullRequestsModel.UpdatedAtRole
+            break
         }
+
+        refresh()
     }
-
-    function getSortFieldIndex() {
-        switch (config.sortRole) {
-        case PullRequestsModel.CreatedAtRole:
-            return 0;
-
-        case PullRequestsModel.UpdatedAtRole:
-            return 1;
-
-        default:
-            return 0
-        }
-    }
-
-    function refresh() {
-        pullRequestsModel.reset()
-        getPullRequests()
-    }
-
-    Component.onCompleted: refresh()
-    Component.onDestruction: delete pullRequestsModel
 }
 

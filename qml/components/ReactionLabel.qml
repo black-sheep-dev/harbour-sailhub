@@ -5,30 +5,42 @@ Item {
     property alias icon: iconImage.source
     property int iconSize: Theme.iconSizeSmall
     property alias count: countLabel.text
+    property bool viewerHasReacted: false
 
     id: iconLabel
 
     visible: count > 0
     height: iconSize
-    width: contentRow.width
+    width: iconRect.width + countLabel.width
 
-    Row {
-        id: contentRow
-        height: parent.height
-        spacing: Theme.paddingSmall
+    Rectangle {
+        id: iconRect
+        anchors {
+            left: parent.left
+            verticalCenter: parent.verticalCenter
+        }
+        width: iconLabel.height
+        height: width
+        radius: 0.5 * width
+
+        color: viewerHasReacted ? Theme.secondaryColor : "transparent"
 
         Image {
             id: iconImage
+            anchors.centerIn: parent
             width: iconLabel.height
             height: width
-            anchors.verticalCenter: parent.verticalCenter
         }
+    }
 
-        Label {
-            id: countLabel
-            anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: Theme.fontSizeSmall
+    Label {
+        id: countLabel
+        anchors {
+            left: iconRect.right
+            leftMargin: Theme.paddingSmall
+            verticalCenter: parent.verticalCenter
         }
+        font.pixelSize: Theme.fontSizeSmall
     }
 }
 

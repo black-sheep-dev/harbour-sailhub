@@ -4,24 +4,63 @@ import Nemo.Configuration 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
+import "../components/"
 import "../delegates/"
+import "../views/"
 
-Page {
-    property string description
-    property alias identifier: labelsModel.identifier
-    property alias type: labelsModel.modelType
-    property alias states: labelsModel.state
-
-    ConfigurationGroup {
-        id: config
-        path: "/apps/harbour-sailhub/labels"
-
-        property alias sortRole: labelsModel.sortRole
-        property alias sortOrder: labelsModel.sortOrder
-    }
+ListPage {
+    property string nodeType
+    property string nodes
 
     id: page
     allowedOrientations: Orientation.All
+
+    configPath: "/app/harbour-sailhub/labels"
+
+    orderField: "NAME"
+    orderFields: ["CREATED_AT", "NAME"]
+    orderFieldLabels: [
+        //% "Created at"
+        qsTrId("id-created-at"),
+        //% "Name"
+        qsTrId("id-name")
+    ]
+    orderFieldType: "LabelOrderField = NAME"
+
+    nodes: "labels"
+
+    itemsQuery: '
+    query(
+        $nodeId: ID!,
+        $orderField: ' + orderFieldType + ',
+        $orderDirection: OrderDirection = ASC,
+        $itemCount: Int = 20,
+        $itemCursor: String = null
+    ) {
+        node(id: $nodeId) {
+            ... on ' + nodeType + ' {
+                ' + nodes + '(
+                    first: $itemCount,
+                    after: $itemCursor,
+                    orderBy: {
+                        direction: $orderDirection
+                        field: $orderField
+                    }) {
+                    nodes {
+                        id
+                        color
+                        createdAt
+                        name
+                    }
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                }
+            }
+        }
+    }'
 
     SilicaListView {
         id: listView
@@ -39,45 +78,18 @@ Page {
         }
 
         PullDownMenu {
-            busy: labelsModel.loading
+            busy: loading
             MenuItem {
                 //% "Refresh"
                 text: qsTrId("id-refresh")
-                onClicked: {
-                    refresh()
-                }
+                onClicked: refresh()
             }
+
             MenuItem {
                 //% "Sorting"
                 text: qsTrId("id-sorting")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
-                                                    order: config.sortOrder,
-                                                    field: getSortFieldIndex(),
-                                                    fields: [
-                                                        //% "Created at"
-                                                        qsTrId("id-created-at"),
-                                                        //% "Name"
-                                                        qsTrId("id-name")
-                                                    ]
-                                                })
-
-                    dialog.accepted.connect(function() {
-                        config.sortOrder = dialog.order
-                        config.sortRole = getSortRoleFromIndex(dialog.field)
-
-                        refresh()
-                    })
-                }
+                onClicked: setSorting()
             }
-        }
-
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: labelsModel.loading
         }
 
         ViewPlaceholder {
@@ -88,58 +100,26 @@ Page {
 
         VerticalScrollDecorator {}
 
-        model: LabelsModel { id: labelsModel }
+        model: itemsModel
 
         opacity: busyIndicator.running ? 0.3 : 1.0
         Behavior on opacity { FadeAnimator {} }
 
-        delegate: LabelListDelegate { id: delegate }
+        delegate: LabelListDelegate {}
 
         PushUpMenu {
-            busy: labelsModel.loading
-            visible: labelsModel.hasNextPage
+            busy: loading
+            visible: hasNextPage
 
             MenuItem {
+                enabled: !loading
                 //% "Load more (%n to go)"
-                text: qsTrId("id-load-more", labelsModel.totalCount - listView.count)
-                onClicked: getLabels()
+                text: qsTrId("id-load-more", totalCount - listView.count)
+                onClicked: loadMore()
             }
         }
     }
 
-    function getLabels() {
-        SailHub.api().getPaginationModel(labelsModel)
-    }
-
-    function getSortRoleFromIndex(index) {
-        switch (index) {
-        case 0:
-            return LabelsModel.CreatedAtRole
-
-        default:
-            return LabelsModel.NameRole
-        }
-    }
-
-    function getSortFieldIndex() {
-        switch (config.sortRole) {
-        case LabelsModel.CreatedAtRole:
-            return 0;
-
-        case LabelsModel.NameRole:
-            return 1;
-
-        default:
-            return 0
-        }
-    }
-
-    function refresh() {
-        labelsModel.reset()
-        getLabels()
-    }
-
     Component.onCompleted: refresh()
-    Component.onDestruction: delete labelsModel
 }
 

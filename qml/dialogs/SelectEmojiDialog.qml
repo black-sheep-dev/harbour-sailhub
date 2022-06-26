@@ -6,8 +6,7 @@ import org.nubecula.harbour.sailhub 1.0
 import '..'
 
 Dialog {
-    property string emoji
-    property var emojiUnicode
+    property var emoji
 
     DialogHeader {
         id: header
@@ -26,25 +25,31 @@ Dialog {
         model: EmojiModel {}
 
         delegate: BackgroundItem {
-            width: Theme.iconSizeMedium + Theme.paddingMedium
+            width: Theme.iconSizeMedium
             height: width
 
             Image {
                 id: emojiIcon
                 anchors.centerIn: parent
-                anchors.margins: Theme.paddingSmall
-                width: Theme.iconSizeMedium
+                width: Theme.iconSizeSmall
                 height: width
 
                 sourceSize.width: width
                 sourceSize.height: width
 
-                source: "/usr/share/harbour-sailhub/twemoji/svg/" + model.name + ".svg"
+                source: "https://cdn.nubecula.org/twemoji/svg/" + model.name + ".svg"
             }
 
             onClicked: {
-                emoji = model.name
-                emojiUnicode = Twemoji.twemoji.convert.fromCodePoint(model.name)
+                const parts = model.name.split("-")
+                const code = ""
+
+                parts.forEach(function (value, index, array) {
+                    code +=  Twemoji.twemoji.convert.fromCodePoint(value)
+                })
+
+                emoji = code
+                console.log(code)
                 accept()
             }
         }

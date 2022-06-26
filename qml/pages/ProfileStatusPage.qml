@@ -3,17 +3,24 @@ import Sailfish.Silica 1.0
 
 import org.nubecula.harbour.sailhub 1.0
 
-Page {
-    property ProfileStatus profileStatus
+import ".."
 
+Page {
     id: page
 
     allowedOrientations: Orientation.All
 
     function apply() {
-        profileStatus.message = messageField.text
-        profileStatus.indicatesLimitedAvailability = limitedAvailabilitySwitch.checked
-        profileStatus.expireStatus = clearStatusComboBox.currentIndex
+        viewerProfile.profileStatus.message = messageField.text
+        viewerProfile.profileStatus.indicatesLimitedAvailability = limitedAvailabilitySwitch.checked
+
+        if (clearStatusComboBox.currentIndex !== 0) {
+            viewerProfile.profileStatus.expiresAt = clearStatusComboBox.expiresAt.toISOString()
+        } else {
+            viewerProfile.profileStatus.expiresAt =  ""
+        }
+
+        viewerProfile.updateStatus()
     }
 
     RemorsePopup { id: remorse }
@@ -21,22 +28,19 @@ Page {
     SilicaFlickable {
         PullDownMenu {
             MenuItem {
-                visible: profileStatus.message.length > 0
+                visible: viewerProfile.profileStatus.message.length > 0
                 //% "Clear status"
                 text: qsTrId("id-clear-status")
                 //% "Clearing status"
                 onClicked: remorse.execute(qsTrId("id-clearing-status"), function() {
-                    SailHub.api().clearProfileStatus(profileStatus)
+                    viewerProfile.clearStatus()
                     pageStack.navigateBack()
                 })
             }
             MenuItem {
                 //% "Change status"
                 text: qsTrId("id-change-status")
-                onClicked: {
-                    apply()
-                    SailHub.api().updateProfileStatus(profileStatus)
-                }
+                onClicked: apply()
             }
         }
 
@@ -67,8 +71,8 @@ Page {
                     sourceSize.height: width
 
                     source: {
-                        if (profileStatus.emojiImage.length > 0)
-                            return profileStatus.emojiImage
+                        if (viewerProfile.profileStatus !== null)
+                            return DataUtils.getEmojiUrl(viewerProfile.profileStatus.emoji)
                         else
                             return "qrc:///emoji/default"
                     }
@@ -78,8 +82,9 @@ Page {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectEmojiDialog.qml"))
 
                     dialog.accepted.connect(function() {
-                        profileStatus.emoji = dialog.emojiUnicode
-                        profileStatus.emojiImage = "/usr/share/harbour-twemoji/72x72/" + dialog.emoji + ".png"
+                        if (viewerProfile.profileStatus === null) viewerProfile.profileStatus = {}
+                        viewerProfile.profileStatus.emoji = dialog.emoji
+                        emojiImage.source = DataUtils.getEmojiUrl(dialog.emoji)
                     })
                 }
             }
@@ -95,7 +100,7 @@ Page {
                 //% "Enter message"
                 placeholderText: qsTrId("id-enter-message")
 
-                text: profileStatus.message
+                text: viewerProfile.profileStatus.message
 
                 maximumLength: 80
             }
@@ -109,7 +114,7 @@ Page {
                 //% "When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability."
                 description: qsTrId("id-busy-switch-desc")
 
-                checked: profileStatus.indicatesLimitedAvailability
+                checked: viewerProfile.profileStatus.indicatesLimitedAvailability
             }
 
             SectionHeader {
@@ -117,8 +122,19 @@ Page {
                 text: qsTrId("id-clear-status")
             }
 
+            DetailItem {
+                visible: viewerProfile.profileStatus !== null &&
+                         (new Date(viewerProfile.profileStatus.expiresAt) > new Date() || clearStatusComboBox.currentIndex !== 0)
+                //% "Expires at"
+                label: qsTrId("id-expires-at")
+                value: clearStatusComboBox.currentIndex !== 0 ?
+                           clearStatusComboBox.expiresAt.toLocaleString() :
+                           new Date(viewerProfile.profileStatus.expiresAt).toLocaleString()
+            }
 
             ComboBox {
+                property date expiresAt
+
                 id: clearStatusComboBox
                 //% "Clear status"
                 label: qsTrId("id-clear-status")
@@ -149,8 +165,49 @@ Page {
                     }
                 }
 
-                currentIndex: profileStatus.expireStatus
+                onCurrentIndexChanged: {
+                    const currentDate = new Date()
+
+                    switch (currentIndex) {
+
+                    case 1:
+                        expiresAt = new Date(currentDate.getTime() + 30*60000)
+                        break;
+
+                    case 2:
+                        expiresAt = new Date(currentDate.getTime() + 60*60000)
+                        break;
+
+                    case 3:
+                        expiresAt = new Date(currentDate.getTime() + 4*60*60000)
+                        break;
+
+                    case 4:
+                        const currentDay = currentDate
+                        currentDay.setHours(23, 59, 59, 999)
+                        expiresAt = currentDay
+                        break;
+
+                    case 5:
+                        const currentSunday = currentDate
+                        currentSunday.setHours(23, 59, 59, 999)
+                        currentSunday.setDate(currentSunday.getDate() - currentSunday.getDay() + 7);
+                        expiresAt = currentSunday
+                        break;
+
+                    default:
+                        expiresAt = new Date().setTime(0)
+                        break;
+                    }
+
+                    console.log(expiresAt)
+                }
             }
         }
+    }
+
+    Component {
+        id: pickerComponent
+        DatePickerDialog {}
     }
 }

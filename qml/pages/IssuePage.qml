@@ -4,69 +4,180 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
+import "../components/menu/"
 import "../delegates/"
+import "../queries/issue"
 import "../tools"
+import "../views/"
 import '..'
 
-Page {
-    property bool busy: false
-    property string nodeId
-    property Issue issue
+CommentsListPage {
+    property alias issue: queryIssue.result
+
+    property string issueBody
+    property string issueState
+    property string issueStateReason
+    property string issueTitle
+
+    function refreshContent() {
+        Api.request(queryIssue)
+    }
 
     id: page
     allowedOrientations: Orientation.All
 
-    // model
-    CommentsModel {
-        id: commentsModel
-        identifier: issue.nodeId
-        modelType: Comment.Issue
+    nodeType: "Issue"
+
+    QueryObject {
+        id: queryIssue
+        resultNodePath: "node"
+        query: '
+query($nodeId: ID!) {
+    node(id: $nodeId) {
+        ... on Issue {
+            id
+            assignees {
+                totalCount
+            }
+            author {
+                avatarUrl
+                login
+            }
+            body
+            comments {
+                totalCount
+            }
+            createdAt
+            labels {
+                totalCount
+            }
+            locked
+            number
+            participants {
+                totalCount
+            }
+            reactionGroups {
+                ... on ReactionGroup {
+                    content
+                    users {
+                        totalCount
+                    }
+                    viewerHasReacted
+                }
+            }
+            repository {
+                id
+                nameWithOwner
+                viewerPermission
+            }
+            title
+            state
+            stateReason
+            updatedAt
+            viewerCanReact
+            viewerCanSubscribe
+            viewerCanUpdate
+            viewerDidAuthor
+            viewerSubscription
+        }
+    }
+}'
+        variables: {
+            "nodeId": page.nodeId
+        }
+
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+            subscriptionMenu.subscription = issue.viewerSubscription
+            issueState = issue.state
+            issueStateReason = issue.stateReason
+            issueBody = issue.body
+            issueTitle = issue.title
+        }
+
+        onErrorChanged: notification.showErrorMessage(error)
     }
 
-    Connections {
-        target: commentsModel
-        onCommentsAdded: {
-            page.busy = false
-            updateComments(lastIndex, count)
+    CloseIssueMutation {
+        id: closeIssueMutation
+        nodeId: page.nodeId
+
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+            issueState = result.issue.state
+            issueStateReason = result.issue.stateReason
         }
     }
 
-    function updateComments(index, count) {
-        for (var i=index; i < (index + count); i++) {
-            var comment = commentsModel.commentAt(i)
+    DeleteIssueMutation {
+        id: deleteIssueMutation
+        nodeId: page.nodeId
 
-            if (comment === undefined) continue
+        onResultChanged: if (error === QueryObject.ErrorNone) pageStack.navigateBack()
+    }
 
-            var component = Qt.createComponent("../components/IssueCommentItem.qml")
+    ReopenIssueMutation {
+        id: reopenIssueMutation
+        nodeId: page.nodeId
 
-            if (component.status !== Component.Ready)
-                console.log("NOT READY")
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+            issueState = result.issue.state
+            issueStateReason = result.issue.stateReason
+        }
+    }
 
-            var obj = component.createObject(commentsColumn, {comment: comment, parentId: issue.nodeId})
+    UpdateIssueMutation {
+        id: updateIssueMutation
+        nodeId: page.nodeId
+
+        onResultChanged: {
+            if (error !== QueryObject.ErrorNone) return
+
+            issueBody = result.issue.body
+            issueTitle = result.issue.title
+        }
+    }
+
+    PageBusyIndicator {
+        id: busyIndicator
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: page
+        running: !queryIssue.ready
+
+        Label {
+            anchors {
+                top: parent.bottom
+                topMargin: Theme.paddingLarge
+                horizontalCenter: parent.horizontalCenter
+            }
+            color: Theme.highlightColor
+            //% "Loading data..."
+            text: qsTrId("id-loading-data")
         }
     }
 
     SilicaFlickable {
         PullDownMenu {
-            busy: page.busy
+            busy: !queryIssue.ready
 
-            MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanSubscribe
-                text: issue.viewerSubscription === SubscriptionState.Subscribed ?
-                          //% "Unsubscribe"
-                          qsTrId("id-unsubscribe") :
-                          //% "Subscribe"
-                          qsTrId("id-subscribe")
-
-                onClicked: {
-                    if (issue.viewerSubscription === SubscriptionState.Subscribed)
-                        SailHub.api().subscribeTo(issue.nodeId, SubscriptionState.Unsubscribed)
-                    else
-                        SailHub.api().subscribeTo(issue.nodeId, SubscriptionState.Subscribed)
-                }
+            SubscriptionMenuItem {
+                id: subscriptionMenu
+                nodeId: issue.id
+                viewerCanSubscribe: issue.viewerCanSubscribe
             }
+
             MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate
+                visible: issue.viewerCanUpdate
+                //% "Delete"
+                text: qsTrId("id-delete")
+
+                //% "Deleting issue"
+                onClicked: remorse.execute(qsTrId("id-deleting issue"), function() { Api.request(deleteIssueMutation) })
+            }
+
+            MenuItem {
+                visible: issue.viewerCanUpdate
                 //% "Edit"
                 text: qsTrId("id-edit")
                 onClicked: {
@@ -77,41 +188,35 @@ Page {
                                                 })
 
                     dialog.accepted.connect(function() {
-                        issue.title = dialog.title
-                        issue.body = dialog.body
-                        SailHub.api().updateIssue(issue)
+                        updateIssueMutation.title = dialog.title
+                        updateIssueMutation.body = dialog.body
+                        Api.request(updateIssueMutation)
+                    })
+                }
+            }
+
+            MenuItem {
+                visible: issue.viewerCanUpdate && issueState === "OPEN"
+                //% "Close"
+                text: qsTrId("id-close")
+
+
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/CloseIssueDialog.qml"))
+
+                    dialog.accepted.connect(function() {
+                        closeIssueMutation.stateReason = dialog.reason
+                        Api.request(closeIssueMutation)
                     })
                 }
             }
             MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate
-                //% "Delete"
-                text: qsTrId("id-delete")
-
-                //% "Deleting issue"
-                onClicked: remorse.execute(qsTrId("id-deleting issue"), function() {
-                    SailHub.api().deleteIssue(issue.nodeId)
-                })
-            }
-            MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.state === IssueState.Open
-                //% "Close"
-                text: qsTrId("id-close")
-
-                //% "Closing issue"
-                onClicked: remorse.execute(qsTrId("id-closing-issue"), function() {
-                    SailHub.api().closeIssue(issue.nodeId)
-                })
-            }
-            MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate && issue.state === Issue.StateClosed
+                visible: issue.viewerCanUpdate && issueState === "CLOSED"
                 //% "Reopen"
                 text: qsTrId("id-reopen")
 
                 //% "Reopen issue"
-                onClicked: remorse.execute(qsTrId("id-reopen-issue"), function() {
-                    SailHub.api().reopenIssue(issue.nodeId)
-                })
+                onClicked: remorse.execute(qsTrId("id-reopen-issue"), function() { Api.request(reopenIssueMutation) })
             }
         }
 
@@ -161,7 +266,7 @@ Page {
                     color: Theme.highlightColor
                     anchors.verticalCenter: avatarIcon.verticalCenter
 
-                    text: issue.repository + " #" + issue.number
+                    text: issue.repository.nameWithOwner + " #" + issue.number
                 }
             }
 
@@ -172,7 +277,7 @@ Page {
                 font.pixelSize: Theme.fontSizeLarge
                 color: Theme.highlightColor
 
-                text: issue.title   
+                text: issueTitle
             }
 
             Row {
@@ -182,28 +287,52 @@ Page {
 
                 Pill {
                     anchors.verticalCenter: parent.verticalCenter
-                    icon: issue.state === IssueState.Open ? "qrc:/icons/icon-m-issue" : "image://theme/icon-s-installed"
+                    icon: issueState === "OPEN" ? "qrc:/icons/icon-m-issue" : "image://theme/icon-s-installed"
                     text: {
                         //% "Open"
-                        if (issue.state === IssueState.Open) return qsTrId("id-open")
+                        if (issueState === "OPEN") return qsTrId("id-open")
                         //% "Closed"
-                        if (issue.state === Issue.StateClosed) return qsTrId("id-closed")
+                        if (issueState === "CLOSED") return qsTrId("id-closed")
                     }
 
                     backgroundColor: {
-                        if (issue.state === IssueState.Open) return SailHubStyles.colorStatusOpen
-                        if (issue.state === Issue.StateClosed) return SailHubStyles.colorStatusClosed
+                        if (issueState === "OPEN") return SailHubStyles.colorStatusOpen
+                        if (issueState === "CLOSED") return SailHubStyles.colorStatusClosed
                     }
 
                 }
+
+                Pill {
+                    visible: issueStateReason.length > 0
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: {
+                        switch (issueStateReason) {
+                        case "COMPLETED":
+                            //% "Completed"
+                            return qsTrId("id-completed")
+
+                        case "NOT_PLANNED":
+                            //% "Not planned
+                            return qsTrId("id-not-planned")
+
+                        case "REOPENED":
+                            //% "Reopened
+                            return qsTrId("id-reopened")
+
+                        default:
+                            return ""
+                        }
+                    }
+               }
             }
 
             CommentItem {
                 authorAvatar: issue.author.avatarUrl
                 authorLogin: issue.author.login
-                body: issue.body
+                body: issueBody
                 edited: issue.edited
-                timeSpan: issue.createdAtTimeSpan
+                timeSpan: StringHelper.timespan(issue.createdAt)
+
             }
 
             SectionHeader {
@@ -211,28 +340,10 @@ Page {
                 text: qsTrId("id-reactions")
             }
 
+               // NEED_FIX
             ReactionsItem {
-                node: issue
-                locked: issue.locked
-
-                onClicked: {
-                    if (issue.locked) return
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ReactionDialog.qml"), {
-                                                    reactions: issue.viewerReactions
-                                                })
-
-                    dialog.accepted.connect(function() {
-                        if (issue.viewerReactions === dialog.reactions) return;
-
-                        SailHub.api().updateReactions(
-                                    issue.nodeId,
-                                    issue.viewerReactions,
-                                    dialog.reactions)
-
-                        issue.updateReactionCount(dialog.reactions)
-                        issue.viewerReactions = dialog.reactions
-                    })
-                }
+                nodeId: issue.id
+                reactionGroups: issue.reactionGroups
             }
 
             SectionHeader {
@@ -244,17 +355,16 @@ Page {
                 //% "Labels"
                 label: qsTrId("id-labels")
                 icon: "image://theme/icon-m-link"
-                value: issue.labelCount
+                value: issue.labels.totalCount
 
                 onClicked: {
-                    if (issue.labelCount === 0) return;
+                    if (issue.labels.totalCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("LabelsListPage.qml"), {
                                               //% "Labels"
                                               title: qsTrId("id-labels"),
-                                              description: issue.repository + " #" + issue.number,
-                                              identifier: issue.nodeId,
-                                              type: LabelEntity.Issue
+                                              description: issue.repository.nameWithOwner + " #" + issue.number,
+                                              identifier: issue.id
                                           })
                 }
             }
@@ -263,16 +373,16 @@ Page {
                 //% "Assignees"
                 label: qsTrId("id-assignees")
                 icon: "image://theme/icon-m-media-artists"
-                value: issue.assigneeCount
+                value: issue.assignees.totalCount
 
                 onClicked: pageStack.push(Qt.resolvedUrl("AssigneesListPage.qml"), {
                                               //% "Assignees"
                                               title: qsTrId("id-assignees"),
-                                              description: issue.repository + " #" + issue.number,
-                                              identifier: issue.nodeId,
+                                              description: issue.repository.nameWithOwner + " #" + issue.number,
+                                              identifier: issue.id,
                                               userType: User.IssueAssignee,
-                                              repoId: issue.repositoryId,
-                                              permission: issue.repositoryPermission
+                                              repoId: issue.repository.id,
+                                              permission: issue.repository.viewerPermission // NEED_FIX ???
                                           })
             }
 
@@ -280,17 +390,17 @@ Page {
                 //% "Participants"
                 label: qsTrId("id-participants")
                 icon: "image://theme/icon-m-media-artists"
-                value: issue.participantCount
+                value: issue.participants.totalCount
 
                 onClicked: {
-                    if (issue.participantCount === 0) return;
+                    if (issue.participants.totalCount === 0) return;
 
                     pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
+                                              nodeId: nodeId,
                                               //% "Participants"
                                               title: qsTrId("id-participants"),
-                                              description: issue.repository + " #" + issue.number,
-                                              identifier: issue.nodeId,
-                                              userType: User.IssueParticipant
+                                              description: issue.repository.nameWithOwner + " #" + issue.number,
+                                              itemsQueryType: "ISSUE_PARTICIPANTS"
                                           })
                 }
             }
@@ -306,84 +416,72 @@ Page {
             anchors.top: headerColumn.bottom
             width: parent.width
             spacing: Theme.paddingSmall
+
+            Repeater {
+                model: itemsModel
+
+                IssueCommentItem {
+                    id: commentItem
+                    comment: modelData
+                    parentId: issue.id
+
+                    menu: ContextMenu {
+                        MenuItem {
+                            visible: comment.viewerCanDelete
+                            //% "Delete"
+                            text: qsTrId("id-delete")
+                            //% "Deleting comment"
+                            onClicked: commentItem.remorseAction(qsTrId("id-deleting-comment"), function() {
+                                deleteComment(comment.id)
+                            })
+                        }
+                        MenuItem {
+                            visible: comment.viewerCanUpdate
+                            //% "Edit"
+                            text: qsTrId("id-edit")
+                            onClicked: updateComment(comment.id, comment.bodyText)
+                        }
+                        MenuItem {
+                            //% "Quote reply"
+                            text: qsTrId("id-quote-reply")
+                            onClicked: replyToComment(comment.bodyText)
+                        }
+                    }
+                }
+            }
         }
 
         VerticalScrollDecorator {}
 
         PushUpMenu {
-            busy: commentsModel.loading
+            busy: loading || !queryIssue.ready
 
             MenuItem {
                 //% "Write comment"
                 text: qsTrId("id-write-comment")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
+                onClicked: addComment()
+            }
 
-                    dialog.accepted.connect(function() {
-                        SailHub.api().addComment(dialog.body, commentsModel.identifier)
-                    })
-                }
+            LockableMenuItem {
+                nodeId: issue.id
+                locked: issue.locked
+                //% "Lock conversation"
+                lockText: qsTrId("id-lock-conversation")
+                //% "Unlock conversation"
+                unlockText: qsTrId("id-unlock-conversation")
             }
 
             MenuItem {
-                visible: issue.viewerAbilities & Viewer.CanUpdate
-                text: issue.locked ?
-                          //% "Unlock"
-                          qsTrId("id-unlock") :
-                          //% "Lock"
-                          qsTrId("id-lock")
-                onClicked: remorse.execute(issue.locked ?
-                                               //% "Unlocking"
-                                               qsTrId("id-unlocking") :
-                                               //% "Locking"
-                                               qsTrId("id-locking"),
-                                           function() {
-                    if (issue.locked) {
-                        SailHub.api().unlock(issue.nodeId)
-                    } else {
-                        SailHub.api().lock(issue.nodeId)
-                    }
-                })
-            }
-
-            MenuItem {
-                visible: commentsModel.hasNextPage
+                visible: hasNextPage
                 //% "Load more (%n to go)"
-                text: qsTrId("id-load-more", commentsModel.totalCount - commentsColumn.children.length)
-                onClicked: getComments()
+                text: qsTrId("id-load-more", totalCount - commentsColumn.children.length)
+                onClicked: loadMore()
             }
         }
     }
 
-    Connections {
-        target: SailHub.api()
-        onIssueAvailable: {
-            if (issue.nodeId !== page.nodeId) return
-
-            page.issue = issue;
-            refresh()
-        }
-        onIssueClosed: if (nodeId === issue.nodeId) issue.state = closed ? Issue.StateClosed : IssueState.Open
-        onIssueDeleted: pageStack.navigateBack()
-        onIssueReopened: if (nodeId === issue.nodeId) issue.state = reopened ? IssueState.Open : Issue.StateClosed
-        onSubscribedTo: if (nodeId === issue.nodeId) issue.viewerSubscription = state
-        onCommentAdded: refresh()
-        onCommentDeleted: refresh()
-        onLocked: if (nodeId === issue.nodeId) issue.locked = locked
+    Component.onCompleted: {
+        refreshContent()
+        refresh()
     }
-
-    function getComments() {
-        page.busy = true;
-        SailHub.api().getPaginationModel(commentsModel)
-    }
-
-    function refresh() {
-        commentsModel.reset()
-        for(var i = commentsColumn.children.length; i > 0; i--) {
-            commentsColumn.children[i-1].destroy()
-        }
-        getComments()
-    }
-
-    Component.onCompleted: SailHub.api().getIssue(page.nodeId)
 }

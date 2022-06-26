@@ -20,7 +20,7 @@ Page {
                 //% "Pull requests created by user"
                 description: qsTrId("id-pull-requests-created-by-user")
                 icon: "image://theme/icon-m-edit"
-                pullRequestType: PullRequest.CreatedBy
+                queryType: "USER_CREATED"
                 sorting: true
                 editState: true
             }
@@ -30,7 +30,7 @@ Page {
                 //% "Pull requests assigned to user"
                 description: qsTrId("id-pull-requests-assigned-to-user")
                 icon: "image://theme/icon-m-attach"
-                pullRequestType: PullRequest.Assigned
+                queryType: "USER_ASSIGNED"
                 sorting: true
                 editState: true
             }
@@ -40,7 +40,7 @@ Page {
                 //% "Pull requests where user is mentioned"
                 description: qsTrId("id-pull-requests-where-user-is-mentioned")
                 icon: "image://theme/icon-m-annotation"
-                pullRequestType: Issue.Mentioned
+                queryType: "USER_MENTIONED"
                 sorting: true
                 editState: true
             }
@@ -48,6 +48,7 @@ Page {
 
         anchors.fill: parent
         header: PageHeader {
+            id: pageHeader
             //% "Pull requests"
             title: qsTrId("id-pull-requests")
         }
@@ -90,13 +91,10 @@ Page {
             }
 
             onClicked: pageStack.push(Qt.resolvedUrl("PullRequestsListPage.qml"), {
-                                          canCreateNew: false,
+                                          nodeId: userId,
                                           description: userLogin,
                                           identifier: userLogin,
-                                          type: pullRequestType,
-                                          states: PullRequestState.Open,
-                                          sorting: sorting,
-                                          editState: editState
+                                          itemsQueryType: queryType
                                       })
         }
 
