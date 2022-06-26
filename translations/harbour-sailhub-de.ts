@@ -1246,10 +1246,6 @@
         <source>Expires at</source>
         <translation>Läuft ab am</translation>
     </message>
-    <message id="id-manage-pagination-options">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-languages">
         <source>Languages</source>
         <translation>Sprachen</translation>
@@ -1265,74 +1261,6 @@
     <message id="id-following">
         <source>Following</source>
         <translation>Beobachtete</translation>
-    </message>
-    <message id="id-choose-lock-reason">
-        <source>Choose lock reason</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-choose-lock-reason-desc">
-        <source>Choose a reason why you are locking this one.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-reason">
-        <source>Reason</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-none">
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-error">
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-not-found">
-        <source>Not found!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-invalid-data">
-        <source>Received invalid data!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-query">
-        <source>Query failed with bad parameters!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-connection-timeout">
-        <source>Connection timeout!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-unauthorized">
-        <source>User is unauthorized!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-unknown">
-        <source>An unkown error occured!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-starting-download">
-        <source>Starting download</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-last-commit">
-        <source>Last commit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-user-unavailable">
-        <source>User unavailable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-contributions-last-twelve-month">
-        <source>Contributions in the last 12 month</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-contributions">
-        <source>Contributions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-now">
-        <source>now</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-minutes-ago-count-small" numerus="yes">
         <source>%1m</source>
@@ -1361,34 +1289,6 @@
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
-    </message>
-    <message id="id-lock-conversation">
-        <source>Lock conversation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-unlock-conversation">
-        <source>Unlock conversation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-close-issue">
-        <source>Close issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-close-issue-reason-desc">
-        <source>Choose a reason why you close this issue.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-completed">
-        <source>Completed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-not-planned">
-        <source>Not planned</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-reopened">
-        <source>Reopened</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
