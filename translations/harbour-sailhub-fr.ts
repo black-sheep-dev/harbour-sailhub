@@ -50,10 +50,6 @@
             <numerusform>%n fichiers modifiés</numerusform>
         </translation>
     </message>
-    <message id="id-off-topic">
-        <source>Off topic</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-resolved">
         <source>Resolved</source>
         <translation type="unfinished">Résolus</translation>
@@ -114,14 +110,6 @@
         <source>Template</source>
         <translation type="unfinished">Modèle</translation>
     </message>
-    <message id="id-disabled">
-        <source>Disabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-empty">
-        <source>Empty</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-lock">
         <source>Lock</source>
         <translation type="unfinished">Verrouiller</translation>
@@ -174,45 +162,9 @@
         <source>No users available</source>
         <translation type="unfinished">Aucun utilisateur disponible</translation>
     </message>
-    <message id="id-close-issue">
-        <source>Close issue</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-close">
         <source>Close</source>
         <translation type="unfinished">Fermer</translation>
-    </message>
-    <message id="id-close-issue-reason-desc">
-        <source>Choose a reason why you close this issue.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-reason">
-        <source>Reason</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-completed">
-        <source>Completed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-not-planned">
-        <source>Not planned</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-edit-reply">
-        <source>Edit reply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-add-reply">
-        <source>Add reply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-edit-comment">
-        <source>Edit comment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-add-comment">
-        <source>Add comment</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-save">
         <source>Save</source>
@@ -242,18 +194,6 @@
         <source>Enter title</source>
         <translation type="unfinished">Entrer le titre</translation>
     </message>
-    <message id="id-edit-issue">
-        <source>Edit issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-create-issue">
-        <source>Create issue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-choose-branch">
-        <source>Choose branch</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-select">
         <source>Select</source>
         <translation type="unfinished">Sélectionner</translation>
@@ -266,10 +206,6 @@
         <source>No branches available</source>
         <translation type="unfinished">Aucune branche disponible</translation>
     </message>
-    <message id="id-select-category">
-        <source>Select category</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-categories-available">
         <source>No categories available</source>
         <translation type="unfinished">Aucune catégorie disponible</translation>
@@ -281,22 +217,6 @@
     <message id="id-no-emoji-available">
         <source>No emoji available</source>
         <translation type="unfinished">Aucun émoticône disponible</translation>
-    </message>
-    <message id="id-choose-lock-reason">
-        <source>Choose lock reason</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-choose-lock-reason-desc">
-        <source>Choose a reason why you are locking this one.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-none">
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-choose-subscription">
-        <source>Choose subscription</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-unsubscribe">
         <source>Unsubscribe</source>
@@ -322,10 +242,6 @@
         <source>Get notified of all conversation</source>
         <translation type="unfinished">Soyez averti de toutes les conversations</translation>
     </message>
-    <message id="id-select-sorting">
-        <source>Select sorting</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-sort">
         <source>Sort</source>
         <translation type="unfinished">Trier</translation>
@@ -346,34 +262,6 @@
         <source>Descending</source>
         <translation type="unfinished">Décroissant</translation>
     </message>
-    <message id="id-error">
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-not-found">
-        <source>Not found!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-invalid-data">
-        <source>Received invalid data!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-query">
-        <source>Query failed with bad parameters!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-connection-timeout">
-        <source>Connection timeout!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-unauthorized">
-        <source>User is unauthorized!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-api-error-unknown">
-        <source>An unkown error occured!</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-about">
         <source>About</source>
         <translation type="unfinished">À propos</translation>
@@ -392,7 +280,7 @@
     </message>
     <message id="id-attributions-desc">
         <source>All emojis designed by %1. License: %2</source>
-        <translation type="unfinished">Les émoticônes sont créés par %1. Licence : %2</translation>
+        <translation type="unfinished">Les émoticônes sont créés par %1. Licence&#xa0;: %2</translation>
     </message>
     <message id="id-translations">
         <source>Translations</source>
@@ -400,15 +288,11 @@
     </message>
     <message id="id-translation-desc">
         <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
-        <translation type="unfinished">Votre langue n&apos;est pas disponible ? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
+        <translation type="unfinished">Votre langue n&apos;est pas disponible&#xa0;? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
     </message>
     <message id="id-sources">
         <source>Sources</source>
         <translation type="unfinished">Sources</translation>
-    </message>
-    <message id="id-give-star">
-        <source>Give star</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-donations">
         <source>Donations</source>
@@ -416,7 +300,7 @@
     </message>
     <message id="id-buy-beer">
         <source>If you like my work why not buy me a beer?</source>
-        <translation type="unfinished">Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière ?</translation>
+        <translation type="unfinished">Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière&#xa0;?</translation>
     </message>
     <message id="id-donate-paypal">
         <source>Donate with PayPal</source>
@@ -432,7 +316,7 @@
     </message>
     <message id="id-thx-to-star">
         <source>%1 says thank you for your star!</source>
-        <translation type="unfinished">%1 vous remercie pour votre étoile !</translation>
+        <translation type="unfinished">%1 vous remercie pour votre étoile&#xa0;!</translation>
     </message>
     <message id="id-support">
         <source>Support</source>
@@ -599,10 +483,6 @@
         <source>Reactions</source>
         <translation type="unfinished">Réactions</translation>
     </message>
-    <message id="id-write-reply">
-        <source>Write reply</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-deleting-discussion">
         <source>Deleting discussion</source>
         <translation type="unfinished">Supprimer la discussion</translation>
@@ -618,10 +498,6 @@
     <message id="id-write-comment">
         <source>Write comment</source>
         <translation type="unfinished">Écrire un commentaire</translation>
-    </message>
-    <message id="id-created-at">
-        <source>Created at</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-updated-at">
         <source>Updated at</source>
@@ -651,10 +527,6 @@
         <source>No funding links available</source>
         <translation type="unfinished">Aucun lien de financement disponible</translation>
     </message>
-    <message id="id-pushed-at">
-        <source>Pushed at</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-gists">
         <source>Gists</source>
         <translation type="unfinished">Gists</translation>
@@ -670,10 +542,6 @@
     <message id="id-width">
         <source>Width</source>
         <translation type="unfinished">Largeur</translation>
-    </message>
-    <message id="id-loading-data">
-        <source>Loading data...</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-deleting issue">
         <source>Deleting issue</source>
@@ -699,10 +567,6 @@
         <source>Closed</source>
         <translation type="unfinished">Fermé</translation>
     </message>
-    <message id="id-reopened">
-        <source>Reopened</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-labels">
         <source>Labels</source>
         <translation type="unfinished">Étiquettes</translation>
@@ -714,14 +578,6 @@
     <message id="id-participants">
         <source>Participants</source>
         <translation type="unfinished">Participant·e·s</translation>
-    </message>
-    <message id="id-lock-conversation">
-        <source>Lock conversation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-unlock-conversation">
-        <source>Unlock conversation</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-created">
         <source>Created</source>
@@ -835,14 +691,6 @@
         <source>Activities</source>
         <translation type="unfinished">Activités</translation>
     </message>
-    <message id="id-my-work">
-        <source>My work</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-pull-requests">
-        <source>Pull requests</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-organizations">
         <source>Organizations</source>
         <translation type="unfinished">Organisations</translation>
@@ -875,10 +723,6 @@
         <source>When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.</source>
         <translation type="unfinished">Lorsque d&apos;autres personnes vous mentionnent ou vous attribuent une review, GitHub leur fera savoir que vous avez une disponibilité limitée.</translation>
     </message>
-    <message id="id-expires-at">
-        <source>Expires at</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-never">
         <source>Never</source>
         <translation type="unfinished">Jamais</translation>
@@ -890,10 +734,6 @@
     <message id="id-in-one-hour">
         <source>in 1 hour</source>
         <translation type="unfinished">dans 1 heure</translation>
-    </message>
-    <message id="id-in-four-hours">
-        <source>in 4 hours</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-today">
         <source>today</source>
@@ -910,10 +750,6 @@
     <message id="id-reopen-pull-request">
         <source>Reopen pull request</source>
         <translation type="unfinished">Réouvrir la pull request</translation>
-    </message>
-    <message id="id-pull-request">
-        <source>Pull request</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-merged">
         <source>Merged</source>
@@ -959,10 +795,6 @@
         <source>Pull requests where user is mentioned</source>
         <translation type="unfinished">Pull requests mentionnant l&apos;utilisateur</translation>
     </message>
-    <message id="id-release-assets">
-        <source>Release assets</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-assets-available">
         <source>No assets available</source>
         <translation type="unfinished">Aucun asset disponible</translation>
@@ -970,10 +802,6 @@
     <message id="id-download">
         <source>Download</source>
         <translation type="unfinished">Télécharger</translation>
-    </message>
-    <message id="id-starting-download">
-        <source>Starting download</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-release">
         <source>Release</source>
@@ -1035,14 +863,6 @@
         <source>Browse code</source>
         <translation type="unfinished">Parcourir le code</translation>
     </message>
-    <message id="id-languages">
-        <source>Languages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-last-commit">
-        <source>Last commit</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-repositories-available">
         <source>No repositories available</source>
         <translation type="unfinished">Aucun dépôt disponible</translation>
@@ -1050,10 +870,6 @@
     <message id="id-stargazers">
         <source>Stargazers</source>
         <translation type="unfinished">Tours d&apos;astronomie</translation>
-    </message>
-    <message id="id-starred-at">
-        <source>Starred at</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-search-organization">
         <source>Search Organization</source>
@@ -1067,10 +883,6 @@
         <source>Type in search pattern to find organizations</source>
         <translation type="unfinished">Saisir dans le champs ci-dessus pour trouver des organisations</translation>
     </message>
-    <message id="id-search-repository">
-        <source>Search repository</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-repositories-found">
         <source>No repositories found</source>
         <translation type="unfinished">Aucun dépôt trouvé</translation>
@@ -1078,10 +890,6 @@
     <message id="id-no-repositories-found-hint">
         <source>Type in search pattern to find repositories</source>
         <translation type="unfinished">Saisir dans le champs ci-dessus pour trouver des dépôts</translation>
-    </message>
-    <message id="id-search-selection">
-        <source>Search selection</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-repository">
         <source>Repository</source>
@@ -1091,10 +899,6 @@
         <source>User</source>
         <translation type="unfinished">Utilisateur</translation>
     </message>
-    <message id="id-search-user">
-        <source>Search user</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-no-users-found">
         <source>No users found</source>
         <translation type="unfinished">Aucun utilisateur trouvé</translation>
@@ -1102,10 +906,6 @@
     <message id="id-no-users-found-hint">
         <source>Type in search pattern to find users</source>
         <translation type="unfinished">Saisir dans le champs ci-dessus pour trouver des utilisateurs</translation>
-    </message>
-    <message id="id-user-unavailable">
-        <source>User unavailable</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-profile">
         <source>Profile</source>
@@ -1118,10 +918,6 @@
             <numerusform>%n fidèles</numerusform>
         </translation>
     </message>
-    <message id="id-followers">
-        <source>Followers</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-following-count" numerus="yes">
         <source>%n following(s)</source>
         <translation type="unfinished">
@@ -1129,25 +925,9 @@
             <numerusform>%n suivis</numerusform>
         </translation>
     </message>
-    <message id="id-following">
-        <source>Following</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-starred">
         <source>Starred</source>
         <translation type="unfinished">Favoris</translation>
-    </message>
-    <message id="id-starred-repositories">
-        <source>Starred repositories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-contributions-last-twelve-month">
-        <source>Contributions in the last 12 month</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-contributions">
-        <source>Contributions</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-reset">
         <source>Reset</source>
@@ -1157,21 +937,9 @@
         <source>Resetting credentials and close app</source>
         <translation type="unfinished">Réinitialisation des infos d&apos;identification et fermer de l&apos;app</translation>
     </message>
-    <message id="id-authentication-settings">
-        <source>Authentication settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-access-token">
-        <source>Access token</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-enter-access-token">
         <source>Enter access token</source>
         <translation type="unfinished">Entrer le jeton d&apos;accès</translation>
-    </message>
-    <message id="id-notification-settings">
-        <source>Notification settings</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="Notifications">
         <source>Notifications</source>
@@ -1180,10 +948,6 @@
     <message id="id-settings-notifications-desc">
         <source>Get notified of activities on your GitHub account.</source>
         <translation type="unfinished">Soyez informé des activités sur votre compte GitHub.</translation>
-    </message>
-    <message id="id-update-interval">
-        <source>Update interval</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-mins-count" numerus="yes">
         <source>%n min(s)</source>
@@ -1212,14 +976,6 @@
         <source>Pagination</source>
         <translation type="unfinished">Pagination</translation>
     </message>
-    <message id="id-manage-pagination-options">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="id-pagination-settings">
-        <source>Pagination settings</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="id-pagination-settings-desc">
         <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>
         <translation type="unfinished">Choisissez le nombre d&apos;éléments à récupérer dans une seule requête. Cette valeur doit être comprise entre 10 et 100.</translation>
@@ -1246,10 +1002,6 @@
     <message id="id-continue">
         <source>Continue</source>
         <translation type="unfinished">Continuer</translation>
-    </message>
-    <message id="id-quit">
-        <source>Quit</source>
-        <translation type="unfinished"></translation>
     </message>
     <message id="id-wizard-welcome-title">
         <source>Welcome to SailHub</source>
@@ -1281,15 +1033,11 @@
     </message>
     <message id="id-wizard-token-desc-b">
         <source>This token can be created in developer settings on GitHub.</source>
-        <translation type="unfinished">Ce jeton peut être créé dans « Developer settings » sur GitHub.</translation>
+        <translation type="unfinished">Ce jeton peut être créé dans «&#xa0;Developer settings&#xa0;» sur GitHub.</translation>
     </message>
     <message id="id-wizard-token-desc-c">
         <source>For a detailed description please refer the README in project repository!</source>
-        <translation type="unfinished">Pour une description détaillée, référez-vous au README du dépôt du projet !</translation>
-    </message>
-    <message id="id-now">
-        <source>now</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pour une description détaillée, référez-vous au README du dépôt du projet&#xa0;!</translation>
     </message>
     <message id="id-minutes-ago-count-small" numerus="yes">
         <source>%1m</source>
@@ -1375,7 +1123,7 @@
     </message>
     <message>
         <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
-        <translation type="vanished">Votre langue n&apos;est pas disponible ? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
+        <translation type="vanished">Votre langue n&apos;est pas disponible&#xa0;? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
     </message>
     <message>
         <source>Sources</source>
@@ -1387,7 +1135,7 @@
     </message>
     <message>
         <source>If you like my work why not buy me a beer?</source>
-        <translation type="vanished">Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière ?</translation>
+        <translation type="vanished">Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière&#xa0;?</translation>
     </message>
     <message>
         <source>Donate with PayPal</source>
@@ -1403,7 +1151,7 @@
     </message>
     <message>
         <source>All emojis designed by %1. License: %2</source>
-        <translation type="vanished">Les émoticônes sont créés par %1. Licence : %2</translation>
+        <translation type="vanished">Les émoticônes sont créés par %1. Licence&#xa0;: %2</translation>
     </message>
 </context>
 <context>
@@ -1414,7 +1162,7 @@
     </message>
     <message>
         <source>%1 says thank you for your star!</source>
-        <translation type="vanished">%1 vous remercie pour votre étoile !</translation>
+        <translation type="vanished">%1 vous remercie pour votre étoile&#xa0;!</translation>
     </message>
     <message>
         <source>Stargazer</source>
@@ -2625,8 +2373,8 @@
     <message numerus="yes">
         <source>%n year(s) ago</source>
         <translation type="vanished">
-            <numerusform>il y a %n an</numerusform>
-            <numerusform>il y a %n années</numerusform>
+            <numerusform>il y a %n&#xa0;an</numerusform>
+            <numerusform>il y a %n&#xa0;années</numerusform>
         </translation>
     </message>
 </context>
@@ -3393,11 +3141,11 @@
     </message>
     <message>
         <source>This token can be created in developer settings on GitHub.</source>
-        <translation type="vanished">Ce jeton peut être créé dans « Developer settings » sur GitHub.</translation>
+        <translation type="vanished">Ce jeton peut être créé dans «&#xa0;Developer settings&#xa0;» sur GitHub.</translation>
     </message>
     <message>
         <source>For a detailed description please refer the README in project repository!</source>
-        <translation type="vanished">Pour une description détaillée, référez-vous au README du dépôt du projet !</translation>
+        <translation type="vanished">Pour une description détaillée, référez-vous au README du dépôt du projet&#xa0;!</translation>
     </message>
     <message>
         <source>Access Token</source>
@@ -3416,7 +3164,7 @@
     </message>
     <message>
         <source>An error occured when connecting to GitHub!</source>
-        <translation type="vanished">Une erreur s&apos;est produite lors de la connexion à GitHub !</translation>
+        <translation type="vanished">Une erreur s&apos;est produite lors de la connexion à GitHub&#xa0;!</translation>
     </message>
 </context>
 </TS>

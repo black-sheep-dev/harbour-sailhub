@@ -1106,7 +1106,7 @@
     <message id="id-hours-ago-count" numerus="yes">
         <source>%n hours(s) ago</source>
         <oldsource>%n hour(s) ago</oldsource>
-        <translation type="unfinished">
+        <translation>
             <numerusform>vor %n Stunde</numerusform>
             <numerusform>vor %n Stunden</numerusform>
         </translation>
@@ -1121,7 +1121,7 @@
     <message id="id-months-ago-count" numerus="yes">
         <source>%n hours(s) ago</source>
         <oldsource>%n month(s) ago</oldsource>
-        <translation type="unfinished">
+        <translation>
             <numerusform>vor %n Monat</numerusform>
             <numerusform>vor %n Monaten</numerusform>
         </translation>
@@ -1129,7 +1129,7 @@
     <message id="id-years-ago-count" numerus="yes">
         <source>%n years(s) ago</source>
         <oldsource>%n year(s) ago</oldsource>
-        <translation type="unfinished">
+        <translation>
             <numerusform>vor %n Jahr</numerusform>
             <numerusform>vor %n Jahren</numerusform>
         </translation>
@@ -1264,31 +1264,127 @@
     </message>
     <message id="id-minutes-ago-count-small" numerus="yes">
         <source>%1m</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1m</numerusform>
+            <numerusform>%1m</numerusform>
         </translation>
     </message>
     <message id="id-hours-ago-count-small" numerus="yes">
         <source>%1h</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1h</numerusform>
+            <numerusform>%1h</numerusform>
         </translation>
     </message>
     <message id="id-months-ago-count-small" numerus="yes">
         <source>%1d</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1d</numerusform>
+            <numerusform>%1d</numerusform>
         </translation>
     </message>
     <message id="id-years-ago-count-small" numerus="yes">
         <source>%1y</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1y</numerusform>
+            <numerusform>%1y</numerusform>
         </translation>
+    </message>
+    <message id="id-api-error-not-found">
+        <source>Not found!</source>
+        <translation>Nicht gefunden!</translation>
+    </message>
+    <message id="id-api-error-connection-timeout">
+        <source>Connection timeout!</source>
+        <translation>Zeitüberschreitung der Verbindung!</translation>
+    </message>
+    <message id="id-contributions">
+        <source>Contributions</source>
+        <translation>Mitwirkende</translation>
+    </message>
+    <message id="id-user-unavailable">
+        <source>User unavailable</source>
+        <translation>Benutzer nicht verfügbar</translation>
+    </message>
+    <message id="id-close-issue-reason-desc">
+        <source>Choose a reason why you close this issue.</source>
+        <translation>Wähle einen Grund warum du das Problem schließt.</translation>
+    </message>
+    <message id="id-none">
+        <source>None</source>
+        <translation>Keine</translation>
+    </message>
+    <message id="id-error">
+        <source>Error</source>
+        <translation>Keine</translation>
+    </message>
+    <message id="id-api-error-invalid-data">
+        <source>Received invalid data!</source>
+        <translation>Ungültige Daten erhalten!</translation>
+    </message>
+    <message id="id-api-error-unknown">
+        <source>An unkown error occured!</source>
+        <translation>Ein unbekannter Fehler ist aufgetreten!</translation>
+    </message>
+    <message id="id-choose-lock-reason">
+        <source>Choose lock reason</source>
+        <translation>Grund der Sperrung wählen</translation>
+    </message>
+    <message id="id-choose-lock-reason-desc">
+        <source>Choose a reason why you are locking this one.</source>
+        <translation>Wähle einen Grund warum das hier gesperrt wird.</translation>
+    </message>
+    <message id="id-reason">
+        <source>Reason</source>
+        <translation>Grund</translation>
+    </message>
+    <message id="id-api-error-query">
+        <source>Query failed with bad parameters!</source>
+        <translation>Abfrage mit fehlerhaften Parametern fehlgeschlagen!</translation>
+    </message>
+    <message id="id-api-error-unauthorized">
+        <source>User is unauthorized!</source>
+        <translation>Der Benutzer ist unautorisiert!</translation>
+    </message>
+    <message id="id-starting-download">
+        <source>Starting download</source>
+        <translation>Starte Download</translation>
+    </message>
+    <message id="id-last-commit">
+        <source>Last commit</source>
+        <translation>Letztes Commit</translation>
+    </message>
+    <message id="id-completed">
+        <source>Completed</source>
+        <translation>Abgeschlossen</translation>
+    </message>
+    <message id="id-contributions-last-twelve-month">
+        <source>Contributions in the last 12 month</source>
+        <translation>Beiträge in den letzten 12 Monaten</translation>
+    </message>
+    <message id="id-now">
+        <source>now</source>
+        <translation>jetzt</translation>
+    </message>
+    <message id="id-lock-conversation">
+        <source>Lock conversation</source>
+        <translation>Konversation sperren</translation>
+    </message>
+    <message id="id-unlock-conversation">
+        <source>Unlock conversation</source>
+        <translation>Konversation entsperren</translation>
+    </message>
+    <message id="id-close-issue">
+        <source>Close issue</source>
+        <translation>Problem schließen</translation>
+    </message>
+    <message id="id-not-planned">
+        <source>Not planned</source>
+        <translation>Nicht geplant</translation>
+    </message>
+    <message id="id-reopened">
+        <source>Reopened</source>
+        <translation>Wiedereröffnet</translation>
     </message>
 </context>
 <context>
