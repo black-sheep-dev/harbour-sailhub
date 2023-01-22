@@ -8,7 +8,7 @@ I made this app to familiarize myself with GraphQL API concepts. GitHub API is w
 ## Current state of development
 
 I did a complete refactoring of the app with pure QML. Some of the old functionality (<0.2.0) is actually missing, because of some limitations.  
-One example is the ability to mark a single notification as read, because his needs the HTTP method PATCH which is not supported by XMLHttpRequest.
+One example is the ability to mark a single notification as read, because this needs the HTTP method PATCH which is not supported by XMLHttpRequest.
 
 ## Authentication with Personal Access Token
 To authenticate with GitHub API a personal access token is necessary. You can create one in developer settings on GitHub profile settings page.
