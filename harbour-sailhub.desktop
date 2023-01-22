@@ -2,11 +2,10 @@
 Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=harbour-sailhub
-Exec=harbour-sailhub
+Exec=sailfish-qml harbour-sailhub
 Name=SailHub
 
 [X-Sailjail]
 OrganizationName=org.nubecula
 ApplicationName=sailhub
 Permissions=Internet
-ExecDBus=/usr/bin/harbour-sailhub -prestart

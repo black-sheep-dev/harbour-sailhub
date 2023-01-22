@@ -1,105 +1,46 @@
-# VERSION
-VERSION = 0.1.3
-DEFINES += APP_VERSION=\\\"$$VERSION\\\"
-
-# The name of your application
 TARGET = harbour-sailhub
-DEFINES += APP_TARGET=\\\"$$TARGET\\\"
 
-QT += dbus
-
-CONFIG += link_pkgconfig sailfishapp
+CONFIG += sailfishapp_qml
 PKGCONFIG += nemonotifications-qt5 keepalive
 
-include(extern/sailfishos-utils/compressor/compressor.pri)
-
-
-SOURCES += src/harbour-sailhub.cpp \
-    src/api/apiinterface.cpp \
-    src/api/datautils.cpp \
-    src/api/downloader.cpp \
-    src/api/graphqlconnector.cpp \
-    src/api/keys.cpp \
-    src/api/mutations.cpp \
-    src/api/queryvars.cpp \
-    src/api/restapiconnector.cpp \
-    src/dbus/dbusadaptor.cpp \
-    src/dbus/dbusinterface.cpp \
-    src/entities/comment.cpp \
-    src/entities/commit.cpp \
-    src/entities/discussion.cpp \
-    src/entities/discussioncategory.cpp \
-    src/entities/discussioncomment.cpp \
-    src/entities/file.cpp \
-    src/entities/fundinglink.cpp \
-    src/entities/gist.cpp \
-    src/entities/interactable.cpp \
-    src/entities/issue.cpp \
-    src/entities/label.cpp \
-    src/entities/license.cpp \
-    src/entities/node.cpp \
-    src/entities/notificationobject.cpp \
-    src/entities/organization.cpp \
-    src/entities/owner.cpp \
-    src/entities/profilestatus.cpp \
-    src/entities/pullrequest.cpp \
-    src/entities/release.cpp \
-    src/entities/releaseasset.cpp \
-    src/entities/repo.cpp \
-    src/entities/user.cpp \
-    src/models/basemodel.cpp \
-    src/models/commentsmodel.cpp \
-    src/models/commitsmodel.cpp \
-    src/models/discussioncategoriesmodel.cpp \
-    src/models/discussioncommentsmodel.cpp \
-    src/models/discussionsmodel.cpp \
-    src/models/emojimodel.cpp \
-    src/models/fundinglinksmodel.cpp \
-    src/models/gistsmodel.cpp \
-    src/models/issuesmodel.cpp \
-    src/models/labelsmodel.cpp \
-    src/models/notificationsmodel.cpp \
-    src/models/organizationsmodel.cpp \
-    src/models/paginationmodel.cpp \
-    src/models/pullrequestsmodel.cpp \
-    src/models/reactionsmodel.cpp \
-    src/models/releaseassetsmodel.cpp \
-    src/models/releasesmodel.cpp \
-    src/models/reposmodel.cpp \
-    src/models/treemodel.cpp \
-    src/models/treesortfiltermodel.cpp \
-    src/models/usersmodel.cpp \
-    src/qml/networkaccessmanagerfactory.cpp \
-    src/sailhub.cpp
-
 DISTFILES += qml/harbour-sailhub.qml \
-    qml/SailHubStyles.qml \
     qml/components/AuthorItem.qml \
-    qml/components/CommentItem \
+    qml/components/CircleImage.qml \
     qml/components/CommentItem.qml \
+    qml/components/CommitInfoItem.qml \
     qml/components/CounterItem.qml \
-    qml/components/DiscussionCommentItem.qml \
     qml/components/FilesChangedItem.qml \
     qml/components/IconLabel.qml \
     qml/components/IconRelatedItem.qml \
-    qml/components/InfoItem.qml \
-    qml/components/IssueCommentItem.qml \
-    qml/components/LockReasonPill \
+    qml/components/LanguageItem.qml \
     qml/components/MarkdownLabel.qml \
+    qml/components/ReactionsInteractiveItem.qml \
+    qml/components/TimelineAssignedItem.qml \
+    qml/components/TimelineChangedTitleItem.qml \
+    qml/components/TimelineCommentItem.qml \
+    qml/components/TimelineConnectedItem.qml \
+    qml/components/TimelineCrossReferencedItem.qml \
+    qml/components/TimelineLabelItem.qml \
+    qml/components/TimelinePullRequestCommitItem.qml \
+    qml/components/TimelineRequestedReviewItem.qml \
+    qml/components/TimelineStandardItem.qml \
+    qml/components/TimelineUserItem.qml \
+    qml/components/menu/LockableMenuItem.qml \
+    qml/components/menu/StartMenuItem.qml \
+    qml/components/menu/SubscriptionMenuItem.qml \
     qml/components/Pill.qml \
     qml/components/ProfileStatusItem.qml \
     qml/components/ReactionGridItem.qml \
     qml/components/ReactionLabel.qml \
     qml/components/ReactionsItem.qml \
     qml/components/RelatedItem.qml \
+    qml/components/RelatedValueItem.qml \
     qml/components/RepoFlagsItem.qml \
-    qml/components/StarMenuItem.qml \
+    qml/components/StargazerItem.qml \
     qml/cover/CoverPage.qml \
     qml/delegates/AssetListDelegate.qml \
-    qml/delegates/CommentListDelegate.qml \
-    qml/delegates/CommitListDelegate.qml \
-    qml/delegates/DiscussionCategoryListDelegate.qml \
     qml/delegates/DiscussionListDelegate.qml \
+    qml/delegates/GistFileDelegate.qml \
     qml/delegates/GistListDelegate.qml \
     qml/delegates/IssueListDelegate.qml \
     qml/delegates/LabelListDelegate.qml \
@@ -110,35 +51,33 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/delegates/RepoListDelegate.qml \
     qml/delegates/TreeListDelegate.qml \
     qml/delegates/UserListDelegate.qml \
-    qml/dialogs/AssignUserDialog.qml \
+    qml/dialogs/AssingLabelsToLabelableDialog.qml \
+    qml/dialogs/CloseIssueDialog.qml \
     qml/dialogs/EditCommentDialog.qml \
-    qml/dialogs/EditDiscussionDialog.qml \
     qml/dialogs/EditIssueDialog.qml \
-    qml/dialogs/ReactionDialog.qml \
+    qml/dialogs/EditPullRequestDialog.qml \
+    qml/dialogs/SearchDialog.qml \
     qml/dialogs/SelectBranchDialog.qml \
-    qml/dialogs/SelectDiscussionCategoryDialog.qml \
     qml/dialogs/SelectEmojiDialog.qml \
+    qml/dialogs/SelectEmojiDialog.qml \
+    qml/dialogs/SelectLockReasonDialog.qml \
     qml/dialogs/SelectSubscriptionDialog.qml \
     qml/dialogs/SortSelectionDialog.qml \
-    qml/js/stringhelper.js \
-    qml/pages/AddStarPage.qml \
-    qml/pages/AssigneesListPage.qml \
-    qml/pages/CommentPage \
-    qml/pages/CommitPage.qml \
-    qml/pages/CommitTreeListPage.qml \
-    qml/pages/CommitsListPage.qml \
-    qml/pages/DiscussionCommentPage.qml \
-    qml/pages/DiscussionPage.qml \
+    qml/models/NotificationsModel.qml \
+    qml/objects/ViewerProfile.qml \
+    qml/pages/AboutPage.qml \
     qml/pages/DiscussionsListPage.qml \
     qml/pages/FundingLinksListPage.qml \
+    qml/pages/GistPage.qml \
     qml/pages/GistsListPage.qml \
     qml/pages/ImageViewerPage.qml \
     qml/pages/IssuePage.qml \
     qml/pages/IssueSelectionPage.qml \
     qml/pages/IssuesListPage.qml \
+    qml/pages/LabelPage.qml \
     qml/pages/LabelsListPage.qml \
     qml/pages/MarkdownViewerPage.qml \
-    qml/pages/NotificationsListPage.qml \
+    qml/pages/NitificationsListPage.qml \
     qml/pages/OrganizationPage.qml \
     qml/pages/OrganizationsListPage.qml \
     qml/pages/OverviewPage.qml \
@@ -146,30 +85,66 @@ DISTFILES += qml/harbour-sailhub.qml \
     qml/pages/PullRequestPage.qml \
     qml/pages/PullRequestsListPage.qml \
     qml/pages/PullRequestsSelectionPage.qml \
-    qml/pages/ReleaseAssetsListPage.qml \
+    qml/pages/ReleaseAssetListPage.qml \
     qml/pages/ReleasePage.qml \
     qml/pages/ReleasesListPage.qml \
     qml/pages/RepoPage.qml \
-    qml/pages/ReposListPage.qml \
-    qml/pages/SearchOrganizationPage.qml \
-    qml/pages/SearchRepositoryPage.qml \
-    qml/pages/SearchSelectionPage.qml \
-    qml/pages/SearchUserPage.qml \
+    qml/pages/ReposListsPage.qml \
+    qml/pages/SearchPage.qml \
+    qml/pages/SearchRepositioryPage.qml \
+    qml/pages/SettingsPage.qml \
+    qml/pages/settings/SettingsNotificartionPage.qml \
     qml/pages/TextFileViewerPage.qml \
     qml/pages/TreeListPage.qml \
     qml/pages/UserPage.qml \
-    qml/pages/UserPage.qml \
     qml/pages/UsersListPage.qml \
-    qml/pages/settings/SettingsAuthenticationPage.qml \
-    qml/pages/settings/SettingsNotificationPage.qml \
-    qml/pages/settings/SettingsPage.qml \
-    qml/pages/settings/SettingsPaginationPage.qml \
-    qml/pages/wizard/WizardFinalPage.qml \
     qml/pages/wizard/WizardIntroPage.qml \
     qml/pages/wizard/WizardTokenPage.qml \
-    qml/qmldir \
-    qml/tools/LinkHelper.qml \
+    qml/queries/AddLabelsToLabelableMutation.qml \
+    qml/queries/RemoveLabelsFromLabelableMutation.qml \
+    qml/queries/assignee/AddAssigneesMutation.qml \
+    qml/queries/assignee/RemoveAssigneesMutation.qml \
+    qml/queries/AddReactionMutation.qml \
+    qml/queries/AddStarMutation.qml \
+    qml/queries/BaseQuery.qml \
+    qml/queries/comment/AddCommentMutation.qml \
+    qml/queries/comment/DeleteCommentMutation.qml \
+    qml/queries/comment/UpdateCommentMutation.qml \
+    qml/queries/FollowOrganizationMutation.qml \
+    qml/queries/FollowUserMutation.qml \
+    qml/queries/discussion/AddDiscussionCommentMutation.qml \
+    qml/queries/discussion/CreateDiscussionMutation.qml \
+    qml/queries/discussion/DeleteDiscussionCommentMutation.qml \
+    qml/queries/discussion/DeleteDiscussionMutation.qml \
+    qml/queries/discussion/UpdateDiscussionCommentMutation.qml \
+    qml/queries/discussion/UpdateDiscussionMutation.qml \
+    qml/queries/issue/CloseIssueMutation.qml \
+    qml/queries/issue/CreateIssueMutation.qml \
+    qml/queries/issue/DeleteIssueMutation.qml \
+    qml/queries/issue/ReopenIssueMutation.qml \
+    qml/queries/issue/UpdateIssueMutation.qml \
+    qml/queries/LockLockableMutation.qml \
+    qml/queries/RemoveReactionMutation.qml \
+    qml/queries/RemoveStarMutation.qml \
+    qml/queries/UnfollowOrganizationMutation.qml \
+    qml/queries/UnfollowUserMutation.qml \
+    qml/queries/UnlockLockableMutation.qml \
+    qml/queries/UpdateSubscription.qml \
+    qml/js/datautils.js \
+    qml/js/showdown.min.js \
+    qml/js/twemoji.min.js \
+    qml/queries/pullRequest/ClosePullRequestMutation.qml \
+    qml/queries/pullRequest/MergePullRequestMutation.qml \
+    qml/queries/pullRequest/ReopenPullRequestMutation.qml \
+    qml/queries/pullRequest/UpdatePullRequestMutation.qml \
+    qml/tools/DataHelper.qml \
     qml/tools/MarkdownParser.qml \
+    qml/views/ListPage.qml \
+    qml/api.qml \
+    qml/global.qml \
+    qml/SailHubStyles.qml \
+    qml/qmldir \
+    qml/views/TimelinePage.qml \
     rpm/harbour-sailhub.changes \
     rpm/harbour-sailhub.changes.run.in \
     rpm/harbour-sailhub.spec \
@@ -177,106 +152,20 @@ DISTFILES += qml/harbour-sailhub.qml \
     translations/*.ts \
     harbour-sailhub.desktop
 
-SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172 512x512
+SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 
-CONFIG += sailfishapp_i18n
+include(translations/translations.pri)
 
-TRANSLATIONS += \
-    translations/harbour-sailhub-de.ts \
-    translations/harbour-sailhub-fr.ts \
-    translations/harbour-sailhub-pl.ts \
-    translations/harbour-sailhub-zh_CN.ts
+emoji.files = icons/emoji/*.svg
+emoji.path = $$INSTALL_ROOT/usr/share/harbour-sailhub/emoji
 
-RESOURCES += \
-    ressources.qrc
+icons.files = icons/*.svg
+icons.path = $$INSTALL_ROOT/usr/share/harbour-sailhub/icons
 
-HEADERS += \
-    src/api/apiinterface.h \
-    src/api/datautils.h \
-    src/api/downloader.h \
-    src/api/graphqlconnector.h \
-    src/api/graphqlquery.h \
-    src/api/keys.h \
-    src/api/mutations.h \
-    src/api/queries.h \
-    src/api/query_items.h \
-    src/api/queryvars.h \
-    src/api/ratelimit.h \
-    src/api/restapiconnector.h \
-    src/dbus/dbusadaptor.h \
-    src/dbus/dbusinterface.h \
-    src/entities/comment.h \
-    src/entities/commit.h \
-    src/entities/discussion.h \
-    src/entities/discussioncategory.h \
-    src/entities/discussioncomment.h \
-    src/entities/file.h \
-    src/entities/fundinglink.h \
-    src/entities/gist.h \
-    src/entities/interactable.h \
-    src/entities/issue.h \
-    src/entities/label.h \
-    src/entities/language.h \
-    src/entities/license.h \
-    src/entities/node.h \
-    src/entities/notificationobject.h \
-    src/entities/organization.h \
-    src/entities/owner.h \
-    src/entities/profilestatus.h \
-    src/entities/pullrequest.h \
-    src/entities/reaction.h \
-    src/entities/release.h \
-    src/entities/releaseasset.h \
-    src/entities/repo.h \
-    src/entities/treeitem.h \
-    src/entities/user.h \
-    src/entities/viewer.h \
-    src/enums/enums.h \
-    src/enums/gitsignaturestate \
-    src/enums/issuestate.h \
-    src/enums/lockreason.h \
-    src/enums/mergestatestatus.h \
-    src/enums/pullrequestmergemethod.h \
-    src/enums/pullrequeststate.h \
-    src/enums/repositorylockreason.h \
-    src/enums/repositorypermission.h \
-    src/enums/subscriptionstate.h \
-    src/models/basemodel.h \
-    src/models/commentsmodel.h \
-    src/models/commitsmodel.h \
-    src/models/discussioncategoriesmodel.h \
-    src/models/discussioncommentsmodel.h \
-    src/models/discussionsmodel.h \
-    src/models/emojimodel.h \
-    src/models/fundinglinksmodel.h \
-    src/models/gistsmodel.h \
-    src/models/issuesmodel.h \
-    src/models/labelsmodel.h \
-    src/models/notificationsmodel.h \
-    src/models/organizationsmodel.h \
-    src/models/paginationmodel.h \
-    src/models/pullrequestsmodel.h \
-    src/models/reactionsmodel.h \
-    src/models/releaseassetsmodel.h \
-    src/models/releasesmodel.h \
-    src/models/reposmodel.h \
-    src/models/treemodel.h \
-    src/models/treesortfiltermodel.h \
-    src/models/usersmodel.h \
-    src/qml/networkaccessmanagerfactory.h \
-    src/sailhub.h
+images.files = images/*.svg
+images.path = $$INSTALL_ROOT/usr/share/harbour-sailhub/images
 
-twemoji.files = data/twemoji/*
-twemoji.path = $$INSTALL_ROOT/usr/share/harbour-sailhub/twemoji
+scaleable.files = icons/scaleable/*.svg
+scaleable.path = $$INSTALL_ROOT/usr/share/harbour-sailhub/icons
 
-INSTALLS += twemoji
-
-dbus.files = data/org.nubecula.sailhub.service
-dbus.path = $$INSTALL_ROOT/usr/share/dbus-1/services
-
-INSTALLS += dbus
-
-openUrl.files = harbour-sailhub-open-url.desktop
-openUrl.path = $$INSTALL_ROOT/usr/share/applications
-
-INSTALLS += openUrl
+INSTALLS += emoji icons images scaleable
