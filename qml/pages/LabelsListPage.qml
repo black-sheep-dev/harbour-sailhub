@@ -2,33 +2,88 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
+import "../components/"
 import "../delegates/"
+import "../dialogs/"
+import "../queries/"
+import "../views/"
 
-Page {
-    property string description
-    property alias identifier: labelsModel.identifier
-    property alias type: labelsModel.modelType
-    property alias states: labelsModel.state
-
-    ConfigurationGroup {
-        id: config
-        path: "/apps/harbour-sailhub/labels"
-
-        property alias sortRole: labelsModel.sortRole
-        property alias sortOrder: labelsModel.sortOrder
-    }
+ListPage {
+    property string nodeType
+    property string nodes: "labels"
+    property string repoId
+    property bool viewerCanAssign: false
 
     id: page
     allowedOrientations: Orientation.All
 
+    configPath: "/app/harbour-sailhub/labels"
+
+    orderField: "NAME"
+    orderFields: ["CREATED_AT", "NAME"]
+    orderFieldLabels: [
+        //% "Created at"
+        qsTrId("id-created-at"),
+        //% "Name"
+        qsTrId("id-name")
+    ]
+    orderFieldType: "LabelOrderField = NAME"
+
+    itemsPath: ["node", "labels", "nodes"]
+
+    itemsQuery: '
+    query(
+        $nodeId: ID!,
+        $orderField: ' + orderFieldType + ',
+        $orderDirection: OrderDirection = ASC,
+        $itemCount: Int = 20,
+        $itemCursor: String = null
+    ) {
+        node(id: $nodeId) {
+            ... on ' + nodeType + ' { '
+                + nodes + '(
+                    first: $itemCount,
+                    after: $itemCursor,
+                    orderBy: {
+                        direction: $orderDirection
+                        field: $orderField
+                    }) {
+                    nodes {
+                        id
+                        color
+                        createdAt
+                        name
+                        repository {
+                            id
+                        }
+                    }
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                }
+            }
+        }
+    }'
+
+    AddLabelsToLabelableMutation {
+        id: addLabelsToLabelableMutation
+        nodeId: page.nodeId
+    }
+    RemoveLabelsFromLabelableMutation {
+        id: removeLabelsFromLabelableMutation
+        nodeId: page.nodeId
+    }
+
     SilicaListView {
         id: listView
         anchors.fill: parent
+        spacing: Theme.paddingLarge
 
         header: PageHeader {
-            title: qsTr("Issues")
+            //% "Labels"
+            title: qsTrId("id-labels")
             description: page.description
         }
 
@@ -38,101 +93,94 @@ Page {
         }
 
         PullDownMenu {
-            busy: labelsModel.loading
+            busy: loading
             MenuItem {
-                text: qsTr("Refresh")
-                onClicked: {
-                    refresh()
-                }
+                //% "Refresh"
+                text: qsTrId("id-refresh")
+                onClicked: refresh()
             }
             MenuItem {
-                text: qsTr("Sorting")
+                //% "Sorting"
+                text: qsTrId("id-sorting")
+                onClicked: setSorting()
+            }
+            MenuItem {
+                visible: viewerCanAssign
+                //% "Assign"
+                text: qsTrId("id-assign")
                 onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
-                                                    order: config.sortOrder,
-                                                    field: getSortFieldIndex(),
-                                                    fields: [
-                                                        qsTr("Created at"),
-                                                        qsTr("Name")
-                                                    ]
+                    const labelIds = []
+                    for (var i=0; i < itemsModel.count; i++) {
+                        labelIds.push(itemsModel.get(i).id)
+                    }
+
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/AssingLabelsToLabelableDialog.qml"), {
+                                                    nodeId: nodeId,
+                                                    repoId: repoId,
+                                                    labelIds: labelIds
                                                 })
 
                     dialog.accepted.connect(function() {
-                        config.sortOrder = dialog.order
-                        config.sortRole = getSortRoleFromIndex(dialog.field)
+                        const deselected = []
+                        dialog.labelIds.forEach(function(labelId) {
+                            if (dialog.selectedLabelIds.indexOf(labelId) < 0) deselected.push(labelId)
+                        })
+                        if (deselected.length > 0) {
+                            removeLabelsFromLabelableMutation.labelIds = deselected
+                            removeLabelsFromLabelableMutation.execute()
+                        }
 
-                        refresh()
+                        const selected = []
+                        dialog.selectedLabelIds.forEach(function(labelId) {
+                            if (labelIds.indexOf(labelId) < 0) selected.push(labelId)
+                        })
+                        if (selected.length > 0) {
+                            addLabelsToLabelableMutation.labelIds = selected
+                            addLabelsToLabelableMutation.execute()
+                        }
                     })
                 }
             }
         }
 
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: labelsModel.loading
-        }
-
         ViewPlaceholder {
-            enabled: listView.count == 0
-            text: qsTr("No labels available")
+            enabled: !loading && listView.count === 0
+            //% "No labels available"
+            text: qsTrId("id-no-labels-available")
         }
 
         VerticalScrollDecorator {}
 
-        model: LabelsModel { id: labelsModel }
+        model: itemsModel
 
-        opacity: busyIndicator.running ? 0.3 : 1.0
+        opacity: loading ? 0.0 : 1.0
         Behavior on opacity { FadeAnimator {} }
 
-        delegate: LabelListDelegate { id: delegate }
+        delegate: LabelListDelegate {
+            id: delegate
 
-        PushUpMenu {
-            busy: labelsModel.loading
-            visible: labelsModel.hasNextPage
-
-            MenuItem {
-                text: qsTr("Load more (%n to go)", "", labelsModel.totalCount - listView.count)
-                onClicked: getLabels()
+            menu: ContextMenu {
+                MenuItem {
+                    visible: viewerCanAssign
+                    //% "Remove"
+                    text: qsTrId("id-remove")
+                    //% "Removing label"
+                    onClicked: delegate.remorseAction(qsTrId("id-removing-label"), function() {
+                        const removeId = []
+                        removeId.push(model.id)
+                        removeLabelsFromLabelableMutation.labelIds = removeId
+                        removeLabelsFromLabelableMutation.execute()
+                        itemsModel.remove(index)
+                    })
+                }
             }
+
+            onClicked: pageStack.push(Qt.resolvedUrl("LabelPage.qml"), { nodeId: model.id })
         }
+
+        onAtYEndChanged: if (atYEnd) loadMore()
     }
 
-    function getLabels() {
-        SailHub.api().getPaginationModel(labelsModel)
-    }
-
-    function getSortRoleFromIndex(index) {
-        switch (index) {
-        case 0:
-            return LabelsModel.CreatedAtRole
-
-        default:
-            return LabelsModel.NameRole
-        }
-    }
-
-    function getSortFieldIndex() {
-        switch (config.sortRole) {
-        case LabelsModel.CreatedAtRole:
-            return 0;
-
-        case LabelsModel.NameRole:
-            return 1;
-
-        default:
-            return 0
-        }
-    }
-
-    function refresh() {
-        labelsModel.reset()
-        getLabels()
-    }
-
-    Component.onCompleted: refresh()
-    Component.onDestruction: delete labelsModel
+    onStatusChanged: if (status === PageStatus.Active) refresh()
 }
 

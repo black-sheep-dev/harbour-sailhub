@@ -1,5 +1,10 @@
+#qmldir
 singleton SailHubStyles 1.0 SailHubStyles.qml
 singleton MarkdownParser 1.0 tools/MarkdownParser.qml
+singleton StringHelper 1.0 tools/StringHelper.qml
+singleton DataHelper 1.0 tools/DataHelper.qml
+singleton Global 1.0 global.qml
+singleton Api 1.0 api.qml
 ShowDown 1.0 js/showdown.min.js
 Twemoji 1.0 js/twemoji.min.js
-StringHelper 1.0 js/stringhelper.js
+DataUtils 1.0 js/datautils.js

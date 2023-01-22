@@ -1,89 +1,101 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
+import "../components/"
 import "../delegates/"
+import "../views/"
 
-Page {
-    property string title
-    property string identifier
-    property int organizationType: Organization.Undefined
+ListPage {
+    property string nodeType
+    property string nodes
 
     id: page
     allowedOrientations: Orientation.All
 
+    itemsQuery: '
+    query(
+        $nodeId: ID!,
+        $itemCount: Int = 20,
+        $itemCursor: String = null
+    ) {
+        node(id: $nodeId) {
+            ... on ' + nodeType + ' {
+                ' + nodes + '(
+                    first: $itemCount,
+                    after: $itemCursor
+                ) {
+                    nodes {
+                        id
+                        avatarUrl
+                        description
+                        login
+                        name
+                    }
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                }
+            }
+        }
+    }'
+
     SilicaListView {
+        PullDownMenu {
+            busy: loading
+            MenuItem {
+                //% "Refresh"
+                text: qsTrId("id-refresh")
+                onClicked: refresh()
+            }
+        }
+
         id: listView
         anchors.fill: parent
 
-        header: PageHeader { title: page.title }
+        header: PageHeader {
+            title: page.title
+            description: page.description
+        }
 
         footer: Item {
             width: parent.width
             height: Theme.horizontalPageMargin
         }
 
-        PullDownMenu {
-            busy: organizationsModel.loading
-            MenuItem {
-                text: qsTr("Refresh")
-                onClicked: refresh()
-            }
-        }
-
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: organizationsModel.loading
-        }
-
-        ViewPlaceholder {
-            enabled: listView.count == 0
-            text: qsTr("No organizations available")
-        }
-
-        VerticalScrollDecorator {}
-
-        model: OrganizationsModel {
-            id: organizationsModel
-            identifier: page.identifier
-            modelType: page.organizationType
-        }
-
-        opacity: busyIndicator.running ? 0.3 : 1.0
-        Behavior on opacity { FadeAnimator {} }
+        model: itemsModel
 
         delegate: OrganizationListDelegate {
             id: delegate
 
             onClicked: pageStack.push(Qt.resolvedUrl("OrganizationPage.qml"), {
-                                          nodeId: model.nodeId
+                                          nodeId: model.id
                                       })
         }
 
-        PushUpMenu {
-            busy: organizationsModel.loading
-            visible: organizationsModel.hasNextPage
-
-            MenuItem {
-                text: qsTr("Load more (%n to go)", "", organizationsModel.totalCount - listView.count)
-                onClicked: getOrganizations()
-            }
+        ViewPlaceholder {
+            enabled: listView.count == 0
+            //% "No organizations available"
+            text: qsTrId("id-no-organizations-available")
         }
+
+        VerticalScrollDecorator {}
     }
 
-    function getOrganizations() {
-        SailHub.api().getPaginationModel(organizationsModel)
-    }
 
-    function refresh() {
-        organizationsModel.reset()
-        getOrganizations()
-    }
+    Component.onCompleted: {
+        switch (itemsQueryType) {
+        case "USER_ORGANIZATIONS":
+            nodeType = "User"
+            nodes = "organizations"
+            itemsPath = ["node", "organizations", "nodes"]
+            break
 
-    Component.onCompleted: refresh()
-    Component.onDestruction: delete organizationsModel
+        default:
+            break
+        }
+
+        refresh()
+    }
 }

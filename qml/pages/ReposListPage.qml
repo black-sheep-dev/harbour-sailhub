@@ -1,194 +1,169 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Nemo.Configuration 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
+import "../components"
 import "../delegates/"
 import "../tools/"
-import ".."
+import "../views/"
+import "../."
 
-Page {
-    property string login
-    property alias identifier: reposModel.identifier
-    property alias repoType: reposModel.modelType
-    property alias sortRole: reposModel.sortRole
-    property alias sortOrder: reposModel.sortOrder
-
-    ConfigurationGroup {
-        id: config
-        path: "/apps/harbour-sailhub/repos"
-
-        property alias sortRole: reposModel.sortRole
-        property alias sortOrder: reposModel.sortOrder
-    }
+ListPage {
+    property string nodeType
+    property string nodes
 
     id: page
     allowedOrientations: Orientation.All
 
-    SilicaListView {
-        id: listView
-        anchors.fill: parent
-
-        header: PageHeader {
-            title: {
-                switch (repoType) {
-                case Repo.User:
-                    return qsTr("Repositories");
-
-                case Repo.Fork:
-                    return qsTr("Forks");
-
-                case Repo.Starred:
-                    return qsTr("Starred Repositories")
-
-                default:
-                    return qsTr("Repositories");
+    itemsQuery: '
+    query(
+        $nodeId: ID!,
+        $orderField: ' + orderFieldType + ',
+        $orderDirection: OrderDirection = ASC,
+        $itemCount: Int = 20,
+        $itemCursor: String = null
+    ) {
+        node(id: $nodeId) {
+            ... on ' + nodeType + ' {
+                ' + nodes + '(
+                    first: $itemCount,
+                    after: $itemCursor,
+                    orderBy: {
+                        direction: $orderDirection
+                        field: $orderField
+                    }) {
+                    nodes {
+                        id
+                        isArchived
+                        isDisabled
+                        isEmpty
+                        isFork
+                        isInOrganization
+                        isLocked
+                        isMirror
+                        isPrivate
+                        isTemplate
+                        lockReason
+                        name
+                        owner {
+                            avatarUrl
+                            login
+                        }
+                        primaryLanguage {
+                            color
+                            name
+                        }
+                        shortDescriptionHTML
+                        stargazerCount
+                    }
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
                 }
             }
-            description: login
         }
+    }'
 
-        footer: Item {
-            width: parent.width
-            height: Theme.horizontalPageMargin
-        }
-
+    SilicaListView {
         PullDownMenu {
-            busy: reposModel.loading
+            busy: loading
             MenuItem {
-                text: qsTr("Refresh")
+                //% "Refresh"
+                text: qsTrId("id-refresh")
                 onClicked: refresh()
             }
 
             MenuItem {
-                text: qsTr("Sorting")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
-                                                    order: config.sortOrder,
-                                                    field: getSortFieldIndex(),
-                                                    fields: [
-                                                        qsTr("Name"),
-                                                        qsTr("Created at"),
-                                                        qsTr("Pushed at"),
-                                                        qsTr("Updated at"),
-                                                        qsTr("Stargazers")
-                                                    ]
-                                                })
-
-                    dialog.accepted.connect(function() {
-                        config.sortOrder = dialog.order
-                        config.sortRole = getSortRoleFromIndex(dialog.field)
-
-                        refresh()
-                    })
-                }
+                //% "Sorting"
+                text: qsTrId("id-sorting")
+                onClicked: setSorting()
             }
         }
 
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: reposModel.loading
+        id: listView
+        anchors.fill: parent
+
+        header: PageHeader {
+            title: page.title
+            description: page.description
+        }
+
+        spacing: Theme.paddingMedium
+        model: itemsModel
+        onAtYEndChanged: if (atYEnd && hasNextPage) loadMore()
+
+        opacity: loading ? 0.4 : 1
+        Behavior on opacity { FadeAnimation {} }
+
+        delegate: RepoListDelegate {
+            onClicked: pageStack.push(Qt.resolvedUrl("RepoPage.qml"), {
+                                          nodeId: model.id
+                                      })
+
         }
 
         ViewPlaceholder {
-            enabled: listView.count == 0
-            text: qsTr("No repositories available")
+            enabled: listView.count == 0 && !loading
+            //% "No repositories available"
+            text: qsTrId("id-no-repositories-available")
         }
 
         VerticalScrollDecorator {}
-
-        model: ReposModel { id: reposModel }
-
-        opacity: busyIndicator.running ? 0.3 : 1.0
-        Behavior on opacity { FadeAnimator {} }
-
-        delegate: RepoListDelegate {
-            id: delegate
-
-            name: {
-                switch (repoType) {
-                case Repo.User:
-                    return model.name
-
-                default:
-                    return model.ownerLogin + "/" + model.name
-                }
-            }
-            description: MarkdownParser.parseRaw(model.description)
-
-            onClicked: pageStack.push(Qt.resolvedUrl("RepoPage.qml"), {
-                                          nodeId: model.nodeId
-                                      })
-        }
-
-        PushUpMenu {
-            busy: reposModel.loading
-            visible: reposModel.hasNextPage
-
-            MenuItem {
-                text: qsTr("Load more (%n to go)", "", reposModel.totalCount - listView.count)
-                onClicked: getRepos()
-            }
-        }
     }
 
-    function getRepos() {
-        SailHub.api().getPaginationModel(reposModel)
-    }
+    Component.onCompleted: { 
+        configPath = "/apps/harbour-sailhub/repos"
+        orderFields = ["NAME", "CREATED_AT", "PUSHED_AT", "UPDATED_AT", "STARGAZERS"]
+        orderFieldLabels = [
+            //% "Name"
+            qsTrId("id-name"),
+            //% "Created at"
+            qsTrId("id-created-at"),
+            //% "Pushed at"
+            qsTrId("id-pushed-at"),
+            //% "Updated at"
+            qsTrId("id-updated-at"),
+            //% "Stargazers"
+            qsTrId("id-stargazers")
+        ]
+        orderFieldType = "RepositoryOrderField = NAME"
 
-    function getSortRoleFromIndex(index) {
-        switch (index) {
-        case 0:
-            return ReposModel.NameRole
+        itemsPath = ["node", "repositories", "nodes"]
 
-        case 1:
-            return ReposModel.CreatedAtRole
+        switch (itemsQueryType) {
+        case "STARRED_REPOS":
+            nodeType = "User"
+            nodes = "starredRepositories"
+            itemsPath = ["node", "starredRepositories", "nodes"]
 
-        case 2:
-            return ReposModel.PushedAtRole
+            configPath = "/apps/harbour-sailhub/starred-repositories"
+            orderFields = ["STARRED_AT"]
+            //% "Starred at"
+            orderFieldLabels = [qsTrId("id-starred-at")]
+            orderFieldType = "StarOrderField = STARRED_AT"
+            break
 
-        case 3:
-            return ReposModel.UpdatedAtRole
+        case "USER_REPOS":
+            nodeType = "User"
+            nodes = "repositories"
+            break
 
-        case 4:
-            return ReposModel.StargazerCountRole
+        case "ORGANIZATION_REPOS":
+            nodeType = "Organization"
+            nodes = "repositories"
+            break
+
+        case "FORKS":
+            nodeType = "Repository"
+            nodes = "forks"
+            itemsPath = ["node", "forks", "nodes"]
+            break
 
         default:
-            return ReposModel.NameRole
+            break
         }
+
+        refresh()
     }
-
-    function getSortFieldIndex() {
-        switch (config.sortRole) {
-        case ReposModel.NameRole:
-            return 0;
-
-        case ReposModel.CreatedAtRole:
-            return 1;
-
-        case ReposModel.PushedAtRole:
-            return 2;
-
-        case ReposModel.UpdatedAtRole:
-            return 3;
-
-        case ReposModel.StargazerCountRole:
-            return 4;
-
-        default:
-            return 0
-        }
-    }
-
-    function refresh() {
-        reposModel.reset()
-        getRepos()
-    }
-
-    Component.onCompleted: refresh()
-    Component.onDestruction: delete reposModel
 }

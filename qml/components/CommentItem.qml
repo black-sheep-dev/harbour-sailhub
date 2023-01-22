@@ -5,8 +5,8 @@ import "../components/"
 import ".."
 
 Item {
-    property alias authorLogin: authorItem.title
     property alias authorAvatar: authorItem.avatar
+    property alias authorLogin: authorItem.login
     property string body
     property bool edited: false
     property string timeSpan
@@ -25,7 +25,8 @@ Item {
             interactive: true
             subtitle: {
                 if (edited)
-                    return timeSpan + " - " + qsTr("Edited")
+                    //% "Edited"
+                    return timeSpan + " - " + qsTrId("id-edited")
 
                 return timeSpan
             }

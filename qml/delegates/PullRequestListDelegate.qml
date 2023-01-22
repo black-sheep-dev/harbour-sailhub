@@ -2,105 +2,153 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtGraphicalEffects 1.0
 
-import org.nubecula.harbour.sailhub 1.0
 
 import "../components/"
-import '..'
+import "../."
 
 ListItem {
 
     id: delegate
     width: parent.width
-    contentHeight: delegateContent.height + 2*Theme.paddingMedium
+    contentHeight: titleLabel.y + titleLabel.height + Theme.paddingSmall
 
-    Column {
-        id: delegateContent
-        x: Theme.horizontalPageMargin
-        width: parent.width - 2*x
-        anchors.verticalCenter: parent.verticalCenter
-        spacing: Theme.paddingSmall
+    Icon {
+        property color itemColor: {
+            switch (model.state) {
+            case "OPEN":
+                return SailHubStyles.colorStatusOpen
 
-        Row {
-            width: parent.width
-            spacing: Theme.paddingMedium
+            case "CLOSED":
+                return SailHubStyles.colorStatusClosed
 
-            Icon {
-                id: delegateIcon
-                anchors.top: parent.top
-                source: model.state & PullRequestState.Merged ?  "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
+            case "MERGED":
+                return SailHubStyles.colorStatusMerged
 
-                ColorOverlay {
-                    anchors.fill: parent
-                    source: parent
-                    color: {
-                        if (model.state === PullRequestState.Open)
-                            return SailHubStyles.colorStatusOpen
-
-                        if (model.state === PullRequestState.Closed)
-                            return SailHubStyles.colorStatusClosed
-
-                        if (model.state === PullRequestState.Merged)
-                            return SailHubStyles.colorStatusMerged
-
-                        return Theme.primaryColor
-                    }
-                }
-            }
-
-            Column {
-                width: parent.width - delegateIcon.width - parent.spacing
-
-                Row {
-                    width: parent.width
-                    spacing: Theme.paddingSmall
-
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: parent.width - timeSpanLabel.width - parent.spacing
-                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                        font.pixelSize: Theme.fontSizeTiny
-
-                        text: model.repository + " #" + model.number
-                    }
-
-                    Label {
-                        id: timeSpanLabel
-                        anchors.verticalCenter: parent.verticalCenter
-                        font.pixelSize: Theme.fontSizeSmall
-
-                        text: model.sortRole === PullRequestsModel.UpdatedAtRole ? model.updatedAtTimeSpan : model.createdAtTimeSpan
-                    }
-                }
-
-                Row {
-                    width: parent.width
-                    spacing: Theme.paddingSmall
-
-                    Label {
-                        width: parent.width - commentIcon.width - commentsLabel.width - 2*parent.spacing
-                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                        font.bold: true
-
-                        text: model.title
-                    }
-
-                    Icon {
-                        id: commentIcon
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "image://theme/icon-s-chat"
-
-                    }
-
-                    Label {
-                        id: commentsLabel
-                        anchors.verticalCenter: commentIcon.verticalCenter
-                        font.pixelSize: Theme.fontSizeSmall
-                        color: pressed ? Theme.highlightColor : Theme.primaryColor
-
-                        text: model.commentCount
-                    }
-                }
+            default:
+                return Theme.primaryColor
             }
         }
+
+        id: delegateIcon
+        anchors {
+            left: parent.left
+            leftMargin: Theme.horizontalPageMargin
+            top: parent.top
+            topMargin: Theme.paddingSmall
+        }
+
+        source: model.state === "MERGED" ?  "/usr/share/harbour-sailhub/icons/icon-m-merged.svg" : "/usr/share/harbour-sailhub/icons/icon-m-pull-request.svg"
+
+        ColorOverlay {
+            anchors.fill: parent
+            source: parent
+            color: delegateIcon.itemColor
+        }
+    }
+
+    Rectangle {
+        anchors {
+           horizontalCenter: delegateIcon.horizontalCenter
+           top: delegateIcon.bottom
+           topMargin: Theme.paddingMedium
+           bottom: parent.bottom
+        }
+        width: 4
+        opacity: 0.5
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "transparent"; }
+            GradientStop { position: 0.5; color: delegateIcon.itemColor; }
+            GradientStop { position: 1.0; color: "transparent"; }
+        }
+    }
+
+    Label {
+        id: headerLabel
+        anchors {
+            left: delegateIcon.right
+            leftMargin: Theme.paddingMedium
+            top: parent.top
+            topMargin: Theme.paddingSmall
+            right: parent.right
+            rightMargin: Theme.horizontalPageMargin
+        }
+        truncationMode: TruncationMode.Fade
+        font.pixelSize: Theme.fontSizeTiny
+        text: model.repository.nameWithOwner + " #" + model.number
+    }
+
+    Label {
+        id: timeSpanLabel
+        anchors {
+            top: headerLabel.bottom
+            left: headerLabel.left
+            right: commentIcon.left
+            rightMargin: Theme.paddingMedium
+        }
+
+        font.pixelSize: Theme.fontSizeTiny
+        text: StringHelper.timespan(model.createdAt)
+    }
+
+    Label {
+        id: commentsLabel
+        anchors {
+            verticalCenter: commentIcon.verticalCenter
+            right: parent.right
+            rightMargin: Theme.horizontalPageMargin
+        }
+
+        font.pixelSize: Theme.fontSizeSmall
+        color: pressed ? Theme.highlightColor : Theme.primaryColor
+        text: model.comments.totalCount
+    }
+
+    Icon {
+        id: commentIcon
+        anchors {
+            top: parent.top
+            topMargin: Theme.paddingSmall
+            right: commentsLabel.left
+            rightMargin: Theme.paddingSmall
+        }
+        source: "image://theme/icon-s-chat"
+    }
+
+    CircleImage {
+        id: avatarImage
+        anchors {
+            left: timeSpanLabel.left
+            top: timeSpanLabel.bottom
+            topMargin: Theme.paddingSmall
+        }
+        width: Theme.iconSizeSmall
+        height: width
+        source: model.author.avatarUrl
+    }
+
+    Label {
+        anchors {
+            left: avatarImage.right
+            leftMargin: Theme.paddingMedium
+            verticalCenter: avatarImage.verticalCenter
+            right: timeSpanLabel.right
+        }
+        font.pixelSize: Theme.fontSizeSmall
+        text: model.author.login
+    }
+
+    Label {
+        id: titleLabel
+        anchors {
+            left: headerLabel.left
+            top: avatarImage.bottom
+            topMargin: Theme.paddingSmall
+            right: parent.right
+            rightMargin: Theme.horizontalPageMargin
+        }
+
+        wrapMode: Text.Wrap
+        font.bold: true
+        text: model.title
     }
 }

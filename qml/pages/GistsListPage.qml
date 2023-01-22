@@ -2,34 +2,92 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
+import "../components/"
+import "../views/"
 import "../delegates/"
 
-Page {
-    property string description
-    property alias identifier: gistsModel.identifier
-    property alias type: gistsModel.modelType
-    property bool sorting: true
-    property alias states: gistsModel.state
-
-    ConfigurationGroup {
-        id: config
-        path: "/apps/harbour-sailhub/gists"
-
-        property alias sortRole: gistsModel.sortRole
-        property alias sortOrder: gistsModel.sortOrder
-    }
+ListPage {
+    property string nodeType: "User"
+    property string nodes: "gists"
 
     id: page
     allowedOrientations: Orientation.All
 
+    configPath: "/app/harbour-sailhub/gists"
+
+    orderDirection: "DESC"
+    orderField: "UPDATED_AT"
+    orderFields: ["PUSHED_AT", "CREATED_AT", "UPDATED_AT"]
+    orderFieldLabels: [
+        //% "Pushed at"
+        qsTrId("id-pushed-at"),
+        //% "Created at"
+        qsTrId("id-created-at"),
+        //% "Updated at"
+        qsTrId("id-updated-at"),
+    ]
+    orderFieldType: "GistOrderField = UPDATED_AT"
+
+    itemsPath: ["node", "gists", "nodes"]
+
+    itemsQuery: '
+    query(
+        $nodeId: ID!,
+        $orderField: ' + orderFieldType + ',
+        $orderDirection: OrderDirection = DESC,
+        $itemCount: Int = 20,
+        $itemCursor: String = null
+    ) {
+        node(id: $nodeId) {
+            ... on ' + nodeType + ' {
+                ' + nodes + '(
+                    privacy: ALL,
+                    first: $itemCount,
+                    after: $itemCursor,
+                    orderBy: {
+                        direction: $orderDirection
+                        field: $orderField
+                    }) {
+                    nodes {
+                        id
+                        comments {
+                            totalCount
+                        }
+                        createdAt
+                        description
+                        files {
+                            isTruncated
+                        }
+                        forks {
+                            totalCount
+                        }
+                        isPublic
+                        owner {
+                            avatarUrl
+                            login
+                        }
+                        pushedAt
+                        stargazerCount
+                        updatedAt
+                    }
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                }
+            }
+        }
+    }'
+
     SilicaListView {
         id: listView
         anchors.fill: parent
+        spacing: Theme.paddingMedium
 
         header: PageHeader {
-            title: qsTr("Gists")
+            //% "Gists"
+            title: qsTrId("id-gists")
             description: page.description
         }
 
@@ -39,121 +97,54 @@ Page {
         }
 
         PullDownMenu {
-            busy: gistsModel.loading
+            busy: loading
             MenuItem {
-                text: qsTr("Refresh")
-                onClicked: {
-                    refresh()
-                }
+                //% "Refresh"
+                text: qsTrId("id-refresh")
+                onClicked: refresh()
             }
             MenuItem {
-                visible: sorting
-                text: qsTr("Sorting")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
-                                                    order: config.sortOrder,
-                                                    field: getSortFieldIndex(),
-                                                    fields: [
-                                                        qsTr("Created at"),
-                                                        qsTr("Updated at"),
-                                                        qsTr("Pushed at")
-                                                    ]
-                                                })
-
-                    dialog.accepted.connect(function() {
-                        config.sortOrder = dialog.order
-                        config.sortRole = getSortRoleFromIndex(dialog.field)
-
-                        refresh()
-                    })
-                }
+                //% "Sorting"
+                text: qsTrId("id-sorting")
+                onClicked: setSorting()
             }
-        }
-
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: gistsModel.loading
         }
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No gists available")
+            //% "No gists available"
+            text: qsTrId("id-no-gists-available")
         }
 
         VerticalScrollDecorator {}
 
-        model: GistsModel { id: gistsModel }
-
-        opacity: busyIndicator.running ? 0.3 : 1.0
-        Behavior on opacity { FadeAnimator {} }
+        model: itemsModel
 
         delegate: GistListDelegate {
             id: delegate
 
-            lastItem: index == (listView.count - 1)
-
-//            onClicked: pageStack.push(Qt.resolvedUrl("GistPage.qml"), {
-//                                          nodeId: model.nodeId
-//                                      })
+            onClicked: pageStack.push(Qt.resolvedUrl("GistPage.qml"), {
+                                          nodeId: model.id
+                                      })
 
         }
 
-        PushUpMenu {
-            busy: gistsModel.loading
-            visible: gistsModel.hasNextPage
-
-            MenuItem {
-                text: qsTr("Load more (%n to go)", "", gistsModel.totalCount - listView.count)
-                onClicked: getGists()
-            }
-        }
+        onAtYEndChanged: if (atYEnd) loadMore()
     }
 
-    function getGists() {
-        SailHub.api().getPaginationModel(gistsModel)
-    }
-
-    function getSortRoleFromIndex(index) {
-        switch (index) {
-        case 0:
-            return GistsModel.CreatedAtRole
-
-        case 1:
-            return GistsModel.UpdatedAtRole
-
-        case 2:
-            return GistsModel.PushedAtRole
+    Component.onCompleted: {
+        switch (itemsQueryType) {
+        case "GIST_FORKS":
+            nodeType = "Gist"
+            nodes = "forks"
+            itemsPath: ["node", "forks", "nodes"]
+            break
 
         default:
-            return GistsModel.UpdatedAtRole
+            break
         }
+
+        refresh()
     }
-
-    function getSortFieldIndex() {
-        switch (config.sortRole) {
-        case GistsModel.CreatedAtRole:
-            return 0;
-
-        case GistsModel.UpdatedAtRole:
-            return 1;
-
-        case GistsModel.PushedAtRole:
-            return 2;
-
-        default:
-            return 0
-        }
-    }
-
-    function refresh() {
-        gistsModel.reset()
-        getGists()
-    }
-
-    Component.onCompleted: refresh()
-    Component.onDestruction: delete gistsModel
 }
 

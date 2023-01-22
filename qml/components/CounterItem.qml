@@ -7,24 +7,26 @@ BackgroundItem {
 
     height: Theme.itemSizeExtraSmall / 2
 
-    Row {
-        width: parent.width
-        anchors.verticalCenter: parent.verticalCenter
-        spacing: Theme.paddingSmall
+    Image {
+        id: iconImage
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            left: parent.left
+        }
+        width: height
+    }
 
-        Image {
-            id: iconImage
-            height: parent.height
-            width: height
-
-            anchors.verticalCenter: parent.verticalCenter
+    Label {
+        id: counterLabel
+        anchors {
+            left: iconImage.right
+            leftMargin: Theme.paddingSmall
+            right: parent.right
+            verticalCenter: parent.verticalCenter
         }
 
-        Label {
-            id: counterLabel
-            anchors.verticalCenter: parent.verticalCenter
-            color: Theme.primaryColor
-            font.pixelSize: Theme.fontSizeExtraSmall
-        }
+        color: Theme.primaryColor
+        font.pixelSize: Theme.fontSizeExtraSmall
     }
 }

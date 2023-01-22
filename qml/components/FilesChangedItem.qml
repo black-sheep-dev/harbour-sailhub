@@ -10,44 +10,56 @@ BackgroundItem {
 
     width: parent.width
 
-    Row {
-        x: Theme.horizontalPageMargin
-        width: parent.width - 2*x
-        height: parent.height
-        spacing: Theme.paddingSmall
-
-        Icon {
-            id: fileIcon
-            anchors.verticalCenter: parent.verticalCenter
-            width: Theme.iconSizeMedium
-            height: Theme.iconSizeMedium
-            source: "qrc:/icons/icon-m-files-changed"
+    Icon {
+        id: fileIcon
+        anchors {
+            left: parent.left
+            leftMargin: Theme.horizontalPageMargin
+            verticalCenter: parent.verticalCenter
         }
-
-        Label {
-            anchors.verticalCenter: parent.verticalCenter
-            width: parent.width - fileIcon.width - additionsLabel.width - deletionsLabel.width - 3 * parent.spacing
-
-            text: qsTr("%n file(s) changed", "", files)
-        }
-
-        Label {
-            id: additionsLabel
-            visible: additions > 0
-            anchors.verticalCenter: parent.verticalCenter
-            //font.pixelSize: Theme.fontSizeExtraSmall
-            color: SailHubStyles.colorSuccess
-            text: "+" + additions
-        }
-        Label {
-            id: deletionsLabel
-            visible: deletions > 0
-            anchors.verticalCenter: parent.verticalCenter
-            //font.pixelSize: Theme.fontSizeExtraSmall
-            color: SailHubStyles.colorError
-            text: "-" + deletions
-        }
+        width: Theme.iconSizeMedium
+        height: Theme.iconSizeMedium
+        source: "/usr/share/harbour-sailhub/icons/icon-m-files-changed.svg"
     }
+
+    Label {
+        anchors {
+            left: fileIcon.right
+            leftMargin: Theme.paddingMedium
+            right: additionsLabel.left
+            rightMargin: Theme.paddingMedium
+            verticalCenter: parent.verticalCenter
+        }
+        wrapMode: Text.Wrap
+        //% "%n file(s) changed"
+        text: qsTrId("id-files-changed", files)
+    }
+
+    Label {
+        id: additionsLabel
+        visible: additions > 0
+        anchors {
+            right: deletionsLabel.left
+            rightMargin: Theme.paddingSmall
+            verticalCenter: parent.verticalCenter
+        }
+        font.pixelSize: Theme.fontSizeExtraSmall
+        color: SailHubStyles.colorSuccess
+        text: "+" + additions
+    }
+    Label {
+        id: deletionsLabel
+        visible: deletions > 0
+        anchors {
+            right: parent.right
+            rightMargin: Theme.horizontalPageMargin
+            verticalCenter: parent.verticalCenter
+        }
+        font.pixelSize: Theme.fontSizeExtraSmall
+        color: SailHubStyles.colorError
+        text: "-" + deletions
+    }
+
 }
 
 

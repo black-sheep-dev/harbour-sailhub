@@ -1,11 +1,9 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-//import org.nubecula.harbour.sailhub 1.0
+import "../."
 
 ListItem {
-    property bool lastItem: false
-
     id: delegate
     width: parent.width
     contentHeight: delegateColumn.height + 2*Theme.paddingMedium
@@ -51,11 +49,11 @@ ListItem {
 
             Label {
                 width: parent.width - dateIcon.width - parent.spacing
-                anchors.verticalCenter: commentIcon.verticalCenter
+                anchors.verticalCenter: dateIcon.verticalCenter
                 font.pixelSize: Theme.fontSizeTiny
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: model.updatedAt.toLocaleDateString(Qt.locale())
+                text: StringHelper.timespan(new Date(model.updatedAt))
             }
         }
 
@@ -78,26 +76,10 @@ ListItem {
                 text: model.stargazerCount
             }
 
-//            Icon {
-//                id: fileCountIcon
-//                anchors.verticalCenter: parent.verticalCenter
-//                source: "image://theme/icon-s-attach"
-//            }
-
-//            Label {
-//                anchors.verticalCenter: parent.verticalCenter
-//                font.pixelSize: Theme.fontSizeSmall
-//                color: pressed ? Theme.highlightColor : Theme.primaryColor
-
-//                text: model.fileCount
-//            }
-
             Icon {
-                id: forkCountIcon
+                id: fileCountIcon
                 anchors.verticalCenter: parent.verticalCenter
-                width: Theme.iconSizeSmall
-                height: Theme.iconSizeSmall
-                source: "qrc:///icons/icon-m-fork"
+                source: "image://theme/icon-s-attach"
             }
 
             Label {
@@ -105,7 +87,23 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: model.forkCount
+                text: model.files.count
+            }
+
+            Icon {
+                id: forkCountIcon
+                anchors.verticalCenter: parent.verticalCenter
+                width: Theme.iconSizeSmall
+                height: Theme.iconSizeSmall
+                source: "/usr/share/harbour-sailhub/icons/icon-m-fork.svg"
+            }
+
+            Label {
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: Theme.fontSizeSmall
+                color: pressed ? Theme.highlightColor : Theme.primaryColor
+
+                text: model.forks.totalCount
             }
 
             Icon {
@@ -119,7 +117,7 @@ ListItem {
                 font.pixelSize: Theme.fontSizeSmall
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
 
-                text: model.commentCount
+                text: model.comments.totalCount
             }
         }
     }

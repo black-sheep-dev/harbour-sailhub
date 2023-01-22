@@ -1,29 +1,33 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
 Dialog {
     id: dialog
     allowedOrientations: Orientation.Portrait
-    acceptDestination: Qt.resolvedUrl("WizardFinalPage.qml")
+    acceptDestination: Qt.resolvedUrl("../OverviewPage.qml")
+    acceptDestinationAction: PageStackAction.Replace
+    acceptDestinationReplaceTarget: null
+
+    canAccept: tokenField.acceptableInput
 
     DialogHeader {
         id: header
-        acceptText: qsTr("Continue")
-        cancelText: qsTr("Back")
+        //% "Continue"
+        acceptText: qsTrId("id-continue")
+        //% "Back"
+        cancelText: qsTrId("id-back")
     }
 
     Column {
         anchors.top: header.bottom
         width: parent.width
-        spacing: Theme.paddingMedium
-
+        spacing: Theme.paddingLarge
         Label {
             x: Theme.horizontalPageMargin
             width: parent.width - 2*x
 
-            text: qsTr("Personal Access Token")
+            //% "Personal access token"
+            text: qsTrId("id-personal-access-token")
 
             color: Theme.secondaryHighlightColor
             font.pixelSize: Theme.fontSizeLarge
@@ -35,11 +39,14 @@ Dialog {
             wrapMode: Text.WordWrap
             font.pixelSize: Theme.fontSizeSmall
 
-            text: qsTr("You need to provide a personal access token to connect to GitHub.")
+            //% "You need to provide a personal access token to connect to GitHub."
+            text: qsTrId("")
                   + "\n"
-                  + qsTr("This token can be created in developer settings on GitHub.")
+                    //% "This token can be created in developer settings on GitHub."
+                  + qsTrId("id-wizard-token-desc-b")
                   + " "
-                  + qsTr("For a detailed description please refer the README in project repository!")
+                    //% "For a detailed description please refer the README in project repository!"
+                  + qsTrId("id-wizard-token-desc-c")
 
             color: Theme.highlightColor
         }
@@ -53,23 +60,29 @@ Dialog {
             id: tokenField
             width: parent.width
 
-            label: qsTr("Access Token")
-            placeholderText: qsTr("Enter access token")
+            //% "Access token"
+            label: qsTrId("id-access-token")
+            //% "Enter access token"
+            placeholderText: qsTrId("id-enter-access-token")
 
-            onTextChanged: checkInput()
+            validator: RegExpValidator {
+                regExp: /^(ghp_).*[a-zA-Z0-9]$/
+            }
 
             focus: true
         }
+
+        Label {
+            x: Theme.horizontalPageMargin
+            width: parent.width - 2*x
+            visible: !tokenField.acceptableInput && tokenField.length > 4
+            //% "This token does not appear to be a GitHub token!"
+            text: qsTrId("id-no-github-token")
+            color: Theme.errorColor
+            font.pixelSize: Theme.fontSizeExtraSmall
+        }
     }
 
-    function checkInput() { canAccept = tokenField.text.length > 0 }
-
-    onAccepted: {
-        SailHub.accessToken = tokenField.text
-        SailHub.saveSettings()
-        SailHub.initialize()
-    }
-
-    Component.onCompleted: checkInput()
+    onAccepted: settings.accessToken = tokenField.text
 }
 

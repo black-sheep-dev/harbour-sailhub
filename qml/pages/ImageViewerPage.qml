@@ -1,8 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
 Page {
     property string branch
     property string owner
@@ -14,28 +12,32 @@ Page {
     allowedOrientations: Orientation.All
 
     SilicaFlickable {
+        readonly property string url: "https://github.com/" + owner + "/" + repo + "/raw/" + branch + "/" + path
+
+        PullDownMenu {
+            MenuItem {
+                //% "Download"
+                text: qsTrId("id-download")
+                onClicked: Qt.openUrlExternally(url)
+            }
+        }
+
         anchors.fill: parent
         contentHeight: column.height
-
         Column {
             id: column
             width: parent.width
-            spacing: Theme.paddingMedium
+            spacing: Theme.paddingLarge
 
             PageHeader {
                 title: repo
-                description: branch + ":" +path
-            }
-
-            Item {
-                width: 1
-                height: Theme.paddingMedium
+                description: branch + ":" + path
             }
 
             Image {
                 id: image
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: "https://github.com/" + owner + "/" + repo + "/raw/" + branch + "/" + path
+                source: url
 
                 BusyIndicator {
                     anchors.centerIn: parent
@@ -43,17 +45,14 @@ Page {
                 }
             }
 
-            Item {
-                width: 1
-                height: Theme.paddingMedium
-            }
-
             DetailItem {
-                label: qsTr("Height")
+                //% "Height"
+                label: qsTrId("id-height")
                 value: image.sourceSize.height + " px"
             }
             DetailItem {
-                label: qsTr("Width")
+                //% "Width"
+                label: qsTrId("id-width")
                 value: image.sourceSize.width + " px"
             }
         }

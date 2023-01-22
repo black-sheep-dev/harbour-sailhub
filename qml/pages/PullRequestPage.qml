@@ -1,103 +1,787 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-
-import org.nubecula.harbour.sailhub 1.0
+import QtQml.Models 2.2
 
 import "../components/"
+import "../components/menu/"
 import "../delegates/"
+import "../queries/"
+import "../queries/pullRequest"
 import "../tools/"
-import '..'
+import "../views/"
+import "../."
 
-Page {
-    property bool busy: false
-    property string nodeId
-    property PullRequest request
+TimelinePage {
+    property var pullRequest
+
+    property string pullRequestBody
+    property string pullRequestState
+    property string pullRequestTitle
+
+    property bool loadingContent: false
+
+    function refreshContent() {
+        loadingContent = true
+        Api.request({
+                        query: 'query($nodeId: ID!) {
+                                node(id: $nodeId) {
+                                    ... on PullRequest {
+                                        id
+                                        assignees {
+                                            totalCount
+                                        }
+                                        author {
+                                            avatarUrl
+                                            login
+                                        }
+                                        body
+                                        closingIssuesReferences {
+                                            totalCount
+                                        }
+                                        comments {
+                                            totalCount
+                                        }
+                                        createdAt
+                                        labels {
+                                            totalCount
+                                        }
+                                        locked
+                                        number
+                                        participants {
+                                            totalCount
+                                        }
+                                        reactionGroups {
+                                            ... on ReactionGroup {
+                                                content
+                                                users {
+                                                    totalCount
+                                                }
+                                                viewerHasReacted
+                                            }
+                                        }
+                                        repository {
+                                            id
+                                            nameWithOwner
+                                            viewerPermission
+                                        }
+                                        reviewRequests {
+                                            totalCount
+                                        }
+                                        title
+                                        state
+                                        updatedAt
+                                        viewerCanApplySuggestion
+                                        viewerCanDeleteHeadRef
+                                        viewerCanDisableAutoMerge
+                                        viewerCanEnableAutoMerge
+                                        viewerCanReact
+                                        viewerCanSubscribe
+                                        viewerCanUpdate
+                                        viewerDidAuthor
+                                        viewerSubscription
+                                    }
+                                }
+                            }',
+                        variables: { nodeId: page.nodeId }
+                    },
+                    function(result, status) {
+                        loadingContent = false
+
+                        if (status !== 200) {
+                            //% "Failed to load user details"
+                            notify.show(qsTrId("id-failed-to-load-user-details"))
+                            return
+                        }
+
+                        console.log("-----------------------------------------------------------------")
+//                        console.log(result)
+//                        console.log(JSON.stringify(result))
+                        subscriptionMenu.subscription = result.node.viewerSubscription
+                        pullRequestState = result.node.state
+                        pullRequestBody = result.node.body
+                        pullRequestTitle = result.node.title
+                        pullRequest = result.node
+                    })
+    }
 
     id: page
     allowedOrientations: Orientation.All
+    showBusyIndicator: false
+    itemsPath: ["node", "timelineItems", "nodes"]
+    itemsQuery: '
+query(
+    $nodeId: ID!,
+    $itemCount: Int = 20,
+    $itemCursor: String = null) {
+    node(id: $nodeId) {
+        ... on PullRequest {
+            id
+            timelineItems(
+                first: $itemCount
+                after: $itemCursor
+            ) {
+                nodes {
+                    __typename
+                    ... on AddedToProjectEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on AssignedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        assignee {
+                            ... on User {
+                                avatarUrl
+                                login
+                            }
+                        }
+                    }
+                    ... on AutoMergeDisabledEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        reason
+                    }
+                    ... on AutoMergeEnabledEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on AutoRebaseEnabledEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on AutoSquashEnabledEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on AutomaticBaseChangeFailedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on AutomaticBaseChangeSucceededEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on BaseRefChangedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        currentRefName
+                        previousRefName
+                    }
+                    ... on BaseRefDeletedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        baseRefName
+                        createdAt
+                    }
+                    ... on BaseRefForcePushedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on ClosedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        stateReason
+                    }
+                    ... on CommentDeletedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        deletedCommentAuthor {
+                            avatarUrl
+                            login
+                        }
+                    }
+                    ... on ConnectedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        subject {
+                            __typename
+                            ... on Issue {
+                                id
+                                title
+                                number
+                                state
+                            }
+                            ... on PullRequest {
+                                id
+                                title
+                                number
+                                state
+                            }
+                        }
+                    }
+                    ... on ConvertedNoteToIssueEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on ConvertedToDiscussionEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        discussion {
+                            title
+                            number
+                        }
+                    }
+                    ... on CrossReferencedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        source {
+                            __typename
+                            ... on Issue {
+                                id
+                                number
+                                state
+                                title
+                            }
+                            ... on PullRequest {
+                                id
+                                number
+                                state
+                                title
+                            }
+                        }
+                    }
+                    ... on DemilestonedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        milestoneTitle
+                    }
+                    ... on DeployedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on DeploymentEnvironmentChangedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on DisconnectedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        subject {
+                            __typename
+                            ... on Issue {
+                                id
+                                title
+                                number
+                                state
+                            }
+                            ... on PullRequest {
+                                id
+                                title
+                                number
+                                state
+                            }
+                        }
+                    }
+                    ... on HeadRefDeletedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        headRefName
+                    }
+                    ... on HeadRefForcePushedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        afterCommit {
+                            abbreviatedOid
+                        }
+                        beforeCommit {
+                            abbreviatedOid
+                        }
+                        createdAt
+                        ref {
+                            name
+                            prefix
+                        }
+                    }
+                    ... on HeadRefRestoredEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on IssueComment {
+                        id
+                        author {
+                            avatarUrl
+                            login
+                        }
+                        body
+                        bodyText
+                        createdAt
+                        lastEditedAt
+                        reactionGroups {
+                            ... on ReactionGroup {
+                                content
+                                users {
+                                    totalCount
+                                }
+                                viewerHasReacted
+                            }
+                        }
+                        viewerCanDelete
+                        viewerCanReact
+                        viewerCanUpdate
+                        viewerDidAuthor
+                    }
+                    ... on LabeledEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        label {
+                            id
+                            color
+                            name
+                        }
+                    }
+                    ... on LockedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        lockReason
+                    }
+                    ... on MarkedAsDuplicateEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        canonical {
+                            __typename
+                            ... on Issue {
+                                id
+                            }
+                            ... on PullRequest {
+                                id
+                            }
+                        }
+                    }
+                    ... on MentionedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on MergedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        commit {
+                            id
+                            abbreviatedOid
+                        }
+                        mergeRefName
+                    }
 
-    // model
-    CommentsModel {
-        id: commentsModel
-        identifier: request.nodeId
-        modelType: Comment.PullRequest
+                    ... on MilestonedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        milestoneTitle
+                    }
+                    ... on MovedColumnsInProjectEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on PinnedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on PullRequestCommit {
+                        commit {
+                            id
+                            abbreviatedOid
+                            author {
+                                user {
+                                    avatarUrl
+                                    login
+                                }
+                            }
+                            authoredDate
+                            messageHeadline
+                            pushedDate
+                            signature {
+                                isValid
+                                state
+                            }
+                        }
+                    }
+                    ... on PullRequestCommitCommentThread {
+                        path
+                    }
+                    ... on PullRequestReview {
+                        author {
+                            avatarUrl
+                            login
+                        }
+                        body
+                        createdAt
+                        reactionGroups {
+                            ... on ReactionGroup {
+                                content
+                                users {
+                                    totalCount
+                                }
+                                viewerHasReacted
+                            }
+                        }
+                        state
+                        submittedAt
+                        viewerCanDelete
+                        viewerCanReact
+                        viewerCanUpdate
+                        viewerCannotUpdateReasons
+                        viewerDidAuthor
+                    }
+                    ... on PullRequestReviewThread {
+                        line
+                    }
+                    ... on PullRequestRevisionMarker {
+                        lastSeenCommit {
+                            id
+                        }
+                        createdAt
+                    }
+                    ... on ReadyForReviewEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on ReferencedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on RemovedFromProjectEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on RenamedTitleEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        currentTitle
+                        previousTitle
+                    }
+                    ... on ReopenedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        stateReason
+                    }
+                    ... on ReviewDismissedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        dismissalMessage
+                    }
+                    ... on ReviewRequestRemovedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        requestedReviewer {
+                            ... on User {
+                                id
+                                avatarUrl
+                                login
+                            }
+                        }
+                    }
+                    ... on ReviewRequestedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        requestedReviewer {
+                            ... on User {
+                                id
+                                avatarUrl
+                                login
+                            }
+                        }
+                    }
+                    ... on SubscribedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on TransferredEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        fromRepository {
+                            id
+                            name
+                        }
+                    }
+                    ... on UnassignedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        assignee {
+                            ... on User {
+                                avatarUrl
+                                login
+                            }
+                        }
+                    }
+                    ... on UnlabeledEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        label {
+                            id
+                            color
+                            name
+                        }
+                    }
+                    ... on UnlockedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on UnmarkedAsDuplicateEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        canonical {
+                            __typename
+                            ... on Issue {
+                                id
+                            }
+                            ... on PullRequest {
+                                id
+                            }
+                        }
+                    }
+                    ... on UnpinnedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on UnsubscribedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                    }
+                    ... on UserBlockedEvent {
+                        actor {
+                            avatarUrl
+                            login
+                        }
+                        createdAt
+                        blockDuration
+                        subject {
+                            avatarUrl
+                            login
+                        }
+                    }
+                }
+                totalCount
+                pageInfo {
+                    hasNextPage
+                    endCursor
+                }
+            }
+        }
     }
+}'
 
-    Connections {
-        target: commentsModel
-        onCommentsAdded: {
-            page.busy = false
-            updateComments(lastIndex, count)
+
+    // Issue mutations
+    ClosePullRequestMutation {
+        id: closePullRequestMutation
+        nodeId: page.nodeId
+        onResultChanged: {
+            pullRequestState = result.closePullRequest.pullRequest.state
+            refresh()
         }
     }
 
-    function updateComments(index, count) {
-        for (var i=index; i < (index + count); i++) {
-            var comment = commentsModel.commentAt(i)
+    ReopenPullRequestMutation {
+        id: reopenPullRequestMutation
+        nodeId: page.nodeId
+        onResultChanged: {
+            pullRequestState = result.reopenPullRequest.pullRequest.state
+            refresh()
+        }
+    }
 
-            if (comment === undefined) continue
+    UpdatePullRequestMutation {
+        id: updatePullRequestMutation
+        nodeId: page.nodeId
 
-            var component = Qt.createComponent("../components/IssueCommentItem.qml")
-
-            if (component.status !== Component.Ready)
-                console.log("NOT READY")
-
-            var obj = component.createObject(commentsColumn, {comment: comment, parentId: request.nodeId})
+        onResultChanged: {
+            pullRequestBody = result.updatePullRequest.pullRequest.body
+            pullRequestTitle = result.updatePullRequest.title
+            refresh()
         }
     }
 
     SilicaFlickable {
         PullDownMenu {
-            busy: page.busy 
-            MenuItem {
-                visible: request.viewerAbilities & Viewer.CanSubscribe
-                text: request.viewerSubscription === SubscriptionState.Subscribed ? qsTr("Unsubscribe") : qsTr("Subscribe")
+            busy: loading
 
-                onClicked: {
-                    if (request.viewerSubscription === SubscriptionState.Subscribed)
-                        SailHub.api().subscribeTo(request.nodeId, SubscriptionState.Unsubscribed)
-                    else
-                        SailHub.api().subscribeTo(request.nodeId, SubscriptionState.Subscribed)
-                }
+            SubscriptionMenuItem {
+                id: subscriptionMenu
+                nodeId: pullRequest.id
+                viewerCanSubscribe: pullRequest.viewerCanSubscribe
             }
+
             MenuItem {
-                visible: request.viewerAbilities & Viewer.CanUpdate
-                text: qsTr("Edit")
+                visible: pullRequest.viewerCanUpdate
+                //% "Edit"
+                text: qsTrId("id-edit")
                 onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"), {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditPullRequestDialog.qml"), {
                                                     edit: true,
-                                                    title: request.title,
-                                                    body: request.body
+                                                    title: pullRequest.title,
+                                                    body: pullRequest.body
                                                 })
 
                     dialog.accepted.connect(function() {
-                        request.title = dialog.title
-                        request.body = dialog.body
-                        SailHub.api().updatePullRequest(request)
+                        updatePullRequestMutation.title = dialog.title
+                        updatePullRequestMutation.body = dialog.body
+                        updatePullRequestMutation.execute()
                     })
                 }
             }
-            MenuItem {
-                visible: request.viewerAbilities & Viewer.CanUpdate && request.state === PullRequest.StateOpen
-                text: qsTr("Close")
 
-                onClicked: remorse.execute(qsTr("Closing pull request"), function() {
-                    SailHub.api().closePullRequest(request.nodeId)
-                })
+            MenuItem {
+                visible: pullRequest.viewerCanUpdate && pullRequestState === "OPEN"
+                //% "Close"
+                text: qsTrId("id-close")
+
+                //% "Close pull request"
+                onClicked: remorse.execute(qsTrId("id-close-pull-request"), function() { closePullRequestMutation.execute() })
             }
             MenuItem {
-                visible: request.viewerAbilities & Viewer.CanUpdate && request.state === PullRequest.StateClosed
-                text: qsTr("Reopen")
+                visible: pullRequest.viewerCanUpdate && pullRequestState === "CLOSED"
+                //% "Reopen"
+                text: qsTrId("id-reopen")
 
-                onClicked: remorse.execute(qsTr("Reopen pull request"), function() {
-                    SailHub.api().reopenPullRequest(request.nodeId)
-                })
+                //% "Reopen pull request"
+                onClicked: remorse.execute(qsTrId("id-reopen-pull-request"), function() { reopenPullRequestMutation.execute() })
             }
         }
 
         id: flickable
         anchors.fill: parent
-        contentHeight: headerColumn.height + commentsColumn.height
+        contentHeight: headerColumn.height + timelineColumn.height
+
+        onAtYEndChanged: if (atYEnd) loadMore()
 
         RemorsePopup { id: remorse }
 
@@ -106,11 +790,12 @@ Page {
             width: parent.width
             spacing: Theme.paddingSmall
 
-            opacity: busyIndicator.running ? 0.1 : 1.0
+            opacity: loadingContent ? 0.1 : 1.0
             Behavior on opacity { FadeAnimator {} }
 
             PageHeader {
-                title: qsTr("Pull Request")
+                //% "Pull request"
+                title: qsTrId("id-pull-request")
             }
 
             Row {
@@ -123,16 +808,8 @@ Page {
                     id: avatarIcon
                     width: parent.height / 2
                     height: width
-                    source: request.author.avatarUrl
+                    source: pullRequest.author.avatarUrl
                     anchors.verticalCenter: parent.verticalCenter
-
-                    fallbackItemVisible: false
-
-                    BusyIndicator {
-                        size: BusyIndicatorSize.Medium
-                        anchors.centerIn: avatarIcon
-                        running: avatarIcon.status !== Image.Ready
-                    }
                 }
 
                 Label {
@@ -140,7 +817,7 @@ Page {
                     color: Theme.highlightColor
                     anchors.verticalCenter: avatarIcon.verticalCenter
 
-                    text: request.repository + " #" + request.number
+                    text: pullRequest.repository.nameWithOwner + " #" + pullRequest.number
                 }
             }
 
@@ -151,7 +828,7 @@ Page {
                 font.pixelSize: Theme.fontSizeLarge
                 color: Theme.highlightColor
 
-                text: request.title
+                text: pullRequestTitle
             }
 
             Row {
@@ -161,250 +838,284 @@ Page {
 
                 Pill {
                     anchors.verticalCenter: parent.verticalCenter
-                    icon: request.state === PullRequestState.Merged ? "qrc:/icons/icon-m-merged" : "qrc:/icons/icon-m-pull-request"
+                    icon: pullRequestState === "OPEN" ? "/usr/share/harbour-sailhub/icons/icon-m-pull-request.svg" : "image://theme/icon-s-installed"
                     text: {
-                        if (request.state === PullRequestState.Open) return qsTr("Open")
-                        if (request.state === PullRequestState.Merged) return qsTr("Merged")
-                        if (request.state === PullRequestState.Closed) return qsTr("Closed")
+                        switch (pullRequestState) {
+                        case "OPEN":
+                            //% "Open"
+                            return qsTrId("id-open")
+                        case "MERGED":
+                            //% "Merged"
+                            return qsTrId("id-merged")
+                        case "CLOSED":
+                            //% "Closed"
+                            return qsTrId("id-closed")
+                        default:
+                            //% "Not defined"
+                            return qsTrId("id-not-defined")
+
+                        }
                     }
 
                     backgroundColor: {
-                        if (request.state === PullRequestState.Open) return SailHubStyles.colorStatusOpen
-                        if (request.state === PullRequestState.Merged) return SailHubStyles.colorStatusMerged
-                        if (request.state === PullRequestState.Closed) return SailHubStyles.colorStatusClosed
+                        switch (pullRequestState) {
+                        case "OPEN":
+                            return SailHubStyles.colorStatusOpen
+                        case "MERGED":
+                            return SailHubStyles.colorStatusMerged
+                        case "CLOSED":
+                            return SailHubStyles.colorStatusClosed
+                        default:
+                            return Theme.secondaryHighlightColor
+                        }
                     }
-
-                }
-
-                Pill {
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: request.baseRefName
-                }
-
-                Icon {
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: Theme.iconSizeSmall
-                    height: width
-                    source: "image://theme/icon-m-forward"
-
-                }
-
-                Pill {
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: request.headRefName
                 }
             }
 
             CommentItem {
-                authorAvatar: request.author.avatarUrl
-                authorLogin: request.author.login
-                body: request.body
-                edited: request.edited
-                timeSpan: request.createdAtTimeSpan
+                authorAvatar: pullRequest.author.avatarUrl
+                authorLogin: pullRequest.author.login
+                //% "No description provided."
+                body: pullRequestBody.length > 0 ? pullRequestBody : qsTrId("id-no-description-provided")
+                edited: pullRequest.edited
+                timeSpan: StringHelper.timespan(pullRequest.createdAt)
             }
 
             SectionHeader {
-                text: qsTr("Reactions")
+                //% "Reactions"
+                text: qsTrId("id-reactions")
             }
 
-            ReactionsItem {
-                node: request
-                locked: request.locked
-
-                onClicked: {
-                    if (request.locked) return
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ReactionDialog.qml"), {
-                                                    reactions: request.viewerReactions
-                                                })
-
-                    dialog.accepted.connect(function() {
-                        if (request.viewerReactions === dialog.reactions) return;
-
-                        SailHub.api().updateReactions(
-                                    request.nodeId,
-                                    request.viewerReactions,
-                                    dialog.reactions)
-
-                        request.updateReactionCount(dialog.reactions)
-                        request.viewerReactions = dialog.reactions
-                    })
-                }
+            ReactionsInteractiveItem {
+                enabled: pullRequest.viewerCanReact
+                nodeId: pullRequest.id
+                reactionGroups: pullRequest.reactionGroups
             }
 
             SectionHeader {
-                text: qsTr("Changes")
-            }
-
-            FilesChangedItem {
-                width: parent.width
-
-                additions: request.additions
-                deletions: request.deletions
-                files:  request.changedFiles
+                //% "Relations"
+                text: qsTrId("id-relations")
             }
 
             RelatedValueItem {
-                label: qsTr("Commits")
-                icon: "qrc:/icons/icon-m-commit"
-                value: request.commitCount
+                //% "Reviewers"
+                label: qsTrId("id-reviewers")
+                icon: "image://theme/icon-m-media-artists"
+                value: pullRequest.reviewRequests.totalCount
 
-                onClicked: {
-                    if (request.commitCount === 0) return;
-
-                    pageStack.push(Qt.resolvedUrl("CommitsListPage.qml"), {
-                                              identifier: request.nodeId,
-                                              type: Commit.PullRequest
+                onClicked: pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
+                                              nodeId: nodeId,
+                                              //% "Reviewers"
+                                              title: qsTrId("id-reviewers"),
+                                              description: pullRequest.repository.nameWithOwner + " #" + pullRequest.number,
+                                              itemsQueryType: "PULL_REQUEST_REVIEWERS"
                                           })
-                }
-            }
-
-            SectionHeader {
-                text: qsTr("Relations")
             }
 
             RelatedValueItem {
-                label: qsTr("Labels")
+                //% "Assignees"
+                label: qsTrId("id-assignees")
+                icon: "image://theme/icon-m-media-artists"
+                value: pullRequest.assignees.totalCount
+
+                onClicked: pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
+                                              nodeId: nodeId,
+                                              //% "Assignees"
+                                              title: qsTrId("id-assignees"),
+                                              description: pullRequest.repository.nameWithOwner + " #" + pullRequest.number,
+                                              itemsQueryType: "PULL_REQUEST_ASSIGNEES"
+                                          })
+            }
+
+            RelatedValueItem {
+                //% "Labels"
+                label: qsTrId("id-labels")
                 icon: "image://theme/icon-m-link"
-                value: request.labelCount
+                value: pullRequest.labels.totalCount
 
-                onClicked: {
-                    if (request.labelCount === 0) return;
-
-                    pageStack.push(Qt.resolvedUrl("LabelsListPage.qml"), {
-                                              title: qsTr("Labels"),
-                                              description: request.repository + " #" + request.number,
-                                              identifier: request.nodeId,
-                                              type: LabelEntity.PullRequest
-                                          })
-                }
-            }
-
-            RelatedValueItem {
-                label: qsTr("Assignees")
-                icon: "image://theme/icon-m-media-artists"
-                value: request.assigneeCount
-
-                onClicked: pageStack.push(Qt.resolvedUrl("AssigneesListPage.qml"), {
-                                              title: qsTr("Assignees"),
-                                              description: request.repository + " #" + request.number,
-                                              identifier: request.nodeId,
-                                              userType: User.PullRequestAssignee,
-                                              repoId: request.repositoryId,
-                                              permission: request.repositoryPermission
+                onClicked: pageStack.push(Qt.resolvedUrl("LabelsListPage.qml"), {
+                                              //% "Labels"
+                                              title: qsTrId("id-labels"),
+                                              description: pullRequest.repository.nameWithOwner + " #" + pullRequest.number,
+                                              nodeId: pullRequest.id,
+                                              nodeType: "PullRequest",
+                                              repoId: pullRequest.repository.id,
+                                              viewerCanAssign: pullRequest.viewerCanUpdate
                                           })
             }
 
-//            RelatedValueItem {
-//                label: qsTr("Reviewers")
-//                icon: "image://theme/icon-m-media-artists"
-//                value: request.participantCount
+            RelatedValueItem {
+                //% "Closing issues"
+                label: qsTrId("id-closing-issues")
+                icon: "/usr/share/harbour-sailhub/icons/icon-m-issue.svg"
+                value: pullRequest.closingIssuesReferences.totalCount
 
-//                onClicked: {
-//                    if (request.participantCount === 0) return;
-
-//                    pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-//                                              title: qsTr("Reviewers"),
-//                                              description: request.repository + " #" + request.number,
-//                                              identifier: request.nodeId,
-//                                              userType: User.PullRequestReviewers
-//                                          })
-//                }
-//            }
+                onClicked: pageStack.push(Qt.resolvedUrl("IssuesListPage.qml"), {
+                                              //% "Closing issues"
+                                              title: qsTrId("id-closing-issues"),
+                                              description: pullRequest.repository.nameWithOwner + " #" + pullRequest.number,
+                                              nodeId: pullRequest.id,
+                                              nodeType: "PullRequest",
+                                              itemsQueryType: "CLOSING_ISSUES_REFERENCES"
+                                          })
+            }
 
             RelatedValueItem {
-                label: qsTr("Participants")
+                //% "Participants"
+                label: qsTrId("id-participants")
                 icon: "image://theme/icon-m-media-artists"
-                value: request.participantCount
+                value: pullRequest.participants.totalCount
 
-                onClicked: {
-                    if (request.participantCount === 0) return;
-
-                    pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
-                                              title: qsTr("Participants"),
-                                              description: request.repository + " #" + request.number,
-                                              identifier: request.nodeId,
-                                              userType: User.PullRequestParticipant
+                onClicked: pageStack.push(Qt.resolvedUrl("UsersListPage.qml"), {
+                                              nodeId: nodeId,
+                                              //% "Participants"
+                                              title: qsTrId("id-participants"),
+                                              description: pullRequest.repository.nameWithOwner + " #" + pullRequest.number,
+                                              itemsQueryType: "PULL_REQUEST_PARTICIPANTS"
                                           })
-                }
             }
 
             SectionHeader {
-                text: qsTr("Comments")
+                //% "Timeline"
+                text: qsTrId("id-timeline")
             }
         }
 
-        Column {
-            id: commentsColumn
+        Rectangle {
+            id: timelineSeparator
             anchors.top: headerColumn.bottom
             width: parent.width
-            spacing: Theme.paddingSmall
+            height: SailHubStyles.thicknessTimeline
+            color: SailHubStyles.colorTimeline
+            opacity: SailHubStyles.opacityTimeline
+        }
+
+        Column {
+            id: timelineColumn
+            anchors.top: timelineSeparator.bottom
+            width: parent.width
+
+            Repeater {
+                model: itemsModel
+                delegate: Loader {
+                    property var item: itemsModel.get(index)
+                    property var parentId: pullRequest.id
+                    property var type: __typename
+
+                    width: parent.width
+                    height: childrenRect.height
+                    sourceComponent: {
+                        switch(__typename) {  
+                        case "IssueComment":
+                            return timelineCommentItem
+
+                        case "PullRequestCommit":
+                            return timelinePullRequestCommitItem
+
+                        case "LabeledEvent":
+                        case "UnlabeledEvent":
+                            return timelineLabelItem
+
+                        case "AssignedEvent":
+                        case "UnassignedEvent":
+                            return timelineAssignedItem
+
+                        case "CrossReferencedEvent":
+                            return timelineCrossReferencedItem
+
+                        case "RenamedTitleEvent":
+                            return timelineChangedTitleItem
+
+                        case "ConnectedEvent":
+                        case "DisconnectedEvent":
+                            return timelineConnectedItem
+
+                        case "ReviewRequestedEvent":
+                        case "ReviewRequestRemovedEvent":
+                            return timelineRequestedReviewItem
+
+                        case "MentionEvent":
+                        case "SubscribedEvent":
+                        case "UnsubscribedEvent":
+                            return
+
+                        default:
+                            return timelineStandardItem
+                        }
+                    }
+                }
+            }
+        }
+
+        Component {
+            id: timelineAssignedItem
+            TimelineAssignedItem { }
+        }
+
+        Component {
+            id: timelineChangedTitleItem
+            TimelineChangedTitleItem { }
+        }
+
+        Component {
+            id: timelineConnectedItem
+            TimelineConnectedItem { }
+        }
+
+        Component {
+            id: timelineCommentItem
+            TimelineCommentItem { }
+        }
+
+        Component {
+            id: timelineCrossReferencedItem
+            TimelineCrossReferencedItem { }
+        }
+
+        Component {
+            id: timelineStandardItem
+            TimelineStandardItem { }
+        }
+
+        Component {
+            id: timelineLabelItem
+            TimelineLabelItem { }
+        }
+
+        Component {
+            id: timelinePullRequestCommitItem
+            TimelinePullRequestCommitItem { }
+        }
+
+        Component {
+            id: timelineRequestedReviewItem
+            TimelineRequestedReviewItem { }
         }
 
         VerticalScrollDecorator {}
 
         PushUpMenu {
-            busy: commentsModel.loading
+            busy: loading
 
             MenuItem {
-                enabled: !discussion.locked
-                text: qsTr("Write comment")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditCommentDialog.qml"))
-
-                    dialog.accepted.connect(function() {
-                        SailHub.api().addComment(dialog.body, commentsModel.identifier)
-                    })
-                }
+                //% "Write comment"
+                text: qsTrId("id-write-comment")
+                onClicked: addComment()
             }
 
-            MenuItem {
-                visible: request.viewerAbilities & Viewer.CanUpdate
-                text: request.locked ? qsTr("Unlock") : qsTr("Lock")
-                onClicked: remorse.execute(request.locked ? qsTr("Unlocking") : qsTr("Locking"), function() {
-                    if (request.locked) {
-                        SailHub.api().unlock(request.nodeId)
-                    } else {
-                        SailHub.api().lock(request.nodeId)
-                    }
-                })
-            }
-
-            MenuItem {
-                visible: commentsModel.hasNextPage
-                text: qsTr("Load more (%n to go)", "", commentsModel.totalCount - commentsColumn.children.length)
-                onClicked: getComments()
+            LockableMenuItem {
+                nodeId: pullRequest.id
+                locked: pullRequest.locked
+                //% "Lock conversation"
+                lockText: qsTrId("id-lock-conversation")
+                //% "Unlock conversation"
+                unlockText: qsTrId("id-unlock-conversation")
             }
         }
     }
 
-    Connections {
-        target: SailHub.api()
-        onPullRequestAvailable: {
-            if (request.nodeId !== page.nodeId) return
-
-            page.request = request;
-            refresh()
-        }
-        onPullRequestClosed: if (nodeId === request.nodeId) request.state = closed ? PullRequest.StateClosed : PullRequest.StateOpen
-        onPullRequestReopened: if (nodeId === request.nodeId) request.state = reopened ? PullRequest.StateOpen : PullRequest.StateClosed
-        onSubscribedTo: if (nodeId === request.nodeId) request.viewerSubscription = state
-        onCommentAdded: refresh()
-        onCommentDeleted: refresh()
-        onLocked: if (nodeId === request.nodeId) request.locked = locked
+    Component.onCompleted: {
+        refreshContent()
+        refresh()
     }
-
-    function getComments() {
-        page.busy = true;
-        SailHub.api().getPaginationModel(commentsModel)
-    }
-
-    function refresh() {
-        commentsModel.reset()
-        for(var i = commentsColumn.children.length; i > 0; i--) {
-            commentsColumn.children[i-1].destroy()
-        }
-        getComments()
-    }
-
-    Component.onCompleted: SailHub.api().getPullRequest(page.nodeId)
 }

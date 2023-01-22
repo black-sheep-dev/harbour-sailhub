@@ -1,9 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
 import "../components/"
+import "../."
 
 ListItem {
     id: delegate
@@ -41,28 +40,31 @@ ListItem {
 
                 Label {
                     font.pixelSize: Theme.fontSizeSmall
-                    text: model.createdAtTimeSpan
+                    text: StringHelper.timespan(model.createdAt)
                 }
 
                 Label {
                     visible: model.isDraft
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#b71c1c"
-                    text: qsTr("Draft")
+                    //% "Draft"
+                    text: qsTrId("id-draft")
                 }
 
                 Label {
                     visible: model.isLatest
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#64DD17"
-                    text: qsTr("Latest release")
+                    //% "Latest release"
+                    text: qsTrId("id-latest-release")
                 }
 
                 Label {
                     visible: model.isPrerelease
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#f29312"
-                    text: qsTr("Pre-release")
+                    //% "Pre-release"
+                    text: qsTrId("id-pre-release")
                 }
             }
         }

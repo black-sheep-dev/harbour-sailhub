@@ -2,35 +2,84 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
+import "../components/"
+import "../views/"
 import "../delegates/"
 
-Page {
-    property bool canCreateNew: true
-    property string description
-    property alias identifier: discussionsModel.identifier
-    property alias type: discussionsModel.modelType
-    property bool sorting: true
-    property alias states: discussionsModel.state
-
-    ConfigurationGroup {
-        id: config
-        path: "/apps/harbour-sailhub/discussions"
-
-        property alias sortRole: discussionsModel.sortRole
-        property alias sortOrder: discussionsModel.sortOrder
-    }
-
+ListPage {
     id: page
     allowedOrientations: Orientation.All
+
+    configPath: "/app/harbour-sailhub/discussions"
+
+    orderField: "UPDATED_AT"
+    orderFields: ["CREATED_AT", "UPDATED_AT"]
+    orderFieldLabels: [
+        //% "Created at"
+        qsTrId("id-created-at"),
+        //% "Updated at"
+        qsTrId("id-updated-at")
+    ]
+    orderFieldType: "DiscussionOrderField = UPDATED_AT"
+
+    itemsPath: ["node", "discussions", "nodes"]
+
+    itemsQuery: '
+    query(
+        $nodeId: ID!,
+        $orderField: ' + orderFieldType + ',
+        $orderDirection: OrderDirection = DESC,
+        $itemCount: Int = 20,
+        $itemCursor: String = null
+    ) {
+        node(id: $nodeId) {
+            ... on Repository {
+                discussions(
+                    first: $itemCount,
+                    after: $itemCursor,
+                    orderBy: {
+                        direction: $orderDirection
+                        field: $orderField
+                    }) {
+                    nodes {
+                        id
+                        activeLockReason
+                        author {
+                            avatarUrl
+                            login
+                        }
+                        category {
+                            emojiHTML
+                            name
+                        }
+                        comments {
+                            totalCount
+                        }
+                        createdAt
+                        locked
+                        title
+                        updatedAt
+                        upvoteCount
+                        viewerCanDelete
+                    }
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                }
+            }
+        }
+    }'
 
     SilicaListView {
         id: listView
         anchors.fill: parent
+        spacing: Theme.paddingMedium
 
         header: PageHeader {
-            title: qsTr("Discussions")
+            //% "Discussions"
+            title: qsTrId("id-discussions")
             description: page.description
         }
 
@@ -40,37 +89,21 @@ Page {
         }
 
         PullDownMenu {
-            busy: discussionsModel.loading
+            busy: loading
             MenuItem {
-                text: qsTr("Refresh")
-                onClicked: {
-                    refresh()
-                }
+                //% "Refresh"
+                text: qsTrId("id-refresh")
+                onClicked: refresh()
             }
             MenuItem {
-                visible: sorting
-                text: qsTr("Sorting")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
-                                                    order: config.sortOrder,
-                                                    field: getSortFieldIndex(),
-                                                    fields: [
-                                                        qsTr("Created at"),
-                                                        qsTr("Updated at")
-                                                    ]
-                                                })
-
-                    dialog.accepted.connect(function() {
-                        config.sortOrder = dialog.order
-                        config.sortRole = getSortRoleFromIndex(dialog.field)
-
-                        refresh()
-                    })
-                }
+                //% "Sorting"
+                text: qsTrId("id-sorting")
+                onClicked: setSorting()
             }
 
             MenuItem {
-                text: qsTr("Start new")
+                //% "Start new"
+                text: qsTrId("id-start-new-discussion")
                 onClicked: {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectDiscussionCategoryDialog.qml"), {
                                                     repoId: identifier
@@ -90,97 +123,39 @@ Page {
             }
         }
 
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: discussionsModel.loading
-        }
-
         ViewPlaceholder {
-            enabled: listView.count == 0
-            text: qsTr("No discussions available")
+            enabled: !loading && listView.count == 0
+            //% "No discussions available"
+            text: qsTrId("id-no-discussions-available")
         }
 
         VerticalScrollDecorator {}
 
-        model: DiscussionsModel { id: discussionsModel }
-
-        opacity: busyIndicator.running ? 0.3 : 1.0
-        Behavior on opacity { FadeAnimator {} }
+        model: itemsModel
 
         delegate: DiscussionListDelegate {
             id: delegate
 
             menu: ContextMenu {
-                visible: model.viewerAbilities & Viewer.CanDelete
+                visible: model.viewerCanDelete
                 MenuItem {
-                    text: qsTr("Delete")
-                    onClicked: delegate.remorseAction(qsTr("Deleting discussion"), function() {
-                        SailHub.api().deleteDiscussion(model.nodeId)
+                    //% "Delete"
+                    text: qsTrId("id-delete")
+                    //% "Deleting discussion"
+                    onClicked: delegate.remorseAction(qsTrId("id-deleting-discussion"), function() {
+                        //SailHub.api().deleteDiscussion(item.id)
                     })
                 }
             }
 
             onClicked: pageStack.push(Qt.resolvedUrl("DiscussionPage.qml"), {
-                                          nodeId: model.nodeId
+                                          nodeId: model.id
                                       })
         }
 
-        PushUpMenu {
-            busy: discussionsModel.loading
-            visible: discussionsModel.hasNextPage
-
-            MenuItem {
-                text: qsTr("Load more (%n to go)", "", discussionsModel.totalCount - listView.count)
-                onClicked: getDiscussions()
-            }
-        }
-    }
-
-    function getDiscussions() {
-        SailHub.api().getPaginationModel(discussionsModel)
-    }
-
-    function getSortRoleFromIndex(index) {
-        switch (index) {
-        case 0:
-            return DiscussionsModel.CreatedAtRole
-
-        case 1:
-            return DiscussionsModel.UpdatedAtRole
-
-        default:
-            return DiscussionsModel.UpdatedAtRole
-        }
-    }
-
-    function getSortFieldIndex() {
-        switch (config.sortRole) {
-        case DiscussionsModel.CreatedAtRole:
-            return 0;
-
-        case DiscussionsModel.UpdatedAtRole:
-            return 1;
-
-        default:
-            return 1
-        }
-    }
-
-    function refresh() {
-        discussionsModel.reset()
-        getDiscussions()
-    }
-
-    Connections {
-        target: SailHub.api()
-        onDiscussionCreated: refresh()
-        onDiscussionDeleted: refresh()
+        onAtYEndChanged: if (atYEnd) loadMore()
     }
 
     Component.onCompleted: refresh()
-    Component.onDestruction: delete discussionsModel
 }
 

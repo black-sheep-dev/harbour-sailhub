@@ -1,47 +1,107 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
 import "../components/"
-import "../delegates/"
 import "../tools"
+import "../."
 
 Page {
-    property bool busy: false
     property string nodeId
-    property Release release
+    property var release
+    property bool loading: true
 
     id: page
     allowedOrientations: Orientation.All
 
+    function refresh() {
+        loading = true
+        Api.request({
+                        query: 'query($nodeId: ID!) {
+                                    node(id: $nodeId) {
+                                        ... on Release {
+                                            id
+                                            author {
+                                                avatarUrl
+                                                login
+                                            }
+                                            description
+                                            isDraft
+                                            isLatest
+                                            isPrerelease
+                                            name
+                                            publishedAt
+                                            releaseAssets {
+                                                totalCount
+                                            }
+                                            repository {
+                                                nameWithOwner
+                                            }
+                                            tagCommit {
+                                               abbreviatedOid
+                                            }
+                                            tagName
+                                        }
+                                    }
+                                }',
+                        variables: { nodeId: page.nodeId }
+                    },
+                    function(result, status) {
+                        loading = false
+
+                        if (status !== 200) {
+                            //% "Failed to fetch releases"
+                            notify.show(qsTrId("id-failed-to-fetch-releases"))
+                            return
+                        }
+
+                        release = result.node
+                    })
+    }
+
+    PageBusyIndicator {
+        id: busyIndicator
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: page
+        running: loading
+
+        Label {
+            anchors {
+                top: parent.bottom
+                topMargin: Theme.paddingLarge
+                horizontalCenter: parent.horizontalCenter
+            }
+            color: Theme.highlightColor
+            //% "Loading data..."
+            text: qsTrId("id-loading-data")
+        }
+    }
+
     SilicaFlickable {
         PullDownMenu {
-            busy: page.busy
+            busy: loading
             MenuItem {
-                text: qsTr("Refresh")
-                onClicked: {
-                    page.busy = true
-                    SailHub.api().getRelease(page.nodeId)
-                }
+                //% "Refresh"
+                text: qsTrId("id-refresh")
+                onClicked: refresh()
             }
         }
 
         anchors.fill: parent
         contentHeight: headerColumn.height
 
+        opacity: loading ? 0.0 : 1.0
+        Behavior on opacity { FadeAnimation {} }
+
         RemorsePopup { id: remorse }
 
         Column {
             id: headerColumn
             width: parent.width
-            spacing: Theme.paddingSmall
-
-            opacity: busyIndicator.running ? 0.1 : 1.0
-            Behavior on opacity { FadeAnimator {} }
+            spacing: Theme.paddingLarge
 
             PageHeader {
-                title: qsTr("Release")
+                //% "Release"
+                title: qsTrId("id-release")
             }
 
             Label {
@@ -63,21 +123,24 @@ Page {
                     visible: release.isDraft
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#b71c1c"
-                    text: qsTr("Draft")
+                    //% "Draft"
+                    text: qsTrId("id-draft")
                 }
 
                 Label {
                     visible: release.isLatest
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#64DD17"
-                    text: qsTr("Latest release")
+                    //% "Latest release"
+                    text: qsTrId("id-latest-release")
                 }
 
                 Label {
                     visible: release.isPrerelease
                     font.pixelSize: Theme.fontSizeSmall
                     color: "#f29312"
-                    text: qsTr("Pre-release")
+                    //% "Pre-release"
+                    text: qsTrId("id-pre-release")
                 }
             }
 
@@ -85,15 +148,16 @@ Page {
                 authorAvatar: release.author.avatarUrl
                 authorLogin: release.author.login
                 body: release.description
-                timeSpan: release.publishedAt.toLocaleDateString(Qt.locale())
+                timeSpan: new Date(release.publishedAt).toLocaleDateString(Qt.locale())
             }
 
             SectionHeader {
-                text: qsTr("Info")
+                //% "Info"
+                text: qsTrId("id-info")
             }
 
             IconRelatedItem {
-                title: release.tagCommit
+                title: release.tagCommit.abbreviatedOid
                 icon: "image://theme/icon-m-swipe"
                 showNextIcon: false
             }
@@ -105,53 +169,47 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Content")
+                //% "Content"
+                text: qsTrId("id-content")
             }
 
             RelatedValueItem {
+                enabled: release.releaseAssets.totalCount > 0
                 width: parent.width
-
-                label: qsTr("Assets")
+                //% "Assets"
+                label: qsTrId("id-assets")
                 icon: "image://theme/icon-m-levels"
-                value: release.assetCount
+                value: release.releaseAssets.totalCount
 
                 onClicked: pageStack.push(Qt.resolvedUrl("ReleaseAssetsListPage.qml"), {
-                                              description: release.name,
-                                              identifier: release.nodeId
+                                              nodeId: nodeId,
+                                              description: release.name
                                           })
             }
 
             RelatedValueItem {
                 width: parent.width
 
-                label: qsTr("Source code") + " (zip)"
+                //% "Source code"
+                label: qsTrId("id-source-code") + " (zip)"
                 icon: "image://theme/icon-m-file-archive-folder"
                 showValue: false
 
-                onClicked: Qt.openUrlExternally("https://github.com/" + release.repository + "/archive/refs/tags/" + release.tagName + ".zip")
+                onClicked: Qt.openUrlExternally("https://github.com/" + release.repository.nameWithOwner + "/archive/refs/tags/" + release.tagName + ".zip")
             }
 
             RelatedValueItem {
                 width: parent.width
 
-                label: qsTr("Source code") + " (tar.gz)"
+                //% "Source code"
+                label: qsTrId("id-source-code") + " (tar.gz)"
                 icon: "image://theme/icon-m-file-archive-folder"
                 showValue: false
 
-                onClicked: Qt.openUrlExternally("https://github.com/" + release.repository + "/archive/refs/tags/" + release.tagName + ".tar.gz")
+                onClicked: Qt.openUrlExternally("https://github.com/" + release.repository.nameWithOwner + "/archive/refs/tags/" + release.tagName + ".tar.gz")
             }
         }
     }
 
-    Connections {
-        target: SailHub.api()
-        onReleaseAvailable: {
-            if (release.nodeId !== page.nodeId) return
-
-            page.release = release;
-            page.busy = false;
-        }
-    }
-
-    Component.onCompleted: SailHub.api().getRelease(page.nodeId)
+    Component.onCompleted: refresh()
 }

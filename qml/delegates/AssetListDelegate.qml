@@ -1,25 +1,13 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
 import "../components/"
 import '..'
 
 ListItem {
-    property int downloadProgress: 0
-
     id: delegate
     width: parent.width
     contentHeight: delegateContent.height + 2*Theme.paddingSmall
-
-    Rectangle {
-        height: parent.height
-        width: parent.width * (downloadProgress / 100)
-
-        color: Theme.highlightColor
-        opacity: 0.5
-    }
 
     Row {
         id: delegateContent

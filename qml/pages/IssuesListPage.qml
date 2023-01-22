@@ -2,36 +2,158 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
+import "../components/"
 import "../delegates/"
+import "../queries/issue"
+import "../views/"
 
-Page {
-    property bool canCreateNew: true
-    property string description
-    property bool editState: true
-    property alias identifier: issuesModel.identifier
-    property alias type: issuesModel.modelType
-    property bool sorting: true
-    property alias states: issuesModel.state
+ListPage {
+    property bool canEditFilter: false
+    property var issueStates: ["OPEN"]
 
-    ConfigurationGroup {
-        id: config
-        path: "/apps/harbour-sailhub/issues"
+    property string login: ""
+    property string args: ""
+    property string nodeData: ""
 
-        property alias sortRole: issuesModel.sortRole
-        property alias sortOrder: issuesModel.sortOrder
-    }
+    property string nodeType
+    property string nodes
 
     id: page
     allowedOrientations: Orientation.All
 
+    configPath: "/app/harbour-sailhub/issues"
+
+    orderField: "UPDATED_AT"
+    orderFields: ["COMMENTS", "CREATED_AT", "UPDATED_AT"]
+    orderFieldLabels: [
+        //% "Comments"
+        qsTrId("id-comments"),
+        //% "Created at"
+        qsTrId("id-created-at"),
+        //% "Updated at"
+        qsTrId("id-updated-at")
+    ]
+    orderFieldType: "IssueOrderField = UPDATED_AT"
+
+    itemsQuery: '
+    query(
+        $nodeId: ID!,
+        ' + (login.length > 0 ? '$userLogin: String!,' : '') + '
+        ' + (issueStates.length > 0 ? '$states: [IssueState!]!,' : '') + '
+        $orderField: ' + orderFieldType + ',
+        $orderDirection: OrderDirection = DESC,
+        $itemCount: Int = 20,
+        $itemCursor: String = null
+    ) {
+        node(id: $nodeId) {
+            ... on ' + nodeType + ' {
+                ' + nodes + '(
+                    ' + args + '
+                    first: $itemCount,
+                    after: $itemCursor,
+                    ' + (issueStates.length > 0 ? 'states: $states,' : '') + '
+                    orderBy: {
+                        direction: $orderDirection
+                        field: $orderField
+                    }) {
+                    nodes {
+                        id
+                        author {
+                            avatarUrl
+                            login
+                        }
+                        closed
+                        comments {
+                            totalCount
+                        }
+                        createdAt
+                        number
+                        repository {
+                            nameWithOwner
+                        }
+                        state
+                        title
+                        updatedAt
+                    }
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                }
+            }
+        }
+    }'
+    itemsQueryVariables: {
+        const vars = getDefaultQueryVariables()
+        vars["states"] = issueStates
+        if (login.length > 0) vars["userLogin"] = login
+        return vars
+    }
+
+
+    CreateIssueMutation {
+        id: createIssueMutation
+        onResultChanged: refresh()
+    }
+
     SilicaListView {
+        PullDownMenu {
+            busy: loading
+            MenuItem {
+                //% "Refresh"
+                text: qsTrId("id-refresh")
+                onClicked: refresh()
+            }
+            MenuItem {
+                //% "Sorting"
+                text: qsTrId("id-sorting")
+                onClicked: setSorting()
+            }
+            MenuItem {
+                //% "Create new"
+                text: qsTrId("id-create-new")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))
+
+                    dialog.accepted.connect(function() {
+                        createIssueMutation.title = dialog.title
+                        createIssueMutation.body = dialog.body
+                        createIssueMutation.execute()
+                    })
+                }
+            }
+            MenuItem {
+                visible: canEditFilter
+                text: {
+                    if (page.issueStates[0] === "OPEN") {
+                        //% "Show closed issues"
+                        return qsTrId("id-show-closed-issues")
+                    } else if (page.issueStates[0] === "CLOSED") {
+                        //% "Show open issues"
+                        return qsTrId("id-show-open-issues")
+                    }
+                }
+
+                onClicked: {
+                    if (page.issueStates[0] === "OPEN") {
+                        page.issueStates[0] = "CLOSED"
+                    } else if (page.issueStates[0] === "CLOSED") {
+                        page.issueStates[0] = "OPEN"
+                    }
+
+                    refresh()
+                }
+            }
+        }
+
         id: listView
         anchors.fill: parent
+        spacing: Theme.paddingMedium
 
         header: PageHeader {
-            title: qsTr("Issues")
+            //% "Issues"
+            title: qsTrId("id-issues")
             description: page.description
         }
 
@@ -40,157 +162,71 @@ Page {
             height: Theme.horizontalPageMargin
         }
 
-        PullDownMenu {
-            busy: issuesModel.loading
-            MenuItem {
-                text: qsTr("Refresh")
-                onClicked: {
-                    refresh()
-                }
-            }
-            MenuItem {
-                visible: sorting
-                text: qsTr("Sorting")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
-                                                    order: config.sortOrder,
-                                                    field: getSortFieldIndex(),
-                                                    fields: [
-                                                        qsTr("Created at"),
-                                                        qsTr("Updated at"),
-                                                        qsTr("Comments")
-                                                    ]
-                                                })
-
-                    dialog.accepted.connect(function() {
-                        config.sortOrder = dialog.order
-                        config.sortRole = getSortRoleFromIndex(dialog.field)
-
-                        refresh()
-                    })
-                }
-            }
-            MenuItem {
-                visible: type !== Issue.User && canCreateNew
-                text: qsTr("Create new")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/EditIssueDialog.qml"))
-
-                    dialog.accepted.connect(function() {
-                        SailHub.api().createIssue(dialog.title, dialog.body, issuesModel)
-                    })
-                }
-            }
-            MenuItem {
-                visible: editState
-                text: {
-                    if (page.states & IssueState.Open)
-                        return qsTr("Show closed issues")
-                    else if (page.states & IssueState.Closed)
-                        return qsTr("Show open issues")
-                }
-
-                onClicked: {
-                    if (page.states & IssueState.Open)
-                        page.states = IssueState.Closed
-                    else if (page.states & IssueState.Closed)
-                        page.states = IssueState.Open
-
-                    refresh()
-                }
-            }
-        }
-
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: issuesModel.loading
-        }
-
-        ViewPlaceholder {
-            enabled: listView.count == 0
-            text: qsTr("No issues available")
-        }
-
-        VerticalScrollDecorator {}
-
-        model: IssuesModel { id: issuesModel }
-
-        opacity: busyIndicator.running ? 0.3 : 1.0
-        Behavior on opacity { FadeAnimator {} }
+        model: itemsModel
 
         delegate: IssueListDelegate {
             id: delegate
-
-            onClicked: pageStack.push(Qt.resolvedUrl("IssuePage.qml"), {
-                                          nodeId: model.nodeId
-                                      })
-
+            onClicked: pageStack.push(Qt.resolvedUrl("IssuePage.qml"), { nodeId: model.id })
         }
 
-        PushUpMenu {
-            busy: issuesModel.loading
-            visible: issuesModel.hasNextPage
-
-            MenuItem {
-                text: qsTr("Load more (%n to go)", "", issuesModel.totalCount - listView.count)
-                onClicked: getIssues()
-            }
+        ViewPlaceholder {
+            enabled: listView.count == 0 && !loading
+            //% "No issues available"
+            text: qsTrId("id-no-issues-available")
         }
+
+        VerticalScrollDecorator {}
     }
 
-    function getIssues() {
-        SailHub.api().getPaginationModel(issuesModel)
-    }
+    onStatusChanged: if (status === PageStatus.Activating) refresh()
 
-    function getSortRoleFromIndex(index) {
-        switch (index) {
-        case 0:
-            return IssuesModel.CreatedAtRole
+    Component.onCompleted: {
+        switch (itemsQueryType) {
+        case "REPOSITORY_ISSUES":
+            nodeType = "Repository"
+            nodes = "issues"
+            itemsPath = ["node", "issues", "nodes"]
+            break
 
-        case 1:
-            return IssuesModel.UpdatedAtRole
+        case "USER_CREATED_ISSUES":
+            nodeType = "User"
+            nodes = "issues"
+            itemsPath = ["node", "issues", "nodes"]
+            args = "filterBy: { createdBy: $userLogin },"
+            break
 
-        case 2:
-            return IssuesModel.CommentCountRole
+        case "USER_ASSIGNED_ISSUES":
+            nodeType = "User"
+            nodes = "issues"
+            itemsPath = ["node", "issues", "nodes"]
+            args = "filterBy: { assignee: $userLogin },"
+            break
+
+        case "USER_MENTIONED_ISSUES":
+            nodeType = "User"
+            nodes = "issues"
+            itemsPath = ["node", "issues", "nodes"]
+            args = "filterBy: { mentioned: $userLogin },"
+            issueStates = ["OPEN", "CLOSED"]
+            break
+
+        case "CLOSING_ISSUES_REFERENCES":
+            nodeType = "PullRequest"
+            nodes = "closingIssuesReferences"
+            itemsPath = ["node", "closingIssuesReferences", "nodes"]
+            issueStates = []
+            break
+
+        case "LABEL":
+            nodeType = "Label"
+            nodes = "issues"
+            itemsPath = ["node", "issues", "nodes"]
+            issueStates = ["OPEN", "CLOSED"]
+            break
 
         default:
-            return IssuesModel.UpdatedAtRole
+            break
         }
     }
-
-    function getSortFieldIndex() {
-        switch (config.sortRole) {
-        case IssuesModel.CreatedAtRole:
-            return 0;
-
-        case IssuesModel.UpdatedAtRole:
-            return 1;
-
-        case IssuesModel.CommentCountRole:
-            return 2;
-
-        default:
-            return 0
-        }
-    }
-
-    function refresh() {
-        issuesModel.reset()
-        getIssues()
-    }
-
-    Connections {
-        target: SailHub.api()
-        onIssueCreated: refresh()
-        onIssueDeleted: refresh()
-        onIssueClosed: refresh()
-        onIssueReopened: refresh()
-    }
-
-    Component.onCompleted: refresh()
-    Component.onDestruction: delete issuesModel
 }
 

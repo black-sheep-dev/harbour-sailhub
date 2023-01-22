@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
+import "../../."
 
 Dialog {
     id: dialog
@@ -14,8 +14,10 @@ Dialog {
 
     DialogHeader {
         id: header
-        acceptText: qsTr("Continue")
-        cancelText: ""
+        //% "Continue"
+        acceptText: qsTrId("id-continue")
+        //% "Quit"
+        cancelText: qsTrId("id-quit")
     }
 
     RemorsePopup { id: resetPopup }
@@ -24,12 +26,16 @@ Dialog {
         anchors.top: header.bottom
         x: Theme.horizontalPageMargin
         width: parent.width - 2*x
-        spacing: Theme.paddingMedium
+        spacing: Theme.paddingLarge
 
         Image {
             id: logo
-            source: "/usr/share/icons/hicolor/512x512/apps/harbour-sailhub.png"
+            source: "/usr/share/" + Global.appId + "/icons/" + Global.appId + ".svg"
             smooth: true
+            sourceSize {
+                width: parent.width / 2
+                height: parent.width / 2
+            }
             height: parent.width / 2
             width: parent.width / 2
             anchors.horizontalCenter: parent.horizontalCenter
@@ -43,16 +49,24 @@ Dialog {
         Label {
             width: parent.width
 
-            text: qsTr("Welcome to SailHub")
+            //% "Welcome to SailHub"
+            text: qsTrId("id-wizard-welcome-title")
 
             color: Theme.secondaryHighlightColor
             font.bold: true
             font.pixelSize: Theme.fontSizeLarge
         }
 
-        Item {
-            width: 1
-            height: Theme.paddingMedium
+        Label {
+            width: parent.width
+
+            color: Theme.highlightColor
+            font.pixelSize: Theme.fontSizeSmall
+
+            wrapMode: Text.Wrap
+
+            //% "This app is not configured yet."
+            text: qsTrId("id-wizard-info-unconfigured")
         }
 
         Label {
@@ -63,23 +77,8 @@ Dialog {
 
             wrapMode: Text.Wrap
 
-            text: qsTr("This app is not configured yet.")
-        }
-
-        Label {
-            width: parent.width
-
-            color: Theme.highlightColor
-            font.pixelSize: Theme.fontSizeSmall
-
-            wrapMode: Text.Wrap
-
-            text: qsTr("The setup wizard will guide you through the configuration process.")
-        }
-
-        Item {
-            width: 1
-            height: Theme.paddingMedium
+            //% "The setup wizard will guide you through the configuration process."
+            text: qsTrId("id-wizard-info-guide")
         }
 
         Separator {
@@ -87,11 +86,6 @@ Dialog {
             color: Theme.highlightBackgroundColor
         }
 
-        Item {
-            width: 1
-            height: Theme.paddingMedium
-        }
-
         Label {
             width: parent.width
 
@@ -100,7 +94,8 @@ Dialog {
 
             wrapMode: Text.Wrap
 
-            text: qsTr("If there are errors during the setup process, you can try to reset the data from a previous installation.")
+            //% "If there are errors during the setup process, you can try to reset the data from a previous installation."
+            text: qsTrId("id-wizard-errors-info")
         }
 
         Item {
@@ -108,13 +103,16 @@ Dialog {
             height: Theme.paddingMedium
         }
 
-        ButtonLayout {
-            Button {
-                text: qsTr("Reset")
-                onClicked: resetPopup.execute(qsTr("Resetting application"), function() {
-                    SailHub.reset()
-                })
-            }
+
+        Button {
+            anchors.horizontalCenter: parent.horizontalCenter
+            //% "Reset"
+            text: qsTrId("id-reset")
+            //% "Resetting application"
+            onClicked: resetPopup.execute(qsTrId("id-resetting-application"), function() {
+                settings.accessToken = ""
+            })
         }
+
     }
 }

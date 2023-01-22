@@ -9,21 +9,20 @@ Name:       harbour-sailhub
 # << macros
 
 Summary:    SailHub
-Version:    0.1.3
+Version:    0.2.0
 Release:    1
 Group:      Qt/Qt
-License:    GPLv3
+License:    GPLv2
+BuildArch:  noarch
 URL:        https://github.com/black-sheep-dev/harbour-sailhub
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-sailhub.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
-Requires:   nemo-qml-plugin-notifications-qt5
-Requires:   nemo-qml-plugin-dbus-qt5
-BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
+Requires:   libsailfishapp-launcher
+BuildRequires:  pkgconfig(sailfishapp) >= 1.0.3
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
-BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  pkgconfig(nemonotifications-qt5)
 BuildRequires:  pkgconfig(keepalive)
 BuildRequires:  qt5-qttools-linguist
@@ -37,7 +36,9 @@ PackageName: SailHub
 Type: desktop-application
 Categories:
   - Development
+  - Utility
 Custom:
+  DescriptionMD: https://github.com/black-sheep-dev/harbour-sailhub/raw/main/README.md
   Repo: https://github.com/black-sheep-dev/harbour-sailhub/
 Icon: https://raw.githubusercontent.com/black-sheep-dev/harbour-sailhub/main/icons/harbour-sailhub.svg
 Screenshots:
@@ -83,11 +84,9 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}
+%defattr(0644,root,root,-)
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/applications/%{name}-open-url.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
-%{_datadir}/dbus-1/services/org.nubecula.sailhub.service
 # >> files
 # << files

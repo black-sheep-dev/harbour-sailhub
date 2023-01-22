@@ -1,19 +1,24 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
+import "../."
 
 Page {
-    property ProfileStatus profileStatus
-
     id: page
 
     allowedOrientations: Orientation.All
 
     function apply() {
-        profileStatus.message = messageField.text
-        profileStatus.indicatesLimitedAvailability = limitedAvailabilitySwitch.checked
-        profileStatus.expireStatus = clearStatusComboBox.currentIndex
+        viewerProfile.profileStatus.message = messageField.text
+        viewerProfile.profileStatus.indicatesLimitedAvailability = limitedAvailabilitySwitch.checked
+
+        if (clearStatusComboBox.currentIndex !== 0) {
+            viewerProfile.profileStatus.expiresAt = clearStatusComboBox.expiresAt.toISOString()
+        } else {
+            viewerProfile.profileStatus.expiresAt =  ""
+        }
+
+        viewerProfile.updateStatus()
     }
 
     RemorsePopup { id: remorse }
@@ -21,19 +26,19 @@ Page {
     SilicaFlickable {
         PullDownMenu {
             MenuItem {
-                visible: profileStatus.message.length > 0
-                text: qsTr("Clear status")
-                onClicked: remorse.execute(qsTr("Clearing status"), function() {
-                    SailHub.api().clearProfileStatus(profileStatus)
+                visible: viewerProfile.profileStatus.message.length > 0
+                //% "Clear status"
+                text: qsTrId("id-clear-status")
+                //% "Clearing status"
+                onClicked: remorse.execute(qsTrId("id-clearing-status"), function() {
+                    viewerProfile.clearStatus()
                     pageStack.navigateBack()
                 })
             }
             MenuItem {
-                text: qsTr("Change status")
-                onClicked: {
-                    apply()
-                    SailHub.api().updateProfileStatus(profileStatus)
-                }
+                //% "Change status"
+                text: qsTrId("id-change-status")
+                onClicked: apply()
             }
         }
 
@@ -43,10 +48,11 @@ Page {
         Column {
             id: column
             width:parent.width
-            spacing: Theme.paddingMedium
+            spacing: Theme.paddingLarge
 
             PageHeader {
-                title: qsTr("Status")
+                //% "Status"
+                title: qsTrId("id-status")
             }
 
             BackgroundItem {
@@ -63,10 +69,10 @@ Page {
                     sourceSize.height: width
 
                     source: {
-                        if (profileStatus.emojiImage.length > 0)
-                            return profileStatus.emojiImage
+                        if (viewerProfile.profileStatus !== null)
+                            return DataUtils.getEmojiUrl(viewerProfile.profileStatus.emoji)
                         else
-                            return "qrc:///emoji/default"
+                            return "/usr/share/harbour-sailhub/emoji/default.svg"
                     }
                 }
 
@@ -74,8 +80,9 @@ Page {
                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SelectEmojiDialog.qml"))
 
                     dialog.accepted.connect(function() {
-                        profileStatus.emoji = dialog.emojiUnicode
-                        profileStatus.emojiImage = "/usr/share/harbour-twemoji/72x72/" + dialog.emoji + ".png"
+                        if (viewerProfile.profileStatus === null) viewerProfile.profileStatus = {}
+                        viewerProfile.profileStatus.emoji = dialog.emoji
+                        emojiImage.source = DataUtils.getEmojiUrl(dialog.emoji)
                     })
                 }
             }
@@ -84,12 +91,14 @@ Page {
                 id: messageField
                 width: parent.width
 
-                label: qsTr("Message")
+                //% "Message"
+                label: qsTrId("id-message")
                 focus: true
 
-                placeholderText: qsTr("Enter message")
+                //% "Enter message"
+                placeholderText: qsTrId("id-enter-message")
 
-                text: profileStatus.message
+                text: viewerProfile.profileStatus.message
 
                 maximumLength: 80
             }
@@ -98,42 +107,97 @@ Page {
                 id: limitedAvailabilitySwitch
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2*x
-                text: qsTr("Busy")
-                description: qsTr("When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.")
+                //% "Busy"
+                text: qsTrId("id-busy")
+                //% "When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability."
+                description: qsTrId("id-busy-switch-desc")
 
-                checked: profileStatus.indicatesLimitedAvailability
+                checked: viewerProfile.profileStatus.indicatesLimitedAvailability
             }
 
             SectionHeader {
-                text: qsTr("Clear status")
+                //% "Clear status"
+                text: qsTrId("id-clear-status")
             }
 
+            DetailItem {
+                visible: viewerProfile.profileStatus !== null &&
+                         (new Date(viewerProfile.profileStatus.expiresAt) > new Date() || clearStatusComboBox.currentIndex !== 0)
+                //% "Expires at"
+                label: qsTrId("id-expires-at")
+                value: clearStatusComboBox.currentIndex !== 0 ?
+                           clearStatusComboBox.expiresAt.toLocaleString() :
+                           new Date(viewerProfile.profileStatus.expiresAt).toLocaleString()
+            }
 
             ComboBox {
+                property date expiresAt
+
                 id: clearStatusComboBox
-                label: qsTr("Clear status")
+                //% "Clear status"
+                label: qsTrId("id-clear-status")
                 menu: ContextMenu {
                     MenuItem {
-                        text: qsTr("Never")
+                        //% "Never"
+                        text: qsTrId("id-never")
                     }
                     MenuItem {
-                        text: qsTr("in 30 minutes")
+                        //% "in 30 minutes"
+                        text: qsTrId("id-in-thirty-minutes")
                     }
                     MenuItem {
-                        text: qsTr("in 1 hour")
+                        //% "in 1 hour"
+                        text: qsTrId("id-in-one-hour")
                     }
                     MenuItem {
-                        text: qsTr("in 4 hour")
+                        //% "in 4 hours"
+                        text: qsTrId("id-in-four-hours")
                     }
                     MenuItem {
-                        text: qsTr("today")
+                        //% "today"
+                        text: qsTrId("id-today")
                     }
                     MenuItem {
-                        text: qsTr("this week")
+                        //% "this week"
+                        text: qsTrId("id-this-week")
                     }
                 }
 
-                currentIndex: profileStatus.expireStatus
+                onCurrentIndexChanged: {
+                    const currentDate = new Date()
+
+                    switch (currentIndex) {
+
+                    case 1:
+                        expiresAt = new Date(currentDate.getTime() + 30*60000)
+                        break;
+
+                    case 2:
+                        expiresAt = new Date(currentDate.getTime() + 60*60000)
+                        break;
+
+                    case 3:
+                        expiresAt = new Date(currentDate.getTime() + 4*60*60000)
+                        break;
+
+                    case 4:
+                        const currentDay = currentDate
+                        currentDay.setHours(23, 59, 59, 999)
+                        expiresAt = currentDay
+                        break;
+
+                    case 5:
+                        const currentSunday = currentDate
+                        currentSunday.setHours(23, 59, 59, 999)
+                        currentSunday.setDate(currentSunday.getDate() - currentSunday.getDay() + 7);
+                        expiresAt = currentSunday
+                        break;
+
+                    default:
+                        expiresAt = new Date().setTime(0)
+                        break;
+                    }
+                }
             }
         }
     }

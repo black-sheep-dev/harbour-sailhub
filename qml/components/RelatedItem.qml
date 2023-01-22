@@ -17,8 +17,10 @@ BackgroundItem {
 
     Icon {
         id: openRelatedIcon
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: titleLabel.right
+        anchors {
+            left: titleLabel.right
+            verticalCenter: parent.verticalCenter
+        }
         source: "image://theme/icon-m-right"
     }
 }

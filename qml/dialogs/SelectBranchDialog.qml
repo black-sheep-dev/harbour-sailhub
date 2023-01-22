@@ -9,16 +9,20 @@ Dialog {
 
     DialogHeader {
         id: header
-        title: qsTr("Choose Branch")
-        acceptText: qsTr("Select")
+        //% "Choose branch"
+        title: qsTrId("id-choose-branch")
+        //% "Select"
+        acceptText: qsTrId("id-select")
     }
 
     SilicaListView {
         id: listView
-        anchors.top: header.bottom
-        anchors.bottom: parent.bottom
-        width: parent.width
-
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: header.bottom
+            bottom: parent.bottom
+        }
         model: branches
 
         delegate: ListItem {
@@ -27,34 +31,33 @@ Dialog {
             contentHeight: Theme.itemSizeMedium
 
             Row {
-                x: Theme.horizontalPageMargin
-                width: parent.width - 2*x
                 anchors.verticalCenter: parent.verticalCenter
+                x: Theme.horizontalPageMargin
+                width: parent.width - 2*x 
                 spacing: Theme.paddingMedium
 
                 Label {
-                    width: parent.width - parent.spacing - selectedIcon.width
                     anchors.verticalCenter: parent.verticalCenter
-
-                    text: modelData === defaultBranch ? (modelData + " (" + qsTr("default") + ")") : modelData
+                    width: parent.width - parent.spacing - selectedIcon.width
+                    //% "Default"
+                    text: modelData.name === defaultBranch ? (modelData.name + " (" + qsTrId("id-default") + ")") : modelData.name
                 }
 
                 Image {
                     id: selectedIcon
-
-                    visible: selected === modelData
-
+                    visible: selected === modelData.name
                     source: "image://theme/icon-m-acknowledge"
                     anchors.verticalCenter: parent.verticalCenter
                 }
             }
 
-            onClicked: selected = modelData
+            onClicked: selected = modelData.name
         }
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: qsTr("No branches available")
+            //% "No branches available"
+            text: qsTrId("id-no-branches-available")
         }
 
         VerticalScrollDecorator {}

@@ -17,30 +17,34 @@ Dialog {
         DialogHeader {
             title: {
                 if (reply)
-                    return edit ? qsTr("Edit Reply") : qsTr("Add Reply")
+                    return edit ?
+                                //% "Edit reply"
+                                qsTrId("id-edit-reply") :
+                                //% "Add reply"
+                                qsTrId("id-add-reply")
                 else
-                    return edit ? qsTr("Edit Comment") : qsTr("Add Comment")
+                    return edit ?
+                                //% "Edit comment"
+                                qsTrId("id-edit-comment") :
+                                //% "Add comment"
+                                qsTrId("id-add-comment")
             }
-            acceptText: edit ? qsTr("Save") : qsTr("Add")
+            acceptText: edit ?
+                            //% "Save"
+                            qsTrId("id-save") :
+                            //% "Add"
+                            qsTrId("id-add")
         }
 
         TextArea {
             id: bodyTextArea
-
             width: parent.width
-            height: dialog.height / 2
-
+            height: dialog.height / 2         
             focus: true
-
             cursorPosition: length
-
-            EnterKey.iconSource: "image://theme/icon-m-enter-close"
+            EnterKey.iconSource: "image://theme/icon-m-enter-close"     
         }
     }
 
-    onDone: {
-        if (result != DialogResult.Accepted) return
-
-        body = bodyTextArea.text
-    }
+    onAccepted: body = bodyTextArea.text
 }

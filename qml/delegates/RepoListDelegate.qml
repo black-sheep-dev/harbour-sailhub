@@ -2,108 +2,108 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "../components/"
-import '..'
-
-//import org.nubecula.harbour.sailhub 1.0
+import "../."
 
 ListItem {
-    property alias name: nameLabel.text
-    property alias description: descriptionLabel.text
-
     id: delegate
     width: parent.width
     contentHeight: delegateContent.height + 2*Theme.paddingSmall
 
-    Row {
-        id: delegateContent
-        anchors.verticalCenter: parent.verticalCenter
-        x: Theme.horizontalPageMargin
-        width: parent.width - 2*x
-        spacing: Theme.paddingMedium
-
-        CircleImage {
-            id: avatarIcon
-            width: Theme.iconSizeSmallPlus
-            height: width
-
-            fallbackItemVisible: false
-
-            source: model.ownerAvatar
-
-            BusyIndicator {
-                size: BusyIndicatorSize.Small
-                anchors.centerIn: avatarIcon
-                running: avatarIcon.status !== Image.Ready
-            }
+    CircleImage {
+        id: avatarIcon
+        anchors {
+            left: parent.left
+            leftMargin: Theme.horizontalPageMargin
+            top: parent.top
+            topMargin: Theme.paddingMedium
         }
 
-        Column {
-            id: delegateColumn
-            width: parent.width - avatarIcon.width - parent.spacing
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: Theme.paddingSmall
+        width: Theme.iconSizeSmallPlus
+        height: width
+        source: model.owner.avatarUrl
+    }
 
-            Label {
-                id: nameLabel
-                width: parent.width
-                color: pressed ? Theme.highlightColor : Theme.primaryColor
-                font.pixelSize: Theme.fontSizeMedium
-                font.bold: true
-                wrapMode: Text.Wrap
+    Rectangle {
+        anchors {
+           horizontalCenter: avatarIcon.horizontalCenter
+           top: avatarIcon.bottom
+           bottom: parent.bottom
+        }
+        width: 4
+        opacity: 0.5
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "transparent"; }
+            GradientStop { position: 0.5; color: model.isPrivate ? Theme.errorColor : Theme.highlightColor; }
+            GradientStop { position: 1.0; color: "transparent"; }
+        }
+
+    }
+
+    Column {
+        id: delegateContent
+        anchors {
+            top: parent.top
+            topMargin: Theme.paddingSmall
+            left: avatarIcon.right
+            leftMargin: Theme.paddingMedium
+            right: parent.right
+            rightMargin: Theme.horizontalPageMargin
+        }
+
+        spacing: Theme.paddingSmall
+
+        Label {
+            width: parent.width
+            font.pixelSize: Theme.fontSizeTiny
+            color: Theme.highlightColor
+            text: model.owner.login
+        }
+
+        Label {
+            width: parent.width
+            color: Theme.highlightColor
+            font {
+                pixelSize: Theme.fontSizeMedium
+                bold: true
             }
+            wrapMode: Text.Wrap
 
-            RepoFlagsItem {
-                flags: model.flags
-                lockReason: model.lockReason
-            }
+            text: model.name
+        }
 
-            Label {
-                visible: model.description.length > 0
-                id: descriptionLabel
-                width: parent.width
-                font.pixelSize: Theme.fontSizeExtraSmall
-                wrapMode: Text.Wrap
-                font.bold: true
-                color: pressed ? Theme.highlightColor : Theme.primaryColor
-            }
+        RepoFlagsItem {
+            isArchived: model.isArchived
+            isDisabled: model.isDisabled
+            isEmpty: model.isEmpty
+            isFork: model.isFork
+            isInOrganization:  model.isInOrganization
+            isLocked: model.isLocked
+            isMirror: model.isMirror
+            isPrivate: model.isPrivate
+            isTemplate: model.isTemplate
+            lockReason: model.lockReason === undefined ? "" : model.lockReason
+        }
 
-            Row {
-                id: bottomLine
-                width: parent.width
-                spacing: Theme.paddingMedium
+        Label {
+            visible: model.shortDescriptionHTML.length > 0
+            width: parent.width
+            font.pixelSize: Theme.fontSizeExtraSmall
+            wrapMode: Text.Wrap
+            font.bold: true
+            color: pressed ? Theme.highlightColor : Theme.primaryColor
+            text: MarkdownParser.parseRaw(model.shortDescriptionHTML)
+        }
 
-                Icon {
-                    id: stargazerCountIcon
-                    anchors.verticalCenter: parent.verticalCenter
-                    source: "image://theme/icon-s-new?" + (model.stargazerCount > 0 ? SailHubStyles.colorStarred : Theme.primaryColor)
-                }
+        Row {
+            width: parent.width
+            spacing: Theme.paddingLarge
 
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: pressed ? Theme.highlightColor : Theme.primaryColor
+            StargazerItem { count: model.stargazerCount }
 
-                    text: StringHelper.count(model.stargazerCount)
-                }
-
-                Rectangle {
-                    visible: model.languageName.length > 0
-                    height: stargazerCountIcon.height * 0.5
-                    width: height
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    radius: stargazerCountIcon.height * 0.25
-                    color: model.languageColor
-                }
-
-                Label {
-                    visible: model.languageName.length > 0
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: pressed ? Theme.highlightColor : Theme.primaryColor
-
-                    text: model.languageName
-                }
+            LanguageItem {
+                visible: model.hasOwnProperty("primaryLanguage") && model.primaryLanguage.hasOwnProperty("color")
+                name: model.primaryLanguage.hasOwnProperty("name") ? model.primaryLanguage.name : ""
+                color: model.primaryLanguage.hasOwnProperty("color") ? model.primaryLanguage.color : "#FFF"
             }
         }
     }

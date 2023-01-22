@@ -8,7 +8,7 @@ CoverBackground {
         width: parent.width
         height: sourceSize.height * width / sourceSize.width
         smooth: true
-        source: "qrc:///cover/cover-background"
+        source: "/usr/share/harbour-sailhub/images/cover-background.svg"
         opacity: 0.1
     }
 

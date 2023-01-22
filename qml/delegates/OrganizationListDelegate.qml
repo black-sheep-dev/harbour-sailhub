@@ -1,8 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
 import "../components/"
 
 ListItem {
@@ -18,11 +16,9 @@ ListItem {
 
         CircleImage {
             id: avatarIcon
+            anchors.top: parent.top
             width: Theme.itemSizeLarge - 2 * Theme.paddingSmall
             source: model.avatarUrl
-            anchors.top: parent.top
-
-            fallbackItemVisible: false
         }
 
         Column {
@@ -33,10 +29,11 @@ ListItem {
             Label {
                 width: parent.width
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
-                font.pixelSize: Theme.fontSizeMedium
-                font.bold: true
+                font {
+                    pixelSize: Theme.fontSizeMedium
+                    bold: true
+                }
                 wrapMode: Text.Wrap
-
                 text: model.name.length > 0 ? model.name : login
             }
             Label {
@@ -44,16 +41,16 @@ ListItem {
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
                 font.pixelSize: Theme.fontSizeSmall
                 wrapMode: Text.Wrap
-
                 text: model.login
             }
             Label {
                 width: parent.width
                 color: pressed ? Theme.highlightColor : Theme.primaryColor
-                font.pixelSize: Theme.fontSizeSmall
-                font.italic: true
+                font {
+                    pixelSize: Theme.fontSizeSmall
+                    italic: true
+                }
                 wrapMode: Text.Wrap
-
                 text: model.description
             }
         }

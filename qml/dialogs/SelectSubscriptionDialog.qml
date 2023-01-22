@@ -4,14 +4,17 @@ import Sailfish.Silica 1.0
 import org.nubecula.harbour.sailhub 1.0
 
 Dialog {
-    property int subscription
+    property string subscription
 
     Column {
         width: parent.width
+        spacing: Theme.paddingLarge
 
         DialogHeader {
-            title: qsTr("Choose Subscription")
-            acceptText: qsTr("Select")
+            //% "Choose subscription"
+            title: qsTrId("id-choose-subscription")
+            //% "Select"
+            acceptText: qsTrId("id-select")
         }
 
         TextSwitch {
@@ -19,15 +22,17 @@ Dialog {
             x: Theme.horizontalPageMargin
             width: parent.width - 2*x
 
-            text: qsTr("Unsubscribe")
-            description: qsTr("Disable all notifications")
+            //% "Unsubscribe"
+            text: qsTrId("id-unsubscribe")
+            //% "Disable all notifications"
+            description: qsTrId("id-disable-all-notifications")
 
-            checked: subscription === SubscriptionState.Ignored
+            checked: subscription === "IGNORED"
             onClicked: {
                 checked = true
                 unsubscribeSwitch.checked = false
                 subscribeSwitch.checked = false
-                subscription = SubscriptionState.Ignored
+                subscription = "IGNORED"
             }
         }
 
@@ -36,15 +41,17 @@ Dialog {
             x: Theme.horizontalPageMargin
             width: parent.width - 2*x
 
-            text: qsTr("Subscribe")
-            description: qsTr("Get notified only when participating or mentioned")
+            //% "Subscribe"
+            text: qsTrId("id-subscribe")
+            //% "Get notified only when participating or mentioned"
+            description: qsTrId("id-get-notified-subscribe-desc")
 
-            checked: subscription === SubscriptionState.Unsubscribed
+            checked: subscription === "UNSUBSCRIBED"
             onClicked: {
                 checked = true
                 ignoreSwitch.checked = false
                 subscribeSwitch.checked = false
-                subscription = SubscriptionState.Unsubscribed
+                subscription = "UNSUBSCRIBED"
             }
         }
 
@@ -53,15 +60,17 @@ Dialog {
             x: Theme.horizontalPageMargin
             width: parent.width - 2*x
 
-            text: qsTr("Subscribe (all)");
-            description: qsTr("Get notified of all conversation")
+            //% "Subscribe (all)"
+            text: qsTrId("id-subscribe-all");
+            //% "Get notified of all conversation"
+            description: qsTrId("id-get-notified-of-all-conversation")
 
-            checked: subscription === SubscriptionState.Subscribed    
+            checked: subscription === "SUBSCRIBED"
             onClicked: {
                 checked = true
                 ignoreSwitch.checked = false
                 unsubscribeSwitch.checked = false
-                subscription = SubscriptionState.Subscribed
+                subscription = "SUBSCRIBED"
             }
         }
     }

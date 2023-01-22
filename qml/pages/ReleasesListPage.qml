@@ -2,36 +2,87 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 
-import org.nubecula.harbour.sailhub 1.0
-
+import "../components/"
 import "../delegates/"
+import "../views/"
 
-Page {
-    property string description
-    property alias identifier: releasesModel.identifier
-    property alias type: releasesModel.modelType
-    property bool sorting: true
-    property alias states: releasesModel.state
-
-    ConfigurationGroup {
-        id: config
-        path: "/apps/harbour-sailhub/releases"
-
-        property alias sortRole: releasesModel.sortRole
-        property alias sortOrder: releasesModel.sortOrder
-    }
-
+ListPage {
     id: page
     allowedOrientations: Orientation.All
 
+    configPath: "/app/harbour-sailhub/releases"
+
+    orderField: "CREATED_AT"
+    orderFields: ["CREATED_AT", "NAME"]
+    orderFieldLabels: [
+        //% "Created at"
+        qsTrId("id-created-at"),
+        //% "Name"
+        qsTrId("id-name")
+    ]
+    orderFieldType: "ReleaseOrderField = CREATED_AT"
+
+    itemsPath: ["node", "releases", "nodes"]
+
+    itemsQuery: '
+    query(
+        $nodeId: ID!,
+        $orderField: ' + orderFieldType + ',
+        $orderDirection: OrderDirection = DESC,
+        $itemCount: Int = 20,
+        $itemCursor: String = null
+    ) {
+        node(id: $nodeId) {
+            ... on Repository {
+                releases(
+                    first: $itemCount,
+                    after: $itemCursor,
+                    orderBy: {
+                        direction: $orderDirection
+                        field: $orderField
+                    }) {
+                    nodes {
+                        id
+                        createdAt
+                        isDraft
+                        isLatest
+                        isPrerelease
+                        name
+                    }
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                }
+            }
+        }
+    }'
+
     SilicaListView {
+        PullDownMenu {
+            busy: loading
+            MenuItem {
+                //% "Refresh"
+                text: qsTrId("id-refresh")
+                onClicked: refresh()
+
+            }
+            MenuItem {
+                //% "Sorting"
+                text: qsTrId("id-sorting")
+                onClicked: setSorting()
+            }
+        }
+
         id: listView
         anchors.fill: parent
 
         header: PageHeader {
             id: header
-            title: qsTr("Releases")
-            description: header.description
+            //% "Releases"
+            title: qsTrId("id-releases")
+            description: description
         }
 
         footer: Item {
@@ -39,113 +90,25 @@ Page {
             height: Theme.horizontalPageMargin
         }
 
-        PullDownMenu {
-            busy: releasesModel.loading
-            MenuItem {
-                text: qsTr("Refresh")
-                onClicked: {
-                    refresh()
-                }
-            }
-            MenuItem {
-                visible: sorting
-                text: qsTr("Sorting")
-                onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/SortSelectionDialog.qml"), {
-                                                    order: config.sortOrder,
-                                                    field: getSortFieldIndex(),
-                                                    fields: [
-                                                        qsTr("Created at"),
-                                                        qsTr("Name")
-                                                    ]
-                                                })
-
-                    dialog.accepted.connect(function() {
-                        config.sortOrder = dialog.order
-                        config.sortRole = getSortRoleFromIndex(dialog.field)
-
-                        refresh()
-                    })
-                }
-            }
-        }
-
-        BusyIndicator {
-            id: busyIndicator
-            visible: running
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: releasesModel.loading
-        }
-
-        ViewPlaceholder {
-            enabled: listView.count == 0
-            text: qsTr("No releases available")
-        }
-
-        VerticalScrollDecorator {}
-
-        model: ReleasesModel { id: releasesModel }
-
-        opacity: busyIndicator.running ? 0.3 : 1.0
-        Behavior on opacity { FadeAnimator {} }
+        model: itemsModel
 
         delegate: ReleaseListDelegate {
             id: delegate
 
             onClicked: pageStack.push(Qt.resolvedUrl("ReleasePage.qml"), {
-                                          nodeId: model.nodeId
+                                          nodeId: model.id
                                       })
         }
 
-        PushUpMenu {
-            busy: releasesModel.loading
-            visible: releasesModel.hasNextPage
-
-            MenuItem {
-                text: qsTr("Load more (%n to go)", "", releasesModel.totalCount - listView.count)
-                onClicked: getReleases()
-            }
+        ViewPlaceholder {
+            enabled: listView.count == 0
+            //% "No releases available"
+            text: qsTrId("id-no-releases-available")
         }
-    }
 
-    function getReleases() {
-        SailHub.api().getPaginationModel(releasesModel)
-    }
-
-    function getSortRoleFromIndex(index) {
-        switch (index) {
-        case 0:
-            return ReleasesModel.CreatedAtRole
-
-        default:
-            return ReleasesModel.NameRole
-        }
-    }
-
-    function getSortFieldIndex() {
-        switch (config.sortRole) {
-        case ReleasesModel.CreatedAtRole:
-            return 0;
-
-        case ReleasesModel.NameRole:
-            return 1;
-
-        default:
-            return 0
-        }
-    }
-
-    function refresh() {
-        releasesModel.reset()
-        getReleases()
-    }
-
-    Connections {
-        target: SailHub.api()
+        VerticalScrollDecorator {}
     }
 
     Component.onCompleted: refresh()
-    Component.onDestruction: delete releasesModel
 }
 

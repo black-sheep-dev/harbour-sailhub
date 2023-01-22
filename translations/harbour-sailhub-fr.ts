@@ -2,123 +2,1919 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr">
 <context>
+    <name></name>
+    <message id="id-edited">
+        <source>Edited</source>
+        <translation type="unfinished">Modifié</translation>
+    </message>
+    <message id="id-delete">
+        <source>Delete</source>
+        <translation type="unfinished">Supprimer</translation>
+    </message>
+    <message id="id-deleting-comment">
+        <source>Deleting comment</source>
+        <translation type="unfinished">Supprimer le commentaire</translation>
+    </message>
+    <message id="id-edit">
+        <source>Edit</source>
+        <translation type="unfinished">Modifier</translation>
+    </message>
+    <message id="id-mark-as-answer">
+        <source>Mark as answer</source>
+        <translation type="obsolete">Marquer comme réponse</translation>
+    </message>
+    <message id="id-unmark-as-answer">
+        <source>Unmark as answer</source>
+        <translation type="obsolete">Démarquer comme réponse</translation>
+    </message>
+    <message id="id-reply">
+        <source>Reply</source>
+        <translation type="obsolete">Répondre</translation>
+    </message>
+    <message id="id-quote-reply">
+        <source>Quote reply</source>
+        <translation type="unfinished">Réponse en citation</translation>
+    </message>
+    <message id="id-answer">
+        <source>Answer</source>
+        <translation type="obsolete">Répondre</translation>
+    </message>
+    <message id="id-replies">
+        <source>Replies</source>
+        <translation type="obsolete">Réponses</translation>
+    </message>
+    <message id="id-files-changed" numerus="yes">
+        <source>%n file(s) changed</source>
+        <translation type="unfinished">
+            <numerusform>%n fichier modifié</numerusform>
+            <numerusform>%n fichiers modifiés</numerusform>
+        </translation>
+    </message>
+    <message id="id-off-topic">
+        <source>Off topic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-resolved">
+        <source>Resolved</source>
+        <translation type="unfinished">Résolus</translation>
+    </message>
+    <message id="id-spam">
+        <source>Spam</source>
+        <translation type="unfinished">Spam</translation>
+    </message>
+    <message id="id-too-heated">
+        <source>Too heated</source>
+        <translation type="unfinished">Trop d&apos;activité</translation>
+    </message>
+    <message id="id-locked">
+        <source>Locked</source>
+        <translation type="unfinished">Verrouiller</translation>
+    </message>
+    <message id="id-set-status">
+        <source>Set status</source>
+        <translation type="unfinished">Définir le statut</translation>
+    </message>
+    <message id="id-private">
+        <source>Private</source>
+        <translation type="unfinished">Privé</translation>
+    </message>
+    <message id="id-billing">
+        <source>Billing</source>
+        <translation type="unfinished">Facturation</translation>
+    </message>
+    <message id="id-migrating">
+        <source>Migrating</source>
+        <translation type="unfinished">Migration</translation>
+    </message>
+    <message id="id-moving">
+        <source>Moving</source>
+        <translation type="unfinished">Migration</translation>
+    </message>
+    <message id="id-rename">
+        <source>Rename</source>
+        <translation type="unfinished">Renommer</translation>
+    </message>
+    <message id="id-archived">
+        <source>Archived</source>
+        <translation type="unfinished">Archivé</translation>
+    </message>
+    <message id="id-organization">
+        <source>Organization</source>
+        <translation type="unfinished">Organisation</translation>
+    </message>
+    <message id="id-fork">
+        <source>Fork</source>
+        <translation type="unfinished">Créer une divergence</translation>
+    </message>
+    <message id="id-mirror">
+        <source>Mirror</source>
+        <translation type="unfinished">Mirroir</translation>
+    </message>
+    <message id="id-template">
+        <source>Template</source>
+        <translation type="unfinished">Modèle</translation>
+    </message>
+    <message id="id-disabled">
+        <source>Disabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-empty">
+        <source>Empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-lock">
+        <source>Lock</source>
+        <translation type="unfinished">Verrouiller</translation>
+    </message>
+    <message id="id-unlock">
+        <source>Unlock</source>
+        <translation type="unfinished">Déverrouiller</translation>
+    </message>
+    <message id="id-unstar">
+        <source>Unstar</source>
+        <translation type="unfinished">Enlever l&apos;étoile</translation>
+    </message>
+    <message id="id-star">
+        <source>Star</source>
+        <translation type="unfinished">Étoile</translation>
+    </message>
+    <message id="id-watch">
+        <source>Watch</source>
+        <translation type="unfinished">Observer</translation>
+    </message>
+    <message id="id-unwatch">
+        <source>Unwatch</source>
+        <translation type="unfinished">Ne plus observer</translation>
+    </message>
+    <message id="id-started-discussion">
+        <source>started the discussion %1 ago</source>
+        <oldsource>started the discussion</oldsource>
+        <translation type="unfinished">a démarré·e la discussion</translation>
+    </message>
+    <message id="id-draft">
+        <source>Draft</source>
+        <translation type="unfinished">Brouillon</translation>
+    </message>
+    <message id="id-latest-release">
+        <source>Latest release</source>
+        <translation type="unfinished">Dernière version</translation>
+    </message>
+    <message id="id-pre-release">
+        <source>Pre-release</source>
+        <translation type="unfinished">Pre-version</translation>
+    </message>
+    <message id="id-assign-user">
+        <source>Assign user</source>
+        <translation type="obsolete">Attribuer un utilisateur</translation>
+    </message>
+    <message id="id-assign">
+        <source>Assign</source>
+        <translation type="unfinished">Attribuer</translation>
+    </message>
+    <message id="id-no-users-available">
+        <source>No users available</source>
+        <translation type="unfinished">Aucun utilisateur disponible</translation>
+    </message>
+    <message id="id-close-issue">
+        <source>Close issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-close">
+        <source>Close</source>
+        <translation type="unfinished">Fermer</translation>
+    </message>
+    <message id="id-close-issue-reason-desc">
+        <source>Choose a reason why you close this issue.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-reason">
+        <source>Reason</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-completed">
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-not-planned">
+        <source>Not planned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-edit-reply">
+        <source>Edit reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-add-reply">
+        <source>Add reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-edit-comment">
+        <source>Edit comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-add-comment">
+        <source>Add comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-save">
+        <source>Save</source>
+        <translation type="unfinished">Enregistrer</translation>
+    </message>
+    <message id="id-add">
+        <source>Add</source>
+        <translation type="unfinished">Ajouter</translation>
+    </message>
+    <message id="id-edit-discussion">
+        <source>Edit discussion</source>
+        <translation type="obsolete">Modifier la discussion</translation>
+    </message>
+    <message id="id-create-discussion">
+        <source>Create discussion</source>
+        <translation type="obsolete">Créer une discussion</translation>
+    </message>
+    <message id="id-create">
+        <source>Create</source>
+        <translation type="unfinished">Créer</translation>
+    </message>
+    <message id="id-title">
+        <source>Title</source>
+        <translation type="unfinished">Titre</translation>
+    </message>
+    <message id="id-enter-title">
+        <source>Enter title</source>
+        <translation type="unfinished">Entrer le titre</translation>
+    </message>
+    <message id="id-edit-issue">
+        <source>Edit issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-create-issue">
+        <source>Create issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-choose-branch">
+        <source>Choose branch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-select">
+        <source>Select</source>
+        <translation type="unfinished">Sélectionner</translation>
+    </message>
+    <message id="id-default">
+        <source>Default</source>
+        <translation type="unfinished">Défaut</translation>
+    </message>
+    <message id="id-no-branches-available">
+        <source>No branches available</source>
+        <translation type="unfinished">Aucune branche disponible</translation>
+    </message>
+    <message id="id-no-categories-available">
+        <source>No categories available</source>
+        <translation type="obsolete">Aucune catégorie disponible</translation>
+    </message>
+    <message id="id-choose-emoji">
+        <source>Choose Emoji</source>
+        <translation type="unfinished">Choisir un émoticône</translation>
+    </message>
+    <message id="id-no-emoji-available">
+        <source>No emoji available</source>
+        <translation type="unfinished">Aucun émoticône disponible</translation>
+    </message>
+    <message id="id-choose-lock-reason">
+        <source>Choose lock reason</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-choose-lock-reason-desc">
+        <source>Choose a reason why you are locking this one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-none">
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-choose-subscription">
+        <source>Choose subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-unsubscribe">
+        <source>Unsubscribe</source>
+        <translation type="unfinished">Se désabonner</translation>
+    </message>
+    <message id="id-disable-all-notifications">
+        <source>Disable all notifications</source>
+        <translation type="unfinished">Désactiver toutes les notifications</translation>
+    </message>
+    <message id="id-subscribe">
+        <source>Subscribe</source>
+        <translation type="unfinished">S&apos;abonner</translation>
+    </message>
+    <message id="id-get-notified-subscribe-desc">
+        <source>Get notified only when participating or mentioned</source>
+        <translation type="unfinished">Soyez notifié uniquement lorsque vous participez ou que vous êtes mentionné</translation>
+    </message>
+    <message id="id-subscribe-all">
+        <source>Subscribe (all)</source>
+        <translation type="unfinished">Abonnez-vous (tous)</translation>
+    </message>
+    <message id="id-get-notified-of-all-conversation">
+        <source>Get notified of all conversation</source>
+        <translation type="unfinished">Soyez averti de toutes les conversations</translation>
+    </message>
+    <message id="id-select-sorting">
+        <source>Select sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-sort">
+        <source>Sort</source>
+        <translation type="unfinished">Trier</translation>
+    </message>
+    <message id="id-field">
+        <source>Field</source>
+        <translation type="unfinished">Champ</translation>
+    </message>
+    <message id="id-order">
+        <source>Order</source>
+        <translation type="unfinished">Ordre</translation>
+    </message>
+    <message id="id-ascending">
+        <source>Ascending</source>
+        <translation type="unfinished">Croissant</translation>
+    </message>
+    <message id="id-descending">
+        <source>Descending</source>
+        <translation type="unfinished">Décroissant</translation>
+    </message>
+    <message id="id-about">
+        <source>About</source>
+        <translation type="unfinished">À propos</translation>
+    </message>
+    <message id="id-app-name">
+        <source>SailHub</source>
+        <oldsource>Audiothek</oldsource>
+        <translation type="unfinished">SailHub</translation>
+    </message>
+    <message id="id-about-desc">
+        <source>SailHub is a native Sailfish OS GitHub Client using the GraphQL Api 4 from github.com.</source>
+        <translation type="obsolete">SailHub est un client natif GitHub pour Sailfish OS utilisant GraphQL API v.4 de github.com.</translation>
+    </message>
+    <message id="id-attributions">
+        <source>Attributions</source>
+        <translation type="unfinished">Attributions</translation>
+    </message>
+    <message id="id-attributions-desc">
+        <source>All emojis designed by %1. License: %2</source>
+        <translation type="unfinished">Les émoticônes sont créés par %1. Licence : %2</translation>
+    </message>
+    <message id="id-translations">
+        <source>Translations</source>
+        <translation type="unfinished">Traductions</translation>
+    </message>
+    <message id="id-translation-desc">
+        <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
+        <translation type="obsolete">Votre langue n&apos;est pas disponible ? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
+    </message>
+    <message id="id-sources">
+        <source>Sources</source>
+        <translation type="unfinished">Sources</translation>
+    </message>
+    <message id="id-donations">
+        <source>Donations</source>
+        <translation type="unfinished">Dons</translation>
+    </message>
+    <message id="id-buy-beer">
+        <source>If you like my work why not buy me a beer?</source>
+        <translation type="unfinished">Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière ?</translation>
+    </message>
+    <message id="id-donate-paypal">
+        <source>Donate with PayPal</source>
+        <translation type="unfinished">Donner par PayPal</translation>
+    </message>
+    <message id="id-donate-liberpay">
+        <source>Donate with Liberpay</source>
+        <translation type="unfinished">Donner par Liberpay</translation>
+    </message>
+    <message id="id-add-star">
+        <source>Add Star</source>
+        <translation type="obsolete">Ajouter une étoile</translation>
+    </message>
+    <message id="id-thx-to-star">
+        <source>%1 says thank you for your star!</source>
+        <translation type="obsolete">%1 vous remercie pour votre étoile !</translation>
+    </message>
+    <message id="id-support">
+        <source>Support</source>
+        <translation type="obsolete">Support</translation>
+    </message>
+    <message id="id-stargazer">
+        <source>Stargazer</source>
+        <translation type="unfinished">Tour d&apos;astronomie</translation>
+    </message>
+    <message id="id-sponsoring">
+        <source>Sponsoring</source>
+        <translation type="obsolete">Donation</translation>
+    </message>
+    <message id="id-refresh">
+        <source>Refresh</source>
+        <translation type="unfinished">Rafraîchir</translation>
+    </message>
+    <message id="id-remove">
+        <source>Remove</source>
+        <translation type="unfinished">Supprimer</translation>
+    </message>
+    <message id="id-remove-user-from-assignees">
+        <source>Remove user from assignees</source>
+        <translation type="obsolete">Supprimer l&apos;utilisateur des destinataires</translation>
+    </message>
+    <message id="id-load-more" numerus="yes">
+        <source>Load more (%n to go)</source>
+        <translation type="obsolete">
+            <numerusform>Charger plus (%n restant)</numerusform>
+            <numerusform>Charger plus (%n restant)</numerusform>
+        </translation>
+    </message>
+    <message id="id-commit">
+        <source>Commit</source>
+        <translation type="obsolete">Commit</translation>
+    </message>
+    <message id="id-verified">
+        <source>Verified</source>
+        <translation type="unfinished">Vérifié</translation>
+    </message>
+    <message id="id-unverified">
+        <source>Unverified</source>
+        <translation type="unfinished">Non vérifié</translation>
+    </message>
+    <message id="id-state-bad-cert">
+        <source>The signing certificate or its chain could not be verified</source>
+        <translation type="obsolete">Le certificat d&apos;authentification ou sa chaîne n&apos;a pas pu être vérifié</translation>
+    </message>
+    <message id="id-state-bad-email">
+        <source>Invalid email used for signing</source>
+        <translation type="obsolete">Courriel utilisé invalide pour l&apos;authentification</translation>
+    </message>
+    <message id="id-state-expired-key">
+        <source>Signing key expired</source>
+        <translation type="obsolete">Clé d&apos;authentification expirée</translation>
+    </message>
+    <message id="id-state-gpgverify-error">
+        <source>Internal error - the GPG verification service misbehaved</source>
+        <translation type="obsolete">Erreur interne - le service de vérification GPG s&apos;est comportée inhabituellement</translation>
+    </message>
+    <message id="id-state-gpgverify-unavailable">
+        <source>Internal error - the GPG verification service is unavailable at the moment</source>
+        <translation type="obsolete">Erreur interne - le service de vérification GPG n&apos;est pas disponible pour le moment</translation>
+    </message>
+    <message id="id-state-invalid-signature">
+        <source>Invalid signature</source>
+        <translation type="obsolete">Signature invalide</translation>
+    </message>
+    <message id="id-state-malformed-sig">
+        <source>Malformed signature</source>
+        <translation type="obsolete">Signature mal formée</translation>
+    </message>
+    <message id="id-state-not-signing-key">
+        <source>The usage flags for the key that signed this don&apos;t allow signing</source>
+        <translation type="obsolete">Les droits associés à la clé l&apos;ayant signé n&apos;autorisent pas l&apos;authentification</translation>
+    </message>
+    <message id="id-state-no-user">
+        <source>Email used for signing not known to GitHub</source>
+        <translation type="obsolete">Le courriel utilisé pour l&apos;authentification est inconnu de GitHub</translation>
+    </message>
+    <message id="id-ocsp-error">
+        <source>Valid signature, though certificate revocation check failed</source>
+        <translation type="obsolete">Signature valide, bien que la vérification de la révocation du certificat ait échoué</translation>
+    </message>
+    <message id="id-state-ocsp-pending">
+        <source>Valid signature, pending certificate revocation checking</source>
+        <translation type="obsolete">Signature valide, en attente de vérification de la révocation du certificat</translation>
+    </message>
+    <message id="id-state-ocsp-revoke">
+        <source>One or more certificates in chain has been revoked</source>
+        <translation type="obsolete">Un ou plusieurs certificats de la chaîne ont été révoqués</translation>
+    </message>
+    <message id="id-state-unknown-key">
+        <source>Key used for signing not known to GitHub</source>
+        <translation type="obsolete">La clé utilisée pour l&apos;authentification est inconnue de GitHub</translation>
+    </message>
+    <message id="id-state-unknown-sig-type">
+        <source>Unknown signature type</source>
+        <translation type="obsolete">Type de signature inconnu</translation>
+    </message>
+    <message id="id-stat-unsigned">
+        <source>Unsigned</source>
+        <translation type="obsolete">Non signé</translation>
+    </message>
+    <message id="id-state-unverified-email">
+        <source>Email used for signing unverified on GitHub</source>
+        <translation type="obsolete">Le courriel utilisé pour l&apos;authentification est non vérifié sur GitHub</translation>
+    </message>
+    <message id="id-state-unknown-reason">
+        <source>Unkown reason</source>
+        <translation type="obsolete">Raison inconnue</translation>
+    </message>
+    <message id="id-changes">
+        <source>Changes</source>
+        <translation type="obsolete">Changements</translation>
+    </message>
+    <message id="id-changed-files">
+        <source>Changed files</source>
+        <translation type="obsolete">Fichiers modifiés</translation>
+    </message>
+    <message id="id-additions-count" numerus="yes">
+        <source>%n addition(s)</source>
+        <translation type="obsolete">
+            <numerusform>%n ajout</numerusform>
+            <numerusform>%n ajouts</numerusform>
+        </translation>
+    </message>
+    <message id="id-deletions-count" numerus="yes">
+        <source>%n deletion(s)</source>
+        <translation type="obsolete">
+            <numerusform>%n supression</numerusform>
+            <numerusform>%n supressions</numerusform>
+        </translation>
+    </message>
+    <message id="id-relations">
+        <source>Relations</source>
+        <translation type="unfinished">Relations</translation>
+    </message>
+    <message id="id-contributors">
+        <source>Contributors</source>
+        <translation type="unfinished">Contributeur·rice·s</translation>
+    </message>
+    <message id="id-parents">
+        <source>Parents</source>
+        <translation type="obsolete">Parents</translation>
+    </message>
+    <message id="id-no-files-available">
+        <source>No files available</source>
+        <translation type="unfinished">Aucun fichier disponible</translation>
+    </message>
+    <message id="id-commits">
+        <source>Commits</source>
+        <translation type="obsolete">Commits</translation>
+    </message>
+    <message id="id-no-commits-available">
+        <source>No commits available</source>
+        <translation type="obsolete">Aucun commit disponible</translation>
+    </message>
+    <message id="id-thread">
+        <source>Thread</source>
+        <translation type="obsolete">Fil de discussion</translation>
+    </message>
+    <message id="id-reactions">
+        <source>Reactions</source>
+        <translation type="unfinished">Réactions</translation>
+    </message>
+    <message id="id-deleting-discussion">
+        <source>Deleting discussion</source>
+        <translation type="unfinished">Supprimer la discussion</translation>
+    </message>
+    <message id="id-discussion">
+        <source>Discussion</source>
+        <translation type="obsolete">Discussion</translation>
+    </message>
+    <message id="id-comments">
+        <source>Comments</source>
+        <translation type="unfinished">Commentaires</translation>
+    </message>
+    <message id="id-write-comment">
+        <source>Write comment</source>
+        <translation type="unfinished">Écrire un commentaire</translation>
+    </message>
+    <message id="id-created-at">
+        <source>Created at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-updated-at">
+        <source>Updated at</source>
+        <translation type="unfinished">Modifié le</translation>
+    </message>
+    <message id="id-discussions">
+        <source>Discussions</source>
+        <translation type="unfinished">Discussions</translation>
+    </message>
+    <message id="id-sorting">
+        <source>Sorting</source>
+        <translation type="unfinished">Tri</translation>
+    </message>
+    <message id="id-start-new-discussion">
+        <source>Start new</source>
+        <translation type="unfinished">Démarrer nouveau</translation>
+    </message>
+    <message id="id-no-discussions-available">
+        <source>No discussions available</source>
+        <translation type="unfinished">Aucune discussion disponible</translation>
+    </message>
+    <message id="id-sponsor">
+        <source>Sponsor</source>
+        <translation type="unfinished">Donateur</translation>
+    </message>
+    <message id="id-no-funding-links-available">
+        <source>No funding links available</source>
+        <translation type="unfinished">Aucun lien de financement disponible</translation>
+    </message>
+    <message id="id-pushed-at">
+        <source>Pushed at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-gists">
+        <source>Gists</source>
+        <translation type="unfinished">Gists</translation>
+    </message>
+    <message id="id-no-gists-available">
+        <source>No gists available</source>
+        <translation type="unfinished">Aucun gist disponible</translation>
+    </message>
+    <message id="id-height">
+        <source>Height</source>
+        <translation type="unfinished">Hauteur</translation>
+    </message>
+    <message id="id-width">
+        <source>Width</source>
+        <translation type="unfinished">Largeur</translation>
+    </message>
+    <message id="id-loading-data">
+        <source>Loading data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-deleting issue">
+        <source>Deleting issue</source>
+        <translation type="obsolete">Supprimer un ticket</translation>
+    </message>
+    <message id="id-reopen">
+        <source>Reopen</source>
+        <translation type="unfinished">Réouvrir</translation>
+    </message>
+    <message id="id-reopen-issue">
+        <source>Reopen issue</source>
+        <translation type="unfinished">Réouvrir le ticket</translation>
+    </message>
+    <message id="id-issue">
+        <source>Issue</source>
+        <translation type="unfinished">Ticket</translation>
+    </message>
+    <message id="id-open">
+        <source>Open</source>
+        <translation type="unfinished">Ouvert</translation>
+    </message>
+    <message id="id-closed">
+        <source>Closed</source>
+        <translation type="unfinished">Fermé</translation>
+    </message>
+    <message id="id-reopened">
+        <source>Reopened</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-labels">
+        <source>Labels</source>
+        <translation type="unfinished">Étiquettes</translation>
+    </message>
+    <message id="id-assignees">
+        <source>Assignees</source>
+        <translation type="unfinished">Assigné·e·s</translation>
+    </message>
+    <message id="id-participants">
+        <source>Participants</source>
+        <translation type="unfinished">Participant·e·s</translation>
+    </message>
+    <message id="id-lock-conversation">
+        <source>Lock conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-unlock-conversation">
+        <source>Unlock conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-created">
+        <source>Created</source>
+        <translation type="unfinished">Créé</translation>
+    </message>
+    <message id="id-issues-created-by-user">
+        <source>Issues created by user</source>
+        <translation type="unfinished">Tickets créés par l&apos;utilisateur</translation>
+    </message>
+    <message id="id-assigned">
+        <source>Assigned</source>
+        <translation type="unfinished">Assigné</translation>
+    </message>
+    <message id="id-issues-assigned-to-user">
+        <source>Issues assigned to user</source>
+        <translation type="unfinished">Tickets assignés à l&apos;utilisateur</translation>
+    </message>
+    <message id="id-mentioned">
+        <source>Mentioned</source>
+        <translation type="unfinished">Mentionné</translation>
+    </message>
+    <message id="id-issues-where-user-is-mentioned">
+        <source>Issues where user is mentioned</source>
+        <translation type="unfinished">Tickets mentionnant l&apos;utilisateur</translation>
+    </message>
+    <message id="id-issues">
+        <source>Issues</source>
+        <translation type="unfinished">Tickets</translation>
+    </message>
+    <message id="id-create-new">
+        <source>Create new</source>
+        <translation type="unfinished">Créer nouveau</translation>
+    </message>
+    <message id="id-show-closed-issues">
+        <source>Show closed issues</source>
+        <translation type="unfinished">Afficher les tickets fermés</translation>
+    </message>
+    <message id="id-show-open-issues">
+        <source>Show open issues</source>
+        <translation type="unfinished">Afficher les tickets ouverts</translation>
+    </message>
+    <message id="id-no-issues-available">
+        <source>No issues available</source>
+        <translation type="unfinished">Aucun ticket disponible</translation>
+    </message>
+    <message id="id-name">
+        <source>Name</source>
+        <translation type="unfinished">Nom</translation>
+    </message>
+    <message id="id-no-labels-available">
+        <source>No labels available</source>
+        <translation type="unfinished">Aucune étiquette disponible</translation>
+    </message>
+    <message id="id-notifications">
+        <source>Notifications</source>
+        <translation type="unfinished">Notifications</translation>
+    </message>
+    <message id="id-no-notifications-available">
+        <source>No notifications available</source>
+        <translation type="unfinished">Aucune notification disponible</translation>
+    </message>
+    <message id="id-unfollow">
+        <source>Unfollow</source>
+        <translation type="unfinished">Ne plus suivre</translation>
+    </message>
+    <message id="id-follow">
+        <source>Follow</source>
+        <translation type="unfinished">Suivre</translation>
+    </message>
+    <message id="id-repositories">
+        <source>Repositories</source>
+        <translation type="unfinished">Dépôts</translation>
+    </message>
+    <message id="id-projects">
+        <source>Projects</source>
+        <translation type="unfinished">Projects</translation>
+    </message>
+    <message id="id-teams">
+        <source>Teams</source>
+        <translation type="unfinished">Équipes</translation>
+    </message>
+    <message id="id-members">
+        <source>Members</source>
+        <translation type="unfinished">Membres</translation>
+    </message>
+    <message id="id-no-organizations-available">
+        <source>No organizations available</source>
+        <translation type="unfinished">Aucune organisation disponible</translation>
+    </message>
+    <message id="id-settings">
+        <source>Settings</source>
+        <translation type="unfinished">Paramètres</translation>
+    </message>
+    <message id="id-search">
+        <source>Search</source>
+        <translation type="unfinished">Rechercher</translation>
+    </message>
+    <message id="id-app-initializing">
+        <source>App initializing ...</source>
+        <translation type="unfinished">Chargement...</translation>
+    </message>
+    <message id="id-home">
+        <source>Home</source>
+        <translation type="unfinished">Accueil</translation>
+    </message>
+    <message id="id-status">
+        <source>Status</source>
+        <translation type="unfinished">Statut</translation>
+    </message>
+    <message id="id-activities">
+        <source>Activities</source>
+        <translation type="unfinished">Activités</translation>
+    </message>
+    <message id="id-my-work">
+        <source>My work</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-pull-requests">
+        <source>Pull requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-organizations">
+        <source>Organizations</source>
+        <translation type="unfinished">Organisations</translation>
+    </message>
+    <message id="id-clear-status">
+        <source>Clear status</source>
+        <translation type="unfinished">Effacer le statut</translation>
+    </message>
+    <message id="id-clearing-status">
+        <source>Clearing status</source>
+        <translation type="unfinished">Effacement du statut</translation>
+    </message>
+    <message id="id-change-status">
+        <source>Change status</source>
+        <translation type="unfinished">Changer de statut</translation>
+    </message>
+    <message id="id-message">
+        <source>Message</source>
+        <translation type="unfinished">Message</translation>
+    </message>
+    <message id="id-enter-message">
+        <source>Enter message</source>
+        <translation type="unfinished">Entrer un message</translation>
+    </message>
+    <message id="id-busy">
+        <source>Busy</source>
+        <translation type="unfinished">Occupé·e</translation>
+    </message>
+    <message id="id-busy-switch-desc">
+        <source>When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.</source>
+        <translation type="unfinished">Lorsque d&apos;autres personnes vous mentionnent ou vous attribuent une review, GitHub leur fera savoir que vous avez une disponibilité limitée.</translation>
+    </message>
+    <message id="id-expires-at">
+        <source>Expires at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-never">
+        <source>Never</source>
+        <translation type="unfinished">Jamais</translation>
+    </message>
+    <message id="id-in-thirty-minutes">
+        <source>in 30 minutes</source>
+        <translation type="unfinished">dans 30 minutes</translation>
+    </message>
+    <message id="id-in-one-hour">
+        <source>in 1 hour</source>
+        <translation type="unfinished">dans 1 heure</translation>
+    </message>
+    <message id="id-in-four-hours">
+        <source>in 4 hours</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-today">
+        <source>today</source>
+        <translation type="unfinished">aujourd&apos;hui</translation>
+    </message>
+    <message id="id-this-week">
+        <source>this week</source>
+        <translation type="unfinished">cette semaine</translation>
+    </message>
+    <message id="id-closing-pull-request">
+        <source>Closing pull request</source>
+        <translation type="obsolete">Fermeture de pull request</translation>
+    </message>
+    <message id="id-reopen-pull-request">
+        <source>Reopen pull request</source>
+        <translation type="unfinished">Réouvrir la pull request</translation>
+    </message>
+    <message id="id-pull-request">
+        <source>Pull request</source>
+        <oldsource>Pull Request</oldsource>
+        <translation type="unfinished">Pull Request</translation>
+    </message>
+    <message id="id-merged">
+        <source>Merged</source>
+        <translation type="unfinished">Fusionné</translation>
+    </message>
+    <message id="Comments">
+        <source>Comments</source>
+        <translation type="obsolete">Commentaires</translation>
+    </message>
+    <message id="id-unlocking">
+        <source>Unlocking</source>
+        <translation type="obsolete">Déverrouillage</translation>
+    </message>
+    <message id="id-locking">
+        <source>Locking</source>
+        <translation type="obsolete">Verrouillage</translation>
+    </message>
+    <message id="id-show-closed-pull-requests">
+        <source>Show closed pull requests</source>
+        <translation type="unfinished">Afficher les pull requests fermées</translation>
+    </message>
+    <message id="id-show-open-pull-request">
+        <source>Show open pull requests</source>
+        <translation type="unfinished">Afficher les pull requests ouvertes</translation>
+    </message>
+    <message id="id-no-pull-requests-available">
+        <source>No pull requests available</source>
+        <translation type="unfinished">Aucune pull request disponible</translation>
+    </message>
+    <message id="id-pull-requests-created-by-user">
+        <source>Pull requests created by user</source>
+        <translation type="unfinished">Pull requests créées par l&apos;utilisateur</translation>
+    </message>
+    <message id="Assigned">
+        <source>Assigned</source>
+        <translation type="unfinished">Assigné</translation>
+    </message>
+    <message id="id-pull-requests-assigned-to-user">
+        <source>Pull requests assigned to user</source>
+        <translation type="unfinished">Pull requests asignées à l&apos;utilisateur</translation>
+    </message>
+    <message id="id-pull-requests-where-user-is-mentioned">
+        <source>Pull requests where user is mentioned</source>
+        <translation type="unfinished">Pull requests mentionnant l&apos;utilisateur</translation>
+    </message>
+    <message id="id-release-assets">
+        <source>Release assets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-no-assets-available">
+        <source>No assets available</source>
+        <translation type="unfinished">Aucun asset disponible</translation>
+    </message>
+    <message id="id-download">
+        <source>Download</source>
+        <translation type="unfinished">Télécharger</translation>
+    </message>
+    <message id="id-release">
+        <source>Release</source>
+        <translation type="unfinished">Version</translation>
+    </message>
+    <message id="id-info">
+        <source>Info</source>
+        <translation type="unfinished">Info</translation>
+    </message>
+    <message id="id-content">
+        <source>Content</source>
+        <translation type="unfinished">Contenu</translation>
+    </message>
+    <message id="id-assets">
+        <source>Assets</source>
+        <translation type="unfinished">Assets</translation>
+    </message>
+    <message id="id-source-code">
+        <source>Source code</source>
+        <translation type="unfinished">Code source</translation>
+    </message>
+    <message id="id-releases">
+        <source>Releases</source>
+        <translation type="unfinished">Versions</translation>
+    </message>
+    <message id="id-no-releases-available">
+        <source>No releases available</source>
+        <translation type="unfinished">Aucune version disponible</translation>
+    </message>
+    <message id="id-forked-from">
+        <source>Forked from %1</source>
+        <translation type="unfinished">Diverge de %1</translation>
+    </message>
+    <message id="id-stars">
+        <source>Stars</source>
+        <translation type="obsolete">Étoiles</translation>
+    </message>
+    <message id="id-forks">
+        <source>Forks</source>
+        <translation type="unfinished">Divergences</translation>
+    </message>
+    <message id="id-vulnerability-alerts">
+        <source>Vulnerability Alerts</source>
+        <translation type="unfinished">Alertes de vulnérabilité</translation>
+    </message>
+    <message id="id-watchers">
+        <source>Watchers</source>
+        <translation type="unfinished">Observateur·rice·s</translation>
+    </message>
+    <message id="id-license">
+        <source>License</source>
+        <translation type="unfinished">Licence</translation>
+    </message>
+    <message id="id-readme">
+        <source>README</source>
+        <translation type="unfinished">README</translation>
+    </message>
+    <message id="id-browse-code">
+        <source>Browse code</source>
+        <translation type="unfinished">Parcourir le code</translation>
+    </message>
+    <message id="id-languages">
+        <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-last-commit">
+        <source>Last commit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-no-repositories-available">
+        <source>No repositories available</source>
+        <translation type="unfinished">Aucun dépôt disponible</translation>
+    </message>
+    <message id="id-stargazers">
+        <source>Stargazers</source>
+        <translation type="unfinished">Tours d&apos;astronomie</translation>
+    </message>
+    <message id="id-starred-at">
+        <source>Starred at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-search-organization">
+        <source>Search Organization</source>
+        <translation type="obsolete">Rechercher une organisation</translation>
+    </message>
+    <message id="id-no-organization-found">
+        <source>No organization found</source>
+        <translation type="obsolete">Aucune organisation trouvée</translation>
+    </message>
+    <message id="id-no-organization-found-hint">
+        <source>Type in search pattern to find organizations</source>
+        <translation type="obsolete">Saisir dans le champs ci-dessus pour trouver des organisations</translation>
+    </message>
+    <message id="id-no-repositories-found">
+        <source>No repositories found</source>
+        <translation type="obsolete">Aucun dépôt trouvé</translation>
+    </message>
+    <message id="id-no-repositories-found-hint">
+        <source>Type in search pattern to find repositories</source>
+        <translation type="obsolete">Saisir dans le champs ci-dessus pour trouver des dépôts</translation>
+    </message>
+    <message id="id-repository">
+        <source>Repository</source>
+        <translation type="obsolete">Dépôt</translation>
+    </message>
+    <message id="id-user">
+        <source>User</source>
+        <translation type="obsolete">Utilisateur</translation>
+    </message>
+    <message id="id-no-users-found">
+        <source>No users found</source>
+        <translation type="obsolete">Aucun utilisateur trouvé</translation>
+    </message>
+    <message id="id-no-users-found-hint">
+        <source>Type in search pattern to find users</source>
+        <translation type="obsolete">Saisir dans le champs ci-dessus pour trouver des utilisateurs</translation>
+    </message>
+    <message id="id-user-unavailable">
+        <source>User unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-profile">
+        <source>Profile</source>
+        <translation type="unfinished">Profil</translation>
+    </message>
+    <message id="id-followers-count" numerus="yes">
+        <source>%n follower(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n fidèle</numerusform>
+            <numerusform>%n fidèles</numerusform>
+        </translation>
+    </message>
+    <message id="id-followers">
+        <source>Followers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-following-count" numerus="yes">
+        <source>%n following(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n suivi</numerusform>
+            <numerusform>%n suivis</numerusform>
+        </translation>
+    </message>
+    <message id="id-following">
+        <source>Following</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-starred">
+        <source>Starred</source>
+        <translation type="unfinished">Favoris</translation>
+    </message>
+    <message id="id-starred-repositories">
+        <source>Starred repositories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-contributions-last-twelve-month">
+        <source>Contributions in the last 12 month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-contributions">
+        <source>Contributions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-reset">
+        <source>Reset</source>
+        <translation type="unfinished">Réinitialiser</translation>
+    </message>
+    <message id="id-resseting-credentials">
+        <source>Resetting credentials and close app</source>
+        <translation type="unfinished">Réinitialisation des infos d&apos;identification et fermer de l&apos;app</translation>
+    </message>
+    <message id="id-access-token">
+        <source>Access token</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-enter-access-token">
+        <source>Enter access token</source>
+        <translation type="unfinished">Entrer le jeton d&apos;accès</translation>
+    </message>
+    <message id="Notifications">
+        <source>Notifications</source>
+        <translation type="obsolete">Notifications</translation>
+    </message>
+    <message id="id-settings-notifications-desc">
+        <source>Get notified of activities on your GitHub account. The update interval is set to 2.5 minutes by default due to GitHub api requirements.</source>
+        <oldsource>Get notified of activities on your GitHub account.</oldsource>
+        <translation type="unfinished">Soyez informé des activités sur votre compte GitHub.</translation>
+    </message>
+    <message id="id-mins-count" numerus="yes">
+        <source>%n min(s)</source>
+        <translation type="obsolete">
+            <numerusform>%n min</numerusform>
+            <numerusform>%n min</numerusform>
+        </translation>
+    </message>
+    <message id="id-authentication">
+        <source>Authentication</source>
+        <translation type="unfinished">Authentification</translation>
+    </message>
+    <message id="id-manage-authentication-data">
+        <source>Manage authentication data</source>
+        <translation type="obsolete">Gérer les données d&apos;authentification</translation>
+    </message>
+    <message id="id-notification">
+        <source>Notification</source>
+        <translation type="obsolete">Notification</translation>
+    </message>
+    <message id="id-manage-notification-options">
+        <source>Manage notification options</source>
+        <translation type="obsolete">Gérer les options de notification</translation>
+    </message>
+    <message id="id-pagination">
+        <source>Pagination</source>
+        <translation type="unfinished">Pagination</translation>
+    </message>
+    <message id="id-pagination-settings-desc">
+        <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>
+        <translation type="unfinished">Choisissez le nombre d&apos;éléments à récupérer dans une seule requête. Cette valeur doit être comprise entre 10 et 100.</translation>
+    </message>
+    <message id="id-pagination-items-count" numerus="yes">
+        <source>%n item(s)</source>
+        <oldsource>%n Item(s)</oldsource>
+        <translation type="unfinished">
+            <numerusform>%n élément</numerusform>
+            <numerusform>%n éléments</numerusform>
+        </translation>
+    </message>
+    <message id="id-complete">
+        <source>Complete</source>
+        <translation type="obsolete">Complété</translation>
+    </message>
+    <message id="id-back">
+        <source>Back</source>
+        <translation type="unfinished">Retour</translation>
+    </message>
+    <message id="id-wizard-completed">
+        <source>Setup process completed</source>
+        <translation type="obsolete">Processus de configuration terminé</translation>
+    </message>
+    <message id="id-continue">
+        <source>Continue</source>
+        <translation type="unfinished">Continuer</translation>
+    </message>
+    <message id="id-quit">
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-wizard-welcome-title">
+        <source>Welcome to SailHub</source>
+        <translation type="unfinished">Bienvenue sur SailHub</translation>
+    </message>
+    <message id="id-wizard-info-unconfigured">
+        <source>This app is not configured yet.</source>
+        <translation type="unfinished">Cette application n&apos;est pas encore configurée.</translation>
+    </message>
+    <message id="id-wizard-info-guide">
+        <source>The setup wizard will guide you through the configuration process.</source>
+        <translation type="unfinished">L&apos;assistant de configuration vous guidera tout au long du processus de configuration.</translation>
+    </message>
+    <message id="id-wizard-errors-info">
+        <source>If there are errors during the setup process, you can try to reset the data from a previous installation.</source>
+        <translation type="unfinished">S&apos;il y a des erreurs pendant le processus d&apos;installation, vous pouvez essayer de réinitialiser les données d&apos;une installation précédente.</translation>
+    </message>
+    <message id="id-resetting-application">
+        <source>Resetting application</source>
+        <translation type="unfinished">Réinitialisation de l&apos;application</translation>
+    </message>
+    <message id="id-personal-access-token">
+        <source>Personal access token</source>
+        <oldsource>Personal Access Token</oldsource>
+        <translation type="unfinished">Jeton d&apos;accès personnel</translation>
+    </message>
+    <message>
+        <source>You need to provide a personal access token to connect to GitHub.</source>
+        <translation type="unfinished">Vous devez fournir un jeton d&apos;accès personnel pour vous connecter à GitHub.</translation>
+    </message>
+    <message id="id-wizard-token-desc-b">
+        <source>This token can be created in developer settings on GitHub.</source>
+        <translation type="unfinished">Ce jeton peut être créé dans « Developer settings » sur GitHub.</translation>
+    </message>
+    <message id="id-wizard-token-desc-c">
+        <source>For a detailed description please refer the README in project repository!</source>
+        <translation type="unfinished">Pour une description détaillée, référez-vous au README du dépôt du projet !</translation>
+    </message>
+    <message id="id-now">
+        <source>now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-minutes-ago-count-small" numerus="yes">
+        <source>%1m</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-minutes-ago-count" numerus="yes">
+        <source>%n minute(s) ago</source>
+        <translation type="unfinished">
+            <numerusform>il y a %n minute</numerusform>
+            <numerusform>il y a %n minutes</numerusform>
+        </translation>
+    </message>
+    <message id="id-hours-ago-count-small" numerus="yes">
+        <source>%1h</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-hours-ago-count" numerus="yes">
+        <source>%n hours(s) ago</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-months-ago-count-small" numerus="yes">
+        <source>%1d</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-months-ago-count" numerus="yes">
+        <source>%n hours(s) ago</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-years-ago-count-small" numerus="yes">
+        <source>%1y</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-years-ago-count" numerus="yes">
+        <source>%n years(s) ago</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-days-ago-count" numerus="yes">
+        <source>%n day(s) ago</source>
+        <translation type="obsolete">
+            <numerusform>il y a %n jour</numerusform>
+            <numerusform>il y a %n jours</numerusform>
+        </translation>
+    </message>
+    <message id="id-event-self-assigned">
+        <source>self-assigned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-assigned">
+        <source>assigned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-self-unassigned">
+        <source>removed his assignment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-unassigned">
+        <source>removed assignment for</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-did-something">
+        <source>did something</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-changed-title">
+        <source>changed title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-interactions">
+        <source>Interactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-mentioned-issue">
+        <source>mentioned this issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-mentioned-pull-request">
+        <source>mentioned this pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-closed-this-issue">
+        <source>closed this issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-closed-this-issue-not-planned">
+        <source>closed this issue as not planned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-locked-conversation">
+        <source>locked and limited conversation to collaborators</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-pinned">
+        <source>pinned this one</source>
+        <oldsource>pinned this issue</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-reopened-this-issue">
+        <source>reopened this one</source>
+        <oldsource>reopened this issue</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-unlocked-conversation">
+        <source>unlocked this conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-unpinned">
+        <source>unpinned this one</source>
+        <oldsource>unpinned this issue</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-did-something">
+        <source>did something that is not implemented</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-labeled">
+        <source>added label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-unlabeled">
+        <source>removed label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-add-commit">
+        <source>and others added a commit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-fetch-profile-data">
+        <source>Failed to fetch profile data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-clear-profile-status">
+        <source>Failed to clear profile status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-update-profile-status">
+        <source>Failed to update profile status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-about-text">
+        <source>SailHub is a native Sailfish OS GitHub Client using the GraphQL Api 4 from github.com.</source>
+        <translation type="unfinished">SailHub est un client natif GitHub pour Sailfish OS utilisant GraphQL API v.4 de github.com.</translation>
+    </message>
+    <message id="id-social-media">
+        <source>Social Media</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-copied-to-clipboard">
+        <source>Copied to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-translations-desc">
+        <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
+        <translation type="unfinished">Votre langue n&apos;est pas disponible ? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
+    </message>
+    <message id="id-failed-to-load-text-file">
+        <source>Failed to load text file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-load-user-details">
+        <source>Failed to load user details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-deleting-issue">
+        <source>Deleting issue</source>
+        <translation type="unfinished">Supprimer un ticket</translation>
+    </message>
+    <message id="id-timeline">
+        <source>Timeline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-load-markdown-file">
+        <source>Failed to load markdown file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-loading-file">
+        <source>Loading file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-load-organization-details">
+        <source>Failed to load organization details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-no-description-provided">
+        <source>No description provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-fetch-releases">
+        <source>Failed to fetch releases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-load-repo-data">
+        <source>Failed to load repository data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-load-file-list">
+        <source>Failed to load file list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-loading-files">
+        <source>Loading files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-no-github-token">
+        <source>This token does not appear to be a GitHub token!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-add-reaction">
+        <source>Failed to add reaction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-add-star">
+        <source>Failed to add star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-follow-organization">
+        <source>Failed to follow organization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-follow-user">
+        <source>Failed to follow user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-lock-item">
+        <source>Failed to lock item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-remove-reaction">
+        <source>Failed to remove reaction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-remove-star">
+        <source>Failed to remove star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-unfollow-organization">
+        <source>Failed to unollow organization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-unfollow-user">
+        <source>Failed to unfollow user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-unlock-item">
+        <source>Failed to unlock item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-update-subscription">
+        <source>Failed to update subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-add-assignees">
+        <source>Failed to add assignees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-remove-assignees">
+        <source>Failed to remove assignees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-add-comment">
+        <source>Failed to add comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-delete-comment">
+        <source>Failed to delete comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-update-comment">
+        <source>Failed to update comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-close-issue">
+        <source>Failed to close issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-create-issue">
+        <source>Failed to create issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-delete-issue">
+        <source>Failed to delete issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-reopen-issue">
+        <source>Failed to reopen issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-update-issue">
+        <source>Failed to update issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-load-items">
+        <source>Failed to load items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-loading-more">
+        <source>Loading more...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-linked-to-issue">
+        <source>linked this to an issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-linked-to-pull-request">
+        <source>linked this to a pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-not-defined">
+        <source>Not defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-edit-pull-request">
+        <source>Edit issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-create-pull-request">
+        <source>Create issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-close-pull-request">
+        <source>Close pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-reviewers">
+        <source>Reviewers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-closing-issues">
+        <source>Closing issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-close-pull-request">
+        <source>Failed to close pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-merge-pull-request">
+        <source>Failed to merge pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-reopen-pull-request">
+        <source>Failed to reopen pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-unlinked-from-issue">
+        <source>unlinked this from an issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-unlinked-from-pull-request">
+        <source>unlinked this from a pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-load-labels">
+        <source>Failed to load labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-assign-labels">
+        <source>Assign labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-fetch-label-details">
+        <source>Failed to fetch label details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-label">
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-related">
+        <source>Related</source>
+        <oldsource>Releated</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-removing-label">
+        <source>Removing label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-add-labels">
+        <source>Failed to add labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-remove-labels">
+        <source>Failed to remove labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-create-discussion">
+        <source>Failed to create discussion</source>
+        <oldsource>Failed to create discusson</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-delete-discussion">
+        <source>Failed to delete discussion</source>
+        <oldsource>Failed to delete discusson</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-update-discussion">
+        <source>Failed to update discussion</source>
+        <oldsource>Failed to update discusson</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-copy-to-clipboard">
+        <source>Copy to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-could-not-mark-all-as-read">
+        <source>Could not mark all as read</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-could-not-mark-as-read">
+        <source>Could not mark as read</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-mark-all-as-read">
+        <source>Mark all as read</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-reset-authentication">
+        <source>Reset authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-develop">
+        <source>Develop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-api-debug">
+        <source>API Debug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-settings-api-debug-desc">
+        <source>Turn on API debugging. All API requests and replies are print to console.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-assign-issue">
+        <source>Your where assigned to an issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-assign-pullrequest">
+        <source>Your where assigned to a pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-author-thread">
+        <source>You created the thread</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-commented-thread">
+        <source>You commented on the thread</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-ci-activity">
+        <source>A GitHub Actions workflow run that you triggered was completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-invitation">
+        <source>You accepted an invitation to contribute to the repository</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-manual-issue">
+        <source>You subscribed to the thread via an issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-manual-pullrequest">
+        <source>You subscribed to the thread via a pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-mention">
+        <source>You were specifically @mentioned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-review-request">
+        <source>You, or a team you&apos;re a member of, were requested to review a pull request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-security-alert">
+        <source>GitHub discovered a security vulnerability in your repository</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-state-changed">
+        <source>You changed the thread state</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-subscribed">
+        <source>A repository you are watching has new activity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-team-mention">
+        <source>Your team was mentioned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-notification-summary-unknown">
+        <source>An unkown event happend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-request-review-from">
+        <source>request a review from</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-request-review-removed-from">
+        <source>removed a review request from</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-abroved-these-changes">
+        <source>abroved these changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-not-implemented-yet">
+        <source>Not implemented yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-head-ref-forced-push">
+        <source>force-pushed the &lt;italic&gt;%1&lt;/italic&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;</source>
+        <oldsource>force-pushed the &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;</oldsource>
+        <extracomment>force-pushed the BRANCH from COMMIT_ID to COMMIT_ID</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-head-ref-deleted">
+        <source>deleted the %1 branch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-event-merged-commit-into">
+        <source>merged commit %1 into %2</source>
+        <extracomment>merged commit COMMIT_ID into BRANCH</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-size">
+        <source>Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-failed-to-fetch-gist-details">
+        <source>Failed to fetch gist details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-gist">
+        <source>Gist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-files">
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="id-stars-count" numerus="yes">
+        <source>%n star(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-forks-count" numerus="yes">
+        <source>%n forks(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message id="id-comments-count" numerus="yes">
+        <source>%n comment(s)</source>
+        <oldsource>%n comments(s)</oldsource>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation type="vanished">À propos</translation>
     </message>
     <message>
         <source>SailHub</source>
-        <translation>SailHub</translation>
+        <translation type="vanished">SailHub</translation>
     </message>
     <message>
         <source>SailHub is a native Sailfish OS GitHub Client using the GraphQL Api 4 from github.com.</source>
-        <translation>SailHub est un client natif GitHub pour Sailfish OS utilisant GraphQL API v.4 de github.com.</translation>
+        <translation type="vanished">SailHub est un client natif GitHub pour Sailfish OS utilisant GraphQL API v.4 de github.com.</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation>Traductions</translation>
+        <translation type="vanished">Traductions</translation>
     </message>
     <message>
         <source>Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.</source>
-        <translation>Votre langue n&apos;est pas disponible&#xa0;? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
+        <translation type="vanished">Votre langue n&apos;est pas disponible ? Votre aide est la bienvenue pour traduire ce projet sur mon serveur Weblate dédié.</translation>
     </message>
     <message>
         <source>Sources</source>
-        <translation>Sources</translation>
+        <translation type="vanished">Sources</translation>
     </message>
     <message>
         <source>Donations</source>
-        <translation>Dons</translation>
+        <translation type="vanished">Dons</translation>
     </message>
     <message>
         <source>If you like my work why not buy me a beer?</source>
-        <translation>Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière&#xa0;?</translation>
+        <translation type="vanished">Si vous appréciez mon travail pourquoi ne pas m&apos;offrir une bière ?</translation>
     </message>
     <message>
         <source>Donate with PayPal</source>
-        <translation>Donner par PayPal</translation>
+        <translation type="vanished">Donner par PayPal</translation>
     </message>
     <message>
         <source>Donate with Liberpay</source>
-        <translation>Donner par Liberpay</translation>
+        <translation type="vanished">Donner par Liberpay</translation>
     </message>
     <message>
         <source>Attributions</source>
-        <translation>Attributions</translation>
+        <translation type="vanished">Attributions</translation>
     </message>
     <message>
         <source>All emojis designed by %1. License: %2</source>
-        <translation>Les émoticônes sont créés par %1. Licence&#xa0;: %2</translation>
-    </message>
-    <message>
-        <source>Give star</source>
-        <translation>Donner étoile</translation>
+        <translation type="vanished">Les émoticônes sont créés par %1. Licence : %2</translation>
     </message>
 </context>
 <context>
     <name>AddStarPage</name>
     <message>
         <source>Add Star</source>
-        <translation>Ajouter une étoile</translation>
+        <translation type="vanished">Ajouter une étoile</translation>
     </message>
     <message>
         <source>%1 says thank you for your star!</source>
-        <translation>%1 vous remercie pour votre étoile&#xa0;!</translation>
+        <translation type="vanished">%1 vous remercie pour votre étoile !</translation>
     </message>
     <message>
         <source>Stargazer</source>
-        <translation>Tour d&apos;astronomie</translation>
+        <translation type="vanished">Tour d&apos;astronomie</translation>
     </message>
     <message>
         <source>Support</source>
-        <translation>Support</translation>
+        <translation type="vanished">Support</translation>
     </message>
     <message>
         <source>Sponsoring</source>
-        <translation>Donation</translation>
+        <translation type="vanished">Donation</translation>
     </message>
 </context>
 <context>
     <name>AssignUserDialog</name>
     <message>
         <source>Assign User</source>
-        <translation>Attribuer un utilisateur</translation>
+        <translation type="vanished">Attribuer un utilisateur</translation>
     </message>
     <message>
         <source>Assign</source>
-        <translation>Attribuer</translation>
+        <translation type="vanished">Attribuer</translation>
     </message>
     <message>
         <source>No users available</source>
-        <translation>Aucun utilisateur disponible</translation>
+        <translation type="vanished">Aucun utilisateur disponible</translation>
     </message>
 </context>
 <context>
     <name>AssigneesListPage</name>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>Assign user</source>
-        <translation>Attribuer un utilisateur</translation>
+        <translation type="vanished">Attribuer un utilisateur</translation>
     </message>
     <message>
         <source>No users available</source>
-        <translation>Aucun utilisateur disponible</translation>
+        <translation type="vanished">Aucun utilisateur disponible</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Supprimer</translation>
+        <translation type="vanished">Supprimer</translation>
     </message>
     <message>
         <source>Remove user from assignees</source>
-        <translation>Supprimer l&apos;utilisateur des destinataires</translation>
+        <translation type="vanished">Supprimer l&apos;utilisateur des destinataires</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
@@ -128,165 +1924,165 @@
     <name>CommentItem</name>
     <message>
         <source>Edited</source>
-        <translation>Modifié</translation>
+        <translation type="vanished">Modifié</translation>
     </message>
 </context>
 <context>
     <name>CommentListDelegate</name>
     <message>
         <source>Edited</source>
-        <translation>Modifié</translation>
+        <translation type="vanished">Modifié</translation>
     </message>
 </context>
 <context>
     <name>CommitPage</name>
     <message>
         <source>Commit</source>
-        <translation>Commit</translation>
+        <translation type="vanished">Commit</translation>
     </message>
     <message>
         <source>Changes</source>
-        <translation>Changements</translation>
+        <translation type="vanished">Changements</translation>
     </message>
     <message numerus="yes">
         <source>%n addition(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n ajout</numerusform>
             <numerusform>%n ajouts</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n deletion(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n supression</numerusform>
             <numerusform>%n supressions</numerusform>
         </translation>
     </message>
     <message>
         <source>Changed files</source>
-        <translation>Fichiers modifiés</translation>
+        <translation type="vanished">Fichiers modifiés</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation>Relations</translation>
+        <translation type="vanished">Relations</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Contributeur·rice·s</translation>
+        <translation type="vanished">Contributeur·rice·s</translation>
     </message>
     <message>
         <source>Parents</source>
-        <translation>Parents</translation>
+        <translation type="vanished">Parents</translation>
     </message>
     <message>
         <source>Verified</source>
-        <translation>Vérifié</translation>
+        <translation type="vanished">Vérifié</translation>
     </message>
     <message>
         <source>Unverified</source>
-        <translation>Non vérifié</translation>
+        <translation type="vanished">Non vérifié</translation>
     </message>
     <message>
         <source>The signing certificate or its chain could not be verified</source>
-        <translation>Le certificat d&apos;authentification ou sa chaîne n&apos;a pas pu être vérifié</translation>
+        <translation type="vanished">Le certificat d&apos;authentification ou sa chaîne n&apos;a pas pu être vérifié</translation>
     </message>
     <message>
         <source>Invalid email used for signing</source>
-        <translation>Courriel utilisé invalide pour l&apos;authentification</translation>
+        <translation type="vanished">Courriel utilisé invalide pour l&apos;authentification</translation>
     </message>
     <message>
         <source>Signing key expired</source>
-        <translation>Clé d&apos;authentification expirée</translation>
+        <translation type="vanished">Clé d&apos;authentification expirée</translation>
     </message>
     <message>
         <source>Internal error - the GPG verification service misbehaved</source>
-        <translation>Erreur interne - le service de vérification GPG s&apos;est comportée inhabituellement</translation>
+        <translation type="vanished">Erreur interne - le service de vérification GPG s&apos;est comportée inhabituellement</translation>
     </message>
     <message>
         <source>Internal error - the GPG verification service is unavailable at the moment</source>
-        <translation>Erreur interne - le service de vérification GPG n&apos;est pas disponible pour le moment</translation>
+        <translation type="vanished">Erreur interne - le service de vérification GPG n&apos;est pas disponible pour le moment</translation>
     </message>
     <message>
         <source>Invalid signature</source>
-        <translation>Signature invalide</translation>
+        <translation type="vanished">Signature invalide</translation>
     </message>
     <message>
         <source>Malformed signature</source>
-        <translation>Signature mal formée</translation>
+        <translation type="vanished">Signature mal formée</translation>
     </message>
     <message>
         <source>The usage flags for the key that signed this don&apos;t allow signing</source>
-        <translation>Les droits associés à la clé l&apos;ayant signé n&apos;autorisent pas l&apos;authentification</translation>
+        <translation type="vanished">Les droits associés à la clé l&apos;ayant signé n&apos;autorisent pas l&apos;authentification</translation>
     </message>
     <message>
         <source>Email used for signing not known to GitHub</source>
-        <translation>Le courriel utilisé pour l&apos;authentification est inconnu de GitHub</translation>
+        <translation type="vanished">Le courriel utilisé pour l&apos;authentification est inconnu de GitHub</translation>
     </message>
     <message>
         <source>Valid signature, though certificate revocation check failed</source>
-        <translation>Signature valide, bien que la vérification de la révocation du certificat ait échoué</translation>
+        <translation type="vanished">Signature valide, bien que la vérification de la révocation du certificat ait échoué</translation>
     </message>
     <message>
         <source>Valid signature, pending certificate revocation checking</source>
-        <translation>Signature valide, en attente de vérification de la révocation du certificat</translation>
+        <translation type="vanished">Signature valide, en attente de vérification de la révocation du certificat</translation>
     </message>
     <message>
         <source>One or more certificates in chain has been revoked</source>
-        <translation>Un ou plusieurs certificats de la chaîne ont été révoqués</translation>
+        <translation type="vanished">Un ou plusieurs certificats de la chaîne ont été révoqués</translation>
     </message>
     <message>
         <source>Unknown signature type</source>
-        <translation>Type de signature inconnu</translation>
+        <translation type="vanished">Type de signature inconnu</translation>
     </message>
     <message>
         <source>Unsigned</source>
-        <translation>Non signé</translation>
+        <translation type="vanished">Non signé</translation>
     </message>
     <message>
         <source>Email used for signing unverified on GitHub</source>
-        <translation>Le courriel utilisé pour l&apos;authentification est non vérifié sur GitHub</translation>
+        <translation type="vanished">Le courriel utilisé pour l&apos;authentification est non vérifié sur GitHub</translation>
     </message>
     <message>
         <source>Unkown reason</source>
-        <translation>Raison inconnue</translation>
+        <translation type="vanished">Raison inconnue</translation>
     </message>
     <message>
         <source>Key used for signing not known to GitHub</source>
-        <translation>La clé utilisée pour l&apos;authentification est inconnue de GitHub</translation>
+        <translation type="vanished">La clé utilisée pour l&apos;authentification est inconnue de GitHub</translation>
     </message>
 </context>
 <context>
     <name>CommitTreeListPage</name>
     <message>
         <source>Changed Files</source>
-        <translation>Fichiers modifiés</translation>
+        <translation type="vanished">Fichiers modifiés</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>No files available</source>
-        <translation>Aucun fichier disponible</translation>
+        <translation type="vanished">Aucun fichier disponible</translation>
     </message>
 </context>
 <context>
     <name>CommitsListPage</name>
     <message>
         <source>Commits</source>
-        <translation>Commits</translation>
+        <translation type="vanished">Commits</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>No commits available</source>
-        <translation>Aucun commit disponible</translation>
+        <translation type="vanished">Aucun commit disponible</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
@@ -296,70 +2092,70 @@
     <name>DiscussionCommentItem</name>
     <message>
         <source>Edited</source>
-        <translation>Modifié</translation>
+        <translation type="vanished">Modifié</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Supprimer</translation>
+        <translation type="vanished">Supprimer</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Modifier</translation>
+        <translation type="vanished">Modifier</translation>
     </message>
     <message>
         <source>Unmark as answer</source>
-        <translation>Démarquer comme réponse</translation>
+        <translation type="vanished">Démarquer comme réponse</translation>
     </message>
     <message>
         <source>Mark as answer</source>
-        <translation>Marquer comme réponse</translation>
+        <translation type="vanished">Marquer comme réponse</translation>
     </message>
     <message>
         <source>Reply</source>
-        <translation>Répondre</translation>
+        <translation type="vanished">Répondre</translation>
     </message>
     <message>
         <source>Quote reply</source>
-        <translation>Réponse en citation</translation>
+        <translation type="vanished">Réponse en citation</translation>
     </message>
     <message>
         <source>Deleting comment</source>
-        <translation>Supprimer le commentaire</translation>
+        <translation type="vanished">Supprimer le commentaire</translation>
     </message>
     <message>
         <source>Replies</source>
-        <translation>Réponses</translation>
+        <translation type="vanished">Réponses</translation>
     </message>
     <message>
         <source>Answer</source>
-        <translation>Répondre</translation>
+        <translation type="vanished">Répondre</translation>
     </message>
 </context>
 <context>
     <name>DiscussionCommentPage</name>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>Thread</source>
-        <translation>Fil de discussion</translation>
+        <translation type="vanished">Fil de discussion</translation>
     </message>
     <message>
         <source>Reactions</source>
-        <translation>Réactions</translation>
+        <translation type="vanished">Réactions</translation>
     </message>
     <message>
         <source>Replies</source>
-        <translation>Réponses</translation>
+        <translation type="vanished">Réponses</translation>
     </message>
     <message>
         <source>Write Reply</source>
-        <translation>Rédiger une réponse</translation>
+        <translation type="vanished">Rédiger une réponse</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
@@ -369,46 +2165,46 @@
     <name>DiscussionListDelegate</name>
     <message>
         <source>started the discussion</source>
-        <translation>a démarré·e la discussion</translation>
+        <translation type="vanished">a démarré·e la discussion</translation>
     </message>
 </context>
 <context>
     <name>DiscussionPage</name>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>Discussion</source>
-        <translation>Discussion</translation>
+        <translation type="vanished">Discussion</translation>
     </message>
     <message>
         <source>Reactions</source>
-        <translation>Réactions</translation>
+        <translation type="vanished">Réactions</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Modifier</translation>
+        <translation type="vanished">Modifier</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Supprimer</translation>
+        <translation type="vanished">Supprimer</translation>
     </message>
     <message>
         <source>Deleting discussion</source>
-        <translation>Supprimer la discussion</translation>
+        <translation type="vanished">Supprimer la discussion</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation>Commentaires</translation>
+        <translation type="vanished">Commentaires</translation>
     </message>
     <message>
         <source>Write comment</source>
-        <translation>Écrire un commentaire</translation>
+        <translation type="vanished">Écrire un commentaire</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
@@ -418,134 +2214,134 @@
     <name>DiscussionsListPage</name>
     <message>
         <source>Discussions</source>
-        <translation>Discussions</translation>
+        <translation type="vanished">Discussions</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation>Tri</translation>
+        <translation type="vanished">Tri</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation>Créé à</translation>
+        <translation type="vanished">Créé à</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation>Modifié le</translation>
+        <translation type="vanished">Modifié le</translation>
     </message>
     <message>
         <source>No discussions available</source>
-        <translation>Aucune discussion disponible</translation>
+        <translation type="vanished">Aucune discussion disponible</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Supprimer</translation>
+        <translation type="vanished">Supprimer</translation>
     </message>
     <message>
         <source>Deleting discussion</source>
-        <translation>Supprimer la discussion</translation>
+        <translation type="vanished">Supprimer la discussion</translation>
     </message>
     <message>
         <source>Start new</source>
-        <translation>Démarrer nouveau</translation>
+        <translation type="vanished">Démarrer nouveau</translation>
     </message>
 </context>
 <context>
     <name>EditCommentDialog</name>
     <message>
         <source>Edit Reply</source>
-        <translation>Modifier la réponse</translation>
+        <translation type="vanished">Modifier la réponse</translation>
     </message>
     <message>
         <source>Add Reply</source>
-        <translation>Ajouter une réponse</translation>
+        <translation type="vanished">Ajouter une réponse</translation>
     </message>
     <message>
         <source>Edit Comment</source>
-        <translation>Modifier le commentaire</translation>
+        <translation type="vanished">Modifier le commentaire</translation>
     </message>
     <message>
         <source>Add Comment</source>
-        <translation>Ajouter un commentaire</translation>
+        <translation type="vanished">Ajouter un commentaire</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Enregistrer</translation>
+        <translation type="vanished">Enregistrer</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Ajouter</translation>
+        <translation type="vanished">Ajouter</translation>
     </message>
 </context>
 <context>
     <name>EditDiscussionDialog</name>
     <message>
         <source>Edit discussion</source>
-        <translation>Modifier la discussion</translation>
+        <translation type="vanished">Modifier la discussion</translation>
     </message>
     <message>
         <source>Create discussion</source>
-        <translation>Créer une discussion</translation>
+        <translation type="vanished">Créer une discussion</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Enregistrer</translation>
+        <translation type="vanished">Enregistrer</translation>
     </message>
     <message>
         <source>Create</source>
-        <translation>Créer</translation>
+        <translation type="vanished">Créer</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titre</translation>
+        <translation type="vanished">Titre</translation>
     </message>
     <message>
         <source>Enter title</source>
-        <translation>Entrer le titre</translation>
+        <translation type="vanished">Entrer le titre</translation>
     </message>
 </context>
 <context>
     <name>EditIssueDialog</name>
     <message>
         <source>Edit Issue</source>
-        <translation>Modifier le ticket</translation>
+        <translation type="vanished">Modifier le ticket</translation>
     </message>
     <message>
         <source>Create Issue</source>
-        <translation>Créer un ticket</translation>
+        <translation type="vanished">Créer un ticket</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Enregistrer</translation>
+        <translation type="vanished">Enregistrer</translation>
     </message>
     <message>
         <source>Create</source>
-        <translation>Créer</translation>
+        <translation type="vanished">Créer</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titre</translation>
+        <translation type="vanished">Titre</translation>
     </message>
     <message>
         <source>Enter title</source>
-        <translation>Entrer le titre</translation>
+        <translation type="vanished">Entrer le titre</translation>
     </message>
 </context>
 <context>
     <name>FilesChangedItem</name>
     <message numerus="yes">
         <source>%n file(s) changed</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n fichier modifié</numerusform>
             <numerusform>%n fichiers modifiés</numerusform>
         </translation>
@@ -555,305 +2351,305 @@
     <name>FundingLinksListPage</name>
     <message>
         <source>No funding links available</source>
-        <translation>Aucun lien de financement disponible</translation>
+        <translation type="vanished">Aucun lien de financement disponible</translation>
     </message>
     <message>
         <source>Sponsor</source>
-        <translation>Donateur</translation>
+        <translation type="vanished">Donateur</translation>
     </message>
 </context>
 <context>
     <name>GistsListPage</name>
     <message>
         <source>Gists</source>
-        <translation>Gists</translation>
+        <translation type="vanished">Gists</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation>Tri</translation>
+        <translation type="vanished">Tri</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation>Créé le</translation>
+        <translation type="vanished">Créé le</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation>Modifié le</translation>
+        <translation type="vanished">Modifié le</translation>
     </message>
     <message>
         <source>Pushed at</source>
-        <translation>Poussé le</translation>
+        <translation type="vanished">Poussé le</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
     </message>
     <message>
         <source>No gists available</source>
-        <translation>Aucun gist disponible</translation>
+        <translation type="vanished">Aucun gist disponible</translation>
     </message>
 </context>
 <context>
     <name>ImageViewerPage</name>
     <message>
         <source>Height</source>
-        <translation>Hauteur</translation>
+        <translation type="vanished">Hauteur</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation>Largeur</translation>
+        <translation type="vanished">Largeur</translation>
     </message>
 </context>
 <context>
     <name>IssueCommentItem</name>
     <message>
         <source>Delete</source>
-        <translation>Supprimer</translation>
+        <translation type="vanished">Supprimer</translation>
     </message>
     <message>
         <source>Deleting comment</source>
-        <translation>Supprimer le commentaire</translation>
+        <translation type="vanished">Supprimer le commentaire</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Modifier</translation>
+        <translation type="vanished">Modifier</translation>
     </message>
     <message>
         <source>Quote reply</source>
-        <translation>Réponse en citation</translation>
+        <translation type="vanished">Réponse en citation</translation>
     </message>
     <message>
         <source>Edited</source>
-        <translation>Modifié</translation>
+        <translation type="vanished">Modifié</translation>
     </message>
 </context>
 <context>
     <name>IssuePage</name>
     <message>
         <source>Issue</source>
-        <translation>Ticket</translation>
+        <translation type="vanished">Ticket</translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation>Fermé</translation>
+        <translation type="vanished">Fermé</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation>Ouvert</translation>
+        <translation type="vanished">Ouvert</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation>Commentaires</translation>
+        <translation type="vanished">Commentaires</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Supprimer</translation>
+        <translation type="vanished">Supprimer</translation>
     </message>
     <message>
         <source>Deleting issue</source>
-        <translation>Supprimer un ticket</translation>
+        <translation type="vanished">Supprimer un ticket</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation>Fermer</translation>
+        <translation type="vanished">Fermer</translation>
     </message>
     <message>
         <source>Closing issue</source>
-        <translation>Fermer le ticket</translation>
+        <translation type="vanished">Fermer le ticket</translation>
     </message>
     <message>
         <source>Participants</source>
-        <translation>Participant·e·s</translation>
+        <translation type="vanished">Participant·e·s</translation>
     </message>
     <message>
         <source>Assignees</source>
-        <translation>Assigné·e·s</translation>
+        <translation type="vanished">Assigné·e·s</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation>Étiquettes</translation>
+        <translation type="vanished">Étiquettes</translation>
     </message>
     <message>
         <source>Reactions</source>
-        <translation>Réactions</translation>
+        <translation type="vanished">Réactions</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation>Relations</translation>
+        <translation type="vanished">Relations</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Modifier</translation>
+        <translation type="vanished">Modifier</translation>
     </message>
     <message>
         <source>Write comment</source>
-        <translation>Écrire un commentaire</translation>
+        <translation type="vanished">Écrire un commentaire</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
     </message>
     <message>
         <source>Reopen</source>
-        <translation>Réouvrir</translation>
+        <translation type="vanished">Réouvrir</translation>
     </message>
     <message>
         <source>Reopen issue</source>
-        <translation>Réouvrir le ticket</translation>
+        <translation type="vanished">Réouvrir le ticket</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation>Se désabonner</translation>
+        <translation type="vanished">Se désabonner</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation>S&apos;abonner</translation>
+        <translation type="vanished">S&apos;abonner</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Déverrouiller</translation>
+        <translation type="vanished">Déverrouiller</translation>
     </message>
     <message>
         <source>Lock</source>
-        <translation>Verrouiller</translation>
+        <translation type="vanished">Verrouiller</translation>
     </message>
     <message>
         <source>Unlocking</source>
-        <translation>Déverrouillage</translation>
+        <translation type="vanished">Déverrouillage</translation>
     </message>
     <message>
         <source>Locking</source>
-        <translation>Verrouillage</translation>
+        <translation type="vanished">Verrouillage</translation>
     </message>
 </context>
 <context>
     <name>IssueSelectionPage</name>
     <message>
         <source>Created</source>
-        <translation>Créé</translation>
+        <translation type="vanished">Créé</translation>
     </message>
     <message>
         <source>Issues created by user</source>
-        <translation>Tickets créés par l&apos;utilisateur</translation>
+        <translation type="vanished">Tickets créés par l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Assigned</source>
-        <translation>Assigné</translation>
+        <translation type="vanished">Assigné</translation>
     </message>
     <message>
         <source>Issues assigned to user</source>
-        <translation>Tickets assignés à l&apos;utilisateur</translation>
+        <translation type="vanished">Tickets assignés à l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Mentioned</source>
-        <translation>Mentionné</translation>
+        <translation type="vanished">Mentionné</translation>
     </message>
     <message>
         <source>Issues where user is mentioned</source>
-        <translation>Tickets mentionnant l&apos;utilisateur</translation>
+        <translation type="vanished">Tickets mentionnant l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation>Tickets</translation>
+        <translation type="vanished">Tickets</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation>Ouvert</translation>
+        <translation type="vanished">Ouvert</translation>
     </message>
     <message>
         <source>Open issues in user repos</source>
-        <translation>Tickets ouverts dans les dépôts de l&apos;utilisateur</translation>
+        <translation type="vanished">Tickets ouverts dans les dépôts de l&apos;utilisateur</translation>
     </message>
 </context>
 <context>
     <name>IssuesListPage</name>
     <message>
         <source>Issues</source>
-        <translation>Tickets</translation>
+        <translation type="vanished">Tickets</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>No issues available</source>
-        <translation>Aucun ticket disponible</translation>
+        <translation type="vanished">Aucun ticket disponible</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation>Tri</translation>
+        <translation type="vanished">Tri</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation>Créé le</translation>
+        <translation type="vanished">Créé le</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation>Modifié le</translation>
+        <translation type="vanished">Modifié le</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation>Commentaires</translation>
+        <translation type="vanished">Commentaires</translation>
     </message>
     <message>
         <source>Show closed issues</source>
-        <translation>Afficher les tickets fermés</translation>
+        <translation type="vanished">Afficher les tickets fermés</translation>
     </message>
     <message>
         <source>Show open issues</source>
-        <translation>Afficher les tickets ouverts</translation>
+        <translation type="vanished">Afficher les tickets ouverts</translation>
     </message>
     <message>
         <source>Create new</source>
-        <translation>Créer nouveau</translation>
+        <translation type="vanished">Créer nouveau</translation>
     </message>
 </context>
 <context>
     <name>LabelsListPage</name>
     <message>
         <source>Issues</source>
-        <translation>Tickets</translation>
+        <translation type="vanished">Tickets</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation>Tri</translation>
+        <translation type="vanished">Tri</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation>Créé le</translation>
+        <translation type="vanished">Créé le</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="vanished">Nom</translation>
     </message>
     <message>
         <source>No labels available</source>
-        <translation>Aucune étiquette disponible</translation>
+        <translation type="vanished">Aucune étiquette disponible</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
@@ -863,80 +2659,80 @@
     <name>LockReasonPill</name>
     <message>
         <source>Off Topic</source>
-        <translation>Hors sujet</translation>
+        <translation type="vanished">Hors sujet</translation>
     </message>
     <message>
         <source>Resolved</source>
-        <translation>Résolus</translation>
+        <translation type="vanished">Résolus</translation>
     </message>
     <message>
         <source>Spam</source>
-        <translation>Spam</translation>
+        <translation type="vanished">Spam</translation>
     </message>
     <message>
         <source>Too heated</source>
-        <translation>Trop d&apos;activité</translation>
+        <translation type="vanished">Trop d&apos;activité</translation>
     </message>
     <message>
         <source>Locked</source>
-        <translation>Verrouiller</translation>
+        <translation type="vanished">Verrouiller</translation>
     </message>
 </context>
 <context>
     <name>NotificationsListPage</name>
     <message>
         <source>Notifications</source>
-        <translation>Notifications</translation>
+        <translation type="vanished">Notifications</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>No notifications available</source>
-        <translation>Aucune notification disponible</translation>
+        <translation type="vanished">Aucune notification disponible</translation>
     </message>
 </context>
 <context>
     <name>OrganizationPage</name>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>Organization</source>
-        <translation>Organisation</translation>
+        <translation type="vanished">Organisation</translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation>Dépôts</translation>
+        <translation type="vanished">Dépôts</translation>
     </message>
     <message>
         <source>Projects</source>
-        <translation>Projects</translation>
+        <translation type="vanished">Projects</translation>
     </message>
     <message>
         <source>Teams</source>
-        <translation>Équipes</translation>
+        <translation type="vanished">Équipes</translation>
     </message>
     <message>
         <source>Members</source>
-        <translation>Membres</translation>
+        <translation type="vanished">Membres</translation>
     </message>
 </context>
 <context>
     <name>OrganizationsListPage</name>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>No organizations available</source>
-        <translation>Aucune organisation disponible</translation>
+        <translation type="vanished">Aucune organisation disponible</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
@@ -946,337 +2742,337 @@
     <name>OverviewPage</name>
     <message>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation type="vanished">À propos</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Rechercher</translation>
+        <translation type="vanished">Rechercher</translation>
     </message>
     <message>
         <source>App initializing ...</source>
-        <translation>Chargement...</translation>
+        <translation type="vanished">Chargement...</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation>Accueil</translation>
+        <translation type="vanished">Accueil</translation>
     </message>
     <message>
         <source>My Work</source>
-        <translation>Mon travail</translation>
+        <translation type="vanished">Mon travail</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation>Tickets</translation>
+        <translation type="vanished">Tickets</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation>Pull Requests</translation>
+        <translation type="vanished">Pull Requests</translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation>Dépôts</translation>
+        <translation type="vanished">Dépôts</translation>
     </message>
     <message>
         <source>Organizations</source>
-        <translation>Organisations</translation>
+        <translation type="vanished">Organisations</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Paramètres</translation>
+        <translation type="vanished">Paramètres</translation>
     </message>
     <message>
         <source>Notifications</source>
-        <translation>Notifications</translation>
+        <translation type="vanished">Notifications</translation>
     </message>
     <message>
         <source>Activities</source>
-        <translation>Activités</translation>
+        <translation type="vanished">Activités</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation>Statut</translation>
+        <translation type="vanished">Statut</translation>
     </message>
 </context>
 <context>
     <name>ProfileStatusItem</name>
     <message>
         <source>Set status</source>
-        <translation>Définir le statut</translation>
+        <translation type="vanished">Définir le statut</translation>
     </message>
 </context>
 <context>
     <name>ProfileStatusPage</name>
     <message>
         <source>Change status</source>
-        <translation>Changer de statut</translation>
+        <translation type="vanished">Changer de statut</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation>Statut</translation>
+        <translation type="vanished">Statut</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation>Message</translation>
+        <translation type="vanished">Message</translation>
     </message>
     <message>
         <source>Enter message</source>
-        <translation>Entrer un message</translation>
+        <translation type="vanished">Entrer un message</translation>
     </message>
     <message>
         <source>Busy</source>
-        <translation>Occupé·e</translation>
+        <translation type="vanished">Occupé·e</translation>
     </message>
     <message>
         <source>When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.</source>
-        <translation>Lorsque d&apos;autres personnes vous mentionnent ou vous attribuent une review, GitHub leur fera savoir que vous avez une disponibilité limitée.</translation>
+        <translation type="vanished">Lorsque d&apos;autres personnes vous mentionnent ou vous attribuent une review, GitHub leur fera savoir que vous avez une disponibilité limitée.</translation>
     </message>
     <message>
         <source>Clear status</source>
-        <translation>Effacer le statut</translation>
+        <translation type="vanished">Effacer le statut</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation>Jamais</translation>
+        <translation type="vanished">Jamais</translation>
     </message>
     <message>
         <source>in 30 minutes</source>
-        <translation>dans 30 minutes</translation>
+        <translation type="vanished">dans 30 minutes</translation>
     </message>
     <message>
         <source>in 1 hour</source>
-        <translation>dans 1 heure</translation>
+        <translation type="vanished">dans 1 heure</translation>
     </message>
     <message>
         <source>in 4 hour</source>
-        <translation>dans 4 heures</translation>
+        <translation type="vanished">dans 4 heures</translation>
     </message>
     <message>
         <source>today</source>
-        <translation>aujourd&apos;hui</translation>
+        <translation type="vanished">aujourd&apos;hui</translation>
     </message>
     <message>
         <source>this week</source>
-        <translation>cette semaine</translation>
+        <translation type="vanished">cette semaine</translation>
     </message>
     <message>
         <source>Clearing status</source>
-        <translation>Effacement du statut</translation>
+        <translation type="vanished">Effacement du statut</translation>
     </message>
 </context>
 <context>
     <name>PullRequestPage</name>
     <message>
         <source>Unsubscribe</source>
-        <translation>Se désabonner</translation>
+        <translation type="vanished">Se désabonner</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation>S&apos;abonner</translation>
+        <translation type="vanished">S&apos;abonner</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Modifier</translation>
+        <translation type="vanished">Modifier</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation>Fermer</translation>
+        <translation type="vanished">Fermer</translation>
     </message>
     <message>
         <source>Closing pull request</source>
-        <translation>Fermeture de pull request</translation>
+        <translation type="vanished">Fermeture de pull request</translation>
     </message>
     <message>
         <source>Reopen</source>
-        <translation>Réouvrir</translation>
+        <translation type="vanished">Réouvrir</translation>
     </message>
     <message>
         <source>Reopen pull request</source>
-        <translation>Réouvrir la pull request</translation>
+        <translation type="vanished">Réouvrir la pull request</translation>
     </message>
     <message>
         <source>Pull Request</source>
-        <translation>Pull Request</translation>
+        <translation type="vanished">Pull Request</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation>Ouvert</translation>
+        <translation type="vanished">Ouvert</translation>
     </message>
     <message>
         <source>Merged</source>
-        <translation>Fusionné</translation>
+        <translation type="vanished">Fusionné</translation>
     </message>
     <message>
         <source>Closed</source>
-        <translation>Fermé</translation>
+        <translation type="vanished">Fermé</translation>
     </message>
     <message>
         <source>Reactions</source>
-        <translation>Réactions</translation>
+        <translation type="vanished">Réactions</translation>
     </message>
     <message>
         <source>Changes</source>
-        <translation>Changements</translation>
+        <translation type="vanished">Changements</translation>
     </message>
     <message>
         <source>Commits</source>
-        <translation>Commits</translation>
+        <translation type="vanished">Commits</translation>
     </message>
     <message>
         <source>Relations</source>
-        <translation>Relations</translation>
+        <translation type="vanished">Relations</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation>Étiquettes</translation>
+        <translation type="vanished">Étiquettes</translation>
     </message>
     <message>
         <source>Assignees</source>
-        <translation>Assigné·e·s</translation>
+        <translation type="vanished">Assigné·e·s</translation>
     </message>
     <message>
         <source>Participants</source>
-        <translation>Participant·e·s</translation>
+        <translation type="vanished">Participant·e·s</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation>Commentaires</translation>
+        <translation type="vanished">Commentaires</translation>
     </message>
     <message>
         <source>Write comment</source>
-        <translation>Écrire un commentaire</translation>
+        <translation type="vanished">Écrire un commentaire</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Déverrouiller</translation>
+        <translation type="vanished">Déverrouiller</translation>
     </message>
     <message>
         <source>Lock</source>
-        <translation>Verrouiller</translation>
+        <translation type="vanished">Verrouiller</translation>
     </message>
     <message>
         <source>Unlocking</source>
-        <translation>Déverrouillage</translation>
+        <translation type="vanished">Déverrouillage</translation>
     </message>
     <message>
         <source>Locking</source>
-        <translation>Verrouillage</translation>
+        <translation type="vanished">Verrouillage</translation>
     </message>
 </context>
 <context>
     <name>PullRequestsListPage</name>
     <message>
         <source>Pull Requests</source>
-        <translation>Pull Requests</translation>
+        <translation type="vanished">Pull Requests</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>No pull requests available</source>
-        <translation>Aucune pull request disponible</translation>
+        <translation type="vanished">Aucune pull request disponible</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation>Tri</translation>
+        <translation type="vanished">Tri</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation>Créé le</translation>
+        <translation type="vanished">Créé le</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation>Modifié le</translation>
+        <translation type="vanished">Modifié le</translation>
     </message>
     <message>
         <source>Show closed pull requests</source>
-        <translation>Afficher les pull requests fermées</translation>
+        <translation type="vanished">Afficher les pull requests fermées</translation>
     </message>
     <message>
         <source>Show open pull requests</source>
-        <translation>Afficher les pull requests ouvertes</translation>
+        <translation type="vanished">Afficher les pull requests ouvertes</translation>
     </message>
 </context>
 <context>
     <name>PullRequestsSelectionPage</name>
     <message>
         <source>Created</source>
-        <translation>Créé</translation>
+        <translation type="vanished">Créé</translation>
     </message>
     <message>
         <source>Assigned</source>
-        <translation>Assigné</translation>
+        <translation type="vanished">Assigné</translation>
     </message>
     <message>
         <source>Mentioned</source>
-        <translation>Mentionné</translation>
+        <translation type="vanished">Mentionné</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation>Pull Requests</translation>
+        <translation type="vanished">Pull Requests</translation>
     </message>
     <message>
         <source>Pull requests created by user</source>
-        <translation>Pull requests créées par l&apos;utilisateur</translation>
+        <translation type="vanished">Pull requests créées par l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Pull requests assigned to user</source>
-        <translation>Pull requests asignées à l&apos;utilisateur</translation>
+        <translation type="vanished">Pull requests asignées à l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Pull requests where user is mentioned</source>
-        <translation>Pull requests mentionnant l&apos;utilisateur</translation>
+        <translation type="vanished">Pull requests mentionnant l&apos;utilisateur</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message numerus="yes">
         <source>%n minute(s) ago</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>il y a %n minute</numerusform>
             <numerusform>il y a %n minutes</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>il y a %n heure</numerusform>
             <numerusform>il y a %n heures</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>il y a %n jour</numerusform>
             <numerusform>il y a %n jours</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>il y a %n mois</numerusform>
             <numerusform>il y a %n mois</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation>
-            <numerusform>il y a %n&#xa0;an</numerusform>
-            <numerusform>il y a %n&#xa0;années</numerusform>
+        <translation type="vanished">
+            <numerusform>il y a %n an</numerusform>
+            <numerusform>il y a %n années</numerusform>
         </translation>
     </message>
 </context>
@@ -1284,118 +3080,118 @@
     <name>ReactionDialog</name>
     <message>
         <source>Save</source>
-        <translation>Enregistrer</translation>
+        <translation type="vanished">Enregistrer</translation>
     </message>
 </context>
 <context>
     <name>ReleaseAssetsListPage</name>
     <message>
         <source>Release Assets</source>
-        <translation>Libérer les assets</translation>
+        <translation type="vanished">Libérer les assets</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>No assets available</source>
-        <translation>Aucun asset disponible</translation>
+        <translation type="vanished">Aucun asset disponible</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
     </message>
     <message>
         <source>Download</source>
-        <translation>Télécharger</translation>
+        <translation type="vanished">Télécharger</translation>
     </message>
 </context>
 <context>
     <name>ReleaseListDelegate</name>
     <message>
         <source>Latest release</source>
-        <translation>Dernière version</translation>
+        <translation type="vanished">Dernière version</translation>
     </message>
     <message>
         <source>Draft</source>
-        <translation>Brouillon</translation>
+        <translation type="vanished">Brouillon</translation>
     </message>
     <message>
         <source>Pre-release</source>
-        <translation>Pre-version</translation>
+        <translation type="vanished">Pre-version</translation>
     </message>
 </context>
 <context>
     <name>ReleasePage</name>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>Release</source>
-        <translation>Version</translation>
+        <translation type="vanished">Version</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation type="vanished">Info</translation>
     </message>
     <message>
         <source>Draft</source>
-        <translation>Brouillon</translation>
+        <translation type="vanished">Brouillon</translation>
     </message>
     <message>
         <source>Latest release</source>
-        <translation>Dernière version</translation>
+        <translation type="vanished">Dernière version</translation>
     </message>
     <message>
         <source>Pre-release</source>
-        <translation>Pre-version</translation>
+        <translation type="vanished">Pre-version</translation>
     </message>
     <message>
         <source>Assets</source>
-        <translation>Assets</translation>
+        <translation type="vanished">Assets</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation>Contenu</translation>
+        <translation type="vanished">Contenu</translation>
     </message>
     <message>
         <source>Source code</source>
-        <translation>Code source</translation>
+        <translation type="vanished">Code source</translation>
     </message>
 </context>
 <context>
     <name>ReleasesListPage</name>
     <message>
         <source>Releases</source>
-        <translation>Versions</translation>
+        <translation type="vanished">Versions</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation>Tri</translation>
+        <translation type="vanished">Tri</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation>Créé le</translation>
+        <translation type="vanished">Créé le</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="vanished">Nom</translation>
     </message>
     <message>
         <source>No releases available</source>
-        <translation>Aucune version disponible</translation>
+        <translation type="vanished">Aucune version disponible</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
@@ -1405,214 +3201,214 @@
     <name>RepoFlagsItem</name>
     <message>
         <source>Private</source>
-        <translation>Privé</translation>
+        <translation type="vanished">Privé</translation>
     </message>
     <message>
         <source>Billing</source>
-        <translation>Facturation</translation>
+        <translation type="vanished">Facturation</translation>
     </message>
     <message>
         <source>Migrating</source>
-        <translation>Migration</translation>
+        <translation type="vanished">Migration</translation>
     </message>
     <message>
         <source>Moving</source>
-        <translation>Migration</translation>
+        <translation type="vanished">Migration</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation>Renommer</translation>
+        <translation type="vanished">Renommer</translation>
     </message>
     <message>
         <source>Locked</source>
-        <translation>Verrouiller</translation>
+        <translation type="vanished">Verrouiller</translation>
     </message>
     <message>
         <source>Archived</source>
-        <translation>Archivé</translation>
+        <translation type="vanished">Archivé</translation>
     </message>
     <message>
         <source>Organization</source>
-        <translation>Organisation</translation>
+        <translation type="vanished">Organisation</translation>
     </message>
     <message>
         <source>Fork</source>
-        <translation>Créer une divergence</translation>
+        <translation type="vanished">Créer une divergence</translation>
     </message>
     <message>
         <source>Mirror</source>
-        <translation>Mirroir</translation>
+        <translation type="vanished">Mirroir</translation>
     </message>
     <message>
         <source>Template</source>
-        <translation>Modèle</translation>
+        <translation type="vanished">Modèle</translation>
     </message>
 </context>
 <context>
     <name>RepoPage</name>
     <message>
         <source>Star</source>
-        <translation>Étoile</translation>
+        <translation type="vanished">Étoile</translation>
     </message>
     <message>
         <source>Stargazer</source>
-        <translation>Tour d&apos;astronomie</translation>
+        <translation type="vanished">Tour d&apos;astronomie</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation>Tickets</translation>
+        <translation type="vanished">Tickets</translation>
     </message>
     <message>
         <source>Pull Requests</source>
-        <translation>Pull Requests</translation>
+        <translation type="vanished">Pull Requests</translation>
     </message>
     <message>
         <source>Watchers</source>
-        <translation>Observateur·rice·s</translation>
+        <translation type="vanished">Observateur·rice·s</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Contributeur·rice·s</translation>
+        <translation type="vanished">Contributeur·rice·s</translation>
     </message>
     <message>
         <source>License</source>
-        <translation>Licence</translation>
+        <translation type="vanished">Licence</translation>
     </message>
     <message>
         <source>README</source>
-        <translation>README</translation>
+        <translation type="vanished">README</translation>
     </message>
     <message>
         <source>Browse code</source>
-        <translation>Parcourir le code</translation>
+        <translation type="vanished">Parcourir le code</translation>
     </message>
     <message>
         <source>Releases</source>
-        <translation>Versions</translation>
+        <translation type="vanished">Versions</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation>Contenu</translation>
+        <translation type="vanished">Contenu</translation>
     </message>
     <message>
         <source>Discussions</source>
-        <translation>Discussions</translation>
+        <translation type="vanished">Discussions</translation>
     </message>
     <message>
         <source>Sponsor</source>
-        <translation>Donateur</translation>
+        <translation type="vanished">Donateur</translation>
     </message>
     <message>
         <source>Vulnerability Alerts</source>
-        <translation>Alertes de vulnérabilité</translation>
+        <translation type="vanished">Alertes de vulnérabilité</translation>
     </message>
     <message>
         <source>Forks</source>
-        <translation>Divergences</translation>
+        <translation type="vanished">Divergences</translation>
     </message>
     <message>
         <source>Fork</source>
-        <translation>Créer une divergence</translation>
+        <translation type="vanished">Créer une divergence</translation>
     </message>
     <message>
         <source>Stars</source>
-        <translation>Étoiles</translation>
+        <translation type="vanished">Étoiles</translation>
     </message>
     <message>
         <source>Watch</source>
-        <translation>Observer</translation>
+        <translation type="vanished">Observer</translation>
     </message>
     <message>
         <source>Unwatch</source>
-        <translation>Ne plus observer</translation>
+        <translation type="vanished">Ne plus observer</translation>
     </message>
     <message>
         <source>Forked from %1</source>
-        <translation>Diverge de %1</translation>
+        <translation type="vanished">Diverge de %1</translation>
     </message>
 </context>
 <context>
     <name>ReposListPage</name>
     <message>
         <source>Repositories</source>
-        <translation>Dépôts</translation>
+        <translation type="vanished">Dépôts</translation>
     </message>
     <message>
         <source>Forks</source>
-        <translation>Divergences</translation>
+        <translation type="vanished">Divergences</translation>
     </message>
     <message>
         <source>Starred Repositories</source>
-        <translation>Dépôts favoris</translation>
+        <translation type="vanished">Dépôts favoris</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>No repositories available</source>
-        <translation>Aucun dépôt disponible</translation>
+        <translation type="vanished">Aucun dépôt disponible</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
     </message>
     <message>
         <source>Sorting</source>
-        <translation>Tri</translation>
+        <translation type="vanished">Tri</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="vanished">Nom</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation>Créé le</translation>
+        <translation type="vanished">Créé le</translation>
     </message>
     <message>
         <source>Pushed at</source>
-        <translation>Créé le</translation>
+        <translation type="vanished">Créé le</translation>
     </message>
     <message>
         <source>Updated at</source>
-        <translation>Modifié le</translation>
+        <translation type="vanished">Modifié le</translation>
     </message>
     <message>
         <source>Stargazers</source>
-        <translation>Tours d&apos;astronomie</translation>
+        <translation type="vanished">Tours d&apos;astronomie</translation>
     </message>
 </context>
 <context>
     <name>SailHub</name>
     <message>
         <source>SailHub</source>
-        <translation>SailHub</translation>
+        <translation type="vanished">SailHub</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation>Défaut</translation>
+        <translation type="vanished">Défaut</translation>
     </message>
 </context>
 <context>
     <name>SearchOrganizationPage</name>
     <message>
         <source>Search Organization</source>
-        <translation>Rechercher une organisation</translation>
+        <translation type="vanished">Rechercher une organisation</translation>
     </message>
     <message>
         <source>No organization found</source>
-        <translation>Aucune organisation trouvée</translation>
+        <translation type="vanished">Aucune organisation trouvée</translation>
     </message>
     <message>
         <source>Type in search pattern to find organizations</source>
-        <translation>Saisir dans le champs ci-dessus pour trouver des organisations</translation>
+        <translation type="vanished">Saisir dans le champs ci-dessus pour trouver des organisations</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
@@ -1622,19 +3418,19 @@
     <name>SearchRepositoryPage</name>
     <message>
         <source>Search Repository</source>
-        <translation>Rechercher un dépôt</translation>
+        <translation type="vanished">Rechercher un dépôt</translation>
     </message>
     <message>
         <source>No repositories found</source>
-        <translation>Aucun dépôt trouvé</translation>
+        <translation type="vanished">Aucun dépôt trouvé</translation>
     </message>
     <message>
         <source>Type in search pattern to find repositories</source>
-        <translation>Saisir dans le champs ci-dessus pour trouver des dépôts</translation>
+        <translation type="vanished">Saisir dans le champs ci-dessus pour trouver des dépôts</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
@@ -1644,38 +3440,38 @@
     <name>SearchSelectionPage</name>
     <message>
         <source>Search Selection</source>
-        <translation>Sélection de recherche</translation>
+        <translation type="vanished">Sélection de recherche</translation>
     </message>
     <message>
         <source>Repository</source>
-        <translation>Dépôt</translation>
+        <translation type="vanished">Dépôt</translation>
     </message>
     <message>
         <source>User</source>
-        <translation>Utilisateur</translation>
+        <translation type="vanished">Utilisateur</translation>
     </message>
     <message>
         <source>Organization</source>
-        <translation>Organisation</translation>
+        <translation type="vanished">Organisation</translation>
     </message>
 </context>
 <context>
     <name>SearchUserPage</name>
     <message>
         <source>Search User</source>
-        <translation>Rechercher un utilisateur</translation>
+        <translation type="vanished">Rechercher un utilisateur</translation>
     </message>
     <message>
         <source>No users found</source>
-        <translation>Aucun utilisateur trouvé</translation>
+        <translation type="vanished">Aucun utilisateur trouvé</translation>
     </message>
     <message>
         <source>Type in search pattern to find users</source>
-        <translation>Saisir dans le champs ci-dessus pour trouver des utilisateurs</translation>
+        <translation type="vanished">Saisir dans le champs ci-dessus pour trouver des utilisateurs</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
@@ -1685,130 +3481,130 @@
     <name>SelectBranchDialog</name>
     <message>
         <source>Choose Branch</source>
-        <translation>Choisir la branche</translation>
+        <translation type="vanished">Choisir la branche</translation>
     </message>
     <message>
         <source>Select</source>
-        <translation>Sélectionner</translation>
+        <translation type="vanished">Sélectionner</translation>
     </message>
     <message>
         <source>default</source>
-        <translation>défaut</translation>
+        <translation type="vanished">défaut</translation>
     </message>
     <message>
         <source>No branches available</source>
-        <translation>Aucune branche disponible</translation>
+        <translation type="vanished">Aucune branche disponible</translation>
     </message>
 </context>
 <context>
     <name>SelectDiscussionCategoryDialog</name>
     <message>
         <source>Select Category</source>
-        <translation>Choisir une catégorie</translation>
+        <translation type="vanished">Choisir une catégorie</translation>
     </message>
     <message>
         <source>Select</source>
-        <translation>Sélectionner</translation>
+        <translation type="vanished">Sélectionner</translation>
     </message>
     <message>
         <source>No categories available</source>
-        <translation>Aucune catégorie disponible</translation>
+        <translation type="vanished">Aucune catégorie disponible</translation>
     </message>
 </context>
 <context>
     <name>SelectEmojiDialog</name>
     <message>
         <source>Choose Emoji</source>
-        <translation>Choisir un émoticône</translation>
+        <translation type="vanished">Choisir un émoticône</translation>
     </message>
     <message>
         <source>Select</source>
-        <translation>Sélectionner</translation>
+        <translation type="vanished">Sélectionner</translation>
     </message>
     <message>
         <source>No emoji available</source>
-        <translation>Aucun émoticône disponible</translation>
+        <translation type="vanished">Aucun émoticône disponible</translation>
     </message>
 </context>
 <context>
     <name>SelectSubscriptionDialog</name>
     <message>
         <source>Choose Subscription</source>
-        <translation>Choisissez l&apos;abonnement</translation>
+        <translation type="vanished">Choisissez l&apos;abonnement</translation>
     </message>
     <message>
         <source>Select</source>
-        <translation>Sélectionner</translation>
+        <translation type="vanished">Sélectionner</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation>Se désabonner</translation>
+        <translation type="vanished">Se désabonner</translation>
     </message>
     <message>
         <source>Disable all notifications</source>
-        <translation>Désactiver toutes les notifications</translation>
+        <translation type="vanished">Désactiver toutes les notifications</translation>
     </message>
     <message>
         <source>Subscribe</source>
-        <translation>S&apos;abonner</translation>
+        <translation type="vanished">S&apos;abonner</translation>
     </message>
     <message>
         <source>Get notified only when participating or mentioned</source>
-        <translation>Soyez notifié uniquement lorsque vous participez ou que vous êtes mentionné</translation>
+        <translation type="vanished">Soyez notifié uniquement lorsque vous participez ou que vous êtes mentionné</translation>
     </message>
     <message>
         <source>Subscribe (all)</source>
-        <translation>Abonnez-vous (tous)</translation>
+        <translation type="vanished">Abonnez-vous (tous)</translation>
     </message>
     <message>
         <source>Get notified of all conversation</source>
-        <translation>Soyez averti de toutes les conversations</translation>
+        <translation type="vanished">Soyez averti de toutes les conversations</translation>
     </message>
 </context>
 <context>
     <name>SettingsAuthenticationPage</name>
     <message>
         <source>Reset</source>
-        <translation>Réinitialiser</translation>
+        <translation type="vanished">Réinitialiser</translation>
     </message>
     <message>
         <source>Resetting credentials and close app</source>
-        <translation>Réinitialisation des infos d&apos;identification et fermer de l&apos;app</translation>
+        <translation type="vanished">Réinitialisation des infos d&apos;identification et fermer de l&apos;app</translation>
     </message>
     <message>
         <source>Authentication Settings</source>
-        <translation>Paramètres d&apos;authentification</translation>
+        <translation type="vanished">Paramètres d&apos;authentification</translation>
     </message>
     <message>
         <source>Access Token</source>
-        <translation>Jeton d&apos;accès</translation>
+        <translation type="vanished">Jeton d&apos;accès</translation>
     </message>
     <message>
         <source>Enter access token</source>
-        <translation>Entrer le jeton d&apos;accès</translation>
+        <translation type="vanished">Entrer le jeton d&apos;accès</translation>
     </message>
 </context>
 <context>
     <name>SettingsNotificationPage</name>
     <message>
         <source>Notification Settings</source>
-        <translation>Paramètres de notification</translation>
+        <translation type="vanished">Paramètres de notification</translation>
     </message>
     <message>
         <source>Notifications</source>
-        <translation>Notifications</translation>
+        <translation type="vanished">Notifications</translation>
     </message>
     <message>
         <source>Get notified of activities on your GitHub account.</source>
-        <translation>Soyez informé des activités sur votre compte GitHub.</translation>
+        <translation type="vanished">Soyez informé des activités sur votre compte GitHub.</translation>
     </message>
     <message>
         <source>Update Interval</source>
-        <translation>Intervalle de mise à jour</translation>
+        <translation type="vanished">Intervalle de mise à jour</translation>
     </message>
     <message numerus="yes">
         <source>%n min(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n min</numerusform>
             <numerusform>%n min</numerusform>
         </translation>
@@ -1818,46 +3614,46 @@
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
-        <translation>Paramètres</translation>
+        <translation type="vanished">Paramètres</translation>
     </message>
     <message>
         <source>Pagination</source>
-        <translation>Pagination</translation>
+        <translation type="vanished">Pagination</translation>
     </message>
     <message>
         <source>Manage pagination options</source>
-        <translation>Gérer les options de pagination</translation>
+        <translation type="vanished">Gérer les options de pagination</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Authentification</translation>
+        <translation type="vanished">Authentification</translation>
     </message>
     <message>
         <source>Manage authentication data</source>
-        <translation>Gérer les données d&apos;authentification</translation>
+        <translation type="vanished">Gérer les données d&apos;authentification</translation>
     </message>
     <message>
         <source>Notification</source>
-        <translation>Notification</translation>
+        <translation type="vanished">Notification</translation>
     </message>
     <message>
         <source>Manage notification options</source>
-        <translation>Gérer les options de notification</translation>
+        <translation type="vanished">Gérer les options de notification</translation>
     </message>
 </context>
 <context>
     <name>SettingsPaginationPage</name>
     <message>
         <source>Pagination Settings</source>
-        <translation>Paramètres de pagination</translation>
+        <translation type="vanished">Paramètres de pagination</translation>
     </message>
     <message>
         <source>Choose the number of items to fetch in a single query. This value should be between 10-100.</source>
-        <translation>Choisissez le nombre d&apos;éléments à récupérer dans une seule requête. Cette valeur doit être comprise entre 10 et 100.</translation>
+        <translation type="vanished">Choisissez le nombre d&apos;éléments à récupérer dans une seule requête. Cette valeur doit être comprise entre 10 et 100.</translation>
     </message>
     <message numerus="yes">
         <source>%n Item(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n élément</numerusform>
             <numerusform>%n éléments</numerusform>
         </translation>
@@ -1867,69 +3663,69 @@
     <name>SortSelectionDialog</name>
     <message>
         <source>Select Sorting</source>
-        <translation>Sélectionnez le tri</translation>
+        <translation type="vanished">Sélectionnez le tri</translation>
     </message>
     <message>
         <source>Field</source>
-        <translation>Champ</translation>
+        <translation type="vanished">Champ</translation>
     </message>
     <message>
         <source>Order</source>
-        <translation>Ordre</translation>
+        <translation type="vanished">Ordre</translation>
     </message>
     <message>
         <source>Ascending</source>
-        <translation>Croissant</translation>
+        <translation type="vanished">Croissant</translation>
     </message>
     <message>
         <source>Descending</source>
-        <translation>Décroissant</translation>
+        <translation type="vanished">Décroissant</translation>
     </message>
     <message>
         <source>Sort</source>
-        <translation>Trier</translation>
+        <translation type="vanished">Trier</translation>
     </message>
 </context>
 <context>
     <name>StarMenuItem</name>
     <message>
         <source>Unstar</source>
-        <translation>Enlever l&apos;étoile</translation>
+        <translation type="vanished">Enlever l&apos;étoile</translation>
     </message>
     <message>
         <source>Star</source>
-        <translation>Étoile</translation>
+        <translation type="vanished">Étoile</translation>
     </message>
 </context>
 <context>
     <name>TreeListPage</name>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>No files available</source>
-        <translation>Aucun fichier disponible</translation>
+        <translation type="vanished">Aucun fichier disponible</translation>
     </message>
 </context>
 <context>
     <name>UserPage</name>
     <message>
         <source>Unfollow</source>
-        <translation>Ne plus suivre</translation>
+        <translation type="vanished">Ne plus suivre</translation>
     </message>
     <message>
         <source>Follow</source>
-        <translation>Suivre</translation>
+        <translation type="vanished">Suivre</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation>Profil</translation>
+        <translation type="vanished">Profil</translation>
     </message>
     <message numerus="yes">
         <source>%n follower(s)</source>
         <comment>0</comment>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n fidèle</numerusform>
             <numerusform>%n fidèles</numerusform>
         </translation>
@@ -1937,41 +3733,41 @@
     <message numerus="yes">
         <source>%n following(s)</source>
         <comment>0</comment>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n suivi</numerusform>
             <numerusform>%n suivis</numerusform>
         </translation>
     </message>
     <message>
         <source>Repositories</source>
-        <translation>Dépôts</translation>
+        <translation type="vanished">Dépôts</translation>
     </message>
     <message>
         <source>Organizations</source>
-        <translation>Organisations</translation>
+        <translation type="vanished">Organisations</translation>
     </message>
     <message>
         <source>Starred</source>
-        <translation>Favoris</translation>
+        <translation type="vanished">Favoris</translation>
     </message>
     <message>
         <source>Gists</source>
-        <translation>Gists</translation>
+        <translation type="vanished">Gists</translation>
     </message>
 </context>
 <context>
     <name>UsersListPage</name>
     <message>
         <source>Refresh</source>
-        <translation>Rafraîchir</translation>
+        <translation type="vanished">Rafraîchir</translation>
     </message>
     <message>
         <source>No users available</source>
-        <translation>Aucun utilisateur disponible</translation>
+        <translation type="vanished">Aucun utilisateur disponible</translation>
     </message>
     <message numerus="yes">
         <source>Load more (%n to go)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>Charger plus (%n restant)</numerusform>
             <numerusform>Charger plus (%n restant)</numerusform>
         </translation>
@@ -1981,100 +3777,92 @@
     <name>WizardFinalPage</name>
     <message>
         <source>Complete</source>
-        <translation>Complété</translation>
+        <translation type="vanished">Complété</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation>Retour</translation>
+        <translation type="vanished">Retour</translation>
     </message>
     <message>
         <source>Setup process completed</source>
-        <translation>Processus de configuration terminé</translation>
+        <translation type="vanished">Processus de configuration terminé</translation>
     </message>
 </context>
 <context>
     <name>WizardIntroPage</name>
     <message>
         <source>Continue</source>
-        <translation>Continuer</translation>
+        <translation type="vanished">Continuer</translation>
     </message>
     <message>
         <source>Welcome to SailHub</source>
-        <translation>Bienvenue sur SailHub</translation>
+        <translation type="vanished">Bienvenue sur SailHub</translation>
     </message>
     <message>
         <source>This app is not configured yet.</source>
-        <translation>Cette application n&apos;est pas encore configurée.</translation>
+        <translation type="vanished">Cette application n&apos;est pas encore configurée.</translation>
     </message>
     <message>
         <source>The setup wizard will guide you through the configuration process.</source>
-        <translation>L&apos;assistant de configuration vous guidera tout au long du processus de configuration.</translation>
+        <translation type="vanished">L&apos;assistant de configuration vous guidera tout au long du processus de configuration.</translation>
     </message>
     <message>
         <source>If there are errors during the setup process, you can try to reset the data from a previous installation.</source>
-        <translation>S&apos;il y a des erreurs pendant le processus d&apos;installation, vous pouvez essayer de réinitialiser les données d&apos;une installation précédente.</translation>
+        <translation type="vanished">S&apos;il y a des erreurs pendant le processus d&apos;installation, vous pouvez essayer de réinitialiser les données d&apos;une installation précédente.</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation>Réinitialiser</translation>
+        <translation type="vanished">Réinitialiser</translation>
     </message>
     <message>
         <source>Resetting application</source>
-        <translation>Réinitialisation de l&apos;application</translation>
+        <translation type="vanished">Réinitialisation de l&apos;application</translation>
     </message>
 </context>
 <context>
     <name>WizardTokenPage</name>
     <message>
         <source>Continue</source>
-        <translation>Continuer</translation>
+        <translation type="vanished">Continuer</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation>Retour</translation>
+        <translation type="vanished">Retour</translation>
     </message>
     <message>
         <source>Personal Access Token</source>
-        <translation>Jeton d&apos;accès personnel</translation>
+        <translation type="vanished">Jeton d&apos;accès personnel</translation>
     </message>
     <message>
         <source>You need to provide a personal access token to connect to GitHub.</source>
-        <translation>Vous devez fournir un jeton d&apos;accès personnel pour vous connecter à GitHub.</translation>
+        <translation type="vanished">Vous devez fournir un jeton d&apos;accès personnel pour vous connecter à GitHub.</translation>
     </message>
     <message>
         <source>This token can be created in developer settings on GitHub.</source>
-        <translation>Ce jeton peut être créé dans «&#xa0;Developer settings&#xa0;» sur GitHub.</translation>
+        <translation type="vanished">Ce jeton peut être créé dans « Developer settings » sur GitHub.</translation>
     </message>
     <message>
         <source>For a detailed description please refer the README in project repository!</source>
-        <translation>Pour une description détaillée, référez-vous au README du dépôt du projet&#xa0;!</translation>
+        <translation type="vanished">Pour une description détaillée, référez-vous au README du dépôt du projet !</translation>
     </message>
     <message>
         <source>Access Token</source>
-        <translation>Jeton d&apos;accès</translation>
+        <translation type="vanished">Jeton d&apos;accès</translation>
     </message>
     <message>
         <source>Enter access token</source>
-        <translation>Entrer le jeton d&apos;accès</translation>
+        <translation type="vanished">Entrer le jeton d&apos;accès</translation>
     </message>
 </context>
 <context>
     <name>harbour-sailhub</name>
     <message>
         <source>Unauthorized: Did you provide a valid access token?</source>
-        <translation>Non autorisé : avez-vous fourni un jeton d&apos;accès valide ?</translation>
+        <translation type="vanished">Non autorisé : avez-vous fourni un jeton d&apos;accès valide ?</translation>
     </message>
     <message>
         <source>An error occured when connecting to GitHub!</source>
-        <translation>Une erreur s&apos;est produite lors de la connexion à GitHub&#xa0;!</translation>
-    </message>
-    <message>
-        <source>Repo doesn&apos;t exist!</source>
-        <translation>Le répo n&apos;existe pas !</translation>
-    </message>
-    <message>
-        <source>Endpoint unsupported!</source>
-        <translation>Endpoint non supporté !</translation>
+        <translation type="vanished">Une erreur s&apos;est produite lors de la connexion à GitHub !</translation>
     </message>
 </context>
 </TS>

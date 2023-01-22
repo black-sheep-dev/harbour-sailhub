@@ -3,15 +3,15 @@ import Sailfish.Silica 1.0
 import QtGraphicalEffects 1.0
 
 Image {
-    id:circleImage
-    property alias source:circleImage.source
-    property alias fallbackText:fallbacktext.text
-    property alias fallbackItemVisible: fallbackitem.visible
-    width:parent.height-5
-    height: width
+    id: circleImage
+    width: Theme.itemSizeSmall
+    height: Theme.itemSizeSmall
+    sourceSize.width: width
+    sourceSize.height: height
 
     asynchronous: true
     cache: true
+
     layer.enabled:true
     layer.effect: OpacityMask {
         maskSource: Item {
@@ -27,15 +27,38 @@ Image {
     }
 
     Rectangle {
-        id: fallbackitem
+        id: overlay
+        visible: parent.status !== Image.Ready || parent.status === Image.Error
         anchors.fill: parent
-        color: Theme.highlightBackgroundColor
-        radius: width * 0.5
-        Label {
-            id: fallbacktext
-            font { bold: true; pixelSize: Theme.fontSizeLarge }
+        color: Theme.backgroundGlowColor
+        opacity: Theme.opacityOverlay
+        radius: width / 2
+
+        Icon {
             anchors.centerIn: parent
-            color: Theme.primaryColor
+            width: parent.width * 0.4
+            height: height
+            opacity: 0.4
+            source: "image://theme/icon-m-media-artists"
+        }
+
+        SequentialAnimation {
+            running: parent.status !== Image.Ready
+            loops: Animation.Infinite
+            ColorAnimation {
+                target: overlay
+                property: "color"
+                duration: 1500
+                from: Theme.backgroundGlowColor
+                to: Theme.secondaryHighlightColor
+            }
+            ColorAnimation {
+                target: overlay
+                property: "color"
+                duration: 1500
+                to: Theme.backgroundGlowColor
+                from: Theme.secondaryHighlightColor
+            }
         }
     }
 }

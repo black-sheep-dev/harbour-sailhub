@@ -1,21 +1,12 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Nemo.DBus 2.0
 
-import ".."
+import "../."
 
 Page {
     id: page
 
     allowedOrientations: Orientation.All
-
-    DBusInterface {
-        id: sailHubInterface
-
-        service: "org.nubecula.sailhub"
-        iface: "org.nubecula.sailhub"
-        path: "/"
-    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -24,22 +15,22 @@ Page {
         Column {
             id: column
             width:parent.width
-            spacing: Theme.paddingMedium
+            spacing: Theme.paddingLarge
 
             PageHeader {
-                title: qsTr("About")
+                //% "About"
+                title: qsTrId("id-about")
             }
 
             Image {
                 id: logo
-                source: "/usr/share/icons/hicolor/512x512/apps/harbour-sailhub.png"
+                source: "/usr/share/" + Global.appId + "/icons/" + Global.appId + ".svg"
                 smooth: true
-                height: width
+                sourceSize.width: parent.width / 2
+                sourceSize.height: parent.width / 2
+                height: parent.width / 2
                 width: parent.width / 2
-                sourceSize.width: 512
-                sourceSize.height: 512
                 anchors.horizontalCenter: parent.horizontalCenter
-                opacity: 0.7
             }
 
             Label {
@@ -48,18 +39,14 @@ Page {
                 font.pixelSize: Theme.fontSizeExtraLarge
                 color: Theme.secondaryHighlightColor
 
-                text: qsTr("SailHub")
+                //% "SailHub"
+                text: qsTrId("id-app-name")
             }
 
             Label {
                 width: parent.width
                 x : Theme.horizontalPageMargin
-                text: Qt.application.version
-            }
-
-            Item {
-                height: Theme.paddingMedium
-                width: 1
+                text: Global.appVersion
             }
 
             Label {
@@ -68,11 +55,13 @@ Page {
                 wrapMode: Text.WordWrap
                 font.pixelSize: Theme.fontSizeSmall
 
-                text: qsTr("SailHub is a native Sailfish OS GitHub Client using the GraphQL Api 4 from github.com.")
+                //% "SailHub is a native Sailfish OS GitHub Client using the GraphQL Api 4 from github.com."
+                text: qsTrId("id-about-text")
             }
 
             SectionHeader {
-                text: qsTr("Attributions")
+                //% "Attributions"
+                text: qsTrId("id-attributions")
             }
 
             Label {
@@ -82,7 +71,8 @@ Page {
                 font.pixelSize: Theme.fontSizeSmall
                 linkColor: Theme.highlightColor
 
-                text: qsTr("All emojis designed by %1. License: %2")
+                //% "All emojis designed by %1. License: %2"
+                text: qsTrId("id-attributions-desc")
                     .arg("<a href=\"https://github.com/twitter/twemoji\">Twitter Emoji (Twemoji)</a>")
                     .arg("<a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a>")
 
@@ -90,7 +80,83 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Translations")
+                //% "Social Media"
+                text: qsTrId("id-social-media")
+            }
+
+            BackgroundItem {
+                width: parent.width
+                height: Theme.itemSizeMedium
+                contentHeight: Theme.itemSizeMedium
+                Row{
+                    width:parent.width - 2 * x
+                    height: parent.height
+                    x:Theme.horizontalPageMargin
+                    spacing:Theme.paddingLarge
+
+                    Image {
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: parent.height * 0.8
+                        height: width
+                        source: "/usr/share/" + Global.appId + "/icons/mastodon.svg"
+                    }
+
+                    Label{
+                        width: parent.width - parent.height - parent.spacing
+                        anchors.verticalCenter: parent.verticalCenter
+                        wrapMode: Text.WrapAnywhere
+                        font.pixelSize: Theme.fontSizeSmall
+
+                        text: "@" + Qt.application.name + "@social.nubecula.org"
+                        color: parent.parent.pressed ? Theme.highlightColor : Theme.primaryColor
+
+                    }
+                }
+                onClicked: {
+                    //% "Copied to clipboard"
+                    notification.show(qsTrId("id-copied-to-clipboard"))
+                    Clipboard.text = "@" + Qt.application.name + "@social.nubecula.org"
+                }
+            }
+
+            BackgroundItem {
+                width: parent.width
+                height: Theme.itemSizeMedium
+                contentHeight: Theme.itemSizeMedium
+                Row{
+                    width:parent.width - 2 * x
+                    height: parent.height
+                    x:Theme.horizontalPageMargin
+                    spacing:Theme.paddingLarge
+
+                    Image {
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: parent.height * 0.8
+                        height: width
+                        source: "/usr/share/" + Global.appId + "/icons/mastodon.svg"
+                    }
+
+                    Label{
+                        width: parent.width - parent.height - parent.spacing
+                        anchors.verticalCenter: parent.verticalCenter
+                        wrapMode: Text.WrapAnywhere
+                        font.pixelSize: Theme.fontSizeSmall
+
+                        text: "@blacksheep@social.nubecula.org"
+                        color: parent.parent.pressed ? Theme.highlightColor : Theme.primaryColor
+
+                    }
+                }
+                onClicked: {
+                    //% "Copied to clipboard"
+                    notification.show(qsTrId("id-copied-to-clipboard"))
+                    Clipboard.text = "@blacksheep@social.nubecula.org"
+                }
+            }
+
+            SectionHeader {
+                //% "Translations"
+                text: qsTrId("id-translations")
             }
 
             Label {
@@ -99,7 +165,8 @@ Page {
                 wrapMode: Text.WordWrap
                 font.pixelSize: Theme.fontSizeSmall
 
-                text: qsTr("Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server.")
+                //% "Your language is not available? You are welcome to support this project by translating it on my self hosted Weblate server."
+                text: qsTrId("id-translations-desc")
             }
 
             BackgroundItem{
@@ -112,11 +179,11 @@ Page {
                     spacing:Theme.paddingMedium
 
                     Image {
-                        width: parent.height
+                        width: parent.height * 0.8
                         height: width
                         fillMode: Image.PreserveAspectFit
                         anchors.verticalCenter: parent.verticalCenter
-                        source: "qrc:///icons/weblate"
+                        source: "/usr/share/" + Global.appId + "/icons/weblate.svg"
                     }
 
                     Label{
@@ -125,12 +192,12 @@ Page {
                         wrapMode: Text.WrapAnywhere
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: "https://weblate.nubecula.org/projects/harbour-sailhub"
+                        text: "https://weblate.nubecula.org/projects/" + Global.appId
                         color: parent.parent.pressed ? Theme.highlightColor : Theme.primaryColor
 
                     }
                 }
-                onClicked: Qt.openUrlExternally("https://weblate.nubecula.org/engage/harbour-sailhub")
+                onClicked: Qt.openUrlExternally("https://weblate.nubecula.org/engage/" + Global.appId)
             }
 
             Image {
@@ -139,28 +206,28 @@ Page {
                 height: sourceSize.height * width / sourceSize.width
                 smooth: true
                 fillMode: Image.PreserveAspectFit
-                source: "http://weblate.nubecula.org/widgets/harbour-sailhub/-/harbour-sailhub/multi-auto.svg"
+                source: "http://weblate.nubecula.org/widgets/" + Global.appId + "/-/" + Global.appId + "/multi-auto.svg"
             }
 
-            SectionHeader{
-                text: qsTr("Sources")
+            SectionHeader {
+                //% "Sources"
+                text: qsTrId("id-sources")
             }
 
             BackgroundItem{
                 width: parent.width
                 height: Theme.itemSizeMedium
                 Row{
-                    x : Theme.horizontalPageMargin
-                    width: parent.width - 2*x
+                    width:parent.width - 2 * x
                     height: parent.height
-                    spacing:Theme.paddingMedium
+                    x:Theme.horizontalPageMargin
+                    spacing:Theme.paddingLarge
 
                     Image {
-                        width: parent.height
-                        height: width
-                        fillMode: Image.PreserveAspectFit
                         anchors.verticalCenter: parent.verticalCenter
-                        source: "qrc:///icons/git"
+                        width: parent.height * 0.8
+                        height: width
+                        source: "/usr/share/" + Global.appId + "/icons/github.svg"
                     }
 
                     Label{
@@ -169,26 +236,18 @@ Page {
                         wrapMode: Text.WrapAnywhere
                         font.pixelSize: Theme.fontSizeSmall
 
-                        text: "https://github.com/black-sheep-dev/harbour-sailhub"
+                        text: "https://github.com/black-sheep-dev/" + Global.appId
                         color: parent.parent.pressed ? Theme.highlightColor : Theme.primaryColor
 
                     }
                 }
-                onClicked: linkHelper.openLink("https://github.com/black-sheep-dev/harbour-sailhub")
+                onClicked: Qt.openUrlExternally("https://github.com/black-sheep-dev/"  + Global.appId)
             }
 
-            ButtonLayout {
-                width: parent.width
-
-                Button {
-                    //visible: sailHubInterface.status === DBusInterface.Available
-                    text: qsTr("Give star")
-                    onClicked: sailHubInterface.call("addStar", ["black-sheep-dev", "harbour-sailhub"])
-                }
-            }
 
             SectionHeader{
-                text: qsTr("Donations")
+                //% "Donations"
+                text: qsTrId("id-donations")
             }
 
             Label {
@@ -197,7 +256,9 @@ Page {
 
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeSmall
-                text: qsTr("If you like my work why not buy me a beer?")
+
+                //% "If you like my work why not buy me a beer?"
+                text: qsTrId("id-buy-beer")
             }
 
             BackgroundItem{
@@ -208,14 +269,14 @@ Page {
                     x: Theme.horizontalPageMargin
                     width: parent.width - 2*x
                     height: parent.height
-                    spacing:Theme.paddingMedium
+                    spacing:Theme.paddingLarge
 
                     Image {
-                        width: parent.height
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: parent.height * 0.8
                         height: width
                         fillMode: Image.PreserveAspectFit
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "qrc:///icons/paypal"
+                        source: "/usr/share/" + Global.appId + "/icons/paypal.svg"
                     }
                     Label{
                         width: parent.width - parent.height - parent.spacing
@@ -223,7 +284,8 @@ Page {
                         wrapMode: Text.WrapAnywhere
                         font.pixelSize: Theme.fontSizeSmall
                         color: parent.parent.pressed ? Theme.highlightColor : Theme.primaryColor
-                        text: qsTr("Donate with PayPal")
+                        //% "Donate with PayPal"
+                        text: qsTrId("id-donate-paypal")
                     }
                 }
                 onClicked: Qt.openUrlExternally("https://www.paypal.com/paypalme/nubecula/1")
@@ -238,14 +300,14 @@ Page {
                     width: parent.width - 2*x
                     height: parent.height
 
-                    spacing:Theme.paddingMedium
+                    spacing:Theme.paddingLarge
 
                     Image {
-                        width: parent.height
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: parent.height * 0.8
                         height: width
                         fillMode: Image.PreserveAspectFit
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "qrc:///icons/liberpay"
+                        source: "/usr/share/" + Global.appId + "/icons/liberpay.svg"
                     }
                     Label{
                         width: parent.width - parent.height - parent.spacing
@@ -253,7 +315,8 @@ Page {
                         wrapMode: Text.WrapAnywhere
                         font.pixelSize: Theme.fontSizeSmall
                         color: parent.parent.pressed ? Theme.highlightColor : Theme.primaryColor
-                        text: qsTr("Donate with Liberpay")
+                        //% "Donate with Liberpay"
+                        text: qsTrId("id-donate-liberpay")
                     }
                 }
                 onClicked: Qt.openUrlExternally("https://liberapay.com/black-sheep-dev/donate")
@@ -261,7 +324,7 @@ Page {
 
             Item {
                 width: 1
-                height: Theme.paddingSmall
+                height: Theme.paddingLarge
             }
         }
     }
