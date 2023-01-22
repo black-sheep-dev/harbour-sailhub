@@ -7,49 +7,17 @@ I made this app to familiarize myself with GraphQL API concepts. GitHub API is w
 
 ## Current state of development
 
-The development is in an early state at the moment.  
-Lot of functionality is missing.
+I did a complete refactoring of the app with pure QML. Some of the old functionality (<0.2.0) is actually missing, because of some limitations.  
+One example is the ability to mark a single notification as read, because his needs the HTTP method PATCH which is not supported by XMLHttpRequest.
 
 ## Authentication with Personal Access Token
 To authenticate with GitHub API a personal access token is necessary. You can create one in developer settings on GitHub profile settings page.
 
 ![](https://github.com/black-sheep-dev/harbour-sailhub/raw/main/doc/images/github_personal_access_token.png)
 
-## Dependencies (EMOJI)
-This package depends on an emoji pack I released on OpenRepos using the emojis from [Twitter Emoji](https://twemoji.twitter.com/) project.
-
-## DBus Interface (not with Sailjail)
-### Add Star
-You can implement an option to add a star to a GitHub repository via a DBus interface inside your own app. SailHub must be installed on the user device for this to work. You need to provide username of the owner and the repository name.
-
-```
-...
-
-import Nemo.DBus 2.0
-
-DBusInterface {
-    id: sailHubInterface
-
-    service: "org.nubecula.sailhub"
-    iface: "org.nubecula.sailhub"
-    path: "/"
-}
-
-Button {
-	visible: sailHubInterface.Available
-    text: "Give Star"
-    onClicked: sailHubInterface.call("addStar", ["black-sheep-dev", "harbour-sailhub"])
-}
-
-...
-
-```
-For an example you can take a look to the code of the SailHub [AboutPage.qml](https://github.com/black-sheep-dev/harbour-sailhub/blob/main/qml/pages/AboutPage.qml)
-
 ## Implemented Features
 - Basic Markdown rendering using ShowdownJS
 - Very basic notifications (using GitHub APIv3 but I am not happy with it at the moment)
-- Link handler to open links to github.com inside the app
 
 ## Implemented CRUD Features
 Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
@@ -83,7 +51,6 @@ Function description: [*C*]reate, [*R*]read, [*U*]pdate, [*D*]elete, [*S*]earch
 - Sponsoring / Funding
 - Change user profile status
 - Subscription (Repository / Issue / Pull Request)
-- Add star via DBus call to use in own apps (not with Sailjail)
 
 ## Administrative Features
 
@@ -104,7 +71,7 @@ Available translations:
 - German
 - Polish (by [atlochowski](https://github.com/atlochowski))
 - Chinese (by [dashinfantry](https://github.com/dashinfantry))
-- French (by [baxyz](https://github.com/baxyz)
+- French (by [baxyz](https://github.com/baxyz))
   
 If you missing your native language you are welcome to support this project with your translation.
 
