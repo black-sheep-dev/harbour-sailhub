@@ -1,0 +1,52 @@
+name: BUILD on Sailfish OS 4.4.0.58
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+  # to prevent secrets leaking,
+  # we don't build on PRs
+  #pull_request:
+  #  branches:
+  #    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+    
+      - name: Prepare
+        run: mkdir output
+      
+      - name: Build armv7hl
+        id: build_armv7hl
+        uses: coderus/github-sfos-build@master
+        with:
+          release: 4.4.0.58
+          arch: armv7hl
+        
+      - name: Build i486
+        id: build_i486
+        uses: coderus/github-sfos-build@master
+        with:
+          release: 4.4.0.58
+          arch: i486
+
+      - name: Build aarch64
+        id: build_aarch64
+        uses: coderus/github-sfos-build@master
+        with:
+          release: 4.4.0.58
+          arch: aarch64
+      
+      - name: Upload build result
+        uses: actions/upload-artifact@v2
+        with:
+          name: rpm-build-result
+          path: RPMS

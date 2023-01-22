@@ -5,6 +5,8 @@ I made this app to familiarize myself with GraphQL API concepts. GitHub API is w
 
 >![](https://github.com/black-sheep-dev/harbour-sailhub/raw/main/icons/128x128/harbour-sailhub.png)
 
+[![](https://github.com/black-sheep-dev/harbour-sailhub/actions/workflows/main.yml/badge.svg)](https://github.com/black-sheep-dev/harbour-sailhub/actions/workflows/main.yml)
+
 ## Current state of development
 
 I did a complete refactoring of the app with pure QML. Some of the old functionality (<0.2.0) is actually missing, because of some limitations.  
